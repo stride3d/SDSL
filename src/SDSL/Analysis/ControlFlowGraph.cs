@@ -11,7 +11,12 @@ public class CFNode()
     public List<Statement> Code = [];
     public List<CFEdge> Outputs = [];
 }
-public class ControlFlowGraph()
+public sealed class ControlFlowGraph
 {
     public Dictionary<ShaderMethod, ControlFlowGraph> Graphs = [];
+
+    public ControlFlowGraph(ShaderProgram program)
+    {
+        
+    }
 }

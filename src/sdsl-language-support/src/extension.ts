@@ -1,7 +1,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { LanguageClientOptions} from 'vscode-languageclient';
+import { LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 
+
+import { Trace } from 'vscode-jsonrpc';
+import { workspace } from 'vscode';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -20,6 +25,27 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+	let serverExe = 'dotnet';
+	let serverOptions: ServerOptions = {
+		run: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net8.0/Stride.Shaders.LSP.dll"] },
+		debug: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net8.0/Stride.Shaders.LSP.dll"] }
+	};
+	let clientOptions: LanguageClientOptions = {
+		// Register the server for plain text documents
+		documentSelector: [
+			{
+				pattern: '**/*.sdsl',
+			}
+		],
+		synchronize: {
+			// Synchronize the setting section 'languageServerExample' to the server
+			configurationSection: 'languageServerExample',
+			fileEvents: workspace.createFileSystemWatcher('**/*.sdsl')
+		},
+	};
+	const client = new LanguageClient('languageServerExample', 'Language Server Example', serverOptions, clientOptions);
+	client.start();
 }
 
 // This method is called when your extension is deactivated

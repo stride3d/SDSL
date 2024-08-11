@@ -1,5 +1,4 @@
-
-namespace Stride.Shaders.Parsing;
+namespace Stride.Parsing;
 
 
 public readonly struct ScannableString(string code) : IScannableCode

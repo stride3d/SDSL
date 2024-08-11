@@ -1,15 +1,14 @@
-using Stride.Shaders.Parsing.SDSL.AST;
-using Stride.Shaders.Parsing.SDSL.PreProcessing;
+namespace Stride.Parsing;
 
-namespace Stride.Shaders.Parsing;
 
-public struct Scanner(string code) : IScanner
+
+public struct Scanner<T>(T code) : IScanner
+    where T : IScannableCode
 {
     readonly int start = 0;
-    // public string Code { get; } = code;
-    public readonly ReadOnlySpan<char> Span => Code.AsSpan();
-    public readonly ReadOnlyMemory<char> Memory => Code.AsMemory();
-    string Code { get; set; } = code;
+    public readonly ReadOnlySpan<char> Span => Code.Span;
+    public readonly ReadOnlyMemory<char> Memory => Code.Memory;
+    public T Code { get; set; } = code;
     public int Position { get; set; } = 0;
 
     public readonly int Line => Span[..Position].Count('\n') + 1;
@@ -106,9 +105,10 @@ public struct Scanner(string code) : IScanner
     {
         return new(Memory, new(position, position + length));
     }
+
     public readonly ErrorLocation CreateError(int position)
     {
-        return new ErrorLocation(this, position);
+        return ErrorLocation.Create(this, position);
     }
 
     public readonly TextLocation GetLocation(Range range)
@@ -116,7 +116,3 @@ public struct Scanner(string code) : IScanner
         return new(Memory, range);
     }
 }
-
-
-
-

@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftTouch.Spirv.Generators"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride.Shaders.AvaloniaViewer", "src\Stride.Shaders.AvaloniaViewer\Stride.Shaders.AvaloniaViewer.csproj", "{107AF929-CAC1-40DE-895D-71A61C9AED58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride.Parsing", "src\Stride.Parsing\Stride.Parsing.csproj", "{AA4D4316-C55B-4C1F-9AF9-63D63B0DD0AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{107AF929-CAC1-40DE-895D-71A61C9AED58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{107AF929-CAC1-40DE-895D-71A61C9AED58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{107AF929-CAC1-40DE-895D-71A61C9AED58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA4D4316-C55B-4C1F-9AF9-63D63B0DD0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA4D4316-C55B-4C1F-9AF9-63D63B0DD0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA4D4316-C55B-4C1F-9AF9-63D63B0DD0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA4D4316-C55B-4C1F-9AF9-63D63B0DD0AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +98,6 @@ Global
 		{56F4CE74-6000-4ED5-BAE9-D6A22ABFBD24} = {54A7F69B-8687-4302-A545-77024C017E0B}
 		{5BC0A4F1-83C3-4F18-A37A-C4C9745EA3C0} = {54A7F69B-8687-4302-A545-77024C017E0B}
 		{107AF929-CAC1-40DE-895D-71A61C9AED58} = {9967EA99-9716-43A9-B6BA-E5975F08250D}
+		{AA4D4316-C55B-4C1F-9AF9-63D63B0DD0AA} = {9967EA99-9716-43A9-B6BA-E5975F08250D}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,4 @@
-using CommunityToolkit.HighPerformance.Buffers;
-
-namespace Stride.Shaders.Parsing;
+namespace Stride.Parsing;
 
 public record struct TextLocation(ReadOnlyMemory<char> Original, Range Range)
 {

@@ -1,4 +1,4 @@
-namespace Stride.Shaders.Parsing;
+namespace Stride.Parsing;
 
 public interface IScannableCode
 {

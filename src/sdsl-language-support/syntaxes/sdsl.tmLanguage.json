@@ -9,47 +9,44 @@
             "include": "#preprocessors"
         },
         {
-            "include": "#declarations"
+            "include": "#sdsl-declarations"
         }
     ],
     "repository": {
-        "declarations": {
+        "sdsl-declarations": {
             "patterns": [
                 {
-                    "include": "#namespace-declaration"
+                    "include": "#shader-elements"
                 }
             ]
         },
-        "preprocessors" : {
+        "preprocessors": {
             "patterns": [
                 {
                     "match": "^[ \t]*(#define)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*\n",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.preprocessor.sdsl"
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
-                        "2" : {
-                            "name" : "variable.preprocessor.sdsl"
-                        },
-                        "3" : {
-                            "patterns": [
-                                {"include": "#literals"}
-                            ]
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
                         }
                     }
                 },
                 {
                     "match": "^[ \t]*(#define)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)([ \t]+([a-zA-Z0-9_.]+))[ \t]*\n",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.preprocessor.sdsl"
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
-                        "2" : {
-                            "name" : "variable.preprocessor.sdsl"
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
                         },
-                        "3" : {
+                        "3": {
                             "patterns": [
-                                {"include": "#literals"}
+                                {
+                                    "include": "#literals"
+                                }
                             ]
                         }
                     }
@@ -57,62 +54,62 @@
                 {
                     "match": "^[ \t]*(#define)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\\(.?*\\))([ \t]+([a-zA-Z0-9_.]+[ \t]*\\(.?*\\)))[ \t]*\n",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.preprocessor.sdsl"
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
-                        "2" : {
-                            "name" : "variable.preprocessor.sdsl"
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
                         },
-                        "3" : {
-                            "name" : "constant.preprocessor.sdsl"
+                        "3": {
+                            "name": "constant.preprocessor.sdsl"
                         }
                     }
                 },
                 {
                     "match": "^[ \t]*(#ifdef|#ifndef)[ \t]+([a-zA-Z0-9_]+)[ \t]*\n",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.preprocessor.sdsl"
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
-                        "2" : {
-                            "name" : "variable.preprocessor.sdsl"
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
                         },
-                        "3" : {
-                            "name" : "constant.preprocessor.sdsl"
+                        "3": {
+                            "name": "constant.preprocessor.sdsl"
                         }
                     }
                 },
                 {
                     "match": "^[ \t]*(#endif|#else)[ \t]*\n",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.preprocessor.sdsl"
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
-                        "2" : {
-                            "name" : "variable.preprocessor.sdsl"
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
                         },
-                        "3" : {
-                            "name" : "constant.preprocessor.sdsl"
+                        "3": {
+                            "name": "constant.preprocessor.sdsl"
                         }
                     }
                 },
                 {
                     "match": "^[ \t]*(#if).*?\n",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.preprocessor.sdsl"
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
-                        "2" : {
-                            "name" : "variable.preprocessor.sdsl"
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
                         },
-                        "3" : {
-                            "name" : "constant.preprocessor.sdsl"
+                        "3": {
+                            "name": "constant.preprocessor.sdsl"
                         }
                     }
                 }
             ]
         },
-        "comments" : {
+        "comments": {
             "patterns": [
                 {
                     "name": "comment.block.sdsl",
@@ -130,7 +127,7 @@
                     }
                 },
                 {
-                    "name" : "comment.block.documentation",
+                    "name": "comment.block.documentation",
                     "begin": "(^\\s+)?(?=///)",
                     "end": "(?=$)",
                     "beginCaptures": {
@@ -177,31 +174,121 @@
                 }
             ]
         },
-        "literals" : {
+        "shader-elements": {
             "patterns": [
                 {
-                    "name" : "constant.numeric.sdsl",
+                    "name" : "struct.declaration.sdsl",
+                    "begin": "\\b(struct)\\s+([a-zA-Z]\\w*)\\s*\\{",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "2": {
+                            "name": "entity.name.type"
+                        }
+                    },
+                    "end": "\\}\\b",
+                    "patterns": [
+                        {"include": "#attribute"},
+                        {"include": "#struct-fields"}
+                    ]
+                }
+            ]
+        },
+        "struct-fields" : {
+            "patterns": [
+                {"include": "#attribute"},
+                {
+                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)\\s*(\\[\\s*(.*\\s*)?\\]\\s*)?;",
+                    "captures": {
+                        "2" : {"name" : "storage.modifier"},
+                        "3" : {"name" : "entity.name.type"},
+                        "4" : {"name" : "variable.name"},
+                        "6" : {
+                            "patterns": [{"include": "#literals"}]
+                        }
+                    }
+                },
+                {
+                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)(\\s*\\[\\s*(.*\\s*)?\\])?\\s+([a-zA-Z_]\\w*)\\s*;",
+                    "captures": {
+                        "2" : {"name" : "storage.modifier"},
+                        "3" : {"name" : "entity.name.type"},
+                        "4" : {
+                            "patterns": [{"include": "#literals"}]
+                        },
+                        "6" : {"name" : "variable.name"}
+                    }
+                }
+            ]
+        },
+        "attribute": {
+            "name": "meta.attribute.sdsl",
+            "begin": "\\[",
+            "end": "\\]",
+            "patterns": [
+                {
+                    "include": "#method-call"
+                },
+                {
+                    "name": "entity.other.attribute-name",
+                    "match": "[a-zA-Z_]\\w*\\b"
+                }
+            ]
+        },
+        "literals": {
+            "patterns": [
+                {
                     "patterns": [
                         {
-                            "name" : "constant.numeric.float.simple.sdsl",
+                            "name": "constant.numeric.float",
+                            "match": "\\b\\d+\\.\\d*\\b"
+                        },
+                        {
+                            "name": "constant.numeric.integer",
+                            "match": "\\b\\d+\\b"
+                        },
+                        {
+                            "name": "constant.numeric.float",
+                            "match": "\\b\\.\\d+\\b"
+                        },
+                        {
+                            "name": "string.quoted.double",
+                            "begin": "\"",
+                            "end": "\"",
                             "patterns": [
                                 {
-                                    "match": "([1-9][0-9]*|[0-9])\\.[0-9]*(h|H|f16|f|F|f32|d|D|f64)?"
-                                },
-                                {
-                                    "match": "\\.[0-9]+(h|H|f16|f|F|f32|d|D|f64)?"
+                                    "name": "constant.character.escape",
+                                    "match": "\\\\."
                                 }
                             ]
                         },
                         {
-                            "name" : "constant.numeric.integer.sdsl",
-                            "match": "([1-9][0-9]*|[0-9])(i32|u|U|u32|l|L|i64|ul|UL|u64)?"
+                            "include": "#method-call"
+                        },
+                        {
+                            "name": "variable.name",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
                         }
                     ]
                 }
             ]
+        },
+        "method-call": {
+            "name": "meta.function-call",
+            "begin": "\\b[a-zA-Z_]\\w*\\s*\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "entity.name.function"
+                }
+            },
+            "end": "\\)",
+            "patterns": [
+                {
+                    "include": "#literals"
+                }
+            ]
         }
-        
     },
     "scopeName": "source.sdsl"
 }

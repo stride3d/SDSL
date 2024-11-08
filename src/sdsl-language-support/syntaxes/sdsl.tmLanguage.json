@@ -16,7 +16,7 @@
         "sdsl-declarations": {
             "patterns": [
                 {
-                    "include": "#shader-elements"
+                    "include": "#shader-class"
                 }
             ]
         },
@@ -174,50 +174,107 @@
                 }
             ]
         },
-        "shader-elements": {
+        "shader-class": {
             "patterns": [
                 {
-                    "name" : "struct.declaration.sdsl",
-                    "begin": "\\b(struct)\\s+([a-zA-Z]\\w*)\\s*\\{",
+                    "name": "shader.declaration.sdsl",
+                    "begin": "((public|internal)\\s+)?(partial\\s+)?(shader)\\s+([a-zA-Z]\\w*)\\s*\\{",
                     "beginCaptures": {
-                        "1": {
+                        "2": {
                             "name": "storage.type"
                         },
-                        "2": {
+                        "3": {
+                            "name": "storage.type"
+                        },
+                        "4": {
+                            "name": "storage.type"
+                        },
+                        "5": {
                             "name": "entity.name.type"
                         }
                     },
-                    "end": "\\}\\b",
+                    "end": "\\}",
                     "patterns": [
-                        {"include": "#attribute"},
-                        {"include": "#struct-fields"}
+                        {
+                            "include": "#shader-elements"
+                        }
                     ]
                 }
             ]
         },
-        "struct-fields" : {
+        "shader-elements": {
             "patterns": [
-                {"include": "#attribute"},
+                {
+                    "include": "#struct-declaration"
+                }
+            ]
+        },
+        "struct-declaration": {
+            "name": "struct.declaration.sdsl",
+            "begin": "(struct)\\s+([a-zA-Z]\\w*)\\s*\\{",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type"
+                },
+                "2": {
+                    "name": "entity.name.type"
+                }
+            },
+            "end": "\\}",
+            "patterns": [
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "include": "#struct-fields"
+                }
+            ]
+        },
+        "struct-fields": {
+            "patterns": [
+                {
+                    "include": "#attribute"
+                },
                 {
                     "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)\\s*(\\[\\s*(.*\\s*)?\\]\\s*)?;",
                     "captures": {
-                        "2" : {"name" : "storage.modifier"},
-                        "3" : {"name" : "entity.name.type"},
-                        "4" : {"name" : "variable.name"},
-                        "6" : {
-                            "patterns": [{"include": "#literals"}]
+                        "2": {
+                            "name": "storage.modifier"
+                        },
+                        "3": {
+                            "name": "entity.name.type"
+                        },
+                        "4": {
+                            "name": "variable.name"
+                        },
+                        "6": {
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     }
                 },
                 {
                     "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)(\\s*\\[\\s*(.*\\s*)?\\])?\\s+([a-zA-Z_]\\w*)\\s*;",
                     "captures": {
-                        "2" : {"name" : "storage.modifier"},
-                        "3" : {"name" : "entity.name.type"},
-                        "4" : {
-                            "patterns": [{"include": "#literals"}]
+                        "2": {
+                            "name": "storage.modifier"
                         },
-                        "6" : {"name" : "variable.name"}
+                        "3": {
+                            "name": "entity.name.type"
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "variable.name"
+                        }
                     }
                 }
             ]

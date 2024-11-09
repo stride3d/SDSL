@@ -17,6 +17,258 @@
             "patterns": [
                 {
                     "include": "#shader-class"
+                },
+                {
+                    "include": "#namespace"
+                }
+            ]
+        },
+
+        "namespace" : {
+            "patterns": [
+                {
+                    "name": "namespace.declaration.sdsl",
+                    "begin": "(namespace)\\s+(([a-zA-Z_]\\w*\\s*\\.\\s*)*[a-zA-Z_]\\w*)\\s*{",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "2": {
+                            "name": "entity.name.type"
+                        }
+                    },
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "include": "#sdsl-declarations"
+                        }
+                    ]
+                },
+                {
+                    "name": "namespace.declaration.sdsl",
+                    "match": "(namespace)\\s+(([a-zA-Z_]\\w*\\s*\\.\\s*)*[a-zA-Z_]\\w*)\\s*;",
+                    "captures": {
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "2": {
+                            "name": "entity.name.type"
+                        }
+                    }
+                }
+            ]
+        },
+
+        "shader-class": {
+            "patterns": [
+                {
+                    "name": "shader.declaration.sdsl",
+                    "begin": "((public|internal)\\s+)?(partial\\s+)?(shader)\\s+([a-zA-Z]\\w*)(\\s*<(.*)>)?\\s*(:(.*))?\\s*\\{",
+                    "beginCaptures": {
+                        "2": {
+                            "name": "storage.type"
+                        },
+                        "3": {
+                            "name": "storage.type"
+                        },
+                        "4": {
+                            "name": "storage.type"
+                        },
+                        "5": {
+                            "name": "entity.name.type"
+                        },
+                        "7": {
+                            "patterns": [{"include": "#shader-generics"}]
+                        },
+                        "9": {
+                            "patterns": [{"include": "#mixin-inheritance"}]
+                        }
+                    },
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "include": "#shader-elements"
+                        }
+                    ]
+                }
+            ]
+        },
+        "shader-generics": {
+            "patterns": [
+                {
+                    "match": "([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)",
+                    "captures": {
+                        "1": {
+                            "patterns": [{"include": "#typename"}]
+                        },
+                        "2": {
+                            "name": "variable.name"
+                        }
+                    }
+                }
+            ]
+        },
+        "mixin-inheritance": {
+            "patterns": [
+                {
+                    "name": "entity.name.type",
+                    "match": "[a-zA-Z_]\\w*"
+                }
+            ]
+        },
+        "shader-elements": {
+            "patterns": [
+                {
+                    "include": "#struct-declaration"
+                }
+            ]
+        },
+        "struct-declaration": {
+            "name": "struct.declaration.sdsl",
+            "begin": "(struct)\\s+([a-zA-Z]\\w*)\\s*\\{",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type"
+                },
+                "2": {
+                    "name": "entity.name.type"
+                }
+            },
+            "end": "\\}",
+            "patterns": [
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "include": "#struct-fields"
+                }
+            ]
+        },
+        "struct-fields": {
+            "patterns": [
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)\\s*(\\[\\s*(.*\\s*)?\\]\\s*)?;",
+                    "captures": {
+                        "2": {
+                            "name": "storage.modifier"
+                        },
+                        "3": {
+                            "name": "entity.name.type"
+                        },
+                        "4": {
+                            "name": "variable.name"
+                        },
+                        "6": {
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)(\\s*\\[\\s*(.*\\s*)?\\])?\\s+([a-zA-Z_]\\w*)\\s*;",
+                    "captures": {
+                        "2": {
+                            "name": "storage.modifier"
+                        },
+                        "3": {
+                            "name": "entity.name.type"
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "variable.name"
+                        }
+                    }
+                }
+            ]
+        },
+        "attribute": {
+            "name": "meta.attribute.sdsl",
+            "begin": "\\[",
+            "end": "\\]",
+            "patterns": [
+                {
+                    "include": "#method-call"
+                },
+                {
+                    "name": "entity.other.attribute-name",
+                    "match": "[a-zA-Z_]\\w*\\b"
+                }
+            ]
+        },
+        "literals": {
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "name": "constant.numeric.float",
+                            "match": "\\b\\d+\\.\\d*\\b"
+                        },
+                        {
+                            "name": "constant.numeric.integer",
+                            "match": "\\b\\d+\\b"
+                        },
+                        {
+                            "name": "constant.numeric.float",
+                            "match": "\\b\\.\\d+\\b"
+                        },
+                        {
+                            "name": "string.quoted.double",
+                            "begin": "\"",
+                            "end": "\"",
+                            "patterns": [
+                                {
+                                    "name": "constant.character.escape",
+                                    "match": "\\\\."
+                                }
+                            ]
+                        },
+                        {
+                            "include": "#method-call"
+                        },
+                        {
+                            "name": "variable.name",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
+                        }
+                    ]
+                }
+            ]
+        },
+        "typename" : {
+            "patterns": [
+                {
+                    "name": "storage.type",
+                    "match": "(bool|short|ushort|half|int|uint|float|long|ulong|double)([1-4](x[1-4])?)?"
+                },
+                {
+                    "name": "entity.name.type",
+                    "match": "[a-zA-Z_]\\w*"
+                }                
+            ]
+        },
+        "method-call": {
+            "name": "meta.function-call",
+            "begin": "\\b[a-zA-Z_]\\w*\\s*\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "entity.name.function"
+                }
+            },
+            "end": "\\)",
+            "patterns": [
+                {
+                    "include": "#literals"
                 }
             ]
         },
@@ -171,178 +423,6 @@
                             "end": "(?=$)"
                         }
                     ]
-                }
-            ]
-        },
-        "shader-class": {
-            "patterns": [
-                {
-                    "name": "shader.declaration.sdsl",
-                    "begin": "((public|internal)\\s+)?(partial\\s+)?(shader)\\s+([a-zA-Z]\\w*)\\s*\\{",
-                    "beginCaptures": {
-                        "2": {
-                            "name": "storage.type"
-                        },
-                        "3": {
-                            "name": "storage.type"
-                        },
-                        "4": {
-                            "name": "storage.type"
-                        },
-                        "5": {
-                            "name": "entity.name.type"
-                        }
-                    },
-                    "end": "\\}",
-                    "patterns": [
-                        {
-                            "include": "#shader-elements"
-                        }
-                    ]
-                }
-            ]
-        },
-        "shader-elements": {
-            "patterns": [
-                {
-                    "include": "#struct-declaration"
-                }
-            ]
-        },
-        "struct-declaration": {
-            "name": "struct.declaration.sdsl",
-            "begin": "(struct)\\s+([a-zA-Z]\\w*)\\s*\\{",
-            "beginCaptures": {
-                "1": {
-                    "name": "storage.type"
-                },
-                "2": {
-                    "name": "entity.name.type"
-                }
-            },
-            "end": "\\}",
-            "patterns": [
-                {
-                    "include": "#attribute"
-                },
-                {
-                    "include": "#struct-fields"
-                }
-            ]
-        },
-        "struct-fields": {
-            "patterns": [
-                {
-                    "include": "#attribute"
-                },
-                {
-                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)\\s*(\\[\\s*(.*\\s*)?\\]\\s*)?;",
-                    "captures": {
-                        "2": {
-                            "name": "storage.modifier"
-                        },
-                        "3": {
-                            "name": "entity.name.type"
-                        },
-                        "4": {
-                            "name": "variable.name"
-                        },
-                        "6": {
-                            "patterns": [
-                                {
-                                    "include": "#literals"
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)(\\s*\\[\\s*(.*\\s*)?\\])?\\s+([a-zA-Z_]\\w*)\\s*;",
-                    "captures": {
-                        "2": {
-                            "name": "storage.modifier"
-                        },
-                        "3": {
-                            "name": "entity.name.type"
-                        },
-                        "4": {
-                            "patterns": [
-                                {
-                                    "include": "#literals"
-                                }
-                            ]
-                        },
-                        "6": {
-                            "name": "variable.name"
-                        }
-                    }
-                }
-            ]
-        },
-        "attribute": {
-            "name": "meta.attribute.sdsl",
-            "begin": "\\[",
-            "end": "\\]",
-            "patterns": [
-                {
-                    "include": "#method-call"
-                },
-                {
-                    "name": "entity.other.attribute-name",
-                    "match": "[a-zA-Z_]\\w*\\b"
-                }
-            ]
-        },
-        "literals": {
-            "patterns": [
-                {
-                    "patterns": [
-                        {
-                            "name": "constant.numeric.float",
-                            "match": "\\b\\d+\\.\\d*\\b"
-                        },
-                        {
-                            "name": "constant.numeric.integer",
-                            "match": "\\b\\d+\\b"
-                        },
-                        {
-                            "name": "constant.numeric.float",
-                            "match": "\\b\\.\\d+\\b"
-                        },
-                        {
-                            "name": "string.quoted.double",
-                            "begin": "\"",
-                            "end": "\"",
-                            "patterns": [
-                                {
-                                    "name": "constant.character.escape",
-                                    "match": "\\\\."
-                                }
-                            ]
-                        },
-                        {
-                            "include": "#method-call"
-                        },
-                        {
-                            "name": "variable.name",
-                            "match": "\\b[a-zA-Z_]\\w*\\b"
-                        }
-                    ]
-                }
-            ]
-        },
-        "method-call": {
-            "name": "meta.function-call",
-            "begin": "\\b[a-zA-Z_]\\w*\\s*\\(",
-            "beginCaptures": {
-                "0": {
-                    "name": "entity.name.function"
-                }
-            },
-            "end": "\\)",
-            "patterns": [
-                {
-                    "include": "#literals"
                 }
             ]
         }

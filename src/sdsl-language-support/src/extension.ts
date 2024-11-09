@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 	};
 	const client = new LanguageClient('languageServerExample', 'Language Server Example', serverOptions, clientOptions);
-	client.start();
+	// client.start();
 }
 
 // This method is called when your extension is deactivated

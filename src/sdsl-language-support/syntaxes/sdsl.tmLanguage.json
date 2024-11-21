@@ -16,7 +16,7 @@
         "sdsl-declarations": {
             "patterns": [
                 {
-                    "include": "#test"
+                    "include": "#comments"
                 },
                 {
                     "include": "#namespace"
@@ -28,7 +28,7 @@
                     "include": "#effect-class"
                 },
                 {
-                    "include": "#partial-classes"
+                    "include": "#modifiers"
                 }
             ]
         },
@@ -94,72 +94,9 @@
                 }
             ]
         },
-        "partial-classes": {
-            "begin": "(partial)\\s",
-            "beginCaptures": {
-                "1": {
-                    "name": "storage"
-                }
-            },
-            "end": "(\\}|;)",
-            "patterns": [
-                {
-                    "name": "effect-class.sdsl",
-                    "begin": "(?=effect)",
-                    "end": "(?=(;|\\}))",
-                    "patterns": [
-                        {
-                            "name": "effect-class.naming.sdsl",
-                            "begin": "(effect)",
-                            "beginCaptures": {
-                                "1": {
-                                    "name": "storage.type"
-                                }
-                            },
-                            "end": "(?=(;|\\{))",
-                            "patterns": [
-                                {
-                                    "name": "entity.name.class",
-                                    "match": "\\b[a-zA-Z_]\\w*\\b"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "effect.body.sdsl",
-                            "begin": "(?=\\{)",
-                            "end": "(?=\\)}"
-                        }
-                    ]
-                },
-                {
-                    "name": "shader-class.sdsl",
-                    "begin": "(?=shader)",
-                    "end": "(?=(;|\\}))",
-                    "patterns": [
-                        {
-                            "name": "shader-class.naming.sdsl",
-                            "begin": "(shader)",
-                            "beginCaptures": {
-                                "1": {
-                                    "name": "storage.type"
-                                }
-                            },
-                            "end": "(?=(:|;|\\{))",
-                            "patterns": [
-                                {
-                                    "name": "entity.name.class",
-                                    "match": "\\b[a-zA-Z_]\\w*\\b"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "shader.body.sdsl",
-                            "begin": "(?=\\{)",
-                            "end": "(?=\\)}"
-                        }
-                    ]
-                }
-            ]
+        "modifiers" : {
+            "name" : "storage.internal",
+            "match": "(internal|partial)\\s"
         },
         "effect-class": {
             "name": "effect-class.sdsl",
@@ -192,7 +129,7 @@
         "shader-class": {
             "name": "shader-class.sdsl",
             "begin": "(?=shader)",
-            "end": "(;|\\})",
+            "end": "(\\}|;)",
             "patterns": [
                 {
                     "name": "shader-class.naming.sdsl",
@@ -213,7 +150,10 @@
                 {
                     "name": "shader.body.sdsl",
                     "begin": "(?=\\{)",
-                    "end": "(?=\\)}"
+                    "end": "(?=\\)}",
+                    "patterns": [
+                        {"include": "#shader-elements"}
+                    ]
                 }
             ]
         },

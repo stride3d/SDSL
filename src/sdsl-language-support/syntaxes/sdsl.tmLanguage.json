@@ -16,7 +16,39 @@
         "sdsl-declarations": {
             "patterns": [
                 {
+                    "include": "#test"
+                },
+                {
+                    "include": "#namespace"
+                },
+                {
                     "include": "#shader-class"
+                }
+            ]
+        },
+        "test": {
+            "name": "test",
+            "begin": "(?=read\\s)",
+            "end": "(?=;)",
+            "patterns": [
+                {
+                    "begin": "(read)\\s",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        }
+                    },
+                    "end": "(?=;)",
+                    "patterns": [
+                        {
+                            "name": "variable.name",
+                            "match": "[ad]+"
+                        },
+                        {
+                            "name": "entity.name.class",
+                            "match": "[bo]+"
+                        }
+                    ]
                 }
             ]
         },
@@ -24,84 +56,60 @@
             "patterns": [
                 {
                     "name": "namespace.declaration.sdsl",
-                    "begin": "(namespace)\\s+(([a-zA-Z_]\\w*\\s*\\.\\s*)*[a-zA-Z_]\\w*)\\s*{",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "storage.type"
-                        },
-                        "2": {
-                            "name": "entity.name.type"
-                        }
-                    },
-                    "end": "\\}",
+                    "begin": "(?=namespace\\s+)",
+                    "end": "(?=(;|\\}))",
                     "patterns": [
                         {
-                            "include": "#sdsl-declarations"
+                            "begin": "(namespace)",
+                            "beginCaptures": {
+                                "1": {
+                                    "name": "storage.type"
+                                }
+                            },
+                            "end": "(?=(;|\\{))",
+                            "patterns": [
+                                {
+                                    "name": "entity.name.class",
+                                    "match": "([a-zA-Z_]\\w*)"
+                                }
+                            ]
+                        },
+                        {
+                            "name" : "namespace.body.sdsl",
+                            "begin": "\\{",
+                            "end": "\\}",
+                            "patterns": [
+                                {
+                                    "include": "#sdsl-declarations"
+                                }
+                            ]
                         }
                     ]
-                },
-                {
-                    "name": "namespace.declaration.sdsl",
-                    "match": "(namespace)\\s+(([a-zA-Z_]\\w*\\s*\\.\\s*)*[a-zA-Z_]\\w*)\\s*;",
-                    "captures": {
-                        "1": {
-                            "name": "storage.type"
-                        },
-                        "2": {
-                            "name": "entity.name.type"
-                        }
-                    }
                 }
             ]
         },
         "shader-class": {
             "patterns": [
                 {
-                    "name": "meta.shader.declaration",
-                    "begin": "(?=\\bshader\\b)",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "keyword.other.struct"
-                        }
-                    },
-                    "end": "\\}",
+                    "name": "shader-class.sdsl",
+                    "begin": "(?=shader)",
+                    "end": "(?=\\})",
                     "patterns": [
                         {
-                            "begin": "\\bshader\\b",
-                            "end": "(?=:)|(?=\\{)",
+                            "name": "shader-class.naming.sdsl",
+                            "begin": "(shader)",
                             "beginCaptures": {
-                                "0": {
-                                    "name": "keyword.other.struct"
+                                "1": {
+                                    "name": "storage.type"
                                 }
                             },
-                            "endCaptures": {
-                                "0": {
-                                    "name": "punctuation.section.struct.begin"
-                                }
-                            },
-                            "patterns": [
-                                {
-                                    "match": "\\b[_a-zA-Z][_a-zA-Z0-9]*\\b",
-                                    "name": "entity.name.type.shader"
-                                },
-                                {
-                                    "include": "#comment"
-                                }
-                            ]
-                        },
-                        {
-                            "begin" : ":",
                             "end": "(?=\\{)",
                             "patterns": [
                                 {
-                                    "match": "\\b[_a-zA-Z][_a-zA-Z0-9]*\\b",
-                                    "name": "entity.name.type.mixin"
+                                    "name": "entity.name.class",
+                                    "match": "[a-zA-Z_]\\w*"
                                 }
                             ]
-                        },
-                        {
-                            "begin": "\\{",
-                            "end": "(?=\\})"
                         }
                     ]
                 }
@@ -289,6 +297,17 @@
                     "include": "#literals"
                 }
             ]
+        },
+        "custom-typename": {
+            "name": "entity.name.class",
+            "patterns": [
+                {
+                    "include": "#identifier"
+                }
+            ]
+        },
+        "identifier": {
+            "match": "\\b[a-zA-Z_]\\w*\\b"
         },
         "preprocessors": {
             "patterns": [

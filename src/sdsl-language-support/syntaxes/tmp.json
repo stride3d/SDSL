@@ -1,0 +1,22 @@
+{
+    "name": "file-namespace.declaration.sdsl",
+    "begin": "(?=namespace\\s)",
+    "end": "(?=;)",
+    "patterns": [
+        {
+            "begin": "(namespace)",
+            "end": ";",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type"
+                }
+            },
+            "patterns": [
+                {
+                    "name": "entity.name.class",
+                    "match": "([a-zA-Z_]\\w*)"
+                }
+            ]
+        }
+    ]
+}

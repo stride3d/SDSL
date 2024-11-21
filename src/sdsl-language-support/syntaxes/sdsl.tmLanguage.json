@@ -150,8 +150,9 @@
                 {
                     "name": "shader.body.sdsl",
                     "begin": "(?=\\{)",
-                    "end": "(?=\\)}",
+                    "end": "(?=\\})",
                     "patterns": [
+                        {"include": "#comments"},
                         {"include": "#shader-elements"}
                     ]
                 }
@@ -188,6 +189,57 @@
             "patterns": [
                 {
                     "include": "#struct-declaration"
+                },
+                {
+                    "include": "#shader-member-declaration"
+                }
+            ]
+        },
+        "shader-member-declaration" : {
+            "patterns": [
+                {
+                    "begin": "((int|float)([2-4](x[2-4])?)?)\\s",
+                    "beginCaptures": {"1" : {"name" : "storage.type"}},
+                    "end" : ";",
+                    "patterns": [
+                        {
+                            "begin": "[a-zA-Z_]\\w*",
+                            "end": "(?==|;)",
+                            "name" : "variable.name"
+                        },
+                        {
+                            "begin": "=",
+                            "end": "(?=;)",
+                            "patterns": [
+                                {"include": "#literals"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name" : "simple.shader.member.sdsl",
+                    "begin": "(?=(((u)?int|(u?)long|float|double)([2-4](x[2-4])?)?))\\s",
+                    "end": ";",
+                    "beginCaptures": {"1" : {"name" : "storage.type"}},
+                    "patterns": [
+                        {
+                            "begin": "((u)?int|(u?)long|float|double)([2-4](x[2-4])?)?",
+                            "end": "(?=(=))",
+                            "patterns": [
+                                {
+                                    "match": "[a-zA-Z_]\\w*",
+                                    "name" : "variable.name"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "=",
+                            "end": "(?=;)",
+                            "patterns": [
+                                {"include": "#literals"}
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -281,7 +333,7 @@
                     "patterns": [
                         {
                             "name": "constant.numeric.float",
-                            "match": "\\b\\d+\\.\\d*\\b"
+                            "match": "\\b\\d+\\.\\d*(f(16|32|64)?|F|d|D|h|H)?\\b"
                         },
                         {
                             "name": "constant.numeric.integer",

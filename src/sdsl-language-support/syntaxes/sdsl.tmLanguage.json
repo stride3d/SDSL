@@ -192,6 +192,12 @@
         "shader-elements": {
             "patterns": [
                 {
+                    "include": "#preprocessors"
+                },
+                {
+                    "include": "#attribute"
+                },
+                {
                     "include": "#struct-declaration"
                 },
                 {
@@ -222,14 +228,48 @@
                     "name" : "storage.modifier.typemodifier"
                 },
                 {
+                    "name" : "meta.buffer.sdsl",
+                    "begin": "(cbuffer|tbuffer|rgroup)\\s+(\\w+(\\.\\w+)*)",
+                    "beginCaptures": {
+                        "1" : {"name": "storage.type"},
+                        "2" : {"name": "entity.name.class"}
+                    },
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "begin": "\\{",
+                            "end": "(?=\\})",
+                            "name" : "meta.buffer.body",
+                            "patterns": [
+                                {
+                                    "include": "#comments"
+                                },
+                                {
+                                    "match": "(stage)\\s+",
+                                    "name" : "storage.modifier.mixin"
+                                },
+                                {
+                                    "include": "#struct-fields"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name" : "meta.member.sdsl",
                     "begin": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)\\s+",
                     "end": ";|(})",
                     "beginCaptures": {
                         "1" : {"name" : "storage.type"},
                         "6" : {"name" : "entity.name.type"}
                     },
-                    "name" : "meta.member.sdsl",
                     "patterns": [
+                        {
+                            "match": "(\\w+)\\s*(:.*?)+(?=;)",
+                            "captures": {
+                                "1" : {"name" : "variable.name"},
+                                "2" : {"patterns": [{"include": "#literals"}]}                            }
+                        },
                         {
                             "match": "(\\w+)\\s*(\\[(.*?)\\]\\s*)?(?=;)",
                             "captures": {

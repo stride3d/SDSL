@@ -94,8 +94,8 @@
                 }
             ]
         },
-        "modifiers" : {
-            "name" : "storage.internal",
+        "modifiers": {
+            "name": "storage.internal",
             "match": "(internal|partial)\\s"
         },
         "effect-class": {
@@ -152,8 +152,12 @@
                     "begin": "(?=\\{)",
                     "end": "(?=\\})",
                     "patterns": [
-                        {"include": "#comments"},
-                        {"include": "#shader-elements"}
+                        {
+                            "include": "#comments"
+                        },
+                        {
+                            "include": "#shader-elements"
+                        }
                     ]
                 }
             ]
@@ -195,49 +199,67 @@
                 }
             ]
         },
-        "shader-member-declaration" : {
+        "shader-member-declaration": {
             "patterns": [
                 {
-                    "begin": "((int|float)([2-4](x[2-4])?)?)\\s",
-                    "beginCaptures": {"1" : {"name" : "storage.type"}},
-                    "end" : ";",
-                    "patterns": [
-                        {
-                            "begin": "[a-zA-Z_]\\w*",
-                            "end": "(?==|;)",
-                            "name" : "variable.name"
-                        },
-                        {
-                            "begin": "=",
-                            "end": "(?=;)",
-                            "patterns": [
-                                {"include": "#literals"}
-                            ]
-                        }
-                    ]
+                    "match": "(stage|stream|patchstream|compose)\\s",
+                    "name" : "storage.modifier.mixin"
                 },
                 {
-                    "name" : "simple.shader.member.sdsl",
-                    "begin": "(?=(((u)?int|(u?)long|float|double)([2-4](x[2-4])?)?))\\s",
-                    "end": ";",
-                    "beginCaptures": {"1" : {"name" : "storage.type"}},
+                    "match": "(override|abstract|virtual)\\s",
+                    "name" : "storage.modifier.functions"
+                },
+                {
+                    "match": "(extern|noInterpolation|precise|shared|groupShared|static|uniform|volatile)\\s",
+                    "name" : "storage.modifier.storageclass"
+                },
+                {
+                    "match": "(linear|centroid|nointerpolation|noperspective|sample)\\s",
+                    "name" : "storage.modifier.interpolation"
+                },
+                {
+                    "match": "(const|rowmajor|columnmajor)\\s",
+                    "name" : "storage.modifier.typemodifier"
+                },
+                {
+                    "begin": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)\\s+",
+                    "end": ";|(})",
+                    "beginCaptures": {
+                        "1" : {"name" : "storage.type"},
+                        "6" : {"name" : "entity.name.type"}
+                    },
+                    "name" : "meta.member.sdsl",
                     "patterns": [
                         {
-                            "begin": "((u)?int|(u?)long|float|double)([2-4](x[2-4])?)?",
-                            "end": "(?=(=))",
+                            "match": "(\\w+)\\s*(\\[(.*?)\\]\\s*)?(?=;)",
+                            "captures": {
+                                "1" : {"name" : "variable.name"},
+                                "3" : {"patterns": [{"include": "#literals"}]}
+                            }
+                        },
+                        {
+                            "begin": "(\\w+)\\s*=",
+                            "end": "(?=;)",
+                            "beginCaptures": {"1" : {"name" : "variable.name"}},
+                            "patterns": [{"include": "#literals"}],
+                            "name" : "meta.value"
+                        },
+                        {
+                            "match": "(\\w+)\\s*(?=\\()",
+                            "name" : "entity.name.function"
+                        },
+                        {
+                            "begin": "\\(",
+                            "end": "\\)",
+                            "name" : "meta.function.parameters",
                             "patterns": [
-                                {
-                                    "match": "[a-zA-Z_]\\w*",
-                                    "name" : "variable.name"
-                                }
+                                {"include": "#parameter-list"}
                             ]
                         },
                         {
-                            "begin": "=",
-                            "end": "(?=;)",
-                            "patterns": [
-                                {"include": "#literals"}
-                            ]
+                            "begin": "\\{",
+                            "end": "(?=\\})",
+                            "name" : "meta.function.body"
                         }
                     ]
                 }

@@ -28,8 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let serverExe = 'dotnet';
 	let serverOptions: ServerOptions = {
-		run: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net9.0/Stride.Shaders.LSP.dll"] },
-		debug: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net9.0/Stride.Shaders.LSP.dll"] }
+		run: { command: serverExe, args: ["./bin/net9.0/win-x64/Stride.Shaders.LSP.exe"] },
+		debug: { command: serverExe, args: ["./bin/net9.0/win-x64/Stride.Shaders.LSP.exe"] }
 	};
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents
@@ -41,11 +41,11 @@ export function activate(context: vscode.ExtensionContext) {
 		synchronize: {
 			// Synchronize the setting section 'languageServerExample' to the server
 			configurationSection: 'languageServerExample',
-			fileEvents: workspace.createFileSystemWatcher('**/*.sdsl')
+			fileEvents: workspace.createFileSystemWatcher('**/*.sd(sl|fx)')
 		},
 	};
-	const client = new LanguageClient('languageServerExample', 'Language Server Example', serverOptions, clientOptions);
-	// client.start();
+	const client = new LanguageClient('Stride.Shaders.LSP', 'SDSL LSP', serverOptions, clientOptions);
+	client.start();
 }
 
 // This method is called when your extension is deactivated

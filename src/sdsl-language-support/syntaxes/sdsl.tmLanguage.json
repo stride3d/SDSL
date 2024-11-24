@@ -3,964 +3,930 @@
     "name": "SDSL",
     "patterns": [
         {
-            "include": "#declarations"
+            "include": "#comments"
         },
         {
             "include": "#preprocessors"
         },
         {
-            "include": "#comment"
+            "include": "#sdsl-declarations"
         }
     ],
     "repository": {
-        "declarations": {
+        "sdsl-declarations": {
             "patterns": [
                 {
-                    "include": "#namespace-declaration"
+                    "include": "#comments"
                 },
                 {
-                    "include": "#shader-declaration"
+                    "include": "#usings"
                 },
                 {
-                    "include": "#punctuation-semicolon"
+                    "include": "#namespace"
                 },
                 {
-                    "include": "#comment"
+                    "include": "#shader-class"
+                },
+                {
+                    "include": "#effect-class"
+                },
+                {
+                    "include": "#modifiers"
                 }
             ]
         },
-        "namespace-declaration": {
-            "begin": "\\b(namespace)\\s+",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.other.namespace.sdsl"
-                }
-            },
-            "end": "(?<=\\})|(?=;)",
+        "test": {
+            "name": "test",
+            "begin": "(?=read\\s)",
+            "end": "(?=;)",
             "patterns": [
                 {
-                    "include": "#comment"
-                },
-                {
-                    "name": "entity.name.type.namespace.sdsl",
-                    "match": "@?[_[:alpha:]][_[:alnum:]]*"
-                },
-                {
-                    "include": "#punctuation-accessor"
-                },
-                {
-                    "begin": "\\{",
+                    "begin": "(read)\\s",
                     "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.curlybrace.open.sdsl"
+                        "1": {
+                            "name": "storage.type"
                         }
                     },
-                    "end": "\\}",
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.curlybrace.close.sdsl"
-                        }
-                    },
+                    "end": "(?=;)",
                     "patterns": [
                         {
-                            "include": "#declarations"
+                            "name": "variable.name",
+                            "match": "[ad]+"
                         },
                         {
-                            "include": "#using-directive"
-                        },
-                        {
-                            "include": "#punctuation-semicolon"
+                            "name": "entity.name.class",
+                            "match": "[bo]+"
                         }
                     ]
                 }
             ]
         },
-        "type-declarations": {
-            "patterns": [
-                {
-                    "include": "#preprocessor"
-                },
-                {
-                    "include": "#comment"
-                },
-                {
-                    "include": "#storage-modifier"
-                },
-                {
-                    "include": "#shader-declaration"
-                },
-                {
-                    "include": "#enum-declaration"
-                },
-                {
-                    "include": "#attribute-section"
-                },
-                {
-                    "include": "#punctuation-semicolon"
-                }
-            ]
-        },
-        "shader-declaration": {
-            "begin": "(?=\\bshader\\b)",
-            "end": "(?=})",
+        "usings": {
+            "begin": "(using)\\s",
+            "end": ";",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.other.shader.sdsl"
+                    "name": "storage.modifier.import"
                 }
             },
             "patterns": [
                 {
-                    "include": "#comment"
-                },
+                    "match": "(\\w+)",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.class"
+                        }
+                    }
+                }
+            ]
+        },
+        "namespace": {
+            "patterns": [
                 {
+                    "name": "namespace.declaration.sdsl",
+                    "begin": "(?=namespace\\s+)",
+                    "end": "(;|\\})",
                     "patterns": [
                         {
-                            "begin": "(shader)\\s*([_[:alpha:]][_[:alnum:]]*)",
-                            "end": "(?=(\\<|:|\\{))",
+                            "begin": "(namespace)",
                             "beginCaptures": {
                                 "1": {
-                                    "name": "keyword.other.shader.sdsl"
-                                },
-                                "2": {
-                                    "name": "entity.name.class.shader.sdsl"
+                                    "name": "storage.type"
                                 }
-                            }
-                        },
-                        {
-                            "name": "declaration.shader.generics.sdsl",
-                            "begin": "\\<",
-                            "end": "(?<=\\>)",
+                            },
+                            "end": "(?=(;|\\{))",
                             "patterns": [
                                 {
-                                    "include": "#punctuation.comma"
-                                },
-                                {
-                                    "match": "([[:alnum:]]+)\\s+([_[:alpha:]][_[:alnum:]]*)",
-                                    "captures": {
-                                        "1": {
-                                            "patterns": [
-                                                {
-                                                    "include": "#type-builtin"
-                                                }
-                                            ]
-                                        },
-                                        "2": {
-                                            "name": "variable.name.mixin.generics.sdsl"
-                                        }
-                                    }
+                                    "name": "entity.name.class",
+                                    "match": "([a-zA-Z_]\\w*)"
                                 }
                             ]
                         },
                         {
-                            "name": "declaration.shader.inherit.sdsl",
-                            "begin": "(?<=:)",
-                            "end": "(?=\\{)",
+                            "name": "namespace.body.sdsl",
+                            "begin": "(?=\\{)",
+                            "end": "(?=\\})",
                             "patterns": [
                                 {
-                                    "include": "#comment"
+                                    "include": "#sdsl-declarations"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "modifiers": {
+            "name": "storage.internal",
+            "match": "(internal|partial)\\s"
+        },
+        "effect-class": {
+            "name": "effect-class.sdsl",
+            "begin": "(?=effect)",
+            "end": "(;|\\})",
+            "patterns": [
+                {
+                    "name": "effect-class.naming.sdsl",
+                    "begin": "(effect)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        }
+                    },
+                    "end": "(?=(;|\\{))",
+                    "patterns": [
+                        {
+                            "name": "entity.name.class",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
+                        }
+                    ]
+                },
+                {
+                    "name": "effect.body.sdsl",
+                    "begin": "(?=\\{)",
+                    "end": "(?=\\)}"
+                }
+            ]
+        },
+        "shader-class": {
+            "name": "shader-class.sdsl",
+            "begin": "(?=shader\\s+)",
+            "end": "(\\}|;)",
+            "patterns": [
+                {
+                    "name": "shader-class.naming.sdsl",
+                    "begin": "(shader)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        }
+                    },
+                    "end": "(?=(:|;|\\{))",
+                    "patterns": [
+                        {
+                            "name": "entity.name.class",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
+                        },
+                        {
+                            "begin": "<",
+                            "end": ">",
+                            "patterns": [
+                                {
+                                    "include": "#shader-generics"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "shader.mixins.sdsl",
+                    "begin": ":",
+                    "end": "(?=\\{)",
+                    "patterns": [
+                        {
+                            "match": "(\\w+)",
+                            "name": "entity.name.class"
+                        },
+                        {
+                            "begin": "<",
+                            "end": ">",
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "shader.body.sdsl",
+                    "begin": "(?=\\{)",
+                    "end": "(?=\\})",
+                    "patterns": [
+                        {
+                            "include": "#comments"
+                        },
+                        {
+                            "include": "#shader-elements"
+                        }
+                    ]
+                }
+            ]
+        },
+        "shader-generics": {
+            "patterns": [
+                {
+                    "match": "([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)",
+                    "captures": {
+                        "1": {
+                            "patterns": [
+                                {
+                                    "include": "#typename"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "variable.name"
+                        }
+                    }
+                }
+            ]
+        },
+        "mixin-inheritance": {
+            "patterns": [
+                {
+                    "name": "entity.name.type",
+                    "match": "[a-zA-Z_]\\w*"
+                }
+            ]
+        },
+        "shader-elements": {
+            "patterns": [
+                {
+                    "include": "#preprocessors"
+                },
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "include": "#struct-declaration"
+                },
+                {
+                    "include": "#shader-member-declaration"
+                }
+            ]
+        },
+        "shader-member-declaration": {
+            "patterns": [
+                {
+                    "match": "(stage|stream|patchstream|compose)\\s",
+                    "name": "storage.modifier.mixin"
+                },
+                {
+                    "match": "(override|abstract|virtual)\\s",
+                    "name": "storage.modifier.functions"
+                },
+                {
+                    "match": "(extern|noInterpolation|precise|shared|groupShared|static|uniform|volatile)\\s",
+                    "name": "storage.modifier.storageclass"
+                },
+                {
+                    "match": "(linear|centroid|nointerpolation|noperspective|sample)\\s",
+                    "name": "storage.modifier.interpolation"
+                },
+                {
+                    "match": "(const|rowmajor|columnmajor)\\s",
+                    "name": "storage.modifier.typemodifier"
+                },
+                {
+                    "name": "meta.buffer.sdsl",
+                    "begin": "(cbuffer|tbuffer|rgroup)\\s+(\\w+(\\.\\w+)*)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "2": {
+                            "name": "entity.name.class"
+                        }
+                    },
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "begin": "\\{",
+                            "end": "(?=\\})",
+                            "name": "meta.buffer.body",
+                            "patterns": [
+                                {
+                                    "include": "#comments"
                                 },
                                 {
-                                    "include": "#preprocessor"
+                                    "match": "(stage)\\s+",
+                                    "name": "storage.modifier.mixin"
                                 },
                                 {
-                                    "include": "#punctuation.comma"
-                                },
+                                    "include": "#struct-fields"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.member.sdsl",
+                    "begin": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)(\\s*<(.*?)>)?\\s+",
+                    "end": ";|(})",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "6": {
+                            "name": "entity.name.type"
+                        },
+                        "8": {
+                            "patterns": [
                                 {
-                                    "match": "([_[:alpha:]][_[:alnum:]]*)(?!\\<)",
+                                    "match": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)",
                                     "captures": {
                                         "1": {
-                                            "patterns": [
-                                                {
-                                                    "include": "#type"
-                                                }
-                                            ]
+                                            "name": "storage.type"
+                                        },
+                                        "6": {
+                                            "name": "entity.name.type"
                                         }
                                     }
+                                }
+                            ]
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "match": "(\\w+)\\s*(:.*?)+(?=;)",
+                            "captures": {
+                                "1": {
+                                    "name": "variable.name"
                                 },
-                                {
-                                    "begin": "([_[:alpha:]][_[:alnum:]]*)(?=\\<)",
-                                    "beginCaptures": {
-                                        "1": {
-                                            "patterns": [
-                                                {
-                                                    "include": "#type"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "end": "(?<=\\>)",
+                                "2": {
                                     "patterns": [
                                         {
-                                            "include": "#number"
-                                        },
-                                        {
-                                            "name": "keyword.other",
-                                            "match": "(true|false)"
-                                        },
-                                        {
-                                            "include": "#punctuation.comma"
-                                        },
-                                        {
-                                            "include": "#builtin-constructor"
+                                            "include": "#literals"
                                         }
                                     ]
                                 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "begin": "(?=\\{)",
-                    "end": "(?=})",
-                    "name": "declaration.shader.body",
-                    "patterns": [
-                        {
-                            "include": "#shader-members"
-                        }
-                    ]
-                },
-                {
-                    "include": "#comment"
-                },
-                {
-                    "include": "#preprocessor"
-                }
-            ],
-            "name": "declaration.shader.sdsl"
-        },
-        "shader-members": {
-            "name": "shader.members.sdsl",
-            "patterns": [
-                {
-                    "include": "#preprocessor"
-                },
-                {
-                    "name": "shader.member.comment",
-                    "include": "#comment"
-                },
-                {
-                    "include": "#rgroup"
-                },
-                {
-                    "include": "#cbuffer"
-                },
-                {
-                    "include": "#field-declaration",
-                    "name": "shader.member.field.declaration"
-                },
-                {
-                    "include": "#method-declaration",
-                    "name": "shader.member.method.declaration"
-                }
-            ]
-        },
-        "field-declaration": {
-            "match": "(([[:alpha:]]+)\\s+)?(([[:alpha:]]+)\\s+)?([[:alnum:]\\<\\>]+)\\s+([_[:alpha:]][_[:alnum:]]*)\\s*(?:;)",
-            "captures": {
-                "2": {
-                    "patterns": [
-                        {
-                            "include": "#storage-modifier"
-                        }
-                    ]
-                },
-                "4": {
-                    "patterns": [
-                        {
-                            "include": "#storage-modifier"
-                        }
-                    ]
-                },
-                "5": {
-                    "patterns": [
-                        {
-                            "include": "#type"
-                        }
-                    ]
-                },
-                "6": {
-                    "name": "variable.name.sdsl"
-                }
-            },
-            "name": "field.declaration.sdsl"
-        },
-        "struct-declaration": {
-            "begin": "\\bstruct\\b)",
-            "end": "(?<=\\})",
-            "patterns": [
-                {
-                    "begin": "(struct)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "keyword.other.struct.sdsl"
-                        },
-                        "1": {
-                            "name": "entity.name.type.struct.sdsl"
-                        }
-                    },
-                    "end": "(?=\\{)",
-                    "patterns": [
-                        {
-                            "include": "#comment"
+                            }
                         },
                         {
-                            "include": "#type-parameter-list"
-                        },
-                        {
-                            "include": "#parenthesized-parameter-list"
-                        },
-                        {
-                            "include": "#base-types"
-                        },
-                        {
-                            "include": "#generic-constraints"
-                        }
-                    ]
-                },
-                {
-                    "begin": "\\{",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.curlybrace.open.sdsl"
-                        }
-                    },
-                    "end": "\\}",
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.curlybrace.close.sdsl"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "#shader-members"
-                        }
-                    ]
-                },
-                {
-                    "include": "#preprocessor"
-                },
-                {
-                    "include": "#comment"
-                }
-            ]
-        },
-        "enum-declaration": {
-            "begin": "(?=\\benum\\b)",
-            "end": "(?<=\\})",
-            "patterns": [
-                {
-                    "begin": "(?=enum)",
-                    "end": "(?=\\{)",
-                    "patterns": [
-                        {
-                            "include": "#comment"
-                        },
-                        {
-                            "match": "(enum)\\s+(@?[_[:alpha:]][_[:alnum:]]*)",
+                            "match": "(\\w+)\\s*(\\[(.*?)\\]\\s*)?(?=;)",
                             "captures": {
                                 "1": {
-                                    "name": "keyword.other.enum.sdsl"
+                                    "name": "variable.name"
                                 },
-                                "2": {
-                                    "name": "entity.name.type.enum.sdsl"
+                                "3": {
+                                    "patterns": [
+                                        {
+                                            "include": "#literals"
+                                        }
+                                    ]
                                 }
                             }
                         },
                         {
-                            "begin": ":",
+                            "begin": "(\\w+)\\s*=",
+                            "end": "(?=;)",
                             "beginCaptures": {
-                                "0": {
-                                    "name": "punctuation.separator.colon.sdsl"
+                                "1": {
+                                    "name": "variable.name"
                                 }
                             },
-                            "end": "(?=\\{)",
                             "patterns": [
                                 {
-                                    "include": "#type"
+                                    "include": "#literals"
+                                }
+                            ],
+                            "name": "meta.value"
+                        },
+                        {
+                            "match": "(\\w+)\\s*(?=\\()",
+                            "name": "entity.name.function"
+                        },
+                        {
+                            "begin": "\\(",
+                            "end": "\\)",
+                            "name": "meta.function.parameters",
+                            "patterns": [
+                                {
+                                    "include": "#parameter-list"
+                                }
+                            ]
+                        },
+                        {
+                            "begin": "\\{",
+                            "end": "(?=\\})",
+                            "name": "meta.function.body",
+                            "patterns": [
+                                {
+                                    "include": "#shader-statements"
                                 }
                             ]
                         }
                     ]
+                }
+            ]
+        },
+        "shader-statements": {
+            "patterns": [
+                {
+                    "include": "#comments"
                 },
                 {
+                    "include": "#preprocessors"
+                },
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "name": "meta.block",
                     "begin": "\\{",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.curlybrace.open.sdsl"
-                        }
-                    },
                     "end": "\\}",
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.curlybrace.close.sdsl"
+                    "patterns": [
+                        {
+                            "include": "#shader-statements"
+                        }
+                    ]
+                },
+                {
+                    "name": "meta.forloop",
+                    "begin": "(for|foreach)\\s*(?=\\()",
+                    "end": "\\)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.foreach"
                         }
                     },
                     "patterns": [
                         {
-                            "include": "#preprocessor"
+                            "match": "(\\w+)\\s+(\\w+)\\s+in(.*?)(?=\\))",
+                            "captures": {
+                                "1" : {"patterns": [{"include": "#types"}]},
+                                "2" : {"name" : "variable.name"},
+                                "3" : {"patterns": [{"include": "#literals"}]}
+                            }
                         },
                         {
-                            "include": "#comment"
-                        },
-                        {
-                            "include": "#attribute-section"
-                        },
-                        {
-                            "include": "#punctuation-comma"
-                        },
-                        {
-                            "begin": "@?[_[:alpha:]][_[:alnum:]]*",
-                            "beginCaptures": {
-                                "0": {
-                                    "name": "entity.name.variable.enum-member.sdsl"
-                                }
-                            },
-                            "end": "(?=(,|\\}))",
+                            "begin": "\\(",
+                            "end": "(?=\\))",
                             "patterns": [
                                 {
-                                    "include": "#comment"
+                                    "name" : "meta.forloop.initializer",
+                                    "match": "(\\w+)\\s+(\\w+)\\s*[+\\-*\\/%<>&|^]*=(.*?)(?=;)",
+                                    "captures": {
+                                        "1": {
+                                            "patterns": [
+                                                {"include": "#types"}
+                                            ]
+                                        },
+                                        "2" : {"name" : "variable.name"},
+                                        "3" : {
+                                            "patterns": [{"include": "#literals"}]
+                                        }
+                                    }
                                 },
                                 {
-                                    "include": "#variable-initializer"
+                                    "include": "#literals"
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    "include": "#preprocessor"
-                },
-                {
-                    "include": "#comment"
-                }
-            ]
-        },
-        "cbuffer": {
-            "name": "cbuffer.sdsl",
-            "begin": "(cbuffer)\\s+([_[:alpha:]][_[:alnum:]\\.]*)\\s*{",
-            "end": "(?:})",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.other.cbuffer"
-                },
-                "2": {
-                    "name": "entity.name"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#field-declaration"
-                }
-            ]
-        },
-        "rgroup": {
-            "name" : "rgroup.block.sdsl",
-            "begin": "(rgroup)",
-            "end": "(?:})",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.other.rgroup"
-                }
-            },
-            "patterns": [
-                {
-                    "name" : "rgroup.body.sdsl",
-                    "begin": "{",
-                    "end": "(?=})",
-                    "patterns": [
-                        {
-                            "include": "#field-declaration"
+                    "match": "(else)(?=(\\s|\\{))",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.control.else"
                         }
-                    ]
+                    }
                 },
                 {
-                    "name" : "entity.name.type.rgroup.name.sdsl",
-                    "begin": "([_[:alnum:]]*)",
-                    "end": "(?={)"
-                }
-                
-            ]
-        },
-        "method-declaration": {
-            "name": "declaration.shader.method.sdsl",
-            "begin": "(([[:alpha:]]+)\\s+)?(([[:alpha:]]+)\\s+)?([[:alnum:]]+)\\s+([_[:alpha:]][_[:alnum:]]*)(?:(?!\\()\\s)*",
-            "end": "(?:})",
-            "beginCaptures": {
-                "2": {
-                    "patterns": [
-                        {
-                            "include": "#storage-modifier"
-                        }
-                    ]
-                },
-                "4": {
-                    "patterns": [
-                        {
-                            "include": "#storage-modifier"
-                        }
-                    ]
-                },
-                "5": {
-                    "patterns": [
-                        {
-                            "include": "#type"
-                        }
-                    ]
-                },
-                "6": {
-                    "name": "entity.name.function"
-                }
-            },
-            "patterns": [
-                {
-                    "name": "declaration.shader.method.parameters",
-                    "begin": "\\(",
+                    "name": "meta.if.condition",
+                    "begin": "(if|elif|(else\\s+if))(?=(\\s|\\())",
                     "end": "\\)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.if"
+                        }
+                    },
                     "patterns": [
                         {
-                            "include": "#parameters-declaration"
+                            "begin": "\\(",
+                            "end": "(?=\\))",
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    "name": "declaration.shader.method.body.sdsl",
-                    "begin": "{",
-                    "end": "(?=})",
+                    "begin": "(discard)\\s+",
+                    "end": ";",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.return"
+                        }
+                    }
+                },
+                {
+                    "begin": "(return)\\s+",
+                    "end": ";",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.return"
+                        }
+                    },
                     "patterns": [
                         {
-                            "include": "#statements"
-                        },
-                        {
-                            "include": "#comment"
+                            "include": "#literals"
                         }
                     ]
+                },
+                {
+                    "begin": "((const)\\s+)?(\\w+)\\s+(\\w+)",
+                    "beginCaptures": {
+                        "2": {
+                            "name": "storage.modifier.const"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "match": "(void|var|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)(\\s*<(.*?)>)?",
+                                    "captures": {
+                                        "1": {
+                                            "name": "storage.type"
+                                        },
+                                        "6": {
+                                            "name": "entity.name.type"
+                                        },
+                                        "8": {
+                                            "patterns": [
+                                                {
+                                                    "match": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)",
+                                                    "captures": {
+                                                        "1": {
+                                                            "name": "storage.type"
+                                                        },
+                                                        "6": {
+                                                            "name": "entity.name.type"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "variable.name"
+                        }
+                    },
+                    "end": ";",
+                    "patterns": [
+                        {
+                            "begin": "=",
+                            "end": "(?=;)",
+                            "include": "#literals"
+                        }
+                    ]
+                },
+                {
+                    "begin": "((streams)\\s*\\.\\s*)?(\\w+)(.*?)\\s*[+\\-*\\/%<>&|^]*=",
+                    "beginCaptures": {
+                        "2": {
+                            "name": "storage.modifier.streams"
+                        },
+                        "3": {
+                            "name": "variable.name"
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "match": "\\.\\s*(\\w+)",
+                                    "captures": {
+                                        "1": {
+                                            "name": "variable.name"
+                                        }
+                                    }
+                                },
+                                {
+                                    "match": "\\[(.*?)\\]",
+                                    "captures": {
+                                        "1": {
+                                            "patterns": [
+                                                {
+                                                    "include": "#literals"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "end": ";",
+                    "patterns": [
+                        {
+                            "begin": "=",
+                            "end": "(?=;)",
+                            "include": "#literals"
+                        }
+                    ]
+                },
+                {
+                    "name" : "meta.statement.expression",
+                    "begin": "(?=(\\w+))",
+                    "end": ";",
+                    "patterns": [{"include": "#literals"}]
                 }
             ]
         },
-        "statements": {
+        "struct-declaration": {
+            "name": "struct.declaration.sdsl",
+            "begin": "(struct)\\s+([a-zA-Z]\\w*)\\s*\\{",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type"
+                },
+                "2": {
+                    "name": "entity.name.type"
+                }
+            },
+            "end": "\\}",
             "patterns": [
                 {
-                    "include": "#foreach"
+                    "include": "#attribute"
                 },
                 {
-                    "include": "#for"
+                    "include": "#struct-fields"
+                }
+            ]
+        },
+        "struct-fields": {
+            "patterns": [
+                {
+                    "include": "#attribute"
                 },
                 {
-                    "include": "#while"
+                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)\\s+([a-zA-Z_]\\w*)\\s*(\\[\\s*(.*\\s*)?\\]\\s*)?;",
+                    "captures": {
+                        "2": {
+                            "name": "storage.modifier"
+                        },
+                        "3": {
+                            "name": "entity.name.type"
+                        },
+                        "4": {
+                            "name": "variable.name"
+                        },
+                        "6": {
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
+                        }
+                    }
                 },
+                {
+                    "match": "\\b((stage)\\s+)?([a-zA-Z_]\\w*)(\\s*\\[\\s*(.*\\s*)?\\])?\\s+([a-zA-Z_]\\w*)\\s*;",
+                    "captures": {
+                        "2": {
+                            "name": "storage.modifier"
+                        },
+                        "3": {
+                            "name": "entity.name.type"
+                        },
+                        "4": {
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "variable.name"
+                        }
+                    }
+                }
+            ]
+        },
+        "attribute": {
+            "name": "meta.attribute.sdsl",
+            "begin": "\\[",
+            "end": "\\]",
+            "patterns": [
                 {
                     "include": "#method-call"
                 },
                 {
-                    "include": "#block"
-                },
+                    "name": "entity.other.attribute-name",
+                    "match": "[a-zA-Z_]\\w*\\b"
+                }
+            ]
+        },
+        "literals": {
+            "patterns": [
                 {
-                    "name" : "simple",
-                    "begin": "(?=([_[:alnum:]]|\\+\\+|--))",
-                    "end": "(?=;)",
                     "patterns": [
+                        {
+                            "name": "constant.numeric.float",
+                            "match": "\\b\\d+\\.\\d*(f(16|32|64)?|F|d|D|h|H)?\\b"
+                        },
+                        {
+                            "name": "constant.numeric.integer",
+                            "match": "\\b\\d+\\b"
+                        },
+                        {
+                            "name": "constant.numeric.float",
+                            "match": "\\b\\.\\d+\\b"
+                        },
+                        {
+                            "name": "string.quoted.double",
+                            "begin": "\"",
+                            "end": "\"",
+                            "patterns": [
+                                {
+                                    "name": "constant.character.escape",
+                                    "match": "\\\\."
+                                }
+                            ]
+                        },
                         {
                             "include": "#method-call"
                         },
                         {
-                            "include": "#return"
-                        },
-                        {
-                            "include": "#number"
-                        },
-                        {
-                            "include": "#booleans"
-                        },
-                        {
-                            "include": "#declare"
-                        },
-                        {
-                            "include": "#accessed"
-                        },
-                        
-                        {
-                            "include": "#access"
-                        } 
+                            "name": "variable.name",
+                            "match": "\\b[a-zA-Z_]\\w*\\b"
+                        }
                     ]
                 }
             ]
         },
-        "access-method" : {
-            "name": "access",
-            "begin": "(([_[:alnum:]]+\\s*\\(.\\s*)?)+)([_[:alnum:]]+)\\s*(?=()",
-            "end": "(?=\\))",
-            "beginCaptures": {
-                "1" : {
-                    "name" : "variable.name"
+        "typename": {
+            "patterns": [
+                {
+                    "name": "storage.type",
+                    "match": "(bool|short|ushort|half|int|uint|float|long|ulong|double)([1-4](x[1-4])?)?"
                 },
+                {
+                    "name": "entity.name.type",
+                    "match": "[a-zA-Z_]\\w*"
+                }
+            ]
+        },
+        "method-call": {
+            "name": "meta.function-call",
+            "begin": "\\b[a-zA-Z_]\\w*\\s*\\(",
+            "beginCaptures": {
+                "0": {
+                    "name": "entity.name.function"
+                }
+            },
+            "end": "\\)",
+            "patterns": [
+                {
+                    "include": "#literals"
+                }
+            ]
+        },
+        "parameter-list" : {
+            "match": "((inout|in|out|triangle|point|const)\\s+)?((\\w+)(\\s*<(.*?)>)?)\\s+(\\w+)(\\s*\\[(.*?)\\])?",
+            "captures": {
                 "2" : {
-                    "name" : "entity.name.method.sdsl"
-                }
-            }
-        },
-        "accessed" : {
-            "name": "access",
-            "match": "([_[:alpha:]][_[:alnum:]]*)\\s*(?=\\.)",
-            "captures": {
-                "1" : {
+                    "name" : "storage.modifier"
+                },
+                "3" : {
+                    "patterns": [{"include": "#types"}]
+                },
+                "7" : {
                     "name" : "variable.name"
+                },
+                "9" : {
+                    "patterns": [{"include": "#literals"}]
                 }
             }
         },
-        "access" : {
-            "name": "access",
-            "match": "\\.\\s*([_[:alpha:]][_[:alnum:]]*)\\s*(?!(\\(|[[:alnum:]]))",
-            "captures": {
-                "1" : {
-                    "name" : "variable.name"
+        "custom-typename": {
+            "name": "entity.name.class",
+            "patterns": [
+                {
+                    "include": "#identifier"
                 }
-            }
+            ]
         },
-        "declare": {
-            "name": "declare",
-            "match": "([_[:alpha:]][_[:alnum:]]*)\\s+([_[:alpha:]][_[:alnum:]]*)",
+        "identifier": {
+            "match": "\\b[a-zA-Z_]\\w*\\b"
+        },
+        "types": {
+            "match": "(void|var|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)(\\s*<(.*?)>)?",
             "captures": {
                 "1": {
+                    "name": "storage.type"
+                },
+                "6": {
+                    "name": "entity.name.type"
+                },
+                "8": {
                     "patterns": [
                         {
-                            "include": "#type"
+                            "match": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)",
+                            "captures": {
+                                "1": {
+                                    "name": "storage.type"
+                                },
+                                "6": {
+                                    "name": "entity.name.type"
+                                }
+                            }
                         }
                     ]
-                },
-                "2": {
-                    "name": "variable.name.sdsl"
                 }
             }
         },
-        "block": {
-            "name": "block",
-            "begin": "(?:{)",
-            "end": "(?:})",
+        "preprocessors": {
             "patterns": [
                 {
-                    "include": "#statements"
-                }
-            ]
-        },
-        "return": {
-            "name": "return",
-            "begin": "(return)\\s*",
-            "end": "(?=;)",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.control.return"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#statements"
-                }
-            ]
-        },
-        "while": {
-            "name": "while",
-            "begin": "(while)\\s*\\(",
-            "end": "(?=\\))",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.control.while"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#statements"
-                },
-                {
-                    "name": "variable.name.sdsl",
-                    "match": "([_[:alpha:]][_[:alnum:]]*)"
-                }
-            ]
-        },
-        "for": {
-            "name": "for",
-            "begin": "(for)\\s*\\(",
-            "end": "(?=\\))",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.control.for"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#declare"
-                },
-                {
-                    "name": "variable.name.sdsl",
-                    "match": "([_[:alpha:]][_[:alnum:]]*)"
-                },
-                {
-                    "include": "#number"
-                },
-                {
-                    "include": "#booleans"
-                }
-            ]
-        },
-        "foreach": {
-            "name": "foreach",
-            "match": "(foreach)\\s*\\(([_[:alpha:]][_[:alnum:]]*)\\s+([_[:alpha:]][_[:alnum:]]*)\\s+(in)\\s+([_[:alpha:]][_[:alnum:]]*)\\s*\\)",
-            "captures": {
-                "1": {
-                    "name": "keyword.control.foreach"
-                },
-                "2": {
-                    "patterns": [
-                        {
-                            "include": "#type"
-                        }
-                    ]
-                },
-                "3": {
-                    "name": "variable.name.sdsl"
-                },
-                "4": {
-                    "name": "keyword.control.in"
-                },
-                "5": {
-                    "name": "variable.name.sdsl"
-                }
-            }
-        },
-        "base-types": {
-            "name": "entity.other.inherited-class",
-            "patterns": [
-                {
-                    "include": "#comment"
-                },
-                {
-                    "include": "#type"
-                },
-                {
-                    "include": "#mixin-name-generics-values"
-                },
-                {
-                    "include": "#punctuation-comma"
-                },
-                {
-                    "include": "#preprocessor"
-                }
-            ]
-        },
-        "type": {
-            "name": "meta.type.sdsl",
-            "patterns": [
-                {
-                    "match": "var",
-                    "name": "keyword.other.var"
-                },
-                {
-                    "include": "#type-builtin"
-                },
-                {
-                    "include": "#type-buffer"
-                },
-                {
-                    "include": "#type-name"
-                }
-            ]
-        },
-        "mixin-name-generics-declaration": {
-            "name": "mixin.name.generics.declaration.sdsl",
-            "begin": "([_[:alpha:]][_[:alnum:]*])\\s*\\<",
-            "end": "(?<=\\>)",
-            "beginCaptures": {
-                "1": {
-                    "name": "entity.name.type.sdsl"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#parameters-declaration"
-                }
-            ]
-        },
-        "mixin-name-generics-values": {
-            "name": "mixin.name.generics.value.sdsl",
-            "begin": "([_[:alpha:]][_[:alnum:]]*)\\s*(\\<)",
-            "end": "(\\>)",
-            "beginCaptures": {
-                "1": {
-                    "name": "entity.name.type.sdsl"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#number"
-                },
-                {
-                    "name": "keyword.other",
-                    "match": "(true|false)"
-                },
-                {
-                    "include": "#punctuation.comma"
-                },
-                {
-                    "include": "#builtin-constructor"
-                }
-            ]
-        },
-        "mixin-generics": {
-            "begin": "\\<",
-            "end": "(?<=\\>)",
-            "patterns": [
-                {
-                    "include": "#number"
-                },
-                {
-                    "name": "keyword.other",
-                    "match": "(true|false)"
-                },
-                {
-                    "include": "#punctuation.comma"
-                },
-                {
-                    "include": "#builtin-constructor"
-                }
-            ]
-        },
-        "parameters-values": {
-            "name": "paramters.values.sdsl",
-            "patterns": [
-                {
-                    "include": "#number"
-                },
-                {
-                    "name": "keyword.other",
-                    "match": "(true|false)"
-                },
-                {
-                    "include": "#punctuation.comma"
-                },
-                {
-                    "include": "#builtin-constructor"
-                },
-                {
-                    "include": "#method-call"
-                },
-                {
-                    "include": "#accessed"
-                },
-                {
-                    "include": "#access"
-                },
-                {
-                    "name" : "variable.name.parameter.value.sdsl",
-                    "match": "[_[:alpha:]][_[:alnum:]]*"
-                }
-            ]
-        },
-        "parameters-declaration": {
-            "name": "parameters.declaration.sdsl",
-            "patterns": [
-                {
-                    "include": "#punctuation.comma"
-                },
-                {
-                    "match": "([[:alnum:]]+)\\s+([_[:alpha:]][_[:alnum:]]*)",
+                    "match": "^[ \t]*(#define)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*\n",
                     "captures": {
                         "1": {
+                            "name": "keyword.preprocessor.sdsl"
+                        },
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
+                        }
+                    }
+                },
+                {
+                    "match": "^[ \t]*(#define)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*)([ \t]+([a-zA-Z0-9_.]+))[ \t]*\n",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
+                        },
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
+                        },
+                        "3": {
                             "patterns": [
                                 {
-                                    "include": "#type-builtin"
+                                    "include": "#literals"
                                 }
                             ]
-                        },
-                        "2": {
-                            "name": "variable.name.mixin.generics.sdsl"
                         }
                     }
-                }
-            ]
-        },
-        "mixin-generics-declaration": {
-            "name": "mixin.generics.declaration.sdsl",
-            "patterns": [
-                {
-                    "include": "#punctuation.comma"
                 },
                 {
-                    "match": "([[:alnum:]]+)\\s+([_[:alpha:]][_[:alnum:]]*)",
+                    "match": "^[ \t]*(#define)[ \t]+([a-zA-Z_][a-zA-Z0-9_]*[ \t]*\\(.?*\\))([ \t]+([a-zA-Z0-9_.]+[ \t]*\\(.?*\\)))[ \t]*\n",
                     "captures": {
                         "1": {
+                            "name": "keyword.preprocessor.sdsl"
+                        },
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
+                        },
+                        "3": {
+                            "name": "constant.preprocessor.sdsl"
+                        }
+                    }
+                },
+                {
+                    "match": "\\b\\s*(#ifdef|#ifndef)\\s(.*)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
+                        },
+                        "2": {
+                            "name": "variable.preprocessor.sdsl"
+                        },
+                        "3": {
                             "patterns": [
                                 {
-                                    "include": "#type-builtin"
+                                    "include": "#literals"
                                 }
                             ]
+                        }
+                    }
+                },
+                {
+                    "match": "^[ \t]*(#endif|#else)[ \t]*\n",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
                         },
                         "2": {
-                            "name": "variable.name.mixin.generics.sdsl"
+                            "name": "variable.preprocessor.sdsl"
+                        },
+                        "3": {
+                            "name": "constant.preprocessor.sdsl"
+                        }
+                    }
+                },
+                {
+                    "match": "(#if)\\s+(.*?)\n",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.preprocessor.sdsl"
+                        },
+                        "2": {
+                            "name": "meta.preprocessor.condition",
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     }
                 }
             ]
         },
-        "type-name": {
-            "patterns": [
-                {
-                    "match": "(@?[_[:alpha:]][_[:alnum:]]*)\\s*(\\:\\:)",
-                    "captures": {
-                        "1": {
-                            "name": "entity.name.type.alias.sdsl"
-                        },
-                        "2": {
-                            "name": "punctuation.separator.coloncolon.sdsl"
-                        }
-                    }
-                },
-                {
-                    "match": "(@?[_[:alpha:]][_[:alnum:]]*)\\s*(\\.)",
-                    "captures": {
-                        "1": {
-                            "name": "entity.name.type.sdsl"
-                        },
-                        "2": {
-                            "name": "punctuation.accessor.sdsl"
-                        }
-                    }
-                },
-                {
-                    "match": "(\\.)\\s*(@?[_[:alpha:]][_[:alnum:]]*)",
-                    "captures": {
-                        "1": {
-                            "name": "punctuation.accessor.sdsl"
-                        },
-                        "2": {
-                            "name": "entity.name.type.sdsl"
-                        }
-                    }
-                },
-                {
-                    "name": "entity.name.type.sdsl",
-                    "match": "@?[_[:alpha:]][_[:alnum:]]*"
-                }
-            ]
-        },
-        "type-builtin": {
-            "match": "\\b((bool|s?byte|u?short|u?int|u?long|float|double)([2-4]?|([2-4]x[2-4])?)|void)\\b",
-            "captures": {
-                "1": {
-                    "name": "keyword.type.sdsl"
-                }
-            }
-        },
-        "type-buffer": {
-            "name" : "buffer",
-            "begin": "(Buffer)\\s*\\<",
-            "end": "(?=\\>)",
-            "captures": {
-                "1" : {"name" : "entity.name.type"}
-            },
-            "patterns": [
-                {"include": "#type-builtin"}
-            ]
-        },
-        "comment": {
+        "comments": {
             "patterns": [
                 {
                     "name": "comment.block.sdsl",
@@ -978,7 +944,7 @@
                     }
                 },
                 {
-                    "name" : "comment.block.documentation",
+                    "name": "comment.block.documentation",
                     "begin": "(^\\s+)?(?=///)",
                     "end": "(?=$)",
                     "beginCaptures": {
@@ -1024,344 +990,6 @@
                     ]
                 }
             ]
-        },
-        "preprocessor": {
-            "name": "meta.preprocessor.sdsl",
-            "begin": "^\\s*(\\#)\\s*",
-            "beginCaptures": {
-                "1": {
-                    "name": "punctuation.separator.hash.sdsl"
-                }
-            },
-            "end": "(?<=$)",
-            "patterns": [
-                {
-                    "include": "#comment"
-                },
-                {
-                    "include": "#preprocessor-define-or-undef"
-                },
-                {
-                    "include": "#preprocessor-if-or-elif"
-                },
-                {
-                    "include": "#preprocessor-else-or-endif"
-                },
-                {
-                    "include": "#preprocessor-warning-or-error"
-                },
-                {
-                    "include": "#preprocessor-region"
-                },
-                {
-                    "include": "#preprocessor-endregion"
-                },
-                {
-                    "include": "#preprocessor-load"
-                },
-                {
-                    "include": "#preprocessor-r"
-                },
-                {
-                    "include": "#preprocessor-line"
-                },
-                {
-                    "include": "#preprocessor-pragma-warning"
-                },
-                {
-                    "include": "#preprocessor-pragma-checksum"
-                }
-            ]
-        },
-        "preprocessor-define-or-undef": {
-            "match": "\\b(?:(define)|(undef))\\b\\s*\\b([_[:alpha:]][_[:alnum:]]*)\\b",
-            "captures": {
-                "1": {
-                    "name": "keyword.preprocessor.define.sdsl"
-                },
-                "2": {
-                    "name": "keyword.preprocessor.undef.sdsl"
-                },
-                "3": {
-                    "name": "entity.name.variable.preprocessor.symbol.sdsl"
-                }
-            }
-        },
-        "preprocessor-if-or-elif": {
-            "begin": "\\b(?:(if)|(elif))\\b",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.preprocessor.if.sdsl"
-                },
-                "2": {
-                    "name": "keyword.preprocessor.elif.sdsl"
-                }
-            },
-            "end": "(?=$)",
-            "patterns": [
-                {
-                    "include": "#preprocessor-expression"
-                },
-                {
-                    "include": "#comment"
-                }
-            ]
-        },
-        "preprocessor-else-or-endif": {
-            "match": "\\b(?:(else)|(endif))\\b",
-            "captures": {
-                "1": {
-                    "name": "keyword.preprocessor.else.sdsl"
-                },
-                "2": {
-                    "name": "keyword.preprocessor.endif.sdsl"
-                }
-            }
-        },
-        "preprocessor-warning-or-error": {
-            "match": "\\b(?:(warning)|(error))\\b\\s*(.*)(?=$)",
-            "captures": {
-                "1": {
-                    "name": "keyword.preprocessor.warning.sdsl"
-                },
-                "2": {
-                    "name": "keyword.preprocessor.error.sdsl"
-                },
-                "3": {
-                    "name": "string.unquoted.preprocessor.message.sdsl"
-                }
-            }
-        },
-        "preprocessor-region": {
-            "match": "\\b(region)\\b\\s*(.*)(?=$)",
-            "captures": {
-                "1": {
-                    "name": "keyword.preprocessor.region.sdsl"
-                },
-                "2": {
-                    "name": "string.unquoted.preprocessor.message.sdsl"
-                }
-            }
-        },
-        "preprocessor-endregion": {
-            "match": "\\b(endregion)\\b",
-            "captures": {
-                "1": {
-                    "name": "keyword.preprocessor.endregion.sdsl"
-                }
-            }
-        },
-        "preprocessor-line": {
-            "begin": "\\b(line)\\b",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.preprocessor.line.sdsl"
-                }
-            },
-            "end": "(?=$)",
-            "patterns": [
-                {
-                    "match": "\\b(?:(default|hidden))",
-                    "captures": {
-                        "1": {
-                            "name": "keyword.preprocessor.default.sdsl"
-                        },
-                        "2": {
-                            "name": "keyword.preprocessor.hidden.sdsl"
-                        }
-                    }
-                },
-                {
-                    "match": "[0-9]+",
-                    "captures": {
-                        "0": {
-                            "name": "constant.numeric.decimal.sdsl"
-                        }
-                    }
-                },
-                {
-                    "match": "\\\"[^\"]*\\\"",
-                    "captures": {
-                        "0": {
-                            "name": "string.quoted.double.sdsl"
-                        }
-                    }
-                }
-            ]
-        },
-        "preprocessor-expression": {
-            "patterns": [
-                {
-                    "begin": "\\(",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.parenthesis.open.sdsl"
-                        }
-                    },
-                    "end": "\\)",
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.parenthesis.close.sdsl"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "#preprocessor-expression"
-                        }
-                    ]
-                },
-                {
-                    "match": "\\b(?:(true)|(false)|([_[:alpha:]][_[:alnum:]]*))\\b",
-                    "captures": {
-                        "1": {
-                            "name": "constant.language.boolean.true.sdsl"
-                        },
-                        "2": {
-                            "name": "constant.language.boolean.false.sdsl"
-                        },
-                        "3": {
-                            "name": "entity.name.variable.preprocessor.symbol.sdsl"
-                        }
-                    }
-                },
-                {
-                    "match": "(==|!=)|(\\!|&&|\\|\\|)",
-                    "captures": {
-                        "1": {
-                            "name": "keyword.operator.comparison.sdsl"
-                        },
-                        "2": {
-                            "name": "keyword.operator.logical.sdsl"
-                        }
-                    }
-                }
-            ]
-        },
-        "attribute-section": {
-            "begin": "(\\[)",
-            "beginCaptures": {
-                "1": {
-                    "name": "punctuation.squarebracket.open.sdsl"
-                }
-            },
-            "end": "(\\])",
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.squarebracket.close.sdsl"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#comment"
-                },
-                {
-                    "include": "#attribute"
-                },
-                {
-                    "include": "#punctuation-comma"
-                }
-            ]
-        },
-        "storage-modifier": {
-            "name": "storage.modifier.sdsl",
-            "match": "(?<!\\.)\\b(clone|virtual|abstract|stage|stream|override|static|compose)\\b"
-        },
-        "control-flow": {
-            "name": "keyword.control",
-            "match": "(if|else|foreach|for|return|break|continue|pass)"
-        },
-        "builtin-constructor": {
-            "name": "builtin.constructor.sdsl",
-            "begin": "((bool|s?byte|u?short|u?int|u?long|float|double)([2-4]?|([2-4]x[2-4])?)|void)\\s*\\(",
-            "end": "(?=\\))",
-            "beginCaptures": {
-                "1": {
-                    "name": "builtin.constructor.type.sdsl",
-                    "patterns": [
-                        {
-                            "include": "#type-builtin"
-                        }
-                    ]
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#punctuation.comma"
-                },
-                {
-                    "include": "#number",
-                    "name": "builtin.constructor.value"
-                }
-            ]
-        },
-        "method-call": {
-            "begin": "([_[:alpha:]][_[:alnum:]]*)\\(",
-            "end": "(?=\\))",
-            "beginCaptures": {
-                "1": {
-                    "patterns": [
-                        {
-                            "include": "#intrinsics"
-                        },
-                        {
-                            "match": "[_[:alpha:]][_[:alnum:]]*",
-                            "name" : "entity.name.function.sdsl"
-                        }
-                    ]
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#parameters-values"
-                }
-            ]
-        },
-        "number": {
-            "name": "constant.numeric.sdsl",
-            "match": "([1-9][0-9]*|0)(.[0-9])?(F|L|U)?"
-        },
-        "booleans": {
-            "name": "keyword.other.booleans.sdsl",
-            "match": "(true|false)"
-        },
-        "type-array-suffix": {
-            "begin": "\\[",
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.squarebracket.open.sdsl"
-                }
-            },
-            "end": "\\]",
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.squarebracket.close.sdsl"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#punctuation-comma"
-                }
-            ]
-        },
-        "operator-assignment": {
-            "name": "keyword.operator.assignment.sdsl",
-            "match": "(?<!=|!)(=)(?!=)"
-        },
-        "punctuation-comma": {
-            "name": "punctuation.separator.comma.sdsl",
-            "match": ","
-        },
-        "punctuation-semicolon": {
-            "name": "punctuation.terminator.statement.sdsl",
-            "match": ";"
-        },
-        "punctuation-accessor": {
-            "name": "punctuation.accessor.sdsl",
-            "match": "\\."
-        },
-        "intrinsics" : {
-            "name" : "entity.name.function.intrinsics.sdsl",
-            "match": "(abort|abs|acos|all|any|asfloat|asint|asin|asuint|atan|ceil|clamp|clip|cos|cosh|coutbits|cross|ddx|ddx_coarse|ddx_fine|ddy|ddy_coarse|ddy_fine|degrees|determinant|distance|dot|dst|errorf|exp|exp2|f16tof32|f32tof16|faceforward|firstbithigh|firstbitlow|floor|fma|fmod|frac|frexp|fwidth|infinite|isinf|isnan|ldexp|length|lerp|lit|log|log10|log2|max|min|modf|msad4|mul|noise|normalize|pow|radians|rcp|reflect|refract|round|reversebits|rsqrt|saturate|sign|sincos|sinh|sin|smoothstep|sqrt|step|tanh|tan|tex1D|tex1Dbias|tex1Dgrad|tex1Dlod|tex1Dproj|tex2D|tex2Dbias|tex2Dgrad|tex2Dlod|tex2Dproj|tex3D|tex3Dbias|tex3Dgrad|tex3Dlod|tex3Dproj|texCUBE|texCUBEbias|texCUBEgrad|texCUBElod|texCUBEproj|transpose|trunc)"
         }
     },
     "scopeName": "source.sdsl"

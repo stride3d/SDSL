@@ -28,8 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let serverExe = 'dotnet';
 	let serverOptions: ServerOptions = {
-		run: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net8.0/Stride.Shaders.LSP.dll"] },
-		debug: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net8.0/Stride.Shaders.LSP.dll"] }
+		run: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net9.0/Stride.Shaders.LSP.dll"] },
+		debug: { command: serverExe, args: ["C:/Users/youness_kafia/Documents/dotnetProjs/SDSL/src/Stride.Shaders.LSP/bin/Debug/net9.0/Stride.Shaders.LSP.dll"] }
 	};
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents

@@ -7,6 +7,7 @@ import { LanguageClient, ServerOptions, TransportKind } from 'vscode-languagecli
 
 import { Trace } from 'vscode-jsonrpc';
 import { workspace } from 'vscode';
+import path from 'path';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -26,10 +27,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
-	let serverExe = 'dotnet';
+	let serverExe = path.join(context.extensionPath, 'bin', 'Stride.Shaders.LSP.exe');
+
 	let serverOptions: ServerOptions = {
-		run: { command: serverExe, args: ["./bin/net9.0/win-x64/Stride.Shaders.LSP.exe"] },
-		debug: { command: serverExe, args: ["./bin/net9.0/win-x64/Stride.Shaders.LSP.exe"] }
+		run: { command: serverExe},
+		debug: { command: serverExe}
 	};
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents
@@ -40,11 +42,11 @@ export function activate(context: vscode.ExtensionContext) {
 		],
 		synchronize: {
 			// Synchronize the setting section 'languageServerExample' to the server
-			configurationSection: 'languageServerExample',
+			configurationSection: 'sdsl-lsp',
 			fileEvents: workspace.createFileSystemWatcher('**/*.sd(sl|fx)')
 		},
 	};
-	const client = new LanguageClient('Stride.Shaders.LSP', 'SDSL LSP', serverOptions, clientOptions);
+	const client = new LanguageClient('sdsl-lsp', 'Stride.Shaders.LSP', serverOptions, clientOptions);
 	client.start();
 }
 

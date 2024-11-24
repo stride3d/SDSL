@@ -19,6 +19,9 @@
                     "include": "#comments"
                 },
                 {
+                    "include": "#usings"
+                },
+                {
                     "include": "#namespace"
                 },
                 {
@@ -55,6 +58,25 @@
                             "match": "[bo]+"
                         }
                     ]
+                }
+            ]
+        },
+        "usings" : {
+            "begin": "(using)\\s",
+            "end": ";",
+            "beginCaptures": {
+                "1" : {
+                    "name" : "storage.modifier.import"
+                }
+            },
+            "patterns": [
+                {
+                    "match": "(\\w+)",
+                    "captures": {
+                        "1" : {
+                            "name" : "entity.name.class"
+                        }
+                    }
                 }
             ]
         },
@@ -128,7 +150,7 @@
         },
         "shader-class": {
             "name": "shader-class.sdsl",
-            "begin": "(?=shader)",
+            "begin": "(?=shader\\s+)",
             "end": "(\\}|;)",
             "patterns": [
                 {
@@ -144,6 +166,35 @@
                         {
                             "name": "entity.name.class",
                             "match": "\\b[a-zA-Z_]\\w*\\b"
+                        },
+                        {
+                            "begin": "<",
+                            "end": ">",
+                            "patterns": [
+                                {
+                                    "include": "#shader-generics"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "shader.mixins.sdsl",
+                    "begin": ":",
+                    "end": "(?=\\{)",
+                    "patterns": [
+                        {
+                            "match": "(\\w+)",
+                            "name": "entity.name.class"
+                        },
+                        {
+                            "begin": "<",
+                            "end": ">",
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -209,44 +260,48 @@
             "patterns": [
                 {
                     "match": "(stage|stream|patchstream|compose)\\s",
-                    "name" : "storage.modifier.mixin"
+                    "name": "storage.modifier.mixin"
                 },
                 {
                     "match": "(override|abstract|virtual)\\s",
-                    "name" : "storage.modifier.functions"
+                    "name": "storage.modifier.functions"
                 },
                 {
                     "match": "(extern|noInterpolation|precise|shared|groupShared|static|uniform|volatile)\\s",
-                    "name" : "storage.modifier.storageclass"
+                    "name": "storage.modifier.storageclass"
                 },
                 {
                     "match": "(linear|centroid|nointerpolation|noperspective|sample)\\s",
-                    "name" : "storage.modifier.interpolation"
+                    "name": "storage.modifier.interpolation"
                 },
                 {
                     "match": "(const|rowmajor|columnmajor)\\s",
-                    "name" : "storage.modifier.typemodifier"
+                    "name": "storage.modifier.typemodifier"
                 },
                 {
-                    "name" : "meta.buffer.sdsl",
+                    "name": "meta.buffer.sdsl",
                     "begin": "(cbuffer|tbuffer|rgroup)\\s+(\\w+(\\.\\w+)*)",
                     "beginCaptures": {
-                        "1" : {"name": "storage.type"},
-                        "2" : {"name": "entity.name.class"}
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "2": {
+                            "name": "entity.name.class"
+                        }
                     },
                     "end": "\\}",
                     "patterns": [
                         {
                             "begin": "\\{",
                             "end": "(?=\\})",
-                            "name" : "meta.buffer.body",
+                            "name": "meta.buffer.body",
                             "patterns": [
                                 {
                                     "include": "#comments"
                                 },
                                 {
                                     "match": "(stage)\\s+",
-                                    "name" : "storage.modifier.mixin"
+                                    "name": "storage.modifier.mixin"
                                 },
                                 {
                                     "include": "#struct-fields"
@@ -256,50 +311,275 @@
                     ]
                 },
                 {
-                    "name" : "meta.member.sdsl",
-                    "begin": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)\\s+",
+                    "name": "meta.member.sdsl",
+                    "begin": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)(\\s*<(.*?)>)?\\s+",
                     "end": ";|(})",
                     "beginCaptures": {
-                        "1" : {"name" : "storage.type"},
-                        "6" : {"name" : "entity.name.type"}
+                        "1": {
+                            "name": "storage.type"
+                        },
+                        "6": {
+                            "name": "entity.name.type"
+                        },
+                        "8": {
+                            "patterns": [
+                                {
+                                    "match": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)",
+                                    "captures": {
+                                        "1": {
+                                            "name": "storage.type"
+                                        },
+                                        "6": {
+                                            "name": "entity.name.type"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
                     },
                     "patterns": [
                         {
                             "match": "(\\w+)\\s*(:.*?)+(?=;)",
                             "captures": {
-                                "1" : {"name" : "variable.name"},
-                                "2" : {"patterns": [{"include": "#literals"}]}                            }
+                                "1": {
+                                    "name": "variable.name"
+                                },
+                                "2": {
+                                    "patterns": [
+                                        {
+                                            "include": "#literals"
+                                        }
+                                    ]
+                                }
+                            }
                         },
                         {
                             "match": "(\\w+)\\s*(\\[(.*?)\\]\\s*)?(?=;)",
                             "captures": {
-                                "1" : {"name" : "variable.name"},
-                                "3" : {"patterns": [{"include": "#literals"}]}
+                                "1": {
+                                    "name": "variable.name"
+                                },
+                                "3": {
+                                    "patterns": [
+                                        {
+                                            "include": "#literals"
+                                        }
+                                    ]
+                                }
                             }
                         },
                         {
                             "begin": "(\\w+)\\s*=",
                             "end": "(?=;)",
-                            "beginCaptures": {"1" : {"name" : "variable.name"}},
-                            "patterns": [{"include": "#literals"}],
-                            "name" : "meta.value"
+                            "beginCaptures": {
+                                "1": {
+                                    "name": "variable.name"
+                                }
+                            },
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ],
+                            "name": "meta.value"
                         },
                         {
                             "match": "(\\w+)\\s*(?=\\()",
-                            "name" : "entity.name.function"
+                            "name": "entity.name.function"
                         },
                         {
                             "begin": "\\(",
                             "end": "\\)",
-                            "name" : "meta.function.parameters",
+                            "name": "meta.function.parameters",
                             "patterns": [
-                                {"include": "#parameter-list"}
+                                {
+                                    "include": "#parameter-list"
+                                }
                             ]
                         },
                         {
                             "begin": "\\{",
                             "end": "(?=\\})",
-                            "name" : "meta.function.body"
+                            "name": "meta.function.body",
+                            "patterns": [
+                                {
+                                    "include": "#shader-statements"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "shader-statements": {
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#preprocessors"
+                },
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "name" : "meta.block",
+                    "begin": "\\{",
+                    "end": "\\}",
+                    "patterns": [
+                        {
+                            "include": "#shader-statements"
+                        }
+                    ]
+                },
+                {
+                    "name" : "meta.forloop",
+                    "begin": "(for|foreach)\\s*(?=\\()",
+                    "end": "\\)",
+                    "beginCaptures": {
+                        "1" : {
+                            "name" : "keyword.control.foreach"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "\\(",
+                            "end": "(?=\\))",
+                            "patterns": [{"include": "#literals"}]
+                        }
+                    ]
+                },
+                {
+                    "match": "(else)(?=(\\s|\\{))",
+                    "captures": {
+                        "1" : {
+                            "name" : "keyword.control.else"
+                        }
+                    }
+                },
+                {
+                    "name" : "meta.if.condition",
+                    "begin": "(if|elif|(else\\s+if))(?=(\\s|\\())",
+                    "end": "\\)",
+                    "beginCaptures": {
+                        "1" : {
+                            "name" : "keyword.control.if"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "begin": "\\(",
+                            "end": "(?=\\))",
+                            "patterns": [{"include": "#literals"}]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(discard)\\s+",
+                    "end": ";",
+                    "beginCaptures": {
+                        "1" : {
+                            "name" : "keyword.control.return"
+                        }
+                    }
+                },
+                {
+                    "begin": "(return)\\s+",
+                    "end": ";",
+                    "beginCaptures": {
+                        "1" : {
+                            "name" : "keyword.control.return"
+                        }
+                    },
+                    "patterns": [
+                        {"include": "#literals"}
+                    ]
+                },
+                {
+                    "begin": "((const)\\s+)?(\\w+)\\s+(\\w+)",
+                    "beginCaptures": {
+                        "2": {
+                            "name": "storage.modifier.const"
+                        },
+                        "3": {
+                            "patterns": [
+                                {
+                                    "match": "(void|var|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)(\\s*<(.*?)>)?",
+                                    "captures": {
+                                        "1": {
+                                            "name": "storage.type"
+                                        },
+                                        "6": {
+                                            "name": "entity.name.type"
+                                        },
+                                        "8": {
+                                            "patterns": [
+                                                {
+                                                    "match": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)",
+                                                    "captures": {
+                                                        "1": {
+                                                            "name": "storage.type"
+                                                        },
+                                                        "6": {
+                                                            "name": "entity.name.type"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "4" : {
+                            "name" : "variable.name"
+                        }
+                    },
+                    "end": ";",
+                    "patterns": [
+                        {
+                            "begin": "=",
+                            "end": "(?=;)",
+                            "include": "#literals"
+                        }
+                    ]
+                },
+                {
+                    "begin": "((streams)\\s*\\.\\s*)?(\\w+)(.*?)\\s*[+\\-*\\/%<>&|^]*=",
+                    "beginCaptures": {
+                        "2": {
+                            "name": "storage.modifier.streams"
+                        },
+                        "3": {
+                            "name": "variable.name"
+                        },
+                        "4" : {
+                            "patterns": [
+                                {
+                                    "match": "\\.\\s*(\\w+)",
+                                    "captures": {
+                                        "1" : {
+                                            "name" : "variable.name"
+                                        }
+                                    }
+                                },
+                                {
+                                    "match": "\\[(.*?)\\]",
+                                    "captures": {
+                                        "1" : {
+                                            "patterns" : [{"include": "#literals"}]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "end": ";",
+                    "patterns": [
+                        {
+                            "begin": "=",
+                            "end": "(?=;)",
+                            "include": "#literals"
                         }
                     ]
                 }
@@ -511,7 +791,7 @@
                     }
                 },
                 {
-                    "match": "^[ \t]*(#ifdef|#ifndef)[ \t]+([a-zA-Z0-9_]+)[ \t]*\n",
+                    "match": "\\b\\s*(#ifdef|#ifndef)\\s(.*)",
                     "captures": {
                         "1": {
                             "name": "keyword.preprocessor.sdsl"
@@ -520,7 +800,7 @@
                             "name": "variable.preprocessor.sdsl"
                         },
                         "3": {
-                            "name": "constant.preprocessor.sdsl"
+                            "patterns": [{"include": "#literals"}]
                         }
                     }
                 },
@@ -539,16 +819,14 @@
                     }
                 },
                 {
-                    "match": "^[ \t]*(#if).*?\n",
+                    "match": "(#if)\\s+(.*?)\n",
                     "captures": {
                         "1": {
                             "name": "keyword.preprocessor.sdsl"
                         },
                         "2": {
-                            "name": "variable.preprocessor.sdsl"
-                        },
-                        "3": {
-                            "name": "constant.preprocessor.sdsl"
+                            "name" : "meta.preprocessor.condition",
+                            "patterns": [{"include": "#literals"}]
                         }
                     }
                 }

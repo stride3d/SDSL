@@ -3,6 +3,11 @@
   "displayName": "SDSL Language support",
   "description": "Official SDSL Language support for vscode",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stride3D/SDSL"
+  },
+  "license": "MIT",
   "engines": {
     "vscode": "^1.54.0"
   },
@@ -19,7 +24,7 @@
     "onLanguage:sdsl"
   ],
   "files": [
-    "bin/net9.0/win-x64/publish/*"
+    "bin/"
   ],
   "contributes": {
     "commands": [

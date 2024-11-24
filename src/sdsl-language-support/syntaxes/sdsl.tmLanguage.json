@@ -61,20 +61,20 @@
                 }
             ]
         },
-        "usings" : {
+        "usings": {
             "begin": "(using)\\s",
             "end": ";",
             "beginCaptures": {
-                "1" : {
-                    "name" : "storage.modifier.import"
+                "1": {
+                    "name": "storage.modifier.import"
                 }
             },
             "patterns": [
                 {
                     "match": "(\\w+)",
                     "captures": {
-                        "1" : {
-                            "name" : "entity.name.class"
+                        "1": {
+                            "name": "entity.name.class"
                         }
                     }
                 }
@@ -423,7 +423,7 @@
                     "include": "#attribute"
                 },
                 {
-                    "name" : "meta.block",
+                    "name": "meta.block",
                     "begin": "\\{",
                     "end": "\\}",
                     "patterns": [
@@ -433,44 +433,75 @@
                     ]
                 },
                 {
-                    "name" : "meta.forloop",
+                    "name": "meta.forloop",
                     "begin": "(for|foreach)\\s*(?=\\()",
                     "end": "\\)",
                     "beginCaptures": {
-                        "1" : {
-                            "name" : "keyword.control.foreach"
+                        "1": {
+                            "name": "keyword.control.foreach"
                         }
                     },
                     "patterns": [
                         {
+                            "match": "(\\w+)\\s+(\\w+)\\s+in(.*?)(?=\\))",
+                            "captures": {
+                                "1" : {"patterns": [{"include": "#types"}]},
+                                "2" : {"name" : "variable.name"},
+                                "3" : {"patterns": [{"include": "#literals"}]}
+                            }
+                        },
+                        {
                             "begin": "\\(",
                             "end": "(?=\\))",
-                            "patterns": [{"include": "#literals"}]
+                            "patterns": [
+                                {
+                                    "name" : "meta.forloop.initializer",
+                                    "match": "(\\w+)\\s+(\\w+)\\s*[+\\-*\\/%<>&|^]*=(.*?)(?=;)",
+                                    "captures": {
+                                        "1": {
+                                            "patterns": [
+                                                {"include": "#types"}
+                                            ]
+                                        },
+                                        "2" : {"name" : "variable.name"},
+                                        "3" : {
+                                            "patterns": [{"include": "#literals"}]
+                                        }
+                                    }
+                                },
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
                     "match": "(else)(?=(\\s|\\{))",
                     "captures": {
-                        "1" : {
-                            "name" : "keyword.control.else"
+                        "1": {
+                            "name": "keyword.control.else"
                         }
                     }
                 },
                 {
-                    "name" : "meta.if.condition",
+                    "name": "meta.if.condition",
                     "begin": "(if|elif|(else\\s+if))(?=(\\s|\\())",
                     "end": "\\)",
                     "beginCaptures": {
-                        "1" : {
-                            "name" : "keyword.control.if"
+                        "1": {
+                            "name": "keyword.control.if"
                         }
                     },
                     "patterns": [
                         {
                             "begin": "\\(",
                             "end": "(?=\\))",
-                            "patterns": [{"include": "#literals"}]
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -478,8 +509,8 @@
                     "begin": "(discard)\\s+",
                     "end": ";",
                     "beginCaptures": {
-                        "1" : {
-                            "name" : "keyword.control.return"
+                        "1": {
+                            "name": "keyword.control.return"
                         }
                     }
                 },
@@ -487,12 +518,14 @@
                     "begin": "(return)\\s+",
                     "end": ";",
                     "beginCaptures": {
-                        "1" : {
-                            "name" : "keyword.control.return"
+                        "1": {
+                            "name": "keyword.control.return"
                         }
                     },
                     "patterns": [
-                        {"include": "#literals"}
+                        {
+                            "include": "#literals"
+                        }
                     ]
                 },
                 {
@@ -531,8 +564,8 @@
                                 }
                             ]
                         },
-                        "4" : {
-                            "name" : "variable.name"
+                        "4": {
+                            "name": "variable.name"
                         }
                     },
                     "end": ";",
@@ -553,21 +586,25 @@
                         "3": {
                             "name": "variable.name"
                         },
-                        "4" : {
+                        "4": {
                             "patterns": [
                                 {
                                     "match": "\\.\\s*(\\w+)",
                                     "captures": {
-                                        "1" : {
-                                            "name" : "variable.name"
+                                        "1": {
+                                            "name": "variable.name"
                                         }
                                     }
                                 },
                                 {
                                     "match": "\\[(.*?)\\]",
                                     "captures": {
-                                        "1" : {
-                                            "patterns" : [{"include": "#literals"}]
+                                        "1": {
+                                            "patterns": [
+                                                {
+                                                    "include": "#literals"
+                                                }
+                                            ]
                                         }
                                     }
                                 }
@@ -582,6 +619,12 @@
                             "include": "#literals"
                         }
                     ]
+                },
+                {
+                    "name" : "meta.statement.expression",
+                    "begin": "(?=(\\w+))",
+                    "end": ";",
+                    "patterns": [{"include": "#literals"}]
                 }
             ]
         },
@@ -734,6 +777,23 @@
                 }
             ]
         },
+        "parameter-list" : {
+            "match": "((inout|in|out|triangle|point|const)\\s+)?((\\w+)(\\s*<(.*?)>)?)\\s+(\\w+)(\\s*\\[(.*?)\\])?",
+            "captures": {
+                "2" : {
+                    "name" : "storage.modifier"
+                },
+                "3" : {
+                    "patterns": [{"include": "#types"}]
+                },
+                "7" : {
+                    "name" : "variable.name"
+                },
+                "9" : {
+                    "patterns": [{"include": "#literals"}]
+                }
+            }
+        },
         "custom-typename": {
             "name": "entity.name.class",
             "patterns": [
@@ -744,6 +804,32 @@
         },
         "identifier": {
             "match": "\\b[a-zA-Z_]\\w*\\b"
+        },
+        "types": {
+            "match": "(void|var|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)(\\s*<(.*?)>)?",
+            "captures": {
+                "1": {
+                    "name": "storage.type"
+                },
+                "6": {
+                    "name": "entity.name.type"
+                },
+                "8": {
+                    "patterns": [
+                        {
+                            "match": "(void|((u?int|u?long|half|float|double)([2-4](x[2-4])?)?))|(\\w+)",
+                            "captures": {
+                                "1": {
+                                    "name": "storage.type"
+                                },
+                                "6": {
+                                    "name": "entity.name.type"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
         },
         "preprocessors": {
             "patterns": [
@@ -800,7 +886,11 @@
                             "name": "variable.preprocessor.sdsl"
                         },
                         "3": {
-                            "patterns": [{"include": "#literals"}]
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     }
                 },
@@ -825,8 +915,12 @@
                             "name": "keyword.preprocessor.sdsl"
                         },
                         "2": {
-                            "name" : "meta.preprocessor.condition",
-                            "patterns": [{"include": "#literals"}]
+                            "name": "meta.preprocessor.condition",
+                            "patterns": [
+                                {
+                                    "include": "#literals"
+                                }
+                            ]
                         }
                     }
                 }

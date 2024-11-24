@@ -28,6 +28,9 @@
                     "include": "#shader-class"
                 },
                 {
+                    "include": "#params-class"
+                },
+                {
                     "include": "#effect-class"
                 },
                 {
@@ -120,10 +123,41 @@
             "name": "storage.internal",
             "match": "(internal|partial)\\s"
         },
+        "params-class": {
+            "begin": "(params)\\s",
+            "end": "\\}",
+            "beginCaptures": {
+                "1" : {"name" : "storage.modifier"}
+            },
+            "patterns": [
+                {
+                    "begin": "(\\w+)",
+                    "end": "(?=\\{)",
+                    "beginCaptures": {
+                        "1" : {"name" : "entity.name.class"}
+                    }
+                },
+                {
+                    "name" : "meta.params.body",
+                    "begin": "{",
+                    "end": "(?=\\})",
+                    "patterns": [
+                        {
+                            "match": "(\\w+(\\s*<.*?>)?)\\s+(\\w+)\\s*(=(.*?))?;",
+                            "captures": {
+                                "1" : {"patterns": [{"include": "#types"}]},
+                                "3" : {"name" : "variable.name"},
+                                "5" : {"patterns": [{"include": "#literals"}]}
+                            }
+                        }
+                    ]   
+                }
+            ]
+        },
         "effect-class": {
             "name": "effect-class.sdsl",
             "begin": "(?=effect)",
-            "end": "(;|\\})",
+            "end": "(;|\\};?)",
             "patterns": [
                 {
                     "name": "effect-class.naming.sdsl",
@@ -143,8 +177,162 @@
                 },
                 {
                     "name": "effect.body.sdsl",
-                    "begin": "(?=\\{)",
-                    "end": "(?=\\)}"
+                    "begin": "\\{",
+                    "end": "(?=\\})",
+                    "patterns": [
+                        {
+                            "include": "#effect-elements"
+                        }
+                    ]
+                }
+            ]
+        },
+        "effect-elements": {
+            "patterns": [
+                {
+                    "include": "#effect-member-declaration"
+                }
+            ]
+        },
+        "effect-member-declaration": {
+            "patterns": [
+                {
+                    "include": "#comments"
+                },
+                {
+                    "include": "#preprocessors"
+                },
+                {
+                    "include": "#attribute"
+                },
+                {
+                    "name" : "meta.effect.block",
+                    "begin": "\\{",
+                    "end": "\\}",
+                    "patterns": [{"include": "#effect-member-declaration"}]
+                },
+                {
+                    "begin" : "(if|elif|else\\s+if)(\\s|(?=\\())",
+                    "end": "\\)",
+                    "captures": {
+                        "1" : {"name" : "keyword.control.if"}
+                    },
+                    "patterns": [
+                        {
+                            "begin": "\\(",
+                            "end": "(?=\\))",
+                            "patterns": [{"include": "#literals"}]
+                        }
+                    ]
+                },
+                {
+                    "begin" : "(foreach)(\\s|(?=\\())",
+                    "end": "\\)",
+                    "captures": {
+                        "1" : {"name" : "keyword.control.foreach"}
+                    },
+                    "patterns": [
+                        {
+                            "match": "(\\w+)\\s+(\\w+)\\s+(in)(.*?)(?=\\))",
+                            "captures": {
+                                "1" : {"patterns": [{"include": "#types"}]},
+                                "2" : {"name" : "variable.name"},
+                                "3" : {"name" : "keyword.control"},
+                                "4" : {"patterns": [{"include": "#literals"}]}
+                            }
+                        }
+                    ]
+                },
+                {
+                    "match" : "(else)(\\s+|(?=\\{))",
+                    "captures": {
+                        "1" : {"name" : "keyword.control.if"}
+                    }
+                },
+                {
+                    "match": "(using)\\s+(params)\\s+(\\w+)\\s*;",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "2" : {"name" : "storage.modifier"},
+                        "3" : {"name" : "entity.name.class"}
+                    }
+                },
+                {
+                    "match": "(mixin)\\s+(macro)\\s+(\\w+)\\s*(=(.*?)(?=;))?;",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "2" : {"name" : "storage.modifier"},
+                        "3" : {"name" : "variable.name"},
+                        "5" : {"patterns": [{"include": "#literals"}]}
+                    }
+                },
+                {
+                    "match": "(mixin)\\s+(compose)\\s+(\\w+(\\s*<.*?>)?)\\s+(\\w+)\\s*[+]?(=(.*?)(?=;))?;",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "2" : {"name" : "storage.modifier"},
+                        "3" : {"patterns": [{"include": "#types"}]},
+                        "4" : {"name" : "variable.name"},
+                        "6" : {"patterns": [{"include": "#literals"}]}
+                    }
+                },
+                {
+                    "match": "(mixin)\\s+(compose)\\s+(\\w+)\\s*[+]?(=(.*?)(?=;))?;",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "2" : {"name" : "storage.modifier"},
+                        "3" : {"name" : "variable.name"},
+                        "5" : {
+                            "patterns": [
+                                {
+                                    "match": "((\\w+)\\s*<(.*?)>)",
+                                    "captures": {
+                                        "2" : {"name" : "entity.name.class"},
+                                        "3" : {"patterns": [{"include": "#literals"}]} 
+                                    }
+                                },
+                                {"include": "#literals"}
+                            ]
+                        }
+                    }
+                },
+                {
+                    "match": "(mixin(\\s+(child|clone))?)\\s+((\\w+)(\\s*<(.*?)>)?)\\s*;",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "3" : {"name" : "storage.modifier"},
+                        "5" : {"name" : "entity.name.class"},
+                        "7" : {"patterns": [{"include": "#literals"}]}
+                    }
+                },
+                {
+                    "match": "(mixin)\\s+\\(\\s*(\\w+)\\s*\\)\\s*;",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "2" : {"name" : "variable.name"}
+                    }
+                },
+                {
+                    "name" : "meta.effect.multi-mixin",
+                    "match": "(mixin)\\s+(.*?);",
+                    "captures": {
+                        "1" : {"name" : "storage.modifier"},
+                        "2" : {"patterns": [{"include": "#literals"}]}
+                    }
+                },
+                {
+                    "match": "(var)\\s+(\\w+)\\s*(=(.*?))?;",
+                    "captures": {
+                        "1" : {"name" : "storage.type"},
+                        "2" : {"name" : "variable.name"},
+                        "4" : {"patterns": [{"include": "#literals"}]}
+                    }
+                },
+                {
+                    "name" : "meta.statement.expression",
+                    "begin": "(?=(\\w+))",
+                    "end": ";",
+                    "patterns": [{"include": "#literals"}]
                 }
             ]
         },
@@ -443,11 +631,12 @@
                     },
                     "patterns": [
                         {
-                            "match": "(\\w+)\\s+(\\w+)\\s+in(.*?)(?=\\))",
+                           "match": "(\\w+)\\s+(\\w+)\\s+(in)(.*?)(?=\\))",
                             "captures": {
                                 "1" : {"patterns": [{"include": "#types"}]},
                                 "2" : {"name" : "variable.name"},
-                                "3" : {"patterns": [{"include": "#literals"}]}
+                                "3" : {"name" : "keyword.control"},
+                                "4" : {"patterns": [{"include": "#literals"}]}
                             }
                         },
                         {
@@ -716,6 +905,12 @@
             "patterns": [
                 {
                     "patterns": [
+                        {
+                            "match": "(null)(?!\\w+)",
+                            "captures": {
+                                "1" : {"name" : "storage.type"}
+                            }
+                        },
                         {
                             "name": "constant.numeric.float",
                             "match": "\\b\\d+\\.\\d*(f(16|32|64)?|F|d|D|h|H)?\\b"

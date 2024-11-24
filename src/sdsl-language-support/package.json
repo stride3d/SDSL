@@ -27,10 +27,13 @@
         "id": "sdsl",
         "aliases": [
           "SDSL",
-          "sdsl"
+          "sdsl",
+          "SDFX",
+          "sdfx"
         ],
         "extensions": [
-          "sdsl"
+          "sdsl",
+          "sdfx"
         ],
         "configuration": "./language-configuration.json"
       }

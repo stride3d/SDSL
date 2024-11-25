@@ -30,7 +30,7 @@
     "commands": [
       {
         "command": "sdsl-language-support.helloWorld",
-        "title": "Hello World"
+        "title": "SDSL: Hello World"
       }
     ],
     "languages": [
@@ -38,9 +38,7 @@
         "id": "sdsl",
         "aliases": [
           "SDSL",
-          "sdsl",
-          "SDFX",
-          "sdfx"
+          "sdsl"
         ],
         "extensions": [
           "sdsl",

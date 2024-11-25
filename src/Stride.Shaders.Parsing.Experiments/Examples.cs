@@ -80,7 +80,7 @@ public static class Examples
 
     public static void ParseSDSL()
     {
-        var text = MonoGamePreProcessor.Run("./assets/Stride/SDSL/ComputeColorTextureScaledOffsetDynamicSamplerRandomUV.sdsl", []);
+        var text = MonoGamePreProcessor.OpenAndRun("./assets/Stride/SDSL/ComputeColorTextureScaledOffsetDynamicSamplerRandomUV.sdsl");
         var parsed = SDSLParser.Parse(text);
         Console.WriteLine(parsed.AST);
         if(parsed.Errors.Count > 0)
@@ -98,7 +98,7 @@ public static class Examples
             // var text = File.ReadAllText(f);
             if (f.Contains("BasicMixin.sdsl"))
                 continue;
-            var preprocessed = MonoGamePreProcessor.Run(f, []);
+            var preprocessed = MonoGamePreProcessor.OpenAndRun(f);
             var parsed = SDSLParser.Parse(preprocessed);
             if(parsed.Errors.Count > 0)
             {

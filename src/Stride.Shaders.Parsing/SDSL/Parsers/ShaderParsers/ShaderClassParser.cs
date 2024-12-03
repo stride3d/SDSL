@@ -36,17 +36,17 @@ public record struct SimpleShaderClassParser : IParser<ShaderClass>
         var position = scanner.Position;
 
         if (
-            Terminals.Literal("shader", ref scanner, advance: true)
+            Tokens.Literal("shader", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, new(SDSLParsingMessages.SDSL0016, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             && LiteralsParser.Identifier(ref scanner, result, out var className, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char('{', ref scanner, advance: true)
+            && Tokens.Char('{', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
 
         )
         {
             var c = new ShaderClass(className, scanner.GetLocation(position, scanner.Position - position));
-            while (!scanner.IsEof && !Terminals.Char('}', ref scanner, advance: true))
+            while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
             {
                 if (ShaderElementParsers.ShaderElement(ref scanner, result, out var e))
                 {
@@ -70,14 +70,14 @@ public record struct ShaderClassParser : IParser<ShaderClass>
     {
         var position = scanner.Position;
         var tmp = position;
-        if (Terminals.Literal("internal", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("internal", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
             tmp = scanner.Position;
-        if(CommonParsers.FollowedBy(ref scanner, Terminals.Literal("partial"), withSpaces: true, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if(CommonParsers.FollowedBy(ref scanner, Tokens.Literal("partial"), withSpaces: true, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
             tmp = scanner.Position;
         if (
             (
-                Terminals.Literal("shader", ref scanner, advance: true) 
-                || Terminals.Literal("class", ref scanner, advance: true) 
+                Tokens.Literal("shader", ref scanner, advance: true) 
+                || Tokens.Literal("class", ref scanner, advance: true) 
             )
             && CommonParsers.Spaces1(ref scanner, result,out _))
         {
@@ -87,23 +87,23 @@ public record struct ShaderClassParser : IParser<ShaderClass>
             )
             {
                 parsed = new ShaderClass(identifier, scanner.GetLocation(..));
-                if (Terminals.Char('<', ref scanner, advance: true))
+                if (Tokens.Char('<', ref scanner, advance: true))
                 {
                     ParameterParsers.Declarations(ref scanner, result, out var generics);
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    if (!Terminals.Char('>', ref scanner, advance: true))
+                    if (!Tokens.Char('>', ref scanner, advance: true))
                         return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0034, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
                     parsed.Generics = generics;
                     CommonParsers.Spaces0(ref scanner, result, out _);
                 }
-                if (Terminals.Char(':', ref scanner, advance: true))
+                if (Tokens.Char(':', ref scanner, advance: true))
                 {
                     CommonParsers.Spaces0(ref scanner, result, out _);
                     while (ShaderClassParsers.Mixin(ref scanner, result, out var mixin))
                     {
                         parsed.Mixins.Add(mixin);
                         CommonParsers.Spaces0(ref scanner, result, out _);
-                        if (Terminals.Char(',', ref scanner, advance: true))
+                        if (Tokens.Char(',', ref scanner, advance: true))
                             CommonParsers.Spaces0(ref scanner, result, out _);
                         else
                             break;
@@ -112,11 +112,11 @@ public record struct ShaderClassParser : IParser<ShaderClass>
                         return CommonParsers.Exit(ref scanner, result, out parsed, position, new("Expecting at least one mixin", scanner.GetErrorLocation(scanner.Position), scanner.Memory));
                     CommonParsers.Spaces0(ref scanner, result, out _);
                 }
-                if (Terminals.Char('{', ref scanner, advance: true)
+                if (Tokens.Char('{', ref scanner, advance: true)
                     && CommonParsers.Spaces0(ref scanner, result, out _)
                 )
                 {
-                    while (!scanner.IsEof && !Terminals.Char('}', ref scanner, advance: true))
+                    while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
                     {
                         if (ShaderElementParsers.ShaderElement(ref scanner, result, out var e))
                         {
@@ -126,7 +126,7 @@ public record struct ShaderClassParser : IParser<ShaderClass>
                             break;
                         CommonParsers.Spaces0(ref scanner, result, out _);
                     }
-                    CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true);
+                    CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
                     parsed.Info = scanner.GetLocation(position..scanner.Position);
                     return true;
                 }
@@ -150,7 +150,7 @@ public record struct ShaderMixinParser : IParser<Mixin>
             if(LiteralsParser.Identifier(ref scanner, result, out var id))
                 path.Add(id);
         }
-        while (!scanner.IsEof && Terminals.Char('.', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _));
+        while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _));
 
         if (path.Count > 0)
         {
@@ -159,7 +159,7 @@ public record struct ShaderMixinParser : IParser<Mixin>
             var tmpPos = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (
-                Terminals.Char('<', ref scanner, advance: true)
+                Tokens.Char('<', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
@@ -167,7 +167,7 @@ public record struct ShaderMixinParser : IParser<Mixin>
                 parsed.Generics = values;
                 parsed.Path = path[..^1];
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                if (!Terminals.Char('>', ref scanner, advance: true))
+                if (!Tokens.Char('>', ref scanner, advance: true))
                     return CommonParsers.Exit(ref scanner, result, out parsed, position);
                 return true;
             }

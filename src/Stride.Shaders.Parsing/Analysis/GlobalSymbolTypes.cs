@@ -1,7 +1,6 @@
-using Stride.Shaders.Parsing.SDSL.Analysis;
 using Stride.Shaders.Parsing.SDSL.AST;
 
-namespace Stride.Shaders.Parsing.SDSL;
+namespace Stride.Shaders.Parsing.Analysis;
 
 
 public static class GlobalShaderTypes

@@ -22,7 +22,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
 
         var hasAttributes = ShaderAttributeListParser.AttributeList(ref scanner, result, out var attributes) && CommonParsers.Spaces0(ref scanner, result, out _);
 
-        if (Terminals.Literal("compose", ref scanner))
+        if (Tokens.Literal("compose", ref scanner))
             return CommonParsers.Exit(ref scanner, result, out parsed, position);
 
 
@@ -33,11 +33,11 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
         if (CommonParsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out typeName, out var identifier, out arraySizes, out value))
         {
             if (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char(':'), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char(':'), withSpaces: true, advance: true)
                 && CommonParsers.FollowedByDel(ref scanner, result, LiteralsParser.Identifier, out Identifier semantic, withSpaces: true, advance: true)
             )
             {
-                if (CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+                if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
                 {
                     typeName.ArraySize = arraySizes;
                     parsed = new(typeName, identifier, value, arraySizes != null, scanner.GetLocation(position..scanner.Position), semantic: semantic, arraySizes: arraySizes)
@@ -52,7 +52,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
                 }
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
             }
-            else if (CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+            else if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
                 parsed = new(typeName, identifier, value, arraySizes != null, scanner.GetLocation(position..scanner.Position), arraySizes: arraySizes)
                 {
@@ -75,20 +75,20 @@ public record struct ShaderStructParser : IParser<ShaderStruct>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("struct", ref scanner, advance: true)
+            Tokens.Literal("struct", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
             && LiteralsParser.Identifier(ref scanner, result, out var identifier)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char('{'), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char('{'), withSpaces: true, advance: true)
         )
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
             parsed = new ShaderStruct(identifier, scanner.GetLocation(position..));
             CommonParsers.Repeat<TScanner, ShaderStructMemberParser, ShaderStructMember>(ref scanner, new ShaderStructMemberParser(), result, out var members, 0, withSpaces: true, separator: ";");
-            CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true);
+            CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
             parsed.Members = members;
-            if (CommonParsers.FollowedBy(ref scanner, Terminals.Char('}'), withSpaces: true, advance: true))
+            if (CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true))
             {
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true);
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
                 parsed.Info = scanner.GetLocation(position..scanner.Position);
                 return true;
             }
@@ -104,18 +104,18 @@ public record struct ShaderSamplerStateParser : IParser<ShaderSamplerState>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("SamplerState", ref scanner, advance: true)
+            Tokens.Literal("SamplerState", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
             && LiteralsParser.Identifier(ref scanner, result, out var identifier)
 
         )
         {
             if (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char('{'), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char('{'), withSpaces: true, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && CommonParsers.Repeat(ref scanner, result, SamplerStateValueAssignment, out List<SamplerStateAssign> assignments, 0, withSpaces: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char('}'), withSpaces: true, advance: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
                 parsed = new(identifier, scanner.GetLocation(position..scanner.Position))
@@ -124,7 +124,7 @@ public record struct ShaderSamplerStateParser : IParser<ShaderSamplerState>
                 };
                 return true;
             }
-            else if (CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+            else if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
                 parsed = new(identifier, scanner.GetLocation(position..scanner.Position));
                 return true;
@@ -140,9 +140,9 @@ public record struct ShaderSamplerStateParser : IParser<ShaderSamplerState>
         var position = scanner.Position;
         if (
             CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.Identifier, out Identifier identifier, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char('='), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char('='), withSpaces: true, advance: true)
             && CommonParsers.FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression expression, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
             parsed = new SamplerStateAssign(identifier, expression, scanner.GetLocation(position..scanner.Position));
@@ -158,18 +158,18 @@ public record struct ShaderSamplerComparisonStateParser : IParser<ShaderSamplerC
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("SamplerComparisonState", ref scanner, advance: true)
+            Tokens.Literal("SamplerComparisonState", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
             && LiteralsParser.Identifier(ref scanner, result, out var identifier)
 
         )
         {
             if (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char('{'), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char('{'), withSpaces: true, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && CommonParsers.Repeat(ref scanner, result, SamplerStateValueAssignment, out List<SamplerStateAssign> assignments, 0, withSpaces: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char('}'), withSpaces: true, advance: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
                 parsed = new(identifier, scanner.GetLocation(position..scanner.Position))
@@ -178,7 +178,7 @@ public record struct ShaderSamplerComparisonStateParser : IParser<ShaderSamplerC
                 };
                 return true;
             }
-            else if (CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+            else if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
                 parsed = new(identifier, scanner.GetLocation(position..scanner.Position));
                 return true;
@@ -194,9 +194,9 @@ public record struct ShaderSamplerComparisonStateParser : IParser<ShaderSamplerC
         var position = scanner.Position;
         if (
             CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.Identifier, out Identifier identifier, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char('='), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char('='), withSpaces: true, advance: true)
             && CommonParsers.FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression expression, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
             parsed = new SamplerStateAssign(identifier, expression, scanner.GetLocation(position..scanner.Position));
@@ -216,7 +216,7 @@ public record struct ShaderStructMemberParser : IParser<ShaderStructMember>
             CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.TypeName, out TypeName typename, withSpaces: true, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
             && CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.Identifier, out Identifier identifier, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
         )
         {
             parsed = new ShaderStructMember(typename, identifier, scanner.GetLocation(position..scanner.Position));

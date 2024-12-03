@@ -19,7 +19,7 @@ public record struct PostfixParser : IParser<Expression>
                 if (
                     matched == "["
                     && CommonParsers.FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression indexer, withSpaces: true, advance: true)
-                    && CommonParsers.FollowedBy(ref scanner, Terminals.Char(']'), withSpaces: true, advance: true)
+                    && CommonParsers.FollowedBy(ref scanner, Tokens.Char(']'), withSpaces: true, advance: true)
                 )
                 {
                     parsed = new IndexerExpression(parsed, indexer, scanner.GetLocation(position..scanner.Position));
@@ -58,7 +58,7 @@ public record struct PostfixParser : IParser<Expression>
         {
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if (Terminals.Literal("++", ref scanner, advance: true))
+            if (Tokens.Literal("++", ref scanner, advance: true))
             {
                 parsed = new PostfixExpression(parsed, Operator.Inc, scanner.GetLocation(position, scanner.Position - position));
                 return true;
@@ -81,7 +81,7 @@ public record struct PostfixParser : IParser<Expression>
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (
-                Terminals.Char('.', ref scanner, advance: true)
+                Tokens.Char('.', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && Accessor(ref scanner, result, out var accessed))
             {
@@ -107,13 +107,13 @@ public record struct PostfixParser : IParser<Expression>
         {
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if (Terminals.Char('[', ref scanner, advance: true))
+            if (Tokens.Char('[', ref scanner, advance: true))
             {
                 if (
                     CommonParsers.Spaces0(ref scanner, result, out _)
                     && ExpressionParser.Expression(ref scanner, result, out var index)
                     && CommonParsers.Spaces0(ref scanner, result, out _)
-                    && Terminals.Char(']', ref scanner, advance: true)
+                    && Tokens.Char(']', ref scanner, advance: true)
                 )
                 {
                     parsed = new IndexerExpression(expression, index, scanner.GetLocation(position, scanner.Position - position));

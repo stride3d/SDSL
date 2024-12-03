@@ -35,11 +35,11 @@ public record struct ShaderMethodParsers : IParser<ShaderMethod>
         var position = scanner.Position;
 #warning We should not allow void to be a parameter, this is legacy C code
         if (
-            CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true)
+            CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true)
             ||
             (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Literal("void"), withSpaces: true, advance: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Literal("void"), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true)
             )
         )
         {
@@ -61,14 +61,14 @@ public record struct ShaderMethodParsers : IParser<ShaderMethod>
     {
         var position = scanner.Position;
 
-        if (Terminals.AnyOf(["inout", "in", "out", "triangle", "point", "const"], ref scanner, out var storage, advance: true))
+        if (Tokens.AnyOf(["inout", "in", "out", "triangle", "point", "const"], ref scanner, out var storage, advance: true))
             CommonParsers.Spaces1(ref scanner, result, out _);
         if (CommonParsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var identifier, out var arraySize, out var value, advance: true)
         )
         {
             typename.ArraySize = arraySize;
             if (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char(':'), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char(':'), withSpaces: true, advance: true)
                 && CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.Identifier, out Identifier semantic, withSpaces: true, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
@@ -97,9 +97,9 @@ public record struct SimpleMethodParser : IParser<ShaderMethod>
             LiteralsParser.TypeName(ref scanner, result, out var typename)
             && CommonParsers.Spaces1(ref scanner, result, out _, new(SDSLParsingMessages.SDSL0016, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             && LiteralsParser.Identifier(ref scanner, result, out var methodName)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
             && CommonParsers.FollowedByDel(ref scanner, result, ShaderMethodParsers.MethodParameters, out List<MethodParameter> parameters, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && StatementParsers.Block(ref scanner, result, out var body, new(SDSLParsingMessages.SDSL0040, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
         )
@@ -136,15 +136,15 @@ public record struct MethodParser : IParser<ShaderMethod>
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
-                if (Terminals.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+                if (Tokens.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
                 {
                     ShaderMethodParsers.MethodParameters(ref scanner, result, out var parameters);
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    if (!Terminals.Char(')', ref scanner, advance: true))
+                    if (!Tokens.Char(')', ref scanner, advance: true))
                         return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
 
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    if (!Terminals.Char(';', ref scanner, advance: true))
+                    if (!Tokens.Char(';', ref scanner, advance: true))
                     {
                         if (orError != null)
                             return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner.GetErrorLocation(scanner.Position), scanner.Memory));

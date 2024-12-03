@@ -40,9 +40,9 @@ public struct IntegerParser : IParser<IntegerLiteral>
     {
         var position = scanner.Position;
         IntegerSuffixParser suffix = new();
-        if (Terminals.Digit(ref scanner, 1.., advance: true))
+        if (Tokens.Digit(ref scanner, 1.., advance: true))
         {
-            while (Terminals.Digit(ref scanner, advance: true)) ;
+            while (Tokens.Digit(ref scanner, advance: true)) ;
 
             var numPos = scanner.Position;
             if (suffix.Match(ref scanner, null!, out Suffix suf))
@@ -57,7 +57,7 @@ public struct IntegerParser : IParser<IntegerLiteral>
                 return true;
             }
         }
-        else if (Terminals.Char('0', ref scanner, advance: true) && !Terminals.Digit(ref scanner, ..))
+        else if (Tokens.Char('0', ref scanner, advance: true) && !Tokens.Digit(ref scanner, ..))
         {
             node = new(new(32, false, true), 0, new(scanner.Memory, position..scanner.Position));
             return true;
@@ -72,32 +72,32 @@ public struct FloatParser : IParser<FloatLiteral>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Char('.', ref scanner, advance: true))
+        if (Tokens.Char('.', ref scanner, advance: true))
         {
-            if (!Terminals.Digit(ref scanner))
+            if (!Tokens.Digit(ref scanner))
                 return CommonParsers.Exit(ref scanner, result, out node, position);
-            while (Terminals.Digit(ref scanner, advance: true)) ;
+            while (Tokens.Digit(ref scanner, advance: true)) ;
         }
-        else if (Terminals.Digit(ref scanner, 1.., advance: true))
+        else if (Tokens.Digit(ref scanner, 1.., advance: true))
         {
-            while (Terminals.Digit(ref scanner, advance: true)) ;
-            if (Terminals.Char('.', ref scanner))
+            while (Tokens.Digit(ref scanner, advance: true)) ;
+            if (Tokens.Char('.', ref scanner))
             {
                 scanner.Advance(1);
-                if (!Terminals.Digit(ref scanner) && !Terminals.FloatSuffix(ref scanner, out _))
+                if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
                     return CommonParsers.Exit(ref scanner, result, out node, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
-                while (Terminals.Digit(ref scanner, advance: true)) ;
+                while (Tokens.Digit(ref scanner, advance: true)) ;
             }
-            else if (Terminals.FloatSuffix(ref scanner, out _) || Terminals.Char('e', ref scanner)){}
+            else if (Tokens.FloatSuffix(ref scanner, out _) || Tokens.Char('e', ref scanner)){}
             else return CommonParsers.Exit(ref scanner, result, out node, position);
         }
-        else if (Terminals.Digit(ref scanner, 0, advance: true))
+        else if (Tokens.Digit(ref scanner, 0, advance: true))
         {
-            if (Terminals.Char('.', ref scanner, advance: true))
+            if (Tokens.Char('.', ref scanner, advance: true))
             {
-                if (!Terminals.Digit(ref scanner) && !Terminals.FloatSuffix(ref scanner, out _))
+                if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
                     return CommonParsers.Exit(ref scanner, result, out node, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
-                while (Terminals.Digit(ref scanner, advance: true)) ;
+                while (Tokens.Digit(ref scanner, advance: true)) ;
             }
             else return CommonParsers.Exit(ref scanner, result, out node, position);
         }
@@ -106,9 +106,9 @@ public struct FloatParser : IParser<FloatLiteral>
 
         var value = double.Parse(scanner.Span[position..scanner.Position], CultureInfo.InvariantCulture);
         int? exponent = null;
-        if (Terminals.Char('e', ref scanner, advance: true))
+        if (Tokens.Char('e', ref scanner, advance: true))
         {
-            var signed = Terminals.AnyOf(["+", "-"], ref scanner, out var matched, advance: true);
+            var signed = Tokens.AnyOf(["+", "-"], ref scanner, out var matched, advance: true);
             if (LiteralsParser.Integer(ref scanner, result, out var exp))
             {
                 exponent = (int)exp.Value;
@@ -117,7 +117,7 @@ public struct FloatParser : IParser<FloatLiteral>
             }
             else return CommonParsers.Exit(ref scanner, result, out node, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
         }
-        if (Terminals.FloatSuffix(ref scanner, out var suffix, advance: true) && suffix is not null)
+        if (Tokens.FloatSuffix(ref scanner, out var suffix, advance: true) && suffix is not null)
             node = new(suffix.Value, value, exponent, scanner.GetLocation(position..scanner.Position));
         else
             node = new(new(32, true, true), value, exponent, scanner.GetLocation(position..scanner.Position));
@@ -132,9 +132,9 @@ public struct HexParser : IParser<HexLiteral>
     {
         node = null!;
         var position = scanner.Position;
-        if (Terminals.Literal("0x", ref scanner, advance: true))
+        if (Tokens.Literal("0x", ref scanner, advance: true))
         {
-            while (Terminals.Set("abcdefABCDEF", ref scanner, advance: true) || Terminals.Digit(ref scanner, advance: true)) ;
+            while (Tokens.Set("abcdefABCDEF", ref scanner, advance: true) || Tokens.Digit(ref scanner, advance: true)) ;
 
             ulong sum = 0;
 

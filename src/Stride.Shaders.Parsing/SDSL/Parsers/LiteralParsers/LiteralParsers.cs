@@ -72,7 +72,7 @@ public record struct LiteralsParser : IParser<Literal>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if(Terminals.AnyOf(["true", "false"], ref scanner, out var matched, advance: true))
+        if(Tokens.AnyOf(["true", "false"], ref scanner, out var matched, advance: true))
         {
             number = new(matched == "true", scanner.GetLocation(position..scanner.Position));
             return true;
@@ -97,7 +97,7 @@ public record struct LiteralsParser : IParser<Literal>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Char('\"', ref scanner, advance: true))
+        if (Tokens.Char('\"', ref scanner, advance: true))
         {
             CommonParsers.Until(ref scanner, '\"', advance: true);
             if (scanner.Span[position..scanner.Position].Contains('\n'))
@@ -113,7 +113,7 @@ public record struct LiteralsParser : IParser<Literal>
     {
         op = AssignOperator.NOp;
         if (
-            Terminals.AnyOf(
+            Tokens.AnyOf(
                 ["=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="],
                 ref scanner,
                 out var matched,
@@ -148,7 +148,7 @@ public readonly record struct FloatSuffixParser() : ILiteralParser<Suffix>
     public static bool TryMatchAndAdvance<TScanner>(ref TScanner scanner, string match)
         where TScanner : struct, IScanner
     {
-        if (Terminals.Literal<TScanner>(match, ref scanner))
+        if (Tokens.Literal<TScanner>(match, ref scanner))
         {
             scanner.Advance(match.Length);
             return true;
@@ -160,7 +160,7 @@ public readonly record struct FloatSuffixParser() : ILiteralParser<Suffix>
         where TScanner : struct, IScanner
     {
         suffix = new(32, false, false);
-        if (Terminals.AnyOf(["f", "f16", "f32", "f64", "d", "h"], ref scanner, out var matched, advance: true))
+        if (Tokens.AnyOf(["f", "f16", "f32", "f64", "d", "h"], ref scanner, out var matched, advance: true))
         {
             suffix = matched switch
             {
@@ -181,7 +181,7 @@ public readonly record struct IntegerSuffixParser() : ILiteralParser<Suffix>
     public static bool TryMatchAndAdvance<TScanner>(ref TScanner scanner, string match)
         where TScanner : struct, IScanner
     {
-        if (Terminals.Literal(match, ref scanner))
+        if (Tokens.Literal(match, ref scanner))
         {
             scanner.Advance(match.Length);
             return true;
@@ -193,7 +193,7 @@ public readonly record struct IntegerSuffixParser() : ILiteralParser<Suffix>
         where TScanner : struct, IScanner
     {
         suffix = new(32, false, false);
-        if (Terminals.AnyOf(["u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64", "U", "L"], ref scanner, out var matched, advance: true))
+        if (Tokens.AnyOf(["u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64", "U", "L"], ref scanner, out var matched, advance: true))
         {
             suffix = matched switch
             {
@@ -223,10 +223,10 @@ public record struct IdentifierParser() : ILiteralParser<Identifier>
     {
         literal = null!;
         var position = scanner.Position;
-        if (Terminals.Char('_', ref scanner) || Terminals.Letter(ref scanner))
+        if (Tokens.Char('_', ref scanner) || Tokens.Letter(ref scanner))
         {
             scanner.Advance(1);
-            while (Terminals.LetterOrDigit(ref scanner) || Terminals.Char('_', ref scanner))
+            while (Tokens.LetterOrDigit(ref scanner) || Tokens.Char('_', ref scanner))
                 scanner.Advance(1);
             var id = scanner.Memory[position..scanner.Position].ToString();
             if (Reserved.Keywords.Contains(id))
@@ -245,21 +245,21 @@ public record struct TypeNameParser() : ILiteralParser<TypeName>
     {
         name = null!;
         var position = scanner.Position;
-        if (Terminals.Char('_', ref scanner) || Terminals.Letter(ref scanner))
+        if (Tokens.Char('_', ref scanner) || Tokens.Letter(ref scanner))
         {
             name = new TypeName("", new(), false);
             scanner.Advance(1);
-            while (Terminals.LetterOrDigit(ref scanner) || Terminals.Char('_', ref scanner))
+            while (Tokens.LetterOrDigit(ref scanner) || Tokens.Char('_', ref scanner))
                 scanner.Advance(1);
             var identifier = new Identifier(scanner.Memory[position..scanner.Position].ToString(), scanner.GetLocation(position, scanner.Position - position));
 
             var intermediate = scanner.Position;
 
-            if (CommonParsers.FollowedBy(ref scanner, Terminals.Char('<'), withSpaces: true, advance: true))
+            if (CommonParsers.FollowedBy(ref scanner, Tokens.Char('<'), withSpaces: true, advance: true))
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 CommonParsers.Repeat(ref scanner, result, LiteralsParser.TypeNameOrNumber, out List<TypeName> generics, 1, withSpaces: true, separator: ",");
-                if (!CommonParsers.FollowedBy(ref scanner, Terminals.Char('>'), withSpaces: true, advance: true))
+                if (!CommonParsers.FollowedBy(ref scanner, Tokens.Char('>'), withSpaces: true, advance: true))
                     return CommonParsers.Exit(ref scanner, result, out name, position);
                 name.Generics = generics;
                 intermediate = scanner.Position;
@@ -268,11 +268,11 @@ public record struct TypeNameParser() : ILiteralParser<TypeName>
 
             if (
                 CommonParsers.Spaces0(ref scanner, result, out _)
-                && Terminals.Char('[', ref scanner, advance: true)
+                && Tokens.Char('[', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && CommonParsers.Optional(ref scanner, new ExpressionParser(), result, out _)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && Terminals.Char(']', ref scanner, advance: true)
+                && Tokens.Char(']', ref scanner, advance: true)
             )
             {
                 name.Name = scanner.Memory[position..scanner.Position].ToString().Trim();
@@ -303,18 +303,18 @@ public record struct VectorParser : IParser<VectorLiteral>
     {
         var position = scanner.Position;
         if (
-            Terminals.AnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], ref scanner, out var baseType, advance: true)
+            Tokens.AnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], ref scanner, out var baseType, advance: true)
         )
         {
             var tnPos = scanner.Position;
-            if (Terminals.Digit(ref scanner, 2..4, advance: true))
+            if (Tokens.Digit(ref scanner, 2..4, advance: true))
             {
                 tnPos = scanner.Position;
                 int size = scanner.Span[scanner.Position - 1] - '0';
                 if (size < 2 || size > 4)
                     return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0002, scanner.GetErrorLocation(scanner.Position - 1), scanner.Memory));
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                if (Terminals.Char('(', ref scanner, advance: true))
+                if (Tokens.Char('(', ref scanner, advance: true))
                 {
                     var p = new VectorLiteral(new TypeName(scanner.Memory[position..tnPos].ToString(), scanner.GetLocation(position..tnPos), isArray: false), scanner.GetLocation(..))
                     {
@@ -329,9 +329,9 @@ public record struct VectorParser : IParser<VectorLiteral>
                             p.Values.Add(exp);
                         else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
                         CommonParsers.Spaces0(ref scanner, result, out _);
-                        if (Terminals.Char(',', ref scanner, advance: true))
+                        if (Tokens.Char(',', ref scanner, advance: true))
                             CommonParsers.Spaces0(ref scanner, result, out _);
-                        else if (Terminals.Char(')', ref scanner, advance: true))
+                        else if (Tokens.Char(')', ref scanner, advance: true))
                             break;
                     }
                     if (scanner.IsEof)
@@ -343,9 +343,9 @@ public record struct VectorParser : IParser<VectorLiteral>
                 }
             }
             else if (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
                 && CommonParsers.FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression value, withSpaces: true, advance: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true)
             )
             {
                 parsed = new VectorLiteral(new TypeName(baseType, scanner.GetLocation(position..tnPos), isArray: false), scanner.GetLocation(position..scanner.Position))
@@ -368,10 +368,10 @@ public record struct MatrixParser : IParser<MatrixLiteral>
     {
         var position = scanner.Position;
         if (
-            Terminals.AnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], ref scanner, out var baseType, advance: true)
-            && Terminals.Digit(ref scanner, 2..4, advance: true)
-            && Terminals.Char('x', ref scanner, advance: true)
-            && Terminals.Digit(ref scanner, 2..4, advance: true)
+            Tokens.AnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], ref scanner, out var baseType, advance: true)
+            && Tokens.Digit(ref scanner, 2..4, advance: true)
+            && Tokens.Char('x', ref scanner, advance: true)
+            && Tokens.Digit(ref scanner, 2..4, advance: true)
         )
         {
             var tnPos = scanner.Position;
@@ -380,7 +380,7 @@ public record struct MatrixParser : IParser<MatrixLiteral>
             if (cols < 2 || cols > 4 || rows < 2 || rows > 4)
                 return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0006, scanner.GetErrorLocation(scanner.Position - 1), scanner.Memory));
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if (Terminals.Char('(', ref scanner, advance: true))
+            if (Tokens.Char('(', ref scanner, advance: true))
             {
                 var p = new MatrixLiteral(new TypeName(scanner.Memory[position..tnPos].ToString(), scanner.GetLocation(position..tnPos), isArray: false), rows, cols, scanner.GetLocation(..))
                 {
@@ -396,9 +396,9 @@ public record struct MatrixParser : IParser<MatrixLiteral>
                         p.Values.Add(expression);
                     else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    if (Terminals.Char(',', ref scanner, advance: true))
+                    if (Tokens.Char(',', ref scanner, advance: true))
                         CommonParsers.Spaces0(ref scanner, result, out _);
-                    else if (Terminals.Char(')', ref scanner, advance: true))
+                    else if (Tokens.Char(')', ref scanner, advance: true))
                         break;
                 }
                 if (scanner.IsEof)

@@ -64,11 +64,11 @@ public record struct DirectiveTernaryParser : IParser<Expression>
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (
-                Terminals.Char('?', ref scanner, advance: true)
+                Tokens.Char('?', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && DirectiveExpressionParser.Expression(ref scanner, result, out var left, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && Terminals.Char(':', ref scanner, advance: true)
+                && Tokens.Char(':', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && DirectiveExpressionParser.Expression(ref scanner, result, out var right, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             )
@@ -103,7 +103,7 @@ public record struct DirectiveOrParser() : IParser<Expression>
         if (DirectiveExpressionParser.And(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Literal("||", ref scanner))
+            if (Tokens.Literal("||", ref scanner))
             {
                 var op = scanner.Slice(scanner.Position, 2).ToOperator();
                 scanner.Advance(2);
@@ -152,7 +152,7 @@ public record struct DirectiveAndParser() : IParser<Expression>
         if (DirectiveExpressionParser.BOr(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Literal("&&", ref scanner))
+            if (Tokens.Literal("&&", ref scanner))
             {
                 var op = scanner.Slice(scanner.Position, 2).ToOperator();
                 scanner.Advance(2);
@@ -204,7 +204,7 @@ public record struct DirectiveBitwiseOrParser() : IParser<Expression>
         if (DirectiveExpressionParser.XOr(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (!Terminals.Literal("||", ref scanner) && Terminals.Char('|', ref scanner))
+            if (!Tokens.Literal("||", ref scanner) && Tokens.Char('|', ref scanner))
             {
                 var op = ((char)scanner.Peek()).ToOperator();
                 scanner.Advance(1);
@@ -253,7 +253,7 @@ public record struct DirectiveBitwiseXOrParser() : IParser<Expression>
         if (DirectiveExpressionParser.BAnd(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Char('^', ref scanner))
+            if (Tokens.Char('^', ref scanner))
             {
                 var op = ((char)scanner.Peek()).ToOperator();
                 scanner.Advance(1);
@@ -302,7 +302,7 @@ public record struct DirectiveBitwiseAndParser() : IParser<Expression>
         if (DirectiveExpressionParser.Equality(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (!Terminals.Literal("&&", ref scanner) && Terminals.Char('&', ref scanner))
+            if (!Tokens.Literal("&&", ref scanner) && Tokens.Char('&', ref scanner))
             {
                 var op = ((char)scanner.Peek()).ToOperator();
                 scanner.Advance(1);
@@ -354,7 +354,7 @@ public record struct DirectiveEqualityParser() : IParser<Expression>
         if (DirectiveExpressionParser.Relation(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Literal("==", ref scanner) || Terminals.Literal("!=", ref scanner))
+            if (Tokens.Literal("==", ref scanner) || Tokens.Literal("!=", ref scanner))
             {
                 var op = scanner.Slice(scanner.Position, 2).ToOperator();
                 scanner.Advance(2);
@@ -405,8 +405,8 @@ public record struct DirectiveRelationalParser() : IParser<Expression>
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
             if (
-                !Terminals.Literal(">=", ref scanner) && Terminals.Literal(">", ref scanner)
-                || !Terminals.Literal("<=", ref scanner) && Terminals.Literal("<", ref scanner))
+                !Tokens.Literal(">=", ref scanner) && Tokens.Literal(">", ref scanner)
+                || !Tokens.Literal("<=", ref scanner) && Tokens.Literal("<", ref scanner))
             {
                 var op = ((char)scanner.Peek()).ToOperator();
                 scanner.Advance(1);
@@ -428,7 +428,7 @@ public record struct DirectiveRelationalParser() : IParser<Expression>
                 }
 
             }
-            else if (Terminals.Literal(">=", ref scanner) || Terminals.Literal("<=", ref scanner))
+            else if (Tokens.Literal(">=", ref scanner) || Tokens.Literal("<=", ref scanner))
             {
                 var op = scanner.Slice(scanner.Position, 2).ToOperator();
                 scanner.Advance(2);
@@ -478,7 +478,7 @@ public record struct DirectiveBitwiseShiftParser() : IParser<Expression>
         if (DirectiveExpressionParser.Add(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Literal(">>", ref scanner) || Terminals.Literal("<<", ref scanner))
+            if (Tokens.Literal(">>", ref scanner) || Tokens.Literal("<<", ref scanner))
             {
                 var op = scanner.Slice(scanner.Position, 2).ToOperator();
                 scanner.Advance(2);
@@ -528,7 +528,7 @@ public record struct DirectiveAdditionParser() : IParser<Expression>
         if (DirectiveExpressionParser.Mul(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Set("+-", ref scanner))
+            if (Tokens.Set("+-", ref scanner))
             {
                 var op = ((char)scanner.Peek()).ToOperator();
                 scanner.Advance(1);
@@ -577,7 +577,7 @@ public record struct DirectiveMultiplicationParser() : IParser<Expression>
         if (DirectiveUnaryParsers.Prefix(ref scanner, result, out var left))
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
-            if (Terminals.Set("*/%", ref scanner))
+            if (Tokens.Set("*/%", ref scanner))
             {
                 var op = ((char)scanner.Peek()).ToOperator();
                 scanner.Advance(1);

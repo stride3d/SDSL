@@ -17,7 +17,7 @@ public record struct ShaderFileParser : IParser<ShaderFile>
         while (!scanner.IsEof)
         {
             if (
-                Terminals.Literal("namespace", ref scanner)
+                Tokens.Literal("namespace", ref scanner)
                 && NamespaceParsers.Namespace(ref scanner, result, out var ns)
             )
             {
@@ -26,8 +26,8 @@ public record struct ShaderFileParser : IParser<ShaderFile>
             }
             else if (
                 (
-                    Terminals.Literal("class", ref scanner) 
-                    || Terminals.Literal("shader", ref scanner) 
+                    Tokens.Literal("class", ref scanner) 
+                    || Tokens.Literal("shader", ref scanner) 
                     || CommonParsers.SequenceOf(ref scanner, ["internal", "shader"])
                 )
                 && ShaderClassParsers.Class(ref scanner, result, out var shader)
@@ -36,21 +36,21 @@ public record struct ShaderFileParser : IParser<ShaderFile>
                 file.RootDeclarations.Add(shader);
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
-            else if ((Terminals.Literal("effect", ref scanner) || CommonParsers.SequenceOf(ref scanner, ["partial", "effect"]))
+            else if ((Tokens.Literal("effect", ref scanner) || CommonParsers.SequenceOf(ref scanner, ["partial", "effect"]))
                 && EffectParser.Effect(ref scanner, result, out var effect)
             )
             {
                 file.RootDeclarations.Add(effect);
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
-            else if (Terminals.Literal("params ", ref scanner)
+            else if (Tokens.Literal("params ", ref scanner)
                 && ParamsParsers.Params(ref scanner, result, out var p)
             )
             {
                 file.RootDeclarations.Add(p);
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
-            else if (Terminals.Literal("using ", ref scanner)
+            else if (Tokens.Literal("using ", ref scanner)
                 && UsingNamespace(ref scanner, result, out var uns)
             )
             {
@@ -73,7 +73,7 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("using", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+        if (Tokens.Literal("using", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
             parsed = new(scanner.GetLocation(..));
             do
@@ -84,11 +84,11 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
                 }
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
             }
-            while (!scanner.IsEof && Terminals.Char('.', ref scanner, advance: true));
+            while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true));
 
 
             
-            if (CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+            if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
                 parsed.Info = scanner.GetLocation(position..scanner.Position);
                 return true;
@@ -109,7 +109,7 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("namespace", ref scanner, advance: true)
+            Tokens.Literal("namespace", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
         )
         {
@@ -124,10 +124,10 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
 
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
-            while (!scanner.IsEof && Terminals.Char('.', ref scanner, advance: true));
+            while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true));
             if (ns.NamespacePath.Count > 0)
                 ns.Namespace = string.Join(".", ns.NamespacePath);
-            if (Terminals.Char(';', ref scanner, advance: true))
+            if (Tokens.Char(';', ref scanner, advance: true))
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 while (ShaderClassParsers.Class(ref scanner, result, out var shader))
@@ -135,10 +135,10 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
                     ns.Declarations.Add(shader);
                 }
             }
-            else if (Terminals.Char('{', ref scanner, advance: true))
+            else if (Tokens.Char('{', ref scanner, advance: true))
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                while (!scanner.IsEof && !Terminals.Char('}', ref scanner, advance: true))
+                while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
                 {
                     if (ShaderClassParsers.Class(ref scanner, result, out var shader) && CommonParsers.Spaces0(ref scanner, result, out _))
                         ns.Declarations.Add(shader);

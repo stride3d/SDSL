@@ -55,8 +55,8 @@ public record struct ForParser : IParser<For>
     {
         var position = scanner.Position;
         if(
-            Terminals.Literal("for", ref scanner, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true)
+            Tokens.Literal("for", ref scanner, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
         )
         {
             Statement? init = null;
@@ -84,7 +84,7 @@ public record struct ForParser : IParser<For>
 
             if (!CommonParsers.Repeat(ref scanner, result, AssignOrExpression, out expressions, 0, withSpaces: true, separator: ","))
                 expressions = [new EmptyStatement(scanner.GetLocation(tmpPos..scanner.Position))];
-            if(!CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true, advance: true))
+            if(!CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true))
                 return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner.GetErrorLocation(scanner.Position), scanner.Memory));            
             CommonParsers.Spaces0(ref scanner, result, out _);
 
@@ -119,7 +119,7 @@ public record struct ForParser : IParser<For>
         scanner.Position = position;
         if(
             ExpressionParser.Expression(ref scanner, result, out var expression) 
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(')')) 
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(')')) 
         )
         {
             parsed = new ExpressionStatement(expression, scanner.GetLocation(position..scanner.Position));
@@ -135,9 +135,9 @@ public record struct ForEachParser : IParser<ForEach>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("foreach", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+        if (Tokens.Literal("foreach", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
-            if (Terminals.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+            if (Tokens.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
                 if (
                     LiteralsParser.TypeName(ref scanner, result, out var typeName, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
@@ -146,14 +146,14 @@ public record struct ForEachParser : IParser<ForEach>
                     && CommonParsers.Spaces1(ref scanner, result, out _)
                 )
                 {
-                    if (Terminals.Literal("in", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+                    if (Tokens.Literal("in", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
                     {
                         if (
                             ExpressionParser.Expression(ref scanner, result, out var collection, new(SDSLParsingMessages.SDSL0032, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                             && CommonParsers.Spaces0(ref scanner, result, out _)
                         )
                         {
-                            if (Terminals.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+                            if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
                             {
                                 if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                                 {
@@ -179,13 +179,13 @@ public record struct WhileParser : IParser<While>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("while", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+        if (Tokens.Literal("while", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
-            if (Terminals.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+            if (Tokens.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
                 if (ExpressionParser.Expression(ref scanner, result, out var expression, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                 {
-                    if (Terminals.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+                    if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
                     {
                         if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                         {

@@ -30,7 +30,7 @@ public record struct PrefixParser : IParser<Expression>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Set("!~", ref scanner))
+        if (Tokens.Set("!~", ref scanner))
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
@@ -50,7 +50,7 @@ public record struct PrefixParser : IParser<Expression>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Set("+-", ref scanner))
+        if (Tokens.Set("+-", ref scanner))
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
@@ -69,7 +69,7 @@ public record struct PrefixParser : IParser<Expression>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("++", ref scanner, advance: true))
+        if (Tokens.Literal("++", ref scanner, advance: true))
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (PostfixParser.Postfix(ref scanner, result, out var lit))
@@ -80,7 +80,7 @@ public record struct PrefixParser : IParser<Expression>
             else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0020, scanner.GetErrorLocation(position), scanner.Memory));
         }
         // prefix decrememnt 
-        else if (Terminals.Literal("--", ref scanner, advance: true))
+        else if (Tokens.Literal("--", ref scanner, advance: true))
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (PostfixParser.Postfix(ref scanner, result, out var lit))
@@ -99,9 +99,9 @@ public record struct PrefixParser : IParser<Expression>
     {
         var position = scanner.Position;
         if (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
                 && CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.TypeName, out TypeName typeName, withSpaces: true, advance: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true)
                 && CommonParsers.FollowedBy(ref scanner, result, PostfixParser.Postfix, out Expression expression, withSpaces: true, advance: true)
         )
         {

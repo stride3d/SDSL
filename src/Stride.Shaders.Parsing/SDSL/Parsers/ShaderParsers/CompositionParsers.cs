@@ -11,15 +11,15 @@ public record struct CompositionParser() : IParser<ShaderCompose>
         var position = scanner.Position;
 
         var hasAttributes = ShaderAttributeListParser.AttributeList(ref scanner, result, out var attributes) && CommonParsers.Spaces0(ref scanner, result, out _);
-        var isStaged = Terminals.Literal("stage", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _);
+        var isStaged = Tokens.Literal("stage", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _);
         
-        if (Terminals.Literal("compose", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("compose", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             var tmp = scanner.Position;
             if (CommonParsers.MixinIdentifierArraySizeValue(ref scanner, result, out var mixin, out var name, out var arraysize, out var value, advance: true))
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                if (!Terminals.Char(';', ref scanner, advance: true))
+                if (!Tokens.Char(';', ref scanner, advance: true))
                     return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner.GetErrorLocation(position), scanner.Memory));
                 parsed = new(name, mixin, true, scanner.GetLocation(position..))
                 {

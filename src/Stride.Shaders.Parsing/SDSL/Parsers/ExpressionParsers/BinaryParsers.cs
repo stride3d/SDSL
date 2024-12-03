@@ -39,7 +39,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.Set("+-", ref scanner, out op, advance: true));
+        while (Tokens.Set("+-", ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -67,7 +67,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.Set("*/%", ref scanner, out op, advance: true));
+        while (Tokens.Set("*/%", ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -95,7 +95,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.AnyOf([">>", "<<"], ref scanner, out op, advance: true));
+        while (Tokens.AnyOf([">>", "<<"], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -124,7 +124,7 @@ public struct ExpressionParser : IParser<Expression>
             }
             CommonParsers.Spaces0(ref scanner, result, out _);
         }
-        while (Terminals.AnyOf(["<=", ">=", "<", ">"], ref scanner, out op, advance: true));
+        while (Tokens.AnyOf(["<=", ">=", "<", ">"], ref scanner, out op, advance: true));
 
         if (parsed is not null)
             return true;
@@ -153,7 +153,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.AnyOf(["==", "!="], ref scanner, out op, advance: true));
+        while (Tokens.AnyOf(["==", "!="], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -181,7 +181,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (!Terminals.Literal("&&", ref scanner) && Terminals.AnyOf(["&"], ref scanner, out op, advance: true));
+        while (!Tokens.Literal("&&", ref scanner) && Tokens.AnyOf(["&"], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -209,7 +209,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (!Terminals.Literal("||", ref scanner) && Terminals.AnyOf(["|"], ref scanner, out op, advance: true));
+        while (!Tokens.Literal("||", ref scanner) && Tokens.AnyOf(["|"], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -237,7 +237,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.AnyOf(["^"], ref scanner, out op, advance: true));
+        while (Tokens.AnyOf(["^"], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -265,7 +265,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.AnyOf(["&&"], ref scanner, out op, advance: true));
+        while (Tokens.AnyOf(["&&"], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -293,7 +293,7 @@ public struct ExpressionParser : IParser<Expression>
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
             }
         }
-        while (Terminals.AnyOf(["||"], ref scanner, out op, advance: true));
+        while (Tokens.AnyOf(["||"], ref scanner, out op, advance: true));
         if (parsed is not null)
             return true;
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -307,14 +307,14 @@ public struct ExpressionParser : IParser<Expression>
         {
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if (Terminals.Char('?', ref scanner, advance: true))
+            if (Tokens.Char('?', ref scanner, advance: true))
             {
 
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (Expression(ref scanner, result, out var left, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                 {
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    if (Terminals.Char(':', ref scanner, advance: true))
+                    if (Tokens.Char(':', ref scanner, advance: true))
                     {
                         CommonParsers.Spaces0(ref scanner, result, out _);
                         if (Expression(ref scanner, result, out var right, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))

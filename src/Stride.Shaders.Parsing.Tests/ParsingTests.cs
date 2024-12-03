@@ -22,7 +22,7 @@ public class ParsingTests1
     [MemberData(nameof(GetShaderFilePaths))]
     public void TestAllFiles(string path)
     {
-        var text = MonoGamePreProcessor.Run(path, []);
+        var text = MonoGamePreProcessor.OpenAndRun(path, []);
         var result = SDSLParser.Parse(text);
         Assert.True(result.Errors.Count == 0, path + string.Join("\n", result.Errors.Select(x => x.ToString())));
     }

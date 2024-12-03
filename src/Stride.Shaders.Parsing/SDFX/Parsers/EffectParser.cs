@@ -10,20 +10,20 @@ public record struct EffectParser : IParser<ShaderEffect>
     {
         var position = scanner.Position;
 
-        var isPartial = Terminals.Literal("partial", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _);
+        var isPartial = Tokens.Literal("partial", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _);
         if(!isPartial)
             scanner.Position = position;
 
-        if (Terminals.Literal("effect", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("effect", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             if (LiteralsParser.TypeName(ref scanner, result, out var effectName) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
                 parsed = new(effectName, isPartial, new());
-                if (Terminals.Char('{', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+                if (Tokens.Char('{', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
                 {
                     while(
                        !scanner.IsEof
-                       && !Terminals.Char('}', ref scanner)
+                       && !Tokens.Char('}', ref scanner)
                     )
                     {
                         if (EffectStatementParsers.Statement(ref scanner, result, out var s) && CommonParsers.Spaces0(ref scanner, result, out _))
@@ -34,10 +34,10 @@ public record struct EffectParser : IParser<ShaderEffect>
                     }
                     if(scanner.IsEof)
                         return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0011, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
-                    else if(Terminals.Char('}', ref scanner, advance: true))
+                    else if(Tokens.Char('}', ref scanner, advance: true))
                     {
                         parsed.Info = scanner.GetLocation(position..scanner.Position);
-                        CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true);
+                        CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
                         return true;
                     }
                 }

@@ -38,19 +38,19 @@ public struct CommentProcessedCode : IScannableCode
                 started = true;
             Add(lastPos..scanner.Position);
             lastPos = scanner.Position;
-            if (Terminals.Literal("//", ref scanner))
+            if (Tokens.Literal("//", ref scanner))
             {
                 CommonParsers.Until(ref scanner, '\n', advance: true);
                 lastPos = scanner.Position;
                 Add([' ']);
             }
-            else if (Terminals.Literal("/*", ref scanner))
+            else if (Tokens.Literal("/*", ref scanner))
             {
                 CommonParsers.Until(ref scanner, "*/", advance: true);
                 lastPos = scanner.Position;
                 Add([' ']);
             }
-            else if (Terminals.Literal("\"", ref scanner))
+            else if (Tokens.Literal("\"", ref scanner))
             {
                 CommonParsers.Until(ref scanner, "\"", advance: true);
                 Add(lastPos..scanner.Position);

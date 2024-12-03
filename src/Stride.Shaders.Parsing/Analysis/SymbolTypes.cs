@@ -1,7 +1,7 @@
 using System.Dynamic;
 using Stride.Shaders.Parsing.SDSL.AST;
 
-namespace Stride.Shaders.Parsing.SDSL.Analysis;
+namespace Stride.Shaders.Parsing.Analysis;
 
 
 
@@ -11,7 +11,7 @@ public sealed record Scalar(string TypeName) : SymbolType();
 public sealed record Vector(Scalar BaseType, int Size) : SymbolType();
 public sealed record Matrix(Scalar BaseType, int Rows, int Columns) : SymbolType();
 public sealed record Array(SymbolType BaseType, int Size) : SymbolType();
-public sealed record Struct(Dictionary<string, SymbolType> Fields) : SymbolType();
+public sealed record Struct(string Name, Dictionary<string, SymbolType> Fields) : SymbolType();
 public sealed record Buffer(SymbolType BaseType, int Size) : SymbolType();
 
 

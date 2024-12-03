@@ -15,9 +15,9 @@ public record struct DirectivePostfixParser : IParser<Expression>
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
-            if (Terminals.Set("[.", ref scanner) || Terminals.Literal("++", ref scanner) || Terminals.Literal("--", ref scanner))
+            if (Tokens.Set("[.", ref scanner) || Tokens.Literal("++", ref scanner) || Tokens.Literal("--", ref scanner))
             {
-                if (Terminals.Char('.', ref scanner, advance: true))
+                if (Tokens.Char('.', ref scanner, advance: true))
                 {
                     if (Postfix(ref scanner, result, out var accessed))
                     {
@@ -30,13 +30,13 @@ public record struct DirectivePostfixParser : IParser<Expression>
                         return false;
                     }
                 }
-                else if (Terminals.Char('[', ref scanner, advance: true))
+                else if (Tokens.Char('[', ref scanner, advance: true))
                 {
                     CommonParsers.Spaces0(ref scanner, result, out _);
                     if (
                         ExpressionParser.Expression(ref scanner, result, out var index)
                         && CommonParsers.Spaces0(ref scanner, result, out _)
-                        && Terminals.Char(']', ref scanner, advance: true)
+                        && Tokens.Char(']', ref scanner, advance: true)
                     )
                     {
                         parsed = new IndexerExpression(parsed, index, scanner.GetLocation(position, scanner.Position - position));
@@ -48,12 +48,12 @@ public record struct DirectivePostfixParser : IParser<Expression>
                         return false;
                     }
                 }
-                else if (Terminals.Literal("++", ref scanner, advance: true))
+                else if (Tokens.Literal("++", ref scanner, advance: true))
                 {
                     parsed = new PostfixExpression(parsed, Operator.Inc, scanner.GetLocation(position, scanner.Position - position));
                     return true;
                 }
-                else if (Terminals.Literal("--", ref scanner, advance: true))
+                else if (Tokens.Literal("--", ref scanner, advance: true))
                 {
                     parsed = new PostfixExpression(parsed, Operator.Dec, scanner.GetLocation(position, scanner.Position - position));
                     return true;
@@ -100,7 +100,7 @@ public record struct DirectivePostfixAccessorParser : IParser<Expression>
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (
-                Terminals.Char('.', ref scanner, advance: true)
+                Tokens.Char('.', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && PostfixParser.Accessor(ref scanner, result, out var accessed, new(SDSLParsingMessages.SDSL0021, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
             {
@@ -132,13 +132,13 @@ public record struct DirectivePostfixIndexerParser : IParser<Expression>
         {
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if (Terminals.Char('[', ref scanner, advance: true))
+            if (Tokens.Char('[', ref scanner, advance: true))
             {
                 if (
                     CommonParsers.Spaces0(ref scanner, result, out _)
                     && ExpressionParser.Expression(ref scanner, result, out var index, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                     && CommonParsers.Spaces0(ref scanner, result, out _)
-                    && Terminals.Char(']', ref scanner, advance: true)
+                    && Tokens.Char(']', ref scanner, advance: true)
                 )
                 {
                     parsed = new IndexerExpression(expression, index, scanner.GetLocation(position, scanner.Position - position));
@@ -175,7 +175,7 @@ public record struct DirectivePostfixIncrementParser : IParser<Expression>
         {
             var pos2 = scanner.Position;
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if(Terminals.Literal("++", ref scanner, advance: true))
+            if(Tokens.Literal("++", ref scanner, advance: true))
             {
                 parsed = new PostfixExpression(parsed, Operator.Inc, scanner.GetLocation(position, scanner.Position - position));
                 return true;

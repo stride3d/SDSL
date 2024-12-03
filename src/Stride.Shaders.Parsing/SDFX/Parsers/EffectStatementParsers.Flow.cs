@@ -34,9 +34,9 @@ public record struct EffectForEachParser : IParser<EffectForEach>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("foreach", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+        if (Tokens.Literal("foreach", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
-            if (Terminals.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+            if (Tokens.Char('(', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
                 if (
                     LiteralsParser.TypeName(ref scanner, result, out var typeName, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
@@ -45,14 +45,14 @@ public record struct EffectForEachParser : IParser<EffectForEach>
                     && CommonParsers.Spaces1(ref scanner, result, out _)
                 )
                 {
-                    if (Terminals.Literal("in", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+                    if (Tokens.Literal("in", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
                     {
                         if (
                             ExpressionParser.Expression(ref scanner, result, out var collection, new(SDSLParsingMessages.SDSL0032, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                             && CommonParsers.Spaces0(ref scanner, result, out _)
                         )
                         {
-                            if (Terminals.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+                            if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
                             {
                                 if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                                 {

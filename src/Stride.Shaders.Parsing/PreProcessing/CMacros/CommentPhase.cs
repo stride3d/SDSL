@@ -15,9 +15,9 @@ public struct CommentPhase() : IPreProcessorPhase
             if(!started)
                 started = true;
             frame.Add(last, ..scanner.Position);
-            if (Terminals.Literal("//", ref scanner))
+            if (Tokens.Literal("//", ref scanner))
                 CommonParsers.Until(ref scanner, '\n', advance: true);
-            else if (Terminals.Literal("/*", ref scanner))
+            else if (Tokens.Literal("/*", ref scanner))
                 CommonParsers.Until(ref scanner, "*/", advance: true);
         }
         if (!started)

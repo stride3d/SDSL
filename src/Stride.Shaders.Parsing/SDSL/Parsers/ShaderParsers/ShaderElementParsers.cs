@@ -16,13 +16,13 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         }
         else if (BufferParsers.Buffer(ref scanner, result, out var buffer))
         {
-            CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true);
+            CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
             parsed = buffer;
             return true;
         }
         else if (Struct(ref scanner, result, out var structElement))
         {
-            CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true);
+            CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
             parsed = structElement;
             return true;
         }
@@ -68,7 +68,7 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        var isStaged = Terminals.Literal("stage", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _);
+        var isStaged = Tokens.Literal("stage", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _);
 
         if (SamplerState(ref scanner, result, out var samplerState))
         {
@@ -104,7 +104,7 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         var position = scanner.Position;
 
         var hasStorageClass =
-            Terminals.AnyOf(
+            Tokens.AnyOf(
                 ["extern", "nointerpolation", "precise", "shared", "groupshared", "static", "uniform", "volatile"],
                 ref scanner,
                 out var storageClass,
@@ -112,7 +112,7 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
             && CommonParsers.Spaces1(ref scanner, result, out _)
             ;
         var hasTypeModifier =
-            Terminals.AnyOf(
+            Tokens.AnyOf(
                 ["const", "row_major", "column_major"],
                 ref scanner,
                 out var typemodifier,
@@ -122,7 +122,7 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
 
         if (
             CommonParsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var type, out var name, out var arraySize, out var value)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
             type.ArraySize = arraySize;
@@ -143,13 +143,13 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         var position = scanner.Position;
 
         if (
-            Terminals.Literal("typedef", ref scanner, advance: true)
+            Tokens.Literal("typedef", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
             && LiteralsParser.TypeName(ref scanner, result, out var type)
             && CommonParsers.Spaces1(ref scanner, result, out _)
             && LiteralsParser.Identifier(ref scanner, result, out var name)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char(';', ref scanner, advance: true)
+            && Tokens.Char(';', ref scanner, advance: true)
         )
         {
             parsed = new TypeDef(type, name, scanner.GetLocation(position..scanner.Position));

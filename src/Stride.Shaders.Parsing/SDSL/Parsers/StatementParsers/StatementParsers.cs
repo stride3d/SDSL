@@ -31,9 +31,9 @@ public record struct StatementParsers : IParser<Statement>
             return true;
         else if (Declare(ref scanner, result, out parsed))
             return true;
-        else if (!Terminals.Char('{', ref scanner) && Expression(ref scanner, result, out parsed))
+        else if (!Tokens.Char('{', ref scanner) && Expression(ref scanner, result, out parsed))
             return true;
-        else if (!Terminals.Char('{', ref scanner) && Assignments(ref scanner, result, out parsed))
+        else if (!Tokens.Char('{', ref scanner) && Assignments(ref scanner, result, out parsed))
             return true;
         else if (Block(ref scanner, result, out parsed))
             return true;
@@ -56,8 +56,8 @@ public record struct StatementParsers : IParser<Statement>
     {
         var position = scanner.Position;
         if (
-            CommonParsers.FollowedBy(ref scanner, Terminals.Literal("discard"), withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+            CommonParsers.FollowedBy(ref scanner, Tokens.Literal("discard"), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
             parsed = new Discard(scanner.GetLocation(position..scanner.Position));
@@ -123,7 +123,7 @@ public record struct EmptyStatementParser : IParser<Statement>
     {
         parsed = null!;
         var position = scanner.Position;
-        if (Terminals.Char(';', ref scanner, advance: true))
+        if (Tokens.Char(';', ref scanner, advance: true))
         {
             parsed = new EmptyStatement(scanner.GetLocation(position..scanner.Position));
             return true;
@@ -139,17 +139,17 @@ public record struct ReturnStatementParser : IParser<Statement>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("return;", ref scanner, advance: true))
+        if (Tokens.Literal("return;", ref scanner, advance: true))
         {
             parsed = new Return(scanner.GetLocation(position..scanner.Position));
             return true;
         }
         else if (
-            Terminals.Literal("return", ref scanner, advance: true)
+            Tokens.Literal("return", ref scanner, advance: true)
         )
         {
 
-            if (CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+            if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
                 parsed = new Return(scanner.GetLocation(position..scanner.Position));
                 return true;
@@ -157,7 +157,7 @@ public record struct ReturnStatementParser : IParser<Statement>
             else if (
                 PrimaryParsers.Parenthesis(ref scanner, result, out var p)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && Terminals.Char(';', ref scanner, advance: true)
+                && Tokens.Char(';', ref scanner, advance: true)
             )
             {
                 parsed = new Return(scanner.GetLocation(position, scanner.Position - position), p);
@@ -167,7 +167,7 @@ public record struct ReturnStatementParser : IParser<Statement>
                 CommonParsers.Spaces1(ref scanner, result, out _)
                 && ExpressionParser.Expression(ref scanner, result, out var val)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && Terminals.Char(';', ref scanner, advance: true)
+                && Tokens.Char(';', ref scanner, advance: true)
             )
             {
                 parsed = new Return(scanner.GetLocation(position, scanner.Position - position), val);
@@ -186,9 +186,9 @@ public record struct BreakParser : IParser<Statement>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("break", ref scanner, advance: true)
+            Tokens.Literal("break", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char(';', ref scanner, advance: true)
+            && Tokens.Char(';', ref scanner, advance: true)
         )
         {
             parsed = new Break(scanner.GetLocation(position, scanner.Position - position));
@@ -204,9 +204,9 @@ public record struct ContinueParser : IParser<Statement>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("continue", ref scanner, advance: true)
+            Tokens.Literal("continue", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char(';', ref scanner, advance: true)
+            && Tokens.Char(';', ref scanner, advance: true)
         )
         {
             parsed = new Break(scanner.GetLocation(position, scanner.Position - position));
@@ -224,7 +224,7 @@ public record struct ExpressionStatementParser : IParser<Statement>
         var position = scanner.Position;
         if (
             ExpressionParser.Expression(ref scanner, result, out var expression)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), advance: true)
         )
         {
             parsed = new ExpressionStatement(expression, scanner.GetLocation(position, scanner.Position - position));
@@ -243,11 +243,11 @@ public record struct BlockStatementParser : IParser<Statement>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Char('{', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+        if (Tokens.Char('{', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
             var block = new BlockStatement(new());
 
-            while (!scanner.IsEof && !Terminals.Char('}', ref scanner, advance: true))
+            while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
             {
                 if (StatementParsers.Statement(ref scanner, result, out var statement))
                 {
@@ -353,7 +353,7 @@ public record struct DeclareStatementParser : IParser<Statement>
     {
         var position = scanner.Position;
         var isConst =
-            Terminals.Literal("const", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _)
+            Tokens.Literal("const", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _)
             || CommonParsers.SequenceOf(ref scanner, ["static", "const"], advance: true) && CommonParsers.Spaces0(ref scanner, result, out _);
         if (!isConst)
             scanner.Position = position;
@@ -371,7 +371,7 @@ public record struct DeclareStatementParser : IParser<Statement>
                     a.ReplaceTypeName(typeName);
                 }
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                if (Terminals.Char(';', ref scanner, advance: true))
+                if (Tokens.Char(';', ref scanner, advance: true))
                 {
                     parsed = new Declare(typeName, scanner.GetLocation(position..scanner.Position))
                     {
@@ -395,7 +395,7 @@ public record struct AssignmentsParser : IParser<Statement>
         if (CommonParsers.Repeat<TScanner, VariableAssign>(ref scanner, result, StatementParsers.VarAssign, out var assigns, 1, true, ","))
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
-            if (Terminals.Char(';', ref scanner, advance: true))
+            if (Tokens.Char(';', ref scanner, advance: true))
             {
                 parsed = new Assign(scanner.GetLocation(position..scanner.Position))
                 {

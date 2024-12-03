@@ -22,7 +22,7 @@ public record struct EffectControlsParser : IParser<EffectControl>
             parsed.Info = scanner.GetLocation(position..scanner.Position);
             return true;
         }
-        else if(Terminals.Literal("else ", ref scanner))
+        else if(Tokens.Literal("else ", ref scanner))
             return CommonParsers.Exit(ref scanner, result, out parsed, position, new("Else block should be preceeded by If statement", scanner.GetErrorLocation(scanner.Position), scanner.Memory));
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -51,14 +51,14 @@ public record struct IfStatementParser : IParser<If>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("if", ref scanner, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true)
+            Tokens.Literal("if", ref scanner, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
-            if (Terminals.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+            if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
                 if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                 {
@@ -79,17 +79,17 @@ public record struct ElseIfStatementParser : IParser<ElseIf>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("else", ref scanner, advance: true)
+            Tokens.Literal("else", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
-            && Terminals.Literal("if", ref scanner, advance: true)
+            && Tokens.Literal("if", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char('(', ref scanner, advance: true)
+            && Tokens.Char('(', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
-            if (Terminals.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
+            if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
                 if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
                 {
@@ -110,7 +110,7 @@ public record struct ElseStatementParser : IParser<Else>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("else", ref scanner, advance: true)
+            Tokens.Literal("else", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
         )

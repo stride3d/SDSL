@@ -41,7 +41,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("++", ref scanner, advance: true))
+        if (Tokens.Literal("++", ref scanner, advance: true))
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
@@ -58,7 +58,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
             }
         }
         // prefix decrememnt 
-        else if (Terminals.Literal("--", ref scanner, advance: true))
+        else if (Tokens.Literal("--", ref scanner, advance: true))
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
@@ -92,7 +92,7 @@ public record struct DirectiveNotExpressionParser : IParser<Expression>
     {
         parsed = null!;
         var position = scanner.Position;
-        if (Terminals.Set("!~", ref scanner))
+        if (Tokens.Set("!~", ref scanner))
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
@@ -126,7 +126,7 @@ public record struct DirectiveSignExpressionParser : IParser<Expression>
     {
         parsed = null!;
         var position = scanner.Position;
-        if (Terminals.Set("+-", ref scanner))
+        if (Tokens.Set("+-", ref scanner))
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
@@ -162,11 +162,11 @@ public record struct DirectiveCastExpressionParser : IParser<Expression>
     {
         var position = scanner.Position;
         if (
-                Terminals.Char('(', ref scanner, advance: true)
+                Tokens.Char('(', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && LiteralsParser.Identifier(ref scanner, result, out var typeName, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && Terminals.Char(')', ref scanner, true)
+                && Tokens.Char(')', ref scanner, true)
                 && DirectiveUnaryParsers.Primary(ref scanner, result, out var lit)
         )
         {

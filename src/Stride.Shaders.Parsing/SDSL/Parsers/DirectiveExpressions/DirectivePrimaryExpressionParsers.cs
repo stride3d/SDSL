@@ -46,11 +46,11 @@ public record struct DirectiveParenthesisExpressionParser : IParser<Expression>
     {
         var position = scanner.Position;
         if (
-            Terminals.Char('(', ref scanner, advance: true)
+            Tokens.Char('(', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(position), scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char(')', ref scanner, advance: true)
+            && Tokens.Char(')', ref scanner, advance: true)
         )
             return true;
         else
@@ -73,13 +73,13 @@ public record struct DirectiveMethodCallParser : IParser<Expression>
         if (
             LiteralsParser.Identifier(ref scanner, result, out var identifier)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Char('(', ref scanner, advance: true)
+            && Tokens.Char('(', ref scanner, advance: true)
         )
         {
             CommonParsers.Spaces0(ref scanner, result, out _);
             ParameterParsers.Values(ref scanner, result, out var parameters);
             var pos2 = scanner.Position;
-            if (Terminals.Char(')', ref scanner, advance: true))
+            if (Tokens.Char(')', ref scanner, advance: true))
             {
                 parsed = new MethodCall(identifier, parameters, scanner.GetLocation(position, scanner.Position - position));
                 return true;

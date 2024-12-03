@@ -23,14 +23,14 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("tbuffer", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("tbuffer", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             if (
                 BufferName(ref scanner, result, out var identifiers, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
-                if (Terminals.Char('{', ref scanner))
+                if (Tokens.Char('{', ref scanner))
                 {
                     List<ShaderMember> members = [];
                     CommonParsers.Spaces0(ref scanner, result, out _);
@@ -39,8 +39,8 @@ public record struct BufferParsers : IParser<ShaderBuffer>
                         if (Member(ref scanner, result, out var member) && CommonParsers.Spaces0(ref scanner, result, out _))
                             members.Add(member);
                     }
-                    while (!(Terminals.Letter(ref scanner) || Terminals.Char('_', ref scanner)));
-                    if (Terminals.Char('}', ref scanner, advance: true))
+                    while (!(Tokens.Letter(ref scanner) || Tokens.Char('_', ref scanner)));
+                    if (Tokens.Char('}', ref scanner, advance: true))
                     {
                         parsed = new TBuffer(identifiers, scanner.GetLocation(position..scanner.Position))
                         {
@@ -59,18 +59,18 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("cbuffer", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("cbuffer", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             if (
                 BufferName(ref scanner, result, out var identifiers, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
-                if (Terminals.Char('{', ref scanner, advance: true))
+                if (Tokens.Char('{', ref scanner, advance: true))
                 {
                     List<ShaderMember> members = [];
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    while (!scanner.IsEof && !Terminals.Char('}', ref scanner, advance: true))
+                    while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
                     {
                         if (
                             Member(ref scanner, result, out var member)
@@ -98,18 +98,18 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        if (Terminals.Literal("rgroup", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("rgroup", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             if (
                 BufferName(ref scanner, result, out var identifiers)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
-                if (Terminals.Char('{', ref scanner, advance: true))
+                if (Tokens.Char('{', ref scanner, advance: true))
                 {
                     List<ShaderMember> members = [];
                     CommonParsers.Spaces0(ref scanner, result, out _);
-                    while (!scanner.IsEof && !Terminals.Char('}', ref scanner, advance: true))
+                    while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
                     {
                         if (
                             Member(ref scanner, result, out var member)
@@ -142,7 +142,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         StreamKind streamKind = StreamKind.None;
         bool hasAttributes = ShaderAttributeListParser.AttributeList(ref scanner, result, out var attributes, orError);
         var tmp = scanner.Position;
-        if (Terminals.Literal("stage", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+        if (Tokens.Literal("stage", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             isStage = true;
             tmp = scanner.Position;
@@ -151,7 +151,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
             scanner.Position = tmp;
         if (
             CommonParsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var identifier, out var arraySizes, out var value, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Set(";"), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Set(";"), withSpaces: true, advance: true)
         )
         {
             parsed = new ShaderMember(typename, identifier, null, true, scanner.GetLocation(position..scanner.Position), isStage, streamKind, arraySizes: arraySizes);

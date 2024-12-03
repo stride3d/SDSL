@@ -15,7 +15,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
             parsed = block;
             return true;
         }
-        else if (UsingParams(ref scanner, result, out var p1) && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+        else if (UsingParams(ref scanner, result, out var p1) && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
         {
             parsed = p1;
             return true;
@@ -25,27 +25,27 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
             parsed = p2;
             return true;
         }
-        else if (MixinComposeAdd(ref scanner, result, out var mca) && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+        else if (MixinComposeAdd(ref scanner, result, out var mca) && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
         {
             parsed = mca;
             return true;
         }
-        else if (MixinChild(ref scanner, result, out var mc) && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+        else if (MixinChild(ref scanner, result, out var mc) && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
         {
             parsed = mc;
             return true;
         }
-        else if (MixinClone(ref scanner, result, out var mcl) && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+        else if (MixinClone(ref scanner, result, out var mcl) && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
         {
             parsed = mcl;
             return true;
         }
-        else if (MixinConst(ref scanner, result, out var mconst) && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+        else if (MixinConst(ref scanner, result, out var mconst) && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
         {
             parsed = mconst;
             return true;
         }
-        else if (MixinUse(ref scanner, result, out var p3) && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true))
+        else if (MixinUse(ref scanner, result, out var p3) && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
         {
             parsed = p3;
             return true;
@@ -71,8 +71,8 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
             return true;
         }
         else if (
-            CommonParsers.FollowedBy(ref scanner, Terminals.Literal("discard"), withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+            CommonParsers.FollowedBy(ref scanner, Tokens.Literal("discard"), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
             parsed = new EffectDiscardStatement(scanner.GetLocation(position..scanner.Position));
@@ -97,7 +97,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
         if (
             CommonParsers.SequenceOf(ref scanner, ["mixin", "child"], advance: true)
             && CommonParsers.FollowedByDel(ref scanner, result, ShaderClassParsers.Mixin, out Mixin mixin, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
         )
         {
             parsed = new(mixin, scanner.GetLocation(position..scanner.Position));
@@ -111,7 +111,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
         if (
             CommonParsers.SequenceOf(ref scanner, ["mixin", "clone"], advance: true)
             && CommonParsers.FollowedByDel(ref scanner, result, ShaderClassParsers.Mixin, out Mixin mixin, withSpaces: true, advance: true)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
         )
         {
             parsed = new(mixin, scanner.GetLocation(position..scanner.Position));
@@ -128,14 +128,14 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
     {
         var position = scanner.Position;
 
-        if (Terminals.Char('{', ref scanner, advance: true))
+        if (Tokens.Char('{', ref scanner, advance: true))
         {
             List<EffectStatement> statements = [];
             while (CommonParsers.FollowedByDel(ref scanner, result, Statement, out EffectStatement statement, withSpaces: true, advance: true))
             {
                 statements.Add(statement);
             }
-            if (!CommonParsers.FollowedBy(ref scanner, Terminals.Char('}'), withSpaces: true, advance: true))
+            if (!CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true))
                 return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
             parsed = new EffectBlock(scanner.GetLocation(position..scanner.Position)) { Statements = statements };
             return true;
@@ -146,9 +146,9 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
     {
         var position = scanner.Position;
         if (
-            Terminals.AnyOf(["ShaderSourceCollection ", "ShaderSource ", "var "], ref scanner, out _)
+            Tokens.AnyOf(["ShaderSourceCollection ", "ShaderSource ", "var "], ref scanner, out _)
             && CommonParsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var name, out var arraySize, out var value)
-            && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+            && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
             typename.ArraySize = arraySize;
@@ -192,7 +192,7 @@ public record struct MixinConstParser : IParser<MixinConst>
             CommonParsers.Spaces0(ref scanner, result, out _);
             var tmp = scanner.Position;
             CommonParsers.Until(ref scanner, ';');
-            if (Terminals.Char(';', ref scanner))
+            if (Tokens.Char(';', ref scanner))
             {
                 parsed = new(scanner.Memory[tmp..scanner.Position].ToString().Trim(), scanner.GetLocation(position..scanner.Position));
                 return true;
@@ -212,15 +212,15 @@ public record struct MixinComposeParser : IParser<MixinCompose>
             CommonParsers.SequenceOf(ref scanner, ["mixin", "compose"], advance: true)
             && LiteralsParser.Identifier(ref scanner, result, out var name)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.AnyOf(["=", "+="], ref scanner, out var op, advance: true)
+            && Tokens.AnyOf(["=", "+="], ref scanner, out var op, advance: true)
         )
         {
             if(
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && ComposeValue(ref scanner, result, out var composeValue)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true, advance: true)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
                 parsed = new MixinCompose(name, op.ToAssignOperator(), composeValue, scanner.GetLocation(position..scanner.Position));
@@ -229,7 +229,7 @@ public record struct MixinComposeParser : IParser<MixinCompose>
             else if(
                 CommonParsers.Spaces0(ref scanner, result, out _)
                 && ComposeValue(ref scanner, result, out var composeValue2)
-                && CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true, advance: true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
                 parsed = new MixinCompose(name, op.ToAssignOperator(), composeValue2, scanner.GetLocation(position..scanner.Position));
@@ -246,8 +246,8 @@ public record struct MixinComposeParser : IParser<MixinCompose>
         if(
             ShaderClassParsers.Mixin(ref scanner, result, out var mixin) 
             && (
-                CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true)
-                || CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true)
+                CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
+                || CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true)
             )
         )
         {
@@ -257,16 +257,16 @@ public record struct MixinComposeParser : IParser<MixinCompose>
         else 
         {
             scanner.Position = position;
-            if(Terminals.IdentifierFirstChar(ref scanner, advance: true))
+            if(Tokens.IdentifierFirstChar(ref scanner, advance: true))
             {
                 while(
-                    Terminals.LetterOrDigit(ref scanner, advance: true)
-                    || Terminals.Char('_', ref scanner, advance: true)
-                    || Terminals.Char('.', ref scanner, advance: true)
+                    Tokens.LetterOrDigit(ref scanner, advance: true)
+                    || Tokens.Char('_', ref scanner, advance: true)
+                    || Tokens.Char('.', ref scanner, advance: true)
                 );
                 if(
-                    CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true)
-                    || CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true)
+                    CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true)
+                    || CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
                 )
                 {
                     value = new ComposePathValue(scanner.Memory[position..scanner.Position].ToString(), scanner.GetLocation(position..scanner.Position));
@@ -287,7 +287,7 @@ public record struct MixinComposeAddParser : IParser<MixinComposeAdd>
             CommonParsers.SequenceOf(ref scanner, ["mixin", "compose"], advance: true)
             && LiteralsParser.Identifier(ref scanner, result, out var name)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && Terminals.Literal("+=", ref scanner, advance: true)
+            && Tokens.Literal("+=", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
 
         )
@@ -307,15 +307,15 @@ public record struct MixinUseParser : IParser<MixinUse>
     {
         var position = scanner.Position;
         if (
-            Terminals.Literal("mixin", ref scanner, advance: true)
+            Tokens.Literal("mixin", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _)
         )
         {
-            var betweenParenthesis = CommonParsers.FollowedBy(ref scanner, Terminals.Char('('), withSpaces: true, advance: true);
+            var betweenParenthesis = CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true);
             if (CommonParsers.Repeat(ref scanner, result, ShaderClassParsers.Mixin, out List<Mixin> mixins, 1, withSpaces: true, separator: ","))
             {
-                var checkParen = betweenParenthesis == CommonParsers.FollowedBy(ref scanner, Terminals.Char(')'), withSpaces: true, advance: true);
-                var finished = CommonParsers.FollowedBy(ref scanner, Terminals.Char(';'), withSpaces: true);
+                var checkParen = betweenParenthesis == CommonParsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true);
+                var finished = CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true);
                 if (finished && checkParen)
                 {
                     parsed = new(mixins, scanner.GetLocation(position..scanner.Position));

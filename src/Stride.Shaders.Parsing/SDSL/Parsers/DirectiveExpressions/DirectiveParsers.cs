@@ -167,10 +167,10 @@ public record struct DirectiveCodeParser : IParser<DirectiveCode>
             !(
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true)
                 && (
-                    Terminals.Literal("#if", ref scanner)
-                    || Terminals.Literal("#define", ref scanner)
-                    || Terminals.Literal("#endif", ref scanner)
-                    || Terminals.Literal("#elif", ref scanner)
+                    Tokens.Literal("#if", ref scanner)
+                    || Tokens.Literal("#define", ref scanner)
+                    || Tokens.Literal("#endif", ref scanner)
+                    || Tokens.Literal("#elif", ref scanner)
                 )
             )
             && !scanner.IsEof
@@ -203,10 +203,10 @@ public record struct ConditionalIfDefDirectivesParser : IParser<IfDefDirective>
         var position = scanner.Position;
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
         if (
-            Terminals.Literal("#ifdef", ref scanner, advance: true)
+            Tokens.Literal("#ifdef", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, onlyWhiteSpace: true, orError: new(SDSLParsingMessages.SDSL0016, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
             && LiteralsParser.Identifier(ref scanner, result, out var id, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
-            && Terminals.EOL(ref scanner, advance: true)
+            && Tokens.EOL(ref scanner, advance: true)
         )
         {
             var cond = new IfDefDirective(id, scanner.GetLocation(position, scanner.Position - position));
@@ -229,10 +229,10 @@ public record struct ConditionalIfNDefDirectivesParser : IParser<IfNDefDirective
         var position = scanner.Position;
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
         if (
-            Terminals.Literal("#ifndef", ref scanner, advance: true)
+            Tokens.Literal("#ifndef", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, onlyWhiteSpace: true)
             && LiteralsParser.Identifier(ref scanner, result, out var id)
-            && Terminals.EOL(ref scanner, advance: true)
+            && Tokens.EOL(ref scanner, advance: true)
         )
         {
             var cond = new IfNDefDirective(id, scanner.GetLocation(position, scanner.Position - position));
@@ -256,10 +256,10 @@ public record struct ConditionalIfDirectivesParser : IParser<IfDirective>
         var position = scanner.Position;
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
         if (
-            Terminals.Literal("#if", ref scanner, advance: true)
+            Tokens.Literal("#if", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, onlyWhiteSpace: true)
             && DirectiveExpressionParser.Expression(ref scanner, result, out var expression)
-            && Terminals.EOL(ref scanner, advance: true)
+            && Tokens.EOL(ref scanner, advance: true)
         )
         {
             var cond = new IfDirective(expression, scanner.GetLocation(position, scanner.Position - position));
@@ -284,10 +284,10 @@ public record struct ConditionalElifDirectivesParser : IParser<IfDirective>
         var position = scanner.Position;
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
         if (
-            Terminals.Literal("#elif", ref scanner, advance: true)
+            Tokens.Literal("#elif", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, onlyWhiteSpace: true)
             && DirectiveExpressionParser.Expression(ref scanner, result, out var expression)
-            && Terminals.EOL(ref scanner, advance: true)
+            && Tokens.EOL(ref scanner, advance: true)
         )
         {
             var cond = new ElifDirective(expression, scanner.GetLocation(position, scanner.Position - position));
@@ -310,8 +310,8 @@ public record struct ConditionalElseDirectivesParser : IParser<ElseDirective>
         var position = scanner.Position;
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
         if (
-            Terminals.Literal("#else", ref scanner, advance: true)
-            && Terminals.EOL(ref scanner, advance: true)
+            Tokens.Literal("#else", ref scanner, advance: true)
+            && Tokens.EOL(ref scanner, advance: true)
         )
         {
             var cond = new ElseDirective(scanner.GetLocation(position, scanner.Position - position));
@@ -336,8 +336,8 @@ public record struct EndifDirectiveParser : IParser<NoNode>
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
 
         if (
-            Terminals.Literal("#endif", ref scanner, advance: true)
-            && Terminals.EOL(ref scanner, advance: true)
+            Tokens.Literal("#endif", ref scanner, advance: true)
+            && Tokens.EOL(ref scanner, advance: true)
         )
         {
             parsed = null!;
@@ -362,20 +362,20 @@ public record struct ObjectDefineDirectiveParser : IParser<ObjectDefineDirective
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
 
         if (
-            Terminals.Literal("#define", ref scanner, advance: true)
+            Tokens.Literal("#define", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, onlyWhiteSpace: true)
             && LiteralsParser.Identifier(ref scanner, result, out var identifier)
         )
         {
             if (
                 DirectiveExpressionParser.Expression(ref scanner, result, out var expression)
-                && Terminals.EOL(ref scanner, advance: true)
+                && Tokens.EOL(ref scanner, advance: true)
             )
             {
                 parsed = new(identifier, expression, scanner.GetLocation(position, scanner.Position - position));
                 return true;
             }
-            else if(Terminals.EOL(ref scanner, advance: true))
+            else if(Tokens.EOL(ref scanner, advance: true))
             {
                 parsed = new(identifier, null, scanner.GetLocation(position, scanner.Position - position));
                 return true;
@@ -406,11 +406,11 @@ public record struct FunctionDefineDirectiveParser : IParser<FunctionDefineDirec
         CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
 
         if (
-            Terminals.Literal("#define", ref scanner, advance: true)
+            Tokens.Literal("#define", ref scanner, advance: true)
             && CommonParsers.Spaces1(ref scanner, result, out _, onlyWhiteSpace: true)
             && LiteralsParser.Identifier(ref scanner, result, out var identifier)
             && CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true)
-            && Terminals.Char('(', ref scanner, advance: true)
+            && Tokens.Char('(', ref scanner, advance: true)
         )
         {
             CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
@@ -422,14 +422,14 @@ public record struct FunctionDefineDirectiveParser : IParser<FunctionDefineDirec
             )
                 func.Parameters.Add(param);
             while(
-                Terminals.Char(',', ref scanner, advance: true)
+                Tokens.Char(',', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true)
                 && LiteralsParser.Identifier(ref scanner, result, out param)
                 && CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true)
 
             )
                 func.Parameters.Add(param);
-            if(!Terminals.Char(')', ref scanner, advance: true))
+            if(!Tokens.Char(')', ref scanner, advance: true))
             {
                 result.Errors.Add(new(SDSLParsingMessages.SDSL0018, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
                 scanner.Position = position;
@@ -439,11 +439,11 @@ public record struct FunctionDefineDirectiveParser : IParser<FunctionDefineDirec
             else
             {
                 var startPattern = scanner.Position;
-                while(!(scanner.IsEof || Terminals.Char('\n', ref scanner) || Terminals.Literal("\r\n", ref scanner)))
+                while(!(scanner.IsEof || Tokens.Char('\n', ref scanner) || Tokens.Literal("\r\n", ref scanner)))
                     scanner.Advance(1);
                 func.Pattern = scanner.Memory[startPattern..scanner.Position].TrimEnd().TrimStart().ToString();
-                if(!Terminals.Char('\n', ref scanner, advance: true))
-                    Terminals.Literal("\r\n", ref scanner, advance: true);
+                if(!Tokens.Char('\n', ref scanner, advance: true))
+                    Tokens.Literal("\r\n", ref scanner, advance: true);
                 parsed = func;
                 return true;
             }

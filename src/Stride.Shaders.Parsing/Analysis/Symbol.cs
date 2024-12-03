@@ -7,11 +7,16 @@ namespace Stride.Shaders.Parsing.Analysis;
 
 public enum SymbolKind
 {
+    Effect,
+    Params,
+    Shader,
+    MixinParent,
+    MixinChild,
+    Method,
+    Variable,
     Constant,
     ConstantGeneric,
     Composition,
-    Method,
-    Variable,
 }
 
 

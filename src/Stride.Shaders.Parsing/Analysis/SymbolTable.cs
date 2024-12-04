@@ -11,19 +11,9 @@ public partial class SymbolTable
     public Dictionary<string, SymbolType> DeclaredTypes { get; } = [];
     public Stack<Dictionary<string, Symbol>> Symbols { get; } = [];
 
-    public void Process(ShaderClass sclass, Dictionary<string, Symbol>? globalSymbols = null)
+    public void Process(ShaderClass sclass, Dictionary<string, SymbolType>? types = null)
     {
-        DeclaredTypes.Add(sclass.Name.Name, new MixinSymbol(sclass.Name, []));
-        foreach (var e in sclass.Elements)
-        {
-            if(e is ShaderMember member)
-            {
-                if (!DeclaredTypes.TryGetValue(member.Type.Name, out var mt))
-                {
-                    // mt = new SymbolType()
-                }
-            }
-        }
+        
     }
 
     [GeneratedRegex(@"^((s?byte)|(u?(short|int|long))|(half|float|double))$")]
@@ -34,7 +24,7 @@ public partial class SymbolTable
     private static partial Regex MatrixPattern();
     [GeneratedRegex(@"^((s?byte)|(u?(short|int|long))|(half|float|double))[\s\n]*\[[\s\n]*([0-9]+)?[\s\n]*\]$")]
     private static partial Regex ArrayPattern();
-    public SymbolType ParseType(string typename)
+    public static SymbolType ParseType(string typename)
     {
         if (ScalarPattern().IsMatch(typename))
             return new Scalar(typename);

@@ -21,26 +21,23 @@ public sealed record Texture2D(SymbolType BaseType, int Width, int Height) : Sym
 public sealed record Texture3D(SymbolType BaseType, int Width, int Height, int Depth) : SymbolType();
 
 
-public sealed record MixinSymbol(
-    string Name, 
-    List<Symbol> Components
-) : SymbolType()
+public sealed record ParamsSymbol(string Name, List<Symbol> Symbols) : SymbolType;
+public sealed record EffectSymbol(string Name, List<Symbol> Symbols) : SymbolType;
+public sealed record ShaderSymbol(string Name, List<Symbol> Components) : SymbolType
 {
-    public T Get<T>(string name)
-        where T : SymbolType
+    public Symbol Get(string name, SymbolKind kind)
     {
         foreach (var e in Components)
-            if (e is T r && e.Name == name)
-                return r;
+            if (e.Kind == kind && e.Name == name)
+                return e;
         throw new ArgumentException($"{name} not found in Mixin {Name}");
     }
-    public bool TryGet<T>(string name, out T value)
-        where T : SymbolType
+    public bool TryGet(string name, SymbolKind kind, out Symbol? value)
     {
         foreach (var e in Components)
-            if (e is T r && e.Name == name)
+            if (e.Kind == kind && e.Name == name)
             {
-                value = r;
+                value = e;
                 return true;
             }
         value = null!;

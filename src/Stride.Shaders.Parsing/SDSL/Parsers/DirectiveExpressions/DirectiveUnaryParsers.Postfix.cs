@@ -21,7 +21,7 @@ public record struct DirectivePostfixParser : IParser<Expression>
                 {
                     if (Postfix(ref scanner, result, out var accessed))
                     {
-                        parsed = new AccessorExpression(parsed, accessed, scanner.GetLocation(position, scanner.Position));
+                        parsed = new AccessorExpression(parsed, accessed, scanner[position..scanner.Position]);
                         return true;
                     }
                     else
@@ -39,7 +39,7 @@ public record struct DirectivePostfixParser : IParser<Expression>
                         && Tokens.Char(']', ref scanner, advance: true)
                     )
                     {
-                        parsed = new IndexerExpression(parsed, index, scanner.GetLocation(position, scanner.Position - position));
+                        parsed = new IndexerExpression(parsed, index, scanner[position..scanner.Position]);
                         return true;
                     }
                     else
@@ -50,17 +50,17 @@ public record struct DirectivePostfixParser : IParser<Expression>
                 }
                 else if (Tokens.Literal("++", ref scanner, advance: true))
                 {
-                    parsed = new PostfixExpression(parsed, Operator.Inc, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new PostfixExpression(parsed, Operator.Inc, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (Tokens.Literal("--", ref scanner, advance: true))
                 {
-                    parsed = new PostfixExpression(parsed, Operator.Dec, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new PostfixExpression(parsed, Operator.Dec, scanner[position..scanner.Position]);
                     return true;
                 }
                 else 
                 {
-                    result.Errors.Add(new(SDSLParsingMessages.SDSL0020, scanner.GetErrorLocation(position), scanner.Memory));
+                    result.Errors.Add(new(SDSLParsingMessages.SDSL0020, scanner[position], scanner.Memory));
                     return false;
                 }
             }
@@ -102,9 +102,9 @@ public record struct DirectivePostfixAccessorParser : IParser<Expression>
             if (
                 Tokens.Char('.', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && PostfixParser.Accessor(ref scanner, result, out var accessed, new(SDSLParsingMessages.SDSL0021, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
+                && PostfixParser.Accessor(ref scanner, result, out var accessed, new(SDSLParsingMessages.SDSL0021, scanner[scanner.Position], scanner.Memory)))
             {
-                parsed = new AccessorExpression(expression, accessed, scanner.GetLocation(position, scanner.Position - position));
+                parsed = new AccessorExpression(expression, accessed, scanner[position..scanner.Position]);
                 return true;
             }
             else
@@ -136,17 +136,17 @@ public record struct DirectivePostfixIndexerParser : IParser<Expression>
             {
                 if (
                     CommonParsers.Spaces0(ref scanner, result, out _)
-                    && ExpressionParser.Expression(ref scanner, result, out var index, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+                    && ExpressionParser.Expression(ref scanner, result, out var index, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory))
                     && CommonParsers.Spaces0(ref scanner, result, out _)
                     && Tokens.Char(']', ref scanner, advance: true)
                 )
                 {
-                    parsed = new IndexerExpression(expression, index, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new IndexerExpression(expression, index, scanner[position..scanner.Position]);
                     return true;
                 }
                 else 
                 {
-                    result.Errors.Add(new(SDSLParsingMessages.SDSL0021, scanner.GetErrorLocation(position), scanner.Memory));
+                    result.Errors.Add(new(SDSLParsingMessages.SDSL0021, scanner[position], scanner.Memory));
                     parsed = null!;
                     return false;
                 }
@@ -177,7 +177,7 @@ public record struct DirectivePostfixIncrementParser : IParser<Expression>
             CommonParsers.Spaces0(ref scanner, result, out _);
             if(Tokens.Literal("++", ref scanner, advance: true))
             {
-                parsed = new PostfixExpression(parsed, Operator.Inc, scanner.GetLocation(position, scanner.Position - position));
+                parsed = new PostfixExpression(parsed, Operator.Inc, scanner[position..scanner.Position]);
                 return true;
             }
             else

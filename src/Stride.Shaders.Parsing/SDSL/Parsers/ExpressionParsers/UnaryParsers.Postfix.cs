@@ -22,25 +22,25 @@ public record struct PostfixParser : IParser<Expression>
                     && CommonParsers.FollowedBy(ref scanner, Tokens.Char(']'), withSpaces: true, advance: true)
                 )
                 {
-                    parsed = new IndexerExpression(parsed, indexer, scanner.GetLocation(position..scanner.Position));
+                    parsed = new IndexerExpression(parsed, indexer, scanner[position..scanner.Position]);
                 }
                 else if (
                     matched == "."
                     && CommonParsers.FollowedByDel(ref scanner, result, PrimaryParsers.Method, out Expression call, withSpaces: true, advance: true)
                 )
                 {
-                    parsed = new AccessorExpression(parsed, call, scanner.GetLocation(position..scanner.Position));
+                    parsed = new AccessorExpression(parsed, call, scanner[position..scanner.Position]);
                 }
                 else if (
                     matched == "."
                     && CommonParsers.FollowedByDel(ref scanner, result, LiteralsParser.Literal, out Literal accessor, withSpaces: true, advance: true)
                 )
                 {
-                    parsed = new AccessorExpression(parsed, accessor, scanner.GetLocation(position..scanner.Position));
+                    parsed = new AccessorExpression(parsed, accessor, scanner[position..scanner.Position]);
                 }
                 else if (matched == "++" || matched == "--")
                 {
-                    parsed = new PostfixExpression(parsed, matched.ToOperator(), scanner.GetLocation(position..scanner.Position));
+                    parsed = new PostfixExpression(parsed, matched.ToOperator(), scanner[position..scanner.Position]);
                     break;
                 }
             }
@@ -60,7 +60,7 @@ public record struct PostfixParser : IParser<Expression>
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (Tokens.Literal("++", ref scanner, advance: true))
             {
-                parsed = new PostfixExpression(parsed, Operator.Inc, scanner.GetLocation(position, scanner.Position - position));
+                parsed = new PostfixExpression(parsed, Operator.Inc, scanner[position..scanner.Position]);
                 return true;
             }
             else
@@ -85,7 +85,7 @@ public record struct PostfixParser : IParser<Expression>
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && Accessor(ref scanner, result, out var accessed))
             {
-                parsed = new AccessorExpression(expression, accessed, scanner.GetLocation(position, scanner.Position - position));
+                parsed = new AccessorExpression(expression, accessed, scanner[position..scanner.Position]);
                 return true;
             }
             else
@@ -116,10 +116,10 @@ public record struct PostfixParser : IParser<Expression>
                     && Tokens.Char(']', ref scanner, advance: true)
                 )
                 {
-                    parsed = new IndexerExpression(expression, index, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new IndexerExpression(expression, index, scanner[position..scanner.Position]);
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0021, scanner.GetErrorLocation(position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0021, scanner[position], scanner.Memory));
 
             }
             else

@@ -14,9 +14,10 @@ public struct NumberParser : IParser<Literal>
             result,
             out parsed,
             orError,
+            Hex,
             Float,
-            Integer,
-            Hex
+            Integer
+            
         );
     }
 
@@ -32,7 +33,7 @@ public struct NumberParser : IParser<Literal>
             var numPos = scanner.Position;
             if (suffix.Match(ref scanner, null!, out Suffix suf))
             {
-                parsed = new IntegerLiteral(suf, long.Parse(scanner.Span[position..numPos]), scanner.GetLocation(position, scanner.Position));
+                parsed = new IntegerLiteral(suf, long.Parse(scanner.Span[position..numPos]), scanner[position..scanner.Position]);
                 return true;
             }
             else
@@ -66,7 +67,7 @@ public struct NumberParser : IParser<Literal>
             {
                 scanner.Advance(1);
                 if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                 while (Tokens.Digit(ref scanner, advance: true)) ;
             }
             else if (Tokens.FloatSuffix(ref scanner, out _) || Tokens.Char('e', ref scanner)) { }
@@ -77,7 +78,7 @@ public struct NumberParser : IParser<Literal>
             if (Tokens.Char('.', ref scanner, advance: true))
             {
                 if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                 while (Tokens.Digit(ref scanner, advance: true)) ;
             }
             else return CommonParsers.Exit(ref scanner, result, out parsed, position);
@@ -96,12 +97,12 @@ public struct NumberParser : IParser<Literal>
                 if (signed && matched == "-")
                     exponent = -exponent;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
         if (Tokens.FloatSuffix(ref scanner, out var suffix, advance: true) && suffix is not null)
-            parsed = new FloatLiteral(suffix.Value, value, exponent, scanner.GetLocation(position..scanner.Position));
+            parsed = new FloatLiteral(suffix.Value, value, exponent, scanner[position..scanner.Position]);
         else
-            parsed = new FloatLiteral(new(32, true, true), value, exponent, scanner.GetLocation(position..scanner.Position));
+            parsed = new FloatLiteral(new(32, true, true), value, exponent, scanner[position..scanner.Position]);
         return true;
     }
     public static bool Hex<TScanner>(ref TScanner scanner, ParseResult result, out Literal parsed, in ParseError? orError = null)
@@ -121,11 +122,11 @@ public struct NumberParser : IParser<Literal>
                 var add = v * Math.Pow(16, i);
                 if (ulong.MaxValue - sum < add)
                 {
-                    result.Errors.Add(new ParseError("Hex value bigger than ulong.", scanner.GetErrorLocation(position), scanner.Memory));
+                    result.Errors.Add(new ParseError("Hex value bigger than ulong.", scanner[position], scanner.Memory));
                     return false;
                 }
             }
-            parsed = new HexLiteral(sum, scanner.GetLocation(position, scanner.Position - position));
+            parsed = new HexLiteral(sum, scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

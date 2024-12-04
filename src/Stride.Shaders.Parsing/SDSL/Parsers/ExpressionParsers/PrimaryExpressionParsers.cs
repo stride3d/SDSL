@@ -51,10 +51,10 @@ public record struct PrimaryParsers : IParser<Expression>
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (Tokens.Char(')', ref scanner, advance: true))
             {
-                parsed = new MethodCall(identifier, parameters, scanner.GetLocation(position..scanner.Position));
+                parsed = new MethodCall(identifier, parameters, scanner[position..scanner.Position]);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -66,7 +66,7 @@ public record struct PrimaryParsers : IParser<Expression>
         if (
             Tokens.Char('(', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(position), scanner.Memory))
+            && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLParsingMessages.SDSL0015, scanner[position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && Tokens.Char(')', ref scanner, advance: true)
         )
@@ -84,7 +84,7 @@ public record struct PrimaryParsers : IParser<Expression>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true)
         )
         {
-            parsed = new ArrayLiteral(scanner.GetLocation(position..scanner.Position))
+            parsed = new ArrayLiteral(scanner[position..scanner.Position])
             {
                 Values = values.Values
             };
@@ -102,7 +102,7 @@ public record struct PrimaryParsers : IParser<Expression>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char('.'), withSpaces: true)
         )
         {
-            parsed = new MixinAccess(mixin, scanner.GetLocation(position..scanner.Position));
+            parsed = new MixinAccess(mixin, scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

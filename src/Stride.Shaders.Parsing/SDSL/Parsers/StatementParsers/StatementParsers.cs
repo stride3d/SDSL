@@ -60,7 +60,7 @@ public record struct StatementParsers : IParser<Statement>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
-            parsed = new Discard(scanner.GetLocation(position..scanner.Position));
+            parsed = new Discard(scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -125,7 +125,7 @@ public record struct EmptyStatementParser : IParser<Statement>
         var position = scanner.Position;
         if (Tokens.Char(';', ref scanner, advance: true))
         {
-            parsed = new EmptyStatement(scanner.GetLocation(position..scanner.Position));
+            parsed = new EmptyStatement(scanner[position..scanner.Position]);
             return true;
         }
         return false;
@@ -141,7 +141,7 @@ public record struct ReturnStatementParser : IParser<Statement>
         var position = scanner.Position;
         if (Tokens.Literal("return;", ref scanner, advance: true))
         {
-            parsed = new Return(scanner.GetLocation(position..scanner.Position));
+            parsed = new Return(scanner[position..scanner.Position]);
             return true;
         }
         else if (
@@ -151,16 +151,15 @@ public record struct ReturnStatementParser : IParser<Statement>
 
             if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
-                parsed = new Return(scanner.GetLocation(position..scanner.Position));
+                parsed = new Return(scanner[position..scanner.Position]);
                 return true;
             }
             else if (
-                PrimaryParsers.Parenthesis(ref scanner, result, out var p)
-                && CommonParsers.Spaces0(ref scanner, result, out _)
-                && Tokens.Char(';', ref scanner, advance: true)
+                CommonParsers.FollowedByDel(ref scanner, result, PrimaryParsers.Parenthesis, out Expression p, advance : true)
+                && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
-                parsed = new Return(scanner.GetLocation(position, scanner.Position - position), p);
+                parsed = new Return(scanner[position..scanner.Position], p);
                 return true;
             }
             else if (
@@ -170,10 +169,10 @@ public record struct ReturnStatementParser : IParser<Statement>
                 && Tokens.Char(';', ref scanner, advance: true)
             )
             {
-                parsed = new Return(scanner.GetLocation(position, scanner.Position - position), val);
+                parsed = new Return(scanner[position..scanner.Position], val);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0041, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0041, scanner[scanner.Position], scanner.Memory));
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -191,7 +190,7 @@ public record struct BreakParser : IParser<Statement>
             && Tokens.Char(';', ref scanner, advance: true)
         )
         {
-            parsed = new Break(scanner.GetLocation(position, scanner.Position - position));
+            parsed = new Break(scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -209,7 +208,7 @@ public record struct ContinueParser : IParser<Statement>
             && Tokens.Char(';', ref scanner, advance: true)
         )
         {
-            parsed = new Break(scanner.GetLocation(position, scanner.Position - position));
+            parsed = new Break(scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -227,7 +226,7 @@ public record struct ExpressionStatementParser : IParser<Statement>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), advance: true)
         )
         {
-            parsed = new ExpressionStatement(expression, scanner.GetLocation(position, scanner.Position - position));
+            parsed = new ExpressionStatement(expression, scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -254,9 +253,9 @@ public record struct BlockStatementParser : IParser<Statement>
                     block.Statements.Add(statement);
                     CommonParsers.Spaces0(ref scanner, result, out _);
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory));
             }
-            block.Info = scanner.GetLocation(position, scanner.Position - position);
+            block.Info = scanner[position..scanner.Position];
             parsed = block;
             return true;
         }
@@ -286,14 +285,14 @@ public record struct VariableAssignParser : IParser<VariableAssign>
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (ExpressionParser.Expression(ref scanner, result, out var expression))
                 {
-                    parsed = new(p, false, scanner.GetLocation(position..scanner.Position), op, expression);
+                    parsed = new(p, false, scanner[position..scanner.Position], op, expression);
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0015, scanner[position], scanner.Memory));
             }
             else
             {
-                parsed = new(p, false, scanner.GetLocation(position..scanner.Position));
+                parsed = new(p, false, scanner[position..scanner.Position]);
                 return true;
             }
         }
@@ -322,18 +321,18 @@ public record struct DeclaredVariableAssignParser : IParser<DeclaredVariableAssi
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (ExpressionParser.Expression(ref scanner, result, out var expression))
                 {
-                    parsed = new(identifier, false, scanner.GetLocation(position..scanner.Position), op, expression)
+                    parsed = new(identifier, false, scanner[position..scanner.Position], op, expression)
                     {
                         ArraySizes = arraySizes,
                         Value = value
                     };
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0015, scanner[position], scanner.Memory));
             }
             else
             {
-                parsed = new(identifier, false, scanner.GetLocation(position..scanner.Position))
+                parsed = new(identifier, false, scanner[position..scanner.Position])
                 {
                     ArraySizes = arraySizes
                 };
@@ -373,13 +372,13 @@ public record struct DeclareStatementParser : IParser<Statement>
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (Tokens.Char(';', ref scanner, advance: true))
                 {
-                    parsed = new Declare(typeName, scanner.GetLocation(position..scanner.Position))
+                    parsed = new Declare(typeName, scanner[position..scanner.Position])
                     {
                         Variables = assigns
                     };
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner[scanner.Position], scanner.Memory));
             }
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -397,13 +396,13 @@ public record struct AssignmentsParser : IParser<Statement>
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (Tokens.Char(';', ref scanner, advance: true))
             {
-                parsed = new Assign(scanner.GetLocation(position..scanner.Position))
+                parsed = new Assign(scanner[position..scanner.Position])
                 {
                     Variables = assigns
                 };
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner[scanner.Position], scanner.Memory));
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }

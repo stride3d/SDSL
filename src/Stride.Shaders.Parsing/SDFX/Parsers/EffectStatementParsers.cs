@@ -67,7 +67,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
         }
         else if (StatementParsers.Expression(ref scanner, result, out var exp))
         {
-            parsed = new EffectExpressionStatement(exp, scanner.GetLocation(position..scanner.Position));
+            parsed = new EffectExpressionStatement(exp, scanner[position..scanner.Position]);
             return true;
         }
         else if (
@@ -75,7 +75,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
-            parsed = new EffectDiscardStatement(scanner.GetLocation(position..scanner.Position));
+            parsed = new EffectDiscardStatement(scanner[position..scanner.Position]);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -100,7 +100,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
         )
         {
-            parsed = new(mixin, scanner.GetLocation(position..scanner.Position));
+            parsed = new(mixin, scanner[position..scanner.Position]);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -114,7 +114,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
         )
         {
-            parsed = new(mixin, scanner.GetLocation(position..scanner.Position));
+            parsed = new(mixin, scanner[position..scanner.Position]);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -136,8 +136,8 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
                 statements.Add(statement);
             }
             if (!CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true))
-                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
-            parsed = new EffectBlock(scanner.GetLocation(position..scanner.Position)) { Statements = statements };
+                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+            parsed = new EffectBlock(scanner[position..scanner.Position]) { Statements = statements };
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position);
@@ -152,7 +152,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
         )
         {
             typename.ArraySize = arraySize;
-            parsed = new(name, scanner.GetLocation(position..scanner.Position), value);
+            parsed = new(name, scanner[position..scanner.Position], value);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position);
@@ -170,7 +170,7 @@ public record struct UsingParamsParser : IParser<UsingParams>
         {
             if (LiteralsParser.Identifier(ref scanner, result, out var identifier))
             {
-                parsed = new(identifier, scanner.GetLocation(position..scanner.Position));
+                parsed = new(identifier, scanner[position..scanner.Position]);
                 return true;
             }
 
@@ -194,10 +194,10 @@ public record struct MixinConstParser : IParser<MixinConst>
             CommonParsers.Until(ref scanner, ';');
             if (Tokens.Char(';', ref scanner))
             {
-                parsed = new(scanner.Memory[tmp..scanner.Position].ToString().Trim(), scanner.GetLocation(position..scanner.Position));
+                parsed = new(scanner.Memory[tmp..scanner.Position].ToString().Trim(), scanner[position..scanner.Position]);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -223,7 +223,7 @@ public record struct MixinComposeParser : IParser<MixinCompose>
                 && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
-                parsed = new MixinCompose(name, op.ToAssignOperator(), composeValue, scanner.GetLocation(position..scanner.Position));
+                parsed = new MixinCompose(name, op.ToAssignOperator(), composeValue, scanner[position..scanner.Position]);
                 return true;
             }
             else if(
@@ -232,7 +232,7 @@ public record struct MixinComposeParser : IParser<MixinCompose>
                 && CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
             )
             {
-                parsed = new MixinCompose(name, op.ToAssignOperator(), composeValue2, scanner.GetLocation(position..scanner.Position));
+                parsed = new MixinCompose(name, op.ToAssignOperator(), composeValue2, scanner[position..scanner.Position]);
                 return true;
             }
             
@@ -251,7 +251,7 @@ public record struct MixinComposeParser : IParser<MixinCompose>
             )
         )
         {
-            value = new ComposeMixinValue(mixin, scanner.GetLocation(position..scanner.Position));
+            value = new ComposeMixinValue(mixin, scanner[position..scanner.Position]);
             return true;
         }
         else 
@@ -269,7 +269,7 @@ public record struct MixinComposeParser : IParser<MixinCompose>
                     || CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true)
                 )
                 {
-                    value = new ComposePathValue(scanner.Memory[position..scanner.Position].ToString(), scanner.GetLocation(position..scanner.Position));
+                    value = new ComposePathValue(scanner.Memory[position..scanner.Position].ToString(), scanner[position..scanner.Position]);
                     return true;
                 }
             }
@@ -294,7 +294,7 @@ public record struct MixinComposeAddParser : IParser<MixinComposeAdd>
         {
             var start = scanner.Position;
             CommonParsers.Until(ref scanner, ';');
-            parsed = new MixinComposeAdd(name, new(scanner.Memory[start..scanner.Position].ToString().Trim(), scanner.GetLocation(start..scanner.Position)), scanner.GetLocation(position..scanner.Position));
+            parsed = new MixinComposeAdd(name, new(scanner.Memory[start..scanner.Position].ToString().Trim(), scanner[start..scanner.Position]), scanner[position..scanner.Position]);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -318,7 +318,7 @@ public record struct MixinUseParser : IParser<MixinUse>
                 var finished = CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true);
                 if (finished && checkParen)
                 {
-                    parsed = new(mixins, scanner.GetLocation(position..scanner.Position));
+                    parsed = new(mixins, scanner[position..scanner.Position]);
                     return finished;
                 }
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position);

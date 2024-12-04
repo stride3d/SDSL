@@ -26,7 +26,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         if (Tokens.Literal("tbuffer", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             if (
-                BufferName(ref scanner, result, out var identifiers, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+                BufferName(ref scanner, result, out var identifiers, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
@@ -42,7 +42,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
                     while (!(Tokens.Letter(ref scanner) || Tokens.Char('_', ref scanner)));
                     if (Tokens.Char('}', ref scanner, advance: true))
                     {
-                        parsed = new TBuffer(identifiers, scanner.GetLocation(position..scanner.Position))
+                        parsed = new TBuffer(identifiers, scanner[position..scanner.Position])
                         {
                             Members = members
                         };
@@ -62,7 +62,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         if (Tokens.Literal("cbuffer", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
         {
             if (
-                BufferName(ref scanner, result, out var identifiers, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+                BufferName(ref scanner, result, out var identifiers, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
@@ -77,11 +77,11 @@ public record struct BufferParsers : IParser<ShaderBuffer>
                             && CommonParsers.Spaces0(ref scanner, result, out _)
                         )
                             members.Add(member);
-                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                     }
                     if (scanner.IsEof)
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0043, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
-                    parsed = new CBuffer(identifiers, scanner.GetLocation(position..scanner.Position))
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0043, scanner[scanner.Position], scanner.Memory));
+                    parsed = new CBuffer(identifiers, scanner[position..scanner.Position])
                     {
                         Members = members
                     };
@@ -116,11 +116,11 @@ public record struct BufferParsers : IParser<ShaderBuffer>
                             && CommonParsers.Spaces0(ref scanner, result, out _)
                         )
                             members.Add(member);
-                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                     }
                     if (scanner.IsEof)
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0043, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
-                    parsed = new RGroup(identifiers, scanner.GetLocation(position..scanner.Position))
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0043, scanner[scanner.Position], scanner.Memory));
+                    parsed = new RGroup(identifiers, scanner[position..scanner.Position])
                     {
                         Members = members
                     };
@@ -154,7 +154,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
             && CommonParsers.FollowedBy(ref scanner, Tokens.Set(";"), withSpaces: true, advance: true)
         )
         {
-            parsed = new ShaderMember(typename, identifier, null, true, scanner.GetLocation(position..scanner.Position), isStage, streamKind, arraySizes: arraySizes);
+            parsed = new ShaderMember(typename, identifier, null, true, scanner[position..scanner.Position], isStage, streamKind, arraySizes: arraySizes);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

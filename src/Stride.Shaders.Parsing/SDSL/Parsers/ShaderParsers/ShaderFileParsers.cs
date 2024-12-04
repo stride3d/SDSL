@@ -57,7 +57,7 @@ public record struct ShaderFileParser : IParser<ShaderFile>
                 file.RootDeclarations.Add(uns);
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
         parsed = file;
         return true;
@@ -75,14 +75,14 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
         var position = scanner.Position;
         if (Tokens.Literal("using", ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
-            parsed = new(scanner.GetLocation(..));
+            parsed = new(scanner[..]);
             do
             {
                 if (CommonParsers.FollowedByDel(ref scanner, result, LiteralsParser.Identifier, out Identifier identifier, withSpaces: true, advance: true))
                 {
                     parsed.NamespacePath.Add(identifier);
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
             }
             while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true));
 
@@ -90,10 +90,10 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
             
             if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
-                parsed.Info = scanner.GetLocation(position..scanner.Position);
+                parsed.Info = scanner[position..scanner.Position];
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0013, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -120,7 +120,7 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
 
                 if (LiteralsParser.Identifier(ref scanner, result, out var identifier))
                     ns.NamespacePath.Add(identifier);
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0017, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory));
 
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
@@ -147,12 +147,12 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
                     else if (ParamsParsers.Params(ref scanner, result, out var p) && CommonParsers.Spaces0(ref scanner, result, out _))
                         ns.Declarations.Add(p);
                     else
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0039, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0039, scanner[scanner.Position], scanner.Memory));
                 }
             }
             else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
 
-            ns.Info = scanner.GetLocation(position, scanner.Position - position);
+            ns.Info = scanner[position..scanner.Position];
             parsed = ns;
             return true;
         }

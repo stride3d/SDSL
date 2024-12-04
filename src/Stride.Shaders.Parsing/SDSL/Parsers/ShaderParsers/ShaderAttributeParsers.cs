@@ -23,7 +23,7 @@ public record struct ShaderAttributeListParser : IParser<ShaderAttributeList>
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
-            parsed = new ShaderAttributeList(attributeList, scanner.GetLocation(position..));
+            parsed = new ShaderAttributeList(attributeList, scanner[position..]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -53,15 +53,15 @@ public record struct AttributeParser : IParser<ShaderAttribute>
                     CommonParsers.Spaces0(ref scanner, result, out _);
                     if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _) && Tokens.Char(']', ref scanner, advance: true))
                     {
-                        parsed = new AnyShaderAttribute(identifier, scanner.GetLocation(position..), values.Values);
+                        parsed = new AnyShaderAttribute(identifier, scanner[position..], values.Values);
                         return true;
                     }
-                    else return CommonParsers.Exit(ref scanner, result, out parsed, position, new("Badly formatted attribute", scanner.GetErrorLocation(position), scanner.Memory));
+                    else return CommonParsers.Exit(ref scanner, result, out parsed, position, new("Badly formatted attribute", scanner[position], scanner.Memory));
                 }
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (!Tokens.Char(']', ref scanner, advance: true))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0019, scanner.GetErrorLocation(position), scanner.Memory));
-                parsed = new AnyShaderAttribute(identifier, scanner.GetLocation(position..));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0019, scanner[position], scanner.Memory));
+                parsed = new AnyShaderAttribute(identifier, scanner[position..]);
                 return true;
             }
             return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

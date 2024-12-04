@@ -66,14 +66,14 @@ public record struct DirectiveTernaryParser : IParser<Expression>
             if (
                 Tokens.Char('?', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && DirectiveExpressionParser.Expression(ref scanner, result, out var left, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+                && DirectiveExpressionParser.Expression(ref scanner, result, out var left, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && Tokens.Char(':', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && DirectiveExpressionParser.Expression(ref scanner, result, out var right, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+                && DirectiveExpressionParser.Expression(ref scanner, result, out var right, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
             )
             {
-                parsed = new TernaryExpression(parsed, left, right, scanner.GetLocation(position, scanner.Position - position));
+                parsed = new TernaryExpression(parsed, left, right, scanner[position..scanner.Position]);
                 return true;
             }
             else
@@ -110,12 +110,12 @@ public record struct DirectiveOrParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.Or(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.And(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -159,12 +159,12 @@ public record struct DirectiveAndParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.BAnd(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.BOr(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -211,12 +211,12 @@ public record struct DirectiveBitwiseOrParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.BOr(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.XOr(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -260,12 +260,12 @@ public record struct DirectiveBitwiseXOrParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.XOr(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.BAnd(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -309,12 +309,12 @@ public record struct DirectiveBitwiseAndParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.BAnd(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.Equality(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -361,12 +361,12 @@ public record struct DirectiveEqualityParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.Equality(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.Relation(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -413,12 +413,12 @@ public record struct DirectiveRelationalParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.Relation(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.Shift(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -435,12 +435,12 @@ public record struct DirectiveRelationalParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.Relation(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.Shift(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -485,12 +485,12 @@ public record struct DirectiveBitwiseShiftParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.Shift(ref scanner, result, out var shift))
                 {
-                    parsed = new BinaryExpression(left, op, shift, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, shift, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.Add(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -535,12 +535,12 @@ public record struct DirectiveAdditionParser() : IParser<Expression>
                 CommonParsers.Spaces0(ref scanner, result, out _, onlyWhiteSpace: true);
                 if (DirectiveExpressionParser.Add(ref scanner, result, out var add))
                 {
-                    parsed = new BinaryExpression(left, op, add, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, add, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveExpressionParser.Mul(ref scanner, result, out var mul))
                 {
-                    parsed = new BinaryExpression(left, op, mul, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, mul, scanner[position..scanner.Position]);
                     return true;
                 }
                 else
@@ -585,12 +585,12 @@ public record struct DirectiveMultiplicationParser() : IParser<Expression>
 
                 if (DirectiveExpressionParser.Mul(ref scanner, result, out var expression))
                 {
-                    parsed = new BinaryExpression(left, op, expression, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, expression, scanner[position..scanner.Position]);
                     return true;
                 }
                 else if (DirectiveUnaryParsers.Prefix(ref scanner, result, out var right))
                 {
-                    parsed = new BinaryExpression(left, op, right, scanner.GetLocation(position, scanner.Position - position));
+                    parsed = new BinaryExpression(left, op, right, scanner[position..scanner.Position]);
                     return true;
                 }
                 scanner.Position = position;

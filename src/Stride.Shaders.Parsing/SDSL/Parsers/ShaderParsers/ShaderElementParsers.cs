@@ -126,7 +126,7 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         )
         {
             type.ArraySize = arraySize;
-            parsed = new ShaderVariable(type, name, value, scanner.GetLocation(position..scanner.Position))
+            parsed = new ShaderVariable(type, name, value, scanner[position..scanner.Position])
             {
                 StorageClass = storageClass.ToStorageClass(),
                 TypeModifier = typemodifier.ToTypeModifier()
@@ -152,7 +152,7 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
             && Tokens.Char(';', ref scanner, advance: true)
         )
         {
-            parsed = new TypeDef(type, name, scanner.GetLocation(position..scanner.Position));
+            parsed = new TypeDef(type, name, scanner[position..scanner.Position]);
             return true;
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

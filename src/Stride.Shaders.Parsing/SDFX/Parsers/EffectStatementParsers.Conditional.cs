@@ -14,16 +14,16 @@ public record struct EffectControlsParser : IParser<EffectControl>
         var position = scanner.Position;
         if (If(ref scanner, result, out var ifstatement, orError) && CommonParsers.Spaces0(ref scanner, result, out _))
         {
-            parsed = new(ifstatement, scanner.GetLocation(..));
+            parsed = new(ifstatement, scanner[..]);
             while(ElseIf(ref scanner, result, out var elseif, orError) && CommonParsers.Spaces0(ref scanner, result, out _))
                 parsed.ElseIfs.Add(elseif);
             if (Else(ref scanner, result, out var elseStatement, orError))
                 parsed.Else = elseStatement;
-            parsed.Info = scanner.GetLocation(position..scanner.Position);
+            parsed.Info = scanner[position..scanner.Position];
             return true;
         }
         else if(Tokens.Literal("else ", ref scanner))
-            return CommonParsers.Exit(ref scanner, result, out parsed, position, new("Else block should be preceeded by If statement", scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            return CommonParsers.Exit(ref scanner, result, out parsed, position, new("Else block should be preceeded by If statement", scanner[scanner.Position], scanner.Memory));
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
@@ -54,19 +54,19 @@ public record struct IfStatementParser : IParser<If>
             Tokens.Literal("if", ref scanner, advance: true)
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
             if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
-                if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
+                if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
                 {
-                    parsed = new(condition, statement, scanner.GetLocation(position..scanner.Position));
+                    parsed = new(condition, statement, scanner[position..scanner.Position]);
                     return true;
                 }
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -85,19 +85,19 @@ public record struct ElseIfStatementParser : IParser<ElseIf>
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && Tokens.Char('(', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
             if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
-                if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
+                if (EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
                 {
-                    parsed = new(condition, statement, scanner.GetLocation(position..scanner.Position));
+                    parsed = new(condition, statement, scanner[position..scanner.Position]);
                     return true;
                 }
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -112,10 +112,10 @@ public record struct ElseStatementParser : IParser<Else>
         if (
             Tokens.Literal("else", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner.GetErrorLocation(scanner.Position), scanner.Memory))
+            && EffectStatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory))
         )
         {
-            parsed = new(statement, scanner.GetLocation(position..scanner.Position));
+            parsed = new(statement, scanner[position..scanner.Position]);
             return true;
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

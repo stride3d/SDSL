@@ -46,7 +46,7 @@ public record struct ParameterDeclarationsParser : IParser<ShaderParameterDeclar
             else return CommonParsers.Exit(ref scanner, result, out parsed, position);
         }
         while (!scanner.IsEof && Tokens.Char(',', ref scanner, advance: true));
-        parsed = new(scanner.GetLocation(position..scanner.Position)) { Parameters = parameters };
+        parsed = new(scanner[position..scanner.Position]) { Parameters = parameters };
         return true;
     }
 }
@@ -65,11 +65,11 @@ public record struct ParameterListParser : IParser<ShaderExpressionList>
                 values.Add(str);
             else 
                 break;
-            // else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            // else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
         while (!scanner.IsEof && CommonParsers.FollowedBy(ref scanner, Tokens.Char(','), advance: true));
 
-        parsed = new(scanner.GetLocation(position..scanner.Position))
+        parsed = new(scanner[position..scanner.Position])
         {
             Values = values
         };
@@ -84,13 +84,13 @@ public record struct GenericsListParser : IParser<ShaderExpressionList>
         var position = scanner.Position;
         if (ParameterParsers.GenericsValue(ref scanner, result, out var parameter))
         {
-            parsed = new(scanner.GetLocation(position..scanner.Position));
+            parsed = new(scanner[position..scanner.Position]);
             parsed.Values.Add(parameter);
             CommonParsers.Spaces0(ref scanner, result, out _);
             while (Tokens.Char(',', ref scanner, advance: true))
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                if (ParameterParsers.GenericsValue(ref scanner, result, out var other, new("Expecting at least one generics value", scanner.GetErrorLocation(scanner.Position), scanner.Memory)))
+                if (ParameterParsers.GenericsValue(ref scanner, result, out var other, new("Expecting at least one generics value", scanner[scanner.Position], scanner.Memory)))
                 {
                     parsed.Values.Add(other);
                     CommonParsers.Spaces0(ref scanner, result, out _);

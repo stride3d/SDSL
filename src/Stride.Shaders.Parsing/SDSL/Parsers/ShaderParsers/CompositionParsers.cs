@@ -20,15 +20,15 @@ public record struct CompositionParser() : IParser<ShaderCompose>
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (!Tokens.Char(';', ref scanner, advance: true))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner.GetErrorLocation(position), scanner.Memory));
-                parsed = new(name, mixin, true, scanner.GetLocation(position..))
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner[position], scanner.Memory));
+                parsed = new(name, mixin, true, scanner[position..])
                 {
                     Attributes = hasAttributes ? attributes.Attributes : null!,
                     IsStaged = isStaged
                 };
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0032, scanner.GetErrorLocation(scanner.Position), scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0032, scanner[scanner.Position], scanner.Memory));
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }

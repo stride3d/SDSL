@@ -1,8 +1,7 @@
-namespace Stride.Shaders.Parsing.Analysis;
-
+﻿namespace Stride.Shaders.Core;
 
 public interface ISymbolProvider
 {
     public Dictionary<string, SymbolType> DeclaredTypes { get; }
-    public Dictionary<string, Symbol> Symbols { get; }
+    public Dictionary<string, Symbol> RootSymbols { get; }
 }

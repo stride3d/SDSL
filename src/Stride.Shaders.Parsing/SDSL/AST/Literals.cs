@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Numerics;
+using System.Text;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -117,7 +118,21 @@ public class TypeName(string name, TextLocation info, bool isArray) : Literal(in
 
     public override string ToString()
     {
-        return $"{Name}";
+        var builder = new StringBuilder();
+        builder.Append(Name);
+        if(Generics.Count > 0)
+        {
+            builder.Append('<');
+            foreach(var g in Generics)
+                builder.Append(g.ToString()).Append(", ");
+            builder.Append('>');
+        }
+        if(ArraySize != null)
+            foreach(var s in ArraySize)
+                builder.Append('[').Append(s.ToString()).Append(']');
+
+        return builder.ToString();
+        
     }
 
     public static implicit operator string(TypeName tn) => tn.Name;

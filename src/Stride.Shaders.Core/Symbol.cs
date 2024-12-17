@@ -1,6 +1,4 @@
-using Stride.Shaders.Parsing.SDSL.AST;
-
-namespace Stride.Shaders.Parsing.Analysis;
+namespace Stride.Shaders.Core;
 
 
 

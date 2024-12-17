@@ -1,4 +1,5 @@
 using System.Text;
+using Stride.Shaders.Core;
 
 namespace Stride.Shaders.Parsing;
 
@@ -8,7 +9,7 @@ public abstract class Node(TextLocation info)
 }
 public class ValueNode(TextLocation info) : Node(info)
 {
-    public string? Type { get; set; } = null;
+    public SymbolType? Type { get; set; } = null;
 }
 public class NoNode() : Node(new());
 

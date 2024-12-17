@@ -5,6 +5,7 @@ using Silk.NET.Shaderc;
 using Silk.NET.SPIRV.Cross;
 using Stride.Shaders.Compilers;
 using Stride.Shaders.Parsing;
+using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Parsing.SDSL;
 
 namespace Stride.Shaders.Experiments;
@@ -80,7 +81,7 @@ public static class Examples
 
     public static void ParseSDSL()
     {
-        var text = MonoGamePreProcessor.OpenAndRun("./assets/Stride/SDSL/ComputeColorTextureScaledOffsetDynamicSamplerRandomUV.sdsl");
+        var text = MonoGamePreProcessor.OpenAndRun("./assets/SDSL/Test.sdsl");
         var parsed = SDSLParser.Parse(text);
         Console.WriteLine(parsed.AST);
         if(parsed.Errors.Count > 0)
@@ -88,6 +89,11 @@ public static class Examples
             Console.ForegroundColor = ConsoleColor.Red;
             foreach (var e in parsed.Errors)
                 Console.WriteLine(e);
+        }
+        else
+        {
+            var table = new SymbolTable();
+            table.Process(parsed.AST!);
         }
     }
 

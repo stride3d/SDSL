@@ -64,7 +64,10 @@ public sealed class ShaderMember(TypeName type, Identifier name, Expression? ini
 
     public override string ToString()
     {
-        return $"[{string.Join(" ", Attributes.Select(x => x.ToString()))}]\n{Type} {Name}";
+        if(Attributes != null)
+            return $"[{string.Join(" ", Attributes.Select(x => x.ToString()))}]\n{Type} {Name}";
+        else
+            return $"{Type} {Name}";
     }
 }
 

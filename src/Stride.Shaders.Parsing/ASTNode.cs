@@ -9,7 +9,7 @@ public abstract class Node(TextLocation info)
 }
 public class ValueNode(TextLocation info) : Node(info)
 {
-    public SymbolType? Type { get; set; } = null;
+    public virtual SymbolType? Type { get; set; } = null;
 }
 public class NoNode() : Node(new());
 

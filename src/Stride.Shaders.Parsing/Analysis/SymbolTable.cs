@@ -44,15 +44,17 @@ public partial class SymbolTable : ISymbolProvider
         {
             if (member is ShaderMethod method)
             {
-                var sym = method.ReturnType.ToSymbol();
+                var sym = method.ReturnTypeName.ToSymbol();
                 DeclaredTypes.TryAdd(sym.ToString(), sym);
                 RootSymbols.Add(method.Name, new(method.Name, sym, SymbolKind.Method));
+                method.ReturnType = sym;
             }
             else if (member is ShaderMember variable)
             {
-                var sym = variable.Type.ToSymbol();
+                var sym = variable.TypeName.ToSymbol();
                 DeclaredTypes.TryAdd(sym.ToString(), sym);
                 RootSymbols.Add(variable.Name, new(variable.Name, sym, SymbolKind.Variable));
+                variable.Type = sym;
             }
         }
     }

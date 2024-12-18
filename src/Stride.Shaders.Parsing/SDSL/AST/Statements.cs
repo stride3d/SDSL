@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Text;
+using Stride.Shaders.Core;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -7,11 +8,13 @@ public abstract class Statement(TextLocation info) : ValueNode(info);
 
 public class EmptyStatement(TextLocation info) : Statement(info)
 {
+    public override SymbolType? Type { get => Scalar.From("void"); set { } }
     public override string ToString() => ";";
 }
 
 public class ExpressionStatement(Expression expression, TextLocation info) : Statement(info)
 {
+    public override SymbolType? Type { get => Expression.Type; set { } }
     public Expression Expression { get; set; } = expression;
     public override string ToString()
     {
@@ -21,6 +24,7 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
 
 public class Return(TextLocation info, Expression? expression = null) : Statement(info)
 {
+    public override SymbolType? Type { get => Value?.Type ?? Scalar.From("void"); set { } }
     public Expression? Value { get; set; } = expression;
 
     public override string ToString()

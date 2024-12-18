@@ -1,7 +1,12 @@
+using Stride.Shaders.Core;
+
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
 
-public abstract class ShaderElement(TextLocation info) : Node(info);
+public abstract class ShaderElement(TextLocation info) : Node(info)
+{
+    public SymbolType? Type { get; set; }
+}
 
 
 public enum StorageClass
@@ -94,25 +99,25 @@ public static class ShaderVariableInformationExtensions
 
 public class ShaderVariable(TypeName type, Identifier name, Expression? value, TextLocation info) : ShaderElement(info)
 {
-    public TypeName Type { get; set; } = type;
+    public TypeName TypeName { get; set; } = type;
     public Identifier Name { get; set; } = name;
     public Expression? Value { get; set; } = value;
     public StorageClass StorageClass { get; set; } = StorageClass.None;
     public TypeModifier TypeModifier { get; set; } = TypeModifier.None;
     public override string ToString()
     {
-        return $"{(StorageClass != StorageClass.None ? $"{StorageClass} " :"")}{(TypeModifier != TypeModifier.None ? $"{TypeModifier} " :"")}{Type} {Name} = {Value}";
+        return $"{(StorageClass != StorageClass.None ? $"{StorageClass} " :"")}{(TypeModifier != TypeModifier.None ? $"{TypeModifier} " :"")}{TypeName} {Name} = {Value}";
     }
 }
 
 public class TypeDef(TypeName type, Identifier name, TextLocation info) : ShaderElement(info)
 {
     public Identifier Name { get; set; } = name;
-    public TypeName Type { get; set; } = type;
+    public TypeName TypeName { get; set; } = type;
 
     public override string ToString()
     {
-        return $"typedef {Type} {Name}";
+        return $"typedef {TypeName} {Name}";
     }
 }
 

@@ -1,10 +1,36 @@
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.VisualBasic;
 
 namespace Stride.Shaders.Core;
 
 
 
-public abstract record SymbolType();
+public abstract record SymbolType()
+{
+    public static bool TryGetNumeric(string name, out SymbolType? result)
+    {
+        if(Scalar.Types.TryGetValue(name, out var s))
+        {
+            result = s;
+            return true;
+        }
+        else if(Vector.Types.TryGetValue(name, out var v))
+        {
+            result = v;
+            return true;
+        }
+        else if(Matrix.Types.TryGetValue(name, out var m))
+        {
+            result = m;
+            return true;
+        }
+        else
+        {
+            result = null;
+            return true;
+        }
+    }
+}
 
 public sealed record Undefined(string TypeName) : SymbolType()
 {

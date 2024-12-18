@@ -1,320 +1,285 @@
+using System.Collections.Frozen;
+
 namespace Stride.Shaders.Core;
 
 
 public partial record Scalar
 {
-    public static Scalar Bool { get; } = new("bool");
-    public static Scalar Byte { get; } = new("byte");
-    public static Scalar SByte { get; } = new("sbyte");
-    public static Scalar Short { get; } = new("short");
-    public static Scalar UShort { get; } = new("ushort");
-    public static Scalar Half { get; } = new("half");
-    public static Scalar Int { get; } = new("int");
-    public static Scalar UInt { get; } = new("uint");
-    public static Scalar Float { get; } = new("float");
-    public static Scalar Long { get; } = new("long");
-    public static Scalar ULong { get; } = new("ulong");
-    public static Scalar Double { get; } = new("double");
+    public static Scalar From(string s) => Types[s];
+    public static FrozenDictionary<string, Scalar> Types { get; } = FrozenDictionary.ToFrozenDictionary(
+        [
+            new KeyValuePair<string, Scalar>("void", new("void")),
+            new("bool", new("bool")),
+            new("byte", new("byte")),
+            new("sbyte", new("sbyte")),
+            new("short", new("short")),
+            new("ushort", new("ushort")),
+            new("half", new("half")),
+            new("int", new("int")),
+            new("uint", new("uint")),
+            new("float", new("float")),
+            new("long", new("long")),
+            new("ulong", new("ulong")),
+            new("double", new("double"))
+        ]
+    );
 }
 
 public partial record Vector
 {
-    public static Vector Bool1 { get; } = new(Scalar.Bool, 1);
-    public static Vector Bool2 { get; } = new(Scalar.Bool, 2);
-    public static Vector Bool3 { get; } = new(Scalar.Bool, 3);
-    public static Vector Bool4 { get; } = new(Scalar.Bool, 4);
-
-    public static Vector Byte1 { get; } = new(Scalar.Byte, 1);
-    public static Vector Byte2 { get; } = new(Scalar.Byte, 2);
-    public static Vector Byte3 { get; } = new(Scalar.Byte, 3);
-    public static Vector Byte4 { get; } = new(Scalar.Byte, 4);
-
-    public static Vector SByte1 { get; } = new(Scalar.SByte, 1);
-    public static Vector SByte2 { get; } = new(Scalar.SByte, 2);
-    public static Vector SByte3 { get; } = new(Scalar.SByte, 3);
-    public static Vector SByte4 { get; } = new(Scalar.SByte, 4);
-
-    public static Vector Short1 { get; } = new(Scalar.Short, 1);
-    public static Vector Short2 { get; } = new(Scalar.Short, 2);
-    public static Vector Short3 { get; } = new(Scalar.Short, 3);
-    public static Vector Short4 { get; } = new(Scalar.Short, 4);
-
-    public static Vector UShort1 { get; } = new(Scalar.UShort, 1);
-    public static Vector UShort2 { get; } = new(Scalar.UShort, 2);
-    public static Vector UShort3 { get; } = new(Scalar.UShort, 3);
-    public static Vector UShort4 { get; } = new(Scalar.UShort, 4);
-
-    public static Vector Half1 { get; } = new(Scalar.Half, 1);
-    public static Vector Half2 { get; } = new(Scalar.Half, 2);
-    public static Vector Half3 { get; } = new(Scalar.Half, 3);
-    public static Vector Half4 { get; } = new(Scalar.Half, 4);
-
-    public static Vector Int1 { get; } = new(Scalar.Int, 1);
-    public static Vector Int2 { get; } = new(Scalar.Int, 2);
-    public static Vector Int3 { get; } = new(Scalar.Int, 3);
-    public static Vector Int4 { get; } = new(Scalar.Int, 4);
-
-    public static Vector UInt1 { get; } = new(Scalar.UInt, 1);
-    public static Vector UInt2 { get; } = new(Scalar.UInt, 2);
-    public static Vector UInt3 { get; } = new(Scalar.UInt, 3);
-    public static Vector UInt4 { get; } = new(Scalar.UInt, 4);
-
-    public static Vector Float1 { get; } = new(Scalar.Float, 1);
-    public static Vector Float2 { get; } = new(Scalar.Float, 2);
-    public static Vector Float3 { get; } = new(Scalar.Float, 3);
-    public static Vector Float4 { get; } = new(Scalar.Float, 4);
-
-    public static Vector Double1 { get; } = new(Scalar.Double, 1);
-    public static Vector Double2 { get; } = new(Scalar.Double, 2);
-    public static Vector Double3 { get; } = new(Scalar.Double, 3);
-    public static Vector Double4 { get; } = new(Scalar.Double, 4);
+    public static Vector From(string s) => Types[s];
+    public static FrozenDictionary<string, Vector> Types { get; } = FrozenDictionary.ToFrozenDictionary(
+        [
+            new KeyValuePair<string, Vector>("bool", new(Scalar.From("bool"),1)),
+            new ("bool2", new(Scalar.From("bool"),2)),
+            new ("bool3", new(Scalar.From("bool"),3)),
+            new ("bool4", new(Scalar.From("bool"),4)),
+            new ("byte" , new(Scalar.From("byte"),1)),
+            new ("byte2", new(Scalar.From("byte"),2)),
+            new ("byte3", new(Scalar.From("byte"),3)),
+            new ("byte4", new(Scalar.From("byte"),4)),
+            new ("sbyte" , new(Scalar.From("sbyte"),1)),
+            new ("sbyte2", new(Scalar.From("sbyte"),2)),
+            new ("sbyte3", new(Scalar.From("sbyte"),3)),
+            new ("sbyte4", new(Scalar.From("sbyte"),4)),
+            new ("short" , new(Scalar.From("short"),1)),
+            new ("short2", new(Scalar.From("short"),2)),
+            new ("short3", new(Scalar.From("short"),3)),
+            new ("short4", new(Scalar.From("short"),4)),
+            new ("ushort" , new(Scalar.From("ushort"),1)),
+            new ("ushort2", new(Scalar.From("ushort"),2)),
+            new ("ushort3", new(Scalar.From("ushort"),3)),
+            new ("ushort4", new(Scalar.From("ushort"),4)),
+            new ("half" , new(Scalar.From("half"),1)),
+            new ("half2", new(Scalar.From("half"),2)),
+            new ("half3", new(Scalar.From("half"),3)),
+            new ("half4", new(Scalar.From("half"),4)),
+            new ("int" , new(Scalar.From("int"),1)),
+            new ("int2", new(Scalar.From("int"),2)),
+            new ("int3", new(Scalar.From("int"),3)),
+            new ("int4", new(Scalar.From("int"),4)),
+            new ("uint" , new(Scalar.From("uint"),1)),
+            new ("uint2", new(Scalar.From("uint"),2)),
+            new ("uint3", new(Scalar.From("uint"),3)),
+            new ("uint4", new(Scalar.From("uint"),4)),
+            new ("float" , new(Scalar.From("float"),1)),
+            new ("float2", new(Scalar.From("float"),2)),
+            new ("float3", new(Scalar.From("float"),3)),
+            new ("float4", new(Scalar.From("float"),4)),
+            new ("long" , new(Scalar.From("long"),1)),
+            new ("long2", new(Scalar.From("long"),2)),
+            new ("long3", new(Scalar.From("long"),3)),
+            new ("long4", new(Scalar.From("long"),4)),
+            new ("ulong" , new(Scalar.From("ulong"),1)),
+            new ("ulong2", new(Scalar.From("ulong"),2)),
+            new ("ulong3", new(Scalar.From("ulong"),3)),
+            new ("ulong4", new(Scalar.From("ulong"),4)),
+            new ("double" , new(Scalar.From("double"),1)),
+            new ("double2", new(Scalar.From("double"),2)),
+            new ("double3", new(Scalar.From("double"),3)),
+            new ("double4", new(Scalar.From("double"),4)),
+        ]
+    );
 }
 
 
 public partial record Matrix
 {
-    public static Matrix Bool1x1 { get; } = new(Scalar.Bool, 1, 1);
-    public static Matrix Bool2x1 { get; } = new(Scalar.Bool, 2, 1);
-    public static Matrix Bool3x1 { get; } = new(Scalar.Bool, 3, 1);
-    public static Matrix Bool4x1 { get; } = new(Scalar.Bool, 4, 1);
-
-    public static Matrix Bool1x2 { get; } = new(Scalar.Bool, 1, 2);
-    public static Matrix Bool2x2 { get; } = new(Scalar.Bool, 2, 2);
-    public static Matrix Bool3x2 { get; } = new(Scalar.Bool, 3, 2);
-    public static Matrix Bool4x2 { get; } = new(Scalar.Bool, 4, 2);
-
-    public static Matrix Bool1x3 { get; } = new(Scalar.Bool, 1, 3);
-    public static Matrix Bool2x3 { get; } = new(Scalar.Bool, 2, 3);
-    public static Matrix Bool3x3 { get; } = new(Scalar.Bool, 3, 3);
-    public static Matrix Bool4x3 { get; } = new(Scalar.Bool, 4, 3);
-
-    public static Matrix Bool1x4 { get; } = new(Scalar.Bool, 1, 4);
-    public static Matrix Bool2x4 { get; } = new(Scalar.Bool, 2, 4);
-    public static Matrix Bool3x4 { get; } = new(Scalar.Bool, 3, 4);
-    public static Matrix Bool4x4 { get; } = new(Scalar.Bool, 4, 4);
-
-
-
-    public static Matrix Byte1x1 { get; } = new(Scalar.Byte, 1, 1);
-    public static Matrix Byte2x1 { get; } = new(Scalar.Byte, 2, 1);
-    public static Matrix Byte3x1 { get; } = new(Scalar.Byte, 3, 1);
-    public static Matrix Byte4x1 { get; } = new(Scalar.Byte, 4, 1);
-
-    public static Matrix Byte1x2 { get; } = new(Scalar.Byte, 1, 2);
-    public static Matrix Byte2x2 { get; } = new(Scalar.Byte, 2, 2);
-    public static Matrix Byte3x2 { get; } = new(Scalar.Byte, 3, 2);
-    public static Matrix Byte4x2 { get; } = new(Scalar.Byte, 4, 2);
-
-    public static Matrix Byte1x3 { get; } = new(Scalar.Byte, 1, 3);
-    public static Matrix Byte2x3 { get; } = new(Scalar.Byte, 2, 3);
-    public static Matrix Byte3x3 { get; } = new(Scalar.Byte, 3, 3);
-    public static Matrix Byte4x3 { get; } = new(Scalar.Byte, 4, 3);
-
-    public static Matrix Byte1x4 { get; } = new(Scalar.Byte, 1, 4);
-    public static Matrix Byte2x4 { get; } = new(Scalar.Byte, 2, 4);
-    public static Matrix Byte3x4 { get; } = new(Scalar.Byte, 3, 4);
-    public static Matrix Byte4x4 { get; } = new(Scalar.Byte, 4, 4);
-
-    public static Matrix SByte1x1 { get; } = new(Scalar.SByte, 1, 1);
-    public static Matrix SByte2x1 { get; } = new(Scalar.SByte, 2, 1);
-    public static Matrix SByte3x1 { get; } = new(Scalar.SByte, 3, 1);
-    public static Matrix SByte4x1 { get; } = new(Scalar.SByte, 4, 1);
-
-    public static Matrix SByte1x2 { get; } = new(Scalar.SByte, 1, 2);
-    public static Matrix SByte2x2 { get; } = new(Scalar.SByte, 2, 2);
-    public static Matrix SByte3x2 { get; } = new(Scalar.SByte, 3, 2);
-    public static Matrix SByte4x2 { get; } = new(Scalar.SByte, 4, 2);
-
-    public static Matrix SByte1x3 { get; } = new(Scalar.SByte, 1, 3);
-    public static Matrix SByte2x3 { get; } = new(Scalar.SByte, 2, 3);
-    public static Matrix SByte3x3 { get; } = new(Scalar.SByte, 3, 3);
-    public static Matrix SByte4x3 { get; } = new(Scalar.SByte, 4, 3);
-
-    public static Matrix SByte1x4 { get; } = new(Scalar.SByte, 1, 4);
-    public static Matrix SByte2x4 { get; } = new(Scalar.SByte, 2, 4);
-    public static Matrix SByte3x4 { get; } = new(Scalar.SByte, 3, 4);
-    public static Matrix SByte4x4 { get; } = new(Scalar.SByte, 4, 4);
-
-    public static Matrix Short1x1 { get; } = new(Scalar.Short, 1, 1);
-    public static Matrix Short2x1 { get; } = new(Scalar.Short, 2, 1);
-    public static Matrix Short3x1 { get; } = new(Scalar.Short, 3, 1);
-    public static Matrix Short4x1 { get; } = new(Scalar.Short, 4, 1);
-
-    public static Matrix Short1x2 { get; } = new(Scalar.Short, 1, 2);
-    public static Matrix Short2x2 { get; } = new(Scalar.Short, 2, 2);
-    public static Matrix Short3x2 { get; } = new(Scalar.Short, 3, 2);
-    public static Matrix Short4x2 { get; } = new(Scalar.Short, 4, 2);
-
-    public static Matrix Short1x3 { get; } = new(Scalar.Short, 1, 3);
-    public static Matrix Short2x3 { get; } = new(Scalar.Short, 2, 3);
-    public static Matrix Short3x3 { get; } = new(Scalar.Short, 3, 3);
-    public static Matrix Short4x3 { get; } = new(Scalar.Short, 4, 3);
-
-    public static Matrix Short1x4 { get; } = new(Scalar.Short, 1, 4);
-    public static Matrix Short2x4 { get; } = new(Scalar.Short, 2, 4);
-    public static Matrix Short3x4 { get; } = new(Scalar.Short, 3, 4);
-    public static Matrix Short4x4 { get; } = new(Scalar.Short, 4, 4);
-
-    public static Matrix UShort1x1 { get; } = new(Scalar.UShort, 1, 1);
-    public static Matrix UShort2x1 { get; } = new(Scalar.UShort, 2, 1);
-    public static Matrix UShort3x1 { get; } = new(Scalar.UShort, 3, 1);
-    public static Matrix UShort4x1 { get; } = new(Scalar.UShort, 4, 1);
-
-    public static Matrix UShort1x2 { get; } = new(Scalar.UShort, 1, 2);
-    public static Matrix UShort2x2 { get; } = new(Scalar.UShort, 2, 2);
-    public static Matrix UShort3x2 { get; } = new(Scalar.UShort, 3, 2);
-    public static Matrix UShort4x2 { get; } = new(Scalar.UShort, 4, 2);
-
-    public static Matrix UShort1x3 { get; } = new(Scalar.UShort, 1, 3);
-    public static Matrix UShort2x3 { get; } = new(Scalar.UShort, 2, 3);
-    public static Matrix UShort3x3 { get; } = new(Scalar.UShort, 3, 3);
-    public static Matrix UShort4x3 { get; } = new(Scalar.UShort, 4, 3);
-
-    public static Matrix UShort1x4 { get; } = new(Scalar.UShort, 1, 4);
-    public static Matrix UShort2x4 { get; } = new(Scalar.UShort, 2, 4);
-    public static Matrix UShort3x4 { get; } = new(Scalar.UShort, 3, 4);
-    public static Matrix UShort4x4 { get; } = new(Scalar.UShort, 4, 4);
-
-    public static Matrix Half1x1 { get; } = new(Scalar.Half, 1, 1);
-    public static Matrix Half2x1 { get; } = new(Scalar.Half, 2, 1);
-    public static Matrix Half3x1 { get; } = new(Scalar.Half, 3, 1);
-    public static Matrix Half4x1 { get; } = new(Scalar.Half, 4, 1);
-
-    public static Matrix Half1x2 { get; } = new(Scalar.Half, 1, 2);
-    public static Matrix Half2x2 { get; } = new(Scalar.Half, 2, 2);
-    public static Matrix Half3x2 { get; } = new(Scalar.Half, 3, 2);
-    public static Matrix Half4x2 { get; } = new(Scalar.Half, 4, 2);
-
-    public static Matrix Half1x3 { get; } = new(Scalar.Half, 1, 3);
-    public static Matrix Half2x3 { get; } = new(Scalar.Half, 2, 3);
-    public static Matrix Half3x3 { get; } = new(Scalar.Half, 3, 3);
-    public static Matrix Half4x3 { get; } = new(Scalar.Half, 4, 3);
-
-    public static Matrix Half1x4 { get; } = new(Scalar.Half, 1, 4);
-    public static Matrix Half2x4 { get; } = new(Scalar.Half, 2, 4);
-    public static Matrix Half3x4 { get; } = new(Scalar.Half, 3, 4);
-    public static Matrix Half4x4 { get; } = new(Scalar.Half, 4, 4);
-
-    public static Matrix Int1x1 { get; } = new(Scalar.Int, 1, 1);
-    public static Matrix Int2x1 { get; } = new(Scalar.Int, 2, 1);
-    public static Matrix Int3x1 { get; } = new(Scalar.Int, 3, 1);
-    public static Matrix Int4x1 { get; } = new(Scalar.Int, 4, 1);
-
-    public static Matrix Int1x2 { get; } = new(Scalar.Int, 1, 2);
-    public static Matrix Int2x2 { get; } = new(Scalar.Int, 2, 2);
-    public static Matrix Int3x2 { get; } = new(Scalar.Int, 3, 2);
-    public static Matrix Int4x2 { get; } = new(Scalar.Int, 4, 2);
-
-    public static Matrix Int1x3 { get; } = new(Scalar.Int, 1, 3);
-    public static Matrix Int2x3 { get; } = new(Scalar.Int, 2, 3);
-    public static Matrix Int3x3 { get; } = new(Scalar.Int, 3, 3);
-    public static Matrix Int4x3 { get; } = new(Scalar.Int, 4, 3);
-
-    public static Matrix Int1x4 { get; } = new(Scalar.Int, 1, 4);
-    public static Matrix Int2x4 { get; } = new(Scalar.Int, 2, 4);
-    public static Matrix Int3x4 { get; } = new(Scalar.Int, 3, 4);
-    public static Matrix Int4x4 { get; } = new(Scalar.Int, 4, 4);
-
-    public static Matrix UInt1x1 { get; } = new(Scalar.UInt, 1, 1);
-    public static Matrix UInt2x1 { get; } = new(Scalar.UInt, 2, 1);
-    public static Matrix UInt3x1 { get; } = new(Scalar.UInt, 3, 1);
-    public static Matrix UInt4x1 { get; } = new(Scalar.UInt, 4, 1);
-
-    public static Matrix UInt1x2 { get; } = new(Scalar.UInt, 1, 2);
-    public static Matrix UInt2x2 { get; } = new(Scalar.UInt, 2, 2);
-    public static Matrix UInt3x2 { get; } = new(Scalar.UInt, 3, 2);
-    public static Matrix UInt4x2 { get; } = new(Scalar.UInt, 4, 2);
-
-    public static Matrix UInt1x3 { get; } = new(Scalar.UInt, 1, 3);
-    public static Matrix UInt2x3 { get; } = new(Scalar.UInt, 2, 3);
-    public static Matrix UInt3x3 { get; } = new(Scalar.UInt, 3, 3);
-    public static Matrix UInt4x3 { get; } = new(Scalar.UInt, 4, 3);
-
-    public static Matrix UInt1x4 { get; } = new(Scalar.UInt, 1, 4);
-    public static Matrix UInt2x4 { get; } = new(Scalar.UInt, 2, 4);
-    public static Matrix UInt3x4 { get; } = new(Scalar.UInt, 3, 4);
-    public static Matrix UInt4x4 { get; } = new(Scalar.UInt, 4, 4);
-
-    public static Matrix Float1x1 { get; } = new(Scalar.Float, 1, 1);
-    public static Matrix Float2x1 { get; } = new(Scalar.Float, 2, 1);
-    public static Matrix Float3x1 { get; } = new(Scalar.Float, 3, 1);
-    public static Matrix Float4x1 { get; } = new(Scalar.Float, 4, 1);
-
-    public static Matrix Float1x2 { get; } = new(Scalar.Float, 1, 2);
-    public static Matrix Float2x2 { get; } = new(Scalar.Float, 2, 2);
-    public static Matrix Float3x2 { get; } = new(Scalar.Float, 3, 2);
-    public static Matrix Float4x2 { get; } = new(Scalar.Float, 4, 2);
-
-    public static Matrix Float1x3 { get; } = new(Scalar.Float, 1, 3);
-    public static Matrix Float2x3 { get; } = new(Scalar.Float, 2, 3);
-    public static Matrix Float3x3 { get; } = new(Scalar.Float, 3, 3);
-    public static Matrix Float4x3 { get; } = new(Scalar.Float, 4, 3);
-
-    public static Matrix Float1x4 { get; } = new(Scalar.Float, 1, 4);
-    public static Matrix Float2x4 { get; } = new(Scalar.Float, 2, 4);
-    public static Matrix Float3x4 { get; } = new(Scalar.Float, 3, 4);
-    public static Matrix Float4x4 { get; } = new(Scalar.Float, 4, 4);
-
-    public static Matrix Long1x1 { get; } = new(Scalar.Long, 1, 1);
-    public static Matrix Long2x1 { get; } = new(Scalar.Long, 2, 1);
-    public static Matrix Long3x1 { get; } = new(Scalar.Long, 3, 1);
-    public static Matrix Long4x1 { get; } = new(Scalar.Long, 4, 1);
-
-    public static Matrix Long1x2 { get; } = new(Scalar.Long, 1, 2);
-    public static Matrix Long2x2 { get; } = new(Scalar.Long, 2, 2);
-    public static Matrix Long3x2 { get; } = new(Scalar.Long, 3, 2);
-    public static Matrix Long4x2 { get; } = new(Scalar.Long, 4, 2);
-
-    public static Matrix Long1x3 { get; } = new(Scalar.Long, 1, 3);
-    public static Matrix Long2x3 { get; } = new(Scalar.Long, 2, 3);
-    public static Matrix Long3x3 { get; } = new(Scalar.Long, 3, 3);
-    public static Matrix Long4x3 { get; } = new(Scalar.Long, 4, 3);
-
-    public static Matrix Long1x4 { get; } = new(Scalar.Long, 1, 4);
-    public static Matrix Long2x4 { get; } = new(Scalar.Long, 2, 4);
-    public static Matrix Long3x4 { get; } = new(Scalar.Long, 3, 4);
-    public static Matrix Long4x4 { get; } = new(Scalar.Long, 4, 4);
-
-    public static Matrix ULong1x1 { get; } = new(Scalar.ULong, 1, 1);
-    public static Matrix ULong2x1 { get; } = new(Scalar.ULong, 2, 1);
-    public static Matrix ULong3x1 { get; } = new(Scalar.ULong, 3, 1);
-    public static Matrix ULong4x1 { get; } = new(Scalar.ULong, 4, 1);
-
-    public static Matrix ULong1x2 { get; } = new(Scalar.ULong, 1, 2);
-    public static Matrix ULong2x2 { get; } = new(Scalar.ULong, 2, 2);
-    public static Matrix ULong3x2 { get; } = new(Scalar.ULong, 3, 2);
-    public static Matrix ULong4x2 { get; } = new(Scalar.ULong, 4, 2);
-
-    public static Matrix ULong1x3 { get; } = new(Scalar.ULong, 1, 3);
-    public static Matrix ULong2x3 { get; } = new(Scalar.ULong, 2, 3);
-    public static Matrix ULong3x3 { get; } = new(Scalar.ULong, 3, 3);
-    public static Matrix ULong4x3 { get; } = new(Scalar.ULong, 4, 3);
-
-    public static Matrix ULong1x4 { get; } = new(Scalar.ULong, 1, 4);
-    public static Matrix ULong2x4 { get; } = new(Scalar.ULong, 2, 4);
-    public static Matrix ULong3x4 { get; } = new(Scalar.ULong, 3, 4);
-    public static Matrix ULong4x4 { get; } = new(Scalar.ULong, 4, 4);
-
-    public static Matrix Double1x1 { get; } = new(Scalar.Double, 1, 1);
-    public static Matrix Double2x1 { get; } = new(Scalar.Double, 2, 1);
-    public static Matrix Double3x1 { get; } = new(Scalar.Double, 3, 1);
-    public static Matrix Double4x1 { get; } = new(Scalar.Double, 4, 1);
-
-    public static Matrix Double1x2 { get; } = new(Scalar.Double, 1, 2);
-    public static Matrix Double2x2 { get; } = new(Scalar.Double, 2, 2);
-    public static Matrix Double3x2 { get; } = new(Scalar.Double, 3, 2);
-    public static Matrix Double4x2 { get; } = new(Scalar.Double, 4, 2);
-
-    public static Matrix Double1x3 { get; } = new(Scalar.Double, 1, 3);
-    public static Matrix Double2x3 { get; } = new(Scalar.Double, 2, 3);
-    public static Matrix Double3x3 { get; } = new(Scalar.Double, 3, 3);
-    public static Matrix Double4x3 { get; } = new(Scalar.Double, 4, 3);
-
-    public static Matrix Double1x4 { get; } = new(Scalar.Double, 1, 4);
-    public static Matrix Double2x4 { get; } = new(Scalar.Double, 2, 4);
-    public static Matrix Double3x4 { get; } = new(Scalar.Double, 3, 4);
-    public static Matrix Double4x4 { get; } = new(Scalar.Double, 4, 4);
-
-
-
+    public static Matrix From(string s) => Types[s];
+    public static FrozenDictionary<string, Matrix> Types { get; } = FrozenDictionary.ToFrozenDictionary(
+        [
+            new KeyValuePair<string, Matrix>("bool1x1", new(Scalar.From("bool"),1,1)),
+            new ("bool2x1", new(Scalar.From("bool"),2,1)),
+            new ("bool3x1", new(Scalar.From("bool"),3,1)),
+            new ("bool4x1", new(Scalar.From("bool"),4,1)),
+            new ("bool1x2", new(Scalar.From("bool"),1,2)),
+            new ("bool2x2", new(Scalar.From("bool"),2,2)),
+            new ("bool3x2", new(Scalar.From("bool"),3,2)),
+            new ("bool4x2", new(Scalar.From("bool"),4,2)),
+            new ("bool1x3", new(Scalar.From("bool"),1,3)),
+            new ("bool2x3", new(Scalar.From("bool"),2,3)),
+            new ("bool3x3", new(Scalar.From("bool"),3,3)),
+            new ("bool4x3", new(Scalar.From("bool"),4,3)),
+            new ("bool1x4", new(Scalar.From("bool"),1,4)),
+            new ("bool2x4", new(Scalar.From("bool"),2,4)),
+            new ("bool3x4", new(Scalar.From("bool"),3,4)),
+            new ("bool4x4", new(Scalar.From("bool"),4,4)),
+            new ("byte1x1", new(Scalar.From("byte"),1,1)),
+            new ("byte2x1", new(Scalar.From("byte"),2,1)),
+            new ("byte3x1", new(Scalar.From("byte"),3,1)),
+            new ("byte4x1", new(Scalar.From("byte"),4,1)),
+            new ("byte1x2", new(Scalar.From("byte"),1,2)),
+            new ("byte2x2", new(Scalar.From("byte"),2,2)),
+            new ("byte3x2", new(Scalar.From("byte"),3,2)),
+            new ("byte4x2", new(Scalar.From("byte"),4,2)),
+            new ("byte1x3", new(Scalar.From("byte"),1,3)),
+            new ("byte2x3", new(Scalar.From("byte"),2,3)),
+            new ("byte3x3", new(Scalar.From("byte"),3,3)),
+            new ("byte4x3", new(Scalar.From("byte"),4,3)),
+            new ("byte1x4", new(Scalar.From("byte"),1,4)),
+            new ("byte2x4", new(Scalar.From("byte"),2,4)),
+            new ("byte3x4", new(Scalar.From("byte"),3,4)),
+            new ("byte4x4", new(Scalar.From("byte"),4,4)),
+            new ("sbyte1x1", new(Scalar.From("sbyte"),1,1)),
+            new ("sbyte2x1", new(Scalar.From("sbyte"),2,1)),
+            new ("sbyte3x1", new(Scalar.From("sbyte"),3,1)),
+            new ("sbyte4x1", new(Scalar.From("sbyte"),4,1)),
+            new ("sbyte1x2", new(Scalar.From("sbyte"),1,2)),
+            new ("sbyte2x2", new(Scalar.From("sbyte"),2,2)),
+            new ("sbyte3x2", new(Scalar.From("sbyte"),3,2)),
+            new ("sbyte4x2", new(Scalar.From("sbyte"),4,2)),
+            new ("sbyte1x3", new(Scalar.From("sbyte"),1,3)),
+            new ("sbyte2x3", new(Scalar.From("sbyte"),2,3)),
+            new ("sbyte3x3", new(Scalar.From("sbyte"),3,3)),
+            new ("sbyte4x3", new(Scalar.From("sbyte"),4,3)),
+            new ("sbyte1x4", new(Scalar.From("sbyte"),1,4)),
+            new ("sbyte2x4", new(Scalar.From("sbyte"),2,4)),
+            new ("sbyte3x4", new(Scalar.From("sbyte"),3,4)),
+            new ("sbyte4x4", new(Scalar.From("sbyte"),4,4)),
+            new ("byte1x1", new(Scalar.From("byte"),1,1)),
+            new ("short2x1", new(Scalar.From("short"),2,1)),
+            new ("short3x1", new(Scalar.From("short"),3,1)),
+            new ("short4x1", new(Scalar.From("short"),4,1)),
+            new ("short1x2", new(Scalar.From("short"),1,2)),
+            new ("short2x2", new(Scalar.From("short"),2,2)),
+            new ("short3x2", new(Scalar.From("short"),3,2)),
+            new ("short4x2", new(Scalar.From("short"),4,2)),
+            new ("short1x3", new(Scalar.From("short"),1,3)),
+            new ("short2x3", new(Scalar.From("short"),2,3)),
+            new ("short3x3", new(Scalar.From("short"),3,3)),
+            new ("short4x3", new(Scalar.From("short"),4,3)),
+            new ("short1x4", new(Scalar.From("short"),1,4)),
+            new ("short2x4", new(Scalar.From("short"),2,4)),
+            new ("short3x4", new(Scalar.From("short"),3,4)),
+            new ("short4x4", new(Scalar.From("short"),4,4)),
+            new ("ushort1x1", new(Scalar.From("ushort"),1,1)),
+            new ("ushort2x1", new(Scalar.From("ushort"),2,1)),
+            new ("ushort3x1", new(Scalar.From("ushort"),3,1)),
+            new ("ushort4x1", new(Scalar.From("ushort"),4,1)),
+            new ("ushort1x2", new(Scalar.From("ushort"),1,2)),
+            new ("ushort2x2", new(Scalar.From("ushort"),2,2)),
+            new ("ushort3x2", new(Scalar.From("ushort"),3,2)),
+            new ("ushort4x2", new(Scalar.From("ushort"),4,2)),
+            new ("ushort1x3", new(Scalar.From("ushort"),1,3)),
+            new ("ushort2x3", new(Scalar.From("ushort"),2,3)),
+            new ("ushort3x3", new(Scalar.From("ushort"),3,3)),
+            new ("ushort4x3", new(Scalar.From("ushort"),4,3)),
+            new ("ushort1x4", new(Scalar.From("ushort"),1,4)),
+            new ("ushort2x4", new(Scalar.From("ushort"),2,4)),
+            new ("ushort3x4", new(Scalar.From("ushort"),3,4)),
+            new ("ushort4x4", new(Scalar.From("ushort"),4,4)),
+            new ("half1x1", new(Scalar.From("half"),1,1)),
+            new ("half2x1", new(Scalar.From("half"),2,1)),
+            new ("half3x1", new(Scalar.From("half"),3,1)),
+            new ("half4x1", new(Scalar.From("half"),4,1)),
+            new ("half1x2", new(Scalar.From("half"),1,2)),
+            new ("half2x2", new(Scalar.From("half"),2,2)),
+            new ("half3x2", new(Scalar.From("half"),3,2)),
+            new ("half4x2", new(Scalar.From("half"),4,2)),
+            new ("half1x3", new(Scalar.From("half"),1,3)),
+            new ("half2x3", new(Scalar.From("half"),2,3)),
+            new ("half3x3", new(Scalar.From("half"),3,3)),
+            new ("half4x3", new(Scalar.From("half"),4,3)),
+            new ("half1x4", new(Scalar.From("half"),1,4)),
+            new ("half2x4", new(Scalar.From("half"),2,4)),
+            new ("half3x4", new(Scalar.From("half"),3,4)),
+            new ("half4x4", new(Scalar.From("half"),4,4)),
+            new ("int1x1", new(Scalar.From("int"),1,1)),
+            new ("int2x1", new(Scalar.From("int"),2,1)),
+            new ("int3x1", new(Scalar.From("int"),3,1)),
+            new ("int4x1", new(Scalar.From("int"),4,1)),
+            new ("int1x2", new(Scalar.From("int"),1,2)),
+            new ("int2x2", new(Scalar.From("int"),2,2)),
+            new ("int3x2", new(Scalar.From("int"),3,2)),
+            new ("int4x2", new(Scalar.From("int"),4,2)),
+            new ("int1x3", new(Scalar.From("int"),1,3)),
+            new ("int2x3", new(Scalar.From("int"),2,3)),
+            new ("int3x3", new(Scalar.From("int"),3,3)),
+            new ("int4x3", new(Scalar.From("int"),4,3)),
+            new ("int1x4", new(Scalar.From("int"),1,4)),
+            new ("int2x4", new(Scalar.From("int"),2,4)),
+            new ("int3x4", new(Scalar.From("int"),3,4)),
+            new ("int4x4", new(Scalar.From("int"),4,4)),
+            new ("uint1x1", new(Scalar.From("uint"),1,1)),
+            new ("uint2x1", new(Scalar.From("uint"),2,1)),
+            new ("uint3x1", new(Scalar.From("uint"),3,1)),
+            new ("uint4x1", new(Scalar.From("uint"),4,1)),
+            new ("uint1x2", new(Scalar.From("uint"),1,2)),
+            new ("uint2x2", new(Scalar.From("uint"),2,2)),
+            new ("uint3x2", new(Scalar.From("uint"),3,2)),
+            new ("uint4x2", new(Scalar.From("uint"),4,2)),
+            new ("uint1x3", new(Scalar.From("uint"),1,3)),
+            new ("uint2x3", new(Scalar.From("uint"),2,3)),
+            new ("uint3x3", new(Scalar.From("uint"),3,3)),
+            new ("uint4x3", new(Scalar.From("uint"),4,3)),
+            new ("uint1x4", new(Scalar.From("uint"),1,4)),
+            new ("uint2x4", new(Scalar.From("uint"),2,4)),
+            new ("uint3x4", new(Scalar.From("uint"),3,4)),
+            new ("uint4x4", new(Scalar.From("uint"),4,4)),
+            new ("float1x1", new(Scalar.From("float"),1,1)),
+            new ("float2x1", new(Scalar.From("float"),2,1)),
+            new ("float3x1", new(Scalar.From("float"),3,1)),
+            new ("float4x1", new(Scalar.From("float"),4,1)),
+            new ("float1x2", new(Scalar.From("float"),1,2)),
+            new ("float2x2", new(Scalar.From("float"),2,2)),
+            new ("float3x2", new(Scalar.From("float"),3,2)),
+            new ("float4x2", new(Scalar.From("float"),4,2)),
+            new ("float1x3", new(Scalar.From("float"),1,3)),
+            new ("float2x3", new(Scalar.From("float"),2,3)),
+            new ("float3x3", new(Scalar.From("float"),3,3)),
+            new ("float4x3", new(Scalar.From("float"),4,3)),
+            new ("float1x4", new(Scalar.From("float"),1,4)),
+            new ("float2x4", new(Scalar.From("float"),2,4)),
+            new ("float3x4", new(Scalar.From("float"),3,4)),
+            new ("float4x4", new(Scalar.From("float"),4,4)),
+            new ("long1x1", new(Scalar.From("long"),1,1)),
+            new ("long2x1", new(Scalar.From("long"),2,1)),
+            new ("long3x1", new(Scalar.From("long"),3,1)),
+            new ("long4x1", new(Scalar.From("long"),4,1)),
+            new ("long1x2", new(Scalar.From("long"),1,2)),
+            new ("long2x2", new(Scalar.From("long"),2,2)),
+            new ("long3x2", new(Scalar.From("long"),3,2)),
+            new ("long4x2", new(Scalar.From("long"),4,2)),
+            new ("long1x3", new(Scalar.From("long"),1,3)),
+            new ("long2x3", new(Scalar.From("long"),2,3)),
+            new ("long3x3", new(Scalar.From("long"),3,3)),
+            new ("long4x3", new(Scalar.From("long"),4,3)),
+            new ("long1x4", new(Scalar.From("long"),1,4)),
+            new ("long2x4", new(Scalar.From("long"),2,4)),
+            new ("long3x4", new(Scalar.From("long"),3,4)),
+            new ("long4x4", new(Scalar.From("long"),4,4)),
+            new ("ulong1x1", new(Scalar.From("ulong"),1,1)),
+            new ("ulong2x1", new(Scalar.From("ulong"),2,1)),
+            new ("ulong3x1", new(Scalar.From("ulong"),3,1)),
+            new ("ulong4x1", new(Scalar.From("ulong"),4,1)),
+            new ("ulong1x2", new(Scalar.From("ulong"),1,2)),
+            new ("ulong2x2", new(Scalar.From("ulong"),2,2)),
+            new ("ulong3x2", new(Scalar.From("ulong"),3,2)),
+            new ("ulong4x2", new(Scalar.From("ulong"),4,2)),
+            new ("ulong1x3", new(Scalar.From("ulong"),1,3)),
+            new ("ulong2x3", new(Scalar.From("ulong"),2,3)),
+            new ("ulong3x3", new(Scalar.From("ulong"),3,3)),
+            new ("ulong4x3", new(Scalar.From("ulong"),4,3)),
+            new ("ulong1x4", new(Scalar.From("ulong"),1,4)),
+            new ("ulong2x4", new(Scalar.From("ulong"),2,4)),
+            new ("ulong3x4", new(Scalar.From("ulong"),3,4)),
+            new ("ulong4x4", new(Scalar.From("ulong"),4,4)),
+            new ("double1x1", new(Scalar.From("double"),1,1)),
+            new ("double2x1", new(Scalar.From("double"),2,1)),
+            new ("double3x1", new(Scalar.From("double"),3,1)),
+            new ("double4x1", new(Scalar.From("double"),4,1)),
+            new ("double1x2", new(Scalar.From("double"),1,2)),
+            new ("double2x2", new(Scalar.From("double"),2,2)),
+            new ("double3x2", new(Scalar.From("double"),3,2)),
+            new ("double4x2", new(Scalar.From("double"),4,2)),
+            new ("double1x3", new(Scalar.From("double"),1,3)),
+            new ("double2x3", new(Scalar.From("double"),2,3)),
+            new ("double3x3", new(Scalar.From("double"),3,3)),
+            new ("double4x3", new(Scalar.From("double"),4,3)),
+            new ("double1x4", new(Scalar.From("double"),1,4)),
+            new ("double2x4", new(Scalar.From("double"),2,4)),
+            new ("double3x4", new(Scalar.From("double"),3,4)),
+            new ("double4x4", new(Scalar.From("double"),4,4))
+        ]
+    );
 }

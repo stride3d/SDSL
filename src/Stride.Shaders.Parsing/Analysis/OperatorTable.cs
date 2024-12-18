@@ -71,7 +71,7 @@ public static class OperatorTable
             (>=8 and < 13, Matrix l, Vector r) => l,
             (>=8 and < 13, Matrix { BaseType: Scalar { TypeName: "int" } } l, Matrix { BaseType: Scalar { TypeName: "int" or "float" } } r) => l,
             // Comparison
-            (>=18 and < 22, Scalar {TypeName: "int" or "uint" or "float" or "long" or "ulong" or "double"} l, Scalar r) when l.TypeName == r.TypeName => Scalar.Bool,
+            (>=18 and < 22, Scalar {TypeName: "int" or "uint" or "float" or "long" or "ulong" or "double"} l, Scalar r) when l.TypeName == r.TypeName => Scalar.From("bool"),
             _ => null,
         };
         return result != null;

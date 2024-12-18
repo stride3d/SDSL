@@ -13,21 +13,21 @@ public sealed record Undefined(string TypeName) : SymbolType()
         return TypeName;
     }
 }
-public sealed record Scalar(string TypeName) : SymbolType()
+public sealed partial record Scalar(string TypeName) : SymbolType()
 {
     public override string ToString()
     {
         return TypeName;
     }
 }
-public sealed record Vector(Scalar BaseType, int Size) : SymbolType()
-{
+public sealed partial record Vector(Scalar BaseType, int Size) : SymbolType()
+{    
     public override string ToString()
     {
         return $"{BaseType}{Size}";
     }
 }
-public sealed record Matrix(Scalar BaseType, int Rows, int Columns) : SymbolType()
+public sealed partial record Matrix(Scalar BaseType, int Rows, int Columns) : SymbolType()
 {
     public override string ToString()
     {

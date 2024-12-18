@@ -50,18 +50,30 @@ public static class OperatorTable
             _ => false,
         };
     }
-    public static SymbolType BinaryOperationResultingType(SymbolType left, SymbolType right, Operator op)
+    public static bool BinaryOperationResultingType(SymbolType left, SymbolType right, Operator op, out SymbolType? result)
     {
-        int a = 0;
+        long a = 0;
         float b = 0;
-        var c = b * a;
-        return (left, right) switch
+        float c = a * b;
+        // TODO : correct that part
+        result = ((int)op, left, right) switch
         {
-            (Scalar { TypeName: "int" or "float" }, Scalar { TypeName: "float" }) => right,
-            (Scalar { TypeName: "float" }, Scalar { TypeName: "int" or "float" }) => left,
-            (Vector { BaseType: Scalar{ TypeName : "float" }}, Scalar { TypeName: "int" or "float" }) => right,
-            (Vector { BaseType: Scalar{ TypeName : "int" }} l, Scalar { TypeName: "int" or "float" } r) => new Vector(r, l.Size),            
-            _ => throw new NotImplementedException(),
+            // Boolean operations
+            (>= 22 and < 26, Scalar{ TypeName : "bool"}, Scalar {TypeName: "bool"}) => left,
+            // Linear algebra
+            (>=8 and < 13, Scalar {TypeName: "int" or "uint" or "float" or "long" or "ulong" or "double"} l, Scalar r) when l.TypeName == r.TypeName => right,
+            (>=8 and < 13, Scalar { TypeName: "int" or "uint" or "long" or "ulong" }, Scalar { TypeName: "float" or "double"}) => right,
+            (>=8 and < 13, Scalar { TypeName: "float" }, Scalar { TypeName: "int" or "float" }) => left,
+            (>=8 and < 13, Vector l, Vector r) when l.BaseType == r.BaseType => right,
+            (>=8 and < 13, Vector, Scalar) => left,
+            (>=8 and < 13, Matrix l, Matrix r) when l.BaseType == r.BaseType => right,
+            (>=8 and < 13, Matrix l, Scalar r) => l,
+            (>=8 and < 13, Matrix l, Vector r) => l,
+            (>=8 and < 13, Matrix { BaseType: Scalar { TypeName: "int" } } l, Matrix { BaseType: Scalar { TypeName: "int" or "float" } } r) => l,
+            // Comparison
+            (>=18 and < 22, Scalar {TypeName: "int" or "uint" or "float" or "long" or "ulong" or "double"} l, Scalar r) when l.TypeName == r.TypeName => Scalar.Bool,
+            _ => null,
         };
+        return result != null;
     }
 }

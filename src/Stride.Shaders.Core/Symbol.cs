@@ -7,11 +7,15 @@ public enum SymbolKind
 {
     MixinParent,
     MixinChild,
+    Struct,
     Method,
     Variable,
     Constant,
     ConstantGeneric,
-    Composition
+    Composition,
+    CBuffer,
+    TBuffer,
+    RGroup
 }
 
 

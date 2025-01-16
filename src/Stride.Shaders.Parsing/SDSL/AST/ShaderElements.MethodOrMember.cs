@@ -87,7 +87,8 @@ public sealed class ShaderMember(TypeName type,
 
 public class MethodParameter(TypeName type, Identifier name, TextLocation info, string? storage = null, Expression? arraySize = null, Identifier? semantic = null) : Node(info)
 {
-    public TypeName Type { get; set; } = type;
+    public TypeName TypeName { get; set; } = type;
+    public SymbolType? Type { get; set; }
     public Identifier Name { get; set; } = name;
     public Identifier? Semantic { get; set; } = semantic;
     public Expression? ArraySize { get; set; } = arraySize;

@@ -124,17 +124,21 @@ public class TypeDef(TypeName type, Identifier name, TextLocation info) : Shader
 public abstract class ShaderBuffer(List<Identifier> name, TextLocation info) : ShaderElement(info)
 {
     public List<Identifier> Name { get; set; } = name;
+    public List<ShaderMember> Members { get; set; } = [];
 }
 
 public class ShaderStructMember(TypeName typename, Identifier identifier, TextLocation info) : Node(info)
 {
     public TypeName TypeName { get; set; } = typename;
+    public SymbolType? Type { get; set; }
     public Identifier Name { get; set; } = identifier;
     public List<ShaderAttribute> Attributes { get; set; } = [];
 
     public override string ToString()
     {
-        return $"{TypeName} {Name}";
+        if(Type is not null)
+            return $"{Type} {Name}";
+        else return $"{TypeName} {Name}";
     }
 }
 
@@ -150,15 +154,6 @@ public class ShaderStruct(Identifier typename, TextLocation info) : ShaderElemen
 }
 
 
-public sealed class CBuffer(List<Identifier> name, TextLocation info) : ShaderBuffer(name, info)
-{
-    public List<ShaderMember> Members { get; set; } = [];
-}
-public sealed class RGroup(List<Identifier> name, TextLocation info) : ShaderBuffer(name, info)
-{
-    public List<ShaderMember> Members { get; set; } = [];
-}
-public sealed class TBuffer(List<Identifier> name, TextLocation info) : ShaderBuffer(name, info)
-{
-    public List<ShaderMember> Members { get; set; } = [];
-}
+public sealed class CBuffer(List<Identifier> name, TextLocation info) : ShaderBuffer(name, info);
+public sealed class RGroup(List<Identifier> name, TextLocation info) : ShaderBuffer(name, info);
+public sealed class TBuffer(List<Identifier> name, TextLocation info) : ShaderBuffer(name, info);

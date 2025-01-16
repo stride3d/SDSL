@@ -113,6 +113,7 @@ public sealed record Texture3D(SymbolType BaseType, int Width, int Height, int D
 }
 
 
+public sealed record BufferSymbol(string Name, List<Symbol> Symbols) : SymbolType;
 public sealed record ParamsSymbol(string Name, List<Symbol> Symbols) : SymbolType;
 public sealed record EffectSymbol(string Name, List<Symbol> Symbols) : SymbolType;
 public sealed record ShaderSymbol(string Name, List<Symbol> Components) : SymbolType

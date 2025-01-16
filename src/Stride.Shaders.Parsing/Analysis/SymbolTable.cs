@@ -33,26 +33,67 @@ public partial class SymbolTable : ISymbolProvider
     public void Process(Node node)
     {
         if (node is ShaderFile f)
-            Process(f.RootDeclarations.OfType<ShaderClass>().First());
-        else if (node is ShaderClass c)
         {
+            foreach (var ns in f.Namespaces)
+                Process(ns);
+            foreach(var e in f.RootDeclarations)
+                Process(e);
+        }
+        else if (node is ShaderClass c)
             foreach (var member in c.Elements)
+                Process(member);
+        else if (node is ShaderMember variable)
+        {
+            var sym = variable.TypeName.ToSymbol();
+            DeclaredTypes.TryAdd(sym.ToString(), sym);
+            RootSymbols.Add(variable.Name, new(variable.Name, sym, SymbolKind.Variable));
+            variable.Type = sym;
+        }
+        else if(node is ShaderBuffer cbuff)
+        {
+            var sym = new Symbol(cbuff.Name.ToString() ?? "", new BufferSymbol(cbuff.Name.ToString() ?? "", []), SymbolKind.CBuffer);
+
+            DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+            RootSymbols.Add(cbuff.Name.ToString() ?? "", sym);
+            foreach (var cbmem in cbuff.Members)
             {
-                if (member is ShaderMethod method)
-                {
-                    var sym = method.ReturnTypeName.ToSymbol();
-                    DeclaredTypes.TryAdd(sym.ToString(), sym);
-                    RootSymbols.Add(method.Name, new(method.Name, sym, SymbolKind.Method));
-                    method.ReturnType = sym;
-                }
-                else if (member is ShaderMember variable)
-                {
-                    var sym = variable.TypeName.ToSymbol();
-                    DeclaredTypes.TryAdd(sym.ToString(), sym);
-                    RootSymbols.Add(variable.Name, new(variable.Name, sym, SymbolKind.Variable));
-                    variable.Type = sym;
-                }
+                var msym = cbmem.TypeName.ToSymbol();
+                DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+                cbmem.Type = msym;
             }
+        }
+        else if(node is ShaderStruct str)
+        {
+            var sym = new Symbol(str.TypeName.ToString() ?? "", new Struct(str.TypeName.ToString() ?? "", []), SymbolKind.Struct);
+            DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+            RootSymbols.Add(str.TypeName.ToString() ?? "", sym);
+            foreach (var smem in str.Members)
+            {
+                var msym = smem.TypeName.ToSymbol();
+                DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+                smem.Type = msym;
+            }
+        }
+        else if (node is ShaderMethod method)
+        {
+            var sym = method.ReturnTypeName.ToSymbol();
+            DeclaredTypes.TryAdd(sym.ToString(), sym);
+            RootSymbols.Add(method.Name, new(method.Name, sym, SymbolKind.Method));
+            foreach (var arg in method.Parameters)
+            {
+                var argSym = arg.TypeName.ToSymbol();
+                DeclaredTypes.TryAdd(argSym.ToString(), argSym);
+                arg.Type = argSym;
+            }
+            if (method.Body is not null)
+                foreach (var s in method.Body.Statements)
+                    Process(s);
+            method.ReturnType = sym;
+        }
+        else if(node is Declaration declaration)
+        {
+            declaration.Type = declaration.TypeName.ToSymbol();
+            DeclaredTypes.TryAdd(declaration.TypeName.ToString(), declaration.Type);
         }
     }
 }

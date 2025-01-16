@@ -7,8 +7,32 @@ using Stride.Shaders.Compilers;
 using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Parsing.SDSL;
+using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Experiments;
+
+public record struct TextPosition(int Line, int Character)
+{
+    public static implicit operator TextPosition((int, int) pos) => new TextPosition(pos.Item1, pos.Item2);
+}
+public static class ASTExtensions
+{
+    public static bool Intersects<N>(this N node, TextPosition position)
+        where N : Node
+    {
+
+        if (
+            position.Line + 1 >= node.Info.Line
+            && position.Line + 1 <= node.Info.EndLine
+            && position.Character + 1 >= node.Info.Column
+            && position.Character + 1 < node.Info.Column + node.Info.Length
+        )
+        {
+            return true;
+        }
+        return false;
+    }
+}
 
 public static class Examples
 {
@@ -94,6 +118,10 @@ public static class Examples
         {
             var table = new SymbolTable();
             table.Process(parsed.AST!);
+            if (ComputeIntersection((2, 13), parsed.AST, out var n))
+            {
+                Console.WriteLine(n);
+            }
         }
     }
 
@@ -122,4 +150,68 @@ public static class Examples
         }
         Console.ForegroundColor = ConsoleColor.White;
     }
+    static bool ComputeIntersection(TextPosition position, Node node, out Node n)
+    {
+        n = null!;
+        if (node is ShaderFile sf)
+        {
+            foreach (var ns in sf.Namespaces)
+                if (ns.Intersects(position))
+                    return ComputeIntersection(position, ns, out n);
+            foreach (var e in sf.RootDeclarations)
+                if (e.Intersects(position))
+                    return ComputeIntersection(position, e, out n);
+        }
+        else if (node is ShaderNamespace sn)
+        {
+            if (sn.Namespace is not null && sn.Namespace.Intersects(position))
+            {
+                n = sn.Namespace;
+                return true;
+            }
+            foreach (var decl in sn.Declarations)
+            {
+                if (decl.Intersects(position))
+                    return ComputeIntersection(position, decl, out n);
+            }
+        }
+        else if (node is ShaderClass sc)
+        {
+            if (sc.Name.Intersects(position))
+            {
+                n = sc.Name;
+                return true;
+            }
+            foreach (var parent in sc.Mixins)
+                if (parent.Intersects(position))
+                {
+                    n = parent;
+                    return true;
+                }
+            foreach (var e in sc.Elements)
+                if (e.Intersects(position))
+                    return ComputeIntersection(position, e, out n);
+        }
+        else if (node is ShaderMethod method)
+        {
+            if (method.Name.Intersects(position))
+            {
+                n = method.Name;
+                return true;
+            }
+            foreach (var arg in method.Parameters)
+                if (arg.Intersects(position))
+                {
+                    n = arg;
+                    return true;
+                }
+            if (method.Body is not null)
+                foreach (var s in method.Body.Statements)
+                    if (s.Intersects(position))
+                        return ComputeIntersection(position, s, out n);
+        }
+        return false;
+    }
 }
+
+

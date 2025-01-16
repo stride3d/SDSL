@@ -32,29 +32,26 @@ public partial class SymbolTable : ISymbolProvider
 
     public void Process(Node node)
     {
-        if (node is ShaderClass c)
-            Process(c);
-        else if (node is ShaderFile f)
+        if (node is ShaderFile f)
             Process(f.RootDeclarations.OfType<ShaderClass>().First());
-    }
-
-    public void Process(ShaderClass sclass)
-    {
-        foreach (var member in sclass.Elements)
+        else if (node is ShaderClass c)
         {
-            if (member is ShaderMethod method)
+            foreach (var member in c.Elements)
             {
-                var sym = method.ReturnTypeName.ToSymbol();
-                DeclaredTypes.TryAdd(sym.ToString(), sym);
-                RootSymbols.Add(method.Name, new(method.Name, sym, SymbolKind.Method));
-                method.ReturnType = sym;
-            }
-            else if (member is ShaderMember variable)
-            {
-                var sym = variable.TypeName.ToSymbol();
-                DeclaredTypes.TryAdd(sym.ToString(), sym);
-                RootSymbols.Add(variable.Name, new(variable.Name, sym, SymbolKind.Variable));
-                variable.Type = sym;
+                if (member is ShaderMethod method)
+                {
+                    var sym = method.ReturnTypeName.ToSymbol();
+                    DeclaredTypes.TryAdd(sym.ToString(), sym);
+                    RootSymbols.Add(method.Name, new(method.Name, sym, SymbolKind.Method));
+                    method.ReturnType = sym;
+                }
+                else if (member is ShaderMember variable)
+                {
+                    var sym = variable.TypeName.ToSymbol();
+                    DeclaredTypes.TryAdd(sym.ToString(), sym);
+                    RootSymbols.Add(variable.Name, new(variable.Name, sym, SymbolKind.Variable));
+                    variable.Type = sym;
+                }
             }
         }
     }

@@ -1,12 +1,15 @@
-shader Test 
+namespace Machin
 {
-    stream float4 a;
-    stream float4 b;
-    stream float4 c;
-
-
-    void PSMain()
+    shader Test 
     {
-        streams.a *= 2.0f;
+        stream float4 a;
+        stream float4 b;
+        stream float4 c;
+
+
+        void PSMain()
+        {
+            streams.a *= 2.0f;
+        }
     }
 }

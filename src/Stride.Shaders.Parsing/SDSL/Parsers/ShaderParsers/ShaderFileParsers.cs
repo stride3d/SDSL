@@ -26,8 +26,8 @@ public record struct ShaderFileParser : IParser<ShaderFile>
             }
             else if (
                 (
-                    Tokens.Literal("class", ref scanner) 
-                    || Tokens.Literal("shader", ref scanner) 
+                    Tokens.Literal("class", ref scanner)
+                    || Tokens.Literal("shader", ref scanner)
                     || CommonParsers.SequenceOf(ref scanner, ["internal", "shader"])
                 )
                 && ShaderClassParsers.Class(ref scanner, result, out var shader)
@@ -87,7 +87,7 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
             while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true));
 
 
-            
+
             if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
                 parsed.Info = scanner[position..scanner.Position];
@@ -114,10 +114,11 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
         )
         {
             var ns = new ShaderNamespace(new());
+            CommonParsers.Spaces0(ref scanner, result, out _);
+            var nsStart = scanner.Position;
             do
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);
-
                 if (LiteralsParser.Identifier(ref scanner, result, out var identifier))
                     ns.NamespacePath.Add(identifier);
                 else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory));
@@ -126,7 +127,7 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
             }
             while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true));
             if (ns.NamespacePath.Count > 0)
-                ns.Namespace = string.Join(".", ns.NamespacePath);
+                ns.Namespace = new(string.Join(".", ns.NamespacePath), scanner[nsStart..scanner.Position]);
             if (Tokens.Char(';', ref scanner, advance: true))
             {
                 CommonParsers.Spaces0(ref scanner, result, out _);

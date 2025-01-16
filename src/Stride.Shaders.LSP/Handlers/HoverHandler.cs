@@ -3,6 +3,7 @@ using OmniSharp.Extensions.LanguageServer.Protocol;
 using OmniSharp.Extensions.LanguageServer.Protocol.Client.Capabilities;
 using OmniSharp.Extensions.LanguageServer.Protocol.Document;
 using OmniSharp.Extensions.LanguageServer.Protocol.Models;
+using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Parsing.LSP;
 
@@ -21,20 +22,12 @@ public class HoverHandler(ILogger<HoverHandler> logger) : HoverHandlerBase
         var result = SDSLParser.Parse(content);
         if (result.AST is ShaderFile sf && sf.Namespaces.Count > 0)
         {
-            var ns = sf.Namespaces[0];
-            if (ns.Intersects(request.Position))
+            if(ComputeIntersection(request.Position, sf, out var description))
             {
-                _logger.LogInformation($"{request.Position} intersects with {ns.Namespace}");
+                _logger.LogInformation($"Found description");
                 return new Hover
                 {
-                    Contents = new($"{ns.Namespace}", "This is a namespace")
-                };
-            }
-            else
-            {
-                return new Hover
-                {
-                    Contents = new("Shader file", $"You're hovering over a shader file at {request.Position}\nAnd Namespace is at l{ns.Info.Line}-c{ns.Info.Column}")
+                    Contents = new(description)
                 };
             }
         }
@@ -48,5 +41,30 @@ public class HoverHandler(ILogger<HoverHandler> logger) : HoverHandlerBase
             DocumentSelector = TextDocumentSelector.ForLanguage("sdsl"),
             WorkDoneProgress = true
         };
+    }
+
+    static bool ComputeIntersection(Position position, ShaderFile file, out string description)
+    {
+        description = "";
+        foreach(var ns in file.Namespaces)
+        {
+            if(ns.Namespace is not null && ns.Namespace.Intersects(position))
+            {
+                description = ns.Namespace.ToString();
+                return true;
+            }
+            else
+            {
+                foreach(var decl in ns.Declarations)
+                {
+                    if(decl is ShaderClass sclass && sclass.Intersects(position))
+                    {
+                        description = $"shader {sclass.Name}";
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

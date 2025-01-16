@@ -1,5 +1,6 @@
 using System.Text;
 using Stride.Shaders.Core;
+using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Parsing;
 
@@ -34,13 +35,13 @@ public class ShaderFile(TextLocation info) : Node(info)
 
 public class UsingShaderNamespace(TextLocation info) : ShaderDeclaration(info)
 {
-    public List<SDSL.AST.Identifier> NamespacePath { get; set; } = [];
+    public List<Identifier> NamespacePath { get; set; } = [];
 }
 
 public class ShaderNamespace(TextLocation info) : Node(info)
 {
-    public List<SDSL.AST.Identifier> NamespacePath { get; set; } = [];
-    public string? Namespace { get; set; }
+    public List<Identifier> NamespacePath { get; set; } = [];
+    public Identifier? Namespace { get; set; }
     public List<ShaderDeclaration> Declarations { get; set; } = [];
 
     public override string ToString()

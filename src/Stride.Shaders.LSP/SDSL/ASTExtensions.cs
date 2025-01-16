@@ -7,6 +7,7 @@ public static class ASTExtensions
     public static bool Intersects<N>(this N node, Position position)
         where N : Node
     {
+        
         if(
             position.Line + 1 == node.Info.Line 
             && position.Character + 1 >= node.Info.Column 

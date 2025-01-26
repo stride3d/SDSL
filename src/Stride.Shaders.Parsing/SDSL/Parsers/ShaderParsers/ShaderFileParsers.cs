@@ -57,7 +57,7 @@ public record struct ShaderFileParser : IParser<ShaderFile>
                 file.RootDeclarations.Add(uns);
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
         parsed = file;
         return true;
@@ -82,7 +82,7 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
                 {
                     parsed.NamespacePath.Add(identifier);
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
             }
             while (!scanner.IsEof && Tokens.Char('.', ref scanner, advance: true));
 
@@ -93,7 +93,7 @@ public record struct UsingNamespaceParser : IParser<UsingShaderNamespace>
                 parsed.Info = scanner[position..scanner.Position];
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -121,7 +121,7 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (LiteralsParser.Identifier(ref scanner, result, out var identifier))
                     ns.NamespacePath.Add(identifier);
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory));
 
                 CommonParsers.Spaces0(ref scanner, result, out _);
             }
@@ -148,7 +148,7 @@ public record struct NamespaceParsers : IParser<ShaderNamespace>
                     else if (ParamsParsers.Params(ref scanner, result, out var p) && CommonParsers.Spaces0(ref scanner, result, out _))
                         ns.Declarations.Add(p);
                     else
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0039, scanner[scanner.Position], scanner.Memory));
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0039, scanner[scanner.Position], scanner.Memory));
                 }
             }
             else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

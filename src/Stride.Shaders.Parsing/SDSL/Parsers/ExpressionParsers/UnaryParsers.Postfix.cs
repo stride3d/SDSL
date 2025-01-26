@@ -119,7 +119,7 @@ public record struct PostfixParser : IParser<Expression>
                     parsed = new IndexerExpression(expression, index, scanner[position..scanner.Position]);
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0021, scanner[position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0021, scanner[position], scanner.Memory));
 
             }
             else

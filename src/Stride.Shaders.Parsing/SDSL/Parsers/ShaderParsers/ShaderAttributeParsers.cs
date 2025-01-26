@@ -60,7 +60,7 @@ public record struct AttributeParser : IParser<ShaderAttribute>
                 }
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (!Tokens.Char(']', ref scanner, advance: true))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0019, scanner[position], scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0019, scanner[position], scanner.Memory));
                 parsed = new AnyShaderAttribute(identifier, scanner[position..]);
                 return true;
             }

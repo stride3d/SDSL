@@ -31,10 +31,10 @@ public record struct EffectParser : IParser<ShaderEffect>
                         {
                             parsed.Members.Add(s);
                         }
-                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0009, scanner[scanner.Position], scanner.Memory));
+                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0009, scanner[scanner.Position], scanner.Memory));
                     }
                     if(scanner.IsEof)
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0011, scanner[scanner.Position], scanner.Memory));
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0011, scanner[scanner.Position], scanner.Memory));
                     else if(Tokens.Char('}', ref scanner, advance: true))
                     {
                         parsed.Info = scanner[position..scanner.Position];

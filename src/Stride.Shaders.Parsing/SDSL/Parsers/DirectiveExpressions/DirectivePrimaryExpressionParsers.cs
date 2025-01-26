@@ -48,7 +48,7 @@ public record struct DirectiveParenthesisExpressionParser : IParser<Expression>
         if (
             Tokens.Char('(', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLParsingMessages.SDSL0015, scanner[position], scanner.Memory))
+            && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLErrorMessages.SDSL0015, scanner[position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && Tokens.Char(')', ref scanner, advance: true)
         )
@@ -84,7 +84,7 @@ public record struct DirectiveMethodCallParser : IParser<Expression>
                 parsed = new MethodCall(identifier, parameters, scanner[position..scanner.Position]);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
         }
         
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

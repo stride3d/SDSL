@@ -53,19 +53,19 @@ public record struct IfStatementParser : IParser<If>
             Tokens.Literal("if", ref scanner, advance: true)
             && CommonParsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
+            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
             if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
-                if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
+                if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLErrorMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
                 {
                     parsed = new(condition, statement, scanner[position..scanner.Position]);
                     return true;
                 }
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -84,19 +84,19 @@ public record struct ElseIfStatementParser : IParser<ElseIf>
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && Tokens.Char('(', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
+            && ExpressionParser.Expression(ref scanner, result, out var condition, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
         )
         {
             if (Tokens.Char(')', ref scanner, advance: true) && CommonParsers.Spaces0(ref scanner, result, out _))
             {
-                if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
+                if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLErrorMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
                 {
                     parsed = new(condition, statement, scanner[position..scanner.Position]);
                     return true;
                 }
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -111,7 +111,7 @@ public record struct ElseStatementParser : IParser<Else>
         if (
             Tokens.Literal("else", ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
-            && StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory))
+            && StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLErrorMessages.SDSL0010, scanner[scanner.Position], scanner.Memory))
         )
         {
             parsed = new(statement, scanner[position..scanner.Position]);

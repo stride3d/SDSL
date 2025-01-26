@@ -158,7 +158,7 @@ public record struct LiteralsParser : IParser<Literal>
                 tnPos = scanner.Position;
                 int size = scanner.Span[scanner.Position - 1] - '0';
                 if (size < 2 || size > 4)
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0002, scanner[scanner.Position - 1], scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0002, scanner[scanner.Position - 1], scanner.Memory));
                 CommonParsers.Spaces0(ref scanner, result, out _);
                 if (Tokens.Char('(', ref scanner, advance: true))
                 {
@@ -173,7 +173,7 @@ public record struct LiteralsParser : IParser<Literal>
                             p.Values.Add(vec);
                         else if (ExpressionParser.Expression(ref scanner, result, out var exp))
                             p.Values.Add(exp);
-                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                        else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                         CommonParsers.Spaces0(ref scanner, result, out _);
                         if (Tokens.Char(',', ref scanner, advance: true))
                             CommonParsers.Spaces0(ref scanner, result, out _);
@@ -181,9 +181,9 @@ public record struct LiteralsParser : IParser<Literal>
                             break;
                     }
                     if (scanner.IsEof)
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0004, scanner[scanner.Position], scanner.Memory));
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0004, scanner[scanner.Position], scanner.Memory));
                     if (p.Values.Count != size && p.Values.Count > size)
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0005, scanner[scanner.Position], scanner.Memory));
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0005, scanner[scanner.Position], scanner.Memory));
                     parsed = p;
                     return true;
                 }
@@ -220,7 +220,7 @@ public record struct LiteralsParser : IParser<Literal>
         {
             CommonParsers.Until(ref scanner, '\"', advance: true);
             if (scanner.Span[position..scanner.Position].Contains('\n'))
-                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[position], scanner.Memory));
+                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[position], scanner.Memory));
             parsed = new(scanner.Span[position..scanner.Position].ToString(), scanner[position..scanner.Position]);
             return true;
         }
@@ -375,7 +375,7 @@ public record struct MatrixParser : IParser<MatrixLiteral>
             int rows = scanner.Span[scanner.Position - 3] - '0';
             int cols = scanner.Span[scanner.Position - 1] - '0';
             if (cols < 2 || cols > 4 || rows < 2 || rows > 4)
-                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0006, scanner[scanner.Position - 1], scanner.Memory));
+                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0006, scanner[scanner.Position - 1], scanner.Memory));
             CommonParsers.Spaces0(ref scanner, result, out _);
             if (Tokens.Char('(', ref scanner, advance: true))
             {
@@ -399,9 +399,9 @@ public record struct MatrixParser : IParser<MatrixLiteral>
                         break;
                 }
                 if (scanner.IsEof)
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0008, scanner[scanner.Position], scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0008, scanner[scanner.Position], scanner.Memory));
                 if (p.Values.Count != rows * cols && p.Values.Count > rows * cols)
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0002, scanner[scanner.Position], scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0002, scanner[scanner.Position], scanner.Memory));
                 parsed = p;
                 return true;
             }

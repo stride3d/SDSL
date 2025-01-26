@@ -136,7 +136,7 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
                 statements.Add(statement);
             }
             if (!CommonParsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true))
-                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
             parsed = new EffectBlock(scanner[position..scanner.Position]) { Statements = statements };
             return true;
         }
@@ -197,7 +197,7 @@ public record struct MixinConstParser : IParser<MixinConst>
                 parsed = new(scanner.Memory[tmp..scanner.Position].ToString().Trim(), scanner[position..scanner.Position]);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }

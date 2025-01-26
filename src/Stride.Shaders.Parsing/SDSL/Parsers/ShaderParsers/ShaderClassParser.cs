@@ -37,8 +37,8 @@ public record struct SimpleShaderClassParser : IParser<ShaderClass>
 
         if (
             Tokens.Literal("shader", ref scanner, advance: true)
-            && CommonParsers.Spaces1(ref scanner, result, out _, new(SDSLParsingMessages.SDSL0016, scanner[scanner.Position], scanner.Memory))
-            && LiteralsParser.Identifier(ref scanner, result, out var className, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
+            && CommonParsers.Spaces1(ref scanner, result, out _, new(SDSLErrorMessages.SDSL0016, scanner[scanner.Position], scanner.Memory))
+            && LiteralsParser.Identifier(ref scanner, result, out var className, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
             && CommonParsers.Spaces0(ref scanner, result, out _)
             && Tokens.Char('{', ref scanner, advance: true)
             && CommonParsers.Spaces0(ref scanner, result, out _)
@@ -82,7 +82,7 @@ public record struct ShaderClassParser : IParser<ShaderClass>
             && CommonParsers.Spaces1(ref scanner, result,out _))
         {
             if (
-                LiteralsParser.Identifier(ref scanner, result, out var identifier, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
+                LiteralsParser.Identifier(ref scanner, result, out var identifier, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
             )
             {
@@ -92,7 +92,7 @@ public record struct ShaderClassParser : IParser<ShaderClass>
                     ParameterParsers.Declarations(ref scanner, result, out var generics);
                     CommonParsers.Spaces0(ref scanner, result, out _);
                     if (!Tokens.Char('>', ref scanner, advance: true))
-                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0034, scanner[scanner.Position], scanner.Memory));
+                        return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0034, scanner[scanner.Position], scanner.Memory));
                     parsed.Generics = generics;
                     CommonParsers.Spaces0(ref scanner, result, out _);
                 }
@@ -190,7 +190,7 @@ public record struct ShaderGenericsDefinitionParser : IParser<ShaderGenerics>
         var position = scanner.Position;
         if (
             LiteralsParser.Identifier(ref scanner, result, out var typename)
-            && CommonParsers.Spaces1(ref scanner, result, out _, new(SDSLParsingMessages.SDSL0016, scanner[scanner.Position], scanner.Memory))
+            && CommonParsers.Spaces1(ref scanner, result, out _, new(SDSLErrorMessages.SDSL0016, scanner[scanner.Position], scanner.Memory))
             && LiteralsParser.Identifier(ref scanner, result, out var identifier)
         )
         {

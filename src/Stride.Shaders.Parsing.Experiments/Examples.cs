@@ -118,10 +118,6 @@ public static class Examples
         {
             var table = new SymbolTable();
             table.Process(parsed.AST!);
-            if (ComputeIntersection((2, 13), parsed.AST, out var n))
-            {
-                Console.WriteLine(n);
-            }
         }
     }
 

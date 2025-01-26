@@ -172,7 +172,7 @@ public record struct ReturnStatementParser : IParser<Statement>
                 parsed = new Return(scanner[position..scanner.Position], val);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0041, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0041, scanner[scanner.Position], scanner.Memory));
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -253,7 +253,7 @@ public record struct BlockStatementParser : IParser<Statement>
                     block.Statements.Add(statement);
                     CommonParsers.Spaces0(ref scanner, result, out _);
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0010, scanner[scanner.Position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0010, scanner[scanner.Position], scanner.Memory));
             }
             block.Info = scanner[position..scanner.Position];
             parsed = block;
@@ -288,7 +288,7 @@ public record struct VariableAssignParser : IParser<VariableAssign>
                     parsed = new(p, false, scanner[position..scanner.Position], op, expression);
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0015, scanner[position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0015, scanner[position], scanner.Memory));
             }
             else
             {
@@ -328,13 +328,14 @@ public record struct DeclaredVariableAssignParser : IParser<DeclaredVariableAssi
                     };
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0015, scanner[position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0015, scanner[position], scanner.Memory));
             }
             else
             {
                 parsed = new(identifier, false, scanner[position..scanner.Position])
                 {
-                    ArraySizes = arraySizes
+                    ArraySizes = arraySizes,
+                    Value = value
                 };
                 return true;
             }
@@ -378,7 +379,7 @@ public record struct DeclareStatementParser : IParser<Statement>
                     };
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner[scanner.Position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0033, scanner[scanner.Position], scanner.Memory));
             }
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
@@ -402,7 +403,7 @@ public record struct AssignmentsParser : IParser<Statement>
                 };
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0033, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0033, scanner[scanner.Position], scanner.Memory));
         }
         else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }

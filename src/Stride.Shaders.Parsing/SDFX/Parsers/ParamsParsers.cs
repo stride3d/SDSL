@@ -29,7 +29,7 @@ public record struct ParamsParsers : IParser<EffectParameters>
                             return true;
                         }
                         else
-                            CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0012, scanner[scanner.Position], scanner.Memory));
+                            CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0012, scanner[scanner.Position], scanner.Memory));
                         CommonParsers.Spaces0(ref scanner, result, out _);
                     }
                 }
@@ -59,7 +59,7 @@ public record struct ParameterParser : IParser<EffectParameter>
                     if (ExpressionParser.Expression(ref scanner, result, out var expression) && CommonParsers.Spaces0(ref scanner, result, out _))
                     {
                         if (!Tokens.Char(';', ref scanner, advance: true))
-                            return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
+                            return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
                         parsed = new(typename, identifier, scanner[position..scanner.Position], expression);
                         return true;
                     }
@@ -69,7 +69,7 @@ public record struct ParameterParser : IParser<EffectParameter>
                     parsed = new(typename, identifier, scanner[position..scanner.Position]);
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0014, scanner[scanner.Position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0014, scanner[scanner.Position], scanner.Memory));
             }
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);

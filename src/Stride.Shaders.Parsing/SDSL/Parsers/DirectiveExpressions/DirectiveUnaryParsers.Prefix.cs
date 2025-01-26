@@ -53,7 +53,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
             {
                 parsed = null!;
                 scanner.Position = position;
-                result.Errors.Add(new(SDSLParsingMessages.SDSL0020, scanner[position], scanner.Memory));
+                result.Errors.Add(new(SDSLErrorMessages.SDSL0020, scanner[position], scanner.Memory));
                 return false;
             }
         }
@@ -70,7 +70,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
             {
                 parsed = null!;
                 scanner.Position = position;
-                result.Errors.Add(new(SDSLParsingMessages.SDSL0020, scanner[position], scanner.Memory));
+                result.Errors.Add(new(SDSLErrorMessages.SDSL0020, scanner[position], scanner.Memory));
                 return false;
             }
         }
@@ -106,7 +106,7 @@ public record struct DirectiveNotExpressionParser : IParser<Expression>
             {
                 parsed = null!;
                 scanner.Position = position;
-                result.Errors.Add(new(SDSLParsingMessages.SDSL0020, scanner[position], scanner.Memory));
+                result.Errors.Add(new(SDSLErrorMessages.SDSL0020, scanner[position], scanner.Memory));
                 return false;
             }
         }
@@ -164,7 +164,7 @@ public record struct DirectiveCastExpressionParser : IParser<Expression>
         if (
                 Tokens.Char('(', ref scanner, advance: true)
                 && CommonParsers.Spaces0(ref scanner, result, out _)
-                && LiteralsParser.Identifier(ref scanner, result, out var typeName, new(SDSLParsingMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
+                && LiteralsParser.Identifier(ref scanner, result, out var typeName, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
                 && CommonParsers.Spaces0(ref scanner, result, out _)
                 && Tokens.Char(')', ref scanner, true)
                 && DirectiveUnaryParsers.Primary(ref scanner, result, out var lit)

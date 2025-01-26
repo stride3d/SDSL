@@ -52,9 +52,9 @@ public class VariableAssign(Expression variable, bool isConst, TextLocation info
             Expression v => $"{Variable} {Operator?.ToAssignSymbol()} {v}"
         };
 }
-public class DeclaredVariableAssign(Expression variable, bool isConst, TextLocation info, AssignOperator? op = null, Expression? value = null) : Node(info)
+public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocation info, AssignOperator? op = null, Expression? value = null) : Node(info)
 {
-    public Expression Variable { get; set; } = variable;
+    public Identifier Variable { get; set; } = variable;
     public AssignOperator? Operator { get; set; } = op;
     public Expression? Value { get; set; } = value;
     public bool IsConst { get; set; } = isConst;

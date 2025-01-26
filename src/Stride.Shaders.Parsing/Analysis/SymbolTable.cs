@@ -5,6 +5,7 @@ using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Parsing.Analysis;
 
+public record struct SemanticErrors(TextLocation Location, string Message);
 
 public partial class SymbolTable : ISymbolProvider
 {
@@ -12,6 +13,8 @@ public partial class SymbolTable : ISymbolProvider
     public Dictionary<string, Symbol> CurrentTable => Symbols[^1];
     public Dictionary<string, Symbol> RootSymbols => Symbols[0];
     public List<Dictionary<string, Symbol>> Symbols { get; } = [[]];
+
+    public List<SemanticErrors> Errors { get; } = [];
 
 
     public void Push() => Symbols.Add([]);
@@ -36,9 +39,12 @@ public partial class SymbolTable : ISymbolProvider
         {
             foreach (var ns in f.Namespaces)
                 Process(ns);
-            foreach(var e in f.RootDeclarations)
+            foreach (var e in f.RootDeclarations)
                 Process(e);
         }
+        else if (node is ShaderNamespace ns)
+            foreach (var e in ns.Declarations)
+                Process(e);
         else if (node is ShaderClass c)
             foreach (var member in c.Elements)
                 Process(member);
@@ -49,7 +55,7 @@ public partial class SymbolTable : ISymbolProvider
             RootSymbols.Add(variable.Name, new(variable.Name, sym, SymbolKind.Variable));
             variable.Type = sym;
         }
-        else if(node is ShaderBuffer cbuff)
+        else if (node is ShaderBuffer cbuff)
         {
             var sym = new Symbol(cbuff.Name.ToString() ?? "", new BufferSymbol(cbuff.Name.ToString() ?? "", []), SymbolKind.CBuffer);
 
@@ -62,7 +68,7 @@ public partial class SymbolTable : ISymbolProvider
                 cbmem.Type = msym;
             }
         }
-        else if(node is ShaderStruct str)
+        else if (node is ShaderStruct str)
         {
             var sym = new Symbol(str.TypeName.ToString() ?? "", new Struct(str.TypeName.ToString() ?? "", []), SymbolKind.Struct);
             DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
@@ -86,14 +92,63 @@ public partial class SymbolTable : ISymbolProvider
                 arg.Type = argSym;
             }
             if (method.Body is not null)
+            {
+                Push();
                 foreach (var s in method.Body.Statements)
                     Process(s);
+                Pop();
+            }
             method.ReturnType = sym;
         }
-        else if(node is Declaration declaration)
+        else if (node is Declare declare)
         {
-            declaration.Type = declaration.TypeName.ToSymbol();
-            DeclaredTypes.TryAdd(declaration.TypeName.ToString(), declaration.Type);
+            if (declare.TypeName == "var")
+            {
+                if (declare.Variables.Count == 1 && declare.Variables[0].Value is not null)
+                {
+                    Process(declare.Variables[0].Value!);
+                    declare.Type = declare.Variables[0].Value!.Type;
+                }
+                else
+                    Errors.Add(new(declare.Info, SDSLErrorMessages.SDSL0104));
+            }
+            else
+            {
+                declare.Type = declare.TypeName.ToSymbol();
+                DeclaredTypes.TryAdd(declare.TypeName.ToString(), declare.Type);
+                foreach (var d in declare.Variables)
+                {
+                    if(d.Value is not null)
+                        Process(d.Value!);
+                    CurrentTable.Add(d.Variable, new(d.Variable, declare.Type, SymbolKind.Variable));
+                }
+            }
         }
+        else if (node is IntegerLiteral ilit)
+        {
+            ilit.Type = ilit.Suffix switch
+            {
+                { Signed: true, Size: 8 } => Scalar.From("sbyte"),
+                { Signed: true, Size: 16 } => Scalar.From("short"),
+                { Signed: true, Size: 32 } => Scalar.From("int"),
+                { Signed: true, Size: 64 } => Scalar.From("long"),
+                { Signed: false, Size: 8 } => Scalar.From("byte"),
+                { Signed: false, Size: 16 } => Scalar.From("ushort"),
+                { Signed: false, Size: 32 } => Scalar.From("uint"),
+                { Signed: false, Size: 64 } => Scalar.From("ulong"),
+                _ => throw new NotImplementedException("Unsupported integer")
+            };
+        }
+        else if (node is FloatLiteral flit)
+        {
+            flit.Type = flit.Suffix.Size switch
+            {
+                16 => Scalar.From("half"),
+                32 => Scalar.From("float"),
+                64 => Scalar.From("double"),
+                _ => throw new NotImplementedException("Unsupported float")
+            };
+        }
+        else Errors.Add(new(node.Info, SDSLErrorMessages.SDSL0105));
     }
 }

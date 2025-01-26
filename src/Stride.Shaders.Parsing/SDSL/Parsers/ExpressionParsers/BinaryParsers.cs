@@ -311,13 +311,13 @@ public struct ExpressionParser : IParser<Expression>
             {
 
                 CommonParsers.Spaces0(ref scanner, result, out _);
-                if (Expression(ref scanner, result, out var left, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
+                if (Expression(ref scanner, result, out var left, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
                 {
                     CommonParsers.Spaces0(ref scanner, result, out _);
                     if (Tokens.Char(':', ref scanner, advance: true))
                     {
                         CommonParsers.Spaces0(ref scanner, result, out _);
-                        if (Expression(ref scanner, result, out var right, new(SDSLParsingMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
+                        if (Expression(ref scanner, result, out var right, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
                         {
                             parsed = new TernaryExpression(parsed, left, right, scanner[position..scanner.Position]);
                             return true;

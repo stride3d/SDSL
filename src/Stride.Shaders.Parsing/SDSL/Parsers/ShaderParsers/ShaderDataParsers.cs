@@ -50,7 +50,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
                     };
                     return true;
                 }
-                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
             }
             else if (CommonParsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
@@ -64,7 +64,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
                 };
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0013, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -92,7 +92,7 @@ public record struct ShaderStructParser : IParser<ShaderStruct>
                 parsed.Info = scanner[position..scanner.Position];
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0019, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0019, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -129,7 +129,7 @@ public record struct ShaderSamplerStateParser : IParser<ShaderSamplerState>
                 parsed = new(identifier, scanner[position..scanner.Position]);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0019, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0019, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }
@@ -183,7 +183,7 @@ public record struct ShaderSamplerComparisonStateParser : IParser<ShaderSamplerC
                 parsed = new(identifier, scanner[position..scanner.Position]);
                 return true;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0019, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0019, scanner[scanner.Position], scanner.Memory));
         }
         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     }

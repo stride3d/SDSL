@@ -67,7 +67,7 @@ public struct NumberParser : IParser<Literal>
             {
                 scanner.Advance(1);
                 if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                 while (Tokens.Digit(ref scanner, advance: true)) ;
             }
             else if (Tokens.FloatSuffix(ref scanner, out _) || Tokens.Char('e', ref scanner)) { }
@@ -78,7 +78,7 @@ public struct NumberParser : IParser<Literal>
             if (Tokens.Char('.', ref scanner, advance: true))
             {
                 if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                 while (Tokens.Digit(ref scanner, advance: true)) ;
             }
             else return CommonParsers.Exit(ref scanner, result, out parsed, position);
@@ -97,7 +97,7 @@ public struct NumberParser : IParser<Literal>
                 if (signed && matched == "-")
                     exponent = -exponent;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
         if (Tokens.FloatSuffix(ref scanner, out var suffix, advance: true) && suffix is not null)
             parsed = new FloatLiteral(suffix.Value, value, exponent, scanner[position..scanner.Position]);

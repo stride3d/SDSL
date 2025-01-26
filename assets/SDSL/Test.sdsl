@@ -9,6 +9,8 @@ namespace Machin
 
         void PSMain()
         {
+            float f1, f2;
+            var t1 = 0;
             streams.a *= 2.0f;
         }
     }

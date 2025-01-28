@@ -24,6 +24,11 @@ public abstract record SymbolType()
             result = m;
             return true;
         }
+        else if (name == "void")
+        {
+            result = Scalar.From("void");
+            return true;
+        }
         else
         {
             result = null;

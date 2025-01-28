@@ -2,16 +2,16 @@ namespace Machin
 {
     shader Test 
     {
-        stream float4 a;
+        stream float4 abc;
         stream float4 b;
         stream float4 c;
+
+        const int NUMBER = 12;
 
 
         void PSMain()
         {
-            float f1, f2;
-            var t1 = 0;
-            streams.a *= 2.0f;
+            int myVar = 1 + 2 + NUMBER;
         }
     }
 }

@@ -1,6 +1,8 @@
 using System.Drawing;
 using System.Numerics;
 using System.Text;
+using Stride.Shaders.Core;
+using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -9,7 +11,6 @@ namespace Stride.Shaders.Parsing.SDSL.AST;
 public abstract class Literal(TextLocation info) : Expression(info);
 public abstract class ValueLiteral(TextLocation info) : Literal(info);
 public abstract class ScalarLiteral(TextLocation info) : ValueLiteral(info);
-
 
 public class StringLiteral(string value, TextLocation info) : Literal(info)
 {
@@ -36,6 +37,7 @@ public abstract class NumberLiteral<T>(Suffix suffix, T value, TextLocation info
     public override double DoubleValue => Convert.ToDouble(Value);
     public override long LongValue => Convert.ToInt64(Value);
     public override int IntValue => Convert.ToInt32(Value);
+
     public override string ToString()
     {
         return $"{Value}{Suffix}";
@@ -43,21 +45,55 @@ public abstract class NumberLiteral<T>(Suffix suffix, T value, TextLocation info
 
 }
 
-public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : NumberLiteral<long>(suffix, value, info);
+public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : NumberLiteral<long>(suffix, value, info)
+{
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Type = Suffix switch
+        {
+            { Signed:  true, Size:  8 } => Scalar.From("sbyte"),
+            { Signed:  true, Size: 16 } => Scalar.From("short"),
+            { Signed:  true, Size: 32 } => Scalar.From("int"),
+            { Signed:  true, Size: 64 } => Scalar.From("long"),
+            { Signed: false, Size:  8 } => Scalar.From("byte"),
+            { Signed: false, Size: 16 } => Scalar.From("ushort"),
+            { Signed: false, Size: 32 } => Scalar.From("uint"),
+            { Signed: false, Size: 64 } => Scalar.From("ulong"),
+            _ => throw new NotImplementedException("Unsupported integer suffix")
+        };
+    }
+}
 public class UnsignedIntegerLiteral(Suffix suffix, ulong value, TextLocation info) : NumberLiteral<ulong>(suffix, value, info);
 
 public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, TextLocation info) : NumberLiteral<double>(suffix, value, info)
 {
     public int? Exponent { get; set; } = exponent;
     public static implicit operator FloatLiteral(double v) => new(new(), v, null, new());
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Type = Suffix.Size switch
+        {
+            16 => Scalar.From("half"),
+            32 => Scalar.From("float"),
+            64 => Scalar.From("double"),
+            _ => throw new NotImplementedException("Unsupported float")
+        };
+    }
 }
 
-public sealed class HexLiteral(ulong value, TextLocation info) : UnsignedIntegerLiteral(new(32, false, false), value, info);
+public sealed class HexLiteral(ulong value, TextLocation info) : UnsignedIntegerLiteral(new(32, false, false), value, info)
+{
+    public override void ProcessSymbol(SymbolTable table) 
+        => Type = Scalar.From("long");
+}
 
 
 public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
 {
     public bool Value { get; set; } = value;
+    public override void ProcessSymbol(SymbolTable table) 
+        => Type = Scalar.From("bool");
 }
 
 public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(info)
@@ -94,14 +130,26 @@ public class ArrayLiteral(TextLocation info) : ValueLiteral(info)
 }
 
 
-
-
-
 public class Identifier(string name, TextLocation info) : Literal(info)
 {
     public string Name { get; set; } = name;
 
     public static implicit operator string(Identifier identifier) => identifier.Name;
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        for (int i = table.Symbols.Count - 1; i >= 0; i -= 1)
+        {
+            if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, out var symbol))
+            {
+                if (symbol.Type.GetType() != typeof(Undefined) && symbol.Type != null)
+                    Type = symbol.Type;
+                else
+                    Type = symbol.Type ?? new Undefined(Name);
+                break;
+            }
+        }
+    }
 
     public override string ToString()
     {

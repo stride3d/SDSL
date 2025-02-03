@@ -1,3 +1,5 @@
+using Stride.Shaders.Parsing.Analysis;
+
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
 
@@ -72,6 +74,23 @@ public class BinaryExpression(Expression left, Operator op, Expression right, Te
     public Operator Op { get; set; } = op;
     public Expression Left { get; set; } = left;
     public Expression Right { get; set; } = right;
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Left.ProcessSymbol(table);
+        Right.ProcessSymbol(table);
+        if (
+            OperatorTable.BinaryOperationResultingType(
+                Left.Type ?? throw new NotImplementedException("Missing type"),
+                Right.Type ?? throw new NotImplementedException("Missing type"),
+                Op,
+                out var t
+            )
+        )
+            Type = t;
+        else
+            table.Errors.Add(new(Info, SDSLErrorMessages.SDSL0104));
+    }
 
     public override string ToString()
     {

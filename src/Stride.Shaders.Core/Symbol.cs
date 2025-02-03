@@ -18,6 +18,5 @@ public enum SymbolKind
     RGroup
 }
 
-public record struct SymbolName(string Name, SymbolKind Kind);
-
-public record struct Symbol(string Name, SymbolType Type, SymbolKind Kind);
+public record struct SymbolID(string Name, SymbolKind Kind);
+public record struct Symbol(SymbolID Id, SymbolType Type);

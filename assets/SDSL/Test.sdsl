@@ -2,16 +2,18 @@ namespace Machin
 {
     shader Test 
     {
-        stream float4 abc;
-        stream float4 b;
-        stream float4 c;
-
-        const int NUMBER = 12;
+        stream float4 Position;
+        stream float4 Color;
 
 
         void PSMain()
         {
-            int myVar = 1 + 2 + NUMBER;
+            Position.w = 1.0;
+        }
+
+        void VSMain()
+        {
+            Color = float4(1.0,0.0,1.0,1.0);
         }
     }
 }

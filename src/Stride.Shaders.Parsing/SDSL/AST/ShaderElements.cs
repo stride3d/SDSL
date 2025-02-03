@@ -1,4 +1,6 @@
 using Stride.Shaders.Core;
+using Stride.Shaders.Core.Analysis;
+using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -125,6 +127,27 @@ public abstract class ShaderBuffer(List<Identifier> name, TextLocation info) : S
 {
     public List<Identifier> Name { get; set; } = name;
     public List<ShaderMember> Members { get; set; } = [];
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        var sym = new Symbol(new(Name.ToString() ?? "", SymbolKind.CBuffer), new BufferSymbol(Name.ToString() ?? "", []));
+
+        table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+        var kind = this switch
+        {
+            CBuffer => SymbolKind.CBuffer,
+            TBuffer => SymbolKind.TBuffer,
+            RGroup => SymbolKind.RGroup,
+            _ => throw new NotSupportedException()
+        };
+        table.RootSymbols.Add(new(Name.ToString() ?? "", kind), sym);
+        foreach (var cbmem in Members)
+        {
+            var msym = cbmem.TypeName.ToSymbol();
+            table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+            cbmem.Type = msym;
+        }
+    }
 }
 
 public class ShaderStructMember(TypeName typename, Identifier identifier, TextLocation info) : Node(info)
@@ -146,6 +169,19 @@ public class ShaderStruct(Identifier typename, TextLocation info) : ShaderElemen
 {
     public Identifier TypeName { get; set; } = typename;
     public List<ShaderStructMember> Members { get; set; } = [];
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        var sym = new Symbol(new(TypeName.ToString() ?? "", SymbolKind.Struct), new Struct(TypeName.ToString() ?? "", []));
+        table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+        table.RootSymbols.Add(new(TypeName.ToString() ?? "", SymbolKind.Struct), sym);
+        foreach (var smem in Members)
+        {
+            var msym = smem.TypeName.ToSymbol();
+            table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
+            smem.Type = msym;
+        }
+    }
 
     public override string ToString()
     {

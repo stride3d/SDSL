@@ -126,14 +126,14 @@ public sealed record ShaderSymbol(string Name, List<Symbol> Components) : Symbol
     public Symbol Get(string name, SymbolKind kind)
     {
         foreach (var e in Components)
-            if (e.Kind == kind && e.Name == name)
+            if (e.Id.Kind == kind && e.Id.Name == name)
                 return e;
         throw new ArgumentException($"{name} not found in Mixin {Name}");
     }
     public bool TryGet(string name, SymbolKind kind, out Symbol? value)
     {
         foreach (var e in Components)
-            if (e.Kind == kind && e.Name == name)
+            if (e.Id.Kind == kind && e.Id.Name == name)
             {
                 value = e;
                 return true;

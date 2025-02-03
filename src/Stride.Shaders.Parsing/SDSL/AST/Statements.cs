@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 using Stride.Shaders.Core;
+using Stride.Shaders.Core.Analysis;
+using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -83,6 +85,30 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
 {
     public List<DeclaredVariableAssign> Variables { get; set; } = [];
 
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        if (TypeName == "var")
+        {
+            if (Variables.Count == 1 && Variables[0].Value is not null)
+            {
+                Variables[0].Value?.ProcessSymbol(table);
+                Type = Variables[0].Value!.Type;
+            }
+            else
+                table.Errors.Add(new(Info, SDSLErrorMessages.SDSL0104));
+        }
+        else
+        {
+            Type = TypeName.ToSymbol();
+            table.DeclaredTypes.TryAdd(TypeName.ToString(), Type);
+            foreach (var d in Variables)
+            {
+                d.Value?.ProcessSymbol(table);
+                table.CurrentTable.Add(new(d.Variable, SymbolKind.Variable), new(new(d.Variable, SymbolKind.Variable), Type));
+            }
+        }
+    }
+
     public override string ToString()
     {
         return $"{TypeName} {string.Join(", ", Variables.Select(v => v.ToString()))}";
@@ -92,6 +118,42 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
 public class Assign(TextLocation info) : Statement(info)
 {
     public List<VariableAssign> Variables { get; set; } = [];
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        foreach (var a in Variables)
+        {
+            if (a.Variable is Identifier id)
+            {
+                if (table.TryFind(id, SymbolKind.Variable, out var symbol))
+                {
+                    Type = symbol.Type;
+                    a.Value?.ProcessSymbol(table);
+                }
+                else throw new NotImplementedException();
+            }
+            else if (a.Variable is AccessorExpression exp)
+            {
+                if (exp.Expression is Identifier first)
+                {
+                    if (table.TryFind(first, SymbolKind.Variable, out var varSym))
+                    {
+                        first.Type = varSym.Type;
+                        if (varSym.Type is Vector tv)
+                        {
+                            if( exp.Accessed.Info.TextSpan.Length == 1)
+                                exp.Accessed.Type = tv.BaseType;
+                            else if(exp.Accessed.Info.TextSpan.Length > 1 && exp.Accessed.Info.TextSpan.Length < 5)
+                                exp.Accessed.Type = new Vector(tv.BaseType, exp.Accessed.Info.TextSpan.Length);
+                            else throw new NotImplementedException();
+                        }
+                        else throw new NotImplementedException();
+                    }
+                    else throw new NotImplementedException();
+                }
+            }
+        }
+    }
     public override string ToString()
     {
         return string.Join(", ", Variables.Select(x => x.ToString())) + ";";
@@ -103,6 +165,12 @@ public class Assign(TextLocation info) : Statement(info)
 public class BlockStatement(TextLocation info) : Statement(info)
 {
     public List<Statement> Statements { get; set; } = [];
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        foreach (var s in Statements)
+            s.ProcessSymbol(table);
+    }
 
     public override string ToString()
     {

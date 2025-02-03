@@ -1,4 +1,6 @@
 using Stride.Shaders.Core;
+using Stride.Shaders.Core.Analysis;
+using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -127,6 +129,24 @@ public class ShaderMethod(
     public bool? IsClone { get; set; } = isClone;
     public List<MethodParameter> Parameters { get; set; } = [];
     public BlockStatement? Body { get; set; }
+
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        foreach (var arg in Parameters)
+        {
+            var argSym = arg.TypeName.ToSymbol();
+            table.DeclaredTypes.TryAdd(argSym.ToString(), argSym);
+            arg.Type = argSym;
+        }
+        if (Body is not null)
+        {
+            table.Push();
+            foreach (var s in Body.Statements)
+                s.ProcessSymbol(table);
+            table.Pop();
+        }
+    }
 
     public override string ToString()
     {

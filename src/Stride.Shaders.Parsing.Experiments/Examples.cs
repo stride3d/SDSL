@@ -117,7 +117,7 @@ public static class Examples
         else
         {
             var table = new SymbolTable();
-            table.Process(parsed.AST!);
+            parsed.AST?.ProcessSymbol(table);
         }
     }
 

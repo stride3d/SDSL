@@ -134,24 +134,24 @@ public class Assign(TextLocation info) : Statement(info)
             }
             else if (a.Variable is AccessorExpression exp)
             {
-                if (exp.Expression is Identifier first)
+                #error This doesn't work in order :c
+                if (exp.Expression is Identifier streams && streams.Name == "streams")
                 {
-                    if (table.TryFind(first, SymbolKind.Variable, out var varSym))
+                    exp.Accessed.ProcessSymbol(table);
+                    Type = exp.Accessed.Type;
+                }
+                else if (exp.Expression is Identifier otherId)
+                {
+                    if (table.TryFind(otherId, SymbolKind.Variable, out var varSym))
                     {
-                        first.Type = varSym.Type;
-                        if (varSym.Type is Vector tv)
-                        {
-                            if( exp.Accessed.Info.TextSpan.Length == 1)
-                                exp.Accessed.Type = tv.BaseType;
-                            else if(exp.Accessed.Info.TextSpan.Length > 1 && exp.Accessed.Info.TextSpan.Length < 5)
-                                exp.Accessed.Type = new Vector(tv.BaseType, exp.Accessed.Info.TextSpan.Length);
-                            else throw new NotImplementedException();
-                        }
-                        else throw new NotImplementedException();
+                        exp.Accessed.ProcessSymbol(table);
+                        otherId.Type = varSym.Type;
+                        Type = exp.Accessed.Type;
                     }
                     else throw new NotImplementedException();
                 }
             }
+            else throw new NotImplementedException();
         }
     }
     public override string ToString()

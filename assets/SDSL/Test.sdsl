@@ -8,12 +8,12 @@ namespace Machin
 
         void PSMain()
         {
-            Position.w = 1.0;
+            streams.Position.w = 1.0;
         }
 
         void VSMain()
         {
-            Color = float4(1.0,0.0,1.0,1.0);
+            streams.Color = float4(1.0,0.0,1.0,1.0);
         }
     }
 }

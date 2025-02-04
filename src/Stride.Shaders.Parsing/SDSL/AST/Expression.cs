@@ -49,6 +49,17 @@ public class PostfixExpression(Expression expression, Operator op, TextLocation 
     }
 }
 
+public class AccessorChainExpression(Identifier source, TextLocation info) : Expression(info)
+{
+    public Identifier Source { get; set; } = source;
+    public List<Expression> Accessors { get; set; } = [];
+
+    public override string ToString()
+    {
+        return $"{Source}{string.Join(".", Accessors)}";
+    }
+}
+
 public class AccessorExpression(Expression expression, Expression accessed, TextLocation info) : PostfixExpression(expression, Operator.Accessor, info)
 {
     public Expression Accessed { get; set; } = accessed;

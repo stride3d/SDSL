@@ -17,6 +17,12 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
 {
     public override SymbolType? Type { get => Expression.Type; set { } }
     public Expression Expression { get; set; } = expression;
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Expression.ProcessSymbol(table);
+        Type = Scalar.From("void");
+    }
     public override string ToString()
     {
         return $"{Expression};";
@@ -28,6 +34,11 @@ public class Return(TextLocation info, Expression? expression = null) : Statemen
     public override SymbolType? Type { get => Value?.Type ?? Scalar.From("void"); set { } }
     public Expression? Value { get; set; } = expression;
 
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Value?.ProcessSymbol(table);
+        Type = Value?.Type ?? Scalar.From("void");
+    }
     public override string ToString()
     {
         return $"return {Value};";
@@ -64,6 +75,14 @@ public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocat
     {
         get => TypeName.ArraySize;
         set => TypeName.ArraySize = value;
+    }
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Variable.Type = TypeName.ToSymbol();
+        Value?.ProcessSymbol(table);
+        if(Value is not null && Value.Type != Variable.Type)
+            table.Errors.Add(new(TypeName.Info, "wrong type"));
     }
 
     internal void ReplaceTypeName(TypeName typeName)

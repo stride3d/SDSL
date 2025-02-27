@@ -13,7 +13,7 @@ namespace Machin
 
         void VSMain()
         {
-            streams.Color = float4(1.0,0.0,1.0,1u32);
+            streams.Color = float4(1.0,0.0,1.0,1.0);
         }
     }
 }

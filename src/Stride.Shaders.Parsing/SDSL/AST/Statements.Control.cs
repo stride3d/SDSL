@@ -1,3 +1,4 @@
+using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
@@ -15,17 +16,11 @@ public class ConditionalFlow(If first, TextLocation info) : Flow(info)
 
     public override void ProcessSymbol(SymbolTable table)
     {
-        If.Condition.ProcessSymbol(table);
-        If.Body.ProcessSymbol(table);
-        if (ElseIfs.Count > 0)
-        {
-            foreach (var ei in ElseIfs)
-            {
-                ei.Condition.ProcessSymbol(table);
-                ei.Body.ProcessSymbol(table);
-            }
-        }
-        Else?.Body.ProcessSymbol(table);
+        If.ProcessSymbol(table);
+        foreach (var ei in ElseIfs)
+            ei.ProcessSymbol(table);
+        Else?.ProcessSymbol(table);
+
     }
 
     public override string ToString()
@@ -38,6 +33,14 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
     public Expression Condition { get; set; } = condition;
     public Statement Body { get; set; } = body;
 
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Condition.ProcessSymbol(table);
+        Body.ProcessSymbol(table);
+        if(Condition.Type != Scalar.From("bool"))
+            table.Errors.Add(new(Condition.Info, "not a boolean"));
+    }
+
     public override string ToString()
     {
         return $"if({Condition})\n{Body}";
@@ -46,6 +49,13 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
 
 public class ElseIf(Expression condition, Statement body, TextLocation info) : If(condition, body, info)
 {
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Condition.ProcessSymbol(table);
+        Body.ProcessSymbol(table);
+        if(Condition.Type != Scalar.From("bool"))
+            table.Errors.Add(new(Condition.Info, "not a boolean"));
+    }
     public override string ToString()
     {
         return $"else if({Condition}){Body}";
@@ -55,6 +65,11 @@ public class ElseIf(Expression condition, Statement body, TextLocation info) : I
 public class Else(Statement body, TextLocation info) : Flow(info)
 {
     public Statement Body { get; set; } = body;
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Body.ProcessSymbol(table);
+    }
     public override string ToString()
     {
         return $"else {Body}";

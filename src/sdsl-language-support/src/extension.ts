@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { LanguageClientOptions} from 'vscode-languageclient';
+import { LanguageClientOptions } from 'vscode-languageclient';
 import { LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 
 
@@ -30,25 +30,23 @@ export function activate(context: vscode.ExtensionContext) {
 	let serverExe = path.join(context.extensionPath, 'bin', 'Stride.Shaders.LSP.exe');
 
 	let serverOptions: ServerOptions = {
-		run: { command: serverExe},
-		debug: { command: serverExe}
+		run: { command: serverExe },
+		debug: { command: serverExe }
 	};
 	let clientOptions: LanguageClientOptions = {
-		// Register the server for plain text documents
 		documentSelector: [
-			{
-				pattern: '**/*.sdsl',
-			}
+			{ scheme: 'file', language: 'SDSL' }
 		],
 		synchronize: {
-			// Synchronize the setting section 'languageServerExample' to the server
-			configurationSection: 'sdsl-lsp',
-			fileEvents: workspace.createFileSystemWatcher('**/*.sd(sl|fx)')
-		},
+			fileEvents: [
+				vscode.workspace.createFileSystemWatcher('**/*.sdsl'), 
+				vscode.workspace.createFileSystemWatcher('**/*.sdfx')
+			]
+		}
 	};
-	const client = new LanguageClient('sdsl-lsp', 'Stride.Shaders.LSP', serverOptions, clientOptions);
+	const client = new LanguageClient('sdslLanguageServer', 'Stride.Shaders.LSP', serverOptions, clientOptions);
 	client.start();
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

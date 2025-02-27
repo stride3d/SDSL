@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using System.Text;
 using Stride.Shaders.Core;
 using Stride.Shaders.Core.Analysis;
@@ -121,37 +120,58 @@ public class Assign(TextLocation info) : Statement(info)
 
     public override void ProcessSymbol(SymbolTable table)
     {
-        foreach (var a in Variables)
+        foreach (var variable in Variables)
         {
-            if (a.Variable is Identifier id)
+            if (variable.Variable is Identifier id)
             {
                 if (table.TryFind(id, SymbolKind.Variable, out var symbol))
-                {
                     Type = symbol.Type;
-                    a.Value?.ProcessSymbol(table);
-                }
                 else throw new NotImplementedException();
             }
-            else if (a.Variable is AccessorExpression exp)
+            else if (variable.Variable is AccessorChainExpression exp)
             {
-                #error This doesn't work in order :c
-                if (exp.Expression is Identifier streams && streams.Name == "streams")
+                if (exp.Source is Identifier streams && streams == "streams")
                 {
-                    exp.Accessed.ProcessSymbol(table);
-                    Type = exp.Accessed.Type;
-                }
-                else if (exp.Expression is Identifier otherId)
-                {
-                    if (table.TryFind(otherId, SymbolKind.Variable, out var varSym))
+                    if (exp.Accessors[0] is not Identifier)
+                        throw new NotImplementedException();
+                    else
                     {
-                        exp.Accessed.ProcessSymbol(table);
-                        otherId.Type = varSym.Type;
-                        Type = exp.Accessed.Type;
+                        // Check type of first symbol
+                        exp.Accessors[0].ProcessSymbol(table);
+                        exp.Type = exp.Accessors[0].Type;
+                        // If has more, dive into the type definition
+                        // First case none
+                        if (exp.Accessors.Count > 1)
+                        {
+                            foreach (var accessor in exp.Accessors[1..])
+                            {
+                                if (exp.Type is not null && exp.Type.TryAccess(accessor, out var type))
+                                {
+                                    exp.Type = type;
+                                    accessor.Type = type;
+                                }
+                                else throw new NotImplementedException($"Cannot access {accessor.GetType().Name} from {exp.Type}");
+                            }
+                        }
+
                     }
-                    else throw new NotImplementedException();
+                }
+                else
+                {
+                    exp.Source.ProcessSymbol(table);
+                    foreach (var accessor in exp.Accessors)
+                    {
+                        if (exp.Type is not null && exp.Type.TryAccess(accessor, out var type))
+                        {
+                            exp.Type = type;
+                            accessor.Type = type;
+                        }
+                        else throw new NotImplementedException($"Cannot access {accessor.GetType().Name} from {exp.Type}");
+                    }
                 }
             }
             else throw new NotImplementedException();
+            variable.Value?.ProcessSymbol(table);
         }
     }
     public override string ToString()

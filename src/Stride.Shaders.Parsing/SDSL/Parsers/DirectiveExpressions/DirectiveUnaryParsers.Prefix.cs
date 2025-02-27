@@ -43,7 +43,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
         var position = scanner.Position;
         if (Tokens.Literal("++", ref scanner, advance: true))
         {
-            CommonParsers.Spaces0(ref scanner, result, out _);
+            Parsers.Spaces0(ref scanner, result, out _);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(Operator.Inc, lit, scanner[position..scanner.Position]);
@@ -60,7 +60,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
         // prefix decrememnt 
         else if (Tokens.Literal("--", ref scanner, advance: true))
         {
-            CommonParsers.Spaces0(ref scanner, result, out _);
+            Parsers.Spaces0(ref scanner, result, out _);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(Operator.Inc, lit, scanner[position..scanner.Position]);
@@ -96,7 +96,7 @@ public record struct DirectiveNotExpressionParser : IParser<Expression>
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
-            CommonParsers.Spaces0(ref scanner, result, out _);
+            Parsers.Spaces0(ref scanner, result, out _);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(op, lit, scanner[position..scanner.Position]);
@@ -130,7 +130,7 @@ public record struct DirectiveSignExpressionParser : IParser<Expression>
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
-            CommonParsers.Spaces0(ref scanner, result, out _);
+            Parsers.Spaces0(ref scanner, result, out _);
             if (DirectiveUnaryParsers.Prefix(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(op, lit, scanner[position..scanner.Position]);
@@ -163,9 +163,9 @@ public record struct DirectiveCastExpressionParser : IParser<Expression>
         var position = scanner.Position;
         if (
                 Tokens.Char('(', ref scanner, advance: true)
-                && CommonParsers.Spaces0(ref scanner, result, out _)
+                && Parsers.Spaces0(ref scanner, result, out _)
                 && LiteralsParser.Identifier(ref scanner, result, out var typeName, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
-                && CommonParsers.Spaces0(ref scanner, result, out _)
+                && Parsers.Spaces0(ref scanner, result, out _)
                 && Tokens.Char(')', ref scanner, true)
                 && DirectiveUnaryParsers.Primary(ref scanner, result, out var lit)
         )

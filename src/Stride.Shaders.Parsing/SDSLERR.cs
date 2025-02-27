@@ -57,4 +57,5 @@ public static class SDSLErrorMessages
     public const string SDSL0103 = "SDSL0103: Variable cannot be assigned to";
     public const string SDSL0104 = "SDSL0104: Cannot infer type";
     public const string SDSL0105 = "SDSL0105: Unrecognized node";
+    public const string SDSL0106 = "SDSL0106: Unsupported type";
 }

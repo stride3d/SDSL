@@ -58,7 +58,7 @@ public class SemanticTokensHandler(ILogger<SemanticTokensHandler> logger) : Sema
         {
             var ns = sf.Namespaces[0];
             _logger.LogInformation($"Handling namespace : {ns.Namespace}");
-            // builder.Push(ns.Info.Line,ns.Info.Column, ns.Info.Length, SemanticTokenType.Namespace, SemanticTokenModifier.Declaration);
+            builder.Push(ns.Info.Line,ns.Info.Column, ns.Info.Length, SemanticTokenType.Namespace, SemanticTokenModifier.Declaration);
         }
 
         // foreach (var (line, text) in content.Split('\n').Select((text, line) => (line, text)))

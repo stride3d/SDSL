@@ -12,5 +12,5 @@ using Stride.Shaders.Parsing.SDSL.AST;
 // Console.WriteLine(matched.AST);
 
 Examples.ParseSDSL();
-
+var x = 0;
 // Examples.TryAllFiles();

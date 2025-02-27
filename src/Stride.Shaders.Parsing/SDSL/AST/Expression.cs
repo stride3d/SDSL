@@ -1,3 +1,4 @@
+using System.Text;
 using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
@@ -41,44 +42,33 @@ public class CastExpression(string typeName, Operator op, Expression expression,
     public string TypeName { get; set; } = typeName;
 }
 
-public class PostfixExpression(Expression expression, Operator op, TextLocation info) : UnaryExpression(expression, op, info)
+public class PostfixIncrement(Operator op, TextLocation info) : Expression(info)
 {
+    public Operator Operator { get; set; } = op;
     public override string ToString()
     {
-        return $"{Expression}{Operator.ToSymbol()}";
+        return $"{Operator.ToSymbol()}";
     }
 }
 
-public class AccessorChainExpression(Identifier source, TextLocation info) : Expression(info)
+public class AccessorChainExpression(Expression source, TextLocation info) : Expression(info)
 {
-    public Identifier Source { get; set; } = source;
+    public Expression Source { get; set; } = source;
     public List<Expression> Accessors { get; set; } = [];
 
     public override string ToString()
     {
-        return $"{Source}{string.Join(".", Accessors)}";
+        var builder = new StringBuilder().Append(Source);
+        foreach(var a in Accessors)
+            if(a is NumberLiteral)
+                builder.Append('[').Append(a).Append(']');
+            else if(a is PostfixIncrement)
+                builder.Append(a);
+            else
+                builder.Append('.').Append(a);
+        return builder.ToString();
     }
 }
-
-public class AccessorExpression(Expression expression, Expression accessed, TextLocation info) : PostfixExpression(expression, Operator.Accessor, info)
-{
-    public Expression Accessed { get; set; } = accessed;
-
-    public override string ToString()
-    {
-        return $"{Expression}.{Accessed}";
-    }
-}
-
-public class IndexerExpression(Expression expression, Expression index, TextLocation info) : PostfixExpression(expression, Operator.Indexer, info)
-{
-    public Expression Index { get; set; } = index;
-    public override string ToString()
-    {
-        return $"{Expression}[{Index}]";
-    }
-}
-
 
 public class BinaryExpression(Expression left, Operator op, Expression right, TextLocation info) : Expression(info)
 {

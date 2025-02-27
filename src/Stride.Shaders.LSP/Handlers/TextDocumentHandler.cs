@@ -23,7 +23,7 @@ internal class TextDocumentHandler : TextDocumentSyncHandlerBase
     private readonly ILogger<TextDocumentHandler> _logger;
     private readonly ILanguageServerConfiguration _configuration;
 
-    private readonly TextDocumentSelector _textDocumentSelector = new TextDocumentSelector(
+    private readonly TextDocumentSelector _textDocumentSelector = new(
         new TextDocumentFilter
         {
             Pattern = "**/*.sdsl"

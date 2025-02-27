@@ -9,7 +9,7 @@ public struct NumberParser : IParser<Literal>
     public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Literal parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
-        return CommonParsers.Alternatives(
+        return Parsers.Alternatives(
             ref scanner,
             result,
             out parsed,
@@ -48,7 +48,7 @@ public struct NumberParser : IParser<Literal>
             parsed = new IntegerLiteral(new(32, false, true), 0, new(scanner.Memory, position..scanner.Position));
             return true;
         }
-        else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
+        else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
     public static bool Float<TScanner>(ref TScanner scanner, ParseResult result, out Literal parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
@@ -57,7 +57,7 @@ public struct NumberParser : IParser<Literal>
         if (Tokens.Char('.', ref scanner, advance: true))
         {
             if (!Tokens.Digit(ref scanner))
-                return CommonParsers.Exit(ref scanner, result, out parsed, position);
+                return Parsers.Exit(ref scanner, result, out parsed, position);
             while (Tokens.Digit(ref scanner, advance: true)) ;
         }
         else if (Tokens.Digit(ref scanner, 1.., advance: true))
@@ -67,23 +67,23 @@ public struct NumberParser : IParser<Literal>
             {
                 scanner.Advance(1);
                 if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                    return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                 while (Tokens.Digit(ref scanner, advance: true)) ;
             }
             else if (Tokens.FloatSuffix(ref scanner, out _) || Tokens.Char('e', ref scanner)) { }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position);
+            else return Parsers.Exit(ref scanner, result, out parsed, position);
         }
         else if (Tokens.Digit(ref scanner, 0, advance: true))
         {
             if (Tokens.Char('.', ref scanner, advance: true))
             {
                 if (!Tokens.Digit(ref scanner) && !Tokens.FloatSuffix(ref scanner, out _))
-                    return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                    return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
                 while (Tokens.Digit(ref scanner, advance: true)) ;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position);
+            else return Parsers.Exit(ref scanner, result, out parsed, position);
         }
-        else return CommonParsers.Exit(ref scanner, result, out parsed, position);
+        else return Parsers.Exit(ref scanner, result, out parsed, position);
 
 
         var value = double.Parse(scanner.Span[position..scanner.Position], CultureInfo.InvariantCulture);
@@ -97,7 +97,7 @@ public struct NumberParser : IParser<Literal>
                 if (signed && matched == "-")
                     exponent = -exponent;
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+            else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
         if (Tokens.FloatSuffix(ref scanner, out var suffix, advance: true) && suffix is not null)
             parsed = new FloatLiteral(suffix.Value, value, exponent, scanner[position..scanner.Position]);
@@ -129,7 +129,7 @@ public struct NumberParser : IParser<Literal>
             parsed = new HexLiteral(sum, scanner[position..scanner.Position]);
             return true;
         }
-        else return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
+        else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
     static int Hex2int(char ch)
     {

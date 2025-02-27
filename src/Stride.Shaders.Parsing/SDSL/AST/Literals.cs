@@ -1,7 +1,7 @@
-using System.Drawing;
 using System.Numerics;
 using System.Text;
 using Stride.Shaders.Core;
+using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
@@ -101,9 +101,25 @@ public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(
     public TypeName TypeName { get; set; } = typeName;
     public List<Expression> Values { get; set; } = [];
 
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Type = TypeName.ToSymbol();
+        var tmp = (Core.Vector)Type;
+        foreach(var v in Values)
+        {
+            v.ProcessSymbol(table);
+            if(
+                v.Type is Scalar st && tmp.BaseType != st
+                || (v.Type is Core.Vector vt && vt.BaseType != tmp.BaseType)
+                || (v.Type is Core.Vector vt2 && vt2.Size > tmp.Size)
+            )
+                table.Errors.Add(new(v.Info, SDSLErrorMessages.SDSL0106));
+        }
+    }
+
     public override string ToString()
     {
-        return $"{TypeName}{Values.Count}({string.Join(", ", Values.Select(x => x.ToString()))})";
+        return $"{TypeName}({string.Join(", ", Values.Select(x => x.ToString()))})";
     }
 }
 
@@ -142,18 +158,53 @@ public class Identifier(string name, TextLocation info) : Literal(info)
         {
             if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, out var symbol))
             {
-                if (symbol.Type.GetType() != typeof(Undefined) && symbol.Type != null)
+                if (symbol.Type is not Undefined and not null)
                     Type = symbol.Type;
                 else
                     Type = symbol.Type ?? new Undefined(Name);
-                break;
+                return;
             }
         }
+        throw new NotImplementedException($"Cannot find symbol {Name}.");
     }
 
     public override string ToString()
     {
         return $"{Name}";
+    }
+
+    public bool IsSwizzle()
+    {
+        if(Name.Length > 4)
+            return false;
+
+        bool colorMode = false;
+        bool vectorMode = false;
+
+        Span<char> colorFields = ['r', 'g', 'b', 'a'];
+        Span<char> vectorFields = ['x', 'y', 'z', 'w'];
+
+        if(colorFields.Contains(Name[0]))
+            colorMode = true;
+        else if(vectorFields.Contains(Name[0]))
+            vectorMode = true;
+        
+        if(!colorMode && !vectorMode)
+            return false;
+        var fields = colorMode ? colorFields : vectorFields;
+        foreach(var c in Name)
+            if(!fields.Contains(c))
+                return false;
+        return true;
+    }
+
+    public bool IsMatrixField()
+    {
+        return 
+            Name.Length == 3 
+            && Name[0] == '_' 
+            && char.IsDigit(Name[1]) && Name[1] - '0' > 0 && Name[1] - '0' < 5
+            && char.IsDigit(Name[2]) && Name[2] - '0' > 0 && Name[2] - '0' < 5;
     }
 }
 

@@ -35,15 +35,15 @@ public record struct ParameterDeclarationsParser : IParser<ShaderParameterDeclar
         do
         {
             if (
-                CommonParsers.FollowedBy(ref scanner, result, LiteralsParser.TypeName, out TypeName typename, withSpaces: true, advance: true)
-                && CommonParsers.Spaces1(ref scanner, result, out _)
+                Parsers.FollowedBy(ref scanner, result, LiteralsParser.TypeName, out TypeName typename, withSpaces: true, advance: true)
+                && Parsers.Spaces1(ref scanner, result, out _)
                 && LiteralsParser.Identifier(ref scanner, result, out var name)
-                && CommonParsers.Spaces0(ref scanner, result, out _)
+                && Parsers.Spaces0(ref scanner, result, out _)
             )
             {
                 parameters.Add(new(typename, name));
             }
-            else return CommonParsers.Exit(ref scanner, result, out parsed, position);
+            else return Parsers.Exit(ref scanner, result, out parsed, position);
         }
         while (!scanner.IsEof && Tokens.Char(',', ref scanner, advance: true));
         parsed = new(scanner[position..scanner.Position]) { Parameters = parameters };
@@ -58,7 +58,7 @@ public record struct ParameterListParser : IParser<ShaderExpressionList>
         List<Expression> values = [];
         do
         {
-            CommonParsers.Spaces0(ref scanner, result, out _);
+            Parsers.Spaces0(ref scanner, result, out _);
             if (ExpressionParser.Expression(ref scanner, result, out var expr))
                 values.Add(expr);
             else if (LiteralsParser.StringLiteral(ref scanner, result, out var str))
@@ -67,7 +67,7 @@ public record struct ParameterListParser : IParser<ShaderExpressionList>
                 break;
             // else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
-        while (!scanner.IsEof && CommonParsers.FollowedBy(ref scanner, Tokens.Char(','), advance: true));
+        while (!scanner.IsEof && Parsers.FollowedBy(ref scanner, Tokens.Char(','), advance: true));
 
         parsed = new(scanner[position..scanner.Position])
         {
@@ -86,19 +86,19 @@ public record struct GenericsListParser : IParser<ShaderExpressionList>
         {
             parsed = new(scanner[position..scanner.Position]);
             parsed.Values.Add(parameter);
-            CommonParsers.Spaces0(ref scanner, result, out _);
+            Parsers.Spaces0(ref scanner, result, out _);
             while (Tokens.Char(',', ref scanner, advance: true))
             {
-                CommonParsers.Spaces0(ref scanner, result, out _);
+                Parsers.Spaces0(ref scanner, result, out _);
                 if (ParameterParsers.GenericsValue(ref scanner, result, out var other, new("Expecting at least one generics value", scanner[scanner.Position], scanner.Memory)))
                 {
                     parsed.Values.Add(other);
-                    CommonParsers.Spaces0(ref scanner, result, out _);
+                    Parsers.Spaces0(ref scanner, result, out _);
                 }
             }
             return true;
         }
-        return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
+        return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 }
 
@@ -117,9 +117,9 @@ public record struct GenericsValueParser : IParser<Expression>
             parsed = vector;
             return true;
         }
-        else if (PostfixParser.Accessor(ref scanner, result, out var accessor))
+        else if (PostfixParser.Postfix(ref scanner, result, out var accessor))
         {
-            if (accessor is AccessorExpression ae && ae.Accessed is Identifier)
+            if (accessor is AccessorChainExpression ae && ae.Source is Identifier)
             {
                 parsed = accessor;
                 return true;
@@ -133,7 +133,7 @@ public record struct GenericsValueParser : IParser<Expression>
             parsed = identifier;
             return true;
         }
-        return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
+        return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
 }

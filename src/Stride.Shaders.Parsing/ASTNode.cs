@@ -8,10 +8,7 @@ namespace Stride.Shaders.Parsing;
 public abstract class Node(TextLocation info)
 {
     public TextLocation Info { get; set; } = info;
-    public virtual void ProcessSymbol(SymbolTable table)
-    {
-
-    }
+    public virtual void ProcessSymbol(SymbolTable table) => throw new NotImplementedException($"Symbol table cannot process type : {GetType().Name}");
 }
 public class ValueNode(TextLocation info) : Node(info)
 {

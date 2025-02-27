@@ -39,7 +39,8 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
             }
         }
         foreach (var member in Elements)
-            member.ProcessSymbol(table);
+            if(member is not MethodOrMember)
+                member.ProcessSymbol(table);
     }
 
 

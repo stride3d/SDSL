@@ -6,7 +6,7 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 
 
-public static class CommonParsers
+public static class Parsers
 {
     public static bool Exit<TScanner, TNode>(ref TScanner scanner, ParseResult result, out TNode parsed, int beginningPosition, in ParseError? orError = null)
         where TScanner : struct, IScanner
@@ -521,6 +521,26 @@ public static class CommonParsers
             }
         }
         matched = null!;
+        scanner.Position = position;
+        return false;
+    }
+    public static bool FollowedByAny<TScanner>(ref TScanner scanner, string literals, out char matched, bool withSpaces = false, bool advance = false)
+        where TScanner : struct, IScanner
+    {
+        var position = scanner.Position;
+        if (withSpaces)
+            Spaces0(ref scanner, null!, out _);
+        foreach (var l in literals)
+        {
+            if (Tokens.Char(l, ref scanner, advance: advance))
+            {
+                if (!advance)
+                    scanner.Position = position;
+                matched = l;
+                return true;
+            }
+        }
+        matched = '0';
         scanner.Position = position;
         return false;
     }

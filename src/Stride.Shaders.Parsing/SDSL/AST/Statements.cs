@@ -9,7 +9,7 @@ public abstract class Statement(TextLocation info) : ValueNode(info);
 
 public class EmptyStatement(TextLocation info) : Statement(info)
 {
-    public override SymbolType? Type { get => Scalar.From("void"); set { } }
+    public override SymbolType? Type { get => ScalarSymbol.From("void"); set { } }
     public override string ToString() => ";";
 }
 
@@ -21,7 +21,7 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
     public override void ProcessSymbol(SymbolTable table)
     {
         Expression.ProcessSymbol(table);
-        Type = Scalar.From("void");
+        Type = ScalarSymbol.From("void");
     }
     public override string ToString()
     {
@@ -31,13 +31,13 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
 
 public class Return(TextLocation info, Expression? expression = null) : Statement(info)
 {
-    public override SymbolType? Type { get => Value?.Type ?? Scalar.From("void"); set { } }
+    public override SymbolType? Type { get => Value?.Type ?? ScalarSymbol.From("void"); set { } }
     public Expression? Value { get; set; } = expression;
 
     public override void ProcessSymbol(SymbolTable table)
     {
         Value?.ProcessSymbol(table);
-        Type = Value?.Type ?? Scalar.From("void");
+        Type = Value?.Type ?? ScalarSymbol.From("void");
     }
     public override string ToString()
     {
@@ -79,7 +79,8 @@ public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocat
 
     public override void ProcessSymbol(SymbolTable table)
     {
-        Variable.Type = TypeName.ToSymbol();
+        TypeName.ProcessSymbol(table);
+        Variable.Type = TypeName.Type;
         Value?.ProcessSymbol(table);
         if(Value is not null && Value.Type != Variable.Type)
             table.Errors.Add(new(TypeName.Info, "wrong type"));
@@ -117,7 +118,8 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
         }
         else
         {
-            Type = TypeName.ToSymbol();
+            TypeName.ProcessSymbol(table);
+            Type = TypeName.Type;
             table.DeclaredTypes.TryAdd(TypeName.ToString(), Type);
             foreach (var d in Variables)
             {

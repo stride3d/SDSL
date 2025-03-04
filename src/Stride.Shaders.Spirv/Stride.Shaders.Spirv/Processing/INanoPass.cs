@@ -13,5 +13,5 @@ namespace Stride.Shaders.Spirv.Processing;
 /// </summary>
 public interface INanoPass
 {
-    void Apply(MultiBuffer buffer);
+    void Apply(SpirvBuffer buffer);
 }

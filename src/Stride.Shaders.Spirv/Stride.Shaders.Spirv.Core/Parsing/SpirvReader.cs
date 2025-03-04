@@ -13,7 +13,7 @@ public ref struct SpirvReader
     {
         
         var span = MemoryMarshal.Cast<byte, int>(byteCode.AsSpan());
-        var data = new WordBuffer(span);
+        var data = new SpirvBuffer(span);
         foreach (var instruction in data)
             instructions.Add(instruction);
     }

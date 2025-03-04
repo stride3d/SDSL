@@ -134,7 +134,7 @@ static void CreateShader()
     var main2 = buffer.AddOpFunction(t_void, FunctionControlMask.MaskNone, t_func);
     buffer.AddOpEntryPoint(ExecutionModel.Vertex, main, "VSMain", stackalloc IdRef[] { v_output, v_input, v_input_2, v_input_3 });
 
-    var sorted = new SortedWordBuffer(buffer);
+    var sorted = new SpirvBuffer(buffer);
 
     Console.WriteLine(Disassembler.Disassemble(sorted));
     

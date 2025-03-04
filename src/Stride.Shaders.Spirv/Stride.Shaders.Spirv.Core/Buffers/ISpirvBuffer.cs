@@ -9,10 +9,13 @@ public interface ISpirvBuffer
     Memory<int> Memory { get; }
     Span<int> InstructionSpan { get; }
     Memory<int> InstructionMemory { get; }
+    public int InstructionCount { get; }
+
+    int Length { get; }
 
     bool HasHeader { get; }
 
-    public Instruction this[int index] {get;}
+    public Instruction this[int index] { get; }
 
     public SpirvSpan AsSpan();
     public SpirvMemory AsMemory();

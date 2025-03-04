@@ -118,6 +118,8 @@ public static class Examples
         {
             var table = new SymbolTable();
             parsed.AST?.ProcessSymbol(table);
+            foreach(var e in table.Errors)
+                Console.WriteLine(e);
         }
     }
 

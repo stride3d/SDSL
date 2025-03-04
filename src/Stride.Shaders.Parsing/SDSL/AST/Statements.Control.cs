@@ -37,7 +37,7 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
     {
         Condition.ProcessSymbol(table);
         Body.ProcessSymbol(table);
-        if(Condition.Type != Scalar.From("bool"))
+        if(Condition.Type != ScalarSymbol.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
 
@@ -53,7 +53,7 @@ public class ElseIf(Expression condition, Statement body, TextLocation info) : I
     {
         Condition.ProcessSymbol(table);
         Body.ProcessSymbol(table);
-        if(Condition.Type != Scalar.From("bool"))
+        if(Condition.Type != ScalarSymbol.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
     public override string ToString()

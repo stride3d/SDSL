@@ -11,6 +11,6 @@ public static partial class TypeNameExtensions
     {
         if(!typeName.IsArray && typeName.Generics.Count == 0 && SymbolType.TryGetNumeric(typeName.Name, out var result))
             return result!;
-        else return new Undefined(typeName);
+        else return new UndefinedSymbol(typeName);
     }
 }

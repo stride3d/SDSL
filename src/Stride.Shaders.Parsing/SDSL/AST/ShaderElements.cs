@@ -130,7 +130,7 @@ public abstract class ShaderBuffer(List<Identifier> name, TextLocation info) : S
 
     public override void ProcessSymbol(SymbolTable table)
     {
-        var sym = new Symbol(new(Name.ToString() ?? "", SymbolKind.CBuffer), new BufferSymbol(Name.ToString() ?? "", []));
+        var sym = new Symbol(new(Name.ToString() ?? "", SymbolKind.CBuffer), new ConstantBufferSymbol(Name.ToString() ?? "", []));
 
         table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
         var kind = this switch
@@ -143,9 +143,9 @@ public abstract class ShaderBuffer(List<Identifier> name, TextLocation info) : S
         table.RootSymbols.Add(new(Name.ToString() ?? "", kind), sym);
         foreach (var cbmem in Members)
         {
-            var msym = cbmem.TypeName.ToSymbol();
-            table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
-            cbmem.Type = msym;
+            cbmem.TypeName.ProcessSymbol(table);
+            cbmem.Type = cbmem.TypeName.Type;
+            table.DeclaredTypes.TryAdd(cbmem.Type.ToString(), cbmem.Type);
         }
     }
 }
@@ -172,14 +172,14 @@ public class ShaderStruct(Identifier typename, TextLocation info) : ShaderElemen
 
     public override void ProcessSymbol(SymbolTable table)
     {
-        var sym = new Symbol(new(TypeName.ToString() ?? "", SymbolKind.Struct), new Struct(TypeName.ToString() ?? "", []));
+        var sym = new Symbol(new(TypeName.ToString() ?? "", SymbolKind.Struct), new StructSymbol(TypeName.ToString() ?? "", []));
         table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
         table.RootSymbols.Add(new(TypeName.ToString() ?? "", SymbolKind.Struct), sym);
         foreach (var smem in Members)
         {
-            var msym = smem.TypeName.ToSymbol();
-            table.DeclaredTypes.TryAdd(sym.ToString(), sym.Type);
-            smem.Type = msym;
+            smem.TypeName.ProcessSymbol(table);
+            smem.Type = smem.TypeName.Type;
+            table.DeclaredTypes.TryAdd(smem.Type.ToString(), smem.Type);
         }
     }
 

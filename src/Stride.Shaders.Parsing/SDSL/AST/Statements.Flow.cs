@@ -21,14 +21,24 @@ public class Continue(TextLocation info) : Statement(info)
 
 public class ForEach(TypeName typename, Identifier variable, Expression collection, Statement body, TextLocation info) : Loop(info)
 {
-    public TypeName Typename { get; set; } = typename;
+    public TypeName TypeName { get; set; } = typename;
     public Identifier Variable { get; set; } = variable;
     public Expression Collection { get; set; } = collection;
     public Statement Body { get; set; } = body;
 
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Collection.ProcessSymbol(table);
+        if(Collection.Type is Core.ArraySymbol arrSym)
+        {
+            var btype = arrSym.BaseType;
+            TypeName.ProcessSymbol(table);
+        }
+    }
+
     public override string ToString()
     {
-        return $"foreach({Typename} {Variable} in {Collection})\n{Body}";
+        return $"foreach({TypeName} {Variable} in {Collection})\n{Body}";
     }
 }
 

@@ -74,4 +74,6 @@ public ref struct MutRefInstruction
         }
         throw new Exception($"Instruction {OpCode} has no operand named \"{name}\"");
     }
+
+    public static implicit operator MutRefInstruction(Span<int> span) => new(span);
 }

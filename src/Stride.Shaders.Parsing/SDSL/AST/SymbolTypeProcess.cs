@@ -8,7 +8,7 @@ public static class SymbolTypeProcessExtension
     {
         type = null;
         if(
-            symbol is Scalar or Vector
+            symbol is ScalarSymbol or VectorSymbol
             && expression is Identifier swizzle 
             && swizzle.IsSwizzle()
         )
@@ -20,13 +20,13 @@ public static class SymbolTypeProcessExtension
             }
             else throw new NotImplementedException();
         }
-        else if(symbol is Matrix matrix && expression is Identifier matrixField && matrixField.IsMatrixField())
+        else if(symbol is MatrixSymbol matrix && expression is Identifier matrixField && matrixField.IsMatrixField())
         {
             type = matrix.BaseType;
             matrixField.Type = type;
             return true;
         }
-        else if(symbol is Struct s && expression is Identifier field)
+        else if(symbol is StructSymbol s && expression is Identifier field)
         {
             if(s.Fields.TryGetValue(field, out var ft))
             {
@@ -40,20 +40,20 @@ public static class SymbolTypeProcessExtension
     public static bool TrySwizzle(this SymbolType symbol, string swizzle, out SymbolType? type)
     {
         type = null;
-        if(symbol is Scalar s)
+        if(symbol is ScalarSymbol s)
         {
             foreach(var c in swizzle)
                 if(c != 'r' || c != 'x')
                     return false;
-            type = new Vector(s, swizzle.Length);
+            type = new VectorSymbol(s, swizzle.Length);
             return true;
         }
-        else if(symbol is Vector v)
+        else if(symbol is VectorSymbol v)
         {
             if(swizzle.Length == 1)
                 type = v.BaseType;
             else
-                type = new Vector(v.BaseType, swizzle.Length);
+                type = new VectorSymbol(v.BaseType, swizzle.Length);
             return true;
         }
         else return false;

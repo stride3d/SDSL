@@ -5965,12 +5965,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 1, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 1, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 1, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLRoundEven(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -5980,12 +5975,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 2, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 2, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 2, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLTrunc(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -5995,12 +5985,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 3, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 3, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 3, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFAbs(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6010,12 +5995,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 4, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 4, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 4, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSAbs(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6025,12 +6005,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 5, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 5, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 5, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFSign(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6040,12 +6015,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 6, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 6, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 6, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSSign(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6055,12 +6025,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 7, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 7, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 7, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFloor(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6070,12 +6035,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 8, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 8, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 8, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLCeil(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6085,12 +6045,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 9, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 9, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 9, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFract(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6100,12 +6055,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 10, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 10, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 10, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLRadians(this SpirvBuffer buffer, IdResultType resultType, IdRef degrees, int set)
@@ -6115,12 +6065,7 @@ public static class SpirvBufferExtensions
         {
             degrees
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 11, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 11, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 11, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLDegrees(this SpirvBuffer buffer, IdResultType resultType, IdRef radians, int set)
@@ -6130,12 +6075,7 @@ public static class SpirvBufferExtensions
         {
             radians
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 12, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 12, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 12, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSin(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6145,12 +6085,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 13, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 13, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 13, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLCos(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6160,12 +6095,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 14, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 14, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 14, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLTan(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6175,12 +6105,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 15, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 15, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 15, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAsin(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6190,12 +6115,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 16, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 16, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 16, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAcos(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6205,12 +6125,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 17, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 17, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 17, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAtan(this SpirvBuffer buffer, IdResultType resultType, IdRef y_over_x, int set)
@@ -6220,12 +6135,7 @@ public static class SpirvBufferExtensions
         {
             y_over_x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 18, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 18, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 18, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSinh(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6235,12 +6145,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 19, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 19, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 19, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLCosh(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6250,12 +6155,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 20, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 20, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 20, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLTanh(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6265,12 +6165,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 21, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 21, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 21, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAsinh(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6280,12 +6175,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 22, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 22, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 22, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAcosh(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6295,12 +6185,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 23, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 23, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 23, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAtanh(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6310,12 +6195,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 24, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 24, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 24, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLAtan2(this SpirvBuffer buffer, IdResultType resultType, IdRef y, IdRef x, int set)
@@ -6326,12 +6206,7 @@ public static class SpirvBufferExtensions
             y,
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 25, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 25, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 25, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPow(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6342,12 +6217,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 26, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 26, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 26, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLExp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6357,12 +6227,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 27, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 27, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 27, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLLog(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6372,12 +6237,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 28, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 28, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 28, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLExp2(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6387,12 +6247,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 29, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 29, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 29, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLLog2(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6402,12 +6257,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 30, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 30, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 30, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSqrt(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6417,12 +6267,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 31, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 31, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 31, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLInverseSqrt(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6432,12 +6277,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 32, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 32, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 32, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLDeterminant(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6447,12 +6287,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 33, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 33, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 33, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLMatrixInverse(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6462,12 +6297,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 34, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 34, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 34, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLModf(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef i, int set)
@@ -6478,12 +6308,7 @@ public static class SpirvBufferExtensions
             x,
             i
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 35, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 35, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 35, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLModfStruct(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6493,12 +6318,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 36, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 36, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 36, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFMin(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6509,12 +6329,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 37, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 37, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 37, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUMin(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6525,12 +6340,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 38, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 38, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 38, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSMin(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6541,12 +6351,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 39, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 39, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 39, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFMax(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6557,12 +6362,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 40, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 40, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 40, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUMax(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6573,12 +6373,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 41, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 41, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 41, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSMax(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6589,12 +6384,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 42, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 42, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 42, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFClamp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef minVal, IdRef maxVal, int set)
@@ -6606,12 +6396,7 @@ public static class SpirvBufferExtensions
             minVal,
             maxVal
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 43, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 43, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 43, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUClamp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef minVal, IdRef maxVal, int set)
@@ -6623,12 +6408,7 @@ public static class SpirvBufferExtensions
             minVal,
             maxVal
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 44, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 44, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 44, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSClamp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef minVal, IdRef maxVal, int set)
@@ -6640,12 +6420,7 @@ public static class SpirvBufferExtensions
             minVal,
             maxVal
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 45, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 45, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 45, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFMix(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, IdRef a, int set)
@@ -6657,12 +6432,7 @@ public static class SpirvBufferExtensions
             y,
             a
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 46, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 46, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 46, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLIMix(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, IdRef a, int set)
@@ -6674,12 +6444,7 @@ public static class SpirvBufferExtensions
             y,
             a
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 47, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 47, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 47, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLStep(this SpirvBuffer buffer, IdResultType resultType, IdRef edge, IdRef x, int set)
@@ -6690,12 +6455,7 @@ public static class SpirvBufferExtensions
             edge,
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 48, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 48, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 48, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLSmoothStep(this SpirvBuffer buffer, IdResultType resultType, IdRef edge0, IdRef edge1, IdRef x, int set)
@@ -6707,12 +6467,7 @@ public static class SpirvBufferExtensions
             edge1,
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 49, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 49, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 49, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFma(this SpirvBuffer buffer, IdResultType resultType, IdRef a, IdRef b, IdRef c, int set)
@@ -6724,12 +6479,7 @@ public static class SpirvBufferExtensions
             b,
             c
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 50, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 50, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 50, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFrexp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef exp, int set)
@@ -6740,12 +6490,7 @@ public static class SpirvBufferExtensions
             x,
             exp
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 51, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 51, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 51, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFrexpStruct(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6755,12 +6500,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 52, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 52, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 52, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLLdexp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef exp, int set)
@@ -6771,12 +6511,7 @@ public static class SpirvBufferExtensions
             x,
             exp
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 53, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 53, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 53, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPackSnorm4x8(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6786,12 +6521,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 54, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 54, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 54, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPackUnorm4x8(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6801,12 +6531,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 55, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 55, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 55, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPackSnorm2x16(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6816,12 +6541,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 56, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 56, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 56, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPackUnorm2x16(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6831,12 +6551,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 57, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 57, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 57, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPackHalf2x16(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6846,12 +6561,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 58, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 58, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 58, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLPackDouble2x32(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6861,12 +6571,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 59, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 59, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 59, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUnpackSnorm2x16(this SpirvBuffer buffer, IdResultType resultType, IdRef p, int set)
@@ -6876,12 +6581,7 @@ public static class SpirvBufferExtensions
         {
             p
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 60, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 60, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 60, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUnpackUnorm2x16(this SpirvBuffer buffer, IdResultType resultType, IdRef p, int set)
@@ -6891,12 +6591,7 @@ public static class SpirvBufferExtensions
         {
             p
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 61, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 61, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 61, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUnpackHalf2x16(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6906,12 +6601,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 62, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 62, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 62, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUnpackSnorm4x8(this SpirvBuffer buffer, IdResultType resultType, IdRef p, int set)
@@ -6921,12 +6611,7 @@ public static class SpirvBufferExtensions
         {
             p
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 63, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 63, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 63, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUnpackUnorm4x8(this SpirvBuffer buffer, IdResultType resultType, IdRef p, int set)
@@ -6936,12 +6621,7 @@ public static class SpirvBufferExtensions
         {
             p
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 64, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 64, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 64, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLUnpackDouble2x32(this SpirvBuffer buffer, IdResultType resultType, IdRef v, int set)
@@ -6951,12 +6631,7 @@ public static class SpirvBufferExtensions
         {
             v
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 65, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 65, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 65, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLLength(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -6966,12 +6641,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 66, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 66, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 66, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLDistance(this SpirvBuffer buffer, IdResultType resultType, IdRef p0, IdRef p1, int set)
@@ -6982,12 +6652,7 @@ public static class SpirvBufferExtensions
             p0,
             p1
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 67, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 67, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 67, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLCross(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -6998,12 +6663,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 68, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 68, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 68, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLNormalize(this SpirvBuffer buffer, IdResultType resultType, IdRef x, int set)
@@ -7013,12 +6673,7 @@ public static class SpirvBufferExtensions
         {
             x
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 69, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 69, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 69, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFaceForward(this SpirvBuffer buffer, IdResultType resultType, IdRef n, IdRef i, IdRef nref, int set)
@@ -7030,12 +6685,7 @@ public static class SpirvBufferExtensions
             i,
             nref
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 70, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 70, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 70, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLReflect(this SpirvBuffer buffer, IdResultType resultType, IdRef i, IdRef n, int set)
@@ -7046,12 +6696,7 @@ public static class SpirvBufferExtensions
             i,
             n
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 71, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 71, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 71, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLRefract(this SpirvBuffer buffer, IdResultType resultType, IdRef i, IdRef n, IdRef eta, int set)
@@ -7063,12 +6708,7 @@ public static class SpirvBufferExtensions
             n,
             eta
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 72, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 72, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 72, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFindILsb(this SpirvBuffer buffer, IdResultType resultType, IdRef value, int set)
@@ -7078,12 +6718,7 @@ public static class SpirvBufferExtensions
         {
             value
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 73, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 73, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 73, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFindSMsb(this SpirvBuffer buffer, IdResultType resultType, IdRef value, int set)
@@ -7093,12 +6728,7 @@ public static class SpirvBufferExtensions
         {
             value
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 74, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 74, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 74, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLFindUMsb(this SpirvBuffer buffer, IdResultType resultType, IdRef value, int set)
@@ -7108,12 +6738,7 @@ public static class SpirvBufferExtensions
         {
             value
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 75, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 75, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 75, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLInterpolateAtCentroid(this SpirvBuffer buffer, IdResultType resultType, IdRef interpolant, int set)
@@ -7123,12 +6748,7 @@ public static class SpirvBufferExtensions
         {
             interpolant
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 76, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 76, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 76, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLInterpolateAtSample(this SpirvBuffer buffer, IdResultType resultType, IdRef interpolant, IdRef sample, int set)
@@ -7139,12 +6759,7 @@ public static class SpirvBufferExtensions
             interpolant,
             sample
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 77, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 77, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 77, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLInterpolateAtOffset(this SpirvBuffer buffer, IdResultType resultType, IdRef interpolant, IdRef offset, int set)
@@ -7155,12 +6770,7 @@ public static class SpirvBufferExtensions
             interpolant,
             offset
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 78, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 78, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 78, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLNMin(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -7171,12 +6781,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 79, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 79, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 79, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLNMax(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef y, int set)
@@ -7187,12 +6792,7 @@ public static class SpirvBufferExtensions
             x,
             y
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 80, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 80, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 80, resultId, resultType, refs);
     }
 
     public static Instruction AddGLSLNClamp(this SpirvBuffer buffer, IdResultType resultType, IdRef x, IdRef minVal, IdRef maxVal, int set)
@@ -7204,11 +6804,6 @@ public static class SpirvBufferExtensions
             minVal,
             maxVal
         };
-        if (buffer is MultiBuffer mb)
-            return mb.AddOpExtInst(set, 81, resultId, resultType, refs);
-        else if (buffer is WordBuffer wb)
-            return wb.AddOpExtInst(set, 81, resultId, resultType, refs);
-        else
-            return Instruction.Empty;
+        return buffer.AddOpExtInst(set, 81, resultId, resultType, refs);
     }
 }

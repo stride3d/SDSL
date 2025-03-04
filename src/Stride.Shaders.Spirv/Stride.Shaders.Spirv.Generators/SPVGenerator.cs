@@ -48,7 +48,7 @@ namespace Stride.Shaders.Spirv.Generators
             .AppendLine("using static Spv.Specification;")
             .AppendLine("namespace Stride.Shaders.Spirv.Core.Buffers;")
             .AppendLine("")
-            .AppendLine("public static class WordBufferExtensions")
+            .AppendLine("public static class SpirvBufferExtensions")
             .AppendLine("{");
 
             var instructions = spirvCore.RootElement.GetProperty("instructions").EnumerateArray().ToList();
@@ -63,7 +63,7 @@ namespace Stride.Shaders.Spirv.Generators
 
             context.RegisterPostInitializationOutput(ctx => {
                 ctx.AddSource(
-                    "WordBufferExtensions.gen.cs",
+                    "SpirvBufferExtensions.gen.cs",
                     code.ToSourceText());
             });
         }
@@ -200,34 +200,20 @@ namespace Stride.Shaders.Spirv.Generators
                 code
                     .Append("public static Instruction AddGLSL")
                     .Append(opname)
-                    .Append("<TBuffer>(this TBuffer buffer, ")
+                    .Append("(this SpirvBuffer buffer, ")
                     .Append("IdResultType resultType, ")
                     .Append(string.Join(", ", normalParameters))
                     .Append(nullableParameters.Count() == 0 ? "" : (normalParameters.Count() > 0 ? ", " : "") + string.Join(", ", nullableParameters))
                     .Append(paramsParameters.Count() == 0 ? "" : (normalParameters.Count() + nullableParameters.Count() > 0 ? ", " : "") + paramsParameters.First())
-                    .AppendLine(") where TBuffer : IMutSpirvBuffer")
+                    .AppendLine(")")
                     .AppendLine("{")
-
                         .AppendLine("var resultId = buffer.GetNextId();")
                         .Append("Span<IdRef> refs = stackalloc IdRef[]{").Append(string.Join(", ", other)).AppendLine("};")
-                        .AppendLine("if(buffer is MultiBuffer mb)")
-
-                            .Append("return mb.AddOpExtInst(")
-                                .Append("set, ")
-                                .Append(opcode)
-                                .Append(", resultId, resultType ")
-                                .AppendLine(", refs);")
-
-                        .AppendLine("else if (buffer is WordBuffer wb)")
-
-                            .Append("return wb.AddOpExtInst(")
-                                .Append("set, ")
-                                .Append(opcode)
-                                .Append(", resultId, resultType ")
-                                .AppendLine(", refs);")
-
-                        .AppendLine("else return Instruction.Empty;")
-
+                        .Append("return buffer.AddOpExtInst(")
+                            .Append("set, ")
+                            .Append(opcode)
+                            .Append(", resultId, resultType ")
+                            .AppendLine(", refs);")
                     .AppendLine("}");
             }
         }

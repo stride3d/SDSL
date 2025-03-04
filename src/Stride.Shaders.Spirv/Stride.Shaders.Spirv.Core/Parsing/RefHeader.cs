@@ -12,7 +12,7 @@ namespace Stride.Shaders.Spirv.Core.Parsing;
 /// </summary>
 public ref struct RefHeader
 {
-    Span<int> Words { get; init; }
+    internal Span<int> Words { get; init; }
     public uint MagicNumber { get => unchecked((uint)Words[0]); set => Words[0] = unchecked((int)value); }
     public SpirvVersion VersionNumber { get => Words[1]; set => Words[1] = value; }
     public int GeneratorMagicNumber { get => Words[2]; set => Words[2] = value; }

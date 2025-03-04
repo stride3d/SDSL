@@ -1,7 +1,9 @@
+using Stride.Shaders.Spirv.Core.Buffers;
+
 namespace Stride.Shaders.Spirv.Core;
 
 
-public interface IMutSpirvBuffer
+public interface IMutSpirvBuffer : ISpirvBuffer
 {
     public int GetNextId();
     public Instruction Add(MutRefInstruction instruction);

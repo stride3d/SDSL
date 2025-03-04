@@ -9,74 +9,20 @@ namespace Stride.Shaders.Spirv.Core;
 public static class Disassembler
 {
 
-    public static string Disassemble(Span<int> memory)
+    public static string Disassemble(Span<int> span)
     {
-        var words = MagicNumber == memory[0] ?
-            memory[5..] : memory;
-
-        var wbuff = new WordBuffer(words);
+        using var wbuff = new SpirvBuffer(span);
         return Disassemble(wbuff);
     }
 
     public static string Disassemble(Memory<int> memory)
     {
-        var words = MagicNumber == memory.Span[0] ?
-            memory.Span[5..] : memory.Span;
-
-        var wbuff = new WordBuffer(words);
+        using var wbuff = new SpirvBuffer(memory);
         return Disassemble(wbuff);
     }
-    public static string Disassemble(UnsortedWordBuffer wbuff)
-    {
-        var dis = new DisWriter(new SpirvReader(wbuff.Memory, wbuff.Span[0] == MagicNumber).ComputeBound());
+    
 
-        foreach (var e in wbuff)
-        {
-            dis.Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
-            dis.AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
-            foreach (var o in e)
-            {
-                Append(o, dis);
-            }
-            dis.AppendLine();
-        }
-        return dis.ToString();
-    }
-
-    public static string Disassemble(SortedWordBuffer wbuff)
-    {
-        var dis = new DisWriter(new SpirvReader(wbuff.Memory, wbuff.Span[0] == MagicNumber).ComputeBound());
-
-        foreach (var e in wbuff)
-        {
-            dis.Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
-            dis.AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
-            foreach (var o in e)
-            {
-                Append(o, dis);
-            }
-            dis.AppendLine();
-        }
-        return dis.ToString();
-    }
     public static string Disassemble(SpirvBuffer wbuff)
-    {
-        var dis = new DisWriter(new SpirvReader(wbuff.InstructionMemory).ComputeBound());
-
-        foreach (var e in wbuff)
-        {
-            dis.Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
-            dis.AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
-            foreach (var o in e)
-            {
-                Append(o, dis);
-            }
-            dis.AppendLine();
-        }
-        return dis.ToString();
-    }
-
-    public static string Disassemble(WordBuffer wbuff)
     {
         var dis = new DisWriter(new SpirvReader(wbuff.Memory, wbuff.Span[0] == MagicNumber).ComputeBound());
 

@@ -135,7 +135,8 @@ public class ShaderMethod(
     {
         foreach (var arg in Parameters)
         {
-            var argSym = arg.TypeName.ToSymbol();
+            arg.TypeName.ProcessSymbol(table);
+            var argSym = arg.TypeName.Type;
             table.DeclaredTypes.TryAdd(argSym.ToString(), argSym);
             arg.Type = argSym;
         }

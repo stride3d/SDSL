@@ -21,25 +21,27 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
         {
             if(member is ShaderMethod func)
             {
-                func.Type = func.ReturnTypeName.ToSymbol();
+                func.ReturnTypeName.ProcessSymbol(table);
+                func.Type = func.ReturnTypeName.Type;
                 table.RootSymbols.Add(new(func.Name, SymbolKind.Method), new(new(func.Name, SymbolKind.Method), func.Type));
                 table.DeclaredTypes.TryAdd(func.Type.ToString(), func.Type);
             }
             else if(member is ShaderMember svar)
             {
-                svar.Type = svar.TypeName.ToSymbol();
+                svar.TypeName.ProcessSymbol(table);
+                svar.Type = svar.TypeName.Type;
                 table.RootSymbols.Add(
                     new(
                         svar.Name, 
                         svar.TypeModifier == TypeModifier.Const ? SymbolKind.Constant : SymbolKind.Variable
                     ),
-                    new(new(svar.Name, SymbolKind.Variable), svar.TypeName.ToSymbol())
+                    new(new(svar.Name, SymbolKind.Variable), svar.Type)
                 );
                 table.DeclaredTypes.TryAdd(svar.Type.ToString(), svar.Type);
             }
         }
         foreach (var member in Elements)
-            if(member is not MethodOrMember)
+            if(member is not ShaderMember)
                 member.ProcessSymbol(table);
     }
 

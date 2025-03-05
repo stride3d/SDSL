@@ -45,28 +45,24 @@ public ref struct SpirvReader
         buffer = new(slice.Span);
         //data = slice;
     }
+    public SpirvReader(SpirvSpan span)
+    {
+        buffer = span;
+        //data = slice;
+    }
 
 
-    public SpirvSpan.Enumerator GetEnumerator() => new(buffer.Span);
+    public readonly RefInstructionEnumerator GetEnumerator() => new(buffer.Span);
 
-    public int GetInstructionCount()
+    public readonly int GetInstructionCount()
     {
         var count = 0;
         var index = 0;
         while(index < buffer.Length) 
         {
             count += 1;
-            index += buffer[index] >> 16;
+            index += buffer.Span[index] >> 16;
         }
         return count;
-    }
-
-    public int ComputeBound()
-    {
-        var result = 0;
-        foreach(var e in this)
-            if(e.ResultId != null && e.ResultId > result)
-                result = e.ResultId.Value;
-        return result;
     }
 }

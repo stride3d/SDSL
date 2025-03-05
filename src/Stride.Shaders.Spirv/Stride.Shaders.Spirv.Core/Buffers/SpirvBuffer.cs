@@ -1,20 +1,13 @@
 ﻿using CommunityToolkit.HighPerformance.Buffers;
 using Stride.Shaders.Spirv.Core.Parsing;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
 /// A common spirv buffer containing a header.
 /// </summary>
-public class SpirvBuffer : IMutSpirvBuffer, IDisposable
+public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
 {
     MemoryOwner<int> _owner;
     public int Length { get; protected set; }
@@ -29,8 +22,8 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
             value.Words.CopyTo(Header.Words);
         }
     }
-    public Span<int> InstructionSpan => _owner.Span[..5];
-    public Memory<int> InstructionMemory => _owner.Memory[..5];
+    public Span<int> InstructionSpan => Span[5..];
+    public Memory<int> InstructionMemory => Memory[5..];
 
     public int InstructionCount => new SpirvReader(Memory).Count;
 
@@ -64,11 +57,23 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
     {
         _owner = MemoryOwner<int>.Allocate(memory.Length, AllocationMode.Clear);
         memory.CopyTo(_owner.Memory);
+        Header = Header with
+        {
+            MagicNumber = Spv.Specification.MagicNumber,
+            VersionNumber = new(1, 3),
+            GeneratorMagicNumber = 42
+        };
     }
     public SpirvBuffer(Span<int> span)
     {
         _owner = MemoryOwner<int>.Allocate(span.Length, AllocationMode.Clear);
         span.CopyTo(_owner.Span);
+        Header = Header with
+        {
+            MagicNumber = Spv.Specification.MagicNumber,
+            VersionNumber = new(1, 3),
+            GeneratorMagicNumber = 42
+        };
     }
 
 
@@ -108,17 +113,18 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
     {
         var sorted = new OrderedEnumerator(this);
         var other = MemoryOwner<int>.Allocate(Length, AllocationMode.Clear);
-        var pos = 0;
+        var pos = 5;
         while(sorted.MoveNext())
         {
             sorted.Current.Words.CopyTo(other.Memory[pos..]);
             pos += sorted.Current.WordCount;
         }
+        _owner.Span[0..5].CopyTo(other.Span[0..5]);
         _owner.Dispose();
         _owner = other;
     }
     public SpirvSpan AsSpan() => new(Span);
-    public SpirvMemory AsMemory() => new(this);
+    public SpirvMemory AsMemory() => new(Memory);
 
 
     public override string ToString()
@@ -131,22 +137,26 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         throw new NotImplementedException();
     }
 
-    public Instruction Add(MutRefInstruction instruction)
+    public Instruction Add(Span<int> instruction)
     {
-        Insert(instruction.Words);
-        return new(this, InstructionMemory.Slice(Length - instruction.WordCount, instruction.WordCount), InstructionCount - 1, Length - instruction.WordCount);
+        int start = Length - 5;
+        Insert(instruction);
+        if(RefInstruction.ParseRef(instruction).ResultId is int resultId && resultId > Header.Bound)
+            Header = Header with {Bound = resultId};
+        return new(this, InstructionMemory[start..(start + instruction.Length)], InstructionCount - 1, Length - instruction.Length);
     }
+    
+    public void Insert(ReadOnlySpan<int> instruction, int? start = null)
+    {
+        Insert(start ?? Length, instruction);
+    }
+    
     public void Insert(Instruction instruction)
     {
         Insert(Length, instruction.Words.Span);
-    }
+    }    
 
-    public void Insert(Span<int> instructions, int? start = null)
-    {
-        Insert(start ?? Length, instructions);
-    }
-
-    public void Insert(int start, Span<int> words)
+    public void Insert(int start, ReadOnlySpan<int> words)
     {
         Expand(words.Length);
         var slice = _owner.Span[start..Length];

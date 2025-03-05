@@ -40,8 +40,11 @@ public record struct Instruction(ISpirvBuffer Buffer, Memory<int> Words, int Ind
 
     public readonly RefInstruction AsRef() => RefInstruction.ParseRef(Words.Span);
 
-    public T? GetOperand<T>(string name) where T : struct, IFromSpirv<T>
+    public readonly T? GetOperand<T>(string name) where T : struct, IFromSpirv<T>
         => AsRef().GetOperand<T>(name);
+
+    public readonly bool TryGetOperand<T>(string name, out T? operand) where T : struct, IFromSpirv<T>
+        => AsRef().TryGetOperand(name, out operand);
 
     public readonly OperandEnumerator GetEnumerator() => AsRef().GetEnumerator();
 

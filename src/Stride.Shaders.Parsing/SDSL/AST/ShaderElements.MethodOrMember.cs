@@ -139,6 +139,7 @@ public class ShaderMethod(
             var argSym = arg.TypeName.Type;
             table.DeclaredTypes.TryAdd(argSym.ToString(), argSym);
             arg.Type = argSym;
+            
         }
         if (Body is not null)
         {

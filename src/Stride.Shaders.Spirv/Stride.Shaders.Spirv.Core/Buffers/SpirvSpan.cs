@@ -3,58 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Stride.Shaders.Spirv.Core.Parsing;
 
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
 /// A buffer slice
 /// </summary>
-public ref struct SpirvSpan
+public readonly ref struct SpirvSpan(Span<int> words) : ISpirvBuffer, IRefSpirvEnumerable
 {
-    Span<int> words;
+    public readonly Instruction this[int index] => throw new NotImplementedException();
 
-    public int Length => words.Length - (HasHeader ? 5 : 0);
-    public bool HasHeader => words[0] == Spv.Specification.MagicNumber;
+    public readonly Span<int> Span { get; } = words;
 
-    public Span<int> Span => HasHeader ? words[5..] : words;
+    public readonly Memory<int> Memory => throw new Exception("Can't get Memory from Span");
 
+    public readonly Span<int> InstructionSpan => Span[(HasHeader ? 5 : 0)..];
 
-    public int this[int index] { get => words[index]; set => words[index] = value; }
+    public readonly Memory<int> InstructionMemory => throw new Exception("Can't get Memory from Span");
 
-    public SpirvSpan(Span<int> words)
+    public readonly int InstructionCount => new SpirvReader(this).Count;
+
+    public readonly int Length => Span.Length;
+
+    public readonly bool HasHeader => Span[0] == Spv.Specification.MagicNumber;
+
+    public readonly RefHeader Header
     {
-        this.words = words;
-    }
-
-    public Enumerator GetEnumerator() => new(words);
-
-    public ref struct Enumerator
-    {
-        int wordIndex;
-        Span<int> words;
-
-        public RefInstruction Current => RefInstruction.ParseRef(words.Slice(wordIndex, words[wordIndex] >> 16));
-
-        public Enumerator(Span<int> words)
+        get => HasHeader ? new(Span[..5]) : throw new Exception("No header for this buffer");
+        set
         {
-            wordIndex = -1;
-            this.words = words;
-        }
-
-        public bool MoveNext()
-        {
-            if(wordIndex == -1)
-            {
-                wordIndex = 0;
-                return true;
-            }
-            else
-            {
-                if (wordIndex + (words[wordIndex] >> 16) >= words.Length)
-                    return false;
-                wordIndex += words[wordIndex] >> 16;
-                return true;
-            }
+            if (HasHeader) value.Words.CopyTo(Header.Words);
         }
     }
+
+    public readonly SpirvMemory AsMemory() => throw new Exception("Can't get Memory from Span");
+
+    public readonly SpirvSpan AsSpan() => this;
+
+    public RefInstructionEnumerator GetEnumerator() => new(Span);
+
+
 }

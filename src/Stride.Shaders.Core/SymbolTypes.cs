@@ -1,4 +1,5 @@
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using Microsoft.VisualBasic;
 
 namespace Stride.Shaders.Core;
@@ -118,7 +119,7 @@ public sealed record Texture3DSymbol(SymbolType BaseType, int Width, int Height,
 }
 
 
-public sealed record FunctionTypeSymbol(List<SymbolType> Types)
+public sealed record FunctionTypeSymbol(List<SymbolType> Types) : SymbolType()
 {
     public bool Equals(FunctionTypeSymbol? other)
     {
@@ -140,6 +141,19 @@ public sealed record FunctionTypeSymbol(List<SymbolType> Types)
             hash = hash * 31 + item.GetHashCode();
         }
         return hash;
+    }
+
+    public override string ToString()
+    {
+        var builder = new StringBuilder();
+        builder.Append("TypeFunction<");
+        for(int i = 0; i < Types.Count; i++)
+        {
+            builder.Append(Types[i]);
+            if(i < Types.Count - 1)
+                builder.Append(", ");
+        }
+        return builder.Append('>').ToString();
     }
 }
 

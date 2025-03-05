@@ -19,20 +19,30 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
     {
         foreach (var member in Elements)
         {
-            if(member is ShaderMethod func)
+            if (member is ShaderMethod func)
             {
                 func.ReturnTypeName.ProcessSymbol(table);
-                func.Type = func.ReturnTypeName.Type;
+                var ftype = new FunctionTypeSymbol([func.ReturnTypeName.Type]);
+                foreach (var arg in func.Parameters)
+                {
+                    arg.TypeName.ProcessSymbol(table);
+                    var argSym = arg.TypeName.Type;
+                    table.DeclaredTypes.TryAdd(argSym.ToString(), argSym);
+                    arg.Type = argSym;
+                    ftype.Types.Add(arg.Type);
+                }
+                func.Type = ftype;
+
                 table.RootSymbols.Add(new(func.Name, SymbolKind.Method), new(new(func.Name, SymbolKind.Method), func.Type));
                 table.DeclaredTypes.TryAdd(func.Type.ToString(), func.Type);
             }
-            else if(member is ShaderMember svar)
+            else if (member is ShaderMember svar)
             {
                 svar.TypeName.ProcessSymbol(table);
                 svar.Type = svar.TypeName.Type;
                 table.RootSymbols.Add(
                     new(
-                        svar.Name, 
+                        svar.Name,
                         svar.TypeModifier == TypeModifier.Const ? SymbolKind.Constant : SymbolKind.Variable
                     ),
                     new(new(svar.Name, SymbolKind.Variable), svar.Type)
@@ -41,7 +51,7 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
             }
         }
         foreach (var member in Elements)
-            if(member is not ShaderMember)
+            if (member is not ShaderMember)
                 member.ProcessSymbol(table);
     }
 

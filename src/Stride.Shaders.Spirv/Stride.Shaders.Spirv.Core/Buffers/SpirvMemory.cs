@@ -10,23 +10,48 @@ namespace Stride.Shaders.Spirv.Core.Buffers;
 /// <summary>
 /// A buffer slice
 /// </summary>
-public ref struct SpirvMemory
+public readonly struct SpirvMemory(Memory<int> memory) : ISpirvBuffer, ISpirvEnumerable
 {
-    ISpirvBuffer buffer;
-    Span<int> words => buffer.Span;
-
-    public int Length => words.Length - (HasHeader ? 5 : 0);
-    public bool HasHeader => words[0] == Spv.Specification.MagicNumber;
-
-    public Span<int> Span => HasHeader ? words[5..] : words;
-
-
-    public int this[int index] { get => words[index]; set => words[index] = value; }
-
-    public SpirvMemory(ISpirvBuffer buffer)
+    public readonly Instruction this[int index]
     {
-        this.buffer = buffer;
+        get
+        {
+            int id = 0;
+            int wid = 5;
+            while (id < index)
+            {
+                wid += Span[wid] >> 16;
+                id++;
+            }
+            return new Instruction(this, Memory.Slice(wid, Span[wid] >> 16), index, wid);
+        }
+    }
+    public readonly Span<int> Span => Memory.Span;
+
+    public readonly Memory<int> Memory { get; } = memory;
+
+    public readonly Span<int> InstructionSpan => Span[(HasHeader ? 5 : 0)..];
+
+    public readonly Memory<int> InstructionMemory => Memory[(HasHeader ? 5 : 0)..];
+
+    public readonly int InstructionCount => new SpirvReader(Memory).Count;
+
+    public readonly int Length => Memory.Length;
+
+    public readonly bool HasHeader => Span[0] == Spv.Specification.MagicNumber;
+
+    public readonly RefHeader Header
+    {
+        get => HasHeader ? new(Span[..5]) : throw new Exception("No header for this buffer");
+        set
+        {
+            if (HasHeader) value.Words.CopyTo(Header.Words);
+        }
     }
 
-    public InstructionEnumerator GetEnumerator() => new(buffer);
+    public readonly SpirvMemory AsMemory() => this;
+
+    public readonly SpirvSpan AsSpan() => new(Span);
+
+    public InstructionEnumerator GetEnumerator() => new(this);
 }

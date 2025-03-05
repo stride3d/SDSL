@@ -56,6 +56,27 @@ public ref struct RefInstruction
         return null;
     }
 
+    public bool TryGetOperand<T>(string name, out T? operand)
+        where T : struct, IFromSpirv<T>
+    {
+        var info = InstructionInfo.GetInfo(OpCode);
+        var infoEnumerator = info.GetEnumerator();
+        var operandEnumerator = GetEnumerator();
+        while (infoEnumerator.MoveNext())
+        {
+            if (operandEnumerator.MoveNext())
+            {
+                if (infoEnumerator.Current.Name == name)
+                {
+                    operand = operandEnumerator.Current.To<T>();
+                    return true;
+                }
+            }
+        }
+        operand = null;
+        return false;
+    }
+
     public static RefInstruction Parse(Memory<int> owner, int ownerIndex)
     {
         var words = owner.Span.Slice(ownerIndex, owner.Span[ownerIndex] >> 16);
@@ -67,6 +88,14 @@ public ref struct RefInstruction
             Words = words
         };
     }
+    // public static RefInstruction ParseRef(ReadOnlySpan<int> words)
+    // {
+    //     return new RefInstruction()
+    //     {
+    //         Operands = words[1..],
+    //         Words = words,
+    //     };
+    // }
     public static RefInstruction ParseRef(Span<int> words)
     {
         return new RefInstruction()

@@ -1,3 +1,5 @@
+using Stride.Shaders.Spirv.Core.Parsing;
+
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
@@ -14,9 +16,22 @@ public interface ISpirvBuffer
     int Length { get; }
 
     bool HasHeader { get; }
+    RefHeader Header { get; set; }
 
     public Instruction this[int index] { get; }
 
     public SpirvSpan AsSpan();
     public SpirvMemory AsMemory();
+
+}
+
+
+public interface ISpirvEnumerable
+{
+    public InstructionEnumerator GetEnumerator();
+}
+
+public interface IRefSpirvEnumerable
+{
+    public RefInstructionEnumerator GetEnumerator();
 }

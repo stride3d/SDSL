@@ -33,6 +33,8 @@ static void CreateShader()
 {
     LiteralString sname = "S";
 
+    int id = 1;
+
     var ssize = sname.WordCount;
     var array = new byte[] {0,0,0,8};
 
@@ -40,11 +42,11 @@ static void CreateShader()
     Span<int> ints = MemoryMarshal.Cast<byte,int>(s);
 
     // var bound = new Bound();
-    var buffer = new WordBuffer();
+    var buffer = new SpirvBuffer();
     // // Capabilities
 
     buffer.AddOpCapability(Capability.Shader);
-    var extInstImport = buffer.AddOpExtInstImport("GLSL.std.450");
+    var extInstImport = buffer.AddOpExtInstImport(id++, "GLSL.std.450");
     buffer.AddOpMemoryModel(AddressingModel.Logical, MemoryModel.GLSL450);
 
 
@@ -53,52 +55,53 @@ static void CreateShader()
     Span<IdRef> c = stackalloc IdRef[10]; // This is for use in parameters
 
 
-    var t_void = buffer.AddOpTypeVoid();
+    var t_void = buffer.AddOpTypeVoid(id++);
 
-    var t_bool = buffer.AddOpTypeBool();
+    var t_bool = buffer.AddOpTypeBool(id++);
 
-    var t_func = buffer.AddOpTypeFunction(t_void, Span<IdRef>.Empty);
-    var t_float = buffer.AddOpTypeFloat(32, null);
-    var t_uint = buffer.AddOpTypeInt(32, 0);
-    var t_int = buffer.AddOpTypeInt(32, 1);
-    var t_float4 = buffer.AddOpTypeVector(t_float, 4);
-    var t_p_float4_func = buffer.AddOpTypePointer(StorageClass.Function, t_float4);
-    var constant1 = buffer.AddOpConstant<WordBuffer, LiteralFloat>(t_float, 5);
-    var constant2 = buffer.AddOpConstant<WordBuffer, LiteralFloat>(t_float, 2);
-    var constant3 = buffer.AddOpConstant<WordBuffer, LiteralInteger>(t_uint, 5);
+    var t_func = buffer.AddOpTypeFunction(id++, t_void, Span<IdRef>.Empty);
+    var t_float = buffer.AddOpTypeFloat(id++, 32, null);
+    var t_uint = buffer.AddOpTypeInt(id++, 32, 0);
+    var t_int = buffer.AddOpTypeInt(id++, 32, 1);
+    var t_float4 = buffer.AddOpTypeVector(id++, t_float, 4);
+    var t_p_float4_func = buffer.AddOpTypePointer(id++, StorageClass.Function, t_float4);
+    var constant1 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 5);
+    var constant2 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 2);
+    var constant3 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_uint, 5);
     var compositeType = buffer.AddOpConstantComposite(
+        id++, 
         t_float4, 
-        stackalloc IdRef[] { constant1, constant1, constant2, constant1 }
+        [constant1, constant1, constant2, constant1]
     );
 
-    var t_array = buffer.AddOpTypeArray(t_float4, constant3);
+    var t_array = buffer.AddOpTypeArray(id++, t_float4, constant3);
 
-    var t_struct = buffer.AddOpTypeStruct(stackalloc IdRef[] { t_uint, t_array, t_int });
-    var t_struct2 = buffer.AddOpTypeStruct(stackalloc IdRef[] { t_struct, t_uint });
+    var t_struct = buffer.AddOpTypeStruct(id++, [t_uint, t_array, t_int]);
+    var t_struct2 = buffer.AddOpTypeStruct(id++, [t_struct, t_uint]);
 
-    var t_p_struct2 = buffer.AddOpTypePointer(StorageClass.Uniform, t_struct2);
+    var t_p_struct2 = buffer.AddOpTypePointer(id++, StorageClass.Uniform, t_struct2);
 
-    var v_struct2 = buffer.AddOpVariable(t_p_struct2, StorageClass.Uniform, null);
+    var v_struct2 = buffer.AddOpVariable(id++, t_p_struct2, StorageClass.Uniform, null);
 
-    var constant4 = buffer.AddOpConstant<WordBuffer, LiteralInteger>(t_int, 1);
+    var constant4 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 1);
 
-    var t_p_uint = buffer.AddOpTypePointer(StorageClass.Uniform, t_uint);
-    var constant5 = buffer.AddOpConstant<WordBuffer, LiteralInteger>(t_uint, 0);
+    var t_p_uint = buffer.AddOpTypePointer(id++, StorageClass.Uniform, t_uint);
+    var constant5 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_uint, 0);
 
-    var t_p_output = buffer.AddOpTypePointer(StorageClass.Output, t_float4);
-    var v_output = buffer.AddOpVariable(t_p_output, StorageClass.Output, null);
+    var t_p_output = buffer.AddOpTypePointer(id++, StorageClass.Output, t_float4);
+    var v_output = buffer.AddOpVariable(id++, t_p_output, StorageClass.Output, null);
 
-    var t_p_input = buffer.AddOpTypePointer(StorageClass.Input, t_float4);
-    var v_input = buffer.AddOpVariable(t_p_input, StorageClass.Input, null);
+    var t_p_input = buffer.AddOpTypePointer(id++, StorageClass.Input, t_float4);
+    var v_input = buffer.AddOpVariable(id++, t_p_input, StorageClass.Input, null);
 
-    var constant6 = buffer.AddOpConstant<WordBuffer, LiteralInteger>(t_int, 0);
-    var constant7 = buffer.AddOpConstant<WordBuffer, LiteralInteger>(t_int, 2);
-    var t_p_float4_unif = buffer.AddOpTypePointer(StorageClass.Uniform, t_float4);
+    var constant6 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 0);
+    var constant7 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 2);
+    var t_p_float4_unif = buffer.AddOpTypePointer(id++, StorageClass.Uniform, t_float4);
 
-    var v_input_2 = buffer.AddOpVariable(t_p_input, StorageClass.Input, null);
-    var t_p_func = buffer.AddOpTypePointer(StorageClass.Function, t_int);
-    var constant8 = buffer.AddOpConstant<WordBuffer, LiteralInteger>(t_int, 4);
-    var v_input_3 = buffer.AddOpVariable(t_p_input, StorageClass.Input, null);
+    var v_input_2 = buffer.AddOpVariable(id++, t_p_input, StorageClass.Input, null);
+    var t_p_func = buffer.AddOpTypePointer(id++, StorageClass.Function, t_int);
+    var constant8 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 4);
+    var v_input_3 = buffer.AddOpVariable(id++, t_p_input, StorageClass.Input, null);
 
 
 
@@ -123,20 +126,23 @@ static void CreateShader()
     buffer.AddOpMemberName(t_struct, 2, "i");
 
 
-    var main = buffer.AddOpFunction(t_void, FunctionControlMask.MaskNone, t_func);
-    buffer.AddOpEntryPoint(ExecutionModel.Fragment, main, "PSMain", stackalloc IdRef[] { v_output, v_input, v_input_2, v_input_3 });
+    var main = buffer.AddOpFunction(id++, t_void, FunctionControlMask.MaskNone, t_func);
+    buffer.AddOpEntryPoint(ExecutionModel.Fragment, main, "PSMain", [v_output, v_input, v_input_2, v_input_3]);
     buffer.AddOpExecutionMode(main, ExecutionMode.OriginLowerLeft);
 
-    buffer.AddOpLabel();
+    buffer.AddOpLabel(id++);
     buffer.AddOpReturn();
     buffer.AddOpFunctionEnd();
 
-    var main2 = buffer.AddOpFunction(t_void, FunctionControlMask.MaskNone, t_func);
-    buffer.AddOpEntryPoint(ExecutionModel.Vertex, main, "VSMain", stackalloc IdRef[] { v_output, v_input, v_input_2, v_input_3 });
+    var main2 = buffer.AddOpFunction(id++, t_void, FunctionControlMask.MaskNone, t_func);
+    buffer.AddOpEntryPoint(ExecutionModel.Vertex, main, "VSMain", [v_output, v_input, v_input_2, v_input_3]);
 
-    var sorted = new SpirvBuffer(buffer);
+    // #error sorting makes error for disassembler
+    buffer.Sort();
 
-    Console.WriteLine(Disassembler.Disassemble(sorted));
+    var dis = new SpirvDis<SpirvBuffer>(buffer, useNames: true);
+
+    Console.WriteLine(dis.Disassemble());
     
     //var list = new List<Instruction>(buffer.Count);
     //foreach(var e in buffer)
@@ -157,7 +163,7 @@ static void ParseWorking()
 
     var bytes = File.ReadAllBytes(path);
 
-    var buffer = WordBuffer.Parse(bytes);
+    var buffer = new SpirvBuffer(MemoryMarshal.Cast<byte, int>(bytes));
     var extInst = buffer[1];
     foreach(var o in extInst)
     {

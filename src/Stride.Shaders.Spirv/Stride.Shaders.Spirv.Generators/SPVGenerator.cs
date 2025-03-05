@@ -74,12 +74,10 @@ namespace Stride.Shaders.Spirv.Generators
             if (opname == "OpConstant")
             {
                 code
-                    .AppendLine("public static Instruction AddOpConstant<TBuffer, TValue>(this TBuffer buffer, IdResultType? resultType, TValue value) where TBuffer : IMutSpirvBuffer where TValue : struct, ILiteralNumber")
+                    .AppendLine("public static Instruction AddOpConstant<TBuffer, TValue>(this TBuffer buffer, IdResult resultId, IdResultType? resultType, TValue value) where TBuffer : IMutSpirvBuffer where TValue : struct, ILiteralNumber")
                     .AppendLine("{")
-
-                        .AppendLine("var resultId = buffer.GetNextId();")
                         .AppendLine("var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + value.WordCount;")
-                        .AppendLine("return buffer.Add(new MutRefInstruction([wordLength << 16 | (int)SDSLOp.OpConstant, ..resultType.AsSpirvSpan(), resultId, ..value.AsSpirvSpan()]));")
+                        .AppendLine("return buffer.Add([wordLength << 16 | (int)SDSLOp.OpConstant, ..resultType.AsSpirvSpan(), resultId, ..value.AsSpirvSpan()]);")
 
                     .AppendLine("}");
 
@@ -87,17 +85,12 @@ namespace Stride.Shaders.Spirv.Generators
             else if (opname == "OpSpecConstant")
             {
                 code
-                    .AppendLine("public static Instruction AddOpSpecConstant<TBuffer, TValue>(this TBuffer buffer, IdResultType? resultType, TValue value) where TBuffer : IMutSpirvBuffer where TValue : ILiteralNumber")
+                    .AppendLine("public static Instruction AddOpSpecConstant<TBuffer, TValue>(this TBuffer buffer, IdResult resultId, IdResultType? resultType, TValue value) where TBuffer : IMutSpirvBuffer where TValue : struct, ILiteralNumber")
                     .AppendLine("{")
 
-                        .AppendLine("var resultId = buffer.GetNextId();")
                         .AppendLine("var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + value.WordCount;")
-                        .AppendLine("var mutInstruction = new MutRefInstruction(stackalloc int[wordLength]);")
-                        .AppendLine("mutInstruction.OpCode = SDSLOp.OpSpecConstant;")
-                        .AppendLine("mutInstruction.Add(resultType);")
-                        .AppendLine("mutInstruction.Add(resultId);")
-                        .AppendLine("mutInstruction.Add(value);")
-                        .AppendLine("return buffer.Add(mutInstruction);")
+                        .AppendLine("return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSpecConstant, ..resultType.AsSpirvSpan(), resultId, ..value.AsSpirvSpan()]);")
+                        // .AppendLine("return buffer.Add([mutInstruction]);")
 
                     .AppendLine("}");
             }
@@ -108,7 +101,7 @@ namespace Stride.Shaders.Spirv.Generators
                     .AppendLine("{")
 
                         .AppendLine("var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);")
-                        .AppendLine("return buffer.Add(new MutRefInstruction([wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]));")
+                        .AppendLine("return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);")
 
                     .AppendLine("}");
             }
@@ -119,7 +112,7 @@ namespace Stride.Shaders.Spirv.Generators
                     .AppendLine("{")
 
                         .AppendLine("var wordLength = 1 + buffer.GetWordLength(structureType) + buffer.GetWordLength(member) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);")
-                        .AppendLine("return buffer.Add(new([wordLength << 16 | (int)SDSLOp.OpMemberDecorate, ..structureType.AsSpirvSpan(), ..member.AsSpirvSpan(), ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]));")
+                        .AppendLine("return buffer.Add([wordLength << 16 | (int)SDSLOp.OpMemberDecorate, ..structureType.AsSpirvSpan(), ..member.AsSpirvSpan(), ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);")
 
                     .AppendLine("}");
             }
@@ -141,6 +134,7 @@ namespace Stride.Shaders.Spirv.Generators
                     .Append("public static Instruction Add")
                     .Append(opname)
                     .Append("<TBuffer>(this TBuffer buffer")
+                    .Append(hasResultId ? ", IdResult resultId" : "")
                     .Append(normalParameters.Count() + nullableParameters.Count() + paramsParameters.Count() == 0 ? "" : ", ")
                     .Append(string.Join(", ", normalParameters))
                     .Append(nullableParameters.Count() == 0 ? "" : (normalParameters.Count() > 0 ? ", " : "") + string.Join(", ", nullableParameters))
@@ -148,13 +142,9 @@ namespace Stride.Shaders.Spirv.Generators
                     .AppendLine(") where TBuffer : IMutSpirvBuffer")
                     .AppendLine("{")
                     ;
-                if (hasResultId)
-                {
-                    code.AppendLine("var resultId = buffer.GetNextId();");
-                }
                 code.Append("var wordLength = 1").Append(parameterNames.Any() ? " + " : "").Append(string.Join(" + ", parameterNames.Select(x => $"buffer.GetWordLength({x})"))).AppendLine(";");
                 code
-                    .AppendLine($"return buffer.Add(new([wordLength << 16 | (int)SDSLOp.{opname}, {string.Join(", ", parameterNames.Select(x => $"..{x}.AsSpirvSpan()"))}]));")
+                    .AppendLine($"return buffer.Add([wordLength << 16 | (int)SDSLOp.{opname}, {string.Join(", ", parameterNames.Select(x => $"..{x}.AsSpirvSpan()"))}]);")
                     .AppendLine("}");
             }
             else
@@ -165,7 +155,7 @@ namespace Stride.Shaders.Spirv.Generators
                     .AppendLine("<TBuffer>(this TBuffer buffer) where TBuffer : IMutSpirvBuffer")
                     .AppendLine("{")
 
-                        .AppendLine($"return buffer.Add(new([1 << 16 | (int)SDSLOp.{opname}]));")
+                        .AppendLine($"return buffer.Add([1 << 16 | (int)SDSLOp.{opname}]);")
 
                     .AppendLine("}");
             }
@@ -200,14 +190,12 @@ namespace Stride.Shaders.Spirv.Generators
                 code
                     .Append("public static Instruction AddGLSL")
                     .Append(opname)
-                    .Append("(this SpirvBuffer buffer, ")
-                    .Append("IdResultType resultType, ")
+                    .Append("(this SpirvBuffer buffer, IdResultType resultType, int resultId, ")
                     .Append(string.Join(", ", normalParameters))
                     .Append(nullableParameters.Count() == 0 ? "" : (normalParameters.Count() > 0 ? ", " : "") + string.Join(", ", nullableParameters))
                     .Append(paramsParameters.Count() == 0 ? "" : (normalParameters.Count() + nullableParameters.Count() > 0 ? ", " : "") + paramsParameters.First())
                     .AppendLine(")")
                     .AppendLine("{")
-                        .AppendLine("var resultId = buffer.GetNextId();")
                         .Append("Span<IdRef> refs = stackalloc IdRef[]{").Append(string.Join(", ", other)).AppendLine("};")
                         .Append("return buffer.AddOpExtInst(")
                             .Append("set, ")

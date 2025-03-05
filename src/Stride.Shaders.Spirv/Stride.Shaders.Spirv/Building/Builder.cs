@@ -14,11 +14,12 @@ public class Builder(Module module)
 // Should contain internal data not seen by the client
 public class Context()
 {
+    
     SpirvBuffer buffer = new();
 }
 // Should contain the SPIR-V code and a sort of symbol table to list components in it
 public class Module()
 {
-    public SpirvBuffer Definitions { get; set; } = new();
+    public SpirvBuffer Variables { get; set; } = new();
     public SortedList<string, SpirvBuffer> Functions { get; } = [];
 }

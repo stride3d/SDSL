@@ -6,6 +6,7 @@ using Stride.Shaders.Spirv.Core.Buffers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static Spv.Specification;
+using Stride.Shaders.Spirv.Tools;
 
 
 Console.WriteLine("Hello, world!");
@@ -66,7 +67,7 @@ static void CreateShader()
     var t_float4 = buffer.AddOpTypeVector(id++, t_float, 4);
     var t_p_float4_func = buffer.AddOpTypePointer(id++, StorageClass.Function, t_float4);
     var constant1 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 5);
-    var constant2 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 2);
+    var constant2 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 2.23f);
     var constant3 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_uint, 5);
     var compositeType = buffer.AddOpConstantComposite(
         id++, 
@@ -134,23 +135,17 @@ static void CreateShader()
     buffer.AddOpReturn();
     buffer.AddOpFunctionEnd();
 
-    var main2 = buffer.AddOpFunction(id++, t_void, FunctionControlMask.MaskNone, t_func);
-    buffer.AddOpEntryPoint(ExecutionModel.Vertex, main, "VSMain", [v_output, v_input, v_input_2, v_input_3]);
-
-    // #error sorting makes error for disassembler
+    
     buffer.Sort();
 
     var dis = new SpirvDis<SpirvBuffer>(buffer, useNames: true);
 
     Console.WriteLine(dis.Disassemble());
-    
-    //var list = new List<Instruction>(buffer.Count);
-    //foreach(var e in buffer)
-    //    list.Add(e);
 
-    //var bytes = buffer.GenerateSpirv();
-
-    //File.WriteAllBytes("C:\\Users\\kafia\\source\\repos\\Stride.Shaders.Spirv\\shader.spv", bytes); ;
+    File.WriteAllBytes(
+        "test.spv",
+        MemoryMarshal.Cast<int,byte>(buffer.Span)
+    );
 
     var x = 0;
 }

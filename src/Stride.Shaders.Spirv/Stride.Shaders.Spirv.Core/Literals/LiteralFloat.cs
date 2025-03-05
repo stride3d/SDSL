@@ -71,11 +71,11 @@ public struct LiteralFloat : ILiteralNumber, IFromSpirv<LiteralFloat>
     }
     public readonly  bool TryCast(out float value)
     {
-        Span<int> span = stackalloc int[]
-        {
+        Span<int> span =
+        [
             (int)(Words >> 32),
             (int)(Words & 0X0000FFFF)
-        };
+        ];
         if (size == 32)
         {
             value = BitConverter.Int32BitsToSingle(span[1]);

@@ -126,12 +126,6 @@ public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
     public SpirvSpan AsSpan() => new(Span);
     public SpirvMemory AsMemory() => new(Memory);
 
-
-    public override string ToString()
-    {
-        return Disassembler.Disassemble(this);
-    }
-
     public int GetNextId()
     {
         throw new NotImplementedException();
@@ -141,8 +135,8 @@ public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
     {
         int start = Length - 5;
         Insert(instruction);
-        if(RefInstruction.ParseRef(instruction).ResultId is int resultId && resultId > Header.Bound)
-            Header = Header with {Bound = resultId};
+        if(RefInstruction.ParseRef(instruction).ResultId is int resultId && resultId >= Header.Bound)
+            Header = Header with {Bound = resultId + 1};
         return new(this, InstructionMemory[start..(start + instruction.Length)], InstructionCount - 1, Length - instruction.Length);
     }
     

@@ -1,8 +1,9 @@
 using System.Text;
 using Stride.Shaders.Spirv.Core.Buffers;
+using Stride.Shaders.Spirv.Core;
 using static Spv.Specification;
 
-namespace Stride.Shaders.Spirv.Core;
+namespace Stride.Shaders.Spirv.Tools;
 
 
 internal record struct NameId(string Name);
@@ -74,6 +75,7 @@ public readonly struct SpirvDis<TBuffer>
     public readonly string Disassemble()
     {
         builder.Clear();
+
         if (buffer is ISpirvEnumerable membuff)
         {
             foreach (var e in membuff)
@@ -93,7 +95,7 @@ public readonly struct SpirvDis<TBuffer>
 
                 AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
                 foreach (var o in e)
-                    Append(o);
+                    Append(o, e.AsRef());
                 AppendLine();
             }
         }
@@ -116,7 +118,7 @@ public readonly struct SpirvDis<TBuffer>
 
                 AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
                 foreach (var o in e)
-                    Append(o);
+                    Append(o, e);
                 AppendLine();
             }
         }
@@ -160,11 +162,52 @@ public readonly struct SpirvDis<TBuffer>
     }
     public readonly void Append(IdResultType id)
     {
-        builder.Append(' ').Append('%').Append(id.Value);
+        if(UseNames && nameTable.TryGetValue(id, out var name))
+            builder.Append(" %").Append(name.Name);
+        else
+            builder.Append(' ').Append('%').Append(id.Value);
     }
     public readonly void AppendInt(int v)
     {
         builder.Append(' ').Append(v);
+    }
+    public readonly void AppendConst(int typeId, Span<int> words)
+    {
+        builder.Append(' ');
+        if(buffer is ISpirvEnumerable membuff)
+        {
+            foreach(var e in membuff)
+            {
+                if(e.ResultId is int rid && rid == typeId)
+                {
+                    if(e.OpCode == SDSLOp.OpTypeInt)
+                        builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
+                    else if(e.OpCode == SDSLOp.OpTypeFloat)
+                        builder.Append(
+                            words.Length == 1 ? 
+                                BitConverter.Int32BitsToSingle(words[0]) 
+                                : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
+                            );
+                }
+            }
+        }
+        else if(buffer is ISpirvEnumerable refbuff)
+        {
+            foreach(var e in refbuff)
+            {
+                if(e.ResultId is int rid && rid == typeId)
+                {
+                    if(e.OpCode == SDSLOp.OpTypeInt)
+                        builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
+                    else if(e.OpCode == SDSLOp.OpTypeFloat)
+                        builder.Append(
+                            words.Length == 1 ? 
+                                BitConverter.Int32BitsToSingle(words[0]) 
+                                : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
+                            );
+                }
+            }
+        }
     }
     public readonly void AppendLiteral(LiteralInteger v)
     {
@@ -205,9 +248,8 @@ public readonly struct SpirvDis<TBuffer>
     }
     public readonly void AppendLine() => builder.AppendLine();
 
-    public readonly void Append(in SpvOperand o)
+    public readonly void Append(in SpvOperand o, in RefInstruction instruction)
     {
-
         if (o.Kind == OperandKind.IdRef)
             foreach (var e in o.Words)
                 Append(new IdRef(e));
@@ -223,6 +265,14 @@ public readonly struct SpirvDis<TBuffer>
         else if (o.Kind == OperandKind.PairIdRefIdRef)
             for (int i = 0; i < o.Words.Length; i += 2)
                 Append(new PairIdRefIdRef((o.Words[i], o.Words[i + 1])));
+        else if (
+                o.Kind == OperandKind.LiteralContextDependentNumber
+                && (instruction.OpCode == SDSLOp.OpConstant || instruction.OpCode == SDSLOp.OpSpecConstant)
+                && instruction.ResultType is int rtype
+            )
+        {
+            AppendConst(rtype, o.Words);
+        }
         else if (o.Kind == OperandKind.LiteralContextDependentNumber)
             AppendLiteral(o.To<LiteralInteger>());
         else if (o.Kind == OperandKind.PackedVectorFormat)

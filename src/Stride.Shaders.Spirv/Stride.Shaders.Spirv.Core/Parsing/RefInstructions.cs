@@ -23,18 +23,12 @@ public ref struct RefInstructions
 
     public Enumerator GetEnumerator() => new(Words);
 
-    public ref struct Enumerator
+    public ref struct Enumerator(Memory<int> words)
     {
-        int wordIndex;
-        bool started;
-        Memory<int> words;
-
-        public Enumerator(Memory<int> words)
-        {
-            started = false;
-            wordIndex = 0;
-            this.words = words;
-        }
+        int index;
+        int wordIndex = 0;
+        bool started = false;
+        readonly Memory<int> words = words;
 
         public RefInstruction Current => ParseCurrentInstruction();
 
@@ -51,16 +45,16 @@ public ref struct RefInstructions
                 wordIndex += sizeToStep;
                 if (wordIndex >= words.Length)
                     return false;
+                index += 1;
                 return true;
             }
 
         }
 
 
-        public RefInstruction ParseCurrentInstruction()
+        public readonly RefInstruction ParseCurrentInstruction()
         {
-            var wordNumber = words.Span[wordIndex] >> 16;
-            return RefInstruction.Parse(words, wordIndex);
+            return RefInstruction.Parse(words, wordIndex, index);
         }
     }
 }

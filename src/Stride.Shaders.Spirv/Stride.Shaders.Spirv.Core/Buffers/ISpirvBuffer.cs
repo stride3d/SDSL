@@ -23,15 +23,5 @@ public interface ISpirvBuffer
     public SpirvSpan AsSpan();
     public SpirvMemory AsMemory();
 
-}
-
-
-public interface ISpirvEnumerable
-{
-    public InstructionEnumerator GetEnumerator();
-}
-
-public interface IRefSpirvEnumerable
-{
     public RefInstructionEnumerator GetEnumerator();
 }

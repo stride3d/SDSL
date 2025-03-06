@@ -10,7 +10,7 @@ namespace Stride.Shaders.Spirv.Core.Buffers;
 /// <summary>
 /// A buffer slice
 /// </summary>
-public readonly ref struct SpirvSpan(Span<int> words) : ISpirvBuffer, IRefSpirvEnumerable
+public readonly ref struct SpirvSpan(Span<int> words) : ISpirvBuffer
 {
     public readonly Instruction this[int index] => throw new NotImplementedException();
 
@@ -42,6 +42,4 @@ public readonly ref struct SpirvSpan(Span<int> words) : ISpirvBuffer, IRefSpirvE
     public readonly SpirvSpan AsSpan() => this;
 
     public RefInstructionEnumerator GetEnumerator() => new(Span);
-
-
 }

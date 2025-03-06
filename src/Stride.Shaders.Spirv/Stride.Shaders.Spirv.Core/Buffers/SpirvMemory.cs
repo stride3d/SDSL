@@ -10,7 +10,7 @@ namespace Stride.Shaders.Spirv.Core.Buffers;
 /// <summary>
 /// A buffer slice
 /// </summary>
-public readonly struct SpirvMemory(Memory<int> memory) : ISpirvBuffer, ISpirvEnumerable
+public readonly struct SpirvMemory(Memory<int> memory) : ISpirvBuffer
 {
     public readonly Instruction this[int index]
     {
@@ -53,5 +53,5 @@ public readonly struct SpirvMemory(Memory<int> memory) : ISpirvBuffer, ISpirvEnu
 
     public readonly SpirvSpan AsSpan() => new(Span);
 
-    public InstructionEnumerator GetEnumerator() => new(this);
+    public RefInstructionEnumerator GetEnumerator() => new(InstructionSpan);
 }

@@ -1,4 +1,6 @@
+using System.Security.Cryptography;
 using System.Text;
+using Stride.Shaders.Spirv.Core.Buffers;
 using Stride.Shaders.Spirv.Core.Parsing;
 using static Spv.Specification;
 
@@ -11,7 +13,7 @@ namespace Stride.Shaders.Spirv.Core;
 public ref struct RefInstruction
 {
 
-    public static RefInstruction Empty => new() { Words = Span<int>.Empty, Operands = Span<int>.Empty };
+    public static RefInstruction Empty => new() { Words = [], Operands = [] };
 
 
     /// <summary>
@@ -24,12 +26,11 @@ public ref struct RefInstruction
     public int? ResultType { get => GetResultType(); set => SetResultType(value); }
     public Span<int> Operands { get; init; }
     public Memory<int>? Slice { get; init; }
-    public int OwnerIndex { get; set; }
+    public int InstructionIndex { get; set; }
+    public int WordIndex { get; set; }
     public Span<int> Words { get; init; }
 
-
-
-    public bool IsEmpty => Words == Span<int>.Empty;
+    public readonly bool IsEmpty => Words.IsEmpty;
 
 
 
@@ -77,13 +78,14 @@ public ref struct RefInstruction
         return false;
     }
 
-    public static RefInstruction Parse(Memory<int> owner, int ownerIndex)
+    public static RefInstruction Parse(Memory<int> owner, int ownerIndex, int index)
     {
         var words = owner.Span.Slice(ownerIndex, owner.Span[ownerIndex] >> 16);
         return new RefInstruction()
         {
             Operands = words[1..],
-            OwnerIndex = ownerIndex,
+            WordIndex = ownerIndex,
+            InstructionIndex = index,
             Slice = owner,
             Words = words
         };
@@ -96,12 +98,13 @@ public ref struct RefInstruction
     //         Words = words,
     //     };
     // }
-    public static RefInstruction ParseRef(Span<int> words)
+    public static RefInstruction ParseRef(Span<int> words, int? index = null)
     {
         return new RefInstruction()
         {
-            Operands = words[1..],
             Words = words,
+            InstructionIndex = index ?? -1,
+            Operands = words[1..]
         };
     }
 
@@ -155,8 +158,11 @@ public ref struct RefInstruction
         }
     }
 
-
-
+    public readonly Instruction ToOwned(SpirvBuffer buffer)
+    {
+        if(InstructionIndex == -1) throw new Exception("Instruction not found");
+        return new(buffer, buffer.Memory[WordIndex..(WordIndex + WordCount)], InstructionIndex, WordIndex);
+    }
 
     public override string ToString()
     {

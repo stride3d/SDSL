@@ -38,89 +38,45 @@ public readonly struct SpirvDis<TBuffer>
         else
         {
             var maxName = 0;
-            if (buffer is ISpirvEnumerable membuff)
+            foreach (var i in buffer)
             {
-                foreach (var i in membuff)
+                if (
+                    (i.OpCode == SDSLOp.OpName || i.OpCode == SDSLOp.OpMemberName)
+                    && i.TryGetOperand("name", out LiteralString? name)
+                    && name is not null
+                )
                 {
-                    if (
-                        (i.OpCode == SDSLOp.OpName || i.OpCode == SDSLOp.OpMemberName)
-                        && i.TryGetOperand("name", out LiteralString? name)
-                        && name is not null
-                    )
-                    {
-                        maxName = maxName > name.Value.Value.Length ? maxName : name.Value.Value.Length;
-                    }
+                    maxName = maxName > name.Value.Value.Length ? maxName : name.Value.Value.Length;
                 }
-                IdOffset += maxName;
             }
-            else if (buffer is ISpirvEnumerable refbuff)
-            {
-                foreach (var i in refbuff)
-                {
-                    if (
-                        (i.OpCode == SDSLOp.OpName || i.OpCode == SDSLOp.OpMemberName)
-                        && i.TryGetOperand("name", out LiteralString? name)
-                        && name is not null
-                    )
-                    {
-                        maxName = maxName > name.Value.Value.Length ? maxName : name.Value.Value.Length;
-                    }
-                }
-                IdOffset += maxName;
-            }
-
+            IdOffset += maxName;
         }
     }
+
 
     public readonly string Disassemble()
     {
         builder.Clear();
 
-        if (buffer is ISpirvEnumerable membuff)
+        foreach (var e in buffer)
         {
-            foreach (var e in membuff)
-            {
-                if (
-                    UseNames
-                    && (e.OpCode == SDSLOp.OpName || e.OpCode == SDSLOp.OpMemberName)
-                    && e.TryGetOperand("target", out IdRef? target) && target is IdRef t
-                    && e.TryGetOperand("name", out LiteralString? name) && name is LiteralString n
-                )
-                    nameTable[t] = new(n.Value);
+            if (
+                UseNames
+                && (e.OpCode == SDSLOp.OpName || e.OpCode == SDSLOp.OpMemberName)
+                && e.TryGetOperand("target", out IdRef? target) && target is IdRef t
+                && e.TryGetOperand("name", out LiteralString? name) && name is LiteralString n
+            )
+                nameTable[t] = new(n.Value);
 
-                if (UseNames && e.ResultId is int id && nameTable.TryGetValue(id, out var nid))
-                    Append(nid);
-                else
-                    Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
+            if (UseNames && e.ResultId is int id && nameTable.TryGetValue(id, out var nid))
+                Append(nid);
+            else
+                Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
 
-                AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
-                foreach (var o in e)
-                    Append(o, e.AsRef());
-                AppendLine();
-            }
-        }
-        else if (buffer is IRefSpirvEnumerable refbuff)
-        {
-            foreach (var e in refbuff)
-            {
-                if (
-                    UseNames
-                    && e.ResultId is int rid
-                    && (e.OpCode == SDSLOp.OpName || e.OpCode == SDSLOp.OpMemberName)
-                    && e.TryGetOperand("name", out LiteralString? name) && name is LiteralString n
-                )
-                    nameTable[rid] = new(n.Value);
-
-                if (UseNames && e.ResultId is int id)
-                    Append(nameTable[id]);
-                else
-                    Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
-
-                AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
-                foreach (var o in e)
-                    Append(o, e);
-                AppendLine();
-            }
+            AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
+            foreach (var o in e)
+                Append(o, e);
+            AppendLine();
         }
         return builder.ToString();
     }
@@ -155,14 +111,14 @@ public readonly struct SpirvDis<TBuffer>
     }
     public readonly void Append(IdRef id)
     {
-        if(UseNames && nameTable.TryGetValue(id, out var name))
+        if (UseNames && nameTable.TryGetValue(id, out var name))
             builder.Append(" %").Append(name.Name);
         else
             builder.Append(' ').Append('%').Append(id.Value);
     }
     public readonly void Append(IdResultType id)
     {
-        if(UseNames && nameTable.TryGetValue(id, out var name))
+        if (UseNames && nameTable.TryGetValue(id, out var name))
             builder.Append(" %").Append(name.Name);
         else
             builder.Append(' ').Append('%').Append(id.Value);
@@ -174,38 +130,18 @@ public readonly struct SpirvDis<TBuffer>
     public readonly void AppendConst(int typeId, Span<int> words)
     {
         builder.Append(' ');
-        if(buffer is ISpirvEnumerable membuff)
+        foreach (var e in buffer)
         {
-            foreach(var e in membuff)
+            if (e.ResultId is int rid && rid == typeId)
             {
-                if(e.ResultId is int rid && rid == typeId)
-                {
-                    if(e.OpCode == SDSLOp.OpTypeInt)
-                        builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
-                    else if(e.OpCode == SDSLOp.OpTypeFloat)
-                        builder.Append(
-                            words.Length == 1 ? 
-                                BitConverter.Int32BitsToSingle(words[0]) 
-                                : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
-                            );
-                }
-            }
-        }
-        else if(buffer is ISpirvEnumerable refbuff)
-        {
-            foreach(var e in refbuff)
-            {
-                if(e.ResultId is int rid && rid == typeId)
-                {
-                    if(e.OpCode == SDSLOp.OpTypeInt)
-                        builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
-                    else if(e.OpCode == SDSLOp.OpTypeFloat)
-                        builder.Append(
-                            words.Length == 1 ? 
-                                BitConverter.Int32BitsToSingle(words[0]) 
-                                : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
-                            );
-                }
+                if (e.OpCode == SDSLOp.OpTypeInt)
+                    builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
+                else if (e.OpCode == SDSLOp.OpTypeFloat)
+                    builder.Append(
+                        words.Length == 1 ?
+                            BitConverter.Int32BitsToSingle(words[0])
+                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
+                        );
             }
         }
     }

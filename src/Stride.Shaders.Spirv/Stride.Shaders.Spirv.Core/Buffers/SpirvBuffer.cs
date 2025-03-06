@@ -7,7 +7,7 @@ namespace Stride.Shaders.Spirv.Core.Buffers;
 /// <summary>
 /// A common spirv buffer containing a header.
 /// </summary>
-public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
+public class SpirvBuffer : IMutSpirvBuffer, IDisposable
 {
     MemoryOwner<int> _owner;
     public int Length { get; protected set; }
@@ -77,7 +77,7 @@ public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
     }
 
 
-    public InstructionEnumerator GetEnumerator() => new(this);
+    public RefInstructionEnumerator GetEnumerator() => new(InstructionSpan);
 
 
     public void Replace(SpirvBuffer buffer, out bool dispose)
@@ -134,21 +134,11 @@ public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
     public Instruction Add(Span<int> instruction)
     {
         int start = Length - 5;
-        Insert(instruction);
+        Insert(Length, instruction);
         if(RefInstruction.ParseRef(instruction).ResultId is int resultId && resultId >= Header.Bound)
             Header = Header with {Bound = resultId + 1};
         return new(this, InstructionMemory[start..(start + instruction.Length)], InstructionCount - 1, Length - instruction.Length);
     }
-    
-    public void Insert(ReadOnlySpan<int> instruction, int? start = null)
-    {
-        Insert(start ?? Length, instruction);
-    }
-    
-    public void Insert(Instruction instruction)
-    {
-        Insert(Length, instruction.Words.Span);
-    }    
 
     public void Insert(int start, ReadOnlySpan<int> words)
     {
@@ -159,7 +149,7 @@ public class SpirvBuffer : IMutSpirvBuffer, ISpirvEnumerable, IDisposable
         Length += words.Length;
     }
 
-    private void Expand(int size)
+    void Expand(int size)
     {
         if (Length + size > _owner.Length)
         {

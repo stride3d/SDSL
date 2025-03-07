@@ -50,8 +50,7 @@ public ref struct RefInstructions
             }
 
         }
-
-
+        
         public readonly RefInstruction ParseCurrentInstruction()
         {
             return RefInstruction.Parse(words, wordIndex, index);

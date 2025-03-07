@@ -9,6 +9,9 @@ namespace Stride.Shaders.Spirv.Core.Buffers;
 /// </summary>
 public class SpirvBuffer : IMutSpirvBuffer, IDisposable
 {
+    /// <summary>
+    /// Reusable buffer containing the SPIR-V code
+    /// </summary>
     MemoryOwner<int> _owner;
     public int Length { get; protected set; }
     public Span<int> Span => _owner.Span[..Length];
@@ -79,36 +82,6 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
 
     public RefInstructionEnumerator GetEnumerator() => new(InstructionSpan);
 
-
-    public void Replace(SpirvBuffer buffer, out bool dispose)
-    {
-        if (buffer.Length <= Length)
-        {
-            _owner.Span.Clear();
-            buffer.Span.CopyTo(Span);
-            Length = buffer.Length;
-            dispose = true;
-        }
-        else
-        {
-            var disp = _owner;
-            _owner = buffer._owner;
-            Length = buffer.Length;
-            disp.Dispose();
-            dispose = false;
-        }
-    }
-
-    public void RecomputeBound()
-    {
-        int last = 0;
-        foreach (var i in this)
-        {
-            last = i.ResultId ?? last;
-        }
-        Header = Header with { Bound = last + 1 };
-    }
-
     public void Sort()
     {
         var sorted = new OrderedEnumerator(this);
@@ -125,11 +98,6 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
     }
     public SpirvSpan AsSpan() => new(Span);
     public SpirvMemory AsMemory() => new(Memory);
-
-    public int GetNextId()
-    {
-        throw new NotImplementedException();
-    }
 
     public Instruction Add(Span<int> instruction)
     {

@@ -18,11 +18,11 @@ public readonly struct LiteralString : ISpirvElement, IFromSpirv<LiteralString>
     internal bool HasRest => Length % 4 > 0;
     internal int RestSize => Length % 4;
 
-    internal LiteralString(string value)
+    public LiteralString(string value)
     {
         Value = pool.GetOrAdd(value);
     }
-    internal LiteralString(Span<int> words)
+    public LiteralString(Span<int> words)
     {
         Span<char> chars = stackalloc char[words.Length * 4];
         for (int i = 0; i < words.Length; i++)

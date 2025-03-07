@@ -8,10 +8,11 @@ namespace Stride.Shaders.Spirv.Tools;
 
 internal record struct NameId(string Name);
 
-public readonly struct SpirvDis<TBuffer>
+public partial struct SpirvDis<TBuffer>
     where TBuffer : ISpirvBuffer
 
 {
+    public bool WriteToTerminal { get; set; }
     readonly TBuffer buffer;
     readonly StringBuilder builder;
     int IdOffset { get; init; }
@@ -19,12 +20,13 @@ public readonly struct SpirvDis<TBuffer>
 
     readonly SortedList<int, NameId> nameTable = [];
 
-    public SpirvDis(TBuffer buff, bool useNames = false)
+    public SpirvDis(TBuffer buff, bool useNames = false, bool writeToTerminal = false)
     {
         buffer = buff;
         builder = new();
         UseNames = useNames;
-        IdOffset = 3;
+        WriteToTerminal = writeToTerminal;
+        IdOffset = 8;
         if (!useNames)
         {
             var bound = buff.Header.Bound;
@@ -51,6 +53,7 @@ public readonly struct SpirvDis<TBuffer>
             }
             IdOffset += maxName;
         }
+        IdOffset = Math.Min(IdOffset, 16);
     }
 
 
@@ -58,281 +61,98 @@ public readonly struct SpirvDis<TBuffer>
     {
         builder.Clear();
 
+        if(buffer.HasHeader)
+        {
+            var header = buffer.Header;
+            builder
+                .AppendLine("; SPIR-V")
+                .AppendLine($"; Version: {header.Version}")
+                .AppendLine($"; Generator: {header.GeneratorMagicNumber}")
+                .AppendLine($"; Bound: {header.Bound}")
+                .AppendLine($"; Schema: {header.Schema}");
+            if(WriteToTerminal)
+                Console.WriteLine(builder.ToString());
+        }
+
         foreach (var e in buffer)
         {
-            if (
-                UseNames
-                && (e.OpCode == SDSLOp.OpName || e.OpCode == SDSLOp.OpMemberName)
-                && e.TryGetOperand("target", out IdRef? target) && target is IdRef t
-                && e.TryGetOperand("name", out LiteralString? name) && name is LiteralString n
-            )
-                nameTable[t] = new(n.Value);
+            CheckNameTable(e);
+
+            if (WriteToTerminal)
+                Console.ForegroundColor = ConsoleColor.Blue;
 
             if (UseNames && e.ResultId is int id && nameTable.TryGetValue(id, out var nid))
                 Append(nid);
             else
                 Append(e.ResultId != null ? new IdResult(e.ResultId.Value) : null);
 
+            if (WriteToTerminal)
+                Console.ResetColor();
+
+            if (e.ResultId is int)
+            {
+                builder.Append('=');
+                if (WriteToTerminal)
+                    Console.Write('=');
+            }
+
             AppendLiteral(Enum.GetName(e.OpCode) ?? "Op.OpNop");
             foreach (var o in e)
                 Append(o, e);
+
             AppendLine();
+
+            if (WriteToTerminal)
+                Console.WriteLine();
         }
         return builder.ToString();
     }
 
-
-
-    public readonly void Append(IdResult? result)
+    // TODO :  add other names
+    public readonly void CheckNameTable(RefInstruction instruction)
     {
-        if (result != null)
-        {
-            var tmp = result.Value;
-            var size = 1;
-            while (tmp > 0)
-            {
-                tmp /= 10;
-                size += 1;
-            }
-            builder.Append('%').Append(result.Value).Append(' ', IdOffset - 1 - size).Append('=');
-        }
-        else
-            builder.Append(' ', IdOffset);
-    }
-    internal readonly void Append(NameId name)
-    {
-        builder.Append('%').Append(name.Name).Append(' ', IdOffset - 2 - name.Name.Length).Append('=');
-    }
-
-    public readonly void Append<T>(T value) where T : Enum
-    {
-        var name = Enum.GetName(typeof(T), value);
-        builder.Append(' ').Append(name);
-    }
-    public readonly void Append(IdRef id)
-    {
-        if (UseNames && nameTable.TryGetValue(id, out var name))
-            builder.Append(" %").Append(name.Name);
-        else
-            builder.Append(' ').Append('%').Append(id.Value);
-    }
-    public readonly void Append(IdResultType id)
-    {
-        if (UseNames && nameTable.TryGetValue(id, out var name))
-            builder.Append(" %").Append(name.Name);
-        else
-            builder.Append(' ').Append('%').Append(id.Value);
-    }
-    public readonly void AppendInt(int v)
-    {
-        builder.Append(' ').Append(v);
-    }
-    public readonly void AppendConst(int typeId, Span<int> words)
-    {
-        builder.Append(' ');
-        foreach (var e in buffer)
-        {
-            if (e.ResultId is int rid && rid == typeId)
-            {
-                if (e.OpCode == SDSLOp.OpTypeInt)
-                    builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
-                else if (e.OpCode == SDSLOp.OpTypeFloat)
-                    builder.Append(
-                        words.Length == 1 ?
-                            BitConverter.Int32BitsToSingle(words[0])
-                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
-                        );
-            }
-        }
-    }
-    public readonly void AppendLiteral(LiteralInteger v)
-    {
-        builder.Append(' ').Append(v.Words);
-    }
-
-    public readonly void AppendLiteral(LiteralFloat v)
-    {
-        if (v.WordCount == 1)
-            builder.Append(' ').Append(Convert.ToSingle(v.Words & 0xFFFF));
-        if (v.WordCount == 2)
-            builder.Append(' ').Append(Convert.ToDouble(v.Words));
-    }
-    public readonly void AppendLiteral(LiteralString v, bool quoted = false)
-    {
-        if (!quoted)
-            builder.Append(' ').Append(v.Value);
-        else
-            builder.Append(' ').Append('"').Append(v.Value).Append('"');
-    }
-    public readonly void Append(PairLiteralIntegerIdRef v)
-    {
-        (int, int) value = v;
-        AppendInt(value.Item1);
-        Append(new IdRef(value.Item2));
-    }
-    public readonly void Append(PairIdRefLiteralInteger v)
-    {
-        (int, int) value = v;
-        Append(new IdRef(value.Item1));
-        AppendInt(value.Item2);
-    }
-    public readonly void Append(PairIdRefIdRef v)
-    {
-        (int, int) value = v;
-        Append(new IdRef(value.Item1));
-        Append(new IdRef(value.Item2));
-    }
-    public readonly void AppendLine() => builder.AppendLine();
-
-    public readonly void Append(in SpvOperand o, in RefInstruction instruction)
-    {
-        if (o.Kind == OperandKind.IdRef)
-            foreach (var e in o.Words)
-                Append(new IdRef(e));
-        else if (o.Kind == OperandKind.IdResultType)
-            foreach (var e in o.Words)
-                Append((IdResultType)e);
-        else if (o.Kind == OperandKind.PairLiteralIntegerIdRef)
-            for (int i = 0; i < o.Words.Length; i += 2)
-                Append(new PairLiteralIntegerIdRef((o.Words[i], o.Words[i + 1])));
-        else if (o.Kind == OperandKind.PairIdRefLiteralInteger)
-            for (int i = 0; i < o.Words.Length; i += 2)
-                Append(new PairIdRefLiteralInteger((o.Words[i], o.Words[i + 1])));
-        else if (o.Kind == OperandKind.PairIdRefIdRef)
-            for (int i = 0; i < o.Words.Length; i += 2)
-                Append(new PairIdRefIdRef((o.Words[i], o.Words[i + 1])));
-        else if (
-                o.Kind == OperandKind.LiteralContextDependentNumber
-                && (instruction.OpCode == SDSLOp.OpConstant || instruction.OpCode == SDSLOp.OpSpecConstant)
-                && instruction.ResultType is int rtype
+        if (
+            UseNames
+            && (instruction.OpCode == SDSLOp.OpName || instruction.OpCode == SDSLOp.OpMemberName)
+            && instruction.TryGetOperand("target", out IdRef? target) && target is IdRef t
+            && instruction.TryGetOperand("name", out LiteralString? name) && name is LiteralString n
             )
         {
-            AppendConst(rtype, o.Words);
+            nameTable[t] = new(n.Value);
         }
-        else if (o.Kind == OperandKind.LiteralContextDependentNumber)
-            AppendLiteral(o.To<LiteralInteger>());
-        else if (o.Kind == OperandKind.PackedVectorFormat)
-            foreach (var e in o.Words)
-                Append((PackedVectorFormat)e);
-        else if (o.Kind == OperandKind.ImageOperands)
-            foreach (var e in o.Words)
-                Append((ImageOperandsMask)e);
-        else if (o.Kind == OperandKind.FPFastMathMode)
-            foreach (var e in o.Words)
-                Append((FPFastMathModeMask)e);
-        else if (o.Kind == OperandKind.SelectionControl)
-            foreach (var e in o.Words)
-                Append((SelectionControlMask)e);
-        else if (o.Kind == OperandKind.LoopControl)
-            foreach (var e in o.Words)
-                Append((LoopControlMask)e);
-        else if (o.Kind == OperandKind.FunctionControl)
-            foreach (var e in o.Words)
-                Append((FunctionControlMask)e);
-        else if (o.Kind == OperandKind.MemorySemantics)
-            foreach (var e in o.Words)
-                Append((MemorySemanticsMask)e);
-        else if (o.Kind == OperandKind.MemoryAccess)
-            foreach (var e in o.Words)
-                Append((MemoryAccessMask)e);
-        else if (o.Kind == OperandKind.KernelProfilingInfo)
-            foreach (var e in o.Words)
-                Append((KernelProfilingInfoMask)e);
-        else if (o.Kind == OperandKind.RayFlags)
-            foreach (var e in o.Words)
-                Append((RayFlagsMask)e);
-        else if (o.Kind == OperandKind.FragmentShadingRate)
-            foreach (var e in o.Words)
-                Append((FragmentShadingRateMask)e);
-        else if (o.Kind == OperandKind.SourceLanguage)
-            foreach (var e in o.Words)
-                Append((SourceLanguage)e);
-        else if (o.Kind == OperandKind.ExecutionModel)
-            foreach (var e in o.Words)
-                Append((ExecutionModel)e);
-        else if (o.Kind == OperandKind.AddressingModel)
-            foreach (var e in o.Words)
-                Append((AddressingModel)e);
-        else if (o.Kind == OperandKind.MemoryModel)
-            foreach (var e in o.Words)
-                Append((MemoryModel)e);
-        else if (o.Kind == OperandKind.ExecutionMode)
-            foreach (var e in o.Words)
-                Append((ExecutionMode)e);
-        else if (o.Kind == OperandKind.StorageClass)
-            foreach (var e in o.Words)
-                Append((StorageClass)e);
-        else if (o.Kind == OperandKind.Dim)
-            foreach (var e in o.Words)
-                Append((Dim)e);
-        else if (o.Kind == OperandKind.SamplerAddressingMode)
-            foreach (var e in o.Words)
-                Append((SamplerAddressingMode)e);
-        else if (o.Kind == OperandKind.SamplerFilterMode)
-            foreach (var e in o.Words)
-                Append((SamplerFilterMode)e);
-        else if (o.Kind == OperandKind.ImageFormat)
-            foreach (var e in o.Words)
-                Append((ImageFormat)e);
-        else if (o.Kind == OperandKind.ImageChannelOrder)
-            foreach (var e in o.Words)
-                Append((ImageChannelOrder)e);
-        else if (o.Kind == OperandKind.ImageChannelDataType)
-            foreach (var e in o.Words)
-                Append((ImageChannelDataType)e);
-        else if (o.Kind == OperandKind.FPRoundingMode)
-            foreach (var e in o.Words)
-                Append((FPRoundingMode)e);
-        else if (o.Kind == OperandKind.LinkageType)
-            foreach (var e in o.Words)
-                Append((LinkageType)e);
-        else if (o.Kind == OperandKind.AccessQualifier)
-            foreach (var e in o.Words)
-                Append((AccessQualifier)e);
-        else if (o.Kind == OperandKind.FunctionParameterAttribute)
-            foreach (var e in o.Words)
-                Append((FunctionParameterAttribute)e);
-        else if (o.Kind == OperandKind.Decoration)
-            foreach (var e in o.Words)
-                Append((Decoration)e);
-        else if (o.Kind == OperandKind.BuiltIn)
-            foreach (var e in o.Words)
-                Append((BuiltIn)e);
-        else if (o.Kind == OperandKind.Scope)
-            foreach (var e in o.Words)
-                Append((Scope)e);
-        else if (o.Kind == OperandKind.GroupOperation)
-            foreach (var e in o.Words)
-                Append((GroupOperation)e);
-        else if (o.Kind == OperandKind.KernelEnqueueFlags)
-            foreach (var e in o.Words)
-                Append((KernelEnqueueFlags)e);
-        else if (o.Kind == OperandKind.Capability)
-            foreach (var e in o.Words)
-                Append((Capability)e);
-        else if (o.Kind == OperandKind.RayQueryIntersection)
-            foreach (var e in o.Words)
-                Append((RayQueryIntersection)e);
-        else if (o.Kind == OperandKind.RayQueryCommittedIntersectionType)
-            foreach (var e in o.Words)
-                Append((RayQueryCommittedIntersectionType)e);
-        else if (o.Kind == OperandKind.RayQueryCandidateIntersectionType)
-            foreach (var e in o.Words)
-                Append((RayQueryCandidateIntersectionType)e);
-        else if (o.Kind == OperandKind.IdMemorySemantics)
-            foreach (var e in o.Words)
-                AppendInt((IdMemorySemantics)e);
-        else if (o.Kind == OperandKind.IdScope)
-            foreach (var e in o.Words)
-                AppendInt((IdScope)e);
-        else if (o.Kind == OperandKind.IdRef)
-            foreach (var e in o.Words)
-                Append((IdRef)e);
-        else if (o.Kind == OperandKind.LiteralInteger)
-            foreach (var e in o.Words)
-                AppendInt(e);
-
+        else if(instruction.OpCode == SDSLOp.OpTypeVoid)
+            nameTable[instruction.ResultId!.Value] = new("void");
+        else if(instruction.OpCode == SDSLOp.OpTypeBool)
+            nameTable[instruction.ResultId!.Value] = new("bool");
+        else if(instruction.OpCode == SDSLOp.OpTypeInt)
+        {
+            var type = instruction.Operands[1..] switch
+            {
+                [8, 0] => "byte",
+                [16, 0] => "ushort",
+                [32, 0] => "uint",
+                [64, 0] => "ulong",
+                [8, 1] => "sbyte",
+                [16, 1] => "short",
+                [32, 1] => "int",
+                [64, 1] => "long",
+                _ => "int"
+            };
+            nameTable[instruction.ResultId!.Value] = new(type);
+        }
+        else if(instruction.OpCode == SDSLOp.OpTypeFloat)
+        {
+            var size = instruction.Operands[1];
+            nameTable[instruction.ResultId!.Value] = new(size == 16 ? "half" : size == 64 ? "double" : "float");
+        }
+        else if(instruction.OpCode == SDSLOp.OpTypeVector)
+        {
+            nameTable[instruction.ResultId!.Value] = new(nameTable[instruction.Operands[1]].Name + instruction.Operands[2]);
+        }
+        
+        
     }
+    
 
     public readonly override string ToString()
     {

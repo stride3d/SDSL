@@ -138,9 +138,9 @@ static void CreateShader()
     
     buffer.Sort();
 
-    var dis = new SpirvDis<SpirvBuffer>(buffer, useNames: true);
+    var dis = new SpirvDis<SpirvBuffer>(buffer, useNames: true, writeToTerminal: true);
 
-    Console.WriteLine(dis.Disassemble());
+    dis.Disassemble();
 
     File.WriteAllBytes(
         "test.spv",

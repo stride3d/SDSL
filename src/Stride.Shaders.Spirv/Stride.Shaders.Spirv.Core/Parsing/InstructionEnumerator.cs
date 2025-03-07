@@ -1,34 +1,19 @@
-﻿using CommunityToolkit.HighPerformance.Buffers;
-using Stride.Shaders.Spirv.Core.Buffers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Stride.Shaders.Spirv.Core.Buffers;
 
-using static Spv.Specification;
 
 namespace Stride.Shaders.Spirv.Core.Parsing;
 
 /// <summary>
 /// A simple spirv instruction enumerator without sorting
 /// </summary>
-public ref struct InstructionEnumerator
+public ref struct InstructionEnumerator(ISpirvBuffer buffer)
 {
-    int wordIndex;
+    int wordIndex = 0;
     int index;
-    bool started;
-    ISpirvBuffer buffer;
+    bool started = false;
+    readonly ISpirvBuffer buffer = buffer;
 
-    public int ResultIdReplacement { get; set; }
-
-    public InstructionEnumerator(ISpirvBuffer buffer)
-    {
-        started = false;
-        wordIndex = 0;
-        this.buffer = buffer;
-        ResultIdReplacement = 0;
-    }
+    public int ResultIdReplacement { get; set; } = 0;
 
     public Instruction Current => ParseCurrentInstruction();
 
@@ -54,10 +39,9 @@ public ref struct InstructionEnumerator
     }
 
 
-    public Instruction ParseCurrentInstruction()
+    public readonly Instruction ParseCurrentInstruction()
     {
         var count = buffer.InstructionSpan[wordIndex] >> 16;
         return new Instruction(buffer, buffer.InstructionMemory[wordIndex..(wordIndex + count)], index, wordIndex);
-
     }
 }

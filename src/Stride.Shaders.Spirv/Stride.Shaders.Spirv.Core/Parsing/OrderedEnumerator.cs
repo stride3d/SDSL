@@ -14,24 +14,15 @@ namespace Stride.Shaders.Spirv.Core.Parsing;
 /// <summary>
 /// An enumerator where each declartions instructions is sorted
 /// </summary>
-public ref struct OrderedEnumerator
+public ref struct OrderedEnumerator(ISpirvBuffer buffer)
 {
-    int index;
-    int wordIndex;
-    bool started;
+    int index = 0;
+    int wordIndex = 0;
+    bool started = false;
     
 
-    ISpirvBuffer wbuff;
-    readonly Span<int> instructionWords => wbuff.InstructionSpan;
-    Memory<int> memorySlice => wbuff.InstructionMemory;
-
-    public OrderedEnumerator(ISpirvBuffer buffer)
-    {
-        started = false;
-        wordIndex = 0;
-        index = 0;
-        wbuff = buffer;
-    }
+    readonly ISpirvBuffer wbuff = buffer;
+    readonly Span<int> InstructionWords => wbuff.InstructionSpan;
 
     public readonly Instruction Current => new(wbuff, wbuff.InstructionMemory.Slice(wordIndex, wbuff.InstructionSpan[wordIndex] >> 16), index, wordIndex);
 
@@ -43,7 +34,7 @@ public ref struct OrderedEnumerator
             (var firstGroup, var firstPos) = (int.MaxValue, int.MaxValue);
             var wid = 0;
             var idx = 0;
-            while(wid < instructionWords.Length)
+            while(wid < InstructionWords.Length)
             {
                 var group = GetGroupOrder(wid);
                 if(group < firstGroup)
@@ -53,7 +44,7 @@ public ref struct OrderedEnumerator
                     index = idx;
                 }
                 idx += 1;
-                wid += instructionWords[wid] >> 16;
+                wid += InstructionWords[wid] >> 16;
             }
             wordIndex = firstPos;
             started = true;
@@ -67,9 +58,9 @@ public ref struct OrderedEnumerator
             {
                 if(group == currentGroup)
                 {
-                    var offset = instructionWords[wordIndex] >> 16;
+                    var offset = InstructionWords[wordIndex] >> 16;
                     var idx = index + 1;
-                    while(wordIndex + offset <  instructionWords.Length)
+                    while(wordIndex + offset <  InstructionWords.Length)
                     {
                         if(GetGroupOrder(wordIndex + offset) == group && idx > index)
                         {
@@ -77,7 +68,7 @@ public ref struct OrderedEnumerator
                             index = idx;
                             return true;
                         }
-                        offset += instructionWords[wordIndex + offset] >> 16;
+                        offset += InstructionWords[wordIndex + offset] >> 16;
                         idx += 1;
                     }
                 }
@@ -85,7 +76,7 @@ public ref struct OrderedEnumerator
                 {
                     var wid = 0;
                     var idx = 0;
-                    while (wid < instructionWords.Length)
+                    while (wid < InstructionWords.Length)
                     {
                         var g = GetGroupOrder(wid);
                         if (g == group)
@@ -95,42 +86,18 @@ public ref struct OrderedEnumerator
                             return true;
                         }
                         idx += 1;
-                        wid += instructionWords[wid] >> 16;
+                        wid += InstructionWords[wid] >> 16;
                     }
                 }
             }
             return false;
-
-            //var count = new SpirvReader(memorySlice).Count;
-            //var currentGroup = GetGroupOrder(wordIndex);
-            //for (int groupOffset = 0; groupOffset < 14; groupOffset++)
-            //{
-            //    var wid = 0;
-            //    for (int i = 0; i < count; i++)
-            //    {
-            //        if (wid >= instructionWords.Length)
-            //            break;
-            //        var g = GetGroupOrder(wid);
-            //        if (GetGroupOrder(wid) == currentGroup + groupOffset && i != index)
-            //        {
-            //            if (!(groupOffset == 0 && i < index))
-            //            {
-            //                index = i;
-            //                wordIndex = wid;
-            //                return true;
-            //            }
-            //        }
-            //        wid += instructionWords[wid] >> 16;
-            //    }
-            //}
-            //return false;
         }
 
     }
 
-    int GetGroupOrder(int wid)
+    readonly int GetGroupOrder(int wid)
     {
-        var op = (SDSLOp)(instructionWords[wid] & 0xFFFF);
-        return InstructionInfo.GetGroupOrder(op, op == SDSLOp.OpVariable ? (StorageClass)instructionWords[wid + 3] : null);
+        var op = (SDSLOp)(InstructionWords[wid] & 0xFFFF);
+        return InstructionInfo.GetGroupOrder(op, op == SDSLOp.OpVariable ? (StorageClass)InstructionWords[wid + 3] : null);
     }
 }

@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Spv.Specification;
-
-namespace Stride.Shaders.Spirv.Core.Parsing;
+﻿namespace Stride.Shaders.Spirv.Core.Parsing;
 
 /// <summary>
 /// A spirv header parser
 /// </summary>
-public ref struct RefHeader
+public readonly ref struct RefHeader
 {
     internal Span<int> Words { get; init; }
     public uint MagicNumber { get => unchecked((uint)Words[0]); set => Words[0] = unchecked((int)value); }

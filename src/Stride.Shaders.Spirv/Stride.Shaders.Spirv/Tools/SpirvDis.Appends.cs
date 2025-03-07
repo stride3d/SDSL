@@ -18,118 +18,63 @@ public partial struct SpirvDis<TBuffer>
                 tmp /= 10;
                 size += 1;
             }
-            builder.Append(' ', IdOffset - 1 - size).Append('%').Append(result.Value);
-            if (WriteToTerminal)
-                Console.Write($"{new string(' ', IdOffset - 1 - size)} %{result.Value.Value} ");
-
+            writer.Append(' ', IdOffset - 1 - size).Append('%',ConsoleColor.Blue).Append(result!.Value.Value,ConsoleColor.Blue);
         }
         else
-        {
-            builder.Append(' ', IdOffset);
-            Console.Write(new string(' ', IdOffset + 2));
-        }
+            writer.Append(' ', IdOffset);
 
     }
     internal readonly void Append(NameId name)
     {
-        builder.Append(' ', IdOffset - 2 - name.Name.Length).Append('%').Append(name.Name);
-        if (WriteToTerminal)
-            Console.Write($"{new string(' ', IdOffset - 2 - name.Name.Length)} %{name.Name} ");
+        writer.Append(' ', IdOffset - 2 - name.Name.Length).Append('%', ConsoleColor.Blue).Append(name.Name, ConsoleColor.Blue);
+
     }
 
     public readonly void Append<T>(T value) where T : Enum
     {
         var name = Enum.GetName(typeof(T), value);
-        builder.Append(' ').Append(name);
-        if(WriteToTerminal)
-            Console.Write($" {name}");
+        writer.Append(' ').Append(name);
     }
     public readonly void Append(IdRef id)
     {
-        if (WriteToTerminal)
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
 
         if (UseNames && nameTable.TryGetValue(id, out var name))
-        {
-            builder.Append(" %").Append(name.Name);
-            if (WriteToTerminal)
-                Console.Write($" %{name.Name}");
-        }
+            writer.Append(" %", ConsoleColor.DarkYellow).Append(name.Name, ConsoleColor.DarkYellow);
         else
-        {
-            builder.Append(' ').Append('%').Append(id.Value);
-            if (WriteToTerminal)
-                Console.Write($" %{id.Value}");
-        }
-
-        if (WriteToTerminal)
-            Console.ResetColor();
+            writer.Append(" %", ConsoleColor.DarkYellow).Append(id.Value, ConsoleColor.DarkYellow);
     }
     public readonly void Append(IdResultType id)
     {
-        if (WriteToTerminal)
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-
         if (UseNames && nameTable.TryGetValue(id, out var name))
-        {
-            builder.Append(" %").Append(name.Name);
-            if (WriteToTerminal)
-                Console.Write($" %{name.Name}");
-        }
+            writer.Append(" %", ConsoleColor.DarkYellow).Append(name.Name, ConsoleColor.DarkYellow);
         else
-        {
-            builder.Append(' ').Append('%').Append(id.Value);
-            if (WriteToTerminal)
-                Console.Write($" %{id.Value}");
-        }
-
-        if (WriteToTerminal)
-            Console.ResetColor();
+            writer.Append(" %", ConsoleColor.DarkYellow).Append(id.Value, ConsoleColor.DarkYellow);
     }
     public readonly void AppendInt(int v)
     {
-        builder.Append(' ').Append(v);
-        if (WriteToTerminal)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($" {v}");
-            Console.ResetColor();
-        }
+        writer.Append(' ').Append(v, ConsoleColor.Red);
     }
     public readonly void AppendConst(int typeId, Span<int> words)
     {
-        builder.Append(' ');
+        writer.Append(' ');
         foreach (var e in buffer)
         {
             if (e.ResultId is int rid && rid == typeId)
             {
                 if (e.OpCode == SDSLOp.OpTypeInt)
                 {
-                    builder.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1]);
-                    if (WriteToTerminal)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($" {(words.Length == 1 ? words[0] : words[0] << 32 | words[1])}");
-                        Console.ResetColor();
-                    }
+                    writer.Append(words.Length == 1 ? words[0] : words[0] << 32 | words[1], ConsoleColor.Red);
                     return;
                 }
                 else if (e.OpCode == SDSLOp.OpTypeFloat)
                 {
-                    builder.Append(
+                    writer.Append(
                         words.Length == 1 ?
                             BitConverter.Int32BitsToSingle(words[0])
-                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1])
-                        );
-                    if (WriteToTerminal)
-                    {
-                        var v = words.Length == 1 ?
-                            BitConverter.Int32BitsToSingle(words[0])
-                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1]);
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write($" {v}");
-                        Console.ResetColor();
-                    }
+                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1]), 
+                            
+                        ConsoleColor.Red
+                    );
                     return;
                 }
             }
@@ -137,59 +82,22 @@ public partial struct SpirvDis<TBuffer>
     }
     public readonly void AppendLiteral(LiteralInteger v)
     {
-        builder.Append(' ').Append(v.Words);
-        if (WriteToTerminal)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($" {v.Words}");
-            Console.ResetColor();
-        }
+        writer.Append(' ').Append(v.Words, ConsoleColor.Red);
     }
 
     public readonly void AppendLiteral(LiteralFloat v)
     {
-        if (WriteToTerminal)
-            Console.ForegroundColor = ConsoleColor.Red;
-
         if (v.WordCount == 1)
-        {
-            builder.Append(' ').Append(Convert.ToSingle(v.Words & 0xFFFF));
-            Console.Write($" {Convert.ToSingle(v.Words & 0xFFFF)}");
-        }
+            writer.Append(' ').Append(Convert.ToSingle(v.Words & 0xFFFF), ConsoleColor.Red);
         else if (v.WordCount == 2)
-        {
-            builder.Append(' ').Append(Convert.ToDouble(v.Words));
-            Console.Write($" {Convert.ToDouble(v.Words)}");
-        }
-
-        if (WriteToTerminal)
-            Console.ResetColor();
+            writer.Append(' ').Append(Convert.ToDouble(v.Words), ConsoleColor.Red);
     }
     public readonly void AppendLiteral(LiteralString v, bool quoted = false)
     {
         if (!quoted)
-            builder.Append(' ').Append(v.Value);
+            writer.Append(' ').Append(v.Value);
         else
-            builder.Append(' ').Append('"').Append(v.Value).Append('"');
-
-        if (WriteToTerminal)
-        {
-            if (quoted)
-            {
-                Console.Write($" \"");
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            else
-                Console.Write(' ');
-
-            Console.Write($"{v.Value}");
-            
-            if (quoted)
-            {
-                Console.ResetColor();
-                Console.Write("\"");
-            }
-        }
+            writer.Append(' ').Append('"').Append(v.Value, ConsoleColor.Green).Append('"');
     }
     public readonly void Append(PairLiteralIntegerIdRef v)
     {
@@ -209,7 +117,7 @@ public partial struct SpirvDis<TBuffer>
         Append(new IdRef(value.Item1));
         Append(new IdRef(value.Item2));
     }
-    public readonly void AppendLine() => builder.AppendLine();
+    public readonly void AppendLine() => writer.AppendLine();
 
     public readonly void Append(in SpvOperand o, in RefInstruction instruction)
     {

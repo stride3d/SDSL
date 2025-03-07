@@ -20,51 +20,74 @@ public partial class InstructionInfo
 
     void InitOrder()
     {
-        OrderGroup[(SDSLOp.OpNop, null)] = 0;
-        OrderGroup[(SDSLOp.OpSDSLMixinName, null)] = 0;
-        OrderGroup[(SDSLOp.OpCapability, null)] = 0;
-        OrderGroup[(SDSLOp.OpSDSLMixinOffset, null)] = 0;
-        OrderGroup[(SDSLOp.OpSDSLMixinInherit, null)] = 0;
-        OrderGroup[(SDSLOp.OpSDSLCompose, null)] = 0;
+        int group = 0;
+        Span<SDSLOp> initSDSL = [
+            SDSLOp.OpNop,
+            SDSLOp.OpSDSLMixinName,
+            SDSLOp.OpCapability,
+            SDSLOp.OpSDSLMixinOffset,
+            SDSLOp.OpSDSLMixinInherit,
+            SDSLOp.OpSDSLCompose
+        ];
+        foreach(var e in initSDSL)
+            OrderGroup[(e, null)] = group;
+        
+        group++;
         foreach (var e in Enum.GetValues<SDSLOp>().Where(x => x.ToString().StartsWith("OpSDSLImport")))
-            OrderGroup[(e, null)] = 1;
-        OrderGroup[(SDSLOp.OpExtension, null)] = 1;
-        OrderGroup[(SDSLOp.OpExtInstImport, null)] = 2;
-        OrderGroup[(SDSLOp.OpMemoryModel, null)] = 3;
-        OrderGroup[(SDSLOp.OpEntryPoint, null)] = 4;
+            OrderGroup[(e, null)] = group;
+        OrderGroup[(SDSLOp.OpExtension, null)] = group;
 
+        group++;
+        OrderGroup[(SDSLOp.OpExtInstImport, null)] = group;
+        group++;
+        OrderGroup[(SDSLOp.OpMemoryModel, null)] = group;
+        group++;
+        OrderGroup[(SDSLOp.OpEntryPoint, null)] = group;
+
+        group++;
         foreach (var e in Enum.GetValues<SDSLOp>().Where(x => x.ToString().StartsWith("OpExecutionMode")))
-            OrderGroup[(e, null)] = 5;
+            OrderGroup[(e, null)] = group;
 
-        foreach (var e in new SDSLOp[] { SDSLOp.OpString, SDSLOp.OpSource, SDSLOp.OpSourceExtension, SDSLOp.OpSourceContinued })
-            OrderGroup[(e, null)] = 6;
+        group++;
+        Span<SDSLOp> opDebugSource = [SDSLOp.OpString, SDSLOp.OpSource, SDSLOp.OpSourceExtension, SDSLOp.OpSourceContinued];
+        foreach (var e in opDebugSource)
+            OrderGroup[(e, null)] = group;
 
-        OrderGroup[(SDSLOp.OpName, null)] = 7;
-        OrderGroup[(SDSLOp.OpSDSLMixinVariable, null)] = 7;
-        OrderGroup[(SDSLOp.OpMemberName, null)] = 7;
+        group++;
+        OrderGroup[(SDSLOp.OpName, null)] = group;
+        OrderGroup[(SDSLOp.OpSDSLMixinVariable, null)] = group;
+        OrderGroup[(SDSLOp.OpMemberName, null)] = group;
 
-        OrderGroup[(SDSLOp.OpModuleProcessed, null)] = 8;
+        group++;
+        OrderGroup[(SDSLOp.OpModuleProcessed, null)] = group;
 
+        group++;
         foreach (var e in Enum.GetValues<SDSLOp>().Where(x => x.ToString().StartsWith("OpDecorate")))
-            OrderGroup[(e, null)] = 9;
+            OrderGroup[(e, null)] = group;
         foreach (var e in Enum.GetValues<SDSLOp>().Where(x => x.ToString().StartsWith("OpMemberDecorate")))
-            OrderGroup[(e, null)] = 9;
+            OrderGroup[(e, null)] = group;
 
+        group++;
         foreach (var e in Enum.GetValues<SDSLOp>().Where(x => x.ToString().StartsWith("OpType") || x.ToString().StartsWith("OpConstant") || x.ToString().StartsWith("OpSpec")))
-            OrderGroup[(e, null)] = 10;
+            OrderGroup[(e, null)] = group;
 
         foreach (var e in Enum.GetValues<StorageClass>().Where(x => x != StorageClass.Function))
-            OrderGroup[(SDSLOp.OpVariable, e)] = 10;
-        OrderGroup[(SDSLOp.OpSDSLIOVariable, null)] = 10;
+            OrderGroup[(SDSLOp.OpVariable, e)] = group;
+        OrderGroup[(SDSLOp.OpSDSLIOVariable, null)] = group;
 
-        OrderGroup[(SDSLOp.OpUndef, null)] = 10;
-        OrderGroup[(SDSLOp.OpLine, null)] = 11;
-        OrderGroup[(SDSLOp.OpNoLine, null)] = 11;
+        OrderGroup[(SDSLOp.OpUndef, null)] = group;
 
+        group++;
+        OrderGroup[(SDSLOp.OpLine, null)] = group;
+        OrderGroup[(SDSLOp.OpNoLine, null)] = group;
+
+        group++;
+        group++;
         foreach (var e in Enum.GetValues<SDSLOp>().Except(OrderGroup.Keys.Select(x => x.Item1)))
-            OrderGroup[(e, null)] = 13;
-        OrderGroup[(SDSLOp.OpVariable, StorageClass.Function)] = 13;
-        OrderGroup[(SDSLOp.OpSDSLMixinEnd, null)] = 14;
+            OrderGroup[(e, null)] = group;
+        OrderGroup[(SDSLOp.OpVariable, StorageClass.Function)] = group;
+        group++;
+        OrderGroup[(SDSLOp.OpSDSLMixinEnd, null)] = group;
     }
     /// <summary>
     /// Gets the order group for a given instruction, useful for sorting instructions according to the specification.

@@ -1,0 +1,14 @@
+{
+    "name": ".NET 9 dev container",
+    "image": "mcr.microsoft.com/dotnet/sdk:9.0",
+    "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-vscode.vscode-node-azure-pack"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/usr/bin/pwsh"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/powershell:1": {}
+    }
+}

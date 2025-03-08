@@ -87,7 +87,7 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         var sorted = new OrderedEnumerator(this);
         var other = MemoryOwner<int>.Allocate(Length, AllocationMode.Clear);
         var pos = 5;
-        while(sorted.MoveNext())
+        while (sorted.MoveNext())
         {
             sorted.Current.Words.CopyTo(other.Memory[pos..]);
             pos += sorted.Current.WordCount;
@@ -101,20 +101,25 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
 
     public Instruction Add(Span<int> instruction)
     {
-        int start = Length - 5;
-        Insert(Length, instruction);
-        if(RefInstruction.ParseRef(instruction).ResultId is int resultId && resultId >= Header.Bound)
-            Header = Header with {Bound = resultId + 1};
-        return new(this, InstructionMemory[start..(start + instruction.Length)], InstructionCount - 1, Length - instruction.Length);
+        var result = Insert(Length, instruction);
+        if (RefInstruction.ParseRef(instruction).ResultId is int resultId && resultId >= Header.Bound)
+            Header = Header with { Bound = resultId + 1 };
+        return result;
     }
 
-    public void Insert(int start, ReadOnlySpan<int> words)
+    public Instruction Insert(int start, ReadOnlySpan<int> words)
     {
         Expand(words.Length);
-        var slice = _owner.Span[start..Length];
-        slice.CopyTo(_owner.Span[(start + words.Length)..]);
-        words.CopyTo(_owner.Span.Slice(start, words.Length));
+        if (start == Length)
+            words.CopyTo(_owner.Span[start..]);
+        else
+        {
+            var slice = _owner.Span[start..Length];
+            slice.CopyTo(_owner.Span[(start + words.Length)..]);
+            words.CopyTo(_owner.Span.Slice(start, words.Length));
+        }
         Length += words.Length;
+        return new(this, InstructionMemory[start..(start + words.Length)], InstructionCount - 1, Length - words.Length);
     }
 
     void Expand(int size)

@@ -2,8 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-		<LangVersion>12</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,8 +14,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
-		<PackageReference Include="System.Text.Json" Version="8.0.4" GeneratePathProperty="true" PrivateAssets="all" />
+    	<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
+		<PackageReference Include="System.Text.Json" Version="9.0.2" GeneratePathProperty="true" PrivateAssets="all" />
 	</ItemGroup>
 
 	<ItemGroup>

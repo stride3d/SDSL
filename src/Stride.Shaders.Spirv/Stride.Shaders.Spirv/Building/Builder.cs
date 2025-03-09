@@ -7,7 +7,7 @@ namespace Stride.Shaders.Spirv.Building;
 
 
 // Should have utility functions to add instruction to the buffer
-public class Builder()
+public partial class Builder()
 {
     public SpirvBuffer Buffer { get; init; } = new();
     public int Position { get; private set; }
@@ -32,7 +32,12 @@ public class Builder()
         {
             if (e.ResultId is int id && id == block.Id)
                 blockFound = true;
-            if (blockFound && blockTermination.Contains((int)e.OpCode))
+            if (block is BasicBlock && blockFound && blockTermination.Contains((int)e.OpCode))
+            {
+                Position = e.WordIndex;
+                return;
+            }
+            else if (block is SpirvFunction && blockFound && e.OpCode == SDSLOp.OpFunctionEnd)
             {
                 Position = e.WordIndex;
                 return;

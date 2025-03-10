@@ -119,7 +119,7 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
             words.CopyTo(_owner.Span.Slice(start, words.Length));
         }
         Length += words.Length;
-        return new(this, InstructionMemory[start..(start + words.Length)], InstructionCount - 1, Length - words.Length);
+        return new(this, Memory[start..(start + words.Length)], InstructionCount - 1, Length - words.Length);
     }
 
     void Expand(int size)

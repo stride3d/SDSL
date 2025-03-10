@@ -13,6 +13,7 @@ public class SpirvContext(Module module) : IDisposable
     public Module Module { get; } = module;
     public SortedList<string, int> Variables { get; } = [];
     public Dictionary<SymbolType, int> Types { get; } = [];
+    public Dictionary<int, SymbolType> ReverseTypes { get; } = [];
     public SpirvBuffer Buffer { get; set; } = new();
 
     public void AddName(IdRef target, string name)
@@ -85,6 +86,7 @@ public class SpirvContext(Module module) : IDisposable
                 _ => throw new NotImplementedException($"Can't add type {type}")
             };
             Types[type] = instruction;
+            ReverseTypes[instruction] = type;
             return instruction;
         }
     }

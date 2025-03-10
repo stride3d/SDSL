@@ -98,6 +98,32 @@ public partial class Builder
         }
         else throw new NotImplementedException("Instruction should have result id");
     }
+
+    public Value OpLeftShift(SpirvContext context, Value a, Value b, string? name = null)
+    {
+        var instruction = Buffer.InsertOpShiftLeftLogical(Position, context.Bound++, a.TypeId, a.Id, b.Id);
+        Position += instruction.WordCount;
+        if (instruction.ResultId is int r)
+        {
+            if (name is not null)
+                context.AddName(instruction, name);
+            return new(instruction, r, name);
+        }
+        else throw new NotImplementedException("Instruction should have result id");
+    }
+    public Value OpRightShift(SpirvContext context, Value a, Value b, string? name = null)
+    {
+        var instruction = Buffer.InsertOpShiftRightLogical(Position, context.Bound++, a.TypeId, a.Id, b.Id);
+        Position += instruction.WordCount;
+        if (instruction.ResultId is int r)
+        {
+            if (name is not null)
+                context.AddName(instruction, name);
+            return new(instruction, r, name);
+        }
+        else throw new NotImplementedException("Instruction should have result id");
+    }
+
     
 
 

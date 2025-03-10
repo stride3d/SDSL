@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static Spv.Specification;
 using Stride.Shaders.Spirv.Tools;
+using Stride.Shaders.Spirv.Building;
+using Stride.Shaders.Core;
 
 
 Console.WriteLine("Hello, world!");
@@ -32,15 +34,7 @@ static void ParseShader()
 
 static void CreateShader()
 {
-    LiteralString sname = "S";
-
     int id = 1;
-
-    var ssize = sname.WordCount;
-    var array = new byte[] {0,0,0,8};
-
-    var s = array.AsSpan();
-    Span<int> ints = MemoryMarshal.Cast<byte,int>(s);
 
     // var bound = new Bound();
     var buffer = new SpirvBuffer();
@@ -60,15 +54,16 @@ static void CreateShader()
 
     var t_bool = buffer.AddOpTypeBool(id++);
 
-    var t_func = buffer.AddOpTypeFunction(id++, t_void, Span<IdRef>.Empty);
+    var t_func = buffer.AddOpTypeFunction(id++, t_void, []);
     var t_float = buffer.AddOpTypeFloat(id++, 32, null);
     var t_uint = buffer.AddOpTypeInt(id++, 32, 0);
     var t_int = buffer.AddOpTypeInt(id++, 32, 1);
+    var t_func_add = buffer.AddOpTypeFunction(id++, t_int, [t_int, t_int]);
     var t_float4 = buffer.AddOpTypeVector(id++, t_float, 4);
     var t_p_float4_func = buffer.AddOpTypePointer(id++, StorageClass.Function, t_float4);
-    var constant1 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 5);
-    var constant2 = buffer.AddOpConstant<SpirvBuffer, LiteralFloat>(id++, t_float, 2.23f);
-    var constant3 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_uint, 5);
+    var constant1 = buffer.AddOpConstant<LiteralFloat>(id++, t_float, 5);
+    var constant2 = buffer.AddOpConstant<LiteralFloat>(id++, t_float, 2.23f);
+    var constant3 = buffer.AddOpConstant<LiteralInteger>(id++, t_uint, 5);
     var compositeType = buffer.AddOpConstantComposite(
         id++, 
         t_float4, 
@@ -84,10 +79,10 @@ static void CreateShader()
 
     var v_struct2 = buffer.AddOpVariable(id++, t_p_struct2, StorageClass.Uniform, null);
 
-    var constant4 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 1);
+    var constant4 = buffer.AddOpConstant<LiteralInteger>(id++, t_int, 1);
 
     var t_p_uint = buffer.AddOpTypePointer(id++, StorageClass.Uniform, t_uint);
-    var constant5 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_uint, 0);
+    var constant5 = buffer.AddOpConstant<LiteralInteger>(id++, t_uint, 0);
 
     var t_p_output = buffer.AddOpTypePointer(id++, StorageClass.Output, t_float4);
     var v_output = buffer.AddOpVariable(id++, t_p_output, StorageClass.Output, null);
@@ -95,14 +90,15 @@ static void CreateShader()
     var t_p_input = buffer.AddOpTypePointer(id++, StorageClass.Input, t_float4);
     var v_input = buffer.AddOpVariable(id++, t_p_input, StorageClass.Input, null);
 
-    var constant6 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 0);
-    var constant7 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 2);
+    var constant6 = buffer.AddOpConstant<LiteralInteger>(id++, t_int, 0);
+    var constant7 = buffer.AddOpConstant<LiteralInteger>(id++, t_int, 2);
     var t_p_float4_unif = buffer.AddOpTypePointer(id++, StorageClass.Uniform, t_float4);
 
     var v_input_2 = buffer.AddOpVariable(id++, t_p_input, StorageClass.Input, null);
     var t_p_func = buffer.AddOpTypePointer(id++, StorageClass.Function, t_int);
-    var constant8 = buffer.AddOpConstant<SpirvBuffer, LiteralInteger>(id++, t_int, 4);
+    var constant8 = buffer.AddOpConstant<LiteralInteger>(id++, t_int, 4);
     var v_input_3 = buffer.AddOpVariable(id++, t_p_input, StorageClass.Input, null);
+
 
 
 
@@ -134,6 +130,16 @@ static void CreateShader()
     buffer.AddOpLabel(id++);
     buffer.AddOpReturn();
     buffer.AddOpFunctionEnd();
+
+
+    var add = buffer.AddOpFunction(id++, t_int, FunctionControlMask.MaskNone, t_func_add);
+    var a = buffer.AddOpFunctionParameter(id++, t_int);
+    var b = buffer.AddOpFunctionParameter(id++, t_int);
+    buffer.AddOpLabel(id++);
+    var res = buffer.AddOpIAdd(id++, t_int, a, b);
+    buffer.AddOpReturnValue(res);
+    buffer.AddOpFunctionEnd();
+
 
     
     buffer.Sort();
@@ -168,6 +174,30 @@ static void ParseWorking()
         }
     }
     var tmp = 0;
+}
+
+
+static void GenerateSpirv()
+{
+    var module = new Module();
+    using var context = new SpirvContext(new());
+    using var builder = new Builder();
+
+    builder.CreateFunction(
+        context, 
+        "add", 
+        new([ScalarSymbol.From("int"), ScalarSymbol.From("int"), ScalarSymbol.From("int")]),
+        parameters: [
+            new Symbol(
+                Id: new("a", SymbolKind.Variable, Storage.Function),
+                ScalarSymbol.From("int")
+            ),
+            new Symbol(
+                Id: new("b", SymbolKind.Variable, Storage.Function),
+                ScalarSymbol.From("int")
+            )
+        ]
+    );
 }
 
 CreateShader();

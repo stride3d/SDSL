@@ -30,5 +30,5 @@ public enum Storage
 
 
 
-public record struct SymbolID(string Name, SymbolKind Kind, Storage Storage);
+public record struct SymbolID(string Name, SymbolKind Kind, Storage? Storage = null);
 public record struct Symbol(SymbolID Id, SymbolType Type);

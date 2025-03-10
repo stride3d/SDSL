@@ -8,9 +8,9 @@ namespace Stride.Shaders.Spirv.Building;
 
 // Should contain internal data not seen by the client but helpful for the generation like type symbols and other 
 // SPIR-V parameters
-public class SpirvContext(Module module)
+public class SpirvContext(Module module) : IDisposable
 {
-    public int Bound { get; internal set; }
+    public int Bound { get; internal set; } = 1;
     public Module Module { get; } = module;
     public SortedList<string, int> Variables { get; } = [];
     public SortedList<SymbolType, int> Types { get; } = [];
@@ -37,4 +37,6 @@ public class SpirvContext(Module module)
             Variables[variable.Id.Name] = i.ResultId!.Value;
         }
     }
+
+    public void Dispose() => Buffer.Dispose();
 }

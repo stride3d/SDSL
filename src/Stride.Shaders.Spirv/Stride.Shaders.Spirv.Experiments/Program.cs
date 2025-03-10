@@ -208,7 +208,7 @@ static void GenerateSpirv()
     builder.SetPositionTo(function);
     var block = builder.CreateBlock(context, function, "sourceBlock");
     builder.SetPositionTo(block);
-    var v = builder.OpAdd(context, function.Parameters["a"], function.Parameters["b"]);
+    var v = builder.OpIAdd(context, function.Parameters["a"], function.Parameters["b"]);
     builder.Return(v);
 
     var dis = new SpirvDis<SpirvBuffer>(SpirvBuffer.Merge(context.Buffer, builder.Buffer), useNames: true);

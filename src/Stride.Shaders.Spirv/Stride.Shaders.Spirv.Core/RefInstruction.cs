@@ -98,11 +98,12 @@ public ref struct RefInstruction
     //         Words = words,
     //     };
     // }
-    public static RefInstruction ParseRef(Span<int> words, int? index = null)
+    public static RefInstruction ParseRef(Span<int> words, int? wordIndex = null, int? index = null)
     {
         return new RefInstruction()
         {
             Words = words,
+            WordIndex = wordIndex ?? -1,
             InstructionIndex = index ?? -1,
             Operands = words[1..]
         };

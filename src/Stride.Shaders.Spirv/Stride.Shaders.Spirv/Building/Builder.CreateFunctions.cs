@@ -18,6 +18,7 @@ public partial class Builder
             {
                 var i = Buffer.AddOpFunctionParameter(context.Bound++, context.Register(p.Type));
                 context.AddName(i, p.Id.Name);
+                result.Parameters[p.Id.Name] = new(i, context.Register(p.Type), p.Id.Name);
             }
         Buffer.AddOpFunctionEnd();
         return result;
@@ -31,19 +32,15 @@ public partial class Builder
         if(!variables.IsEmpty)
             foreach(var p in variables)
                 context.AddName(context.Variables[p.Id.Name], p.Id.Name);
-        Buffer.AddOpFunctionEnd();
+        Position += Buffer.InsertOpFunctionEnd(Position).WordCount;
         return result;
     }
-    public SpirvFunction CreateBlock(SpirvContext context, string name)
+    public BasicBlock CreateBlock(SpirvContext context, SpirvFunction parent, string? name = null)
     {
-        var func = Buffer.AddOpFunction(context.Bound++, context.Register(type.Types[0]), mask, context.Register(type));
-        context.AddName(func, name);
-        context.SetEntryPoint(execModel, func, name, variables);
-        var result = new SpirvFunction(func.ResultId!.Value, name, type);
-        if(!variables.IsEmpty)
-            foreach(var p in variables)
-                context.AddName(context.Variables[p.Id.Name], p.Id.Name);
-        Buffer.AddOpFunctionEnd();
+        var i = Buffer.InsertOpLabel(Position, context.Bound++);
+        Position += i.WordCount;
+        Position += Buffer.InsertOpUnreachable(Position).WordCount;
+        var result = new BasicBlock(i, parent, name);
         return result;
     }
     

@@ -80,7 +80,7 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
     }
 
 
-    public RefInstructionEnumerator GetEnumerator() => new(InstructionSpan);
+    public RefInstructionEnumerator GetEnumerator() => new(InstructionSpan, HasHeader);
 
     public void Sort()
     {
@@ -107,6 +107,14 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         return result;
     }
 
+    public void Remove(int position)
+    {
+        if(position < 5 && position > Length)
+            throw new ArgumentOutOfRangeException($"Can't remove at position {position}");
+        var size = Span[position] >> 16;
+        Span[(position + size)..].CopyTo(Span[position..]);
+        Length -= size;
+    }
     public Instruction Insert(int start, ReadOnlySpan<int> words)
     {
         Expand(words.Length);

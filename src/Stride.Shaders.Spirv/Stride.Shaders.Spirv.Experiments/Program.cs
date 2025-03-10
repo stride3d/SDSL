@@ -206,12 +206,15 @@ static void GenerateSpirv()
         ]
     );
     builder.SetPositionTo(function);
-    builder.CreateBlock();
+    var block = builder.CreateBlock(context, function, "sourceBlock");
+    builder.SetPositionTo(block);
+    var v = builder.OpAdd(context, function.Parameters["a"], function.Parameters["b"]);
+    builder.Return(v);
 
     var dis = new SpirvDis<SpirvBuffer>(SpirvBuffer.Merge(context.Buffer, builder.Buffer), useNames: true);
     dis.Disassemble(true);
 }
 
-// CreateShader();
+CreateShader();
 
 GenerateSpirv();

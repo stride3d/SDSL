@@ -46,5 +46,11 @@ public partial class Builder() : IDisposable
         Position = Buffer.Length;
     }
 
+    public SpirvBuffer Build(SpirvContext context)
+    {
+        context.Buffer.Sort();
+        return SpirvBuffer.Merge(context.Buffer, Buffer);
+    }
+
     public void Dispose() => Buffer.Dispose();
 }

@@ -9,6 +9,7 @@ using static Spv.Specification;
 using Stride.Shaders.Spirv.Tools;
 using Stride.Shaders.Spirv.Building;
 using Stride.Shaders.Core;
+using System.Numerics;
 
 
 Console.WriteLine("Hello, world!");
@@ -183,7 +184,13 @@ static void GenerateSpirv()
     using var context = new SpirvContext(new());
     using var builder = new Builder();
 
-    builder.CreateFunction(
+    context.Register(new MatrixSymbol(ScalarSymbol.From("float"), 4, 3));
+    context.Register(ScalarSymbol.From("int"));
+
+    
+    context.AddGlobalVariable(new(new("color", SymbolKind.Variable, Storage.Output), VectorSymbol.From("float4")));
+
+    var function = builder.CreateFunction(
         context, 
         "add", 
         new([ScalarSymbol.From("int"), ScalarSymbol.From("int"), ScalarSymbol.From("int")]),
@@ -198,8 +205,13 @@ static void GenerateSpirv()
             )
         ]
     );
+    builder.SetPositionTo(function);
+    builder.CreateBlock();
+
+    var dis = new SpirvDis<SpirvBuffer>(SpirvBuffer.Merge(context.Buffer, builder.Buffer), useNames: true);
+    dis.Disassemble(true);
 }
 
-CreateShader();
+// CreateShader();
 
-//ParseWorking();
+GenerateSpirv();

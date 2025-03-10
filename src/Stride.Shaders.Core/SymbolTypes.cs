@@ -73,7 +73,7 @@ public sealed record ArraySymbol(SymbolType BaseType, int Size) : SymbolType()
         return $"{BaseType}[{Size}]";
     }
 }
-public sealed record StructSymbol(string Name, Dictionary<string, SymbolType> Fields) : SymbolType()
+public sealed record StructSymbol(string Name, SortedList<string, SymbolType> Fields) : SymbolType()
 {
     public override string ToString()
     {

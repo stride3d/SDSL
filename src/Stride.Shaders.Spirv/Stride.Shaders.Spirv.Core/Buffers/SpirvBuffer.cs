@@ -134,5 +134,28 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         }
     }
 
+    internal void Add<TBuff>(TBuff buffer)
+        where TBuff : ISpirvBuffer
+    {
+        Expand(buffer.InstructionSpan.Length);
+        buffer.InstructionSpan.CopyTo(_owner.Span[Length..]);
+        Length += buffer.InstructionSpan.Length;
+    }
+
+
+    public static SpirvBuffer Merge<T1, T2>(T1 left, T2 right)
+        where T1 : ISpirvBuffer
+        where T2 : ISpirvBuffer
+    {
+        var buff = new SpirvBuffer(left.Length + right.Length + 5);
+        buff.Add(left);
+        buff.Add(right);
+        foreach (var e in buff)
+            if (e.ResultId is int r && buff.Header.Bound < r)
+                buff.Header = buff.Header with { Bound = r };
+        return buff;
+    }
+
     public void Dispose() => _owner.Dispose();
+
 }

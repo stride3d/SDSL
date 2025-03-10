@@ -1,15 +1,18 @@
 {
     "name": ".NET 9 dev container",
     "image": "mcr.microsoft.com/dotnet/sdk:9.0",
-    "extensions": [
-        "ms-dotnettools.csharp",
-        "ms-vscode.vscode-node-azure-pack"
-    ],
-    "settings": {
-        "terminal.integrated.shell.linux": "/usr/bin/pwsh"
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csharp",
+                "ms-vscode.vscode-node-azure-pack"
+            ],
+            "settings": {
+                "terminal.integrated.shell.linux": "/usr/bin/pwsh"
+            }
+        }
     },
     "features": {
         "ghcr.io/devcontainers/features/powershell:1": {}
-    },
-    "postCreateCommand": "wget -q -O install.tgz https://storage.googleapis.com/shaderc/artifacts/prod/graphics_shader_compiler/shaderc/linux/continuous_clang_release/491/20250227-112428/install.tgz; tar -xvzf ./install.tgz -C /workspaces/; mv install shaderc"
+    }
 }

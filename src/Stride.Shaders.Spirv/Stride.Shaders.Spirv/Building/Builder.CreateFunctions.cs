@@ -9,23 +9,23 @@ public partial class Builder
     public SpirvFunction CreateFunction(SpirvContext context, string name, FunctionTypeSymbol ftype, ReadOnlySpan<Symbol> parameters, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {
         foreach(var t in ftype.Types)
-            context.Register(t);
-        var func = Buffer.AddOpFunction(context.Bound++, context.Register(ftype.Types[0]), mask, context.Register(ftype));
+            context.GetOrRegister(t);
+        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(ftype.Types[0]), mask, context.GetOrRegister(ftype));
         context.AddName(func, name);
         var result = new SpirvFunction(func.ResultId!.Value, name, ftype);
         if(!parameters.IsEmpty)
             foreach(var p in parameters)
             {
-                var i = Buffer.AddOpFunctionParameter(context.Bound++, context.Register(p.Type));
+                var i = Buffer.AddOpFunctionParameter(context.Bound++, context.GetOrRegister(p.Type));
                 context.AddName(i, p.Id.Name);
-                result.Parameters[p.Id.Name] = new(i, context.Register(p.Type), p.Id.Name);
+                result.Parameters[p.Id.Name] = new(i, context.GetOrRegister(p.Type), p.Id.Name);
             }
         Buffer.AddOpFunctionEnd();
         return result;
     }
     public SpirvFunction CreateEntryPoint(SpirvContext context, ExecutionModel execModel, string name, FunctionTypeSymbol type, ReadOnlySpan<Symbol> variables, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {
-        var func = Buffer.AddOpFunction(context.Bound++, context.Register(type.Types[0]), mask, context.Register(type));
+        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(type.Types[0]), mask, context.GetOrRegister(type));
         context.AddName(func, name);
         context.SetEntryPoint(execModel, func, name, variables);
         var result = new SpirvFunction(func.ResultId!.Value, name, type);

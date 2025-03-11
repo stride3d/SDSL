@@ -1,6 +1,5 @@
 using System.Text;
 using Stride.Shaders.Core;
-using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;

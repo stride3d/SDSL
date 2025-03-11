@@ -1,3 +1,4 @@
+using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.SDSL;
 using Stride.Shaders.Parsing.SDSL.AST;
 

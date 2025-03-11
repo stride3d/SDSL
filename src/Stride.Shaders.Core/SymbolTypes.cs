@@ -45,6 +45,9 @@ public sealed record UndefinedSymbol(string TypeName) : SymbolType()
         return TypeName;
     }
 }
+
+public sealed record PointerSymbol(SymbolType BaseType) : SymbolType();
+
 public sealed partial record ScalarSymbol(string TypeName) : SymbolType()
 {
     public override string ToString()

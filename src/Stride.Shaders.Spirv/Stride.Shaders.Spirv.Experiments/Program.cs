@@ -184,8 +184,8 @@ static void GenerateSpirv()
     using var context = new SpirvContext(new());
     using var builder = new Builder();
 
-    context.Register(new MatrixSymbol(ScalarSymbol.From("float"), 4, 3));
-    context.Register(ScalarSymbol.From("int"));
+    context.GetOrRegister(new MatrixSymbol(ScalarSymbol.From("float"), 4, 3));
+    context.GetOrRegister(ScalarSymbol.From("int"));
 
     
     context.AddGlobalVariable(new(new("color", SymbolKind.Variable, Storage.Output), VectorSymbol.From("float4")));
@@ -208,7 +208,10 @@ static void GenerateSpirv()
     builder.SetPositionTo(function);
     var block = builder.CreateBlock(context, function, "sourceBlock");
     builder.SetPositionTo(block);
-    var v = builder.OpIAdd(context, function.Parameters["a"], function.Parameters["b"]);
+    var v = builder.BinaryOperation(
+        context, 
+        function.Parameters["a"], Operator.Plus, function.Parameters["b"]
+    );
     builder.Return(v);
 
     var dis = new SpirvDis<SpirvBuffer>(SpirvBuffer.Merge(context.Buffer, builder.Buffer), useNames: true);

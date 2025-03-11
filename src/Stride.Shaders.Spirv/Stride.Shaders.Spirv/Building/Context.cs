@@ -24,7 +24,7 @@ public class SpirvContext(Module module) : IDisposable
 
     public void AddGlobalVariable(Symbol variable)
     {
-        var t = Register(variable.Type);
+        var t = GetOrRegister(variable.Type);
         var storage = variable.Id.Storage switch
         {
             Storage.UniformConstant => StorageClass.UniformConstant,
@@ -49,7 +49,7 @@ public class SpirvContext(Module module) : IDisposable
         Buffer.AddOpEntryPoint(model, function, name, pvariables);
     }
 
-    public IdRef Register(SymbolType type)
+    public IdRef GetOrRegister(SymbolType type)
     {
         if (Types.TryGetValue(type, out var res))
             return res;
@@ -76,9 +76,9 @@ public class SpirvContext(Module module) : IDisposable
                         _ => throw new NotImplementedException($"Can't add type {type}")
 
                     },
-                VectorSymbol v => Buffer.AddOpTypeVector(Bound++, Register(v.BaseType), v.Size),
-                MatrixSymbol m => Buffer.AddOpTypeVector(Bound++, Register(new VectorSymbol(m.BaseType, m.Rows)), m.Columns),
-                ArraySymbol a => Buffer.AddOpTypeArray(Bound++, Register(a.BaseType), a.Size),
+                VectorSymbol v => Buffer.AddOpTypeVector(Bound++, GetOrRegister(v.BaseType), v.Size),
+                MatrixSymbol m => Buffer.AddOpTypeVector(Bound++, GetOrRegister(new VectorSymbol(m.BaseType, m.Rows)), m.Columns),
+                ArraySymbol a => Buffer.AddOpTypeArray(Bound++, GetOrRegister(a.BaseType), a.Size),
                 StructSymbol st => RegisterStruct(st),
                 FunctionTypeSymbol f => RegisterFunctionType(f),
                 // TextureSymbol t => Buffer.AddOpTypeImage(Bound++, Register(t.BaseType), t.),
@@ -97,7 +97,7 @@ public class SpirvContext(Module module) : IDisposable
         int tmp = 0;
         foreach (var f in structSymbol.Fields)
         {
-            types[tmp] = Register(f.Value);
+            types[tmp] = GetOrRegister(f.Value);
             AddMemberName(types[tmp], tmp, f.Key);
         }
         var result = Buffer.AddOpTypeStruct(Bound++, types);
@@ -110,7 +110,7 @@ public class SpirvContext(Module module) : IDisposable
         Span<IdRef> types = stackalloc IdRef[functionType.Types.Count];
         int tmp = 0;
         foreach (var f in functionType.Types)
-            types[tmp] = Register(f);
+            types[tmp] = GetOrRegister(f);
         var result = Buffer.AddOpTypeStruct(Bound++, types);
         AddName(result, functionType.ToString());
         return result;

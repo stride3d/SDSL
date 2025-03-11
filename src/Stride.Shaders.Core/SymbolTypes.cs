@@ -46,79 +46,52 @@ public sealed record UndefinedSymbol(string TypeName) : SymbolType()
     }
 }
 
-public sealed record PointerSymbol(SymbolType BaseType) : SymbolType();
+public sealed record PointerSymbol(SymbolType BaseType) : SymbolType()
+{
+    public override string ToString() => $"*{BaseType}";
+}
 
 public sealed partial record ScalarSymbol(string TypeName) : SymbolType()
 {
-    public override string ToString()
-    {
-        return TypeName;
-    }
+    public override string ToString() => TypeName;
 }
 public sealed partial record VectorSymbol(ScalarSymbol BaseType, int Size) : SymbolType()
 {    
-    public override string ToString()
-    {
-        return $"{BaseType}{Size}";
-    }
+    public override string ToString() => $"{BaseType}{Size}";
 }
 public sealed partial record MatrixSymbol(ScalarSymbol BaseType, int Rows, int Columns) : SymbolType()
 {
-    public override string ToString()
-    {
-        return $"{BaseType}{Rows}x{Columns}";
-    }
+    public override string ToString() => $"{BaseType}{Rows}x{Columns}";
 }
 public sealed record ArraySymbol(SymbolType BaseType, int Size) : SymbolType()
 {
-    public override string ToString()
-    {
-        return $"{BaseType}[{Size}]";
-    }
+    public override string ToString() => $"{BaseType}[{Size}]";
 }
 public sealed record StructSymbol(string Name, SortedList<string, SymbolType> Fields) : SymbolType()
 {
-    public override string ToString()
-    {
-        return $"{Name}{{{string.Join(", ", Fields.Select(x => $"{x.Value} {x.Key}"))}}}";
-    }
+    public override string ToString() => $"{Name}{{{string.Join(", ", Fields.Select(x => $"{x.Value} {x.Key}"))}}}";
 }
 public sealed record BufferSymbol(SymbolType BaseType, int Size) : SymbolType()
 {
-    public override string ToString()
-    {
-        return $"Buffer<{BaseType}, {Size}>";
-    }
+    public override string ToString() => $"Buffer<{BaseType}, {Size}>";
 }
 
 
 public abstract record TextureSymbol(SymbolType BaseType) : SymbolType()
 {
-    public override string ToString()
-    {
-        return $"Texture<{BaseType}>";
-    }
+    public override string ToString() => $"Texture<{BaseType}>";
 }
 public sealed record Texture1DSymbol(SymbolType BaseType, int Size) : TextureSymbol(BaseType)
 {
-    public override string ToString()
-    {
-        return $"Texture<{BaseType}, {Size}>";
-    }
+    public override string ToString() => $"Texture<{BaseType}, {Size}>";
 }
 public sealed record Texture2DSymbol(SymbolType BaseType, int Width, int Height) : TextureSymbol(BaseType)
 {
-    public override string ToString()
-    {
-        return $"Texture<{BaseType}, {Width}, {Height}>";
-    }
+    public override string ToString() => $"Texture<{BaseType}, {Width}, {Height}>";
 }
 public sealed record Texture3DSymbol(SymbolType BaseType, int Width, int Height, int Depth) : TextureSymbol(BaseType)
 {
-    public override string ToString()
-    {
-        return $"Texture<{BaseType}, {Width}, {Height}, {Depth}>";
-    }
+    public override string ToString() => $"Texture<{BaseType}, {Width}, {Height}, {Depth}>";
 }
 
 

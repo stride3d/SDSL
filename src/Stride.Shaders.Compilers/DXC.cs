@@ -10,7 +10,7 @@ using DXCBuffer = Silk.NET.Direct3D.Compilers.Buffer;
 
 
 
-public record struct DXCompiler(string Code)
+public record struct DXCompiler() : ICompiler
 {
 
     public static string sampleCode = @"
@@ -43,30 +43,33 @@ float4 PSMain(PSInput input) : SV_TARGET
     static Guid resultGuid = Guid.Parse("58346CDA-DDE7-4497-9461-6F87AF5E0659");
     static readonly DXC dxc = DXC.GetApi();
     
-    public readonly void Compile()
+    public bool Compile(string code, out Memory<byte> compiled)
     {
+        throw new NotImplementedException();
         // var content = Encoding.ASCII.GetBytes(Code);
-        unsafe
-        {
-            var compiler = dxc.CreateInstance<IDxcCompiler3>(ref compilerGuid);
-            var utils = dxc.CreateInstance<IDxcUtils>(ref utilsGuid);
-            var args = dxc.CreateInstance<IDxcCompilerArgs>(ref compilerArgsGuid);
+        // unsafe
+        // {
+        //     var compiler = dxc.CreateInstance<IDxcCompiler3>(ref compilerGuid);
+        //     var utils = dxc.CreateInstance<IDxcUtils>(ref utilsGuid);
+        //     var args = dxc.CreateInstance<IDxcCompilerArgs>(ref compilerArgsGuid);
             
-            // Console.WriteLine($"{(nint)compiler.GetAddressOf()} - {(nint)library.GetAddressOf()}");
-            IDxcBlobEncoding* sourceBlob = null;
+        //     // Console.WriteLine($"{(nint)compiler.GetAddressOf()} - {(nint)library.GetAddressOf()}");
+        //     IDxcBlobEncoding* sourceBlob = null;
             
-            SilkMarshal.ThrowHResult(
-                utils.Get().CreateBlobFromPinned((void*)SilkMarshal.StringToPtr(Code), (uint)Code.Length, 1200, ref sourceBlob)
-            );
-            // utils.Get().BuildArguments("mycode", "PSMain", "ps_6_0", (char**)SilkMarshal.StringArrayToPtr(["-spirv", "-T", "ps_6_0"]), 3, null, 0, ref args);
-            var buff = new DXCBuffer(sourceBlob, (nuint)Code.Length);
-            IDxcOperationResult* result = null;
-            string[] parms = ["-spirv", "-T", "ps_6_0", "-E", "PSMain"];
-            SilkMarshal.ThrowHResult(
-                compiler.Get().Compile(&buff, parms, (uint)parms.Length, null, ref resultGuid,(void**)result)
-            );
+        //     SilkMarshal.ThrowHResult(
+        //         utils.Get().CreateBlobFromPinned((void*)SilkMarshal.StringToPtr(Code), (uint)Code.Length, 1200, ref sourceBlob)
+        //     );
+        //     // utils.Get().BuildArguments("mycode", "PSMain", "ps_6_0", (char**)SilkMarshal.StringArrayToPtr(["-spirv", "-T", "ps_6_0"]), 3, null, 0, ref args);
+        //     var buff = new DXCBuffer(sourceBlob, (nuint)Code.Length);
+        //     IDxcOperationResult* result = null;
+        //     string[] parms = ["-spirv", "-T", "ps_6_0", "-E", "PSMain"];
+        //     SilkMarshal.ThrowHResult(
+        //         compiler.Get().Compile(&buff, parms, (uint)parms.Length, null, ref resultGuid,(void**)result)
+        //     );
             
-            // Console.WriteLine((nint)result);
-        }
+        //     // Console.WriteLine((nint)result);
+        // }
+        // compiled = Memory<byte>.Empty;
+        // return true;
     }
 }

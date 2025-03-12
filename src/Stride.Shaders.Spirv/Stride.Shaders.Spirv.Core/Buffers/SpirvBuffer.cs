@@ -51,8 +51,7 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         Header = Header with
         {
             MagicNumber = Spv.Specification.MagicNumber,
-            VersionNumber = new(1, 3),
-            GeneratorMagicNumber = 42
+            VersionNumber = new(1, 3)
         };
         Length = 5;
     }
@@ -63,8 +62,7 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         Header = Header with
         {
             MagicNumber = Spv.Specification.MagicNumber,
-            VersionNumber = new(1, 3),
-            GeneratorMagicNumber = 42
+            VersionNumber = new(1, 3)
         };
     }
     public SpirvBuffer(Span<int> span)
@@ -74,8 +72,7 @@ public class SpirvBuffer : IMutSpirvBuffer, IDisposable
         Header = Header with
         {
             MagicNumber = Spv.Specification.MagicNumber,
-            VersionNumber = new(1, 3),
-            GeneratorMagicNumber = 42
+            VersionNumber = new(1, 3)
         };
     }
 

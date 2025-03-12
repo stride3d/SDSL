@@ -21,8 +21,7 @@ public record struct SDSLC() : ICompiler
             var module = new Module();
             var builder = new Builder();
             var context = new SpirvContext(module);
-            
-
+            shader.Compile(builder, context);
         }
         throw new NotImplementedException();
     }
@@ -35,5 +34,11 @@ public record struct SDSLC() : ICompiler
 
 public static class GenerateExtension
 {
-
+    public static void Compile(this ShaderClass sclass, Builder builder, SpirvContext context)
+    {
+        foreach(var e in sclass.Elements.OfType<ShaderMember>())
+        {
+            Console.WriteLine(e);
+        }
+    }
 }

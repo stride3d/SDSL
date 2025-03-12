@@ -152,12 +152,10 @@ public class Assign(TextLocation info) : Statement(info)
             {
                 if (exp.Source is Identifier streams && streams == "streams")
                 {
-                    if (exp.Accessors[0] is not Identifier)
-                        throw new NotImplementedException();
-                    else
+                    if (exp.Accessors[0] is Identifier streamVar)
                     {
                         // Check type of first symbol
-                        exp.Accessors[0].ProcessSymbol(table);
+                        streamVar.ProcessSymbol(table);
                         exp.Type = exp.Accessors[0].Type;
                         // If has more, dive into the type definition
                         // First case none
@@ -175,6 +173,7 @@ public class Assign(TextLocation info) : Statement(info)
                         }
 
                     }
+                    else throw new NotImplementedException();
                 }
                 else
                 {

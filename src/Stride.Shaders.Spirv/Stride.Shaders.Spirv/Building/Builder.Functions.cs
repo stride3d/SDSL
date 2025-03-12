@@ -1,4 +1,5 @@
 using Stride.Shaders.Core;
+using Stride.Shaders.Spirv.Core;
 using Stride.Shaders.Spirv.Core.Buffers;
 using static Spv.Specification;
 
@@ -35,13 +36,6 @@ public partial class Builder
         Position += Buffer.InsertOpFunctionEnd(Position).WordCount;
         return result;
     }
-    public BasicBlock CreateBlock(SpirvContext context, SpirvFunction parent, string? name = null)
-    {
-        var i = Buffer.InsertOpLabel(Position, context.Bound++);
-        Position += i.WordCount;
-        Position += Buffer.InsertOpUnreachable(Position).WordCount;
-        var result = new BasicBlock(i, parent, name);
-        return result;
-    }
+    
     
 }

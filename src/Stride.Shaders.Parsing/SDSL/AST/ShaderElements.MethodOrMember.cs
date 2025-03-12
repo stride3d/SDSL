@@ -78,9 +78,11 @@ public sealed class ShaderMember(TypeName type,
     public StorageClass StorageClass { get; set; } = storageClass;
     public InterpolationModifier Interpolation { get; set; } = interpolation;
 
+    public byte StreamUsage { get; set; } = 0;
+
     public override string ToString()
     {
-        if(Attributes != null)
+        if (Attributes != null)
             return $"[{string.Join(" ", Attributes.Select(x => x.ToString()))}]\n{TypeName} {Name}";
         else
             return $"{TypeName} {Name}";
@@ -139,10 +141,11 @@ public class ShaderMethod(
             var argSym = arg.TypeName.Type;
             table.DeclaredTypes.TryAdd(argSym.ToString(), argSym);
             arg.Type = argSym;
-            
+
         }
         if (Body is not null)
         {
+            table.CurrentMethod = this;
             table.Push();
             foreach (var s in Body.Statements)
                 s.ProcessSymbol(table);

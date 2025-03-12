@@ -1,4 +1,5 @@
 using Stride.Shaders.Core;
+using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Parsing.Analysis;
 
@@ -15,8 +16,10 @@ public partial class SymbolTable : ISymbolProvider
 
     public List<SemanticErrors> Errors { get; } = [];
 
+    public ShaderMethod? CurrentMethod { get; internal set; }
 
     public void Push() => Symbols.Add(new());
+
     public SymbolFrame Pop()
     {
         var scope = Symbols[^1];
@@ -34,12 +37,12 @@ public partial class SymbolTable : ISymbolProvider
 
     public bool TryFind(string name, SymbolKind kind, out Symbol symbol)
     {
-        for(int i = Symbols.Count - 1; i >= 0; i--)
-            if(Symbols[i].TryGetValue(name, kind, out symbol))
+        for (int i = Symbols.Count - 1; i >= 0; i--)
+            if (Symbols[i].TryGetValue(name, kind, out symbol))
                 return true;
         symbol = default;
         return false;
     }
 
-    
+
 }

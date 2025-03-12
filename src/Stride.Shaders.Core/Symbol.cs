@@ -9,6 +9,7 @@ public enum SymbolKind
     MixinChild,
     Struct,
     Method,
+    StreamVariable,
     Variable,
     Constant,
     ConstantGeneric,

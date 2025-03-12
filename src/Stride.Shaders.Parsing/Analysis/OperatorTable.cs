@@ -8,9 +8,6 @@ public static class OperatorTable
 
     public static bool CheckBinaryOperation(SymbolType left, SymbolType right, Operator op)
     {
-        int a = 0;
-        float b = 0;
-        var c = b * a;
         return (left, right, op) switch
         {
             // Scalar operations
@@ -52,9 +49,6 @@ public static class OperatorTable
     }
     public static bool BinaryOperationResultingType(SymbolType left, SymbolType right, Operator op, out SymbolType? result)
     {
-        long a = 0;
-        float b = 0;
-        float c = a * b;
         // TODO : correct that part
         result = ((int)op, left, right) switch
         {
@@ -71,7 +65,7 @@ public static class OperatorTable
             (>=8 and < 13, MatrixSymbol l, VectorSymbol r) => l,
             (>=8 and < 13, MatrixSymbol { BaseType: ScalarSymbol { TypeName: "int" } } l, MatrixSymbol { BaseType: ScalarSymbol { TypeName: "int" or "float" } } r) => l,
             // Comparison
-            (>=18 and < 22, ScalarSymbol {TypeName: "int" or "uint" or "float" or "long" or "ulong" or "double"} l, ScalarSymbol r) when l.TypeName == r.TypeName => ScalarSymbol.From("bool"),
+            (>=18 and < 22, SymbolType l, SymbolType r) when l == r => ScalarSymbol.From("bool"),
             _ => null,
         };
         return result != null;

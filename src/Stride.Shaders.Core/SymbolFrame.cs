@@ -1,17 +1,11 @@
 namespace Stride.Shaders.Core;
 
-
-public readonly struct SymbolFrame
+public readonly struct SymbolFrame()
 {
-    readonly Dictionary<SymbolID, Symbol> symbols;
-
-    public SymbolFrame()
-    {
-        symbols = [];
-    }
+    readonly Dictionary<SymbolID, Symbol> symbols = [];
 
     public Symbol this[string name, SymbolKind kind] => symbols[new(name, kind)];
-    
+
     public void Add(SymbolID name, Symbol symbol)
         => symbols.Add(name, symbol);
     public void Add(string name, SymbolKind kind, SymbolType type)

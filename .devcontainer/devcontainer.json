@@ -5,6 +5,8 @@
         "vscode": {
             "extensions": [
                 "ms-dotnettools.csharp",
+                "ms-dotnettools.csdevkit",
+                "ms-dotnettools.vscodeintellicode-csharp",
                 "ms-vscode.vscode-node-azure-pack"
             ],
             "settings": {

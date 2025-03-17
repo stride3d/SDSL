@@ -47,7 +47,7 @@ public abstract class NumberLiteral<T>(Suffix suffix, T value, TextLocation info
 
 public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : NumberLiteral<long>(suffix, value, info)
 {
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         Type = Suffix switch
         {
@@ -70,7 +70,7 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
     public int? Exponent { get; set; } = exponent;
     public static implicit operator FloatLiteral(double v) => new(new(), v, null, new());
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         Type = Suffix.Size switch
         {
@@ -84,7 +84,7 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
 
 public sealed class HexLiteral(ulong value, TextLocation info) : UnsignedIntegerLiteral(new(32, false, false), value, info)
 {
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
         => Type = ScalarSymbol.From("long");
 }
 
@@ -92,7 +92,7 @@ public sealed class HexLiteral(ulong value, TextLocation info) : UnsignedInteger
 public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
 {
     public bool Value { get; set; } = value;
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
         => Type = ScalarSymbol.From("bool");
 }
 
@@ -101,7 +101,7 @@ public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(
     public TypeName TypeName { get; set; } = typeName;
     public List<Expression> Values { get; set; } = [];
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         TypeName.ProcessSymbol(table);
         Type = TypeName.Type;
@@ -146,24 +146,35 @@ public class ArrayLiteral(TextLocation info) : ValueLiteral(info)
     }
 }
 
-
 public class Identifier(string name, TextLocation info) : Literal(info)
 {
     public string Name { get; set; } = name;
 
     public static implicit operator string(Identifier identifier) => identifier.Name;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        for (int i = table.Symbols.Count - 1; i >= 0; i -= 1)
+        Span<Storage> sOrder = [Storage.Function, Storage.Uniform, Storage.UniformConstant, Storage.Generic];
+        foreach (var storage in sOrder)
         {
-            if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, out var symbol))
+            for (int i = table.Symbols.Count - 1; i >= 0; i -= 1)
             {
-                if (symbol.Type is not UndefinedSymbol and not null)
-                    Type = symbol.Type;
-                else
-                    Type = symbol.Type ?? new UndefinedSymbol(Name);
-                return;
+                if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, storage, out var symbol))
+                {
+                    if (symbol.Type is not UndefinedSymbol and not null)
+                        Type = symbol.Type;
+                    else
+                        Type = symbol.Type ?? new UndefinedSymbol(Name);
+                    return;
+                }
+                else if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, storage, out var streamSymbol))
+                {
+                    if (streamSymbol.Type is not UndefinedSymbol and not null)
+                        Type = streamSymbol.Type;
+                    else
+                        Type = streamSymbol.Type ?? new UndefinedSymbol(Name);
+                    return;
+                }
             }
         }
         throw new NotImplementedException($"Cannot find symbol {Name}.");
@@ -216,7 +227,7 @@ public class TypeName(string name, TextLocation info, bool isArray) : Literal(in
     public List<Expression>? ArraySize { get; set; }
     public List<TypeName> Generics { get; set; } = [];
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entryPoint = null, StreamIO? io = null)
     {
         if (!IsArray && Generics.Count == 0)
         {

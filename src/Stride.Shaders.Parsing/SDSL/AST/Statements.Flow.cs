@@ -1,3 +1,4 @@
+using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
@@ -7,15 +8,15 @@ public abstract class Flow(TextLocation info) : Statement(info);
 public abstract class Loop(TextLocation info) : Flow(info);
 public class Break(TextLocation info) : Statement(info)
 {
-    public override void ProcessSymbol(SymbolTable table) { }
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io) { }
 }
 public class Discard(TextLocation info) : Statement(info)
 {
-    public override void ProcessSymbol(SymbolTable table) { }
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io) { }
 }
 public class Continue(TextLocation info) : Statement(info)
 {
-    public override void ProcessSymbol(SymbolTable table) { }
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io) { }
 }
 
 
@@ -26,7 +27,7 @@ public class ForEach(TypeName typename, Identifier variable, Expression collecti
     public Expression Collection { get; set; } = collection;
     public Statement Body { get; set; } = body;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         Collection.ProcessSymbol(table);
         if(Collection.Type is Core.ArraySymbol arrSym)
@@ -49,7 +50,7 @@ public class While(Expression condition, Statement body, TextLocation info, Shad
     public Statement Body { get; set; } = body;
     public ShaderAttribute? Attribute { get; internal set; } = attribute;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         Condition.ProcessSymbol(table);
         Body.ProcessSymbol(table);

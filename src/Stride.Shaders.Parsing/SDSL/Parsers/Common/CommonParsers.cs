@@ -245,11 +245,10 @@ public static class Parsers
             return false;
         }
     }
-    public static bool TypeNameIdentifierArraySizeValue<TScanner>(ref TScanner scanner, ParseResult result, out TypeName typeName, out Identifier identifier, out List<Expression> arraySize, out Expression? value, bool advance = true)
+    public static bool TypeNameIdentifierArraySizeValue<TScanner>(ref TScanner scanner, ParseResult result, out TypeName typeName, out Identifier identifier, out Expression? value, bool advance = true)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
-        arraySize = null!;
         value = null!;
 
         if (
@@ -259,10 +258,10 @@ public static class Parsers
         {
             var tmp = scanner.Position;
             Spaces0(ref scanner, result, out _);
-            if (!FollowedByDelList(ref scanner, result, ArraySizes, out arraySize, withSpaces: true, advance: true))
-            {
+            if (FollowedByDelList(ref scanner, result, ArraySizes, out List<Expression> arraySize, withSpaces: true, advance: true))
+                typeName.ArraySize = arraySize;
+            else
                 scanner.Position = tmp;
-            }
             tmp = scanner.Position;
             if (
                 !(
@@ -306,9 +305,9 @@ public static class Parsers
         scanner.Position = position;
         typeName = null!;
         identifier = null!;
-        arraySize = null!;
         return false;
     }
+
     public static bool MixinIdentifierArraySizeValue<TScanner>(ref TScanner scanner, ParseResult result, out Mixin mixin, out Identifier identifier, out List<Expression> arraySize, out Expression? value, bool advance = true)
         where TScanner : struct, IScanner
     {

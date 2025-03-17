@@ -4,7 +4,11 @@ using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
-public abstract class Statement(TextLocation info) : ValueNode(info);
+public abstract class Statement(TextLocation info) : ValueNode(info)
+{
+    public override void ProcessSymbol(SymbolTable table) => ProcessSymbol(table, null, null);
+    public virtual void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null) => throw new NotImplementedException($"Symbol table cannot process type : {GetType().Name}");
+}
 
 public class EmptyStatement(TextLocation info) : Statement(info)
 {
@@ -17,9 +21,9 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
     public override SymbolType? Type { get => Expression.Type; set { } }
     public Expression Expression { get; set; } = expression;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
-        Expression.ProcessSymbol(table);
+        Expression.ProcessSymbol(table, entrypoint, io);
         Type = ScalarSymbol.From("void");
     }
     public override string ToString()
@@ -33,9 +37,9 @@ public class Return(TextLocation info, Expression? expression = null) : Statemen
     public override SymbolType? Type { get => Value?.Type ?? ScalarSymbol.From("void"); set { } }
     public Expression? Value { get; set; } = expression;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
-        Value?.ProcessSymbol(table);
+        Value?.ProcessSymbol(table, entrypoint, io);
         Type = Value?.Type ?? ScalarSymbol.From("void");
     }
     public override string ToString()
@@ -49,7 +53,7 @@ public abstract class Declaration(TypeName typename, TextLocation info) : Statem
     public TypeName TypeName { get; set; } = typename;
 }
 
-public class VariableAssign(Expression variable, bool isConst, TextLocation info, AssignOperator? op = null, Expression? value = null) : Node(info)
+public class VariableAssign(Expression variable, bool isConst, TextLocation info, AssignOperator? op = null, Expression? value = null) : Statement(info)
 {
     public Expression Variable { get; set; } = variable;
     public AssignOperator? Operator { get; set; } = op;
@@ -63,7 +67,7 @@ public class VariableAssign(Expression variable, bool isConst, TextLocation info
             Expression v => $"{Variable} {Operator?.ToAssignSymbol()} {v}"
         };
 }
-public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocation info, AssignOperator? op = null, Expression? value = null) : Node(info)
+public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocation info, AssignOperator? op = null, Expression? value = null) : Statement(info)
 {
     public Identifier Variable { get; set; } = variable;
     public AssignOperator? Operator { get; set; } = op;
@@ -76,12 +80,12 @@ public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocat
         set => TypeName.ArraySize = value;
     }
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
-        TypeName.ProcessSymbol(table);
+        TypeName.ProcessSymbol(table, entrypoint, io);
         Variable.Type = TypeName.Type;
-        Value?.ProcessSymbol(table);
-        if(Value is not null && Value.Type != Variable.Type)
+        Value?.ProcessSymbol(table, entrypoint, io);
+        if (Value is not null && Value.Type != Variable.Type)
             table.Errors.Add(new(TypeName.Info, "wrong type"));
     }
 
@@ -103,13 +107,13 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
 {
     public List<DeclaredVariableAssign> Variables { get; set; } = [];
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
         if (TypeName == "var")
         {
             if (Variables.Count == 1 && Variables[0].Value is not null)
             {
-                Variables[0].Value?.ProcessSymbol(table);
+                Variables[0].Value?.ProcessSymbol(table, entrypoint, io);
                 Type = Variables[0].Value!.Type;
             }
             else
@@ -117,12 +121,12 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
         }
         else
         {
-            TypeName.ProcessSymbol(table);
+            TypeName.ProcessSymbol(table, entrypoint, io);
             Type = TypeName.Type;
             table.DeclaredTypes.TryAdd(TypeName.ToString(), Type);
             foreach (var d in Variables)
             {
-                d.Value?.ProcessSymbol(table);
+                d.Value?.ProcessSymbol(table, entrypoint, io);
                 table.CurrentTable.Add(new(d.Variable, SymbolKind.Variable), new(new(d.Variable, SymbolKind.Variable), Type));
             }
         }
@@ -138,61 +142,12 @@ public class Assign(TextLocation info) : Statement(info)
 {
     public List<VariableAssign> Variables { get; set; } = [];
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
         foreach (var variable in Variables)
-        {
-            if (variable.Variable is Identifier id)
-            {
-                if (table.TryFind(id, SymbolKind.Variable, out var symbol))
-                    Type = symbol.Type;
-                else throw new NotImplementedException();
-            }
-            else if (variable.Variable is AccessorChainExpression exp)
-            {
-                if (exp.Source is Identifier streams && streams == "streams")
-                {
-                    if (exp.Accessors[0] is Identifier streamVar)
-                    {
-                        // Check type of first symbol
-                        streamVar.ProcessSymbol(table);
-                        exp.Type = exp.Accessors[0].Type;
-                        // If has more, dive into the type definition
-                        // First case none
-                        if (exp.Accessors.Count > 1)
-                        {
-                            foreach (var accessor in exp.Accessors[1..])
-                            {
-                                if (exp.Type is not null && exp.Type.TryAccess(accessor, out var type))
-                                {
-                                    exp.Type = type;
-                                    accessor.Type = type;
-                                }
-                                else throw new NotImplementedException($"Cannot access {accessor.GetType().Name} from {exp.Type}");
-                            }
-                        }
-
-                    }
-                    else throw new NotImplementedException();
-                }
-                else
-                {
-                    exp.Source.ProcessSymbol(table);
-                    foreach (var accessor in exp.Accessors)
-                    {
-                        if (exp.Type is not null && exp.Type.TryAccess(accessor, out var type))
-                        {
-                            exp.Type = type;
-                            accessor.Type = type;
-                        }
-                        else throw new NotImplementedException($"Cannot access {accessor.GetType().Name} from {exp.Type}");
-                    }
-                }
-            }
-            else throw new NotImplementedException();
-            variable.Value?.ProcessSymbol(table);
-        }
+            variable.Variable.ProcessSymbol(table, entrypoint, io);
     }
+
     public override string ToString()
     {
         return string.Join(", ", Variables.Select(x => x.ToString())) + ";";
@@ -205,11 +160,13 @@ public class BlockStatement(TextLocation info) : Statement(info)
 {
     public List<Statement> Statements { get; set; } = [];
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
         foreach (var s in Statements)
-            s.ProcessSymbol(table);
+            s.ProcessSymbol(table, entrypoint, io);
     }
+
+    public List<Statement>.Enumerator GetEnumerator() => Statements.GetEnumerator();
 
     public override string ToString()
     {

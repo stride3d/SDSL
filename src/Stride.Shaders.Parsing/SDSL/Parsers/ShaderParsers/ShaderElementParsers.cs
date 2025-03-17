@@ -121,12 +121,11 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
             ;
 
         if (
-            Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var type, out var name, out var arraySize, out var value)
+            Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typeName, out var identifier, out var value)
             && Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
-            type.ArraySize = arraySize;
-            parsed = new ShaderVariable(type, name, value, scanner[position..scanner.Position])
+            parsed = new ShaderVariable(typeName, identifier, value, scanner[position..scanner.Position])
             {
                 StorageClass = storageClass.ToStorageClass(),
                 TypeModifier = typemodifier.ToTypeModifier()

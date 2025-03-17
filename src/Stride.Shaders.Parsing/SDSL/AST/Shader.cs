@@ -50,9 +50,12 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
                 table.DeclaredTypes.TryAdd(svar.Type.ToString(), svar.Type);
             }
         }
+
         foreach (var member in Elements)
+        {
             if (member is not ShaderMember)
                 member.ProcessSymbol(table);
+        }
     }
 
 

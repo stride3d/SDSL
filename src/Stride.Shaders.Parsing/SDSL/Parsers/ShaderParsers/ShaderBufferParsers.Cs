@@ -150,11 +150,11 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         else
             scanner.Position = tmp;
         if (
-            Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var identifier, out var arraySizes, out var value, advance: true)
+            Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typeName, out var identifier, out var value, advance: true)
             && Parsers.FollowedBy(ref scanner, Tokens.Set(";"), withSpaces: true, advance: true)
         )
         {
-            parsed = new ShaderMember(typename, identifier, null, true, scanner[position..scanner.Position], isStage, streamKind, arraySizes: arraySizes);
+            parsed = new ShaderMember(typeName, identifier, value, scanner[position..scanner.Position], isStage, streamKind);
             return true;
         }
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);

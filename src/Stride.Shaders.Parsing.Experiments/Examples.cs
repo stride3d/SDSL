@@ -87,14 +87,14 @@ public static class Examples
 
     public static void CompileHLSL()
     {
-        var dxc = new DXCompiler(DXCompiler.sampleCode);
-        dxc.Compile();
+        var dxc = new DXCompiler();
+        dxc.Compile(DXCompiler.sampleCode, out var compiled);
     }
     public static void CompileOldHLSL()
     {
 
         var fxc = new FXCompiler();
-        fxc.Compile();
+        fxc.Compile(DXCompiler.sampleCode, out var compiled);
     }
     public static void SpvOpt()
     {

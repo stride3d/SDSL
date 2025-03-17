@@ -15,9 +15,6 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
     {
         parsed = null!;
         var position = scanner.Position;
-
-        TypeName? typeName = null!;
-        List<Expression> arraySizes = null!;
         Expression? value = null!;
 
         var hasAttributes = ShaderAttributeListParser.AttributeList(ref scanner, result, out var attributes) && Parsers.Spaces0(ref scanner, result, out _);
@@ -30,7 +27,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
             Parsers.VariableModifiers(ref scanner, result, out var isStaged, out var streamKind, out var interpolation, out var typeModifier, out var storageClass, advance: true)
             && Parsers.Spaces0(ref scanner, result, out _);
 
-        if (Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out typeName, out var identifier, out arraySizes, out value))
+        if (Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typeName, out var identifier, out value))
         {
             if (
                 Parsers.FollowedBy(ref scanner, Tokens.Char(':'), withSpaces: true, advance: true)
@@ -39,8 +36,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
             {
                 if (Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
                 {
-                    typeName.ArraySize = arraySizes;
-                    parsed = new(typeName, identifier, value, arraySizes != null, scanner[position..scanner.Position], semantic: semantic, arraySizes: arraySizes)
+                    parsed = new(typeName, identifier, value, scanner[position..scanner.Position], semantic: semantic)
                     {
                         Attributes = hasAttributes ? attributes.Attributes : null!,
                         IsStaged = isStaged,
@@ -54,7 +50,7 @@ public record struct ShaderMemberParser : IParser<ShaderMember>
             }
             else if (Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true))
             {
-                parsed = new(typeName, identifier, value, arraySizes != null, scanner[position..scanner.Position], arraySizes: arraySizes)
+                parsed = new(typeName, identifier, value, scanner[position..scanner.Position])
                 {
                     Attributes = hasAttributes ? attributes.Attributes : null!,
                     IsStaged = isStaged,

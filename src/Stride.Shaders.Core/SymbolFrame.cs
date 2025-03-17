@@ -1,10 +1,19 @@
 namespace Stride.Shaders.Core;
 
-public readonly struct SymbolFrame()
+public class SymbolFrame()
 {
     readonly Dictionary<SymbolID, Symbol> symbols = [];
 
-    public Symbol this[string name, SymbolKind kind] => symbols[new(name, kind)];
+    public Symbol this[string name, SymbolKind kind]
+    {
+        get => symbols[new(name, kind)];
+        set => symbols[new(name, kind)] = value;
+    }
+    public Symbol this[SymbolID symbolID]
+    {
+        get => symbols[symbolID];
+        set => symbols[symbolID] = value;
+    }
 
     public void Add(SymbolID name, Symbol symbol)
         => symbols.Add(name, symbol);
@@ -18,6 +27,13 @@ public readonly struct SymbolFrame()
     public bool ContainsValue(Symbol symbol) => symbols.ContainsValue(symbol);
     public bool TryGetValue(string name, SymbolKind kind, out Symbol symbol)
         => symbols.TryGetValue(new(name, kind), out symbol);
+    public bool TryGetValue(string name, SymbolKind kind, Storage storage, out Symbol symbol)
+        => symbols.TryGetValue(new(name, kind, storage), out symbol);
 
     public Dictionary<SymbolID, Symbol>.Enumerator GetEnumerator() => symbols.GetEnumerator();
+}
+
+public sealed class RootSymbolFrame : SymbolFrame
+{
+    public StreamUsage StreamUsages { get; } = new();
 }

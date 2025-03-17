@@ -14,12 +14,12 @@ public class ConditionalFlow(If first, TextLocation info) : Flow(info)
     public Else? Else { get; set; }
     public ShaderAttributeList? Attributes { get; set; }
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        If.ProcessSymbol(table);
+        If.ProcessSymbol(table, entrypoint, io);
         foreach (var ei in ElseIfs)
-            ei.ProcessSymbol(table);
-        Else?.ProcessSymbol(table);
+            ei.ProcessSymbol(table, entrypoint, io);
+        Else?.ProcessSymbol(table, entrypoint, io);
 
     }
 
@@ -33,10 +33,10 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
     public Expression Condition { get; set; } = condition;
     public Statement Body { get; set; } = body;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        Condition.ProcessSymbol(table);
-        Body.ProcessSymbol(table);
+        Condition.ProcessSymbol(table, entrypoint, io);
+        Body.ProcessSymbol(table, entrypoint, io);
         if(Condition.Type != ScalarSymbol.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
@@ -49,10 +49,10 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
 
 public class ElseIf(Expression condition, Statement body, TextLocation info) : If(condition, body, info)
 {
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        Condition.ProcessSymbol(table);
-        Body.ProcessSymbol(table);
+        Condition.ProcessSymbol(table, entrypoint, io);
+        Body.ProcessSymbol(table, entrypoint, io);
         if(Condition.Type != ScalarSymbol.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
@@ -66,9 +66,9 @@ public class Else(Statement body, TextLocation info) : Flow(info)
 {
     public Statement Body { get; set; } = body;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        Body.ProcessSymbol(table);
+        Body.ProcessSymbol(table, entrypoint, io);
     }
     public override string ToString()
     {

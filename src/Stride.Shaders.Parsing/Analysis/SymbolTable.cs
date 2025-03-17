@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.SDSL.AST;
 
@@ -11,14 +12,14 @@ public partial class SymbolTable : ISymbolProvider
 {
     public Dictionary<string, SymbolType> DeclaredTypes { get; } = [];
     public SymbolFrame CurrentTable => Symbols[^1];
-    public SymbolFrame RootSymbols => Symbols[0];
-    public List<SymbolFrame> Symbols { get; } = [new()];
+    public RootSymbolFrame RootSymbols => (RootSymbolFrame)Symbols[0];
+    public List<SymbolFrame> Symbols { get; } = [new RootSymbolFrame()];
 
     public List<SemanticErrors> Errors { get; } = [];
 
     public ShaderMethod? CurrentMethod { get; internal set; }
 
-    public void Push() => Symbols.Add(new());
+    public void Push() => Symbols.Add(new SymbolFrame());
 
     public SymbolFrame Pop()
     {

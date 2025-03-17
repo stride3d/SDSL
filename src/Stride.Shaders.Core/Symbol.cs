@@ -9,7 +9,6 @@ public enum SymbolKind
     MixinChild,
     Struct,
     Method,
-    StreamVariable,
     Variable,
     Constant,
     ConstantGeneric,
@@ -19,17 +18,24 @@ public enum SymbolKind
     RGroup
 }
 
-public enum Storage
+public enum Storage : ushort
 {
-    UniformConstant = 0,
-    Input = 1,
-    Uniform = 2,
-    Output = 3,
-    Function = 7,
-    Generic = 8,
+    None,
+    Uniform,
+    UniformConstant,
+    Stream,
+    Function,
+    Generic,
+}
+
+public enum StreamIO : byte
+{
+    Input,
+    Output
 }
 
 
 
-public record struct SymbolID(string Name, SymbolKind Kind, Storage? Storage = null);
-public record struct Symbol(SymbolID Id, SymbolType Type);
+public record struct SymbolID(string Name, SymbolKind Kind, Storage Storage = 0);
+public record struct StreamInfo(ushort EntryPoint, StreamIO Stream);
+public record struct Symbol(SymbolID Id, SymbolType Type, object? Data = null);

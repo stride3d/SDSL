@@ -3,5 +3,5 @@
 public interface ISymbolProvider
 {
     public Dictionary<string, SymbolType> DeclaredTypes { get; }
-    public SymbolFrame RootSymbols { get; }
+    public RootSymbolFrame RootSymbols { get; }
 }

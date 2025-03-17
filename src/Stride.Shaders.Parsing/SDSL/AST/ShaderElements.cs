@@ -48,33 +48,6 @@ public enum StreamKind
     PatchStream
 }
 
-public enum StreamUsageMask : uint
-{
-    None = 0,
-    VertexShader = 1,
-    PixelShader = 1 << 1,
-    ComputeShader = 1 << 2,
-    GeometryShader = 1 << 3,
-    /// <summary>
-    /// Tesselation control
-    /// </summary>
-    HullShader = 1 << 4,
-    /// <summary>
-    /// Tesselation evaluation
-    /// </summary>
-    DomainShader = 1 << 5,
-    TaskNV = 1 << 6,
-    MeshNV = 1 << 7,
-    RayGeneration = 1 << 8,
-    Intersection = 1 << 9,
-    AnyHit = 1 << 10,
-    ClosestHit = 1 << 11,
-    Miss = 1 << 12,
-    Callable = 1 << 13,
-    TaskEXT = 1 << 14,
-    MeshEXT = 1 << 15,
-}
-
 public static class ShaderVariableInformationExtensions
 {
     public static StreamKind ToStreamKind(this string str)
@@ -126,16 +99,16 @@ public static class ShaderVariableInformationExtensions
     }
 }
 
-public class ShaderVariable(TypeName type, Identifier name, Expression? value, TextLocation info) : ShaderElement(info)
+public class ShaderVariable(TypeName typeName, Identifier name, Expression? value, TextLocation info) : ShaderElement(info)
 {
-    public TypeName TypeName { get; set; } = type;
     public Identifier Name { get; set; } = name;
+    public TypeName TypeName { get; set; } = typeName;
     public Expression? Value { get; set; } = value;
     public StorageClass StorageClass { get; set; } = StorageClass.None;
     public TypeModifier TypeModifier { get; set; } = TypeModifier.None;
     public override string ToString()
     {
-        return $"{(StorageClass != StorageClass.None ? $"{StorageClass} " :"")}{(TypeModifier != TypeModifier.None ? $"{TypeModifier} " :"")}{TypeName} {Name} = {Value}";
+        return $"{(StorageClass != StorageClass.None ? $"{StorageClass} " : "")}{(TypeModifier != TypeModifier.None ? $"{TypeModifier} " : "")} {TypeName} {Name} = {Value}";
     }
 }
 
@@ -171,7 +144,7 @@ public abstract class ShaderBuffer(List<Identifier> name, TextLocation info) : S
         foreach (var cbmem in Members)
         {
             cbmem.TypeName.ProcessSymbol(table);
-            cbmem.Type = cbmem.TypeName.Type;
+            cbmem.Type = cbmem.Type;
             table.DeclaredTypes.TryAdd(cbmem.Type.ToString(), cbmem.Type);
         }
     }
@@ -186,7 +159,7 @@ public class ShaderStructMember(TypeName typename, Identifier identifier, TextLo
 
     public override string ToString()
     {
-        if(Type is not null)
+        if (Type is not null)
             return $"{Type} {Name}";
         else return $"{TypeName} {Name}";
     }

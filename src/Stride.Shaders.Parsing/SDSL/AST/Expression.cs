@@ -7,13 +7,17 @@ namespace Stride.Shaders.Parsing.SDSL.AST;
 
 
 
-public abstract class Expression(TextLocation info) : ValueNode(info);
+public abstract class Expression(TextLocation info) : ValueNode(info)
+{
+    public override void ProcessSymbol(SymbolTable table) => ProcessSymbol(table, null, null);
+    public virtual void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null) => throw new NotImplementedException($"Symbol table cannot process type : {GetType().Name}");
+
+}
 
 public class MethodCall(Identifier name, ShaderExpressionList parameters, TextLocation info) : Expression(info)
 {
     public Identifier Name = name;
     public ShaderExpressionList Parameters = parameters;
-
     public override string ToString()
     {
         return $"{Name}({string.Join(", ", Parameters)})";
@@ -57,13 +61,58 @@ public class AccessorChainExpression(Expression source, TextLocation info) : Exp
     public Expression Source { get; set; } = source;
     public List<Expression> Accessors { get; set; } = [];
 
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
+    {
+
+        if (Source is Identifier { Name: "streams" } streams && Accessors[0] is Identifier streamVar && entrypoint is not null)
+        {
+            streamVar.ProcessSymbol(table);
+            Type = streamVar.Type;
+            // If has more, dive into the type definition
+            // First case none
+            if (Accessors.Count > 1)
+            {
+                foreach (var accessor in Accessors[1..])
+                {
+                    if (Type is not null && Type.TryAccess(accessor, out var type))
+                    {
+                        Type = type;
+                        accessor.Type = type;
+                    }
+                    else throw new NotImplementedException($"Cannot access {accessor.GetType().Name} from {Type}");
+
+                    if(accessor is not Identifier)
+                        accessor.ProcessSymbol(table, entrypoint, io ?? StreamIO.Input);
+                }
+            }
+            table.RootSymbols.StreamUsages.Add(new(streamVar, SymbolKind.Variable, Storage.Stream), new(entrypoint ?? EntryPoint.None, io ?? StreamIO.Output));
+        }
+        else
+        {
+            Source.ProcessSymbol(table, entrypoint, io ?? StreamIO.Output);
+            Type = Source.Type;
+            foreach (var accessor in Accessors[1..])
+            {
+                if (Type is not null && Type.TryAccess(accessor, out var type))
+                {
+                    Type = type;
+                    accessor.Type = type;
+                }
+                else throw new NotImplementedException($"Cannot access {accessor.GetType().Name} from {Type}");
+                if(accessor is not Identifier)
+                    accessor.ProcessSymbol(table, entrypoint, io ?? StreamIO.Input);
+            }
+        }
+    }
+
+
     public override string ToString()
     {
         var builder = new StringBuilder().Append(Source);
-        foreach(var a in Accessors)
-            if(a is NumberLiteral)
+        foreach (var a in Accessors)
+            if (a is NumberLiteral)
                 builder.Append('[').Append(a).Append(']');
-            else if(a is PostfixIncrement)
+            else if (a is PostfixIncrement)
                 builder.Append(a);
             else
                 builder.Append('.').Append(a);
@@ -77,10 +126,10 @@ public class BinaryExpression(Expression left, Operator op, Expression right, Te
     public Expression Left { get; set; } = left;
     public Expression Right { get; set; } = right;
 
-    public override void ProcessSymbol(SymbolTable table)
+    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        Left.ProcessSymbol(table);
-        Right.ProcessSymbol(table);
+        Left.ProcessSymbol(table, entrypoint, io);
+        Right.ProcessSymbol(table, entrypoint, io);
         if (
             OperatorTable.BinaryOperationResultingType(
                 Left.Type ?? throw new NotImplementedException("Missing type"),
@@ -105,6 +154,17 @@ public class TernaryExpression(Expression cond, Expression left, Expression righ
     public Expression Condition { get; set; } = cond;
     public Expression Left { get; set; } = left;
     public Expression Right { get; set; } = right;
+
+    public override void ProcessSymbol(SymbolTable table)
+    {
+        Condition.ProcessSymbol(table);
+        Left.ProcessSymbol(table);
+        Right.ProcessSymbol(table);
+        if (Condition.Type is not ScalarSymbol { TypeName: "bool" })
+            table.Errors.Add(new(Condition.Info, SDSLErrorMessages.SDSL0106));
+        if (Left.Type != Right.Type)
+            table.Errors.Add(new(Condition.Info, SDSLErrorMessages.SDSL0106));
+    }
 
     public override string ToString()
     {

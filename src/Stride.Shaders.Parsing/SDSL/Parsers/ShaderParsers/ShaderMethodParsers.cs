@@ -63,10 +63,9 @@ public record struct ShaderMethodParsers : IParser<ShaderMethod>
 
         if (Tokens.AnyOf(["inout", "in", "out", "triangle", "point", "const"], ref scanner, out var storage, advance: true))
             Parsers.Spaces1(ref scanner, result, out _);
-        if (Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var identifier, out var arraySize, out var value, advance: true)
+        if (Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var identifier, out var value, advance: true)
         )
         {
-            typename.ArraySize = arraySize;
             if (
                 Parsers.FollowedBy(ref scanner, Tokens.Char(':'), withSpaces: true, advance: true)
                 && Parsers.FollowedBy(ref scanner, result, LiteralsParser.Identifier, out Identifier semantic, withSpaces: true, advance: true)

@@ -7,7 +7,7 @@ namespace Stride.Shaders.Spirv.Building;
 
 // Should contain internal data not seen by the client but helpful for the generation like type symbols and other 
 // SPIR-V parameters
-public class SpirvContext(Module module) : IDisposable
+public class SpirvContext(Module module, ISymbolProvider symbolProvider) : IDisposable
 {
     public int Bound { get; internal set; } = 1;
     public Module Module { get; } = module;
@@ -15,6 +15,8 @@ public class SpirvContext(Module module) : IDisposable
     public Dictionary<SymbolType, int> Types { get; } = [];
     public Dictionary<int, SymbolType> ReverseTypes { get; } = [];
     public SpirvBuffer Buffer { get; set; } = new();
+
+    public ISymbolProvider SymbolProvider { get; } = symbolProvider;
 
     public void AddName(IdRef target, string name)
         => Buffer.AddOpName(target, name);
@@ -25,20 +27,41 @@ public class SpirvContext(Module module) : IDisposable
     public void AddGlobalVariable(Symbol variable)
     {
         var t = GetOrRegister(variable.Type);
-        var storage = variable.Id.Storage switch
+        if (variable.Id.Storage == Storage.Stream)
         {
-            Storage.UniformConstant => StorageClass.UniformConstant,
-            Storage.Input => StorageClass.Input,
-            Storage.Uniform => StorageClass.Uniform,
-            Storage.Output => StorageClass.Output,
-            Storage.Function => StorageClass.Function,
-            Storage.Generic => StorageClass.Generic,
-            _ => throw new NotImplementedException("Variable has to have a storage class")
-        };
-        var i = Buffer.AddOpVariable(Bound++, t, storage, null);
-        Variables[variable.Id.Name] = i.ResultId!.Value;
+            foreach(var usage in SymbolProvider.RootSymbols.StreamUsages[variable.Id])
+            {
+                var i = Buffer.AddOpVariable(
+                    Bound++, 
+                    t, 
+                    usage.IO switch
+                    {
+                        StreamIO.Input => StorageClass.Input,
+                        StreamIO.Output => StorageClass.Output,
+                        _ => throw new NotImplementedException()
+                    }, 
+                    null
+                );
+                Variables[variable.Id.Name] = i.ResultId!.Value;
+                AddName(i, $"{usage.EntryPoint.ToString()}_{usage.IO.ToString()}_{variable.Id.Name}");
+            }
+        }
+        else
+        {
+            var storage = variable.Id.Storage switch
+            {
+                Storage.UniformConstant => StorageClass.UniformConstant,
+                Storage.Uniform => StorageClass.Uniform,
+                Storage.Function => StorageClass.Function,
+                Storage.Generic => StorageClass.Generic,
+                _ => throw new NotImplementedException("Variable has to have a storage class")
+            };
+            var i = Buffer.AddOpVariable(Bound++, t, storage, null);
+            Variables[variable.Id.Name] = i.ResultId!.Value;
+            AddName(i, $"{variable.Id.Name}");
+        }
     }
-    
+
 
     public void SetEntryPoint(ExecutionModel model, IdRef function, string name, ReadOnlySpan<Symbol> variables)
     {

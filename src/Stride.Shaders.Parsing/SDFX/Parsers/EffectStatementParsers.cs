@@ -148,11 +148,10 @@ public record struct EffectStatementParsers : IParser<EffectStatement>
         var position = scanner.Position;
         if (
             Tokens.AnyOf(["ShaderSourceCollection ", "ShaderSource ", "var "], ref scanner, out _)
-            && SDSL.Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var name, out var arraySize, out var value)
+            && SDSL.Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typename, out var name,out var value)
             && SDSL.Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
         )
         {
-            typename.ArraySize = arraySize;
             parsed = new(name, scanner[position..scanner.Position], value);
             return true;
         }

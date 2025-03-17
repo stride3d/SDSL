@@ -53,39 +53,35 @@ public class ShaderCompose(Identifier name, Mixin mixin, bool isArray, TextLocat
     public override string ToString() => $"compose {Mixin}{(IsArray ? "[]" : "")} {Name}";
 }
 
-public sealed class ShaderMember(TypeName type,
-        Identifier name,
+public sealed class ShaderMember(
+        TypeName typeName,
+        Identifier identifier,
         Expression? initialValue,
-        bool isArray,
         TextLocation location,
         bool isStaged = false,
         StreamKind streamKind = StreamKind.None,
         Identifier? semantic = null,
-        List<Expression>? arraySizes = null,
         InterpolationModifier interpolation = InterpolationModifier.None,
         StorageClass storageClass = StorageClass.None,
         TypeModifier typeModifier = TypeModifier.None
     ) : MethodOrMember(location, isStaged)
 {
-    public TypeName TypeName { get; set; } = type;
-    public Identifier Name { get; set; } = name;
+    public Identifier Name { get; set; } = identifier;
+    public TypeName TypeName { get; set; } = typeName;
     public Identifier? Semantic { get; set; } = semantic;
     public StreamKind StreamKind { get; set; } = streamKind;
-    public bool IsArray { get; set; } = isArray;
-    public List<Expression>? ArraySizes { get; set; } = arraySizes;
+    public bool IsArray => TypeName?.IsArray ?? false;
     public Expression? Value { get; set; } = initialValue;
     public TypeModifier TypeModifier { get; set; } = typeModifier;
     public StorageClass StorageClass { get; set; } = storageClass;
     public InterpolationModifier Interpolation { get; set; } = interpolation;
-
-    public byte StreamUsage { get; set; } = 0;
 
     public override string ToString()
     {
         if (Attributes != null)
             return $"[{string.Join(" ", Attributes.Select(x => x.ToString()))}]\n{TypeName} {Name}";
         else
-            return $"{TypeName} {Name}";
+            return $"{StreamKind.ToString().ToLowerInvariant()} {StorageClass.ToString().ToLowerInvariant()} {TypeName} {Name}";
     }
 }
 
@@ -122,6 +118,17 @@ public class ShaderMethod(
     public SymbolType? ReturnType { get; set; }
     public TypeName ReturnTypeName { get; set; } = returnType;
     public Identifier Name { get; set; } = name;
+    public EntryPoint EntryPoint { get; } = 
+        name.Name switch
+        {
+            "VSMain" => EntryPoint.VertexShader,
+            "PSMain" => EntryPoint.PixelShader,
+            "CSMain" => EntryPoint.ComputeShader,
+            "GSMain" => EntryPoint.GeometryShader,
+            "DSMain" => EntryPoint.DomainShader,
+            "HSMain" => EntryPoint.HullShader,
+            _ => 0
+        };
     public Identifier? Visibility { get; set; } = visibility;
     public Identifier? Storage { get; set; } = storage;
     public bool? IsAbstract { get; set; } = isAbstract;
@@ -130,8 +137,8 @@ public class ShaderMethod(
     public bool? IsOverride { get; set; } = isOverride;
     public bool? IsClone { get; set; } = isClone;
     public List<MethodParameter> Parameters { get; set; } = [];
-    public BlockStatement? Body { get; set; }
 
+    public BlockStatement? Body { get; set; }
 
     public override void ProcessSymbol(SymbolTable table)
     {
@@ -148,7 +155,10 @@ public class ShaderMethod(
             table.CurrentMethod = this;
             table.Push();
             foreach (var s in Body.Statements)
-                s.ProcessSymbol(table);
+                if(EntryPoint == 0)
+                    s.ProcessSymbol(table);
+                else 
+                    s.ProcessSymbol(table, EntryPoint, null);
             table.Pop();
         }
     }
@@ -172,6 +182,8 @@ public class ShaderParameterDeclarations(TextLocation info) : ParameterListNode(
 public class ShaderExpressionList(TextLocation info) : ParameterListNode(info)
 {
     public List<Expression> Values { get; set; } = [];
+
+    public List<Expression>.Enumerator GetEnumerator() => Values.GetEnumerator();
 
     public override string ToString()
     {

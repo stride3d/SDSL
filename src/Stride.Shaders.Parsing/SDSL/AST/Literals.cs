@@ -154,7 +154,7 @@ public class Identifier(string name, TextLocation info) : Literal(info)
 
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
-        Span<Storage> sOrder = [Storage.Function, Storage.Uniform, Storage.UniformConstant, Storage.Generic];
+        Span<Storage> sOrder = [Storage.Function, Storage.Stream, Storage.Uniform, Storage.UniformConstant, Storage.Generic];
         foreach (var storage in sOrder)
         {
             for (int i = table.Symbols.Count - 1; i >= 0; i -= 1)

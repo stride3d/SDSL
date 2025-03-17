@@ -4,6 +4,9 @@ using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Parsing.SDSL.AST;
 using Stride.Shaders.Spirv.Building;
+using Stride.Shaders.Core;
+using Stride.Shaders.Spirv.Tools;
+using Stride.Shaders.Spirv.Core.Buffers;
 
 public record struct SDSLC() : ICompiler
 {
@@ -20,8 +23,11 @@ public record struct SDSLC() : ICompiler
                 throw new Exception("Some parse errors");
             var module = new Module();
             var builder = new Builder();
-            var context = new SpirvContext(module);
+            var context = new SpirvContext(module, table);
             shader.Compile(builder, context);
+            context.Buffer.Sort();
+            var dis = new SpirvDis<SpirvBuffer>(context.Buffer, true);
+            dis.Disassemble(true);
         }
         throw new NotImplementedException();
     }
@@ -36,9 +42,12 @@ public static class GenerateExtension
 {
     public static void Compile(this ShaderClass sclass, Builder builder, SpirvContext context)
     {
-        foreach(var e in sclass.Elements.OfType<ShaderMember>())
+        foreach(var v in sclass.Elements.OfType<ShaderMember>())
         {
-            Console.WriteLine(e);
+            if(v.StreamKind is StreamKind.Stream or StreamKind.PatchStream)
+            {
+                context.AddGlobalVariable(context.SymbolProvider.RootSymbols[new(v.Name, SymbolKind.Variable, Storage.Stream)]);
+            }
         }
     }
 }

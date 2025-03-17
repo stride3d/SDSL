@@ -40,13 +40,22 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
             {
                 svar.TypeName.ProcessSymbol(table);
                 svar.Type = svar.TypeName.Type;
-                table.RootSymbols.Add(
-                    new(
+                var sid = 
+                    new SymbolID
+                    (
                         svar.Name,
-                        svar.TypeModifier == TypeModifier.Const ? SymbolKind.Constant : SymbolKind.Variable
-                    ),
-                    new(new(svar.Name, SymbolKind.Variable), svar.Type)
-                );
+                        svar.TypeModifier == TypeModifier.Const ? SymbolKind.Constant : SymbolKind.Variable,
+                        svar.StreamKind switch
+                        {
+                            StreamKind.Stream or StreamKind.PatchStream => Storage.Stream,
+                            _ => Storage.None
+                        }
+                    );
+                table.RootSymbols.Add
+                    (
+                        sid,
+                        new(sid, svar.Type)
+                    );
                 table.DeclaredTypes.TryAdd(svar.Type.ToString(), svar.Type);
             }
         }

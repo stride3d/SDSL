@@ -4,6 +4,8 @@ using Silk.NET.Direct3D.Compilers;
 using Silk.NET.Shaderc;
 using Silk.NET.SPIRV.Cross;
 using Stride.Shaders.Compilers;
+using Stride.Shaders.Compilers.SDSL;
+using Stride.Shaders.Core;
 using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Parsing.SDSL;
@@ -209,6 +211,14 @@ public static class Examples
                         return ComputeIntersection(position, s, out n);
         }
         return false;
+    }
+
+    public static void CompileSDSL()
+    {
+        var text = MonoGamePreProcessor.OpenAndRun("./assets/SDSL/TestVertex.sdsl");
+        
+        var sdslc = new SDSLC();
+        sdslc.Compile(text, out var bytecode);
     }
 }
 

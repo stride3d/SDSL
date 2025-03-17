@@ -66,7 +66,7 @@ public class AccessorChainExpression(Expression source, TextLocation info) : Exp
 
         if (Source is Identifier { Name: "streams" } streams && Accessors[0] is Identifier streamVar && entrypoint is not null)
         {
-            streamVar.ProcessSymbol(table);
+            streamVar.ProcessSymbol(table, entrypoint, io);
             Type = streamVar.Type;
             // If has more, dive into the type definition
             // First case none

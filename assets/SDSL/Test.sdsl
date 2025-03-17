@@ -1,8 +1,8 @@
 namespace Machin;
 shader Test 
 {
-    stream float4 Position;
-    stream float4 Color;
+    stream float4 Position : SV_POSITION;
+    stream float4 Color : SV_TARGET;
     bool machin = false;
 
     void PSMain()

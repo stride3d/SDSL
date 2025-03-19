@@ -1,14 +1,10 @@
 using System.Text;
-using Silk.NET.Core.Native;
-using Silk.NET.Direct3D.Compilers;
 using Silk.NET.Shaderc;
 using Silk.NET.SPIRV.Cross;
 using Stride.Shaders.Compilers;
 using Stride.Shaders.Compilers.SDSL;
-using Stride.Shaders.Core;
 using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.Analysis;
-using Stride.Shaders.Parsing.SDSL;
 using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Experiments;
@@ -36,7 +32,7 @@ public static class ASTExtensions
     }
 }
 
-public static class Examples
+public static partial class Examples
 {
     static uint[] words = [
             // Offset 0x00000000 to 0x0000016F
@@ -73,7 +69,7 @@ public static class Examples
             0xFD000100, 0x38000100
         ];
     public static void UseSpirvCross()
-    {        
+    {
         unsafe
         {
             var code = new SpirvTranslator(words.AsMemory());
@@ -82,9 +78,9 @@ public static class Examples
     }
     public static void TranslateHLSL()
     {
-        
-        Console.WriteLine(SpirvOptimizer.CompileAssembly(DXCompiler.sampleCode,"PSMain", SourceLanguage.Hlsl, OptimizationLevel.Zero));
-        Console.WriteLine(SpirvOptimizer.Translate(DXCompiler.sampleCode,"PSMain", SourceLanguage.Hlsl, Backend.Hlsl));
+
+        Console.WriteLine(SpirvOptimizer.CompileAssembly(DXCompiler.sampleCode, "PSMain", SourceLanguage.Hlsl, OptimizationLevel.Zero));
+        Console.WriteLine(SpirvOptimizer.Translate(DXCompiler.sampleCode, "PSMain", SourceLanguage.Hlsl, Backend.Hlsl));
     }
 
     public static void CompileHLSL()
@@ -110,7 +106,7 @@ public static class Examples
         var text = MonoGamePreProcessor.OpenAndRun("./assets/SDSL/Test.sdsl");
         var parsed = SDSLParser.Parse(text);
         Console.WriteLine(parsed.AST);
-        if(parsed.Errors.Count > 0)
+        if (parsed.Errors.Count > 0)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             foreach (var e in parsed.Errors)
@@ -120,21 +116,21 @@ public static class Examples
         {
             var table = new SymbolTable();
             parsed.AST?.ProcessSymbol(table);
-            foreach(var e in table.Errors)
+            foreach (var e in table.Errors)
                 Console.WriteLine(e);
         }
     }
 
     public static void TryAllFiles()
     {
-        foreach(var f in Directory.EnumerateFiles("./assets/Stride/SDSL"))
+        foreach (var f in Directory.EnumerateFiles("./assets/Stride/SDSL"))
         {
             // var text = File.ReadAllText(f);
             if (f.Contains("BasicMixin.sdsl"))
                 continue;
             var preprocessed = MonoGamePreProcessor.OpenAndRun(f);
             var parsed = SDSLParser.Parse(preprocessed);
-            if(parsed.Errors.Count > 0)
+            if (parsed.Errors.Count > 0)
             {
                 Console.WriteLine(preprocessed);
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -216,7 +212,7 @@ public static class Examples
     public static void CompileSDSL()
     {
         var text = MonoGamePreProcessor.OpenAndRun("./assets/SDSL/TestVertex.sdsl");
-        
+
         var sdslc = new SDSLC();
         sdslc.Compile(text, out var bytecode);
     }

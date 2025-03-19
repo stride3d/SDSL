@@ -23,7 +23,7 @@ public record struct SDSLC() : ICompiler
                 throw new Exception("Some parse errors");
             var module = new Module();
             var builder = new Builder();
-            var context = new SpirvContext(module, table);
+            var context = new SpirvContext(module);
             shader.Compile(builder, context);
             context.Buffer.Sort();
             var dis = new SpirvDis<SpirvBuffer>(context.Buffer, true);
@@ -42,12 +42,13 @@ public static class GenerateExtension
 {
     public static void Compile(this ShaderClass sclass, Builder builder, SpirvContext context)
     {
-        foreach(var v in sclass.Elements.OfType<ShaderMember>())
-        {
-            if(v.StreamKind is StreamKind.Stream or StreamKind.PatchStream)
-            {
-                context.AddGlobalVariable(context.SymbolProvider.RootSymbols[new(v.Name, SymbolKind.Variable, Storage.Stream)]);
-            }
-        }
+        throw new NotImplementedException();
+        // foreach(var v in sclass.Elements.OfType<ShaderMember>())
+        // {
+        //     if(v.StreamKind is StreamKind.Stream or StreamKind.PatchStream)
+        //     {
+        //         context.AddGlobalVariable(context.SymbolProvider.RootSymbols[new(v.Name, SymbolKind.Variable, Storage.Stream)]);
+        //     }
+        // }
     }
 }

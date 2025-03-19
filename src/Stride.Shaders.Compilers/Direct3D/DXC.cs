@@ -3,7 +3,7 @@ using Silk.NET.Core;
 using Silk.NET.Core.Native;
 using Silk.NET.Direct3D.Compilers;
 
-namespace Stride.Shaders.Compilers;
+namespace Stride.Shaders.Compilers.Direct3D;
 
 using DXCBuffer = Silk.NET.Direct3D.Compilers.Buffer;
 

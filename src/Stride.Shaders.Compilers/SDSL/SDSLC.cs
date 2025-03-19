@@ -1,5 +1,3 @@
-namespace Stride.Shaders.Compilers.SDSL;
-
 using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Parsing.SDSL.AST;
@@ -7,6 +5,8 @@ using Stride.Shaders.Spirv.Building;
 using Stride.Shaders.Core;
 using Stride.Shaders.Spirv.Tools;
 using Stride.Shaders.Spirv.Core.Buffers;
+
+namespace Stride.Shaders.Compilers.SDSL;
 
 public record struct SDSLC() : ICompiler
 {

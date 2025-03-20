@@ -1,4 +1,6 @@
+using System.Numerics;
 using Stride.Shaders.Core;
+using Stride.Shaders.Parsing.SDSL.AST;
 using Stride.Shaders.Spirv.Core;
 using Stride.Shaders.Spirv.Core.Buffers;
 using static Spv.Specification;
@@ -7,10 +9,10 @@ namespace Stride.Shaders.Spirv.Building;
 
 // Should contain internal data not seen by the client but helpful for the generation like type symbols and other 
 // SPIR-V parameters
-public class SpirvContext(Module module) : IDisposable
+public class SpirvContext(SpirvModule module) : IDisposable
 {
     public int Bound { get; internal set; } = 1;
-    public Module Module { get; } = module;
+    public SpirvModule Module { get; } = module;
     public SortedList<string, int> Variables { get; } = [];
     public Dictionary<SymbolType, int> Types { get; } = [];
     public Dictionary<int, SymbolType> ReverseTypes { get; } = [];
@@ -21,6 +23,34 @@ public class SpirvContext(Module module) : IDisposable
 
     public void AddMemberName(IdRef target, int accessor, string name)
         => Buffer.AddOpMemberName(target, accessor, name);
+
+    public IdRef AddConstant<TScalar>(TScalar value)
+        where TScalar : INumber<TScalar>
+    {
+        return value switch
+        {
+            byte v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("byte")), v),
+            sbyte v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("sbyte")), v),
+            ushort v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("ushort")), v),
+            short v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("short")), v),
+            uint v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("uint")), v),
+            int v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("int")), v),
+            ulong v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("ulong")), v),
+            long v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("long")), v),
+            Half v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarSymbol.From("half")), v),
+            float v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarSymbol.From("float")), v),
+            double v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarSymbol.From("bdouble")), v),
+            _ => throw new NotImplementedException()
+        };
+    }
+    public IdRef AddConstant(Literal literal)
+    {
+        return literal switch
+        {
+            IntegerLiteral i => 
+            _ => throw new NotImplementedException()
+        };
+    }
 
     public void AddGlobalVariable(Symbol variable)
     {

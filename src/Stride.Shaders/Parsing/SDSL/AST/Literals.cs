@@ -3,6 +3,7 @@ using System.Text;
 using Stride.Shaders.Core;
 using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
+using Stride.Shaders.Spirv.Building;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -15,6 +16,8 @@ public abstract class ScalarLiteral(TextLocation info) : ValueLiteral(info);
 public class StringLiteral(string value, TextLocation info) : Literal(info)
 {
     public string Value { get; set; } = value;
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler){}
 
     public override string ToString()
     {
@@ -61,6 +64,11 @@ public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : Numb
             { Signed: false, Size: 64 } => ScalarSymbol.From("ulong"),
             _ => throw new NotImplementedException("Unsupported integer suffix")
         };
+    }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        compiler.Context.AddConstant()
     }
 }
 public class UnsignedIntegerLiteral(Suffix suffix, ulong value, TextLocation info) : NumberLiteral<ulong>(suffix, value, info);

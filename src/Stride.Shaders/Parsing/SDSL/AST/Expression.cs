@@ -1,6 +1,7 @@
 using System.Text;
 using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.Analysis;
+using Stride.Shaders.Spirv.Building;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -11,7 +12,7 @@ public abstract class Expression(TextLocation info) : ValueNode(info)
 {
     public override void ProcessSymbol(SymbolTable table) => ProcessSymbol(table, null, null);
     public virtual void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null) => throw new NotImplementedException($"Symbol table cannot process type : {GetType().Name}");
-
+    public abstract void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler);
 }
 
 public class MethodCall(Identifier name, ShaderExpressionList parameters, TextLocation info) : Expression(info)

@@ -4,7 +4,7 @@ using Stride.Shaders.Spirv.Core.Buffers;
 namespace Stride.Shaders.Spirv.Building;
 
 
-public partial class Builder
+public partial class SpirvBuilder
 {
     public SpirvBlock CreateBlock(SpirvContext context, SpirvFunction parent, string? name = null)
     {

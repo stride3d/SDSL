@@ -16,7 +16,7 @@ public static partial class Examples
 {
     public static void GenerateSpirv()
     {
-        var module = new Module();
+        var module = new SpirvModule();
         using var context = new SpirvContext(new());
         using var builder = new Builder();
 

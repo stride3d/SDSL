@@ -6,7 +6,7 @@ using static Spv.Specification;
 namespace Stride.Shaders.Spirv.Building;
 
 
-public partial class Builder
+public partial class SpirvBuilder
 {
     public SpirvValue BinaryOperation(SpirvContext context, int resultType, in SpirvValue left, Operator op, in SpirvValue right, string? name = null)
     {

@@ -3,6 +3,7 @@ using Silk.NET.Shaderc;
 using Silk.NET.SPIRV.Cross;
 using Stride.Shaders.Compilers;
 using Stride.Shaders.Compilers.SDSL;
+using Stride.Shaders.Compilers.Direct3D;
 using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Parsing.SDSL.AST;

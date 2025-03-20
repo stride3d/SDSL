@@ -21,7 +21,7 @@ public record struct SDSLC() : ICompiler
 
             if(table.Errors.Count > 0)
                 throw new Exception("Some parse errors");
-            var module = new Module();
+            var module = new SpirvModule();
             var builder = new Builder();
             var context = new SpirvContext(module);
             shader.Compile(builder, context);

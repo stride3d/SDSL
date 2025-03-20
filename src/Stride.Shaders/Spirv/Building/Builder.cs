@@ -15,7 +15,7 @@ public partial class Builder() : IDisposable
     public void SetPositionTo<TBlock>(TBlock block)
         where TBlock : IInstructionBlock
     {
-        if (block is BasicBlock bb)
+        if (block is SpirvBlock bb)
             SetPositionTo(bb.Parent);
         bool blockFound = false;
         Span<int> blockTermination = [
@@ -32,7 +32,7 @@ public partial class Builder() : IDisposable
         {
             if (e.ResultId is int id && id == block.Id)
                 blockFound = true;
-            if (block is BasicBlock && blockFound && blockTermination.Contains((int)e.OpCode))
+            if (block is SpirvBlock && blockFound && blockTermination.Contains((int)e.OpCode))
             {
                 Position = e.WordIndex;
                 return;

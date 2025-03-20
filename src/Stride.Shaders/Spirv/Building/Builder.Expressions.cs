@@ -8,7 +8,7 @@ namespace Stride.Shaders.Spirv.Building;
 
 public partial class Builder
 {
-    public Value BinaryOperation(SpirvContext context, int resultType, in Value left, Operator op, in Value right, string? name = null)
+    public SpirvValue BinaryOperation(SpirvContext context, int resultType, in SpirvValue left, Operator op, in SpirvValue right, string? name = null)
     {
 
         var instruction = (op, context.ReverseTypes[left.TypeId], context.ReverseTypes[right.TypeId]) switch

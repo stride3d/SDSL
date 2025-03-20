@@ -6,20 +6,20 @@ namespace Stride.Shaders.Spirv.Building;
 
 public partial class Builder
 {
-    public BasicBlock CreateBlock(SpirvContext context, SpirvFunction parent, string? name = null)
+    public SpirvBlock CreateBlock(SpirvContext context, SpirvFunction parent, string? name = null)
     {
         var i = Buffer.InsertOpLabel(Position, context.Bound++);
         Position += i.WordCount;
         Position += Buffer.InsertOpUnreachable(Position).WordCount;
-        var result = new BasicBlock(i, parent, name);
+        var result = new SpirvBlock(i, parent, name);
         return result;
     }
 
-    public void Return(in Value? value = null)
+    public void Return(in SpirvValue? value = null)
     {
         Position += value switch
         {
-            Value v => Buffer.InsertOpReturnValue(Position, v.Id).WordCount,
+            SpirvValue v => Buffer.InsertOpReturnValue(Position, v.Id).WordCount,
             _ => Buffer.InsertOpReturn(Position).WordCount
         };
         CleanBlock();

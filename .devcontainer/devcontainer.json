@@ -7,7 +7,8 @@
                 "ms-dotnettools.csharp",
                 "ms-dotnettools.csdevkit",
                 "ms-dotnettools.vscodeintellicode-csharp",
-                "ms-vscode.vscode-node-azure-pack"
+                "ms-vscode.vscode-node-azure-pack",
+                "Ionide.Ionide-fsharp"
             ],
             "settings": {
                 "terminal.integrated.shell.linux": "/usr/bin/pwsh" 

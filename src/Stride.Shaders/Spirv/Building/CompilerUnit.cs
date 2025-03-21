@@ -1,3 +1,5 @@
+using Stride.Shaders.Parsing.SDSL.AST;
+
 namespace Stride.Shaders.Spirv.Building;
 
 
@@ -17,5 +19,12 @@ public class CompilerUnit
         Context = new SpirvContext(Module);
         Builder = new SpirvBuilder();
         Arguments = [];
+    }
+
+    public void Deconstruct(out SpirvBuilder builder, out SpirvContext context, out SpirvModule module)
+    {
+        builder = Builder;
+        context = Context;
+        module = Module;
     }
 }

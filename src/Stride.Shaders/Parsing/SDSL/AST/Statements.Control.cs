@@ -1,4 +1,6 @@
+using Stride.Shaders;
 using Stride.Shaders.Core;
+using Stride.Shaders.Spirv.Building;
 using Stride.Shaders.Parsing.Analysis;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
@@ -22,6 +24,11 @@ public class ConditionalFlow(If first, TextLocation info) : Flow(info)
         Else?.ProcessSymbol(table, entrypoint, io);
 
     }
+    
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 
     public override string ToString()
     {
@@ -40,6 +47,10 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
         if(Condition.Type != ScalarSymbol.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 
     public override string ToString()
     {
@@ -56,6 +67,10 @@ public class ElseIf(Expression condition, Statement body, TextLocation info) : I
         if(Condition.Type != ScalarSymbol.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
     public override string ToString()
     {
         return $"else if({Condition}){Body}";
@@ -69,6 +84,10 @@ public class Else(Statement body, TextLocation info) : Flow(info)
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         Body.ProcessSymbol(table, entrypoint, io);
+    }
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
     }
     public override string ToString()
     {

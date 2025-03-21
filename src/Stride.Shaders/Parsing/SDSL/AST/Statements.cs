@@ -2,6 +2,7 @@ using System.Text;
 using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Spirv.Building;
+using Stride.Shaders.Spirv.Core.Buffers;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -31,7 +32,7 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
     }
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
-        
+        Expression.Compile(table, shader, compiler);
     }
     public override string ToString()
     {
@@ -48,6 +49,11 @@ public class Return(TextLocation info, Expression? expression = null) : Statemen
     {
         Value?.ProcessSymbol(table, entrypoint, io);
         Type = Value?.Type ?? ScalarSymbol.From("void");
+    }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
     }
     public override string ToString()
     {
@@ -67,6 +73,10 @@ public class VariableAssign(Expression variable, bool isConst, TextLocation info
     public Expression? Value { get; set; } = value;
     public bool IsConst { get; set; } = isConst;
 
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
     public override string ToString()
         => Value switch
         {
@@ -94,6 +104,11 @@ public class DeclaredVariableAssign(Identifier variable, bool isConst, TextLocat
         Value?.ProcessSymbol(table, entrypoint, io);
         if (Value is not null && Value.Type != Variable.Type)
             table.Errors.Add(new(TypeName.Info, "wrong type"));
+    }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
     }
 
     internal void ReplaceTypeName(TypeName typeName)
@@ -138,7 +153,10 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
             }
         }
     }
-
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
     public override string ToString()
     {
         return $"{TypeName} {string.Join(", ", Variables.Select(v => v.ToString()))}";
@@ -154,7 +172,10 @@ public class Assign(TextLocation info) : Statement(info)
         foreach (var variable in Variables)
             variable.Variable.ProcessSymbol(table, entrypoint, io);
     }
-
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
     public override string ToString()
     {
         return string.Join(", ", Variables.Select(x => x.ToString())) + ";";
@@ -171,6 +192,15 @@ public class BlockStatement(TextLocation info) : Statement(info)
     {
         foreach (var s in Statements)
             s.ProcessSymbol(table, entrypoint, io);
+    }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var (builder, context, module) = compiler;
+        builder.Buffer.AddOpLabel(context.Bound++);
+        foreach (var s in Statements)
+            s.Compile(table, shader, compiler);
+        
     }
 
     public List<Statement>.Enumerator GetEnumerator() => Statements.GetEnumerator();

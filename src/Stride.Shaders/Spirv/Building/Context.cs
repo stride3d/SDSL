@@ -45,9 +45,33 @@ public class SpirvContext(SpirvModule module) : IDisposable
     }
     public IdRef AddConstant(Literal literal)
     {
+        // Instruction instruction;
+        // if(literal is IntegerLiteral intLit)
+        // {
+        //     var type = GetOrRegister(intLit.Type);
+        //     if(intLit.Suffix.Size == 64)
+        //         instruction = Buffer.AddOpConstant<LiteralInteger>(Bound++, type, intLit.LongValue);
+        //     else
+        //         instruction = Buffer.AddOpConstant<LiteralInteger>(Bound++, type, intLit.IntValue);
+        // }
+        // return instruction;
         return literal switch
         {
-            IntegerLiteral i => 
+            BoolLiteral lit => lit.Value switch
+            {
+                true => Buffer.AddOpConstantTrue(Bound++, GetOrRegister(lit.Type)),
+                false => Buffer.AddOpConstantFalse(Bound++, GetOrRegister(lit.Type))
+            },
+            IntegerLiteral lit => lit.Suffix.Size switch
+            {
+                > 32 => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(lit.Type), lit.LongValue),
+                _ => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(lit.Type), lit.IntValue),
+            },
+            FloatLiteral lit => lit.Suffix.Size switch
+            {
+                > 32 => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(lit.Type), lit.DoubleValue),
+                _ => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(lit.Type), (float)lit.DoubleValue),
+            },
             _ => throw new NotImplementedException()
         };
     }

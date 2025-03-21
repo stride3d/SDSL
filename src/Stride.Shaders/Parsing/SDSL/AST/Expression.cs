@@ -2,6 +2,8 @@ using System.Text;
 using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Spirv.Building;
+using Stride.Shaders.Spirv.Core;
+using Stride.Shaders.Spirv.Core.Buffers;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -12,13 +14,25 @@ public abstract class Expression(TextLocation info) : ValueNode(info)
 {
     public override void ProcessSymbol(SymbolTable table) => ProcessSymbol(table, null, null);
     public virtual void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null) => throw new NotImplementedException($"Symbol table cannot process type : {GetType().Name}");
-    public abstract void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler);
+    public abstract SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler);
 }
 
 public class MethodCall(Identifier name, ShaderExpressionList parameters, TextLocation info) : Expression(info)
 {
     public Identifier Name = name;
     public ShaderExpressionList Parameters = parameters;
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var (builder, context, module) = compiler;
+        var list = parameters.Values;
+        Span<IdRef> compiledParams = stackalloc IdRef[list.Count];
+        var tmp = 0;
+        foreach(var p in list)
+            compiledParams[tmp++] = p.Compile(table, shader, compiler).Id;
+        var funcCall = builder.Buffer.AddOpFunctionCall(context.Bound++, context.GetOrRegister(Type), module.Functions[Name].Id, compiledParams);
+        return new(funcCall, funcCall.ResultType!.Value, Name);
+    }
     public override string ToString()
     {
         return $"{Name}({string.Join(", ", Parameters)})";
@@ -28,6 +42,11 @@ public class MethodCall(Identifier name, ShaderExpressionList parameters, TextLo
 public class MixinAccess(Mixin mixin, TextLocation info) : Expression(info)
 {
     public Mixin Mixin { get; set; } = mixin;
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
     public override string ToString()
     {
         return $"{Mixin}";
@@ -41,16 +60,31 @@ public abstract class UnaryExpression(Expression expression, Operator op, TextLo
     public Operator Operator { get; set; } = op;
 }
 
-public class PrefixExpression(Operator op, Expression expression, TextLocation info) : UnaryExpression(expression, op, info);
+public class PrefixExpression(Operator op, Expression expression, TextLocation info) : UnaryExpression(expression, op, info)
+{
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
+}
 
 public class CastExpression(string typeName, Operator op, Expression expression, TextLocation info) : PrefixExpression(op, expression, info)
 {
     public string TypeName { get; set; } = typeName;
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class PostfixIncrement(Operator op, TextLocation info) : Expression(info)
 {
     public Operator Operator { get; set; } = op;
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
     public override string ToString()
     {
         return $"{Operator.ToSymbol()}";
@@ -105,7 +139,10 @@ public class AccessorChainExpression(Expression source, TextLocation info) : Exp
             }
         }
     }
-
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 
     public override string ToString()
     {
@@ -144,6 +181,14 @@ public class BinaryExpression(Expression left, Operator op, Expression right, Te
             table.Errors.Add(new(Info, SDSLErrorMessages.SDSL0104));
     }
 
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var left = Left.Compile(table, shader, compiler);
+        var right = Left.Compile(table, shader, compiler);
+        var (builder, context, _) = compiler;
+        return builder.BinaryOperation(context, context.GetOrRegister(Type), left, Op, right);
+    }
+
     public override string ToString()
     {
         return $"( {Left} {Op.ToSymbol()} {Right} )";
@@ -165,6 +210,11 @@ public class TernaryExpression(Expression cond, Expression left, Expression righ
             table.Errors.Add(new(Condition.Info, SDSLErrorMessages.SDSL0106));
         if (Left.Type != Right.Type)
             table.Errors.Add(new(Condition.Info, SDSLErrorMessages.SDSL0106));
+    }
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException(); 
     }
 
     public override string ToString()

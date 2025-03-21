@@ -5,7 +5,7 @@ using static Spv.Specification;
 
 namespace Stride.Shaders.Spirv.Building;
 
-public partial class Builder
+public partial class SpirvBuilder
 {
     public SpirvFunction CreateFunction(SpirvContext context, string name, FunctionTypeSymbol ftype, ReadOnlySpan<Symbol> parameters, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {

@@ -1,9 +1,10 @@
 using System.Numerics;
 using System.Text;
 using Stride.Shaders.Core;
-using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
 using Stride.Shaders.Spirv.Building;
+using Stride.Shaders.Spirv.Core;
+using Stride.Shaders.Spirv.Core.Buffers;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -17,7 +18,10 @@ public class StringLiteral(string value, TextLocation info) : Literal(info)
 {
     public string Value { get; set; } = value;
 
-    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler){}
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 
     public override string ToString()
     {
@@ -65,13 +69,17 @@ public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : Numb
             _ => throw new NotImplementedException("Unsupported integer suffix")
         };
     }
-
-    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
-        compiler.Context.AddConstant()
+        var i = (Type, Suffix) switch
+        {
+            (ScalarSymbol, { Size: > 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralInteger>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), LongValue),
+            (ScalarSymbol, { Size: <= 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralInteger>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), IntValue),
+            _ => throw new NotImplementedException("")
+        };
+        return new SpirvValue(i, i.ResultType!.Value, null);
     }
 }
-public class UnsignedIntegerLiteral(Suffix suffix, ulong value, TextLocation info) : NumberLiteral<ulong>(suffix, value, info);
 
 public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, TextLocation info) : NumberLiteral<double>(suffix, value, info)
 {
@@ -88,9 +96,19 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
             _ => throw new NotImplementedException("Unsupported float")
         };
     }
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var i = (Type, Suffix) switch
+        {
+            (ScalarSymbol, { Size: > 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralFloat>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), DoubleValue),
+            (ScalarSymbol, { Size: <= 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralFloat>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), (float)DoubleValue),
+            _ => throw new NotImplementedException("")
+        };
+        return new SpirvValue(i, i.ResultType!.Value, null);
+    }
 }
 
-public sealed class HexLiteral(ulong value, TextLocation info) : UnsignedIntegerLiteral(new(32, false, false), value, info)
+public sealed class HexLiteral(ulong value, TextLocation info) : IntegerLiteral(new(32, false, false), (long)value, info)
 {
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
         => Type = ScalarSymbol.From("long");
@@ -102,6 +120,16 @@ public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
     public bool Value { get; set; } = value;
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
         => Type = ScalarSymbol.From("bool");
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var i = Value switch
+        {
+            true => compiler.Context.Buffer.AddOpConstantTrue(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type)),
+            false => compiler.Context.Buffer.AddOpConstantFalse(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type))
+        };
+        return new SpirvValue(i, i.ResultType!.Value, null);
+    }
 }
 
 public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(info)
@@ -126,6 +154,26 @@ public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(
         }
     }
 
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        Span<IdRef> values = stackalloc IdRef[Values.Count];
+        int tmp = 0;
+        foreach (var v in Values)
+        {
+            values[tmp] = v.Compile(table, shader, compiler).Id;
+            tmp += 1;
+        }
+        var instruction =
+            compiler.Context.Buffer.AddOpConstantComposite(
+                compiler.Context.Bound++,
+                compiler.Context.GetOrRegister(Type),
+                values
+            );
+        return new(instruction, instruction.ResultId!.Value);
+    }
+
+
     public override string ToString()
     {
         return $"{TypeName}({string.Join(", ", Values.Select(x => x.ToString()))})";
@@ -139,6 +187,26 @@ public class MatrixLiteral(TypeName typeName, int rows, int cols, TextLocation i
     public int Rows { get; set; } = rows;
     public int Cols { get; set; } = cols;
     public List<Expression> Values { get; set; } = [];
+
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        Span<IdRef> values = stackalloc IdRef[Values.Count];
+        int tmp = 0;
+        foreach (var v in Values)
+        {
+            values[tmp] = v.Compile(table, shader, compiler).Id;
+            tmp += 1;
+        }
+        var instruction =
+            compiler.Context.Buffer.AddOpConstantComposite(
+                compiler.Context.Bound++,
+                compiler.Context.GetOrRegister(Type),
+                values
+            );
+        return new(instruction, instruction.ResultId!.Value);
+    }
+
     public override string ToString()
     {
         return $"{TypeName}{Values.Count}({string.Join(", ", Values.Select(x => x.ToString()))})";
@@ -148,6 +216,25 @@ public class MatrixLiteral(TypeName typeName, int rows, int cols, TextLocation i
 public class ArrayLiteral(TextLocation info) : ValueLiteral(info)
 {
     public List<Expression> Values { get; set; } = [];
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        Span<IdRef> values = stackalloc IdRef[Values.Count];
+        int tmp = 0;
+        foreach (var v in Values)
+        {
+            values[tmp] = v.Compile(table, shader, compiler).Id;
+            tmp += 1;
+        }
+        var instruction =
+            compiler.Context.Buffer.AddOpConstantComposite(
+                compiler.Context.Bound++,
+                compiler.Context.GetOrRegister(Type),
+                values
+            );
+        return new(instruction, instruction.ResultId!.Value);
+    }
+
     public override string ToString()
     {
         return $"{Values.Count}({string.Join(", ", Values.Select(x => x.ToString()))})";
@@ -186,6 +273,11 @@ public class Identifier(string name, TextLocation info) : Literal(info)
             }
         }
         throw new NotImplementedException($"Cannot find symbol {Name}.");
+    }
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
     }
 
     public override string ToString()
@@ -257,6 +349,11 @@ public class TypeName(string name, TextLocation info, bool isArray) : Literal(in
         //     else table.Errors.Add(new(Info, "type not found"));
         // }
         else throw new NotImplementedException();
+    }
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
     }
 
     public override string ToString()

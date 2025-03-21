@@ -1,5 +1,6 @@
 using Stride.Shaders.Core;
 using Stride.Shaders.Parsing.Analysis;
+using Stride.Shaders.Spirv.Building;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -9,14 +10,29 @@ public abstract class Loop(TextLocation info) : Flow(info);
 public class Break(TextLocation info) : Statement(info)
 {
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io) { }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 }
 public class Discard(TextLocation info) : Statement(info)
 {
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io) { }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 }
 public class Continue(TextLocation info) : Statement(info)
 {
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io) { }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 
@@ -37,6 +53,11 @@ public class ForEach(TypeName typename, Identifier variable, Expression collecti
         }
     }
 
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
+
     public override string ToString()
     {
         return $"foreach({TypeName} {Variable} in {Collection})\n{Body}";
@@ -54,6 +75,11 @@ public class While(Expression condition, Statement body, TextLocation info, Shad
     {
         Condition.ProcessSymbol(table);
         Body.ProcessSymbol(table);
+    }
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
     }
 
     public override string ToString()
@@ -79,6 +105,11 @@ public class For(Statement initializer, Statement cond, List<Statement> update, 
     public Statement Body { get; set; } = body;
     public ShaderAttribute? Attribute = attribute;
     public List<ForAnnotation> Annotations { get; set; } = [];
+
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        throw new NotImplementedException();
+    }
 
     public override string ToString()
     {

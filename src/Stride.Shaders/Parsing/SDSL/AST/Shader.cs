@@ -1,6 +1,7 @@
 using Stride.Shaders.Core;
 using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
+using Stride.Shaders.Spirv.Building;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -65,6 +66,12 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
             if (member is not ShaderMember)
                 member.ProcessSymbol(table);
         }
+    }
+
+
+    public void Compile(CompilerUnit compiler, SymbolTable table)
+    {
+        throw new NotImplementedException();
     }
 
 

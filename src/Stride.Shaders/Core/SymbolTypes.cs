@@ -97,6 +97,7 @@ public sealed record Texture3DSymbol(SymbolType BaseType, int Width, int Height,
 
 public sealed record FunctionTypeSymbol(List<SymbolType> Types) : SymbolType()
 {
+    public SymbolType ReturnType => Types[0];
     public bool Equals(FunctionTypeSymbol? other)
     {
         if(other is null)

@@ -30,8 +30,7 @@ public class MethodCall(Identifier name, ShaderExpressionList parameters, TextLo
         var tmp = 0;
         foreach(var p in list)
             compiledParams[tmp++] = p.Compile(table, shader, compiler).Id;
-        var funcCall = builder.Buffer.AddOpFunctionCall(context.Bound++, context.GetOrRegister(Type), module.Functions[Name].Id, compiledParams);
-        return new(funcCall, funcCall.ResultType!.Value, Name);
+        return builder.CallFunction(context, Name, compiledParams);
     }
     public override string ToString()
     {

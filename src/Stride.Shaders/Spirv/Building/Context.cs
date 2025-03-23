@@ -43,39 +43,7 @@ public class SpirvContext(SpirvModule module) : IDisposable
             _ => throw new NotImplementedException()
         };
     }
-    public IdRef AddConstant(Literal literal)
-    {
-        // Instruction instruction;
-        // if(literal is IntegerLiteral intLit)
-        // {
-        //     var type = GetOrRegister(intLit.Type);
-        //     if(intLit.Suffix.Size == 64)
-        //         instruction = Buffer.AddOpConstant<LiteralInteger>(Bound++, type, intLit.LongValue);
-        //     else
-        //         instruction = Buffer.AddOpConstant<LiteralInteger>(Bound++, type, intLit.IntValue);
-        // }
-        // return instruction;
-        return literal switch
-        {
-            BoolLiteral lit => lit.Value switch
-            {
-                true => Buffer.AddOpConstantTrue(Bound++, GetOrRegister(lit.Type)),
-                false => Buffer.AddOpConstantFalse(Bound++, GetOrRegister(lit.Type))
-            },
-            IntegerLiteral lit => lit.Suffix.Size switch
-            {
-                > 32 => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(lit.Type), lit.LongValue),
-                _ => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(lit.Type), lit.IntValue),
-            },
-            FloatLiteral lit => lit.Suffix.Size switch
-            {
-                > 32 => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(lit.Type), lit.DoubleValue),
-                _ => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(lit.Type), (float)lit.DoubleValue),
-            },
-            _ => throw new NotImplementedException()
-        };
-    }
-
+    
     public void AddGlobalVariable(Symbol variable)
     {
         throw new NotImplementedException();
@@ -125,8 +93,10 @@ public class SpirvContext(SpirvModule module) : IDisposable
         Buffer.AddOpEntryPoint(model, function, name, pvariables);
     }
 
-    public IdRef GetOrRegister(SymbolType type)
+    public IdRef GetOrRegister(SymbolType? type)
     {
+        if(type is null)
+            throw new ArgumentException($"Type is null");
         if (Types.TryGetValue(type, out var res))
             return res;
         else

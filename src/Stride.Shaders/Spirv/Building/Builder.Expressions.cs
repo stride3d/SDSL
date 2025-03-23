@@ -1,6 +1,7 @@
 using Stride.Shaders.Core;
 using Stride.Shaders.Spirv.Core;
 using Stride.Shaders.Spirv.Core.Buffers;
+using Stride.Shaders.Parsing.SDSL.AST;
 using static Spv.Specification;
 
 namespace Stride.Shaders.Spirv.Building;
@@ -86,7 +87,7 @@ public partial class SpirvBuilder
 
             (Operator.LogicalOR, ScalarSymbol { TypeName: "bool" }, ScalarSymbol { TypeName: "bool" })
                 => Buffer.InsertOpLogicalOr(Position, context.Bound++, resultType, left.Id, right.Id),
-                
+
             _ => throw new NotImplementedException()
         };
         Position += instruction.WordCount;
@@ -94,13 +95,58 @@ public partial class SpirvBuilder
         {
             if (name is not null)
                 context.AddName(instruction, name);
-            return new(instruction, resultId, name);
+            return new(instruction, name);
         }
         else throw new NotImplementedException("Instruction should have result id");
     }
 
+    public SpirvValue CallFunction(SpirvContext context, string name, ReadOnlySpan<SpirvValue> parameters)
+    {
+        Span<IdRef> paramsIds = stackalloc IdRef[parameters.Length];
+        var tmp = 0;
+        foreach (var p in parameters)
+            paramsIds[tmp++] = p.Id;
+        return CallFunction(context, name, paramsIds);
+    }
+    public SpirvValue CallFunction(SpirvContext context, string name, Span<IdRef> parameters)
+    {
+        var func = context.Module.Functions[name];
+        var fcall = Buffer.InsertOpFunctionCall(Position, context.Bound++, func.Id, context.GetOrRegister(func.FunctionType.ReturnType), parameters);
+        Position += fcall.WordCount;
+        return new(fcall, func.Name);
+    }
 
-    
+    public SpirvValue CreateConstant(SpirvContext context, ShaderClass shader, Literal literal)
+    {
+        var instruction = literal switch
+        {
+            BoolLiteral lit => lit.Value switch
+            {
+                true => Buffer.InsertOpConstantTrue(Position, context.Bound++, context.GetOrRegister(lit.Type)),
+                false => Buffer.InsertOpConstantFalse(Position, context.Bound++, context.GetOrRegister(lit.Type))
+            },
+            IntegerLiteral lit => lit.Suffix.Size switch
+            {
+                > 32 => Buffer.InsertOpConstant<LiteralInteger>(Position, context.Bound++, context.GetOrRegister(lit.Type), lit.LongValue),
+                _ => Buffer.InsertOpConstant<LiteralInteger>(Position, context.Bound++, context.GetOrRegister(lit.Type), lit.IntValue),
+            },
+            FloatLiteral lit => lit.Suffix.Size switch
+            {
+                > 32 => Buffer.InsertOpConstant<LiteralFloat>(Position, context.Bound++, context.GetOrRegister(lit.Type), lit.DoubleValue),
+                _ => Buffer.InsertOpConstant<LiteralFloat>(Position, context.Bound++, context.GetOrRegister(lit.Type), (float)lit.DoubleValue),
+            },
+            _ => throw new NotImplementedException()
+        };
+        Position += instruction.WordCount;
+        return new(instruction);
+    }
+
+    public SpirvValue CompositeConstruct(SpirvContext context, CompositeLiteral literal, Span<IdRef> values)
+    {
+        var instruction = Buffer.InsertOpCompositeConstruct(Position, context.Bound++, context.GetOrRegister(literal.Type), values);
+        Position += instruction.WordCount;
+        return new(instruction);
+    }
 }
 
 

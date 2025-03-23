@@ -21,34 +21,9 @@ public record struct SDSLC() : ICompiler
 
             if(table.Errors.Count > 0)
                 throw new Exception("Some parse errors");
-            var module = new SpirvModule();
-            var builder = new Builder();
-            var context = new SpirvContext(module);
-            shader.Compile(builder, context);
-            context.Buffer.Sort();
-            var dis = new SpirvDis<SpirvBuffer>(context.Buffer, true);
-            dis.Disassemble(true);
+            var compiler = new CompilerUnit();
+            shader.Compile(compiler, table);
         }
         throw new NotImplementedException();
-    }
-}
-
-
-
-
-
-
-public static class GenerateExtension
-{
-    public static void Compile(this ShaderClass sclass, Builder builder, SpirvContext context)
-    {
-        throw new NotImplementedException();
-        // foreach(var v in sclass.Elements.OfType<ShaderMember>())
-        // {
-        //     if(v.StreamKind is StreamKind.Stream or StreamKind.PatchStream)
-        //     {
-        //         context.AddGlobalVariable(context.SymbolProvider.RootSymbols[new(v.Name, SymbolKind.Variable, Storage.Stream)]);
-        //     }
-        // }
     }
 }

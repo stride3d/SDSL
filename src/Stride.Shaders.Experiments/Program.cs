@@ -5,5 +5,4 @@ using Stride.Shaders.Parsing.SDSL;
 using Stride.Shaders.Parsing.SDSL.AST;
 
 Examples.CompileSDSL();
-var x = 0;
 // Examples.TryAllFiles();

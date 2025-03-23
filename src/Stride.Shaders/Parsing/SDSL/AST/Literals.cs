@@ -132,10 +132,31 @@ public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
     }
 }
 
-public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(info)
+public abstract class CompositeLiteral(TextLocation info) : ValueLiteral(info)
+{
+    public List<Expression> Values { get; set; } = [];
+
+    public bool IsConstant()
+    {
+        foreach(var v in Values)
+            if(v is not NumberLiteral or BoolLiteral)
+                return false;
+        return true;
+    }
+
+    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var (builder, context, module) = compiler;
+        Span<IdRef> values = stackalloc IdRef[Values.Count];
+        int tmp = 0;
+        foreach (var v in Values)
+            values[tmp++] = v.Compile(table, shader, compiler).Id;
+        return builder.CompositeConstruct(context, this, values);
+    }
+}
+public class VectorLiteral(TypeName typeName, TextLocation info) : CompositeLiteral(info)
 {
     public TypeName TypeName { get; set; } = typeName;
-    public List<Expression> Values { get; set; } = [];
 
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
@@ -153,27 +174,6 @@ public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(
                 table.Errors.Add(new(v.Info, SDSLErrorMessages.SDSL0106));
         }
     }
-
-
-    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
-    {
-        Span<IdRef> values = stackalloc IdRef[Values.Count];
-        int tmp = 0;
-        foreach (var v in Values)
-        {
-            values[tmp] = v.Compile(table, shader, compiler).Id;
-            tmp += 1;
-        }
-        var instruction =
-            compiler.Context.Buffer.AddOpConstantComposite(
-                compiler.Context.Bound++,
-                compiler.Context.GetOrRegister(Type),
-                values
-            );
-        return new(instruction, instruction.ResultId!.Value);
-    }
-
-
     public override string ToString()
     {
         return $"{TypeName}({string.Join(", ", Values.Select(x => x.ToString()))})";
@@ -181,31 +181,11 @@ public class VectorLiteral(TypeName typeName, TextLocation info) : ValueLiteral(
 }
 
 
-public class MatrixLiteral(TypeName typeName, int rows, int cols, TextLocation info) : ValueLiteral(info)
+public class MatrixLiteral(TypeName typeName, int rows, int cols, TextLocation info) : CompositeLiteral(info)
 {
     public TypeName TypeName { get; set; } = typeName;
     public int Rows { get; set; } = rows;
     public int Cols { get; set; } = cols;
-    public List<Expression> Values { get; set; } = [];
-
-
-    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
-    {
-        Span<IdRef> values = stackalloc IdRef[Values.Count];
-        int tmp = 0;
-        foreach (var v in Values)
-        {
-            values[tmp] = v.Compile(table, shader, compiler).Id;
-            tmp += 1;
-        }
-        var instruction =
-            compiler.Context.Buffer.AddOpConstantComposite(
-                compiler.Context.Bound++,
-                compiler.Context.GetOrRegister(Type),
-                values
-            );
-        return new(instruction, instruction.ResultId!.Value);
-    }
 
     public override string ToString()
     {
@@ -213,32 +193,10 @@ public class MatrixLiteral(TypeName typeName, int rows, int cols, TextLocation i
     }
 }
 
-public class ArrayLiteral(TextLocation info) : ValueLiteral(info)
+public class ArrayLiteral(TextLocation info) : CompositeLiteral(info)
 {
-    public List<Expression> Values { get; set; } = [];
-
-    public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
-    {
-        Span<IdRef> values = stackalloc IdRef[Values.Count];
-        int tmp = 0;
-        foreach (var v in Values)
-        {
-            values[tmp] = v.Compile(table, shader, compiler).Id;
-            tmp += 1;
-        }
-        var instruction =
-            compiler.Context.Buffer.AddOpConstantComposite(
-                compiler.Context.Bound++,
-                compiler.Context.GetOrRegister(Type),
-                values
-            );
-        return new(instruction, instruction.ResultId!.Value);
-    }
-
     public override string ToString()
-    {
-        return $"{Values.Count}({string.Join(", ", Values.Select(x => x.ToString()))})";
-    }
+        => $"{Values.Count}({string.Join(", ", Values.Select(x => x.ToString()))})";
 }
 
 public class Identifier(string name, TextLocation info) : Literal(info)

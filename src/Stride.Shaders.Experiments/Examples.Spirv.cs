@@ -18,7 +18,7 @@ public static partial class Examples
     {
         var module = new SpirvModule();
         using var context = new SpirvContext(new());
-        using var builder = new Builder();
+        using var builder = new SpirvBuilder();
 
         context.GetOrRegister(new MatrixSymbol(ScalarSymbol.From("float"), 4, 3));
         context.GetOrRegister(ScalarSymbol.From("int"));
@@ -65,8 +65,6 @@ public static partial class Examples
 
 
         SpirvReader.ParseToList(shader, new(8));
-
-        var x = 0;
     }
 
 
@@ -189,8 +187,6 @@ public static partial class Examples
             "test.spv",
             MemoryMarshal.Cast<int, byte>(buffer.Span)
         );
-
-        var x = 0;
     }
 
 
@@ -210,6 +206,5 @@ public static partial class Examples
                 Console.WriteLine(o.To<LiteralString>().Value);
             }
         }
-        var tmp = 0;
     }
 }

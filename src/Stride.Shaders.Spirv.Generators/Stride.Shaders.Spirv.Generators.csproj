@@ -20,16 +20,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\spirv.core.grammar.json" />
 		<EmbeddedResource Include="Extensions\spirv.sdsl.grammar-ext.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.glsl.std.450.grammar.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.opencl.std.100.grammar.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-gcn-shader.grammar.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-shader-ballot.grammar.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-shader-explicit-vertex-parameter.grammar.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-shader-trinary-minmax.grammar.json" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvRegistry\specs\unified1\SPIRV.html" />
-		<EmbeddedResource Include="..\..\..\submodules\SpirvRegistry\specs\unified1\GLSL.std.450.html" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\spirv.core.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.glsl.std.450.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.opencl.std.100.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-gcn-shader.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-shader-ballot.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-shader-explicit-vertex-parameter.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvHeaders\include\spirv\unified1\extinst.spv-amd-shader-trinary-minmax.grammar.json" />
+		<EmbeddedResource Include="..\..\submodules\SpirvRegistry\specs\unified1\SPIRV.html" />
+		<EmbeddedResource Include="..\..\submodules\SpirvRegistry\specs\unified1\GLSL.std.450.html" />
 	</ItemGroup>
 
 	<PropertyGroup>

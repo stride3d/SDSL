@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Stride.Shaders.Spirv\Stride.Shaders.Spirv.Core\Stride.Shaders.Spirv.Core.csproj" />
+    <ProjectReference Include="..\Stride.Shaders.Spirv.Core\Stride.Shaders.Spirv.Core.csproj" />
     <ProjectReference Include="..\..\submodules\CppNet8\CppNet.csproj" />
   </ItemGroup>
 

@@ -19,15 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride.Shaders.Compilers", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride.Shaders.Experiments", "src\Stride.Shaders.Experiments\Stride.Shaders.Experiments.csproj", "{11FFBEAC-C3B8-49FA-9C6A-B0DDDA48EBE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stride.Shaders.AvaloniaViewer", "src\Stride.Shaders.AvaloniaViewer\Stride.Shaders.AvaloniaViewer.csproj", "{3B511145-0074-44EE-BD3F-3FE7459CFD46}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C61EE276-91AA-4EDB-9E19-8BD8321FE13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,10 +53,9 @@ Global
 		{11FFBEAC-C3B8-49FA-9C6A-B0DDDA48EBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11FFBEAC-C3B8-49FA-9C6A-B0DDDA48EBE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11FFBEAC-C3B8-49FA-9C6A-B0DDDA48EBE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B511145-0074-44EE-BD3F-3FE7459CFD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B511145-0074-44EE-BD3F-3FE7459CFD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B511145-0074-44EE-BD3F-3FE7459CFD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B511145-0074-44EE-BD3F-3FE7459CFD46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C61EE276-91AA-4EDB-9E19-8BD8321FE13D} = {9B25B78A-8418-4161-99D6-5E84611BDA59}
@@ -71,6 +65,5 @@ Global
 		{4F8838DA-16F0-4EC0-A0A4-8F89F47E35C5} = {9B25B78A-8418-4161-99D6-5E84611BDA59}
 		{32B1203D-8160-455A-9F00-8097119B7EB4} = {9B25B78A-8418-4161-99D6-5E84611BDA59}
 		{11FFBEAC-C3B8-49FA-9C6A-B0DDDA48EBE6} = {9B25B78A-8418-4161-99D6-5E84611BDA59}
-		{3B511145-0074-44EE-BD3F-3FE7459CFD46} = {9B25B78A-8418-4161-99D6-5E84611BDA59}
 	EndGlobalSection
 EndGlobal

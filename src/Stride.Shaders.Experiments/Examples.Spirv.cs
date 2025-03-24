@@ -1,7 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Stride.Shaders.Core;
-using Stride.Shaders.Spirv;
 using Stride.Shaders.Spirv.Core;
 using Stride.Shaders.Spirv.Core.Buffers;
 using Stride.Shaders.Spirv.Core.Parsing;
@@ -20,24 +19,24 @@ public static partial class Examples
         using var context = new SpirvContext(new());
         using var builder = new SpirvBuilder();
 
-        context.GetOrRegister(new MatrixSymbol(ScalarSymbol.From("float"), 4, 3));
-        context.GetOrRegister(ScalarSymbol.From("int"));
+        context.GetOrRegister(new MatrixType(ScalarType.From("float"), 4, 3));
+        context.GetOrRegister(ScalarType.From("int"));
 
 
-        context.AddGlobalVariable(new(new("color", SymbolKind.Variable, Storage.Stream), VectorSymbol.From("float4")));
+        context.AddGlobalVariable(new(new("color", SymbolKind.Variable, Storage.Stream), VectorType.From("float4")));
 
         var function = builder.CreateFunction(
             context,
             "add",
-            new([ScalarSymbol.From("int"), ScalarSymbol.From("int"), ScalarSymbol.From("int")]),
+            new(ScalarType.From("int"), [ScalarType.From("int"), ScalarType.From("int")]),
             parameters: [
                 new Symbol(
                 Id: new("a", SymbolKind.Variable, Storage.Function),
-                ScalarSymbol.From("int")
+                ScalarType.From("int")
             ),
             new Symbol(
                 Id: new("b", SymbolKind.Variable, Storage.Function),
-                ScalarSymbol.From("int")
+                ScalarType.From("int")
             )
             ]
         );

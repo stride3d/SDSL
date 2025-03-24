@@ -1,6 +1,4 @@
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using Microsoft.VisualBasic;
 
 namespace Stride.Shaders.Core;
 
@@ -10,24 +8,24 @@ public abstract record SymbolType()
 {
     public static bool TryGetNumeric(string name, out SymbolType? result)
     {
-        if(ScalarSymbol.Types.TryGetValue(name, out var s))
+        if(ScalarType.Types.TryGetValue(name, out var s))
         {
             result = s;
             return true;
         }
-        else if(VectorSymbol.Types.TryGetValue(name, out var v))
+        else if(VectorType.Types.TryGetValue(name, out var v))
         {
             result = v;
             return true;
         }
-        else if(MatrixSymbol.Types.TryGetValue(name, out var m))
+        else if(MatrixType.Types.TryGetValue(name, out var m))
         {
             result = m;
             return true;
         }
         else if (name == "void")
         {
-            result = ScalarSymbol.From("void");
+            result = ScalarType.From("void");
             return true;
         }
         else
@@ -38,7 +36,7 @@ public abstract record SymbolType()
     }
 }
 
-public sealed record UndefinedSymbol(string TypeName) : SymbolType()
+public sealed record UndefinedType(string TypeName) : SymbolType()
 {
     public override string ToString()
     {
@@ -46,74 +44,73 @@ public sealed record UndefinedSymbol(string TypeName) : SymbolType()
     }
 }
 
-public sealed record PointerSymbol(SymbolType BaseType) : SymbolType()
+public sealed record PointerType(SymbolType BaseType) : SymbolType()
 {
     public override string ToString() => $"*{BaseType}";
 }
 
-public sealed partial record ScalarSymbol(string TypeName) : SymbolType()
+public sealed partial record ScalarType(string TypeName) : SymbolType()
 {
     public override string ToString() => TypeName;
 }
-public sealed partial record VectorSymbol(ScalarSymbol BaseType, int Size) : SymbolType()
+public sealed partial record VectorType(ScalarType BaseType, int Size) : SymbolType()
 {    
     public override string ToString() => $"{BaseType}{Size}";
 }
-public sealed partial record MatrixSymbol(ScalarSymbol BaseType, int Rows, int Columns) : SymbolType()
+public sealed partial record MatrixType(ScalarType BaseType, int Rows, int Columns) : SymbolType()
 {
     public override string ToString() => $"{BaseType}{Rows}x{Columns}";
 }
-public sealed record ArraySymbol(SymbolType BaseType, int Size) : SymbolType()
+public sealed record ArrayType(SymbolType BaseType, int Size) : SymbolType()
 {
     public override string ToString() => $"{BaseType}[{Size}]";
 }
-public sealed record StructSymbol(string Name, SortedList<string, SymbolType> Fields) : SymbolType()
+public sealed record StructType(string Name, SortedList<string, SymbolType> Fields) : SymbolType()
 {
     public override string ToString() => $"{Name}{{{string.Join(", ", Fields.Select(x => $"{x.Value} {x.Key}"))}}}";
 }
-public sealed record BufferSymbol(SymbolType BaseType, int Size) : SymbolType()
+public sealed record BufferType(SymbolType BaseType, int Size) : SymbolType()
 {
     public override string ToString() => $"Buffer<{BaseType}, {Size}>";
 }
 
 
-public abstract record TextureSymbol(SymbolType BaseType) : SymbolType()
+public abstract record TextureType(SymbolType BaseType) : SymbolType()
 {
     public override string ToString() => $"Texture<{BaseType}>";
 }
-public sealed record Texture1DSymbol(SymbolType BaseType, int Size) : TextureSymbol(BaseType)
+public sealed record Texture1DType(SymbolType BaseType, int Size) : TextureType(BaseType)
 {
     public override string ToString() => $"Texture<{BaseType}, {Size}>";
 }
-public sealed record Texture2DSymbol(SymbolType BaseType, int Width, int Height) : TextureSymbol(BaseType)
+public sealed record Texture2DType(SymbolType BaseType, int Width, int Height) : TextureType(BaseType)
 {
     public override string ToString() => $"Texture<{BaseType}, {Width}, {Height}>";
 }
-public sealed record Texture3DSymbol(SymbolType BaseType, int Width, int Height, int Depth) : TextureSymbol(BaseType)
+public sealed record Texture3DType(SymbolType BaseType, int Width, int Height, int Depth) : TextureType(BaseType)
 {
     public override string ToString() => $"Texture<{BaseType}, {Width}, {Height}, {Depth}>";
 }
 
 
-public sealed record FunctionTypeSymbol(List<SymbolType> Types) : SymbolType()
+public sealed record FunctionType(SymbolType ReturnType, List<SymbolType> ParameterTypes) : SymbolType()
 {
-    public SymbolType ReturnType => Types[0];
-    public bool Equals(FunctionTypeSymbol? other)
+    public bool Equals(FunctionType? other)
     {
         if(other is null)
             return false;
-        
-        if (Types == null && other.Types == null)
-            return true;
-        if (Types == null || other.Types == null)
+        if (ReturnType == null || other.ReturnType == null)
             return false;
-        return Types.SequenceEqual(other.Types);
+        if (ParameterTypes == null || other.ParameterTypes == null)
+            return false;
+        return ReturnType == other.ReturnType && ParameterTypes.SequenceEqual(other.ParameterTypes);
     }
 
     public override int GetHashCode()
     {
         int hash = 17;
-        foreach (var item in Types)
+        hash = hash * 31 + ReturnType.GetHashCode();
+        foreach (var item in ParameterTypes)
         {
             hash = hash * 31 + item.GetHashCode();
         }
@@ -123,14 +120,14 @@ public sealed record FunctionTypeSymbol(List<SymbolType> Types) : SymbolType()
     public override string ToString()
     {
         var builder = new StringBuilder();
-        builder.Append("TypeFunction<");
-        for(int i = 0; i < Types.Count; i++)
+        builder.Append($"fn (");
+        for(int i = 0; i < ParameterTypes.Count; i++)
         {
-            builder.Append(Types[i]);
-            if(i < Types.Count - 1)
-                builder.Append(", ");
+            builder.Append(ParameterTypes[i]);
+            if(i < ParameterTypes.Count - 1)
+                builder.Append(" * ");
         }
-        return builder.Append('>').ToString();
+        return builder.Append($") -> {ReturnType}").ToString();
     }
 }
 

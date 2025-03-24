@@ -29,17 +29,17 @@ public class SpirvContext(SpirvModule module) : IDisposable
     {
         return value switch
         {
-            byte v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("byte")), v),
-            sbyte v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("sbyte")), v),
-            ushort v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("ushort")), v),
-            short v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("short")), v),
-            uint v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("uint")), v),
-            int v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("int")), v),
-            ulong v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("ulong")), v),
-            long v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarSymbol.From("long")), v),
-            Half v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarSymbol.From("half")), v),
-            float v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarSymbol.From("float")), v),
-            double v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarSymbol.From("bdouble")), v),
+            byte v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("byte")), v),
+            sbyte v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("sbyte")), v),
+            ushort v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("ushort")), v),
+            short v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("short")), v),
+            uint v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("uint")), v),
+            int v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("int")), v),
+            ulong v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("ulong")), v),
+            long v => Buffer.AddOpConstant<LiteralInteger>(Bound++, GetOrRegister(ScalarType.From("long")), v),
+            Half v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarType.From("half")), v),
+            float v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarType.From("float")), v),
+            double v => Buffer.AddOpConstant<LiteralFloat>(Bound++, GetOrRegister(ScalarType.From("bdouble")), v),
             _ => throw new NotImplementedException()
         };
     }
@@ -103,7 +103,7 @@ public class SpirvContext(SpirvModule module) : IDisposable
         {
             var instruction = type switch
             {
-                ScalarSymbol s =>
+                ScalarType s =>
                     s.TypeName switch
                     {
                         "void" => Buffer.AddOpTypeVoid(Bound++),
@@ -122,11 +122,11 @@ public class SpirvContext(SpirvModule module) : IDisposable
                         _ => throw new NotImplementedException($"Can't add type {type}")
 
                     },
-                VectorSymbol v => Buffer.AddOpTypeVector(Bound++, GetOrRegister(v.BaseType), v.Size),
-                MatrixSymbol m => Buffer.AddOpTypeVector(Bound++, GetOrRegister(new VectorSymbol(m.BaseType, m.Rows)), m.Columns),
-                ArraySymbol a => Buffer.AddOpTypeArray(Bound++, GetOrRegister(a.BaseType), a.Size),
-                StructSymbol st => RegisterStruct(st),
-                FunctionTypeSymbol f => RegisterFunctionType(f),
+                VectorType v => Buffer.AddOpTypeVector(Bound++, GetOrRegister(v.BaseType), v.Size),
+                MatrixType m => Buffer.AddOpTypeVector(Bound++, GetOrRegister(new VectorType(m.BaseType, m.Rows)), m.Columns),
+                ArrayType a => Buffer.AddOpTypeArray(Bound++, GetOrRegister(a.BaseType), a.Size),
+                StructType st => RegisterStruct(st),
+                FunctionType f => RegisterFunctionType(f),
                 // TextureSymbol t => Buffer.AddOpTypeImage(Bound++, Register(t.BaseType), t.),
                 // StructSymbol st => RegisterStruct(st),
                 _ => throw new NotImplementedException($"Can't add type {type}")
@@ -137,7 +137,7 @@ public class SpirvContext(SpirvModule module) : IDisposable
         }
     }
 
-    IdRef RegisterStruct(StructSymbol structSymbol)
+    IdRef RegisterStruct(StructType structSymbol)
     {
         Span<IdRef> types = stackalloc IdRef[structSymbol.Fields.Count];
         int tmp = 0;
@@ -151,13 +151,13 @@ public class SpirvContext(SpirvModule module) : IDisposable
         return result;
     }
 
-    IdRef RegisterFunctionType(FunctionTypeSymbol functionType)
+    IdRef RegisterFunctionType(FunctionType functionType)
     {
-        Span<IdRef> types = stackalloc IdRef[functionType.Types.Count];
+        Span<IdRef> types = stackalloc IdRef[functionType.ParameterTypes.Count];
         int tmp = 0;
-        foreach (var f in functionType.Types)
+        foreach (var f in functionType.ParameterTypes)
             types[tmp] = GetOrRegister(f);
-        var result = Buffer.AddOpTypeStruct(Bound++, types);
+        var result = Buffer.AddOpTypeFunction(Bound++, GetOrRegister(functionType.ReturnType), types);
         AddName(result, functionType.ToString());
         return result;
     }

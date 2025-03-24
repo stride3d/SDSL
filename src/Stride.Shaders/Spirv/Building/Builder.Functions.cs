@@ -7,11 +7,11 @@ namespace Stride.Shaders.Spirv.Building;
 
 public partial class SpirvBuilder
 {
-    public SpirvFunction CreateFunction(SpirvContext context, string name, FunctionTypeSymbol ftype, ReadOnlySpan<Symbol> parameters, FunctionControlMask mask = FunctionControlMask.MaskNone)
+    public SpirvFunction CreateFunction(SpirvContext context, string name, FunctionType ftype, ReadOnlySpan<Symbol> parameters, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {
-        foreach(var t in ftype.Types)
+        foreach(var t in ftype.ParameterTypes)
             context.GetOrRegister(t);
-        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(ftype.Types[0]), mask, context.GetOrRegister(ftype));
+        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(ftype.ReturnType), mask, context.GetOrRegister(ftype));
         context.AddName(func, name);
         var result = new SpirvFunction(func.ResultId!.Value, name, ftype);
         if(!parameters.IsEmpty)
@@ -24,9 +24,9 @@ public partial class SpirvBuilder
         Buffer.AddOpFunctionEnd();
         return result;
     }
-    public SpirvFunction CreateEntryPoint(SpirvContext context, ExecutionModel execModel, string name, FunctionTypeSymbol type, ReadOnlySpan<Symbol> variables, FunctionControlMask mask = FunctionControlMask.MaskNone)
+    public SpirvFunction CreateEntryPoint(SpirvContext context, ExecutionModel execModel, string name, FunctionType type, ReadOnlySpan<Symbol> variables, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {
-        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(type.Types[0]), mask, context.GetOrRegister(type));
+        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(type.ReturnType), mask, context.GetOrRegister(type));
         context.AddName(func, name);
         context.SetEntryPoint(execModel, func, name, variables);
         var result = new SpirvFunction(func.ResultId!.Value, name, type);

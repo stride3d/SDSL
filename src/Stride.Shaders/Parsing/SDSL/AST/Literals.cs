@@ -58,14 +58,14 @@ public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : Numb
     {
         Type = Suffix switch
         {
-            { Signed: true, Size: 8 } => ScalarSymbol.From("sbyte"),
-            { Signed: true, Size: 16 } => ScalarSymbol.From("short"),
-            { Signed: true, Size: 32 } => ScalarSymbol.From("int"),
-            { Signed: true, Size: 64 } => ScalarSymbol.From("long"),
-            { Signed: false, Size: 8 } => ScalarSymbol.From("byte"),
-            { Signed: false, Size: 16 } => ScalarSymbol.From("ushort"),
-            { Signed: false, Size: 32 } => ScalarSymbol.From("uint"),
-            { Signed: false, Size: 64 } => ScalarSymbol.From("ulong"),
+            { Signed: true, Size: 8 } => ScalarType.From("sbyte"),
+            { Signed: true, Size: 16 } => ScalarType.From("short"),
+            { Signed: true, Size: 32 } => ScalarType.From("int"),
+            { Signed: true, Size: 64 } => ScalarType.From("long"),
+            { Signed: false, Size: 8 } => ScalarType.From("byte"),
+            { Signed: false, Size: 16 } => ScalarType.From("ushort"),
+            { Signed: false, Size: 32 } => ScalarType.From("uint"),
+            { Signed: false, Size: 64 } => ScalarType.From("ulong"),
             _ => throw new NotImplementedException("Unsupported integer suffix")
         };
     }
@@ -73,8 +73,8 @@ public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : Numb
     {
         var i = (Type, Suffix) switch
         {
-            (ScalarSymbol, { Size: > 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralInteger>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), LongValue),
-            (ScalarSymbol, { Size: <= 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralInteger>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), IntValue),
+            (ScalarType, { Size: > 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralInteger>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), LongValue),
+            (ScalarType, { Size: <= 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralInteger>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), IntValue),
             _ => throw new NotImplementedException("")
         };
         return new SpirvValue(i, i.ResultType!.Value, null);
@@ -90,9 +90,9 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
     {
         Type = Suffix.Size switch
         {
-            16 => ScalarSymbol.From("half"),
-            32 => ScalarSymbol.From("float"),
-            64 => ScalarSymbol.From("double"),
+            16 => ScalarType.From("half"),
+            32 => ScalarType.From("float"),
+            64 => ScalarType.From("double"),
             _ => throw new NotImplementedException("Unsupported float")
         };
     }
@@ -100,8 +100,8 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
     {
         var i = (Type, Suffix) switch
         {
-            (ScalarSymbol, { Size: > 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralFloat>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), DoubleValue),
-            (ScalarSymbol, { Size: <= 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralFloat>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), (float)DoubleValue),
+            (ScalarType, { Size: > 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralFloat>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), DoubleValue),
+            (ScalarType, { Size: <= 32 }) => compiler.Context.Buffer.AddOpConstant<LiteralFloat>(compiler.Context.Bound++, compiler.Context.GetOrRegister(Type), (float)DoubleValue),
             _ => throw new NotImplementedException("")
         };
         return new SpirvValue(i, i.ResultType!.Value, null);
@@ -111,7 +111,7 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
 public sealed class HexLiteral(ulong value, TextLocation info) : IntegerLiteral(new(32, false, false), (long)value, info)
 {
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
-        => Type = ScalarSymbol.From("long");
+        => Type = ScalarType.From("long");
 }
 
 
@@ -119,7 +119,7 @@ public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
 {
     public bool Value { get; set; } = value;
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
-        => Type = ScalarSymbol.From("bool");
+        => Type = ScalarType.From("bool");
 
     public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
@@ -162,14 +162,14 @@ public class VectorLiteral(TypeName typeName, TextLocation info) : CompositeLite
     {
         TypeName.ProcessSymbol(table);
         Type = TypeName.Type;
-        var tmp = (Core.VectorSymbol)Type! ?? throw new NotImplementedException();
+        var tmp = (Core.VectorType)Type! ?? throw new NotImplementedException();
         foreach (var v in Values)
         {
             v.ProcessSymbol(table);
             if (
-                v.Type is ScalarSymbol st && tmp.BaseType != st
-                || (v.Type is Core.VectorSymbol vt && vt.BaseType != tmp.BaseType)
-                || (v.Type is Core.VectorSymbol vt2 && vt2.Size > tmp.Size)
+                v.Type is ScalarType st && tmp.BaseType != st
+                || (v.Type is Core.VectorType vt && vt.BaseType != tmp.BaseType)
+                || (v.Type is Core.VectorType vt2 && vt2.Size > tmp.Size)
             )
                 table.Errors.Add(new(v.Info, SDSLErrorMessages.SDSL0106));
         }
@@ -214,18 +214,18 @@ public class Identifier(string name, TextLocation info) : Literal(info)
             {
                 if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, storage, out var symbol))
                 {
-                    if (symbol.Type is not UndefinedSymbol and not null)
+                    if (symbol.Type is not UndefinedType and not null)
                         Type = symbol.Type;
                     else
-                        Type = symbol.Type ?? new UndefinedSymbol(Name);
+                        Type = symbol.Type ?? new UndefinedType(Name);
                     return;
                 }
                 else if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, storage, out var streamSymbol))
                 {
-                    if (streamSymbol.Type is not UndefinedSymbol and not null)
+                    if (streamSymbol.Type is not UndefinedType and not null)
                         Type = streamSymbol.Type;
                     else
-                        Type = streamSymbol.Type ?? new UndefinedSymbol(Name);
+                        Type = streamSymbol.Type ?? new UndefinedType(Name);
                     return;
                 }
             }

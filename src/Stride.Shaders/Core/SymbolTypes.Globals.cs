@@ -3,7 +3,7 @@ using System.Collections.Frozen;
 namespace Stride.Shaders.Core;
 
 
-public partial record ScalarSymbol
+public partial record ScalarType
 {
     public static string[] names = [
         "bool",
@@ -19,8 +19,8 @@ public partial record ScalarSymbol
         "ulong",
         "double"
     ];
-    public static ScalarSymbol From(string s) => Types[s];
-    public static FrozenDictionary<string, ScalarSymbol> Types { get; } = Init();
+    public static ScalarType From(string s) => Types[s];
+    public static FrozenDictionary<string, ScalarType> Types { get; } = Init();
 
     // static Scalar()
     // {
@@ -30,9 +30,9 @@ public partial record ScalarSymbol
     //         arr[i] = new(names[i], new(names[i]));
     //     Types = FrozenDictionary.ToFrozenDictionary(arr); 
     // }
-    internal static FrozenDictionary<string, ScalarSymbol> Init()
+    internal static FrozenDictionary<string, ScalarType> Init()
     {
-        var arr = new KeyValuePair<string, ScalarSymbol>[names.Length + 1];
+        var arr = new KeyValuePair<string, ScalarType>[names.Length + 1];
         arr[0] = new("void", new("void"));
         for(int i = 1; i < names.Length + 1; i++)
             arr[i] = new(names[i - 1], new(names[i - 1]));
@@ -40,33 +40,33 @@ public partial record ScalarSymbol
     }
 }
 
-public partial record VectorSymbol
+public partial record VectorType
 {
-    public static VectorSymbol From(string s) => Types[s];
-    public static FrozenDictionary<string, VectorSymbol> Types { get; } = Init();
+    public static VectorType From(string s) => Types[s];
+    public static FrozenDictionary<string, VectorType> Types { get; } = Init();
 
-    internal static FrozenDictionary<string, VectorSymbol> Init()
+    internal static FrozenDictionary<string, VectorType> Init()
     {
-        var arr = new KeyValuePair<string, VectorSymbol>[ScalarSymbol.names.Length * 4];
-        for(int i = 0; i < ScalarSymbol.names.Length; i++)
+        var arr = new KeyValuePair<string, VectorType>[ScalarType.names.Length * 4];
+        for(int i = 0; i < ScalarType.names.Length; i++)
             for(int x = 1; x < 5; x++)
-                arr[i * 4 + (x - 1)] = new($"{ScalarSymbol.names[i]}{x}", new(ScalarSymbol.From(ScalarSymbol.names[i]),x));
+                arr[i * 4 + (x - 1)] = new($"{ScalarType.names[i]}{x}", new(ScalarType.From(ScalarType.names[i]),x));
         return arr.ToFrozenDictionary();
     }
 }
 
 
-public partial record MatrixSymbol
+public partial record MatrixType
 {
-    public static MatrixSymbol From(string s) => Types[s];
-    public static FrozenDictionary<string, MatrixSymbol> Types { get; } = Init();
-    internal static FrozenDictionary<string, MatrixSymbol> Init()
+    public static MatrixType From(string s) => Types[s];
+    public static FrozenDictionary<string, MatrixType> Types { get; } = Init();
+    internal static FrozenDictionary<string, MatrixType> Init()
     {
-        var arr = new KeyValuePair<string, MatrixSymbol>[ScalarSymbol.names.Length * 4 * 4];
-        for(int i = 0; i < ScalarSymbol.names.Length; i++)
+        var arr = new KeyValuePair<string, MatrixType>[ScalarType.names.Length * 4 * 4];
+        for(int i = 0; i < ScalarType.names.Length; i++)
             for(int x = 1; x < 5; x++)
             for(int y = 1; y < 5; y++)
-                arr[i * 16 + (x - 1) * 4 + (y - 1) * 4] = new($"{ScalarSymbol.names[i]}{x}x{y}", new(ScalarSymbol.From(ScalarSymbol.names[i]),x,y));
+                arr[i * 16 + (x - 1) * 4 + (y - 1) * 4] = new($"{ScalarType.names[i]}{x}x{y}", new(ScalarType.From(ScalarType.names[i]),x,y));
         return arr.ToFrozenDictionary(); 
     }
 }

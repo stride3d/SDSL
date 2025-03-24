@@ -34,8 +34,20 @@ public enum StreamIO : byte
     Output
 }
 
-
-
 public record struct SymbolID(string Name, SymbolKind Kind, Storage Storage = 0);
 public record struct StreamInfo(ushort EntryPoint, StreamIO Stream);
 public record struct Symbol(SymbolID Id, SymbolType Type, object? Data = null);
+
+
+
+public record struct MixinParentSymbol();
+public record struct MixinChildSymbol();
+public record struct StructSymbol();
+public record struct MethodSymbol();
+public record struct VariableSymbol();
+public record struct ConstantSymbol();
+public record struct ConstantGenericSymbol();
+public record struct CompositionSymbol();
+public record struct CBufferSymbol();
+public record struct TBufferSymbol();
+public record struct RGroupSymbol();

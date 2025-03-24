@@ -15,7 +15,7 @@ public abstract class Statement(TextLocation info) : ValueNode(info)
 
 public class EmptyStatement(TextLocation info) : Statement(info)
 {
-    public override SymbolType? Type { get => ScalarSymbol.From("void"); set { } }
+    public override SymbolType? Type { get => ScalarType.From("void"); set { } }
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler){}
     public override string ToString() => ";";
 }
@@ -28,7 +28,7 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
         Expression.ProcessSymbol(table, entrypoint, io);
-        Type = ScalarSymbol.From("void");
+        Type = ScalarType.From("void");
     }
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
@@ -42,13 +42,13 @@ public class ExpressionStatement(Expression expression, TextLocation info) : Sta
 
 public class Return(TextLocation info, Expression? expression = null) : Statement(info)
 {
-    public override SymbolType? Type { get => Value?.Type ?? ScalarSymbol.From("void"); set { } }
+    public override SymbolType? Type { get => Value?.Type ?? ScalarType.From("void"); set { } }
     public Expression? Value { get; set; } = expression;
 
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint = null, StreamIO? io = null)
     {
         Value?.ProcessSymbol(table, entrypoint, io);
-        Type = Value?.Type ?? ScalarSymbol.From("void");
+        Type = Value?.Type ?? ScalarType.From("void");
     }
 
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)

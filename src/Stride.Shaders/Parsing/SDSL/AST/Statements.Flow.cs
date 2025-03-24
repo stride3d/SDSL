@@ -46,7 +46,7 @@ public class ForEach(TypeName typename, Identifier variable, Expression collecti
     public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
     {
         Collection.ProcessSymbol(table);
-        if(Collection.Type is Core.ArraySymbol arrSym)
+        if(Collection.Type is Core.ArrayType arrSym)
         {
             var btype = arrSym.BaseType;
             TypeName.ProcessSymbol(table);

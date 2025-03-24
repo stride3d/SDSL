@@ -7,7 +7,6 @@ namespace Stride.Shaders.Parsing.Analysis;
 
 public record struct SemanticErrors(TextLocation Location, string Message);
 
-// TODO : make sure that symbol checking is separated based on symbol kind
 public partial class SymbolTable : ISymbolProvider
 {
     public Dictionary<string, SymbolType> DeclaredTypes { get; } = [];

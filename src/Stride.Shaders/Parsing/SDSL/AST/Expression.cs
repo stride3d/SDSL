@@ -205,7 +205,7 @@ public class TernaryExpression(Expression cond, Expression left, Expression righ
         Condition.ProcessSymbol(table);
         Left.ProcessSymbol(table);
         Right.ProcessSymbol(table);
-        if (Condition.Type is not ScalarSymbol { TypeName: "bool" })
+        if (Condition.Type is not ScalarType { TypeName: "bool" })
             table.Errors.Add(new(Condition.Info, SDSLErrorMessages.SDSL0106));
         if (Left.Type != Right.Type)
             table.Errors.Add(new(Condition.Info, SDSLErrorMessages.SDSL0106));

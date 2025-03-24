@@ -18,7 +18,7 @@ public partial class SpirvBuilder
                 when l.IsIntegerVector() && r.IsIntegerVector() && SymbolExtensions.SameComponentCountAndWidth(l, r)
                 => Buffer.InsertOpIAdd(Position, context.Bound++, resultType, left.Id, right.Id),
 
-            (Operator.Plus, ScalarSymbol l, ScalarSymbol r)
+            (Operator.Plus, ScalarType l, ScalarType r)
                 when l.IsFloatingVector() && r.IsFloatingVector() && SymbolExtensions.SameComponentCountAndWidth(l, r)
                 => Buffer.InsertOpFAdd(Position, context.Bound++, resultType, left.Id, right.Id),
 
@@ -82,10 +82,10 @@ public partial class SpirvBuilder
                 when l.IsInteger() && r.IsInteger()
                 => Buffer.InsertOpBitwiseXor(Position, context.Bound++, resultType, left.Id, right.Id),
 
-            (Operator.LogicalAND, ScalarSymbol { TypeName: "bool" }, ScalarSymbol { TypeName: "bool" })
+            (Operator.LogicalAND, ScalarType { TypeName: "bool" }, ScalarType { TypeName: "bool" })
                 => Buffer.InsertOpLogicalAnd(Position, context.Bound++, resultType, left.Id, right.Id),
 
-            (Operator.LogicalOR, ScalarSymbol { TypeName: "bool" }, ScalarSymbol { TypeName: "bool" })
+            (Operator.LogicalOR, ScalarType { TypeName: "bool" }, ScalarType { TypeName: "bool" })
                 => Buffer.InsertOpLogicalOr(Position, context.Bound++, resultType, left.Id, right.Id),
 
             _ => throw new NotImplementedException()
@@ -155,23 +155,23 @@ public partial class SpirvBuilder
 internal static class SymbolExtensions
 {
 
-    public static bool IsSignedInteger(this SymbolType symbol) => symbol is ScalarSymbol { TypeName: "sbyte" or "short" or "int" or "long" };
-    public static bool IsUnsignedInteger(this SymbolType symbol) => symbol is ScalarSymbol { TypeName: "byte" or "ushort" or "uint" or "ulong" };
-    public static bool IsFloating(this SymbolType symbol) => symbol is ScalarSymbol { TypeName: "half" or "float" or "double" };
+    public static bool IsSignedInteger(this SymbolType symbol) => symbol is ScalarType { TypeName: "sbyte" or "short" or "int" or "long" };
+    public static bool IsUnsignedInteger(this SymbolType symbol) => symbol is ScalarType { TypeName: "byte" or "ushort" or "uint" or "ulong" };
+    public static bool IsFloating(this SymbolType symbol) => symbol is ScalarType { TypeName: "half" or "float" or "double" };
     public static bool IsInteger(this SymbolType symbol) => symbol.IsSignedInteger() || symbol.IsUnsignedInteger();
     public static bool IsNumber(this SymbolType symbol) => symbol.IsInteger() || symbol.IsFloating();
     public static bool IsSigned(this SymbolType symbol) => symbol.IsSignedInteger() || symbol.IsFloating();
     public static bool IsUnsigned(this SymbolType symbol) => symbol.IsUnsignedInteger();
     public static bool IsSignedIntegerVector(this SymbolType symbol)
-        => symbol.IsSignedInteger() || symbol is VectorSymbol v && v.BaseType.IsSignedInteger();
+        => symbol.IsSignedInteger() || symbol is VectorType v && v.BaseType.IsSignedInteger();
     public static bool IsUnsignedIntegerVector(this SymbolType symbol)
-        => symbol.IsUnsignedInteger() || symbol is VectorSymbol v && v.BaseType.IsUnsignedInteger();
+        => symbol.IsUnsignedInteger() || symbol is VectorType v && v.BaseType.IsUnsignedInteger();
     public static bool IsIntegerVector(this SymbolType symbol)
-        => symbol.IsInteger() || symbol is VectorSymbol v && v.BaseType.IsInteger();
+        => symbol.IsInteger() || symbol is VectorType v && v.BaseType.IsInteger();
     public static bool IsFloatingVector(this SymbolType symbol)
-        => symbol.IsFloating() || symbol is VectorSymbol v && v.BaseType.IsFloating();
+        => symbol.IsFloating() || symbol is VectorType v && v.BaseType.IsFloating();
     public static bool IsNumberVector(this SymbolType symbol)
-        => symbol.IsNumber() || symbol is VectorSymbol v && v.BaseType.IsNumber();
+        => symbol.IsNumber() || symbol is VectorType v && v.BaseType.IsNumber();
     public static bool IsSignedVector(this SymbolType symbol)
         => symbol.IsSignedIntegerVector() || symbol.IsFloatingVector();
     public static bool IsUnsignedVector(this SymbolType symbol)
@@ -180,28 +180,28 @@ internal static class SymbolExtensions
     public static bool SameComponentCount(SymbolType left, SymbolType right)
         => (right, left) switch
         {
-            (ScalarSymbol l, ScalarSymbol r) => true,
-            (VectorSymbol l, ScalarSymbol r) => l.Size == 1,
-            (ScalarSymbol l, VectorSymbol r) => r.Size == 1,
-            (VectorSymbol l, VectorSymbol r) => l.Size == r.Size,
-            (MatrixSymbol l, VectorSymbol r) => l.Columns == 1 && l.Rows == r.Size,
-            (VectorSymbol l, MatrixSymbol r) => r.Columns == 1 && r.Rows == l.Size,
-            (MatrixSymbol l, MatrixSymbol r) => r.Columns == l.Columns && r.Rows == l.Rows,
+            (ScalarType l, ScalarType r) => true,
+            (VectorType l, ScalarType r) => l.Size == 1,
+            (ScalarType l, VectorType r) => r.Size == 1,
+            (VectorType l, VectorType r) => l.Size == r.Size,
+            (MatrixType l, VectorType r) => l.Columns == 1 && l.Rows == r.Size,
+            (VectorType l, MatrixType r) => r.Columns == 1 && r.Rows == l.Size,
+            (MatrixType l, MatrixType r) => r.Columns == l.Columns && r.Rows == l.Rows,
             _ => false
         };
     public static bool SameBaseTypeWidth(SymbolType left, SymbolType right)
         => (right, left) switch
         {
-            (ScalarSymbol { TypeName: "byte" or "sbyte" }, ScalarSymbol { TypeName: "byte" or "sbyte" }) => true,
-            (ScalarSymbol { TypeName: "ushort" or "short" or "half" }, ScalarSymbol { TypeName: "ushort" or "short" or "half" }) => true,
-            (ScalarSymbol { TypeName: "uint" or "int" or "float" }, ScalarSymbol { TypeName: "uint" or "int" or "float" }) => true,
-            (ScalarSymbol { TypeName: "ulong" or "long" or "double" }, ScalarSymbol { TypeName: "ulong" or "long" or "double" }) => true,
-            (VectorSymbol l, ScalarSymbol r) => SameBaseType(l.BaseType, r),
-            (ScalarSymbol l, VectorSymbol r) => SameBaseType(l, r.BaseType),
-            (VectorSymbol l, VectorSymbol r) => SameBaseType(l.BaseType, r.BaseType),
-            (MatrixSymbol l, VectorSymbol r) => SameBaseType(l.BaseType, r.BaseType),
-            (VectorSymbol l, MatrixSymbol r) => SameBaseType(l.BaseType, r.BaseType),
-            (MatrixSymbol l, MatrixSymbol r) => SameBaseType(l.BaseType, r.BaseType),
+            (ScalarType { TypeName: "byte" or "sbyte" }, ScalarType { TypeName: "byte" or "sbyte" }) => true,
+            (ScalarType { TypeName: "ushort" or "short" or "half" }, ScalarType { TypeName: "ushort" or "short" or "half" }) => true,
+            (ScalarType { TypeName: "uint" or "int" or "float" }, ScalarType { TypeName: "uint" or "int" or "float" }) => true,
+            (ScalarType { TypeName: "ulong" or "long" or "double" }, ScalarType { TypeName: "ulong" or "long" or "double" }) => true,
+            (VectorType l, ScalarType r) => SameBaseType(l.BaseType, r),
+            (ScalarType l, VectorType r) => SameBaseType(l, r.BaseType),
+            (VectorType l, VectorType r) => SameBaseType(l.BaseType, r.BaseType),
+            (MatrixType l, VectorType r) => SameBaseType(l.BaseType, r.BaseType),
+            (VectorType l, MatrixType r) => SameBaseType(l.BaseType, r.BaseType),
+            (MatrixType l, MatrixType r) => SameBaseType(l.BaseType, r.BaseType),
             _ => false
         };
 
@@ -210,25 +210,25 @@ internal static class SymbolExtensions
     public static bool SameBaseType(SymbolType left, SymbolType right)
         => (right, left) switch
         {
-            (ScalarSymbol l, ScalarSymbol r) => l == r,
-            (VectorSymbol l, ScalarSymbol r) => l.BaseType == r,
-            (ScalarSymbol l, VectorSymbol r) => r.BaseType == l,
-            (VectorSymbol l, VectorSymbol r) => l.BaseType == r.BaseType,
-            (MatrixSymbol l, VectorSymbol r) => l.BaseType == r.BaseType,
-            (VectorSymbol l, MatrixSymbol r) => l.BaseType == r.BaseType,
-            (MatrixSymbol l, MatrixSymbol r) => l.BaseType == r.BaseType,
+            (ScalarType l, ScalarType r) => l == r,
+            (VectorType l, ScalarType r) => l.BaseType == r,
+            (ScalarType l, VectorType r) => r.BaseType == l,
+            (VectorType l, VectorType r) => l.BaseType == r.BaseType,
+            (MatrixType l, VectorType r) => l.BaseType == r.BaseType,
+            (VectorType l, MatrixType r) => l.BaseType == r.BaseType,
+            (MatrixType l, MatrixType r) => l.BaseType == r.BaseType,
             _ => false
         };
     public static bool SameSignage(SymbolType left, SymbolType right)
         => (right, left) switch
         {
-            (ScalarSymbol l, ScalarSymbol r) => l.IsInteger() && l.IsInteger(),
-            (VectorSymbol l, ScalarSymbol r) => l.BaseType == r,
-            (ScalarSymbol l, VectorSymbol r) => r.BaseType == l,
-            (VectorSymbol l, VectorSymbol r) => l.BaseType == r.BaseType,
-            (MatrixSymbol l, VectorSymbol r) => l.BaseType == r.BaseType,
-            (VectorSymbol l, MatrixSymbol r) => l.BaseType == r.BaseType,
-            (MatrixSymbol l, MatrixSymbol r) => l.BaseType == r.BaseType,
+            (ScalarType l, ScalarType r) => l.IsInteger() && l.IsInteger(),
+            (VectorType l, ScalarType r) => l.BaseType == r,
+            (ScalarType l, VectorType r) => r.BaseType == l,
+            (VectorType l, VectorType r) => l.BaseType == r.BaseType,
+            (MatrixType l, VectorType r) => l.BaseType == r.BaseType,
+            (VectorType l, MatrixType r) => l.BaseType == r.BaseType,
+            (MatrixType l, MatrixType r) => l.BaseType == r.BaseType,
             _ => false
         };
 }

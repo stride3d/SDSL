@@ -44,7 +44,7 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
     {
         Condition.ProcessSymbol(table, entrypoint, io);
         Body.ProcessSymbol(table, entrypoint, io);
-        if(Condition.Type != ScalarSymbol.From("bool"))
+        if(Condition.Type != ScalarType.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
@@ -64,7 +64,7 @@ public class ElseIf(Expression condition, Statement body, TextLocation info) : I
     {
         Condition.ProcessSymbol(table, entrypoint, io);
         Body.ProcessSymbol(table, entrypoint, io);
-        if(Condition.Type != ScalarSymbol.From("bool"))
+        if(Condition.Type != ScalarType.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)

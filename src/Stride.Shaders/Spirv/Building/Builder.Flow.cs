@@ -6,12 +6,12 @@ namespace Stride.Shaders.Spirv.Building;
 
 public partial class SpirvBuilder
 {
-    public SpirvBlock CreateBlock(SpirvContext context, SpirvFunction parent, string? name = null)
+    public SpirvBlock CreateBlock(SpirvContext context, string? name = null)
     {
         var i = Buffer.InsertOpLabel(Position, context.Bound++);
         Position += i.WordCount;
         Position += Buffer.InsertOpUnreachable(Position).WordCount;
-        var result = new SpirvBlock(i, parent, name);
+        var result = new SpirvBlock(i, CurrentFunction ?? throw new NotImplementedException(), name);
         return result;
     }
 

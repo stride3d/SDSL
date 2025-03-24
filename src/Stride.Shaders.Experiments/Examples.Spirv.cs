@@ -41,7 +41,7 @@ public static partial class Examples
             ]
         );
         builder.SetPositionTo(function);
-        var block = builder.CreateBlock(context, function, "sourceBlock");
+        var block = builder.CreateBlock(context, "sourceBlock");
         builder.SetPositionTo(block);
         var v = builder.BinaryOperation(
             context,

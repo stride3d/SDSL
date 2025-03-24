@@ -16,12 +16,12 @@ public class ConditionalFlow(If first, TextLocation info) : Flow(info)
     public Else? Else { get; set; }
     public ShaderAttributeList? Attributes { get; set; }
 
-    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
+    public override void ProcessSymbol(SymbolTable table, ShaderMethod method, EntryPoint? entrypoint, StreamIO? io)
     {
-        If.ProcessSymbol(table, entrypoint, io);
+        If.ProcessSymbol(table, method, entrypoint, io);
         foreach (var ei in ElseIfs)
-            ei.ProcessSymbol(table, entrypoint, io);
-        Else?.ProcessSymbol(table, entrypoint, io);
+            ei.ProcessSymbol(table, method, entrypoint, io);
+        Else?.ProcessSymbol(table, method, entrypoint, io);
 
     }
     
@@ -40,10 +40,10 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
     public Expression Condition { get; set; } = condition;
     public Statement Body { get; set; } = body;
 
-    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
+    public override void ProcessSymbol(SymbolTable table, ShaderMethod method, EntryPoint? entrypoint, StreamIO? io)
     {
         Condition.ProcessSymbol(table, entrypoint, io);
-        Body.ProcessSymbol(table, entrypoint, io);
+        Body.ProcessSymbol(table, method, entrypoint, io);
         if(Condition.Type != ScalarType.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
@@ -60,10 +60,10 @@ public class If(Expression condition, Statement body, TextLocation info) : Flow(
 
 public class ElseIf(Expression condition, Statement body, TextLocation info) : If(condition, body, info)
 {
-    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
+    public override void ProcessSymbol(SymbolTable table, ShaderMethod method, EntryPoint? entrypoint, StreamIO? io)
     {
         Condition.ProcessSymbol(table, entrypoint, io);
-        Body.ProcessSymbol(table, entrypoint, io);
+        Body.ProcessSymbol(table, method, entrypoint, io);
         if(Condition.Type != ScalarType.From("bool"))
             table.Errors.Add(new(Condition.Info, "not a boolean"));
     }
@@ -81,9 +81,9 @@ public class Else(Statement body, TextLocation info) : Flow(info)
 {
     public Statement Body { get; set; } = body;
 
-    public override void ProcessSymbol(SymbolTable table, EntryPoint? entrypoint, StreamIO? io)
+    public override void ProcessSymbol(SymbolTable table, ShaderMethod method, EntryPoint? entrypoint, StreamIO? io)
     {
-        Body.ProcessSymbol(table, entrypoint, io);
+        Body.ProcessSymbol(table, method, entrypoint, io);
     }
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {

@@ -158,7 +158,7 @@ public class ShaderMethod(
                 if(EntryPoint == 0)
                     s.ProcessSymbol(table);
                 else 
-                    s.ProcessSymbol(table, EntryPoint, null);
+                    s.ProcessSymbol(table, this, EntryPoint, null);
             table.Pop();
         }
     }

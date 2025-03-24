@@ -10,6 +10,8 @@ namespace Stride.Shaders.Spirv.Building;
 public partial class SpirvBuilder() : IDisposable
 {
     public SpirvBuffer Buffer { get; init; } = new();
+    public SpirvFunction? CurrentFunction { get; private set; }
+    public SpirvBlock? CurrentBlock { get; private set; }
     public int Position { get; private set; }
 
     public void SetPositionTo<TBlock>(TBlock block)

@@ -22,6 +22,7 @@ public partial class SpirvBuilder
                 result.Parameters[p.Id.Name] = new(i, context.GetOrRegister(p.Type), p.Id.Name);
             }
         Buffer.AddOpFunctionEnd();
+        CurrentFunction = result;
         return result;
     }
     public SpirvFunction CreateEntryPoint(SpirvContext context, ExecutionModel execModel, string name, FunctionType type, ReadOnlySpan<Symbol> variables, FunctionControlMask mask = FunctionControlMask.MaskNone)
@@ -34,6 +35,7 @@ public partial class SpirvBuilder
             foreach(var p in variables)
                 context.AddName(context.Variables[p.Id.Name], p.Id.Name);
         Position += Buffer.InsertOpFunctionEnd(Position).WordCount;
+        CurrentFunction = result;
         return result;
     }
     

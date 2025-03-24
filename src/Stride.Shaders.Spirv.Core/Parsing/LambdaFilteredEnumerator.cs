@@ -17,8 +17,6 @@ public ref struct LambdaFilteredEnumerator<T>
     where T : ISpirvBuffer
 { 
     T buffer;
-
-    string? classFilter;
     Func<Instruction, bool> filter;
     InstructionEnumerator enumerator;
 

@@ -7,23 +7,25 @@ namespace Stride.Shaders.Spirv.Building;
 
 public partial class SpirvBuilder
 {
-    public SpirvFunction CreateFunction(SpirvContext context, string name, FunctionType ftype, ReadOnlySpan<Symbol> parameters, FunctionControlMask mask = FunctionControlMask.MaskNone)
+    public SpirvFunction CreateFunction(SpirvContext context, string name, FunctionType ftype, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {
         foreach(var t in ftype.ParameterTypes)
             context.GetOrRegister(t);
         var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(ftype.ReturnType), mask, context.GetOrRegister(ftype));
         context.AddName(func, name);
         var result = new SpirvFunction(func.ResultId!.Value, name, ftype);
-        if(!parameters.IsEmpty)
-            foreach(var p in parameters)
-            {
-                var i = Buffer.AddOpFunctionParameter(context.Bound++, context.GetOrRegister(p.Type));
-                context.AddName(i, p.Id.Name);
-                result.Parameters[p.Id.Name] = new(i, context.GetOrRegister(p.Type), p.Id.Name);
-            }
         Buffer.AddOpFunctionEnd();
         CurrentFunction = result;
         return result;
+    }
+
+    public SpirvValue AddFunctionParameter(SpirvContext context, string name, SymbolType type)
+    {
+        var p = Buffer.InsertOpFunctionParameter(Position, context.Bound++, context.GetOrRegister(type));
+        Position += p.WordCount;
+        context.AddName(p, name);
+        CurrentFunction!.Value.Parameters.Add(name, new(p, name));
+        return new(p, name);
     }
     public SpirvFunction CreateEntryPoint(SpirvContext context, ExecutionModel execModel, string name, FunctionType type, ReadOnlySpan<Symbol> variables, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {

@@ -188,7 +188,7 @@ public class BinaryExpression(Expression left, Operator op, Expression right, Te
     public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
         var left = Left.Compile(table, shader, compiler);
-        var right = Left.Compile(table, shader, compiler);
+        var right = Right.Compile(table, shader, compiler);
         var (builder, context, _) = compiler;
         return builder.BinaryOperation(context, context.GetOrRegister(Type), left, Op, right);
     }

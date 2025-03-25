@@ -16,7 +16,7 @@ public abstract class Statement(TextLocation info) : ValueNode(info)
 public class EmptyStatement(TextLocation info) : Statement(info)
 {
     public override SymbolType? Type { get => ScalarType.From("void"); set { } }
-    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler){}
+    public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler) { }
     public override string ToString() => ";";
 }
 
@@ -53,7 +53,8 @@ public class Return(TextLocation info, Expression? expression = null) : Statemen
 
     public override void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
-        throw new NotImplementedException();
+        var (builder, _, _) = compiler;
+        builder.Return(Value?.Compile(table, shader, compiler));
     }
     public override string ToString()
     {
@@ -149,7 +150,7 @@ public class Declare(TypeName typename, TextLocation info) : Declaration(typenam
             foreach (var d in Variables)
             {
                 d.Value?.ProcessSymbol(table, entrypoint, io);
-                table.CurrentTable.Add(new(d.Variable, SymbolKind.Variable), new(new(d.Variable, SymbolKind.Variable), Type));
+                table.CurrentFrame.Add(new(d.Variable, SymbolKind.Variable), new(new(d.Variable, SymbolKind.Variable), Type));
             }
         }
     }
@@ -200,7 +201,7 @@ public class BlockStatement(TextLocation info) : Statement(info)
         builder.CreateBlock(context);
         foreach (var s in Statements)
             s.Compile(table, shader, compiler);
-        
+
     }
 
     public List<Statement>.Enumerator GetEnumerator() => Statements.GetEnumerator();

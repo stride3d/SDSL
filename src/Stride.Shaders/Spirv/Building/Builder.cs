@@ -14,7 +14,7 @@ public partial class SpirvBuilder() : IDisposable
     public SpirvBlock? CurrentBlock { get; private set; }
     public int Position { get; private set; }
 
-    public void SetPositionTo<TBlock>(TBlock block)
+    public void SetPositionTo<TBlock>(TBlock block, bool beggining = false)
         where TBlock : IInstructionBlock
     {
         if (block is SpirvBlock bb)
@@ -33,7 +33,15 @@ public partial class SpirvBuilder() : IDisposable
         foreach (var e in Buffer)
         {
             if (e.ResultId is int id && id == block.Id)
+            {
                 blockFound = true;
+                // In case we want to top at the beginning of the block
+                if(beggining)
+                {
+                    Position = e.WordIndex + e.WordCount;
+                    return;
+                }
+            }
             if (block is SpirvBlock && blockFound && blockTermination.Contains((int)e.OpCode))
             {
                 Position = e.WordIndex;

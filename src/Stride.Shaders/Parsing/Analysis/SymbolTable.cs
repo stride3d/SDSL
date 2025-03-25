@@ -10,20 +10,20 @@ public record struct SemanticErrors(TextLocation Location, string Message);
 public partial class SymbolTable : ISymbolProvider
 {
     public Dictionary<string, SymbolType> DeclaredTypes { get; } = [];
-    public SymbolFrame CurrentTable => Symbols[^1];
-    public RootSymbolFrame RootSymbols => (RootSymbolFrame)Symbols[0];
-    public List<SymbolFrame> Symbols { get; } = [new RootSymbolFrame()];
+    public SymbolFrame CurrentFrame => CurrentFunctionSymbols[^1];
+    public RootSymbolFrame RootSymbols => new();
+    public SortedList<string, List<SymbolFrame>> FunctionSymbols { get; } = [];
 
     public List<SemanticErrors> Errors { get; } = [];
 
-    public ShaderMethod? CurrentMethod { get; internal set; }
+    public List<SymbolFrame>? CurrentFunctionSymbols { get; internal set; }
 
-    public void Push() => Symbols.Add(new SymbolFrame());
+    public void Push() => CurrentFunctionSymbols?.Add(new());
 
-    public SymbolFrame Pop()
+    public SymbolFrame? Pop()
     {
-        var scope = Symbols[^1];
-        Symbols.Remove(scope);
+        var scope = CurrentFunctionSymbols?[^1];
+        CurrentFunctionSymbols?.Remove(scope!);
         return scope;
     }
 
@@ -37,11 +37,14 @@ public partial class SymbolTable : ISymbolProvider
 
     public bool TryFind(string name, SymbolKind kind, out Symbol symbol)
     {
-        for (int i = Symbols.Count - 1; i >= 0; i--)
-            if (Symbols[i].TryGetValue(name, kind, out symbol))
+
+        if(CurrentFunctionSymbols is null)
+            return RootSymbols.TryGetValue(name, kind, out symbol);
+        
+        for (int i = CurrentFunctionSymbols.Count - 1; i >= 0; i--)
+            if (CurrentFunctionSymbols[i].TryGetValue(name, kind, out symbol))
                 return true;
-        symbol = default;
-        return false;
+        return RootSymbols.TryGetValue(name, kind, out symbol);
     }
 
 

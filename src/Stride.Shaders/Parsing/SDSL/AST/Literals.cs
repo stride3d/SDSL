@@ -138,8 +138,8 @@ public abstract class CompositeLiteral(TextLocation info) : ValueLiteral(info)
 
     public bool IsConstant()
     {
-        foreach(var v in Values)
-            if(v is not NumberLiteral or BoolLiteral)
+        foreach (var v in Values)
+            if (v is not NumberLiteral or BoolLiteral)
                 return false;
         return true;
     }
@@ -210,31 +210,45 @@ public class Identifier(string name, TextLocation info) : Literal(info)
         Span<Storage> sOrder = [Storage.Function, Storage.Stream, Storage.Uniform, Storage.UniformConstant, Storage.Generic];
         foreach (var storage in sOrder)
         {
-            for (int i = table.Symbols.Count - 1; i >= 0; i -= 1)
+            if (table.CurrentFunctionSymbols is null)
             {
-                if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, storage, out var symbol))
+                if (table.RootSymbols.TryGetValue(Name, SymbolKind.Variable, storage, out var symbol))
+                    Type = symbol.Type;
+            }
+            else
+            {
+                for (int i = table.CurrentFunctionSymbols.Count - 1; i >= 0; i -= 1)
                 {
-                    if (symbol.Type is not UndefinedType and not null)
-                        Type = symbol.Type;
-                    else
-                        Type = symbol.Type ?? new UndefinedType(Name);
-                    return;
+                    if (table.CurrentFunctionSymbols![i].TryGetValue(Name, SymbolKind.Variable, storage, out var symbol))
+                    {
+                        if (symbol.Type is not UndefinedType and not null)
+                            Type = symbol.Type;
+                        else
+                            Type = symbol.Type ?? new UndefinedType(Name);
+                        return;
+                    }
                 }
-                else if (table.Symbols[i].TryGetValue(Name, SymbolKind.Variable, storage, out var streamSymbol))
+                if (table.CurrentFunctionSymbols is null)
                 {
-                    if (streamSymbol.Type is not UndefinedType and not null)
-                        Type = streamSymbol.Type;
-                    else
-                        Type = streamSymbol.Type ?? new UndefinedType(Name);
-                    return;
+                    if (table.RootSymbols.TryGetValue(Name, SymbolKind.Variable, storage, out var rootSymbol))
+                        Type = rootSymbol.Type;
                 }
             }
+
         }
         throw new NotImplementedException($"Cannot find symbol {Name}.");
     }
 
     public override SpirvValue Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
     {
+        var (builder, _, _) = compiler;
+        if(builder.CurrentFunction is SpirvFunction f)
+        {
+            if(f.Variables.TryGetValue(Name, out var resultVar))
+                return resultVar;
+            else if(f.Parameters.TryGetValue(Name, out var paramVar))
+                return paramVar;
+        }
         throw new NotImplementedException();
     }
 

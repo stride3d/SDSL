@@ -212,7 +212,7 @@ public static partial class Examples
 
     public static void CompileSDSL()
     {
-        var text = MonoGamePreProcessor.OpenAndRun("./assets/SDSL/TestVertex.sdsl");
+        var text = MonoGamePreProcessor.OpenAndRun("./assets/SDSL/TestBasic.sdsl");
 
         var sdslc = new SDSLC();
         sdslc.Compile(text, out var bytecode);

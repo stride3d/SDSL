@@ -23,6 +23,11 @@ public record struct SDSLC() : ICompiler
                 throw new Exception("Some parse errors");
             var compiler = new CompilerUnit();
             shader.Compile(compiler, table);
+
+            compiler.Context.Buffer.Sort();
+            var merged = SpirvBuffer.Merge(compiler.Context.Buffer, compiler.Builder.Buffer);
+            var dis = new SpirvDis<SpirvBuffer>(merged);
+            dis.Disassemble(true);
         }
         throw new NotImplementedException();
     }

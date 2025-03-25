@@ -4,6 +4,6 @@ using Stride.Shaders.Parsing;
 using Stride.Shaders.Parsing.SDSL;
 using Stride.Shaders.Parsing.SDSL.AST;
 
-// Examples.CompileSDSL();
+Examples.CompileSDSL();
 // Examples.TryAllFiles();
-Examples.CreateShader();
+// Examples.CreateShader();

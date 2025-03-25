@@ -28,18 +28,10 @@ public static partial class Examples
         var function = builder.CreateFunction(
             context,
             "add",
-            new(ScalarType.From("int"), [ScalarType.From("int"), ScalarType.From("int")]),
-            parameters: [
-                new Symbol(
-                Id: new("a", SymbolKind.Variable, Storage.Function),
-                ScalarType.From("int")
-            ),
-            new Symbol(
-                Id: new("b", SymbolKind.Variable, Storage.Function),
-                ScalarType.From("int")
-            )
-            ]
+            new(ScalarType.From("int"), [ScalarType.From("int"), ScalarType.From("int")])
         );
+        builder.AddFunctionParameter(context, "a", ScalarType.From("int"));
+        builder.AddFunctionParameter(context, "b", ScalarType.From("int"));
         builder.SetPositionTo(function);
         var block = builder.CreateBlock(context, "sourceBlock");
         builder.SetPositionTo(block);

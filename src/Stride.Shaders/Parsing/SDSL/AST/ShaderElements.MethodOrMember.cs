@@ -1,6 +1,7 @@
 using Stride.Shaders.Core;
 using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
+using Stride.Shaders.Spirv.Building;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -118,7 +119,7 @@ public class ShaderMethod(
     public SymbolType? ReturnType { get; set; }
     public TypeName ReturnTypeName { get; set; } = returnType;
     public Identifier Name { get; set; } = name;
-    public EntryPoint EntryPoint { get; } = 
+    public EntryPoint EntryPoint { get; } =
         name.Name switch
         {
             "VSMain" => EntryPoint.VertexShader,
@@ -142,25 +143,42 @@ public class ShaderMethod(
 
     public override void ProcessSymbol(SymbolTable table)
     {
+        table.FunctionSymbols[Name] = [new()];
+        table.CurrentFunctionSymbols = table.FunctionSymbols[Name];
         foreach (var arg in Parameters)
         {
             arg.TypeName.ProcessSymbol(table);
             var argSym = arg.TypeName.Type;
             table.DeclaredTypes.TryAdd(argSym.ToString(), argSym);
+            table.CurrentFrame.Add(new(arg.Name, SymbolKind.Variable, Core.Storage.Function), new(new(arg.Name, SymbolKind.Variable, Core.Storage.Function), arg.Type));
             arg.Type = argSym;
 
         }
         if (Body is not null)
         {
-            table.CurrentMethod = this;
             table.Push();
             foreach (var s in Body.Statements)
-                if(EntryPoint == 0)
+                if (EntryPoint == 0)
                     s.ProcessSymbol(table);
-                else 
+                else
                     s.ProcessSymbol(table, this, EntryPoint, null);
             table.Pop();
         }
+    }
+
+    public void Compile(SymbolTable table, ShaderClass shader, CompilerUnit compiler)
+    {
+        var (builder, context, _) = compiler;
+        if (Type is FunctionType ftype)
+        {
+            builder.CreateFunction(context, Name, ftype);
+            foreach (var p in Parameters)
+                builder.AddFunctionParameter(context, p.Name, p.Type);
+            if(Body is BlockStatement body)
+                foreach(var s in body)
+                    s.Compile(table, shader, compiler);
+        }
+        else throw new NotImplementedException();
     }
 
     public override string ToString()

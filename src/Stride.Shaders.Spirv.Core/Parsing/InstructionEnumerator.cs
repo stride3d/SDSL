@@ -4,7 +4,7 @@
 namespace Stride.Shaders.Spirv.Core.Parsing;
 
 /// <summary>
-/// A simple spirv instruction enumerator without sorting
+/// A simple SPIR-V instruction enumerator without sorting
 /// </summary>
 public ref struct InstructionEnumerator(ISpirvBuffer buffer)
 {

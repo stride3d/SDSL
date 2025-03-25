@@ -1,7 +1,4 @@
 using CommunityToolkit.HighPerformance.Buffers;
-using Stride.Shaders.Spirv.Core.Parsing;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 
 namespace Stride.Shaders.Spirv.Core;
 
@@ -12,15 +9,9 @@ public interface ISpirvElement
     public SpanOwner<int> AsSpanOwner();
 }
 
-public interface IWritableSpirvElement : ISpirvElement
-{
-    public void Write(scoped ref SpirvWriter writer);
-}
-
-
 public static class ISpirvElementExtensions
 {
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static SpanOwner<int> AsSpanOwner(this string? value)
     {
         if (value is null)
@@ -33,7 +24,7 @@ public static class ISpirvElementExtensions
             return span;
         }
     }
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static SpanOwner<int> AsSpanOwner<T>(this T value)
         where T : struct
     {
@@ -58,7 +49,7 @@ public static class ISpirvElementExtensions
             };
             
     }
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static SpanOwner<int> AsSpanOwner<T>(this T? value)
         where T : struct
     {
@@ -68,7 +59,7 @@ public static class ISpirvElementExtensions
             return value.Value.AsSpanOwner();
             
     }
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static SpanOwner<int> AsSpanOwner<T>(this Span<T> values)
     {
 
@@ -167,19 +158,19 @@ public static class ISpirvElementExtensions
         return span;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static Span<int> AsSpirvSpan<T>(this T? value)
         where T : struct
         => value.AsSpanOwner().Span;
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static Span<int> AsSpirvSpan<T>(this T value)
         where T : struct
         => value.AsSpanOwner().Span;
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static Span<int> AsSpirvSpan(this string? value)
         => value.AsSpanOwner().Span;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    
     internal static Span<int> AsSpirvSpan<T>(this Span<T> values)
         => values.AsSpanOwner().Span;
 }

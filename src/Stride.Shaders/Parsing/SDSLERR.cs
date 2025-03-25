@@ -1,6 +1,8 @@
 namespace Stride.Shaders.Parsing;
 
-
+/// <summary>
+/// Error messages for SDSL
+/// </summary>
 public static class SDSLErrorMessages
 {
     public const string SDSL0001 = "SDSL0001: Unexpected token";

@@ -1,6 +1,8 @@
 namespace Stride.Shaders.Spirv.Core.Parsing;
 
-
+/// <summary>
+/// Instruction enumerator returning RefInstruction
+/// </summary>
 public ref struct RefInstructionEnumerator
 {
     int wordIndex;

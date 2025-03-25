@@ -9,7 +9,9 @@ namespace Stride.Shaders.Parsing.SDSL.AST;
 
 
 
-
+/// <summary>
+/// Code expression, represents operations and literals
+/// </summary>
 public abstract class Expression(TextLocation info) : ValueNode(info)
 {
     public override void ProcessSymbol(SymbolTable table) => ProcessSymbol(table, null, null);
@@ -38,6 +40,9 @@ public class MethodCall(Identifier name, ShaderExpressionList parameters, TextLo
     }
 }
 
+/// <summary>
+/// Represents an accessed mixin.
+/// </summary>
 public class MixinAccess(Mixin mixin, TextLocation info) : Expression(info)
 {
     public Mixin Mixin { get; set; } = mixin;

@@ -5,7 +5,7 @@ using System.Numerics;
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
-/// A common spirv buffer containing a header.
+/// A common SPIR-V buffer containing a header.
 /// </summary>
 public class SpirvBuffer : IMutSpirvBuffer, IDisposable
 {

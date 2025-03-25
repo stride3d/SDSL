@@ -4,7 +4,9 @@ using Stride.Shaders.Parsing.SDSL.PreProcessing;
 
 namespace Stride.Shaders.Parsing;
 
-
+/// <summary>
+/// Wrapper class for both grammar and code preprocessor
+/// </summary>
 public static class SDSLParser
 {
     public static ParseResult Parse(string code)

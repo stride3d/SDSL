@@ -3,7 +3,7 @@ using Stride.Shaders.Spirv.Core.Parsing;
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
-/// A spirv buffer object
+/// A SPIR-V buffer object
 /// </summary>
 public interface ISpirvBuffer
 {

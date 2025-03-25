@@ -10,7 +10,7 @@ namespace Stride.Shaders.Spirv.Core.Parsing;
 /// <summary>
 /// Spirv version wrapper to interact through string/integers
 /// </summary>
-public struct SpirvVersion
+public readonly struct SpirvVersion
 {
     public int Version { get; }
 
@@ -39,7 +39,7 @@ public struct SpirvVersion
 /// <summary>
 /// Spirv Header struct for spirv assembling
 /// </summary>
-public struct SpirvHeader
+public readonly struct SpirvHeader
 {
     public uint MagicNumber { get; init; }
     public SpirvVersion VersionNumber { get; init; }

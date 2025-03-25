@@ -10,7 +10,9 @@ using static Spv.Specification;
 namespace Stride.Shaders.Spirv.Core;
 
 
-
+/// <summary>
+/// Object containing information about SPIR-V instructions based on the unified SPIR-V specification.
+/// </summary>
 public partial class InstructionInfo
 {
     Dictionary<(SDSLOp, StorageClass?), int> OrderGroup = new();
@@ -98,15 +100,7 @@ public partial class InstructionInfo
     {
         return GetGroupOrder(instruction.OpCode, instruction.OpCode == SDSLOp.OpVariable ? (StorageClass)instruction.Words[3] : null);
     }
-    /// <summary>
-    /// Gets the order group for a given instruction, useful for sorting instructions according to the specification.
-    /// </summary>
-    /// <param name="instruction"></param>
-    /// <returns></returns>
-    public static int GetGroupOrder(MutRefInstruction instruction)
-    {
-        return GetGroupOrder(instruction.OpCode, instruction.OpCode == SDSLOp.OpVariable ? (StorageClass)instruction.Words[3] : null);
-    }
+    
     /// <summary>
     /// Gets the order group for a given instruction, useful for sorting instructions according to the specification.
     /// </summary>
@@ -116,7 +110,12 @@ public partial class InstructionInfo
     {
         return GetGroupOrder(instruction.OpCode, instruction.OpCode == SDSLOp.OpVariable ? (StorageClass)instruction.Words.Span[3] : null);
     }
-
+    /// <summary>
+    /// Gets the order group for a given instruction and Storage class, useful for sorting instructions according to the specification.
+    /// </summary>
+    /// <param name="op"></param>
+    /// <param name="sc"></param>
+    /// <returns></returns>
     public static int GetGroupOrder(SDSLOp op, StorageClass? sc = null)
     {
         return Instance.OrderGroup[(op, sc)];

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Stride.Shaders.Spirv.Core;
 
+/// <summary>
+/// Information on SPIR-V instruction operands 
+/// </summary>
 public readonly partial struct LogicalOperand
 {
     public string? Name { get; init; }

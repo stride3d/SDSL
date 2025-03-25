@@ -2,13 +2,15 @@ using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Parsing;
 
-
+/// <summary>
+/// Represents a parsing error
+/// </summary>
 public record struct ParseError(string Message, ErrorLocation Location, ReadOnlyMemory<char> Code)
 {
 
     readonly ReadOnlySpan<char> GetNextToken()
     {
-        ReadOnlySpan<char> operators = ['+', '-', '*', '/', '%', '=', '!', '<', '>', '&', '|', '^', '~', '?', ':'];
+        var operators = "'+-*/%=!<>&|^~?:".AsSpan();
         var pos = Location.Position;
         if (pos >= Code.Span.Length)
             return [];
@@ -38,11 +40,18 @@ public record struct ParseError(string Message, ErrorLocation Location, ReadOnly
     }
 }
 
-
+/// <summary>
+/// Represents the result of the parser
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class ParseResult<T>
     where T : Node
 {
     public T? AST { get; set; }
     public List<ParseError> Errors { get; internal set; } = [];
 }
+
+/// <summary>
+/// Default parser result
+/// </summary>
 public class ParseResult : ParseResult<Node>;

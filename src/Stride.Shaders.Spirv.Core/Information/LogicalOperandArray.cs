@@ -4,12 +4,14 @@ using System.Collections;
 
 namespace Stride.Shaders.Spirv.Core;
 
-public struct LogicalOperandArray : IList<LogicalOperand>
+/// <summary>
+/// Wrapper for the operand list to contain a class name
+/// </summary>
+public readonly struct LogicalOperandArray(string? className, List<LogicalOperand>? operands = null)
 {
+    public string ClassName { get; init; } = className ?? "Debug";
 
-    public string ClassName { get; init; }
-
-    List<LogicalOperand> LogicalOperands { get; }
+    List<LogicalOperand> LogicalOperands { get; } = operands ?? [];
     public bool HasResult => GetHasResult();
     public bool HasResultType => GetHasResultType();
 
@@ -21,12 +23,6 @@ public struct LogicalOperandArray : IList<LogicalOperand>
     {
         get => LogicalOperands[index];
         set => LogicalOperands[index] = value;
-    }
-
-    public LogicalOperandArray(string? className)
-    {
-        ClassName = className ?? "Debug";
-        LogicalOperands = new();
     }
 
     bool GetHasResult()
@@ -89,13 +85,5 @@ public struct LogicalOperandArray : IList<LogicalOperand>
         return LogicalOperands.Remove(item);
     }
 
-    public IEnumerator<LogicalOperand> GetEnumerator()
-    {
-        return LogicalOperands.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+    public List<LogicalOperand>.Enumerator GetEnumerator() => LogicalOperands.GetEnumerator();
 }

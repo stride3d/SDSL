@@ -2,7 +2,9 @@ using Stride.Shaders.Spirv.Core.Buffers;
 
 namespace Stride.Shaders.Spirv.Core;
 
-
+/// <summary>
+/// SPIR-V buffer that can add instructions to itself
+/// </summary> 
 public interface IMutSpirvBuffer : ISpirvBuffer
 {
     public Instruction Add(Span<int> instruction);

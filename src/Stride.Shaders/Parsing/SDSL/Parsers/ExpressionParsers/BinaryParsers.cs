@@ -18,6 +18,9 @@ public struct ExpressionParser : IParser<Expression>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
+    /// <summary>
+    /// <c>add ::= mul ( spaces '+' spaces add)*</c>
+    /// </summary>
     public static bool Add<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -45,7 +48,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>mul ::= prefix ( spaces '*' spaces mul)*</c>
+    /// </summary>
     public static bool Mul<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -73,7 +78,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>shift ::= add ( spaces ('&lt;&lt;' | '&gt;&gt;') spaces shift)*</c>
+    /// </summary>
     public static bool Shift<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -101,7 +108,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>relational ::= shift ( spaces ('&lt;=' | '&gt;=' | '&lt;' | '&gt;') spaces relational)*</c>
+    /// </summary>
     public static bool Relation<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -131,7 +140,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>equality ::= relational ( spaces ('==' | '!=') spaces equality)*</c>
+    /// </summary>
     public static bool Equality<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -159,7 +170,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>band ::= equality ( spaces '&' spaces band)*</c>
+    /// </summary>
     public static bool BAnd<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -183,13 +196,17 @@ public struct ExpressionParser : IParser<Expression>
             }
         }
         while (
-            !Parsers.FollowedBy(ref scanner, Tokens.Literal("&&"), withSpaces: true) 
+            !Parsers.FollowedBy(ref scanner, Tokens.Literal("&&"), withSpaces: true)
             && Parsers.FollowedByAny(ref scanner, ["&"], out op, advance: true)
         );
         if (parsed is not null)
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
+
+    /// <summary>
+    /// <c>bor ::= band ( spaces '|' spaces bor)*</c>
+    /// </summary>
 
     public static bool BOr<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
@@ -214,13 +231,16 @@ public struct ExpressionParser : IParser<Expression>
             }
         }
         while (
-            !Parsers.FollowedBy(ref scanner, Tokens.Literal("||"), withSpaces: true) 
+            !Parsers.FollowedBy(ref scanner, Tokens.Literal("||"), withSpaces: true)
             && Parsers.FollowedByAny(ref scanner, ["|"], out op, advance: true)
         );
         if (parsed is not null)
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
+    /// <summary>
+    /// <c>xor ::= bor ( spaces '^' spaces xor)*</c>
+    /// </summary>
 
     public static bool XOr<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
@@ -249,6 +269,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
+    /// <summary>
+    /// <c>and ::= xor ( spaces '&&' spaces and)*</c>
+    /// </summary>
 
     public static bool And<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
@@ -277,7 +300,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>or ::= and ( spaces '&&' spaces or)*</c>
+    /// </summary>
     public static bool Or<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
@@ -305,7 +330,9 @@ public struct ExpressionParser : IParser<Expression>
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
-
+    /// <summary>
+    /// <c>ternary ::= or ( spaces '?' spaces expression spaces ':' spaces expression)*</c>
+    /// </summary>
     public static bool Ternary<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {

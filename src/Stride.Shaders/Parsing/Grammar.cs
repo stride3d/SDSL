@@ -3,6 +3,9 @@ using Stride.Shaders.Parsing.SDSL.AST;
 
 namespace Stride.Shaders.Parsing;
 
+/// <summary>
+/// Wrapper for the SDSL grammar parsers
+/// </summary>
 public static class Grammar
 {
     public static ParseResult Match<TParser, TValue>(string code, TParser? parser = null)

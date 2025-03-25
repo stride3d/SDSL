@@ -8,7 +8,7 @@ using Stride.Shaders.Spirv.Core.Parsing;
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
-/// A buffer slice
+/// A SPIR-V buffer span slice
 /// </summary>
 public readonly ref struct SpirvSpan(Span<int> words) : ISpirvBuffer
 {

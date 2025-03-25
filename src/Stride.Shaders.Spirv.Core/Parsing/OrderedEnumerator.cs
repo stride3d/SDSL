@@ -12,7 +12,7 @@ namespace Stride.Shaders.Spirv.Core.Parsing;
 
 
 /// <summary>
-/// An enumerator where each declartions instructions is sorted
+/// An enumerator where each instructions is sorted
 /// </summary>
 public ref struct OrderedEnumerator(ISpirvBuffer buffer)
 {

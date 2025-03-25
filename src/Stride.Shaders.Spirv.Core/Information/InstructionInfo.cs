@@ -17,7 +17,14 @@ public partial class InstructionInfo
     public static InstructionInfo Instance { get; } = new();
     Dictionary<SDSLOp, LogicalOperandArray> Info = new();
     InstructionInfo(){}
-
+    /// <summary>
+    /// Register information about a SPIR-V instruction
+    /// </summary>
+    /// <param name="op"></param>
+    /// <param name="kind"></param>
+    /// <param name="quantifier"></param>
+    /// <param name="name"></param>
+    /// <param name="spvClass"></param>
     internal void Register(SDSLOp op, OperandKind? kind, OperandQuantifier? quantifier, string? name = null, string? spvClass = null)
     {
         if(Info.TryGetValue(op, out var list))
@@ -26,7 +33,7 @@ public partial class InstructionInfo
         }
         else
         {
-            Info.Add(op, new(spvClass) { new(kind, quantifier, name)});
+            Info.Add(op, new(spvClass, [new(kind, quantifier, name)]));
         }
     }
     /// <summary>

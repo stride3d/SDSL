@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Stride.Shaders.Spirv.Core.Buffers;
 
 /// <summary>
-/// A buffer slice
+/// A SPIR-V buffer memory slice
 /// </summary>
 public readonly struct SpirvMemory(Memory<int> memory) : ISpirvBuffer
 {

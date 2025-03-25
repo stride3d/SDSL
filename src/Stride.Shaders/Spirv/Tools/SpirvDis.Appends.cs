@@ -18,7 +18,7 @@ public partial struct SpirvDis<TBuffer>
                 tmp /= 10;
                 size += 1;
             }
-            writer.Append(' ', IdOffset - 1 - size).Append('%',ConsoleColor.Blue).Append(result!.Value.Value,ConsoleColor.Blue);
+            writer.Append(' ', IdOffset - 1 - size).Append('%', ConsoleColor.Blue).Append(result!.Value.Value, ConsoleColor.Blue);
         }
         else
             writer.Append(' ', IdOffset);
@@ -26,8 +26,7 @@ public partial struct SpirvDis<TBuffer>
     }
     internal readonly void Append(NameId name)
     {
-        writer.Append(' ', IdOffset - 2 - name.Name.Length).Append('%', ConsoleColor.Blue).Append(name.Name, ConsoleColor.Blue);
-
+        writer.Append(' ', Math.Max(0, IdOffset - 2 - name.Name.Length)).Append('%', ConsoleColor.Blue).Append(name.Name, ConsoleColor.Blue);
     }
 
     public readonly void Append<T>(T value) where T : Enum
@@ -35,10 +34,10 @@ public partial struct SpirvDis<TBuffer>
         var name = Enum.GetName(typeof(T), value);
         writer.Append(' ').Append(name);
     }
-    public readonly void Append(IdRef id)
+    public readonly void Append(IdRef id, bool ignoreName = false)
     {
 
-        if (UseNames && nameTable.TryGetValue(id, out var name))
+        if (UseNames && !ignoreName && nameTable.TryGetValue(id, out var name))
             writer.Append(" %", ConsoleColor.DarkYellow).Append(name.Name, ConsoleColor.DarkYellow);
         else
             writer.Append(" %", ConsoleColor.DarkYellow).Append(id.Value, ConsoleColor.DarkYellow);
@@ -71,8 +70,8 @@ public partial struct SpirvDis<TBuffer>
                     writer.Append(
                         words.Length == 1 ?
                             BitConverter.Int32BitsToSingle(words[0])
-                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1]), 
-                            
+                            : BitConverter.Int64BitsToDouble(words[0] << 32 | words[1]),
+
                         ConsoleColor.Red
                     );
                     return;
@@ -123,7 +122,7 @@ public partial struct SpirvDis<TBuffer>
     {
         if (o.Kind == OperandKind.IdRef)
             foreach (var e in o.Words)
-                Append(new IdRef(e));
+                Append(new IdRef(e), instruction.OpCode == SDSLOp.OpName);
         else if (o.Kind == OperandKind.IdResultType)
             foreach (var e in o.Words)
                 Append((IdResultType)e);

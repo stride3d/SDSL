@@ -12,6 +12,7 @@ public partial struct SpirvDis<TBuffer>
     where TBuffer : ISpirvBuffer
 
 {
+    public readonly static int MAX_OFFSET = 16; 
     TBuffer buffer;
     DisWriter writer = new();
     int IdOffset { get; init; }
@@ -51,7 +52,7 @@ public partial struct SpirvDis<TBuffer>
             }
             IdOffset += maxName;
         }
-        IdOffset = Math.Min(IdOffset, 16);
+        IdOffset = Math.Min(IdOffset, MAX_OFFSET);
     }
 
 

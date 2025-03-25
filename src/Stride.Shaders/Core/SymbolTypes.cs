@@ -120,14 +120,14 @@ public sealed record FunctionType(SymbolType ReturnType, List<SymbolType> Parame
     public override string ToString()
     {
         var builder = new StringBuilder();
-        builder.Append($"fn (");
+        builder.Append($"fn(");
         for(int i = 0; i < ParameterTypes.Count; i++)
         {
             builder.Append(ParameterTypes[i]);
             if(i < ParameterTypes.Count - 1)
-                builder.Append(" * ");
+                builder.Append('*');
         }
-        return builder.Append($") -> {ReturnType}").ToString();
+        return builder.Append($")->{ReturnType}").ToString();
     }
 }
 

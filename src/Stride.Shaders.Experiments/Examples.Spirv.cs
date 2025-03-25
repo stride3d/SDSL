@@ -23,7 +23,7 @@ public static partial class Examples
         context.GetOrRegister(ScalarType.From("int"));
 
 
-        context.AddGlobalVariable(new(new("color", SymbolKind.Variable, Storage.Stream), VectorType.From("float4")));
+        // context.AddGlobalVariable(new(new("color", SymbolKind.Variable, Storage.Stream), VectorType.From("float4")));
 
         var function = builder.CreateFunction(
             context,
@@ -49,7 +49,7 @@ public static partial class Examples
             function.Parameters["a"], Operator.Plus, function.Parameters["b"]
         );
         builder.Return(v);
-
+        context.Buffer.Sort();
         var dis = new SpirvDis<SpirvBuffer>(SpirvBuffer.Merge(context.Buffer, builder.Buffer), useNames: true);
         dis.Disassemble(true);
     }
@@ -157,16 +157,6 @@ public static partial class Examples
         buffer.AddOpMemberName(t_struct, 1, "v");
         buffer.AddOpMemberName(t_struct, 2, "i");
 
-
-        var main = buffer.AddOpFunction(id++, t_void, FunctionControlMask.MaskNone, t_func);
-        buffer.AddOpEntryPoint(ExecutionModel.Fragment, main, "PSMain", [v_output, v_input, v_input_2, v_input_3]);
-        buffer.AddOpExecutionMode(main, ExecutionMode.OriginLowerLeft);
-
-        buffer.AddOpLabel(id++);
-        buffer.AddOpReturn();
-        buffer.AddOpFunctionEnd();
-
-
         var add = buffer.AddOpFunction(id++, t_int, FunctionControlMask.MaskNone, t_func_add);
         var a = buffer.AddOpFunctionParameter(id++, t_int);
         var b = buffer.AddOpFunctionParameter(id++, t_int);
@@ -175,6 +165,17 @@ public static partial class Examples
         buffer.AddOpReturnValue(res);
         buffer.AddOpFunctionEnd();
 
+        var main = buffer.AddOpFunction(id++, t_void, FunctionControlMask.MaskNone, t_func);
+        buffer.AddOpEntryPoint(ExecutionModel.Fragment, main, "PSMain", [v_output, v_input, v_input_2, v_input_3]);
+        buffer.AddOpExecutionMode(main, ExecutionMode.OriginLowerLeft);
+
+        buffer.AddOpLabel(id++);
+        var resAdd = buffer.AddOpFunctionCall(id++, t_int, add, [constant7, constant7]);
+        buffer.AddOpReturn();
+        buffer.AddOpFunctionEnd();
+
+
+        
 
 
         buffer.Sort();

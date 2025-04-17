@@ -16615,6 +16615,18 @@ public static class SpirvBufferExtensions
         return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpMaskedScatterINTEL, ..inputVector.AsSpirvSpan(), ..ptrVector.AsSpirvSpan(), ..alignment.AsSpirvSpan(), ..mask.AsSpirvSpan()]);
     }
 
+    public static Instruction AddOpSDSLDecorateSemantic(this SpirvBuffer buffer, IdRef target, LiteralString semantic)
+    {
+        var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(semantic);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLDecorateSemantic, ..target.AsSpirvSpan(), ..semantic.AsSpirvSpan()]);
+    }
+
+    public static Instruction InsertOpSDSLDecorateSemantic(this SpirvBuffer buffer, int position, IdRef target, LiteralString semantic)
+    {
+        var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(semantic);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLDecorateSemantic, ..target.AsSpirvSpan(), ..semantic.AsSpirvSpan()]);
+    }
+
     public static Instruction AddOpSDSLMixinName(this SpirvBuffer buffer, LiteralString mixinName)
     {
         var wordLength = 1 + buffer.GetWordLength(mixinName);

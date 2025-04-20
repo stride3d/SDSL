@@ -3234,6 +3234,8 @@ public partial class InstructionInfo
         Instance.Register(SDSLOp.OpMaskedScatterINTEL, OperandKind.IdRef, OperandQuantifier.One, "ptrVector", "Memory");
         Instance.Register(SDSLOp.OpMaskedScatterINTEL, OperandKind.LiteralInteger, OperandQuantifier.One, "alignment", "Memory");
         Instance.Register(SDSLOp.OpMaskedScatterINTEL, OperandKind.IdRef, OperandQuantifier.One, "mask", "Memory");
+        Instance.Register(SDSLOp.OpSDSLDecorateSemantic, OperandKind.IdRef, OperandQuantifier.One, "target", "Miscellaneous");
+        Instance.Register(SDSLOp.OpSDSLDecorateSemantic, OperandKind.LiteralString, OperandQuantifier.One, "semantic", "Miscellaneous");
         Instance.Register(SDSLOp.OpSDSLMixinName, OperandKind.LiteralString, OperandQuantifier.One, "mixinName", "Miscellaneous");
         Instance.Register(SDSLOp.OpSDSLMixinEnd, OperandKind.None, null, "Debug");
         Instance.Register(SDSLOp.OpSDSLMixinOffset, OperandKind.LiteralInteger, OperandQuantifier.One, "mixinName", "Miscellaneous");

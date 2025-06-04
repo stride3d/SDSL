@@ -16627,50 +16627,38 @@ public static class SpirvBufferExtensions
         return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLDecorateSemantic, ..target.AsSpirvSpan(), ..semantic.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpSDSLMixinName(this SpirvBuffer buffer, LiteralString mixinName)
+    public static Instruction AddOpSDSLShader(this SpirvBuffer buffer, LiteralString shaderName)
     {
-        var wordLength = 1 + buffer.GetWordLength(mixinName);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLMixinName, ..mixinName.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(shaderName);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLShader, ..shaderName.AsSpirvSpan()]);
     }
 
-    public static Instruction InsertOpSDSLMixinName(this SpirvBuffer buffer, int position, LiteralString mixinName)
+    public static Instruction InsertOpSDSLShader(this SpirvBuffer buffer, int position, LiteralString shaderName)
     {
-        var wordLength = 1 + buffer.GetWordLength(mixinName);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLMixinName, ..mixinName.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(shaderName);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLShader, ..shaderName.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpSDSLMixinEnd(this SpirvBuffer buffer)
+    public static Instruction AddOpSDSLShaderEnd(this SpirvBuffer buffer)
     {
-        return buffer.Add([1 << 16 | (int)SDSLOp.OpSDSLMixinEnd]);
+        return buffer.Add([1 << 16 | (int)SDSLOp.OpSDSLShaderEnd]);
     }
 
-    public static Instruction InsertOpSDSLMixinEnd(this SpirvBuffer buffer, int position)
+    public static Instruction InsertOpSDSLShaderEnd(this SpirvBuffer buffer, int position)
     {
-        return buffer.Insert(position, [1 << 16 | (int)SDSLOp.OpSDSLMixinEnd]);
+        return buffer.Insert(position, [1 << 16 | (int)SDSLOp.OpSDSLShaderEnd]);
     }
 
-    public static Instruction AddOpSDSLMixinOffset(this SpirvBuffer buffer, LiteralInteger mixinName)
+    public static Instruction AddOpSDSLMixinInherit(this SpirvBuffer buffer, IdRef shader)
     {
-        var wordLength = 1 + buffer.GetWordLength(mixinName);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLMixinOffset, ..mixinName.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(shader);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLMixinInherit, ..shader.AsSpirvSpan()]);
     }
 
-    public static Instruction InsertOpSDSLMixinOffset(this SpirvBuffer buffer, int position, LiteralInteger mixinName)
+    public static Instruction InsertOpSDSLMixinInherit(this SpirvBuffer buffer, int position, IdRef shader)
     {
-        var wordLength = 1 + buffer.GetWordLength(mixinName);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLMixinOffset, ..mixinName.AsSpirvSpan()]);
-    }
-
-    public static Instruction AddOpSDSLMixinInherit(this SpirvBuffer buffer, LiteralString mixinName)
-    {
-        var wordLength = 1 + buffer.GetWordLength(mixinName);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLMixinInherit, ..mixinName.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLMixinInherit(this SpirvBuffer buffer, int position, LiteralString mixinName)
-    {
-        var wordLength = 1 + buffer.GetWordLength(mixinName);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLMixinInherit, ..mixinName.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(shader);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLMixinInherit, ..shader.AsSpirvSpan()]);
     }
 
     public static Instruction AddOpSDSLCompose(this SpirvBuffer buffer, LiteralString mixin, LiteralString name)
@@ -16697,40 +16685,40 @@ public static class SpirvBufferExtensions
         return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLStage, ..stagedElement.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpSDSLImportFunction(this SpirvBuffer buffer, IdResult resultId, LiteralString functionName, LiteralString mixinName, LiteralInteger id, LiteralInteger typeId)
+    public static Instruction AddOpSDSLImportShader(this SpirvBuffer buffer, IdResult resultId, LiteralString shaderName)
     {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(functionName) + buffer.GetWordLength(mixinName) + buffer.GetWordLength(id) + buffer.GetWordLength(typeId);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLImportFunction, ..resultId.AsSpirvSpan(), ..functionName.AsSpirvSpan(), ..mixinName.AsSpirvSpan(), ..id.AsSpirvSpan(), ..typeId.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(shaderName);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLImportShader, ..resultId.AsSpirvSpan(), ..shaderName.AsSpirvSpan()]);
     }
 
-    public static Instruction InsertOpSDSLImportFunction(this SpirvBuffer buffer, int position, IdResult resultId, LiteralString functionName, LiteralString mixinName, LiteralInteger id, LiteralInteger typeId)
+    public static Instruction InsertOpSDSLImportShader(this SpirvBuffer buffer, int position, IdResult resultId, LiteralString shaderName)
     {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(functionName) + buffer.GetWordLength(mixinName) + buffer.GetWordLength(id) + buffer.GetWordLength(typeId);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportFunction, ..resultId.AsSpirvSpan(), ..functionName.AsSpirvSpan(), ..mixinName.AsSpirvSpan(), ..id.AsSpirvSpan(), ..typeId.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(shaderName);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportShader, ..resultId.AsSpirvSpan(), ..shaderName.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpSDSLImportVariable(this SpirvBuffer buffer, IdResult resultId, LiteralString variableName, LiteralString mixinName, LiteralInteger id)
+    public static Instruction AddOpSDSLImportFunction(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, LiteralString functionName, IdRef shader)
     {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(variableName) + buffer.GetWordLength(mixinName) + buffer.GetWordLength(id);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLImportVariable, ..resultId.AsSpirvSpan(), ..variableName.AsSpirvSpan(), ..mixinName.AsSpirvSpan(), ..id.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(functionName) + buffer.GetWordLength(shader);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLImportFunction, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..functionName.AsSpirvSpan(), ..shader.AsSpirvSpan()]);
     }
 
-    public static Instruction InsertOpSDSLImportVariable(this SpirvBuffer buffer, int position, IdResult resultId, LiteralString variableName, LiteralString mixinName, LiteralInteger id)
+    public static Instruction InsertOpSDSLImportFunction(this SpirvBuffer buffer, int position, IdResult resultId, IdResultType resultType, LiteralString functionName, IdRef shader)
     {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(variableName) + buffer.GetWordLength(mixinName) + buffer.GetWordLength(id);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportVariable, ..resultId.AsSpirvSpan(), ..variableName.AsSpirvSpan(), ..mixinName.AsSpirvSpan(), ..id.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(functionName) + buffer.GetWordLength(shader);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportFunction, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..functionName.AsSpirvSpan(), ..shader.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpSDSLImportIdRef(this SpirvBuffer buffer, IdResult resultId, LiteralString mixinName, LiteralInteger id)
+    public static Instruction AddOpSDSLImportVariable(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, LiteralString variableName, IdRef shader)
     {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(mixinName) + buffer.GetWordLength(id);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLImportIdRef, ..resultId.AsSpirvSpan(), ..mixinName.AsSpirvSpan(), ..id.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(variableName) + buffer.GetWordLength(shader);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLImportVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..variableName.AsSpirvSpan(), ..shader.AsSpirvSpan()]);
     }
 
-    public static Instruction InsertOpSDSLImportIdRef(this SpirvBuffer buffer, int position, IdResult resultId, LiteralString mixinName, LiteralInteger id)
+    public static Instruction InsertOpSDSLImportVariable(this SpirvBuffer buffer, int position, IdResult resultId, IdResultType resultType, LiteralString variableName, IdRef shader)
     {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(mixinName) + buffer.GetWordLength(id);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportIdRef, ..resultId.AsSpirvSpan(), ..mixinName.AsSpirvSpan(), ..id.AsSpirvSpan()]);
+        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(variableName) + buffer.GetWordLength(shader);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..variableName.AsSpirvSpan(), ..shader.AsSpirvSpan()]);
     }
 
     public static Instruction AddOpSDSLMixinVariable(this SpirvBuffer buffer, IdResult resultId, IdRef mixinId, IdRef variableId)

@@ -14277,8 +14277,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLRound(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14287,8 +14288,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLRound(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14297,8 +14299,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLRoundEven(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14307,8 +14310,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLRoundEven(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14317,8 +14321,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLTrunc(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14327,8 +14332,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLTrunc(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14337,8 +14343,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLFAbs(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14347,8 +14354,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLFAbs(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14357,8 +14365,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLSAbs(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14367,8 +14376,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLSAbs(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14377,8 +14387,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLFSign(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14387,8 +14398,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLFSign(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14397,8 +14409,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLSSign(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14407,8 +14420,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLSSign(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14417,8 +14431,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLFloor(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14427,8 +14442,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLFloor(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14437,8 +14453,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction AddGLSLCeil(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14447,8 +14464,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
     public static Instruction InsertGLSLCeil(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14457,8 +14475,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
     public static Instruction AddGLSLFract(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14467,8 +14485,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
     public static Instruction InsertGLSLFract(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14477,8 +14495,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
     public static Instruction AddGLSLRadians(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef degrees, int set)
     {
@@ -14487,8 +14505,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
     public static Instruction InsertGLSLRadians(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef degrees, int set)
     {
@@ -14497,8 +14515,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
     public static Instruction AddGLSLDegrees(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef radians, int set)
     {
@@ -14507,8 +14525,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
     public static Instruction InsertGLSLDegrees(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef radians, int set)
     {
@@ -14517,8 +14535,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLSin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14527,8 +14544,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLSin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14537,8 +14553,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLCos(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14547,8 +14562,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLCos(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14557,8 +14571,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLTan(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14567,8 +14580,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLTan(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14577,8 +14589,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAsin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14587,8 +14598,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAsin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14597,8 +14607,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAcos(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14607,8 +14616,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAcos(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14617,8 +14625,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAtan(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef y_over_x, int set)
     {
@@ -14627,8 +14634,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAtan(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef y_over_x, int set)
     {
@@ -14637,8 +14643,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLSinh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14647,8 +14652,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLSinh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14657,8 +14661,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLCosh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14667,8 +14670,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLCosh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14677,8 +14679,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLTanh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14687,8 +14688,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLTanh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14697,8 +14697,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAsinh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14707,8 +14706,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAsinh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14717,8 +14715,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAcosh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14727,8 +14724,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAcosh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14737,8 +14733,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAtanh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14747,8 +14742,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAtanh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14757,8 +14751,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLAtan2(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef y, IdRef x, int set)
     {
@@ -14767,8 +14760,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLAtan2(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef y, IdRef x, int set)
     {
@@ -14777,8 +14769,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>ForcePow2DepthINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPow(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -14787,8 +14778,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>ForcePow2DepthINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPow(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -14797,8 +14787,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>StencilExportEXT</c></para>
     /// <para>Reserved.</para>
+    /// <para>Also see extension: SPV_EXT_shader_stencil_export</para>
     /// </summary>
     public static Instruction AddGLSLExp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14807,8 +14798,9 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>StencilExportEXT</c></para>
     /// <para>Reserved.</para>
+    /// <para>Also see extension: SPV_EXT_shader_stencil_export</para>
     /// </summary>
     public static Instruction InsertGLSLExp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14817,8 +14809,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLLog(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14827,8 +14818,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLLog(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14837,8 +14827,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLExp2(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14847,8 +14836,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLExp2(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14857,8 +14845,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLLog2(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14867,8 +14854,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLLog2(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14877,8 +14863,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLSqrt(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14887,8 +14872,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLSqrt(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14897,8 +14881,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLInverseSqrt(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14907,8 +14890,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLInverseSqrt(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14917,8 +14899,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLDeterminant(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14927,8 +14908,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLDeterminant(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14937,8 +14917,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLMatrixInverse(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14947,8 +14926,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLMatrixInverse(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14957,8 +14935,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLModf(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef i, int set)
     {
@@ -14967,8 +14944,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLModf(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef i, int set)
     {
@@ -14977,8 +14953,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction AddGLSLModfStruct(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14987,8 +14962,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
     public static Instruction InsertGLSLModfStruct(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -14997,7 +14971,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>OpAtomicFMinEXT</c></para>
     /// <para>Reserved.</para>
     /// </summary>
     public static Instruction AddGLSLFMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
@@ -15007,7 +14981,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>OpAtomicFMinEXT</c></para>
     /// <para>Reserved.</para>
     /// </summary>
     public static Instruction InsertGLSLFMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
@@ -15017,8 +14991,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicUMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLUMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15027,8 +15008,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicUMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLUMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15037,8 +15025,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLSMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15047,8 +15042,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLSMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15057,7 +15059,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>OpAtomicFMaxEXT</c></para>
     /// <para>Reserved.</para>
     /// </summary>
     public static Instruction AddGLSLFMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
@@ -15067,7 +15069,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>OpAtomicFMaxEXT</c></para>
     /// <para>Reserved.</para>
     /// </summary>
     public static Instruction InsertGLSLFMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
@@ -15077,8 +15079,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicUMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLUMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15087,8 +15096,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicUMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLUMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15097,8 +15113,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLSMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15107,8 +15130,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLSMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15117,8 +15147,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLFClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15127,8 +15164,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLFClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15137,8 +15181,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLUClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15147,8 +15198,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLUClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15157,8 +15215,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLSClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15167,8 +15232,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLSClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15177,8 +15249,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLFMix(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
@@ -15187,8 +15266,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLFMix(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
@@ -15197,8 +15283,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLIMix(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
@@ -15207,8 +15300,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLIMix(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
@@ -15217,8 +15317,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLStep(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef edge, IdRef x, int set)
     {
@@ -15227,8 +15334,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLStep(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef edge, IdRef x, int set)
     {
@@ -15237,8 +15351,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction AddGLSLSmoothStep(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef edge0, IdRef edge1, IdRef x, int set)
     {
@@ -15247,8 +15368,15 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
     public static Instruction InsertGLSLSmoothStep(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef edge0, IdRef edge1, IdRef x, int set)
     {
@@ -15257,8 +15385,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLFma(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef a, IdRef b, IdRef c, int set)
     {
@@ -15267,8 +15394,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLFma(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef a, IdRef b, IdRef c, int set)
     {
@@ -15277,8 +15403,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLFrexp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
@@ -15287,8 +15412,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLFrexp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
@@ -15297,8 +15421,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLFrexpStruct(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -15307,8 +15430,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLFrexpStruct(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -15317,8 +15439,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLLdexp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
@@ -15327,8 +15448,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLLdexp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
@@ -15337,8 +15457,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPackSnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15347,8 +15466,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPackSnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15357,8 +15475,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPackUnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15367,8 +15484,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPackUnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15377,8 +15493,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPackSnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15387,8 +15502,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPackSnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15397,8 +15511,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPackUnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15407,8 +15520,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPackUnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15417,8 +15529,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPackHalf2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15427,8 +15538,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPackHalf2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15437,8 +15547,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLPackDouble2x32(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15447,8 +15556,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLPackDouble2x32(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15457,8 +15565,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLUnpackSnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15467,8 +15574,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLUnpackSnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15477,8 +15583,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLUnpackUnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15487,8 +15592,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLUnpackUnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15497,8 +15601,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLUnpackHalf2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15507,8 +15610,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLUnpackHalf2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15517,8 +15619,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLUnpackSnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15527,8 +15628,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLUnpackSnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15537,8 +15637,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLUnpackUnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15547,8 +15646,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLUnpackUnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
@@ -15557,8 +15655,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction AddGLSLUnpackDouble2x32(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15567,8 +15664,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
     public static Instruction InsertGLSLUnpackDouble2x32(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
@@ -15577,8 +15673,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>DependencyLength</c></para>
+    /// <para>Guarantees that there are no dependencies between a number of loop iterations. The dependency length is specified in a subsequent unsigned 32-bit integer literal operand.</para>
     /// </summary>
     public static Instruction AddGLSLLength(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -15587,8 +15683,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>DependencyLength</c></para>
+    /// <para>Guarantees that there are no dependencies between a number of loop iterations. The dependency length is specified in a subsequent unsigned 32-bit integer literal operand.</para>
     /// </summary>
     public static Instruction InsertGLSLLength(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -15597,8 +15693,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>ClipDistance</c></para>
+    /// <para>Array of clip distances. See the client API specification for more detail.</para>
     /// </summary>
     public static Instruction AddGLSLDistance(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p0, IdRef p1, int set)
     {
@@ -15607,8 +15703,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>ClipDistance</c></para>
+    /// <para>Array of clip distances. See the client API specification for more detail.</para>
     /// </summary>
     public static Instruction InsertGLSLDistance(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p0, IdRef p1, int set)
     {
@@ -15617,8 +15713,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLCross(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15627,8 +15722,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLCross(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15637,8 +15731,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLNormalize(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -15647,8 +15740,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLNormalize(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
@@ -15657,8 +15749,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLFaceForward(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef n, IdRef i, IdRef nref, int set)
     {
@@ -15667,8 +15758,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLFaceForward(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef n, IdRef i, IdRef nref, int set)
     {
@@ -15677,8 +15767,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLReflect(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef i, IdRef n, int set)
     {
@@ -15687,8 +15776,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLReflect(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef i, IdRef n, int set)
     {
@@ -15697,8 +15785,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLRefract(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef i, IdRef n, IdRef eta, int set)
     {
@@ -15707,8 +15794,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLRefract(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef i, IdRef n, IdRef eta, int set)
     {
@@ -15717,8 +15803,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLFindILsb(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef value, int set)
     {
@@ -15727,8 +15812,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLFindILsb(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef value, int set)
     {
@@ -15737,8 +15821,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLFindSMsb(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef value, int set)
     {
@@ -15747,8 +15830,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLFindSMsb(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef value, int set)
     {
@@ -15757,8 +15839,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction AddGLSLFindUMsb(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef value, int set)
     {
@@ -15767,8 +15848,7 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
     public static Instruction InsertGLSLFindUMsb(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef value, int set)
     {
@@ -15777,8 +15857,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction AddGLSLInterpolateAtCentroid(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef interpolant, int set)
     {
@@ -15787,8 +15867,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction InsertGLSLInterpolateAtCentroid(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef interpolant, int set)
     {
@@ -15797,8 +15877,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction AddGLSLInterpolateAtSample(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef interpolant, IdRef sample, int set)
     {
@@ -15807,8 +15887,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction InsertGLSLInterpolateAtSample(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef interpolant, IdRef sample, int set)
     {
@@ -15817,8 +15897,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction AddGLSLInterpolateAtOffset(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef interpolant, IdRef offset, int set)
     {
@@ -15827,8 +15907,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction InsertGLSLInterpolateAtOffset(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef interpolant, IdRef offset, int set)
     {
@@ -15837,8 +15917,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction AddGLSLNMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15847,8 +15927,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction InsertGLSLNMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15857,8 +15937,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction AddGLSLNMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15867,8 +15947,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction InsertGLSLNMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
@@ -15877,8 +15957,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction AddGLSLNClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
@@ -15887,8 +15967,8 @@ public static class SpirvBufferExtensions
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
     public static Instruction InsertGLSLNClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {

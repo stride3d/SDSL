@@ -14288,1299 +14288,1703 @@ public static class SpirvBufferExtensions
         return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpMaskedScatterINTEL, ..inputVector.AsSpirvSpan(), ..ptrVector.AsSpirvSpan(), ..alignment.AsSpirvSpan(), ..mask.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpRound(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLRound(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpRound, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 1, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpRound(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLRound(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpRound, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 1, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpRoundEven(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLRoundEven(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpRoundEven, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 2, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpRoundEven(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLRoundEven(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpRoundEven, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 2, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpTrunc(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLTrunc(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpTrunc, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 3, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpTrunc(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLTrunc(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpTrunc, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 3, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFAbs(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLFAbs(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFAbs, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 4, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpFAbs(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLFAbs(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFAbs, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 4, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSAbs(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLSAbs(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSAbs, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 5, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpSAbs(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLSAbs(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSAbs, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 5, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFSign(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLFSign(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFSign, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 6, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpFSign(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLFSign(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFSign, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 6, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSSign(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLSSign(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSSign, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 7, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpSSign(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLSSign(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSSign, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 7, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFloor(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLFloor(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFloor, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 8, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpFloor(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLFloor(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFloor, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 8, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpCeil(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
+    /// </summary>
+    public static Instruction AddGLSLCeil(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpCeil, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 9, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>RoundingModeRTE</c></para>
+    /// <para>The default rounding mode for floating-point arithmetic and conversions instructions is round to nearest even. If an instruction is decorated with FPRoundingMode or defines a rounding mode in its description, that rounding mode is applied and RoundingModeRTE is ignored.</para>
+    /// <para> Only affects instructions operating on a floating-point type using the IEEE 754 encoding whose component width is Target Width. Target Width is an unsigned 32-bit integer. May be applied at most once per Target Width to any entry point.</para>
     /// </summary>
-    public static Instruction InsertOpCeil(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLCeil(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpCeil, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 9, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFract(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
+    /// </summary>
+    public static Instruction AddGLSLFract(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFract, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 10, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
-    public static Instruction InsertOpFract(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLFract(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFract, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 10, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpRadians(this SpirvBuffer buffer, IdRef degrees)
+    /// <summary>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
+    /// </summary>
+    public static Instruction AddGLSLRadians(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef degrees, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(degrees);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpRadians, ..degrees.AsSpirvSpan()]);
+        Span<IdRef> refs = [degrees];
+        return buffer.AddOpExtInst(set, 11, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
-    public static Instruction InsertOpRadians(this SpirvBuffer buffer, int position, IdRef degrees)
+    public static Instruction InsertGLSLRadians(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef degrees, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(degrees);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpRadians, ..degrees.AsSpirvSpan()]);
+        Span<IdRef> refs = [degrees];
+        return buffer.InsertOpExtInst(position, set, 11, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpDegrees(this SpirvBuffer buffer, IdRef radians)
+    /// <summary>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
+    /// </summary>
+    public static Instruction AddGLSLDegrees(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef radians, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(radians);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDegrees, ..radians.AsSpirvSpan()]);
+        Span<IdRef> refs = [radians];
+        return buffer.AddOpExtInst(set, 12, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SpacingFractionalEven</c></para>
+    /// <para>Requests the tessellation primitive generator to divide edges into an even number of equal-length segments plus two additional shorter fractional segments. Only valid with one of the tessellation Execution Models.</para>
     /// </summary>
-    public static Instruction InsertOpDegrees(this SpirvBuffer buffer, int position, IdRef radians)
+    public static Instruction InsertGLSLDegrees(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef radians, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(radians);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDegrees, ..radians.AsSpirvSpan()]);
+        Span<IdRef> refs = [radians];
+        return buffer.InsertOpExtInst(position, set, 12, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSin(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLSin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSin, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 13, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpSin(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLSin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSin, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 13, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpCos(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLCos(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpCos, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 14, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpCos(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLCos(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpCos, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 14, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpTan(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLTan(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpTan, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 15, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpTan(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLTan(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpTan, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 15, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAsin(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAsin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAsin, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 16, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAsin(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLAsin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAsin, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 16, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAcos(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAcos(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAcos, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 17, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAcos(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLAcos(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAcos, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 17, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAtan(this SpirvBuffer buffer, IdRef y_over_x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAtan(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef y_over_x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(y_over_x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAtan, ..y_over_x.AsSpirvSpan()]);
+        Span<IdRef> refs = [y_over_x];
+        return buffer.AddOpExtInst(set, 18, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAtan(this SpirvBuffer buffer, int position, IdRef y_over_x)
+    public static Instruction InsertGLSLAtan(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef y_over_x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(y_over_x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAtan, ..y_over_x.AsSpirvSpan()]);
+        Span<IdRef> refs = [y_over_x];
+        return buffer.InsertOpExtInst(position, set, 18, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSinh(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLSinh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSinh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 19, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpSinh(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLSinh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSinh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 19, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpCosh(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLCosh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpCosh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 20, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpCosh(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLCosh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpCosh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 20, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpTanh(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLTanh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpTanh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 21, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpTanh(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLTanh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpTanh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 21, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAsinh(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAsinh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAsinh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 22, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAsinh(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLAsinh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAsinh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 22, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAcosh(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAcosh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAcosh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 23, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAcosh(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLAcosh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAcosh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 23, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAtanh(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAtanh(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAtanh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 24, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAtanh(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLAtanh(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAtanh, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 24, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpAtan2(this SpirvBuffer buffer, IdRef y, IdRef x)
+    /// <summary>
+    /// <para><c>SinglepumpINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLAtan2(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef y, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(y) + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpAtan2, ..y.AsSpirvSpan(), ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [y, x];
+        return buffer.AddOpExtInst(set, 25, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SinglepumpINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpAtan2(this SpirvBuffer buffer, int position, IdRef y, IdRef x)
+    public static Instruction InsertGLSLAtan2(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef y, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(y) + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpAtan2, ..y.AsSpirvSpan(), ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [y, x];
+        return buffer.InsertOpExtInst(position, set, 25, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPow(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>ForcePow2DepthINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPow(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPow, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 26, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>ForcePow2DepthINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPow(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLPow(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPow, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 26, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpExp(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>StencilExportEXT</c></para>
+    /// <para>Reserved.</para>
+    /// <para>Also see extension: SPV_EXT_shader_stencil_export</para>
+    /// </summary>
+    public static Instruction AddGLSLExp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpExp, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 27, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>StencilExportEXT</c></para>
     /// <para>Reserved.</para>
+    /// <para>Also see extension: SPV_EXT_shader_stencil_export</para>
     /// </summary>
-    public static Instruction InsertOpExp(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLExp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpExp, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 27, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpLog(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLLog(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpLog, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 28, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpLog(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLLog(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpLog, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 28, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpExp2(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLExp2(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpExp2, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 29, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpExp2(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLExp2(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpExp2, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 29, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpLog2(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLLog2(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpLog2, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 30, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpLog2(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLLog2(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpLog2, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 30, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSqrt(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLSqrt(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSqrt, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 31, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpSqrt(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLSqrt(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSqrt, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 31, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpInverseSqrt(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLInverseSqrt(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpInverseSqrt, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 32, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpInverseSqrt(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLInverseSqrt(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpInverseSqrt, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 32, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpDeterminant(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLDeterminant(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDeterminant, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 33, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpDeterminant(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLDeterminant(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDeterminant, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 33, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpMatrixInverse(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLMatrixInverse(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpMatrixInverse, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 34, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpMatrixInverse(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLMatrixInverse(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpMatrixInverse, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 34, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpModf(this SpirvBuffer buffer, IdRef x, IdRef i)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLModf(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef i, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(i);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpModf, ..x.AsSpirvSpan(), ..i.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, i];
+        return buffer.AddOpExtInst(set, 35, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpModf(this SpirvBuffer buffer, int position, IdRef x, IdRef i)
+    public static Instruction InsertGLSLModf(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef i, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(i);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpModf, ..x.AsSpirvSpan(), ..i.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, i];
+        return buffer.InsertOpExtInst(position, set, 35, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpModfStruct(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>Logical</c></para>
+    /// </summary>
+    public static Instruction AddGLSLModfStruct(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpModfStruct, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 36, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>Logical</c></para>
     /// </summary>
-    public static Instruction InsertOpModfStruct(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLModfStruct(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpModfStruct, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 36, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFMin(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>OpAtomicFMinEXT</c></para>
+    /// <para>Reserved.</para>
+    /// </summary>
+    public static Instruction AddGLSLFMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 37, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>OpAtomicFMinEXT</c></para>
     /// <para>Reserved.</para>
     /// </summary>
-    public static Instruction InsertOpFMin(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLFMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 37, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUMin(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>OpAtomicUMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLUMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 38, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicUMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpUMin(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLUMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 38, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSMin(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>OpAtomicSMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLSMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 39, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMin</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the smallest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpSMin(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLSMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 39, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFMax(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>OpAtomicFMaxEXT</c></para>
+    /// <para>Reserved.</para>
+    /// </summary>
+    public static Instruction AddGLSLFMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 40, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
+    /// <para><c>OpAtomicFMaxEXT</c></para>
     /// <para>Reserved.</para>
     /// </summary>
-    public static Instruction InsertOpFMax(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLFMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 40, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUMax(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>OpAtomicUMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLUMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 41, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicUMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest unsigned integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpUMax(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLUMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 41, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSMax(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLSMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 42, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpSMax(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLSMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 42, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFClamp(this SpirvBuffer buffer, IdRef x, IdRef minVal, IdRef maxVal)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLFClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.AddOpExtInst(set, 43, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpFClamp(this SpirvBuffer buffer, int position, IdRef x, IdRef minVal, IdRef maxVal)
+    public static Instruction InsertGLSLFClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.InsertOpExtInst(position, set, 43, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUClamp(this SpirvBuffer buffer, IdRef x, IdRef minVal, IdRef maxVal)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLUClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.AddOpExtInst(set, 44, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpUClamp(this SpirvBuffer buffer, int position, IdRef x, IdRef minVal, IdRef maxVal)
+    public static Instruction InsertGLSLUClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.InsertOpExtInst(position, set, 44, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSClamp(this SpirvBuffer buffer, IdRef x, IdRef minVal, IdRef maxVal)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLSClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.AddOpExtInst(set, 45, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpSClamp(this SpirvBuffer buffer, int position, IdRef x, IdRef minVal, IdRef maxVal)
+    public static Instruction InsertGLSLSClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.InsertOpExtInst(position, set, 45, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFMix(this SpirvBuffer buffer, IdRef x, IdRef y, IdRef a)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLFMix(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y) + buffer.GetWordLength(a);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFMix, ..x.AsSpirvSpan(), ..y.AsSpirvSpan(), ..a.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y, a];
+        return buffer.AddOpExtInst(set, 46, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpFMix(this SpirvBuffer buffer, int position, IdRef x, IdRef y, IdRef a)
+    public static Instruction InsertGLSLFMix(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y) + buffer.GetWordLength(a);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFMix, ..x.AsSpirvSpan(), ..y.AsSpirvSpan(), ..a.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y, a];
+        return buffer.InsertOpExtInst(position, set, 46, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpIMix(this SpirvBuffer buffer, IdRef x, IdRef y, IdRef a)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLIMix(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y) + buffer.GetWordLength(a);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpIMix, ..x.AsSpirvSpan(), ..y.AsSpirvSpan(), ..a.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y, a];
+        return buffer.AddOpExtInst(set, 47, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpIMix(this SpirvBuffer buffer, int position, IdRef x, IdRef y, IdRef a)
+    public static Instruction InsertGLSLIMix(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, IdRef a, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y) + buffer.GetWordLength(a);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpIMix, ..x.AsSpirvSpan(), ..y.AsSpirvSpan(), ..a.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y, a];
+        return buffer.InsertOpExtInst(position, set, 47, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpStep(this SpirvBuffer buffer, IdRef edge, IdRef x)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLStep(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef edge, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(edge) + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpStep, ..edge.AsSpirvSpan(), ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [edge, x];
+        return buffer.AddOpExtInst(set, 48, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpStep(this SpirvBuffer buffer, int position, IdRef edge, IdRef x)
+    public static Instruction InsertGLSLStep(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef edge, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(edge) + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpStep, ..edge.AsSpirvSpan(), ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [edge, x];
+        return buffer.InsertOpExtInst(position, set, 48, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpSmoothStep(this SpirvBuffer buffer, IdRef edge0, IdRef edge1, IdRef x)
+    /// <summary>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
+    /// </summary>
+    public static Instruction AddGLSLSmoothStep(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef edge0, IdRef edge1, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(edge0) + buffer.GetWordLength(edge1) + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSmoothStep, ..edge0.AsSpirvSpan(), ..edge1.AsSpirvSpan(), ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [edge0, edge1, x];
+        return buffer.AddOpExtInst(set, 49, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>OpAtomicSMax</c></para>
+    /// <para>Perform the following steps atomically with respect to any other atomic accesses within Memory to the same location: </para>
+    /// <para>1) load through Pointer to get an Original Value,</para>
+    /// <para>2) get a New Value by finding the largest signed integer of Original Value and Value, and</para>
+    /// <para>3) store the New Value back through Pointer.</para>
+    /// <para>The instruction’s result is the Original Value.</para>
+    /// <para> Result Type must be an integer type scalar. </para>
+    /// <para> The type of Value must be the same as Result Type.  The type of the value pointed to by Pointer must be the same as Result Type. </para>
+    /// <para>Memory is a memory Scope.</para>
     /// </summary>
-    public static Instruction InsertOpSmoothStep(this SpirvBuffer buffer, int position, IdRef edge0, IdRef edge1, IdRef x)
+    public static Instruction InsertGLSLSmoothStep(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef edge0, IdRef edge1, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(edge0) + buffer.GetWordLength(edge1) + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSmoothStep, ..edge0.AsSpirvSpan(), ..edge1.AsSpirvSpan(), ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [edge0, edge1, x];
+        return buffer.InsertOpExtInst(position, set, 49, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFma(this SpirvBuffer buffer, IdRef a, IdRef b, IdRef c)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFma(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef a, IdRef b, IdRef c, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(a) + buffer.GetWordLength(b) + buffer.GetWordLength(c);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFma, ..a.AsSpirvSpan(), ..b.AsSpirvSpan(), ..c.AsSpirvSpan()]);
+        Span<IdRef> refs = [a, b, c];
+        return buffer.AddOpExtInst(set, 50, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpFma(this SpirvBuffer buffer, int position, IdRef a, IdRef b, IdRef c)
+    public static Instruction InsertGLSLFma(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef a, IdRef b, IdRef c, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(a) + buffer.GetWordLength(b) + buffer.GetWordLength(c);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFma, ..a.AsSpirvSpan(), ..b.AsSpirvSpan(), ..c.AsSpirvSpan()]);
+        Span<IdRef> refs = [a, b, c];
+        return buffer.InsertOpExtInst(position, set, 50, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFrexp(this SpirvBuffer buffer, IdRef x, IdRef exp)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFrexp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(exp);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFrexp, ..x.AsSpirvSpan(), ..exp.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, exp];
+        return buffer.AddOpExtInst(set, 51, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpFrexp(this SpirvBuffer buffer, int position, IdRef x, IdRef exp)
+    public static Instruction InsertGLSLFrexp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(exp);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFrexp, ..x.AsSpirvSpan(), ..exp.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, exp];
+        return buffer.InsertOpExtInst(position, set, 51, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFrexpStruct(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFrexpStruct(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFrexpStruct, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 52, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpFrexpStruct(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLFrexpStruct(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFrexpStruct, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 52, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpLdexp(this SpirvBuffer buffer, IdRef x, IdRef exp)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLLdexp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(exp);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpLdexp, ..x.AsSpirvSpan(), ..exp.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, exp];
+        return buffer.AddOpExtInst(set, 53, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpLdexp(this SpirvBuffer buffer, int position, IdRef x, IdRef exp)
+    public static Instruction InsertGLSLLdexp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef exp, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(exp);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpLdexp, ..x.AsSpirvSpan(), ..exp.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, exp];
+        return buffer.InsertOpExtInst(position, set, 53, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPackSnorm4x8(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPackSnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPackSnorm4x8, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 54, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPackSnorm4x8(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLPackSnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPackSnorm4x8, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 54, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPackUnorm4x8(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPackUnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPackUnorm4x8, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 55, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPackUnorm4x8(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLPackUnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPackUnorm4x8, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 55, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPackSnorm2x16(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPackSnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPackSnorm2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 56, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPackSnorm2x16(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLPackSnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPackSnorm2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 56, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPackUnorm2x16(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPackUnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPackUnorm2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 57, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPackUnorm2x16(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLPackUnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPackUnorm2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 57, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPackHalf2x16(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPackHalf2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPackHalf2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 58, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPackHalf2x16(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLPackHalf2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPackHalf2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 58, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpPackDouble2x32(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLPackDouble2x32(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpPackDouble2x32, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 59, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpPackDouble2x32(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLPackDouble2x32(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpPackDouble2x32, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 59, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUnpackSnorm2x16(this SpirvBuffer buffer, IdRef p)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLUnpackSnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUnpackSnorm2x16, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.AddOpExtInst(set, 60, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpUnpackSnorm2x16(this SpirvBuffer buffer, int position, IdRef p)
+    public static Instruction InsertGLSLUnpackSnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUnpackSnorm2x16, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.InsertOpExtInst(position, set, 60, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUnpackUnorm2x16(this SpirvBuffer buffer, IdRef p)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLUnpackUnorm2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUnpackUnorm2x16, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.AddOpExtInst(set, 61, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpUnpackUnorm2x16(this SpirvBuffer buffer, int position, IdRef p)
+    public static Instruction InsertGLSLUnpackUnorm2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUnpackUnorm2x16, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.InsertOpExtInst(position, set, 61, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUnpackHalf2x16(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLUnpackHalf2x16(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUnpackHalf2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 62, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpUnpackHalf2x16(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLUnpackHalf2x16(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUnpackHalf2x16, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 62, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUnpackSnorm4x8(this SpirvBuffer buffer, IdRef p)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLUnpackSnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUnpackSnorm4x8, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.AddOpExtInst(set, 63, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpUnpackSnorm4x8(this SpirvBuffer buffer, int position, IdRef p)
+    public static Instruction InsertGLSLUnpackSnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUnpackSnorm4x8, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.InsertOpExtInst(position, set, 63, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUnpackUnorm4x8(this SpirvBuffer buffer, IdRef p)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLUnpackUnorm4x8(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUnpackUnorm4x8, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.AddOpExtInst(set, 64, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpUnpackUnorm4x8(this SpirvBuffer buffer, int position, IdRef p)
+    public static Instruction InsertGLSLUnpackUnorm4x8(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUnpackUnorm4x8, ..p.AsSpirvSpan()]);
+        Span<IdRef> refs = [p];
+        return buffer.InsertOpExtInst(position, set, 64, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpUnpackDouble2x32(this SpirvBuffer buffer, IdRef v)
+    /// <summary>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
+    /// </summary>
+    public static Instruction AddGLSLUnpackDouble2x32(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpUnpackDouble2x32, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.AddOpExtInst(set, 65, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>SchedulerTargetFmaxMhzINTEL</c></para>
     /// </summary>
-    public static Instruction InsertOpUnpackDouble2x32(this SpirvBuffer buffer, int position, IdRef v)
+    public static Instruction InsertGLSLUnpackDouble2x32(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef v, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(v);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpUnpackDouble2x32, ..v.AsSpirvSpan()]);
+        Span<IdRef> refs = [v];
+        return buffer.InsertOpExtInst(position, set, 65, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpLength(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>DependencyLength</c></para>
+    /// <para>Guarantees that there are no dependencies between a number of loop iterations. The dependency length is specified in a subsequent unsigned 32-bit integer literal operand.</para>
+    /// </summary>
+    public static Instruction AddGLSLLength(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpLength, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 66, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>DependencyLength</c></para>
+    /// <para>Guarantees that there are no dependencies between a number of loop iterations. The dependency length is specified in a subsequent unsigned 32-bit integer literal operand.</para>
     /// </summary>
-    public static Instruction InsertOpLength(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLLength(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpLength, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 66, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpDistance(this SpirvBuffer buffer, IdRef p0, IdRef p1)
+    /// <summary>
+    /// <para><c>ClipDistance</c></para>
+    /// <para>Array of clip distances. See the client API specification for more detail.</para>
+    /// </summary>
+    public static Instruction AddGLSLDistance(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef p0, IdRef p1, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p0) + buffer.GetWordLength(p1);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDistance, ..p0.AsSpirvSpan(), ..p1.AsSpirvSpan()]);
+        Span<IdRef> refs = [p0, p1];
+        return buffer.AddOpExtInst(set, 67, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>ClipDistance</c></para>
+    /// <para>Array of clip distances. See the client API specification for more detail.</para>
     /// </summary>
-    public static Instruction InsertOpDistance(this SpirvBuffer buffer, int position, IdRef p0, IdRef p1)
+    public static Instruction InsertGLSLDistance(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef p0, IdRef p1, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(p0) + buffer.GetWordLength(p1);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDistance, ..p0.AsSpirvSpan(), ..p1.AsSpirvSpan()]);
+        Span<IdRef> refs = [p0, p1];
+        return buffer.InsertOpExtInst(position, set, 67, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpCross(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLCross(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpCross, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 68, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpCross(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLCross(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpCross, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 68, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpNormalize(this SpirvBuffer buffer, IdRef x)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLNormalize(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpNormalize, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.AddOpExtInst(set, 69, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpNormalize(this SpirvBuffer buffer, int position, IdRef x)
+    public static Instruction InsertGLSLNormalize(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpNormalize, ..x.AsSpirvSpan()]);
+        Span<IdRef> refs = [x];
+        return buffer.InsertOpExtInst(position, set, 69, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFaceForward(this SpirvBuffer buffer, IdRef n, IdRef i, IdRef nref)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFaceForward(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef n, IdRef i, IdRef nref, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(n) + buffer.GetWordLength(i) + buffer.GetWordLength(nref);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFaceForward, ..n.AsSpirvSpan(), ..i.AsSpirvSpan(), ..nref.AsSpirvSpan()]);
+        Span<IdRef> refs = [n, i, nref];
+        return buffer.AddOpExtInst(set, 70, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpFaceForward(this SpirvBuffer buffer, int position, IdRef n, IdRef i, IdRef nref)
+    public static Instruction InsertGLSLFaceForward(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef n, IdRef i, IdRef nref, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(n) + buffer.GetWordLength(i) + buffer.GetWordLength(nref);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFaceForward, ..n.AsSpirvSpan(), ..i.AsSpirvSpan(), ..nref.AsSpirvSpan()]);
+        Span<IdRef> refs = [n, i, nref];
+        return buffer.InsertOpExtInst(position, set, 70, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpReflect(this SpirvBuffer buffer, IdRef i, IdRef n)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLReflect(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef i, IdRef n, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(i) + buffer.GetWordLength(n);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpReflect, ..i.AsSpirvSpan(), ..n.AsSpirvSpan()]);
+        Span<IdRef> refs = [i, n];
+        return buffer.AddOpExtInst(set, 71, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpReflect(this SpirvBuffer buffer, int position, IdRef i, IdRef n)
+    public static Instruction InsertGLSLReflect(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef i, IdRef n, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(i) + buffer.GetWordLength(n);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpReflect, ..i.AsSpirvSpan(), ..n.AsSpirvSpan()]);
+        Span<IdRef> refs = [i, n];
+        return buffer.InsertOpExtInst(position, set, 71, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpRefract(this SpirvBuffer buffer, IdRef i, IdRef n, IdRef eta)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLRefract(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef i, IdRef n, IdRef eta, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(i) + buffer.GetWordLength(n) + buffer.GetWordLength(eta);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpRefract, ..i.AsSpirvSpan(), ..n.AsSpirvSpan(), ..eta.AsSpirvSpan()]);
+        Span<IdRef> refs = [i, n, eta];
+        return buffer.AddOpExtInst(set, 72, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpRefract(this SpirvBuffer buffer, int position, IdRef i, IdRef n, IdRef eta)
+    public static Instruction InsertGLSLRefract(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef i, IdRef n, IdRef eta, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(i) + buffer.GetWordLength(n) + buffer.GetWordLength(eta);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpRefract, ..i.AsSpirvSpan(), ..n.AsSpirvSpan(), ..eta.AsSpirvSpan()]);
+        Span<IdRef> refs = [i, n, eta];
+        return buffer.InsertOpExtInst(position, set, 72, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFindILsb(this SpirvBuffer buffer, IdRef value)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFindILsb(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef value, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(value);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFindILsb, ..value.AsSpirvSpan()]);
+        Span<IdRef> refs = [value];
+        return buffer.AddOpExtInst(set, 73, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpFindILsb(this SpirvBuffer buffer, int position, IdRef value)
+    public static Instruction InsertGLSLFindILsb(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef value, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(value);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFindILsb, ..value.AsSpirvSpan()]);
+        Span<IdRef> refs = [value];
+        return buffer.InsertOpExtInst(position, set, 73, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFindSMsb(this SpirvBuffer buffer, IdRef value)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFindSMsb(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef value, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(value);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFindSMsb, ..value.AsSpirvSpan()]);
+        Span<IdRef> refs = [value];
+        return buffer.AddOpExtInst(set, 74, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpFindSMsb(this SpirvBuffer buffer, int position, IdRef value)
+    public static Instruction InsertGLSLFindSMsb(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef value, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(value);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFindSMsb, ..value.AsSpirvSpan()]);
+        Span<IdRef> refs = [value];
+        return buffer.InsertOpExtInst(position, set, 74, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpFindUMsb(this SpirvBuffer buffer, IdRef value)
+    /// <summary>
+    /// <para><c>CrossWorkgroup</c></para>
+    /// </summary>
+    public static Instruction AddGLSLFindUMsb(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef value, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(value);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpFindUMsb, ..value.AsSpirvSpan()]);
+        Span<IdRef> refs = [value];
+        return buffer.AddOpExtInst(set, 75, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>CrossWorkgroup</c></para>
     /// </summary>
-    public static Instruction InsertOpFindUMsb(this SpirvBuffer buffer, int position, IdRef value)
+    public static Instruction InsertGLSLFindUMsb(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef value, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(value);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpFindUMsb, ..value.AsSpirvSpan()]);
+        Span<IdRef> refs = [value];
+        return buffer.InsertOpExtInst(position, set, 75, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpInterpolateAtCentroid(this SpirvBuffer buffer, IdRef interpolant)
+    /// <summary>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
+    /// </summary>
+    public static Instruction AddGLSLInterpolateAtCentroid(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef interpolant, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(interpolant);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpInterpolateAtCentroid, ..interpolant.AsSpirvSpan()]);
+        Span<IdRef> refs = [interpolant];
+        return buffer.AddOpExtInst(set, 76, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
-    public static Instruction InsertOpInterpolateAtCentroid(this SpirvBuffer buffer, int position, IdRef interpolant)
+    public static Instruction InsertGLSLInterpolateAtCentroid(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef interpolant, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(interpolant);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpInterpolateAtCentroid, ..interpolant.AsSpirvSpan()]);
+        Span<IdRef> refs = [interpolant];
+        return buffer.InsertOpExtInst(position, set, 76, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpInterpolateAtSample(this SpirvBuffer buffer, IdRef interpolant, IdRef sample)
+    /// <summary>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
+    /// </summary>
+    public static Instruction AddGLSLInterpolateAtSample(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef interpolant, IdRef sample, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(interpolant) + buffer.GetWordLength(sample);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpInterpolateAtSample, ..interpolant.AsSpirvSpan(), ..sample.AsSpirvSpan()]);
+        Span<IdRef> refs = [interpolant, sample];
+        return buffer.AddOpExtInst(set, 77, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
-    public static Instruction InsertOpInterpolateAtSample(this SpirvBuffer buffer, int position, IdRef interpolant, IdRef sample)
+    public static Instruction InsertGLSLInterpolateAtSample(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef interpolant, IdRef sample, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(interpolant) + buffer.GetWordLength(sample);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpInterpolateAtSample, ..interpolant.AsSpirvSpan(), ..sample.AsSpirvSpan()]);
+        Span<IdRef> refs = [interpolant, sample];
+        return buffer.InsertOpExtInst(position, set, 77, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpInterpolateAtOffset(this SpirvBuffer buffer, IdRef interpolant, IdRef offset)
+    /// <summary>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
+    /// </summary>
+    public static Instruction AddGLSLInterpolateAtOffset(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef interpolant, IdRef offset, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(interpolant) + buffer.GetWordLength(offset);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpInterpolateAtOffset, ..interpolant.AsSpirvSpan(), ..offset.AsSpirvSpan()]);
+        Span<IdRef> refs = [interpolant, offset];
+        return buffer.AddOpExtInst(set, 78, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
-    public static Instruction InsertOpInterpolateAtOffset(this SpirvBuffer buffer, int position, IdRef interpolant, IdRef offset)
+    public static Instruction InsertGLSLInterpolateAtOffset(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef interpolant, IdRef offset, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(interpolant) + buffer.GetWordLength(offset);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpInterpolateAtOffset, ..interpolant.AsSpirvSpan(), ..offset.AsSpirvSpan()]);
+        Span<IdRef> refs = [interpolant, offset];
+        return buffer.InsertOpExtInst(position, set, 78, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpNMin(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
+    /// </summary>
+    public static Instruction AddGLSLNMin(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpNMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 79, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
-    public static Instruction InsertOpNMin(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLNMin(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpNMin, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 79, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpNMax(this SpirvBuffer buffer, IdRef x, IdRef y)
+    /// <summary>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
+    /// </summary>
+    public static Instruction AddGLSLNMax(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpNMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.AddOpExtInst(set, 80, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
-    public static Instruction InsertOpNMax(this SpirvBuffer buffer, int position, IdRef x, IdRef y)
+    public static Instruction InsertGLSLNMax(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef y, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(y);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpNMax, ..x.AsSpirvSpan(), ..y.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, y];
+        return buffer.InsertOpExtInst(position, set, 80, resultId, resultType, refs);
     }
 
-    public static Instruction AddOpNClamp(this SpirvBuffer buffer, IdRef x, IdRef minVal, IdRef maxVal)
+    /// <summary>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
+    /// </summary>
+    public static Instruction AddGLSLNClamp(this SpirvBuffer buffer, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpNClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.AddOpExtInst(set, 81, resultId, resultType, refs);
     }
 
     /// <summary>
-    /// <para><c>OpMaskedScatterINTEL</c></para>
-    /// <para>Reserved.</para>
+    /// <para><c>InterpolationFunction</c></para>
+    /// <para>Uses one of the InterpolateAtCentroid, InterpolateAtSample, or InterpolateAtOffset GLSL.std.450 extended instructions.</para>
     /// </summary>
-    public static Instruction InsertOpNClamp(this SpirvBuffer buffer, int position, IdRef x, IdRef minVal, IdRef maxVal)
+    public static Instruction InsertGLSLNClamp(this SpirvBuffer buffer, int position, IdResultType resultType, int resultId, IdRef x, IdRef minVal, IdRef maxVal, int set)
     {
-        var wordLength = 1 + buffer.GetWordLength(x) + buffer.GetWordLength(minVal) + buffer.GetWordLength(maxVal);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpNClamp, ..x.AsSpirvSpan(), ..minVal.AsSpirvSpan(), ..maxVal.AsSpirvSpan()]);
+        Span<IdRef> refs = [x, minVal, maxVal];
+        return buffer.InsertOpExtInst(position, set, 81, resultId, resultType, refs);
     }
 }

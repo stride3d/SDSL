@@ -9447,770 +9447,770 @@ public ref struct RefOpMaskedScatterINTEL : IWrapperInstruction
     public RefOpMaskedScatterINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpRound : IWrapperInstruction
+public ref struct RefGLSLRound : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpRound(RefInstruction instruction) => Inner = instruction;
-    public RefOpRound(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRound(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLRound(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpRoundEven : IWrapperInstruction
+public ref struct RefGLSLRoundEven : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpRoundEven(RefInstruction instruction) => Inner = instruction;
-    public RefOpRoundEven(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRoundEven(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLRoundEven(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpTrunc : IWrapperInstruction
+public ref struct RefGLSLTrunc : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpTrunc(RefInstruction instruction) => Inner = instruction;
-    public RefOpTrunc(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLTrunc(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLTrunc(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFAbs : IWrapperInstruction
+public ref struct RefGLSLFAbs : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpFAbs(RefInstruction instruction) => Inner = instruction;
-    public RefOpFAbs(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFAbs(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFAbs(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSAbs : IWrapperInstruction
+public ref struct RefGLSLSAbs : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSAbs(RefInstruction instruction) => Inner = instruction;
-    public RefOpSAbs(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSAbs(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSAbs(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFSign : IWrapperInstruction
+public ref struct RefGLSLFSign : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpFSign(RefInstruction instruction) => Inner = instruction;
-    public RefOpFSign(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFSign(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFSign(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSSign : IWrapperInstruction
+public ref struct RefGLSLSSign : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSSign(RefInstruction instruction) => Inner = instruction;
-    public RefOpSSign(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSSign(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSSign(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFloor : IWrapperInstruction
+public ref struct RefGLSLFloor : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpFloor(RefInstruction instruction) => Inner = instruction;
-    public RefOpFloor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFloor(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFloor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpCeil : IWrapperInstruction
+public ref struct RefGLSLCeil : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpCeil(RefInstruction instruction) => Inner = instruction;
-    public RefOpCeil(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCeil(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLCeil(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFract : IWrapperInstruction
+public ref struct RefGLSLFract : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpFract(RefInstruction instruction) => Inner = instruction;
-    public RefOpFract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFract(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpRadians : IWrapperInstruction
+public ref struct RefGLSLRadians : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Degrees => Inner.GetOperand<IdRef>("degrees") ?? default;
 
-    public RefOpRadians(RefInstruction instruction) => Inner = instruction;
-    public RefOpRadians(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRadians(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLRadians(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpDegrees : IWrapperInstruction
+public ref struct RefGLSLDegrees : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Radians => Inner.GetOperand<IdRef>("radians") ?? default;
 
-    public RefOpDegrees(RefInstruction instruction) => Inner = instruction;
-    public RefOpDegrees(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLDegrees(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLDegrees(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSin : IWrapperInstruction
+public ref struct RefGLSLSin : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSin(RefInstruction instruction) => Inner = instruction;
-    public RefOpSin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSin(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpCos : IWrapperInstruction
+public ref struct RefGLSLCos : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpCos(RefInstruction instruction) => Inner = instruction;
-    public RefOpCos(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCos(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLCos(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpTan : IWrapperInstruction
+public ref struct RefGLSLTan : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpTan(RefInstruction instruction) => Inner = instruction;
-    public RefOpTan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLTan(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLTan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAsin : IWrapperInstruction
+public ref struct RefGLSLAsin : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpAsin(RefInstruction instruction) => Inner = instruction;
-    public RefOpAsin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAsin(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAsin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAcos : IWrapperInstruction
+public ref struct RefGLSLAcos : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpAcos(RefInstruction instruction) => Inner = instruction;
-    public RefOpAcos(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAcos(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAcos(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAtan : IWrapperInstruction
+public ref struct RefGLSLAtan : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Y_over_x => Inner.GetOperand<IdRef>("y_over_x") ?? default;
 
-    public RefOpAtan(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAtan(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAtan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSinh : IWrapperInstruction
+public ref struct RefGLSLSinh : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSinh(RefInstruction instruction) => Inner = instruction;
-    public RefOpSinh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSinh(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSinh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpCosh : IWrapperInstruction
+public ref struct RefGLSLCosh : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpCosh(RefInstruction instruction) => Inner = instruction;
-    public RefOpCosh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCosh(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLCosh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpTanh : IWrapperInstruction
+public ref struct RefGLSLTanh : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpTanh(RefInstruction instruction) => Inner = instruction;
-    public RefOpTanh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLTanh(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLTanh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAsinh : IWrapperInstruction
+public ref struct RefGLSLAsinh : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpAsinh(RefInstruction instruction) => Inner = instruction;
-    public RefOpAsinh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAsinh(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAsinh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAcosh : IWrapperInstruction
+public ref struct RefGLSLAcosh : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpAcosh(RefInstruction instruction) => Inner = instruction;
-    public RefOpAcosh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAcosh(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAcosh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAtanh : IWrapperInstruction
+public ref struct RefGLSLAtanh : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpAtanh(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtanh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAtanh(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAtanh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpAtan2 : IWrapperInstruction
+public ref struct RefGLSLAtan2 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpAtan2(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtan2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAtan2(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLAtan2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPow : IWrapperInstruction
+public ref struct RefGLSLPow : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpPow(RefInstruction instruction) => Inner = instruction;
-    public RefOpPow(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPow(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPow(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpExp : IWrapperInstruction
+public ref struct RefGLSLExp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpExp(RefInstruction instruction) => Inner = instruction;
-    public RefOpExp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLExp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLExp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpLog : IWrapperInstruction
+public ref struct RefGLSLLog : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpLog(RefInstruction instruction) => Inner = instruction;
-    public RefOpLog(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLog(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLLog(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpExp2 : IWrapperInstruction
+public ref struct RefGLSLExp2 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpExp2(RefInstruction instruction) => Inner = instruction;
-    public RefOpExp2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLExp2(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLExp2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpLog2 : IWrapperInstruction
+public ref struct RefGLSLLog2 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpLog2(RefInstruction instruction) => Inner = instruction;
-    public RefOpLog2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLog2(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLLog2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSqrt : IWrapperInstruction
+public ref struct RefGLSLSqrt : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSqrt(RefInstruction instruction) => Inner = instruction;
-    public RefOpSqrt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSqrt(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSqrt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpInverseSqrt : IWrapperInstruction
+public ref struct RefGLSLInverseSqrt : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpInverseSqrt(RefInstruction instruction) => Inner = instruction;
-    public RefOpInverseSqrt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInverseSqrt(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLInverseSqrt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpDeterminant : IWrapperInstruction
+public ref struct RefGLSLDeterminant : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpDeterminant(RefInstruction instruction) => Inner = instruction;
-    public RefOpDeterminant(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLDeterminant(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLDeterminant(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpMatrixInverse : IWrapperInstruction
+public ref struct RefGLSLMatrixInverse : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpMatrixInverse(RefInstruction instruction) => Inner = instruction;
-    public RefOpMatrixInverse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLMatrixInverse(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLMatrixInverse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpModf : IWrapperInstruction
+public ref struct RefGLSLModf : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
 
-    public RefOpModf(RefInstruction instruction) => Inner = instruction;
-    public RefOpModf(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLModf(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLModf(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpModfStruct : IWrapperInstruction
+public ref struct RefGLSLModfStruct : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpModfStruct(RefInstruction instruction) => Inner = instruction;
-    public RefOpModfStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLModfStruct(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLModfStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFMin : IWrapperInstruction
-{
-    public RefInstruction Inner { get; set; }
-    public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
-    public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
-
-    public RefOpFMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpFMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
-}
-
-public ref struct RefOpUMin : IWrapperInstruction
+public ref struct RefGLSLFMin : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpUMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpUMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFMin(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSMin : IWrapperInstruction
+public ref struct RefGLSLUMin : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpSMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpSMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUMin(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFMax : IWrapperInstruction
+public ref struct RefGLSLSMin : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpFMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpFMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSMin(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUMax : IWrapperInstruction
+public ref struct RefGLSLFMax : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpUMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpUMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFMax(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSMax : IWrapperInstruction
+public ref struct RefGLSLUMax : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpSMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpSMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUMax(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFClamp : IWrapperInstruction
+public ref struct RefGLSLSMax : IWrapperInstruction
+{
+    public RefInstruction Inner { get; set; }
+    public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
+    public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
+
+    public RefGLSLSMax(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+}
+
+public ref struct RefGLSLFClamp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefOpFClamp(RefInstruction instruction) => Inner = instruction;
-    public RefOpFClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFClamp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUClamp : IWrapperInstruction
+public ref struct RefGLSLUClamp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefOpUClamp(RefInstruction instruction) => Inner = instruction;
-    public RefOpUClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUClamp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSClamp : IWrapperInstruction
+public ref struct RefGLSLSClamp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefOpSClamp(RefInstruction instruction) => Inner = instruction;
-    public RefOpSClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSClamp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFMix : IWrapperInstruction
+public ref struct RefGLSLFMix : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
 
-    public RefOpFMix(RefInstruction instruction) => Inner = instruction;
-    public RefOpFMix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFMix(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFMix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpIMix : IWrapperInstruction
+public ref struct RefGLSLIMix : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
 
-    public RefOpIMix(RefInstruction instruction) => Inner = instruction;
-    public RefOpIMix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLIMix(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLIMix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpStep : IWrapperInstruction
+public ref struct RefGLSLStep : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Edge => Inner.GetOperand<IdRef>("edge") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpStep(RefInstruction instruction) => Inner = instruction;
-    public RefOpStep(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLStep(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLStep(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSmoothStep : IWrapperInstruction
+public ref struct RefGLSLSmoothStep : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Edge0 => Inner.GetOperand<IdRef>("edge0") ?? default;
     public IdRef Edge1 => Inner.GetOperand<IdRef>("edge1") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSmoothStep(RefInstruction instruction) => Inner = instruction;
-    public RefOpSmoothStep(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSmoothStep(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLSmoothStep(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFma : IWrapperInstruction
+public ref struct RefGLSLFma : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public IdRef C => Inner.GetOperand<IdRef>("c") ?? default;
 
-    public RefOpFma(RefInstruction instruction) => Inner = instruction;
-    public RefOpFma(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFma(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFma(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFrexp : IWrapperInstruction
+public ref struct RefGLSLFrexp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Exp => Inner.GetOperand<IdRef>("exp") ?? default;
 
-    public RefOpFrexp(RefInstruction instruction) => Inner = instruction;
-    public RefOpFrexp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFrexp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFrexp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFrexpStruct : IWrapperInstruction
+public ref struct RefGLSLFrexpStruct : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpFrexpStruct(RefInstruction instruction) => Inner = instruction;
-    public RefOpFrexpStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFrexpStruct(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFrexpStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpLdexp : IWrapperInstruction
+public ref struct RefGLSLLdexp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Exp => Inner.GetOperand<IdRef>("exp") ?? default;
 
-    public RefOpLdexp(RefInstruction instruction) => Inner = instruction;
-    public RefOpLdexp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLdexp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLLdexp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPackSnorm4x8 : IWrapperInstruction
+public ref struct RefGLSLPackSnorm4x8 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpPackSnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefOpPackSnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackSnorm4x8(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPackSnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPackUnorm4x8 : IWrapperInstruction
+public ref struct RefGLSLPackUnorm4x8 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpPackUnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefOpPackUnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackUnorm4x8(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPackUnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPackSnorm2x16 : IWrapperInstruction
+public ref struct RefGLSLPackSnorm2x16 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpPackSnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefOpPackSnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackSnorm2x16(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPackSnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPackUnorm2x16 : IWrapperInstruction
+public ref struct RefGLSLPackUnorm2x16 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpPackUnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefOpPackUnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackUnorm2x16(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPackUnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPackHalf2x16 : IWrapperInstruction
+public ref struct RefGLSLPackHalf2x16 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpPackHalf2x16(RefInstruction instruction) => Inner = instruction;
-    public RefOpPackHalf2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackHalf2x16(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPackHalf2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpPackDouble2x32 : IWrapperInstruction
+public ref struct RefGLSLPackDouble2x32 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpPackDouble2x32(RefInstruction instruction) => Inner = instruction;
-    public RefOpPackDouble2x32(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackDouble2x32(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLPackDouble2x32(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUnpackSnorm2x16 : IWrapperInstruction
+public ref struct RefGLSLUnpackSnorm2x16 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpUnpackSnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnpackSnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackSnorm2x16(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUnpackSnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUnpackUnorm2x16 : IWrapperInstruction
+public ref struct RefGLSLUnpackUnorm2x16 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpUnpackUnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnpackUnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackUnorm2x16(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUnpackUnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUnpackHalf2x16 : IWrapperInstruction
+public ref struct RefGLSLUnpackHalf2x16 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpUnpackHalf2x16(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnpackHalf2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackHalf2x16(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUnpackHalf2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUnpackSnorm4x8 : IWrapperInstruction
+public ref struct RefGLSLUnpackSnorm4x8 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpUnpackSnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnpackSnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackSnorm4x8(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUnpackSnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUnpackUnorm4x8 : IWrapperInstruction
+public ref struct RefGLSLUnpackUnorm4x8 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpUnpackUnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnpackUnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackUnorm4x8(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUnpackUnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpUnpackDouble2x32 : IWrapperInstruction
+public ref struct RefGLSLUnpackDouble2x32 : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefOpUnpackDouble2x32(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnpackDouble2x32(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackDouble2x32(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLUnpackDouble2x32(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpLength : IWrapperInstruction
+public ref struct RefGLSLLength : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpLength(RefInstruction instruction) => Inner = instruction;
-    public RefOpLength(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLength(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLLength(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpDistance : IWrapperInstruction
+public ref struct RefGLSLDistance : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef P0 => Inner.GetOperand<IdRef>("p0") ?? default;
     public IdRef P1 => Inner.GetOperand<IdRef>("p1") ?? default;
 
-    public RefOpDistance(RefInstruction instruction) => Inner = instruction;
-    public RefOpDistance(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLDistance(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLDistance(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpCross : IWrapperInstruction
+public ref struct RefGLSLCross : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpCross(RefInstruction instruction) => Inner = instruction;
-    public RefOpCross(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCross(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLCross(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpNormalize : IWrapperInstruction
+public ref struct RefGLSLNormalize : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpNormalize(RefInstruction instruction) => Inner = instruction;
-    public RefOpNormalize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNormalize(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLNormalize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFaceForward : IWrapperInstruction
+public ref struct RefGLSLFaceForward : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef N => Inner.GetOperand<IdRef>("n") ?? default;
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
     public IdRef Nref => Inner.GetOperand<IdRef>("nref") ?? default;
 
-    public RefOpFaceForward(RefInstruction instruction) => Inner = instruction;
-    public RefOpFaceForward(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFaceForward(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFaceForward(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpReflect : IWrapperInstruction
+public ref struct RefGLSLReflect : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
     public IdRef N => Inner.GetOperand<IdRef>("n") ?? default;
 
-    public RefOpReflect(RefInstruction instruction) => Inner = instruction;
-    public RefOpReflect(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLReflect(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLReflect(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpRefract : IWrapperInstruction
+public ref struct RefGLSLRefract : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
     public IdRef N => Inner.GetOperand<IdRef>("n") ?? default;
     public IdRef Eta => Inner.GetOperand<IdRef>("eta") ?? default;
 
-    public RefOpRefract(RefInstruction instruction) => Inner = instruction;
-    public RefOpRefract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRefract(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLRefract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFindILsb : IWrapperInstruction
+public ref struct RefGLSLFindILsb : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpFindILsb(RefInstruction instruction) => Inner = instruction;
-    public RefOpFindILsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFindILsb(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFindILsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFindSMsb : IWrapperInstruction
+public ref struct RefGLSLFindSMsb : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpFindSMsb(RefInstruction instruction) => Inner = instruction;
-    public RefOpFindSMsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFindSMsb(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFindSMsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpFindUMsb : IWrapperInstruction
+public ref struct RefGLSLFindUMsb : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpFindUMsb(RefInstruction instruction) => Inner = instruction;
-    public RefOpFindUMsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFindUMsb(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLFindUMsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpInterpolateAtCentroid : IWrapperInstruction
+public ref struct RefGLSLInterpolateAtCentroid : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Interpolant => Inner.GetOperand<IdRef>("interpolant") ?? default;
 
-    public RefOpInterpolateAtCentroid(RefInstruction instruction) => Inner = instruction;
-    public RefOpInterpolateAtCentroid(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInterpolateAtCentroid(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLInterpolateAtCentroid(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpInterpolateAtSample : IWrapperInstruction
+public ref struct RefGLSLInterpolateAtSample : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Interpolant => Inner.GetOperand<IdRef>("interpolant") ?? default;
     public IdRef Sample => Inner.GetOperand<IdRef>("sample") ?? default;
 
-    public RefOpInterpolateAtSample(RefInstruction instruction) => Inner = instruction;
-    public RefOpInterpolateAtSample(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInterpolateAtSample(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLInterpolateAtSample(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpInterpolateAtOffset : IWrapperInstruction
+public ref struct RefGLSLInterpolateAtOffset : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef Interpolant => Inner.GetOperand<IdRef>("interpolant") ?? default;
     public IdRef Offset => Inner.GetOperand<IdRef>("offset") ?? default;
 
-    public RefOpInterpolateAtOffset(RefInstruction instruction) => Inner = instruction;
-    public RefOpInterpolateAtOffset(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInterpolateAtOffset(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLInterpolateAtOffset(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpNMin : IWrapperInstruction
+public ref struct RefGLSLNMin : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpNMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpNMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNMin(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLNMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpNMax : IWrapperInstruction
+public ref struct RefGLSLNMax : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpNMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpNMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNMax(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLNMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpNClamp : IWrapperInstruction
+public ref struct RefGLSLNClamp : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefOpNClamp(RefInstruction instruction) => Inner = instruction;
-    public RefOpNClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNClamp(RefInstruction instruction) => Inner = instruction;
+    public RefGLSLNClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }

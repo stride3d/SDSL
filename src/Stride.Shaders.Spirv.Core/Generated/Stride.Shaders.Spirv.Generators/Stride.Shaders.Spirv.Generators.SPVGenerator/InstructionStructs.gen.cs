@@ -11,36 +11,27 @@ public ref struct RefOpSDSLDecorateSemantic : IWrapperInstruction
     public RefOpSDSLDecorateSemantic(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSDSLMixinName : IWrapperInstruction
+public ref struct RefOpSDSLShader : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
-    public LiteralString MixinName => Inner.GetOperand<LiteralString>("mixinName") ?? default;
+    public LiteralString ShaderName => Inner.GetOperand<LiteralString>("shaderName") ?? default;
 
-    public RefOpSDSLMixinName(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLMixinName(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLShader(RefInstruction instruction) => Inner = instruction;
+    public RefOpSDSLShader(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSDSLMixinEnd : IWrapperInstruction
+public ref struct RefOpSDSLShaderEnd : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
 
-    public RefOpSDSLMixinEnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLMixinEnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
-}
-
-public ref struct RefOpSDSLMixinOffset : IWrapperInstruction
-{
-    public RefInstruction Inner { get; set; }
-    public LiteralInteger MixinName => Inner.GetOperand<LiteralInteger>("mixinName") ?? default;
-
-    public RefOpSDSLMixinOffset(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLMixinOffset(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLShaderEnd(RefInstruction instruction) => Inner = instruction;
+    public RefOpSDSLShaderEnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
 public ref struct RefOpSDSLMixinInherit : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
-    public LiteralString MixinName => Inner.GetOperand<LiteralString>("mixinName") ?? default;
+    public IdRef Shader => Inner.GetOperand<IdRef>("shader") ?? default;
 
     public RefOpSDSLMixinInherit(RefInstruction instruction) => Inner = instruction;
     public RefOpSDSLMixinInherit(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
@@ -65,14 +56,23 @@ public ref struct RefOpSDSLStage : IWrapperInstruction
     public RefOpSDSLStage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
-public ref struct RefOpSDSLImportFunction : IWrapperInstruction
+public ref struct RefOpSDSLImportShader : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
+    public LiteralString ShaderName => Inner.GetOperand<LiteralString>("shaderName") ?? default;
+
+    public RefOpSDSLImportShader(RefInstruction instruction) => Inner = instruction;
+    public RefOpSDSLImportShader(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+}
+
+public ref struct RefOpSDSLImportFunction : IWrapperInstruction
+{
+    public RefInstruction Inner { get; set; }
+    public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
+    public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString FunctionName => Inner.GetOperand<LiteralString>("functionName") ?? default;
-    public LiteralString MixinName => Inner.GetOperand<LiteralString>("mixinName") ?? default;
-    public LiteralInteger Id => Inner.GetOperand<LiteralInteger>("id") ?? default;
-    public LiteralInteger TypeId => Inner.GetOperand<LiteralInteger>("typeId") ?? default;
+    public IdRef Shader => Inner.GetOperand<IdRef>("shader") ?? default;
 
     public RefOpSDSLImportFunction(RefInstruction instruction) => Inner = instruction;
     public RefOpSDSLImportFunction(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
@@ -81,24 +81,13 @@ public ref struct RefOpSDSLImportFunction : IWrapperInstruction
 public ref struct RefOpSDSLImportVariable : IWrapperInstruction
 {
     public RefInstruction Inner { get; set; }
+    public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString VariableName => Inner.GetOperand<LiteralString>("variableName") ?? default;
-    public LiteralString MixinName => Inner.GetOperand<LiteralString>("mixinName") ?? default;
-    public LiteralInteger Id => Inner.GetOperand<LiteralInteger>("id") ?? default;
+    public IdRef Shader => Inner.GetOperand<IdRef>("shader") ?? default;
 
     public RefOpSDSLImportVariable(RefInstruction instruction) => Inner = instruction;
     public RefOpSDSLImportVariable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
-}
-
-public ref struct RefOpSDSLImportIdRef : IWrapperInstruction
-{
-    public RefInstruction Inner { get; set; }
-    public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
-    public LiteralString MixinName => Inner.GetOperand<LiteralString>("mixinName") ?? default;
-    public LiteralInteger Id => Inner.GetOperand<LiteralInteger>("id") ?? default;
-
-    public RefOpSDSLImportIdRef(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLImportIdRef(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
 }
 
 public ref struct RefOpSDSLMixinVariable : IWrapperInstruction

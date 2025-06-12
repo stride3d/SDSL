@@ -3,131 +3,119 @@
 namespace Stride.Shaders.Spirv.Core;
 public ref struct RefOpSDSLDecorateSemantic : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public LiteralString Semantic => Inner.GetOperand<LiteralString>("semantic") ?? default;
 
-    public RefOpSDSLDecorateSemantic(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLDecorateSemantic(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLDecorateSemantic(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLShader : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralString ShaderName => Inner.GetOperand<LiteralString>("shaderName") ?? default;
 
-    public RefOpSDSLShader(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLShader(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLShader(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLShaderEnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpSDSLShaderEnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLShaderEnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLShaderEnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLMixinInherit : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Shader => Inner.GetOperand<IdRef>("shader") ?? default;
 
-    public RefOpSDSLMixinInherit(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLMixinInherit(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLMixinInherit(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLCompose : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralString Mixin => Inner.GetOperand<LiteralString>("mixin") ?? default;
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
 
-    public RefOpSDSLCompose(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLCompose(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLCompose(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLStage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef StagedElement => Inner.GetOperand<IdRef>("stagedElement") ?? default;
 
-    public RefOpSDSLStage(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLStage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLStage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLImportShader : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString ShaderName => Inner.GetOperand<LiteralString>("shaderName") ?? default;
 
-    public RefOpSDSLImportShader(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLImportShader(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLImportShader(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLImportFunction : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString FunctionName => Inner.GetOperand<LiteralString>("functionName") ?? default;
     public IdRef Shader => Inner.GetOperand<IdRef>("shader") ?? default;
 
-    public RefOpSDSLImportFunction(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLImportFunction(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLImportFunction(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLImportVariable : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString VariableName => Inner.GetOperand<LiteralString>("variableName") ?? default;
     public IdRef Shader => Inner.GetOperand<IdRef>("shader") ?? default;
 
-    public RefOpSDSLImportVariable(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLImportVariable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLImportVariable(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLMixinVariable : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef MixinId => Inner.GetOperand<IdRef>("mixinId") ?? default;
     public IdRef VariableId => Inner.GetOperand<IdRef>("variableId") ?? default;
 
-    public RefOpSDSLMixinVariable(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLMixinVariable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLMixinVariable(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLVariable : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
     public IdRef Initializer => Inner.GetOperand<IdRef>("initializer") ?? default;
 
-    public RefOpSDSLVariable(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLVariable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLVariable(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLFunctionParameter : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
 
-    public RefOpSDSLFunctionParameter(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLFunctionParameter(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLFunctionParameter(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLIOVariable : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
@@ -136,251 +124,227 @@ public ref struct RefOpSDSLIOVariable : IWrapperInstruction
     public LiteralString Semantic => Inner.GetOperand<LiteralString>("semantic") ?? default;
     public IdRef Initializer => Inner.GetOperand<IdRef>("initializer") ?? default;
 
-    public RefOpSDSLIOVariable(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLIOVariable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLIOVariable(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDSLFunction : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public FunctionControlMask Functioncontrol => Inner.GetEnumOperand<FunctionControlMask>("functioncontrol");
     public IdRef FunctionType => Inner.GetOperand<IdRef>("functionType") ?? default;
     public LiteralString FunctionName => Inner.GetOperand<LiteralString>("functionName") ?? default;
 
-    public RefOpSDSLFunction(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDSLFunction(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDSLFunction(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpNop : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpNop(RefInstruction instruction) => Inner = instruction;
-    public RefOpNop(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpNop(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUndef : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpUndef(RefInstruction instruction) => Inner = instruction;
-    public RefOpUndef(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUndef(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSourceContinued : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralString ContinuedSource => Inner.GetOperand<LiteralString>("continuedSource") ?? default;
 
-    public RefOpSourceContinued(RefInstruction instruction) => Inner = instruction;
-    public RefOpSourceContinued(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSourceContinued(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSource : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public SourceLanguage Sourcelanguage => Inner.GetEnumOperand<SourceLanguage>("sourcelanguage");
     public LiteralInteger Version => Inner.GetOperand<LiteralInteger>("version") ?? default;
     public IdRef File => Inner.GetOperand<IdRef>("file") ?? default;
     public LiteralString Source => Inner.GetOperand<LiteralString>("source") ?? default;
 
-    public RefOpSource(RefInstruction instruction) => Inner = instruction;
-    public RefOpSource(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSource(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSourceExtension : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralString Extension => Inner.GetOperand<LiteralString>("extension") ?? default;
 
-    public RefOpSourceExtension(RefInstruction instruction) => Inner = instruction;
-    public RefOpSourceExtension(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSourceExtension(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpName : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
 
-    public RefOpName(RefInstruction instruction) => Inner = instruction;
-    public RefOpName(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpName(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMemberName : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Type => Inner.GetOperand<IdRef>("type") ?? default;
     public LiteralInteger Member => Inner.GetOperand<LiteralInteger>("member") ?? default;
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
 
-    public RefOpMemberName(RefInstruction instruction) => Inner = instruction;
-    public RefOpMemberName(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMemberName(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpString : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString Value => Inner.GetOperand<LiteralString>("value") ?? default;
 
-    public RefOpString(RefInstruction instruction) => Inner = instruction;
-    public RefOpString(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpString(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLine : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef File => Inner.GetOperand<IdRef>("file") ?? default;
     public LiteralInteger Line => Inner.GetOperand<LiteralInteger>("line") ?? default;
     public LiteralInteger Column => Inner.GetOperand<LiteralInteger>("column") ?? default;
 
-    public RefOpLine(RefInstruction instruction) => Inner = instruction;
-    public RefOpLine(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLine(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExtension : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
 
-    public RefOpExtension(RefInstruction instruction) => Inner = instruction;
-    public RefOpExtension(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExtension(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExtInstImport : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
 
-    public RefOpExtInstImport(RefInstruction instruction) => Inner = instruction;
-    public RefOpExtInstImport(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExtInstImport(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExtInst : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Set => Inner.GetOperand<IdRef>("set") ?? default;
     public LiteralInteger Instruction => Inner.GetOperand<LiteralInteger>("instruction") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpExtInst(RefInstruction instruction) => Inner = instruction;
-    public RefOpExtInst(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExtInst(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMemoryModel : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public AddressingModel Addressingmodel => Inner.GetEnumOperand<AddressingModel>("addressingmodel");
     public MemoryModel Memorymodel => Inner.GetEnumOperand<MemoryModel>("memorymodel");
 
-    public RefOpMemoryModel(RefInstruction instruction) => Inner = instruction;
-    public RefOpMemoryModel(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMemoryModel(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEntryPoint : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public ExecutionModel Executionmodel => Inner.GetEnumOperand<ExecutionModel>("executionmodel");
     public IdRef EntryPoint => Inner.GetOperand<IdRef>("entryPoint") ?? default;
     public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpEntryPoint(RefInstruction instruction) => Inner = instruction;
-    public RefOpEntryPoint(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEntryPoint(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExecutionMode : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef EntryPoint => Inner.GetOperand<IdRef>("entryPoint") ?? default;
     public ExecutionMode Mode => Inner.GetEnumOperand<ExecutionMode>("mode");
 
-    public RefOpExecutionMode(RefInstruction instruction) => Inner = instruction;
-    public RefOpExecutionMode(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExecutionMode(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCapability : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public Capability Capability => Inner.GetEnumOperand<Capability>("capability");
 
-    public RefOpCapability(RefInstruction instruction) => Inner = instruction;
-    public RefOpCapability(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCapability(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeVoid : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeVoid(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeVoid(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeVoid(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeBool : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeBool(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeBool(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeBool(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeInt : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralInteger Width => Inner.GetOperand<LiteralInteger>("width") ?? default;
     public LiteralInteger Signedness => Inner.GetOperand<LiteralInteger>("signedness") ?? default;
 
-    public RefOpTypeInt(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeInt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeInt(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeFloat : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralInteger Width => Inner.GetOperand<LiteralInteger>("width") ?? default;
     public FPEncoding FloatingPointEncoding => Inner.GetEnumOperand<FPEncoding>("floatingPointEncoding");
 
-    public RefOpTypeFloat(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeFloat(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeFloat(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeVector : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ComponentType => Inner.GetOperand<IdRef>("componentType") ?? default;
     public LiteralInteger ComponentCount => Inner.GetOperand<LiteralInteger>("componentCount") ?? default;
 
-    public RefOpTypeVector(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeVector(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeVector(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeMatrix : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ColumnType => Inner.GetOperand<IdRef>("columnType") ?? default;
     public LiteralInteger ColumnCount => Inner.GetOperand<LiteralInteger>("columnCount") ?? default;
 
-    public RefOpTypeMatrix(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeMatrix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeMatrix(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeImage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledType => Inner.GetOperand<IdRef>("sampledType") ?? default;
     public Dim Dim => Inner.GetEnumOperand<Dim>("dim");
@@ -391,639 +355,581 @@ public ref struct RefOpTypeImage : IWrapperInstruction
     public ImageFormat Imageformat => Inner.GetEnumOperand<ImageFormat>("imageformat");
     public AccessQualifier Accessqualifier => Inner.GetEnumOperand<AccessQualifier>("accessqualifier");
 
-    public RefOpTypeImage(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeImage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeImage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeSampler : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeSampler(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeSampler(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeSampler(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeSampledImage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ImageType => Inner.GetOperand<IdRef>("imageType") ?? default;
 
-    public RefOpTypeSampledImage(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeSampledImage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeSampledImage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeArray : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ElementType => Inner.GetOperand<IdRef>("elementType") ?? default;
     public IdRef Length => Inner.GetOperand<IdRef>("length") ?? default;
 
-    public RefOpTypeArray(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeArray(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeArray(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeRuntimeArray : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ElementType => Inner.GetOperand<IdRef>("elementType") ?? default;
 
-    public RefOpTypeRuntimeArray(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeRuntimeArray(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeRuntimeArray(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeStruct : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTypeStruct(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeStruct(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeOpaque : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString Thenameoftheopaquetype => Inner.GetOperand<LiteralString>("thenameoftheopaquetype") ?? default;
 
-    public RefOpTypeOpaque(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeOpaque(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeOpaque(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypePointer : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
     public IdRef Type => Inner.GetOperand<IdRef>("type") ?? default;
 
-    public RefOpTypePointer(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypePointer(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypePointer(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeFunction : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ReturnType => Inner.GetOperand<IdRef>("returnType") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTypeFunction(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeFunction(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeFunction(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeEvent : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeEvent(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeEvent(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeEvent(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeDeviceEvent : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeDeviceEvent(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeDeviceEvent(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeDeviceEvent(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeReserveId : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeReserveId(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeReserveId(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeReserveId(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeQueue : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeQueue(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeQueue(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeQueue(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypePipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public AccessQualifier Qualifier => Inner.GetEnumOperand<AccessQualifier>("qualifier");
 
-    public RefOpTypePipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypePipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypePipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeForwardPointer : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef PointerType => Inner.GetOperand<IdRef>("pointerType") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
 
-    public RefOpTypeForwardPointer(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeForwardPointer(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeForwardPointer(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantTrue : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpConstantTrue(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantTrue(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantTrue(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantFalse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpConstantFalse(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantFalse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantFalse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstant : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpConstant(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstant(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstant(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantComposite : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpConstantComposite(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantComposite(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantComposite(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantSampler : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public SamplerAddressingMode Sampleraddressingmode => Inner.GetEnumOperand<SamplerAddressingMode>("sampleraddressingmode");
     public LiteralInteger Param => Inner.GetOperand<LiteralInteger>("param") ?? default;
     public SamplerFilterMode Samplerfiltermode => Inner.GetEnumOperand<SamplerFilterMode>("samplerfiltermode");
 
-    public RefOpConstantSampler(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantSampler(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantSampler(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantNull : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpConstantNull(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantNull(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantNull(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantTrue : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSpecConstantTrue(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantTrue(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantTrue(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantFalse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSpecConstantFalse(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantFalse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantFalse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstant : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSpecConstant(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstant(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstant(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantComposite : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpSpecConstantComposite(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantComposite(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantComposite(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantOp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralInteger Opcode => Inner.GetOperand<LiteralInteger>("opcode") ?? default;
 
-    public RefOpSpecConstantOp(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantOp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantOp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFunction : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public FunctionControlMask Functioncontrol => Inner.GetEnumOperand<FunctionControlMask>("functioncontrol");
     public IdRef FunctionType => Inner.GetOperand<IdRef>("functionType") ?? default;
 
-    public RefOpFunction(RefInstruction instruction) => Inner = instruction;
-    public RefOpFunction(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFunction(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFunctionParameter : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpFunctionParameter(RefInstruction instruction) => Inner = instruction;
-    public RefOpFunctionParameter(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFunctionParameter(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFunctionEnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpFunctionEnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpFunctionEnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFunctionEnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFunctionCall : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Function => Inner.GetOperand<IdRef>("function") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpFunctionCall(RefInstruction instruction) => Inner = instruction;
-    public RefOpFunctionCall(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFunctionCall(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVariable : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
     public IdRef Initializer => Inner.GetOperand<IdRef>("initializer") ?? default;
 
-    public RefOpVariable(RefInstruction instruction) => Inner = instruction;
-    public RefOpVariable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVariable(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageTexelPointer : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public IdRef Sample => Inner.GetOperand<IdRef>("sample") ?? default;
 
-    public RefOpImageTexelPointer(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageTexelPointer(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageTexelPointer(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLoad : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
 
-    public RefOpLoad(RefInstruction instruction) => Inner = instruction;
-    public RefOpLoad(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLoad(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpStore : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdRef ObjectId => Inner.GetOperand<IdRef>("objectId") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
 
-    public RefOpStore(RefInstruction instruction) => Inner = instruction;
-    public RefOpStore(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpStore(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCopyMemory : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public IdRef Source => Inner.GetOperand<IdRef>("source") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
     public MemoryAccessMask Memoryaccess1 => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess1");
 
-    public RefOpCopyMemory(RefInstruction instruction) => Inner = instruction;
-    public RefOpCopyMemory(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCopyMemory(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCopyMemorySized : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public IdRef Source => Inner.GetOperand<IdRef>("source") ?? default;
     public IdRef Size => Inner.GetOperand<IdRef>("size") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
     public MemoryAccessMask Memoryaccess1 => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess1");
 
-    public RefOpCopyMemorySized(RefInstruction instruction) => Inner = instruction;
-    public RefOpCopyMemorySized(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCopyMemorySized(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAccessChain : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpAccessChain(RefInstruction instruction) => Inner = instruction;
-    public RefOpAccessChain(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAccessChain(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpInBoundsAccessChain : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpInBoundsAccessChain(RefInstruction instruction) => Inner = instruction;
-    public RefOpInBoundsAccessChain(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpInBoundsAccessChain(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPtrAccessChain : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Element => Inner.GetOperand<IdRef>("element") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpPtrAccessChain(RefInstruction instruction) => Inner = instruction;
-    public RefOpPtrAccessChain(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPtrAccessChain(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArrayLength : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Structure => Inner.GetOperand<IdRef>("structure") ?? default;
     public LiteralInteger Arraymember => Inner.GetOperand<LiteralInteger>("arraymember") ?? default;
 
-    public RefOpArrayLength(RefInstruction instruction) => Inner = instruction;
-    public RefOpArrayLength(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArrayLength(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGenericPtrMemSemantics : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpGenericPtrMemSemantics(RefInstruction instruction) => Inner = instruction;
-    public RefOpGenericPtrMemSemantics(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGenericPtrMemSemantics(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpInBoundsPtrAccessChain : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Element => Inner.GetOperand<IdRef>("element") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpInBoundsPtrAccessChain(RefInstruction instruction) => Inner = instruction;
-    public RefOpInBoundsPtrAccessChain(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpInBoundsPtrAccessChain(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDecorate : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public Decoration Decoration => Inner.GetEnumOperand<Decoration>("decoration");
 
-    public RefOpDecorate(RefInstruction instruction) => Inner = instruction;
-    public RefOpDecorate(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDecorate(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMemberDecorate : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef StructureType => Inner.GetOperand<IdRef>("structureType") ?? default;
     public LiteralInteger Member => Inner.GetOperand<LiteralInteger>("member") ?? default;
     public Decoration Decoration => Inner.GetEnumOperand<Decoration>("decoration");
 
-    public RefOpMemberDecorate(RefInstruction instruction) => Inner = instruction;
-    public RefOpMemberDecorate(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMemberDecorate(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDecorationGroup : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpDecorationGroup(RefInstruction instruction) => Inner = instruction;
-    public RefOpDecorationGroup(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDecorationGroup(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupDecorate : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef DecorationGroup => Inner.GetOperand<IdRef>("decorationGroup") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpGroupDecorate(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupDecorate(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupDecorate(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupMemberDecorate : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef DecorationGroup => Inner.GetOperand<IdRef>("decorationGroup") ?? default;
     public PairIdRefLiteralInteger Values => Inner.GetOperand<PairIdRefLiteralInteger>("values") ?? default;
 
-    public RefOpGroupMemberDecorate(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupMemberDecorate(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupMemberDecorate(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVectorExtractDynamic : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
     public IdRef Index => Inner.GetOperand<IdRef>("index") ?? default;
 
-    public RefOpVectorExtractDynamic(RefInstruction instruction) => Inner = instruction;
-    public RefOpVectorExtractDynamic(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVectorExtractDynamic(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVectorInsertDynamic : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
     public IdRef Component => Inner.GetOperand<IdRef>("component") ?? default;
     public IdRef Index => Inner.GetOperand<IdRef>("index") ?? default;
 
-    public RefOpVectorInsertDynamic(RefInstruction instruction) => Inner = instruction;
-    public RefOpVectorInsertDynamic(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVectorInsertDynamic(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVectorShuffle : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
     public IdRef Vector2 => Inner.GetOperand<IdRef>("vector2") ?? default;
     public LiteralInteger Values => Inner.GetOperand<LiteralInteger>("values") ?? default;
 
-    public RefOpVectorShuffle(RefInstruction instruction) => Inner = instruction;
-    public RefOpVectorShuffle(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVectorShuffle(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCompositeConstruct : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpCompositeConstruct(RefInstruction instruction) => Inner = instruction;
-    public RefOpCompositeConstruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCompositeConstruct(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCompositeExtract : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Composite => Inner.GetOperand<IdRef>("composite") ?? default;
     public LiteralInteger Values => Inner.GetOperand<LiteralInteger>("values") ?? default;
 
-    public RefOpCompositeExtract(RefInstruction instruction) => Inner = instruction;
-    public RefOpCompositeExtract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCompositeExtract(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCompositeInsert : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ObjectId => Inner.GetOperand<IdRef>("objectId") ?? default;
     public IdRef Composite => Inner.GetOperand<IdRef>("composite") ?? default;
     public LiteralInteger Values => Inner.GetOperand<LiteralInteger>("values") ?? default;
 
-    public RefOpCompositeInsert(RefInstruction instruction) => Inner = instruction;
-    public RefOpCompositeInsert(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCompositeInsert(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCopyObject : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpCopyObject(RefInstruction instruction) => Inner = instruction;
-    public RefOpCopyObject(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCopyObject(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTranspose : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
 
-    public RefOpTranspose(RefInstruction instruction) => Inner = instruction;
-    public RefOpTranspose(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTranspose(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSampledImage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Sampler => Inner.GetOperand<IdRef>("sampler") ?? default;
 
-    public RefOpSampledImage(RefInstruction instruction) => Inner = instruction;
-    public RefOpSampledImage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSampledImage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleDrefImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -1031,13 +937,12 @@ public ref struct RefOpImageSampleDrefImplicitLod : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleDrefImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleDrefImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleDrefImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleDrefExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -1045,39 +950,36 @@ public ref struct RefOpImageSampleDrefExplicitLod : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleDrefExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleDrefExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleDrefExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleProjImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleProjImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleProjImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleProjImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleProjExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleProjExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleProjExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleProjExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleProjDrefImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -1085,13 +987,12 @@ public ref struct RefOpImageSampleProjDrefImplicitLod : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleProjDrefImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleProjDrefImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleProjDrefImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleProjDrefExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -1099,26 +1000,24 @@ public ref struct RefOpImageSampleProjDrefExplicitLod : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleProjDrefExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleProjDrefExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleProjDrefExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageFetch : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageFetch(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageFetch(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageFetch(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageGather : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -1126,13 +1025,12 @@ public ref struct RefOpImageGather : IWrapperInstruction
     public IdRef Component => Inner.GetOperand<IdRef>("component") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageGather(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageGather(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageGather(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageDrefGather : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -1140,1159 +1038,1060 @@ public ref struct RefOpImageDrefGather : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageDrefGather(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageDrefGather(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageDrefGather(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageRead : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageRead(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageRead(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageRead(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageWrite : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public IdRef Texel => Inner.GetOperand<IdRef>("texel") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageWrite(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageWrite(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageWrite(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
 
-    public RefOpImage(RefInstruction instruction) => Inner = instruction;
-    public RefOpImage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQueryFormat : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
 
-    public RefOpImageQueryFormat(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQueryFormat(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQueryFormat(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQueryOrder : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
 
-    public RefOpImageQueryOrder(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQueryOrder(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQueryOrder(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQuerySizeLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef LevelofDetail => Inner.GetOperand<IdRef>("levelofDetail") ?? default;
 
-    public RefOpImageQuerySizeLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQuerySizeLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQuerySizeLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQuerySize : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
 
-    public RefOpImageQuerySize(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQuerySize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQuerySize(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQueryLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
 
-    public RefOpImageQueryLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQueryLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQueryLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQueryLevels : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
 
-    public RefOpImageQueryLevels(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQueryLevels(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQueryLevels(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageQuerySamples : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
 
-    public RefOpImageQuerySamples(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageQuerySamples(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageQuerySamples(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertFToU : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef FloatValue => Inner.GetOperand<IdRef>("floatValue") ?? default;
 
-    public RefOpConvertFToU(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertFToU(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertFToU(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertFToS : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef FloatValue => Inner.GetOperand<IdRef>("floatValue") ?? default;
 
-    public RefOpConvertFToS(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertFToS(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertFToS(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertSToF : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SignedValue => Inner.GetOperand<IdRef>("signedValue") ?? default;
 
-    public RefOpConvertSToF(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertSToF(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertSToF(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertUToF : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef UnsignedValue => Inner.GetOperand<IdRef>("unsignedValue") ?? default;
 
-    public RefOpConvertUToF(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertUToF(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertUToF(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUConvert : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef UnsignedValue => Inner.GetOperand<IdRef>("unsignedValue") ?? default;
 
-    public RefOpUConvert(RefInstruction instruction) => Inner = instruction;
-    public RefOpUConvert(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUConvert(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSConvert : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SignedValue => Inner.GetOperand<IdRef>("signedValue") ?? default;
 
-    public RefOpSConvert(RefInstruction instruction) => Inner = instruction;
-    public RefOpSConvert(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSConvert(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFConvert : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef FloatValue => Inner.GetOperand<IdRef>("floatValue") ?? default;
 
-    public RefOpFConvert(RefInstruction instruction) => Inner = instruction;
-    public RefOpFConvert(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFConvert(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpQuantizeToF16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpQuantizeToF16(RefInstruction instruction) => Inner = instruction;
-    public RefOpQuantizeToF16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpQuantizeToF16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertPtrToU : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpConvertPtrToU(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertPtrToU(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertPtrToU(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSatConvertSToU : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SignedValue => Inner.GetOperand<IdRef>("signedValue") ?? default;
 
-    public RefOpSatConvertSToU(RefInstruction instruction) => Inner = instruction;
-    public RefOpSatConvertSToU(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSatConvertSToU(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSatConvertUToS : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef UnsignedValue => Inner.GetOperand<IdRef>("unsignedValue") ?? default;
 
-    public RefOpSatConvertUToS(RefInstruction instruction) => Inner = instruction;
-    public RefOpSatConvertUToS(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSatConvertUToS(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertUToPtr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef IntegerValue => Inner.GetOperand<IdRef>("integerValue") ?? default;
 
-    public RefOpConvertUToPtr(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertUToPtr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertUToPtr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPtrCastToGeneric : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpPtrCastToGeneric(RefInstruction instruction) => Inner = instruction;
-    public RefOpPtrCastToGeneric(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPtrCastToGeneric(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGenericCastToPtr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpGenericCastToPtr(RefInstruction instruction) => Inner = instruction;
-    public RefOpGenericCastToPtr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGenericCastToPtr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGenericCastToPtrExplicit : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public StorageClass Storage => Inner.GetEnumOperand<StorageClass>("storage");
 
-    public RefOpGenericCastToPtrExplicit(RefInstruction instruction) => Inner = instruction;
-    public RefOpGenericCastToPtrExplicit(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGenericCastToPtrExplicit(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitcast : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpBitcast(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitcast(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitcast(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSNegate : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpSNegate(RefInstruction instruction) => Inner = instruction;
-    public RefOpSNegate(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSNegate(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFNegate : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpFNegate(RefInstruction instruction) => Inner = instruction;
-    public RefOpFNegate(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFNegate(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpIAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpFAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpISub : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpISub(RefInstruction instruction) => Inner = instruction;
-    public RefOpISub(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpISub(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFSub : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFSub(RefInstruction instruction) => Inner = instruction;
-    public RefOpFSub(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFSub(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIMul : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIMul(RefInstruction instruction) => Inner = instruction;
-    public RefOpIMul(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIMul(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFMul : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFMul(RefInstruction instruction) => Inner = instruction;
-    public RefOpFMul(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFMul(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUDiv : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUDiv(RefInstruction instruction) => Inner = instruction;
-    public RefOpUDiv(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUDiv(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDiv : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSDiv(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDiv(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDiv(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFDiv : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFDiv(RefInstruction instruction) => Inner = instruction;
-    public RefOpFDiv(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFDiv(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUMod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUMod(RefInstruction instruction) => Inner = instruction;
-    public RefOpUMod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUMod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSRem : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSRem(RefInstruction instruction) => Inner = instruction;
-    public RefOpSRem(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSRem(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSMod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSMod(RefInstruction instruction) => Inner = instruction;
-    public RefOpSMod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSMod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFRem : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFRem(RefInstruction instruction) => Inner = instruction;
-    public RefOpFRem(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFRem(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFMod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFMod(RefInstruction instruction) => Inner = instruction;
-    public RefOpFMod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFMod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVectorTimesScalar : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
     public IdRef Scalar => Inner.GetOperand<IdRef>("scalar") ?? default;
 
-    public RefOpVectorTimesScalar(RefInstruction instruction) => Inner = instruction;
-    public RefOpVectorTimesScalar(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVectorTimesScalar(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMatrixTimesScalar : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
     public IdRef Scalar => Inner.GetOperand<IdRef>("scalar") ?? default;
 
-    public RefOpMatrixTimesScalar(RefInstruction instruction) => Inner = instruction;
-    public RefOpMatrixTimesScalar(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMatrixTimesScalar(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVectorTimesMatrix : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
 
-    public RefOpVectorTimesMatrix(RefInstruction instruction) => Inner = instruction;
-    public RefOpVectorTimesMatrix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVectorTimesMatrix(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMatrixTimesVector : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
 
-    public RefOpMatrixTimesVector(RefInstruction instruction) => Inner = instruction;
-    public RefOpMatrixTimesVector(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMatrixTimesVector(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMatrixTimesMatrix : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef LeftMatrix => Inner.GetOperand<IdRef>("leftMatrix") ?? default;
     public IdRef RightMatrix => Inner.GetOperand<IdRef>("rightMatrix") ?? default;
 
-    public RefOpMatrixTimesMatrix(RefInstruction instruction) => Inner = instruction;
-    public RefOpMatrixTimesMatrix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMatrixTimesMatrix(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpOuterProduct : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
     public IdRef Vector2 => Inner.GetOperand<IdRef>("vector2") ?? default;
 
-    public RefOpOuterProduct(RefInstruction instruction) => Inner = instruction;
-    public RefOpOuterProduct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpOuterProduct(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
     public IdRef Vector2 => Inner.GetOperand<IdRef>("vector2") ?? default;
 
-    public RefOpDot(RefInstruction instruction) => Inner = instruction;
-    public RefOpDot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIAddCarry : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIAddCarry(RefInstruction instruction) => Inner = instruction;
-    public RefOpIAddCarry(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIAddCarry(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpISubBorrow : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpISubBorrow(RefInstruction instruction) => Inner = instruction;
-    public RefOpISubBorrow(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpISubBorrow(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUMulExtended : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUMulExtended(RefInstruction instruction) => Inner = instruction;
-    public RefOpUMulExtended(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUMulExtended(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSMulExtended : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSMulExtended(RefInstruction instruction) => Inner = instruction;
-    public RefOpSMulExtended(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSMulExtended(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAny : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
 
-    public RefOpAny(RefInstruction instruction) => Inner = instruction;
-    public RefOpAny(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAny(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAll : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector => Inner.GetOperand<IdRef>("vector") ?? default;
 
-    public RefOpAll(RefInstruction instruction) => Inner = instruction;
-    public RefOpAll(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAll(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsNan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpIsNan(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsNan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsNan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsInf : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpIsInf(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsInf(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsInf(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsFinite : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpIsFinite(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsFinite(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsFinite(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsNormal : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpIsNormal(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsNormal(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsNormal(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSignBitSet : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpSignBitSet(RefInstruction instruction) => Inner = instruction;
-    public RefOpSignBitSet(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSignBitSet(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLessOrGreater : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpLessOrGreater(RefInstruction instruction) => Inner = instruction;
-    public RefOpLessOrGreater(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLessOrGreater(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpOrdered : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpOrdered(RefInstruction instruction) => Inner = instruction;
-    public RefOpOrdered(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpOrdered(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUnordered : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefOpUnordered(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnordered(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUnordered(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLogicalEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpLogicalEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpLogicalEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLogicalEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLogicalNotEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpLogicalNotEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpLogicalNotEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLogicalNotEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLogicalOr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpLogicalOr(RefInstruction instruction) => Inner = instruction;
-    public RefOpLogicalOr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLogicalOr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLogicalAnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpLogicalAnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpLogicalAnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLogicalAnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLogicalNot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpLogicalNot(RefInstruction instruction) => Inner = instruction;
-    public RefOpLogicalNot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLogicalNot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSelect : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Condition => Inner.GetOperand<IdRef>("condition") ?? default;
     public IdRef Object1 => Inner.GetOperand<IdRef>("object1") ?? default;
     public IdRef Object2 => Inner.GetOperand<IdRef>("object2") ?? default;
 
-    public RefOpSelect(RefInstruction instruction) => Inner = instruction;
-    public RefOpSelect(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSelect(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpIEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpINotEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpINotEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpINotEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpINotEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUGreaterThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUGreaterThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpUGreaterThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUGreaterThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSGreaterThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSGreaterThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpSGreaterThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSGreaterThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUGreaterThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUGreaterThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpUGreaterThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUGreaterThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSGreaterThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSGreaterThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpSGreaterThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSGreaterThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpULessThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpULessThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpULessThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpULessThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSLessThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSLessThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpSLessThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSLessThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpULessThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpULessThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpULessThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpULessThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSLessThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpSLessThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpSLessThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSLessThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFOrdEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFOrdEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFOrdEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFOrdEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFUnordEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFUnordEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFUnordEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFUnordEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFOrdNotEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFOrdNotEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFOrdNotEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFOrdNotEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFUnordNotEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFUnordNotEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFUnordNotEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFUnordNotEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFOrdLessThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFOrdLessThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpFOrdLessThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFOrdLessThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFUnordLessThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFUnordLessThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpFUnordLessThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFUnordLessThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFOrdGreaterThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFOrdGreaterThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpFOrdGreaterThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFOrdGreaterThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFUnordGreaterThan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFUnordGreaterThan(RefInstruction instruction) => Inner = instruction;
-    public RefOpFUnordGreaterThan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFUnordGreaterThan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFOrdLessThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFOrdLessThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFOrdLessThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFOrdLessThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFUnordLessThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFUnordLessThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFUnordLessThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFUnordLessThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFOrdGreaterThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFOrdGreaterThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFOrdGreaterThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFOrdGreaterThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFUnordGreaterThanEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpFUnordGreaterThanEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpFUnordGreaterThanEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFUnordGreaterThanEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpShiftRightLogical : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Shift => Inner.GetOperand<IdRef>("shift") ?? default;
 
-    public RefOpShiftRightLogical(RefInstruction instruction) => Inner = instruction;
-    public RefOpShiftRightLogical(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpShiftRightLogical(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpShiftRightArithmetic : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Shift => Inner.GetOperand<IdRef>("shift") ?? default;
 
-    public RefOpShiftRightArithmetic(RefInstruction instruction) => Inner = instruction;
-    public RefOpShiftRightArithmetic(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpShiftRightArithmetic(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpShiftLeftLogical : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Shift => Inner.GetOperand<IdRef>("shift") ?? default;
 
-    public RefOpShiftLeftLogical(RefInstruction instruction) => Inner = instruction;
-    public RefOpShiftLeftLogical(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpShiftLeftLogical(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitwiseOr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpBitwiseOr(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitwiseOr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitwiseOr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitwiseXor : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpBitwiseXor(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitwiseXor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitwiseXor(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitwiseAnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpBitwiseAnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitwiseAnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitwiseAnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpNot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpNot(RefInstruction instruction) => Inner = instruction;
-    public RefOpNot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpNot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitFieldInsert : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
@@ -2300,240 +2099,218 @@ public ref struct RefOpBitFieldInsert : IWrapperInstruction
     public IdRef Offset => Inner.GetOperand<IdRef>("offset") ?? default;
     public IdRef Count => Inner.GetOperand<IdRef>("count") ?? default;
 
-    public RefOpBitFieldInsert(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitFieldInsert(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitFieldInsert(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitFieldSExtract : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Offset => Inner.GetOperand<IdRef>("offset") ?? default;
     public IdRef Count => Inner.GetOperand<IdRef>("count") ?? default;
 
-    public RefOpBitFieldSExtract(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitFieldSExtract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitFieldSExtract(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitFieldUExtract : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Offset => Inner.GetOperand<IdRef>("offset") ?? default;
     public IdRef Count => Inner.GetOperand<IdRef>("count") ?? default;
 
-    public RefOpBitFieldUExtract(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitFieldUExtract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitFieldUExtract(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitReverse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
 
-    public RefOpBitReverse(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitReverse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitReverse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBitCount : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
 
-    public RefOpBitCount(RefInstruction instruction) => Inner = instruction;
-    public RefOpBitCount(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBitCount(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDPdx : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpDPdx(RefInstruction instruction) => Inner = instruction;
-    public RefOpDPdx(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDPdx(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDPdy : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpDPdy(RefInstruction instruction) => Inner = instruction;
-    public RefOpDPdy(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDPdy(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFwidth : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpFwidth(RefInstruction instruction) => Inner = instruction;
-    public RefOpFwidth(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFwidth(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDPdxFine : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpDPdxFine(RefInstruction instruction) => Inner = instruction;
-    public RefOpDPdxFine(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDPdxFine(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDPdyFine : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpDPdyFine(RefInstruction instruction) => Inner = instruction;
-    public RefOpDPdyFine(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDPdyFine(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFwidthFine : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpFwidthFine(RefInstruction instruction) => Inner = instruction;
-    public RefOpFwidthFine(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFwidthFine(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDPdxCoarse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpDPdxCoarse(RefInstruction instruction) => Inner = instruction;
-    public RefOpDPdxCoarse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDPdxCoarse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDPdyCoarse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpDPdyCoarse(RefInstruction instruction) => Inner = instruction;
-    public RefOpDPdyCoarse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDPdyCoarse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFwidthCoarse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefOpFwidthCoarse(RefInstruction instruction) => Inner = instruction;
-    public RefOpFwidthCoarse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFwidthCoarse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEmitVertex : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpEmitVertex(RefInstruction instruction) => Inner = instruction;
-    public RefOpEmitVertex(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEmitVertex(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEndPrimitive : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpEndPrimitive(RefInstruction instruction) => Inner = instruction;
-    public RefOpEndPrimitive(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEndPrimitive(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEmitStreamVertex : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Stream => Inner.GetOperand<IdRef>("stream") ?? default;
 
-    public RefOpEmitStreamVertex(RefInstruction instruction) => Inner = instruction;
-    public RefOpEmitStreamVertex(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEmitStreamVertex(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEndStreamPrimitive : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Stream => Inner.GetOperand<IdRef>("stream") ?? default;
 
-    public RefOpEndStreamPrimitive(RefInstruction instruction) => Inner = instruction;
-    public RefOpEndStreamPrimitive(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEndStreamPrimitive(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpControlBarrier : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpControlBarrier(RefInstruction instruction) => Inner = instruction;
-    public RefOpControlBarrier(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpControlBarrier(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMemoryBarrier : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpMemoryBarrier(RefInstruction instruction) => Inner = instruction;
-    public RefOpMemoryBarrier(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMemoryBarrier(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicLoad : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpAtomicLoad(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicLoad(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicLoad(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicStore : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicStore(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicStore(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicStore(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicExchange : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2541,13 +2318,12 @@ public ref struct RefOpAtomicExchange : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicExchange(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicExchange(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicExchange(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicCompareExchange : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2557,13 +2333,12 @@ public ref struct RefOpAtomicCompareExchange : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Comparator => Inner.GetOperand<IdRef>("comparator") ?? default;
 
-    public RefOpAtomicCompareExchange(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicCompareExchange(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicCompareExchange(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicCompareExchangeWeak : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2573,39 +2348,36 @@ public ref struct RefOpAtomicCompareExchangeWeak : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Comparator => Inner.GetOperand<IdRef>("comparator") ?? default;
 
-    public RefOpAtomicCompareExchangeWeak(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicCompareExchangeWeak(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicCompareExchangeWeak(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicIIncrement : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpAtomicIIncrement(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicIIncrement(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicIIncrement(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicIDecrement : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpAtomicIDecrement(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicIDecrement(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicIDecrement(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicIAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2613,13 +2385,12 @@ public ref struct RefOpAtomicIAdd : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicIAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicIAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicIAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicISub : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2627,13 +2398,12 @@ public ref struct RefOpAtomicISub : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicISub(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicISub(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicISub(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicSMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2641,13 +2411,12 @@ public ref struct RefOpAtomicSMin : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicSMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicSMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicSMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicUMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2655,13 +2424,12 @@ public ref struct RefOpAtomicUMin : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicUMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicUMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicUMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicSMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2669,13 +2437,12 @@ public ref struct RefOpAtomicSMax : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicSMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicSMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicSMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicUMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2683,13 +2450,12 @@ public ref struct RefOpAtomicUMax : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicUMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicUMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicUMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicAnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2697,13 +2463,12 @@ public ref struct RefOpAtomicAnd : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicAnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicAnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicAnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicOr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2711,13 +2476,12 @@ public ref struct RefOpAtomicOr : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicOr(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicOr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicOr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicXor : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -2725,139 +2489,125 @@ public ref struct RefOpAtomicXor : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicXor(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicXor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicXor(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPhi : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public PairIdRefIdRef Values => Inner.GetOperand<PairIdRefIdRef>("values") ?? default;
 
-    public RefOpPhi(RefInstruction instruction) => Inner = instruction;
-    public RefOpPhi(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPhi(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLoopMerge : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef MergeBlock => Inner.GetOperand<IdRef>("mergeBlock") ?? default;
     public IdRef ContinueTarget => Inner.GetOperand<IdRef>("continueTarget") ?? default;
     public LoopControlMask Loopcontrol => Inner.GetEnumOperand<LoopControlMask>("loopcontrol");
 
-    public RefOpLoopMerge(RefInstruction instruction) => Inner = instruction;
-    public RefOpLoopMerge(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLoopMerge(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSelectionMerge : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef MergeBlock => Inner.GetOperand<IdRef>("mergeBlock") ?? default;
     public SelectionControlMask Selectioncontrol => Inner.GetEnumOperand<SelectionControlMask>("selectioncontrol");
 
-    public RefOpSelectionMerge(RefInstruction instruction) => Inner = instruction;
-    public RefOpSelectionMerge(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSelectionMerge(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLabel : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpLabel(RefInstruction instruction) => Inner = instruction;
-    public RefOpLabel(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLabel(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBranch : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef TargetLabel => Inner.GetOperand<IdRef>("targetLabel") ?? default;
 
-    public RefOpBranch(RefInstruction instruction) => Inner = instruction;
-    public RefOpBranch(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBranch(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBranchConditional : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Condition => Inner.GetOperand<IdRef>("condition") ?? default;
     public IdRef TrueLabel => Inner.GetOperand<IdRef>("trueLabel") ?? default;
     public IdRef FalseLabel => Inner.GetOperand<IdRef>("falseLabel") ?? default;
     public LiteralInteger Values => Inner.GetOperand<LiteralInteger>("values") ?? default;
 
-    public RefOpBranchConditional(RefInstruction instruction) => Inner = instruction;
-    public RefOpBranchConditional(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBranchConditional(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSwitch : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Selector => Inner.GetOperand<IdRef>("selector") ?? default;
     public IdRef DefaultId => Inner.GetOperand<IdRef>("defaultId") ?? default;
     public PairLiteralIntegerIdRef Values => Inner.GetOperand<PairLiteralIntegerIdRef>("values") ?? default;
 
-    public RefOpSwitch(RefInstruction instruction) => Inner = instruction;
-    public RefOpSwitch(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSwitch(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpKill : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpKill(RefInstruction instruction) => Inner = instruction;
-    public RefOpKill(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpKill(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReturn : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpReturn(RefInstruction instruction) => Inner = instruction;
-    public RefOpReturn(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReturn(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReturnValue : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpReturnValue(RefInstruction instruction) => Inner = instruction;
-    public RefOpReturnValue(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReturnValue(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUnreachable : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpUnreachable(RefInstruction instruction) => Inner = instruction;
-    public RefOpUnreachable(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUnreachable(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLifetimeStart : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public LiteralInteger Size => Inner.GetOperand<LiteralInteger>("size") ?? default;
 
-    public RefOpLifetimeStart(RefInstruction instruction) => Inner = instruction;
-    public RefOpLifetimeStart(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLifetimeStart(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLifetimeStop : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public LiteralInteger Size => Inner.GetOperand<LiteralInteger>("size") ?? default;
 
-    public RefOpLifetimeStop(RefInstruction instruction) => Inner = instruction;
-    public RefOpLifetimeStop(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLifetimeStop(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupAsyncCopy : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -2867,165 +2617,152 @@ public ref struct RefOpGroupAsyncCopy : IWrapperInstruction
     public IdRef Stride => Inner.GetOperand<IdRef>("stride") ?? default;
     public IdRef EventId => Inner.GetOperand<IdRef>("eventId") ?? default;
 
-    public RefOpGroupAsyncCopy(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupAsyncCopy(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupAsyncCopy(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupWaitEvents : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef NumEvents => Inner.GetOperand<IdRef>("numEvents") ?? default;
     public IdRef EventsList => Inner.GetOperand<IdRef>("eventsList") ?? default;
 
-    public RefOpGroupWaitEvents(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupWaitEvents(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupWaitEvents(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupAll : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupAll(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupAll(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupAll(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupAny : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupAny(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupAny(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupAny(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupBroadcast : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef LocalId => Inner.GetOperand<IdRef>("localId") ?? default;
 
-    public RefOpGroupBroadcast(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupBroadcast(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupBroadcast(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupIAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupIAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupIAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupIAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupUMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupUMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupUMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupUMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupSMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupSMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupSMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupSMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupUMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupUMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupUMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupUMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupSMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupSMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupSMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupSMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReadPipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
@@ -3033,13 +2770,12 @@ public ref struct RefOpReadPipe : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpReadPipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpReadPipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReadPipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpWritePipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
@@ -3047,13 +2783,12 @@ public ref struct RefOpWritePipe : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpWritePipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpWritePipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpWritePipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReservedReadPipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
@@ -3063,13 +2798,12 @@ public ref struct RefOpReservedReadPipe : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpReservedReadPipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpReservedReadPipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReservedReadPipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReservedWritePipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
@@ -3079,13 +2813,12 @@ public ref struct RefOpReservedWritePipe : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpReservedWritePipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpReservedWritePipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReservedWritePipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReserveReadPipePackets : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
@@ -3093,13 +2826,12 @@ public ref struct RefOpReserveReadPipePackets : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpReserveReadPipePackets(RefInstruction instruction) => Inner = instruction;
-    public RefOpReserveReadPipePackets(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReserveReadPipePackets(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReserveWritePipePackets : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
@@ -3107,74 +2839,68 @@ public ref struct RefOpReserveWritePipePackets : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpReserveWritePipePackets(RefInstruction instruction) => Inner = instruction;
-    public RefOpReserveWritePipePackets(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReserveWritePipePackets(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCommitReadPipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
     public IdRef ReserveId => Inner.GetOperand<IdRef>("reserveId") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpCommitReadPipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpCommitReadPipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCommitReadPipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCommitWritePipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
     public IdRef ReserveId => Inner.GetOperand<IdRef>("reserveId") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpCommitWritePipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpCommitWritePipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCommitWritePipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsValidReserveId : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ReserveId => Inner.GetOperand<IdRef>("reserveId") ?? default;
 
-    public RefOpIsValidReserveId(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsValidReserveId(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsValidReserveId(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetNumPipePackets : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpGetNumPipePackets(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetNumPipePackets(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetNumPipePackets(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetMaxPipePackets : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpGetMaxPipePackets(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetMaxPipePackets(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetMaxPipePackets(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupReserveReadPipePackets : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -3183,13 +2909,12 @@ public ref struct RefOpGroupReserveReadPipePackets : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpGroupReserveReadPipePackets(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupReserveReadPipePackets(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupReserveReadPipePackets(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupReserveWritePipePackets : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -3198,39 +2923,36 @@ public ref struct RefOpGroupReserveWritePipePackets : IWrapperInstruction
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpGroupReserveWritePipePackets(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupReserveWritePipePackets(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupReserveWritePipePackets(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupCommitReadPipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
     public IdRef ReserveId => Inner.GetOperand<IdRef>("reserveId") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpGroupCommitReadPipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupCommitReadPipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupCommitReadPipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupCommitWritePipe : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Pipe => Inner.GetOperand<IdRef>("pipe") ?? default;
     public IdRef ReserveId => Inner.GetOperand<IdRef>("reserveId") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpGroupCommitWritePipe(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupCommitWritePipe(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupCommitWritePipe(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEnqueueMarker : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Queue => Inner.GetOperand<IdRef>("queue") ?? default;
@@ -3238,13 +2960,12 @@ public ref struct RefOpEnqueueMarker : IWrapperInstruction
     public IdRef WaitEvents => Inner.GetOperand<IdRef>("waitEvents") ?? default;
     public IdRef RetEvent => Inner.GetOperand<IdRef>("retEvent") ?? default;
 
-    public RefOpEnqueueMarker(RefInstruction instruction) => Inner = instruction;
-    public RefOpEnqueueMarker(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEnqueueMarker(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEnqueueKernel : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Queue => Inner.GetOperand<IdRef>("queue") ?? default;
@@ -3259,13 +2980,12 @@ public ref struct RefOpEnqueueKernel : IWrapperInstruction
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpEnqueueKernel(RefInstruction instruction) => Inner = instruction;
-    public RefOpEnqueueKernel(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEnqueueKernel(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetKernelNDrangeSubGroupCount : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef NDRange => Inner.GetOperand<IdRef>("nDRange") ?? default;
@@ -3274,13 +2994,12 @@ public ref struct RefOpGetKernelNDrangeSubGroupCount : IWrapperInstruction
     public IdRef ParamSize => Inner.GetOperand<IdRef>("paramSize") ?? default;
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
 
-    public RefOpGetKernelNDrangeSubGroupCount(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetKernelNDrangeSubGroupCount(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetKernelNDrangeSubGroupCount(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetKernelNDrangeMaxSubGroupSize : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef NDRange => Inner.GetOperand<IdRef>("nDRange") ?? default;
@@ -3289,13 +3008,12 @@ public ref struct RefOpGetKernelNDrangeMaxSubGroupSize : IWrapperInstruction
     public IdRef ParamSize => Inner.GetOperand<IdRef>("paramSize") ?? default;
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
 
-    public RefOpGetKernelNDrangeMaxSubGroupSize(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetKernelNDrangeMaxSubGroupSize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetKernelNDrangeMaxSubGroupSize(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetKernelWorkGroupSize : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Invoke => Inner.GetOperand<IdRef>("invoke") ?? default;
@@ -3303,13 +3021,12 @@ public ref struct RefOpGetKernelWorkGroupSize : IWrapperInstruction
     public IdRef ParamSize => Inner.GetOperand<IdRef>("paramSize") ?? default;
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
 
-    public RefOpGetKernelWorkGroupSize(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetKernelWorkGroupSize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetKernelWorkGroupSize(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetKernelPreferredWorkGroupSizeMultiple : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Invoke => Inner.GetOperand<IdRef>("invoke") ?? default;
@@ -3317,122 +3034,111 @@ public ref struct RefOpGetKernelPreferredWorkGroupSizeMultiple : IWrapperInstruc
     public IdRef ParamSize => Inner.GetOperand<IdRef>("paramSize") ?? default;
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
 
-    public RefOpGetKernelPreferredWorkGroupSizeMultiple(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetKernelPreferredWorkGroupSizeMultiple(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetKernelPreferredWorkGroupSizeMultiple(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRetainEvent : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef EventId => Inner.GetOperand<IdRef>("eventId") ?? default;
 
-    public RefOpRetainEvent(RefInstruction instruction) => Inner = instruction;
-    public RefOpRetainEvent(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRetainEvent(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReleaseEvent : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef EventId => Inner.GetOperand<IdRef>("eventId") ?? default;
 
-    public RefOpReleaseEvent(RefInstruction instruction) => Inner = instruction;
-    public RefOpReleaseEvent(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReleaseEvent(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCreateUserEvent : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpCreateUserEvent(RefInstruction instruction) => Inner = instruction;
-    public RefOpCreateUserEvent(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCreateUserEvent(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsValidEvent : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef EventId => Inner.GetOperand<IdRef>("eventId") ?? default;
 
-    public RefOpIsValidEvent(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsValidEvent(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsValidEvent(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSetUserEventStatus : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef EventId => Inner.GetOperand<IdRef>("eventId") ?? default;
     public IdRef Status => Inner.GetOperand<IdRef>("status") ?? default;
 
-    public RefOpSetUserEventStatus(RefInstruction instruction) => Inner = instruction;
-    public RefOpSetUserEventStatus(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSetUserEventStatus(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCaptureEventProfilingInfo : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef EventId => Inner.GetOperand<IdRef>("eventId") ?? default;
     public IdRef ProfilingInfo => Inner.GetOperand<IdRef>("profilingInfo") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpCaptureEventProfilingInfo(RefInstruction instruction) => Inner = instruction;
-    public RefOpCaptureEventProfilingInfo(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCaptureEventProfilingInfo(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetDefaultQueue : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpGetDefaultQueue(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetDefaultQueue(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetDefaultQueue(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBuildNDRange : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef GlobalWorkSize => Inner.GetOperand<IdRef>("globalWorkSize") ?? default;
     public IdRef LocalWorkSize => Inner.GetOperand<IdRef>("localWorkSize") ?? default;
     public IdRef GlobalWorkOffset => Inner.GetOperand<IdRef>("globalWorkOffset") ?? default;
 
-    public RefOpBuildNDRange(RefInstruction instruction) => Inner = instruction;
-    public RefOpBuildNDRange(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBuildNDRange(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleDrefImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -3440,13 +3146,12 @@ public ref struct RefOpImageSparseSampleDrefImplicitLod : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleDrefImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleDrefImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleDrefImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleDrefExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -3454,39 +3159,36 @@ public ref struct RefOpImageSparseSampleDrefExplicitLod : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleDrefExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleDrefExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleDrefExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleProjImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleProjImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleProjImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleProjImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleProjExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleProjExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleProjExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleProjExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleProjDrefImplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -3494,13 +3196,12 @@ public ref struct RefOpImageSparseSampleProjDrefImplicitLod : IWrapperInstructio
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleProjDrefImplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleProjDrefImplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleProjDrefImplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseSampleProjDrefExplicitLod : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -3508,26 +3209,24 @@ public ref struct RefOpImageSparseSampleProjDrefExplicitLod : IWrapperInstructio
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseSampleProjDrefExplicitLod(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseSampleProjDrefExplicitLod(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseSampleProjDrefExplicitLod(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseFetch : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseFetch(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseFetch(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseFetch(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseGather : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -3535,13 +3234,12 @@ public ref struct RefOpImageSparseGather : IWrapperInstruction
     public IdRef Component => Inner.GetOperand<IdRef>("component") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseGather(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseGather(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseGather(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseDrefGather : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -3549,113 +3247,103 @@ public ref struct RefOpImageSparseDrefGather : IWrapperInstruction
     public IdRef Dref => Inner.GetOperand<IdRef>("dref") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseDrefGather(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseDrefGather(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseDrefGather(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseTexelsResident : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ResidentCode => Inner.GetOperand<IdRef>("residentCode") ?? default;
 
-    public RefOpImageSparseTexelsResident(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseTexelsResident(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseTexelsResident(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpNoLine : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpNoLine(RefInstruction instruction) => Inner = instruction;
-    public RefOpNoLine(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpNoLine(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicFlagTestAndSet : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpAtomicFlagTestAndSet(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicFlagTestAndSet(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicFlagTestAndSet(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicFlagClear : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpAtomicFlagClear(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicFlagClear(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicFlagClear(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSparseRead : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSparseRead(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSparseRead(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSparseRead(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSizeOf : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpSizeOf(RefInstruction instruction) => Inner = instruction;
-    public RefOpSizeOf(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSizeOf(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypePipeStorage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypePipeStorage(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypePipeStorage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypePipeStorage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantPipeStorage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralInteger PacketSize => Inner.GetOperand<LiteralInteger>("packetSize") ?? default;
     public LiteralInteger PacketAlignment => Inner.GetOperand<LiteralInteger>("packetAlignment") ?? default;
     public LiteralInteger Capacity => Inner.GetOperand<LiteralInteger>("capacity") ?? default;
 
-    public RefOpConstantPipeStorage(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantPipeStorage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantPipeStorage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCreatePipeFromPipeStorage : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PipeStorage => Inner.GetOperand<IdRef>("pipeStorage") ?? default;
 
-    public RefOpCreatePipeFromPipeStorage(RefInstruction instruction) => Inner = instruction;
-    public RefOpCreatePipeFromPipeStorage(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCreatePipeFromPipeStorage(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetKernelLocalSizeForSubgroupCount : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SubgroupCount => Inner.GetOperand<IdRef>("subgroupCount") ?? default;
@@ -3664,13 +3352,12 @@ public ref struct RefOpGetKernelLocalSizeForSubgroupCount : IWrapperInstruction
     public IdRef ParamSize => Inner.GetOperand<IdRef>("paramSize") ?? default;
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
 
-    public RefOpGetKernelLocalSizeForSubgroupCount(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetKernelLocalSizeForSubgroupCount(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetKernelLocalSizeForSubgroupCount(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGetKernelMaxNumSubgroups : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Invoke => Inner.GetOperand<IdRef>("invoke") ?? default;
@@ -3678,271 +3365,248 @@ public ref struct RefOpGetKernelMaxNumSubgroups : IWrapperInstruction
     public IdRef ParamSize => Inner.GetOperand<IdRef>("paramSize") ?? default;
     public IdRef ParamAlign => Inner.GetOperand<IdRef>("paramAlign") ?? default;
 
-    public RefOpGetKernelMaxNumSubgroups(RefInstruction instruction) => Inner = instruction;
-    public RefOpGetKernelMaxNumSubgroups(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGetKernelMaxNumSubgroups(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeNamedBarrier : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeNamedBarrier(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeNamedBarrier(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeNamedBarrier(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpNamedBarrierInitialize : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SubgroupCount => Inner.GetOperand<IdRef>("subgroupCount") ?? default;
 
-    public RefOpNamedBarrierInitialize(RefInstruction instruction) => Inner = instruction;
-    public RefOpNamedBarrierInitialize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpNamedBarrierInitialize(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMemoryNamedBarrier : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef NamedBarrier => Inner.GetOperand<IdRef>("namedBarrier") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpMemoryNamedBarrier(RefInstruction instruction) => Inner = instruction;
-    public RefOpMemoryNamedBarrier(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMemoryNamedBarrier(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpModuleProcessed : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralString Process => Inner.GetOperand<LiteralString>("process") ?? default;
 
-    public RefOpModuleProcessed(RefInstruction instruction) => Inner = instruction;
-    public RefOpModuleProcessed(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpModuleProcessed(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExecutionModeId : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef EntryPoint => Inner.GetOperand<IdRef>("entryPoint") ?? default;
     public ExecutionMode Mode => Inner.GetEnumOperand<ExecutionMode>("mode");
 
-    public RefOpExecutionModeId(RefInstruction instruction) => Inner = instruction;
-    public RefOpExecutionModeId(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExecutionModeId(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDecorateId : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public Decoration Decoration => Inner.GetEnumOperand<Decoration>("decoration");
 
-    public RefOpDecorateId(RefInstruction instruction) => Inner = instruction;
-    public RefOpDecorateId(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDecorateId(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformElect : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
 
-    public RefOpGroupNonUniformElect(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformElect(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformElect(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformAll : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupNonUniformAll(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformAll(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformAll(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformAny : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupNonUniformAny(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformAny(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformAny(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformAllEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformAllEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformAllEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformAllEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBroadcast : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Id => Inner.GetOperand<IdRef>("id") ?? default;
 
-    public RefOpGroupNonUniformBroadcast(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBroadcast(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBroadcast(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBroadcastFirst : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformBroadcastFirst(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBroadcastFirst(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBroadcastFirst(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBallot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupNonUniformBallot(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBallot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBallot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformInverseBallot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformInverseBallot(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformInverseBallot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformInverseBallot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBallotBitExtract : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Index => Inner.GetOperand<IdRef>("index") ?? default;
 
-    public RefOpGroupNonUniformBallotBitExtract(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBallotBitExtract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBallotBitExtract(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBallotBitCount : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformBallotBitCount(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBallotBitCount(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBallotBitCount(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBallotFindLSB : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformBallotFindLSB(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBallotFindLSB(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBallotFindLSB(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBallotFindMSB : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformBallotFindMSB(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBallotFindMSB(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBallotFindMSB(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformShuffle : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Id => Inner.GetOperand<IdRef>("id") ?? default;
 
-    public RefOpGroupNonUniformShuffle(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformShuffle(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformShuffle(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformShuffleXor : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Mask => Inner.GetOperand<IdRef>("mask") ?? default;
 
-    public RefOpGroupNonUniformShuffleXor(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformShuffleXor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformShuffleXor(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformShuffleUp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Delta => Inner.GetOperand<IdRef>("delta") ?? default;
 
-    public RefOpGroupNonUniformShuffleUp(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformShuffleUp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformShuffleUp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformShuffleDown : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Delta => Inner.GetOperand<IdRef>("delta") ?? default;
 
-    public RefOpGroupNonUniformShuffleDown(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformShuffleDown(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformShuffleDown(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformIAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -3950,13 +3614,12 @@ public ref struct RefOpGroupNonUniformIAdd : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformIAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformIAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformIAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformFAdd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -3964,13 +3627,12 @@ public ref struct RefOpGroupNonUniformFAdd : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformFAdd(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformFAdd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformFAdd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformIMul : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -3978,13 +3640,12 @@ public ref struct RefOpGroupNonUniformIMul : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformIMul(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformIMul(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformIMul(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformFMul : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -3992,13 +3653,12 @@ public ref struct RefOpGroupNonUniformFMul : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformFMul(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformFMul(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformFMul(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformSMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4006,13 +3666,12 @@ public ref struct RefOpGroupNonUniformSMin : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformSMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformSMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformSMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformUMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4020,13 +3679,12 @@ public ref struct RefOpGroupNonUniformUMin : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformUMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformUMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformUMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformFMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4034,13 +3692,12 @@ public ref struct RefOpGroupNonUniformFMin : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformFMin(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformFMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformFMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformSMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4048,13 +3705,12 @@ public ref struct RefOpGroupNonUniformSMax : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformSMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformSMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformSMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformUMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4062,13 +3718,12 @@ public ref struct RefOpGroupNonUniformUMax : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformUMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformUMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformUMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformFMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4076,13 +3731,12 @@ public ref struct RefOpGroupNonUniformFMax : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformFMax(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformFMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformFMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBitwiseAnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4090,13 +3744,12 @@ public ref struct RefOpGroupNonUniformBitwiseAnd : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformBitwiseAnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBitwiseAnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBitwiseAnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBitwiseOr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4104,13 +3757,12 @@ public ref struct RefOpGroupNonUniformBitwiseOr : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformBitwiseOr(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBitwiseOr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBitwiseOr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformBitwiseXor : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4118,13 +3770,12 @@ public ref struct RefOpGroupNonUniformBitwiseXor : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformBitwiseXor(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformBitwiseXor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformBitwiseXor(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformLogicalAnd : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4132,13 +3783,12 @@ public ref struct RefOpGroupNonUniformLogicalAnd : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformLogicalAnd(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformLogicalAnd(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformLogicalAnd(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformLogicalOr : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4146,13 +3796,12 @@ public ref struct RefOpGroupNonUniformLogicalOr : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformLogicalOr(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformLogicalOr(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformLogicalOr(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformLogicalXor : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4160,199 +3809,182 @@ public ref struct RefOpGroupNonUniformLogicalXor : IWrapperInstruction
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformLogicalXor(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformLogicalXor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformLogicalXor(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformQuadBroadcast : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Index => Inner.GetOperand<IdRef>("index") ?? default;
 
-    public RefOpGroupNonUniformQuadBroadcast(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformQuadBroadcast(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformQuadBroadcast(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformQuadSwap : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Direction => Inner.GetOperand<IdRef>("direction") ?? default;
 
-    public RefOpGroupNonUniformQuadSwap(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformQuadSwap(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformQuadSwap(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCopyLogical : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpCopyLogical(RefInstruction instruction) => Inner = instruction;
-    public RefOpCopyLogical(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCopyLogical(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPtrEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpPtrEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpPtrEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPtrEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPtrNotEqual : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpPtrNotEqual(RefInstruction instruction) => Inner = instruction;
-    public RefOpPtrNotEqual(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPtrNotEqual(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPtrDiff : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpPtrDiff(RefInstruction instruction) => Inner = instruction;
-    public RefOpPtrDiff(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPtrDiff(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpColorAttachmentReadEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Attachment => Inner.GetOperand<IdRef>("attachment") ?? default;
     public IdRef Sample => Inner.GetOperand<IdRef>("sample") ?? default;
 
-    public RefOpColorAttachmentReadEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpColorAttachmentReadEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpColorAttachmentReadEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDepthAttachmentReadEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Sample => Inner.GetOperand<IdRef>("sample") ?? default;
 
-    public RefOpDepthAttachmentReadEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpDepthAttachmentReadEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDepthAttachmentReadEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpStencilAttachmentReadEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Sample => Inner.GetOperand<IdRef>("sample") ?? default;
 
-    public RefOpStencilAttachmentReadEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpStencilAttachmentReadEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpStencilAttachmentReadEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTerminateInvocation : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpTerminateInvocation(RefInstruction instruction) => Inner = instruction;
-    public RefOpTerminateInvocation(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTerminateInvocation(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeUntypedPointerKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
 
-    public RefOpTypeUntypedPointerKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeUntypedPointerKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeUntypedPointerKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedVariableKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public StorageClass Storageclass => Inner.GetEnumOperand<StorageClass>("storageclass");
     public IdRef DataType => Inner.GetOperand<IdRef>("dataType") ?? default;
     public IdRef Initializer => Inner.GetOperand<IdRef>("initializer") ?? default;
 
-    public RefOpUntypedVariableKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedVariableKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedVariableKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedAccessChainKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseType => Inner.GetOperand<IdRef>("baseType") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpUntypedAccessChainKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedAccessChainKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedAccessChainKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedInBoundsAccessChainKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseType => Inner.GetOperand<IdRef>("baseType") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpUntypedInBoundsAccessChainKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedInBoundsAccessChainKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedInBoundsAccessChainKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupBallotKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpSubgroupBallotKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupBallotKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupBallotKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupFirstInvocationKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpSubgroupFirstInvocationKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupFirstInvocationKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupFirstInvocationKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedPtrAccessChainKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseType => Inner.GetOperand<IdRef>("baseType") ?? default;
@@ -4360,13 +3992,12 @@ public ref struct RefOpUntypedPtrAccessChainKHR : IWrapperInstruction
     public IdRef Element => Inner.GetOperand<IdRef>("element") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpUntypedPtrAccessChainKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedPtrAccessChainKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedPtrAccessChainKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedInBoundsPtrAccessChainKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseType => Inner.GetOperand<IdRef>("baseType") ?? default;
@@ -4374,72 +4005,66 @@ public ref struct RefOpUntypedInBoundsPtrAccessChainKHR : IWrapperInstruction
     public IdRef Element => Inner.GetOperand<IdRef>("element") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpUntypedInBoundsPtrAccessChainKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedInBoundsPtrAccessChainKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedInBoundsPtrAccessChainKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedArrayLengthKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Structure => Inner.GetOperand<IdRef>("structure") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public LiteralInteger Arraymember => Inner.GetOperand<LiteralInteger>("arraymember") ?? default;
 
-    public RefOpUntypedArrayLengthKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedArrayLengthKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedArrayLengthKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUntypedPrefetchKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef PointerType => Inner.GetOperand<IdRef>("pointerType") ?? default;
     public IdRef NumBytes => Inner.GetOperand<IdRef>("numBytes") ?? default;
     public IdRef RW => Inner.GetOperand<IdRef>("rW") ?? default;
     public IdRef Locality => Inner.GetOperand<IdRef>("locality") ?? default;
     public IdRef CacheType => Inner.GetOperand<IdRef>("cacheType") ?? default;
 
-    public RefOpUntypedPrefetchKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpUntypedPrefetchKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUntypedPrefetchKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAllKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpSubgroupAllKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAllKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAllKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAnyKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpSubgroupAnyKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAnyKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAnyKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAllEqualKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpSubgroupAllEqualKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAllEqualKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAllEqualKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformRotateKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
@@ -4447,38 +4072,35 @@ public ref struct RefOpGroupNonUniformRotateKHR : IWrapperInstruction
     public IdRef Delta => Inner.GetOperand<IdRef>("delta") ?? default;
     public IdRef ClusterSize => Inner.GetOperand<IdRef>("clusterSize") ?? default;
 
-    public RefOpGroupNonUniformRotateKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformRotateKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformRotateKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupReadInvocationKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef Index => Inner.GetOperand<IdRef>("index") ?? default;
 
-    public RefOpSubgroupReadInvocationKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupReadInvocationKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupReadInvocationKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExtInstWithForwardRefsKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Set => Inner.GetOperand<IdRef>("set") ?? default;
     public LiteralInteger Instruction => Inner.GetOperand<LiteralInteger>("instruction") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpExtInstWithForwardRefsKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpExtInstWithForwardRefsKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExtInstWithForwardRefsKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTraceRayKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
     public IdRef CullMask => Inner.GetOperand<IdRef>("cullMask") ?? default;
@@ -4491,89 +4113,81 @@ public ref struct RefOpTraceRayKHR : IWrapperInstruction
     public IdRef RayTmax => Inner.GetOperand<IdRef>("rayTmax") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpTraceRayKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpTraceRayKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTraceRayKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExecuteCallableKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef SBTIndex => Inner.GetOperand<IdRef>("sBTIndex") ?? default;
     public IdRef CallableData => Inner.GetOperand<IdRef>("callableData") ?? default;
 
-    public RefOpExecuteCallableKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpExecuteCallableKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExecuteCallableKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertUToAccelerationStructureKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
 
-    public RefOpConvertUToAccelerationStructureKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertUToAccelerationStructureKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertUToAccelerationStructureKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIgnoreIntersectionKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpIgnoreIntersectionKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpIgnoreIntersectionKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIgnoreIntersectionKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTerminateRayKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpTerminateRayKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpTerminateRayKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTerminateRayKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
     public IdRef Vector2 => Inner.GetOperand<IdRef>("vector2") ?? default;
     public PackedVectorFormat PackedVectorFormat => Inner.GetEnumOperand<PackedVectorFormat>("packedVectorFormat");
 
-    public RefOpSDot(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUDot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
     public IdRef Vector2 => Inner.GetOperand<IdRef>("vector2") ?? default;
     public PackedVectorFormat PackedVectorFormat => Inner.GetEnumOperand<PackedVectorFormat>("packedVectorFormat");
 
-    public RefOpUDot(RefInstruction instruction) => Inner = instruction;
-    public RefOpUDot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUDot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSUDot : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
     public IdRef Vector2 => Inner.GetOperand<IdRef>("vector2") ?? default;
     public PackedVectorFormat PackedVectorFormat => Inner.GetEnumOperand<PackedVectorFormat>("packedVectorFormat");
 
-    public RefOpSUDot(RefInstruction instruction) => Inner = instruction;
-    public RefOpSUDot(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSUDot(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSDotAccSat : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
@@ -4581,13 +4195,12 @@ public ref struct RefOpSDotAccSat : IWrapperInstruction
     public IdRef Accumulator => Inner.GetOperand<IdRef>("accumulator") ?? default;
     public PackedVectorFormat PackedVectorFormat => Inner.GetEnumOperand<PackedVectorFormat>("packedVectorFormat");
 
-    public RefOpSDotAccSat(RefInstruction instruction) => Inner = instruction;
-    public RefOpSDotAccSat(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSDotAccSat(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUDotAccSat : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
@@ -4595,13 +4208,12 @@ public ref struct RefOpUDotAccSat : IWrapperInstruction
     public IdRef Accumulator => Inner.GetOperand<IdRef>("accumulator") ?? default;
     public PackedVectorFormat PackedVectorFormat => Inner.GetEnumOperand<PackedVectorFormat>("packedVectorFormat");
 
-    public RefOpUDotAccSat(RefInstruction instruction) => Inner = instruction;
-    public RefOpUDotAccSat(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUDotAccSat(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSUDotAccSat : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Vector1 => Inner.GetOperand<IdRef>("vector1") ?? default;
@@ -4609,13 +4221,12 @@ public ref struct RefOpSUDotAccSat : IWrapperInstruction
     public IdRef Accumulator => Inner.GetOperand<IdRef>("accumulator") ?? default;
     public PackedVectorFormat PackedVectorFormat => Inner.GetEnumOperand<PackedVectorFormat>("packedVectorFormat");
 
-    public RefOpSUDotAccSat(RefInstruction instruction) => Inner = instruction;
-    public RefOpSUDotAccSat(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSUDotAccSat(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeCooperativeMatrixKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ComponentType => Inner.GetOperand<IdRef>("componentType") ?? default;
     public IdScope Scope => Inner.GetOperand<IdScope>("scope") ?? default;
@@ -4623,13 +4234,12 @@ public ref struct RefOpTypeCooperativeMatrixKHR : IWrapperInstruction
     public IdRef Columns => Inner.GetOperand<IdRef>("columns") ?? default;
     public IdRef Use => Inner.GetOperand<IdRef>("use") ?? default;
 
-    public RefOpTypeCooperativeMatrixKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeCooperativeMatrixKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeCooperativeMatrixKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixLoadKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -4637,26 +4247,24 @@ public ref struct RefOpCooperativeMatrixLoadKHR : IWrapperInstruction
     public IdRef Stride => Inner.GetOperand<IdRef>("stride") ?? default;
     public MemoryAccessMask MemoryOperand => Inner.GetEnumOperand<MemoryAccessMask>("memoryOperand");
 
-    public RefOpCooperativeMatrixLoadKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixLoadKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixLoadKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixStoreKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdRef ObjectId => Inner.GetOperand<IdRef>("objectId") ?? default;
     public IdRef MemoryLayout => Inner.GetOperand<IdRef>("memoryLayout") ?? default;
     public IdRef Stride => Inner.GetOperand<IdRef>("stride") ?? default;
     public MemoryAccessMask MemoryOperand => Inner.GetEnumOperand<MemoryAccessMask>("memoryOperand");
 
-    public RefOpCooperativeMatrixStoreKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixStoreKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixStoreKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixMulAddKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -4664,66 +4272,60 @@ public ref struct RefOpCooperativeMatrixMulAddKHR : IWrapperInstruction
     public IdRef C => Inner.GetOperand<IdRef>("c") ?? default;
     public CooperativeMatrixOperandsMask CooperativeMatrixOperands => Inner.GetEnumOperand<CooperativeMatrixOperandsMask>("cooperativeMatrixOperands");
 
-    public RefOpCooperativeMatrixMulAddKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixMulAddKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixMulAddKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixLengthKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Type => Inner.GetOperand<IdRef>("type") ?? default;
 
-    public RefOpCooperativeMatrixLengthKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixLengthKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixLengthKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantCompositeReplicateEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpConstantCompositeReplicateEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantCompositeReplicateEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantCompositeReplicateEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantCompositeReplicateEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpSpecConstantCompositeReplicateEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantCompositeReplicateEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantCompositeReplicateEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCompositeConstructReplicateEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpCompositeConstructReplicateEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpCompositeConstructReplicateEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCompositeConstructReplicateEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeRayQueryKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeRayQueryKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeRayQueryKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeRayQueryKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryInitializeKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
@@ -4733,90 +4335,82 @@ public ref struct RefOpRayQueryInitializeKHR : IWrapperInstruction
     public IdRef RayDirection => Inner.GetOperand<IdRef>("rayDirection") ?? default;
     public IdRef RayTMax => Inner.GetOperand<IdRef>("rayTMax") ?? default;
 
-    public RefOpRayQueryInitializeKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryInitializeKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryInitializeKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryTerminateKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryTerminateKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryTerminateKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryTerminateKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGenerateIntersectionKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef HitT => Inner.GetOperand<IdRef>("hitT") ?? default;
 
-    public RefOpRayQueryGenerateIntersectionKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGenerateIntersectionKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGenerateIntersectionKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryConfirmIntersectionKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryConfirmIntersectionKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryConfirmIntersectionKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryConfirmIntersectionKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryProceedKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryProceedKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryProceedKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryProceedKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionTypeKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionTypeKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionTypeKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionTypeKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleWeightedQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Texture => Inner.GetOperand<IdRef>("texture") ?? default;
     public IdRef Coordinates => Inner.GetOperand<IdRef>("coordinates") ?? default;
     public IdRef Weights => Inner.GetOperand<IdRef>("weights") ?? default;
 
-    public RefOpImageSampleWeightedQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleWeightedQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleWeightedQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBoxFilterQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Texture => Inner.GetOperand<IdRef>("texture") ?? default;
     public IdRef Coordinates => Inner.GetOperand<IdRef>("coordinates") ?? default;
     public IdRef BoxSize => Inner.GetOperand<IdRef>("boxSize") ?? default;
 
-    public RefOpImageBoxFilterQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBoxFilterQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBoxFilterQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBlockMatchSSDQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
@@ -4825,13 +4419,12 @@ public ref struct RefOpImageBlockMatchSSDQCOM : IWrapperInstruction
     public IdRef ReferenceCoordinates => Inner.GetOperand<IdRef>("referenceCoordinates") ?? default;
     public IdRef BlockSize => Inner.GetOperand<IdRef>("blockSize") ?? default;
 
-    public RefOpImageBlockMatchSSDQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBlockMatchSSDQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBlockMatchSSDQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBlockMatchSADQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
@@ -4840,13 +4433,12 @@ public ref struct RefOpImageBlockMatchSADQCOM : IWrapperInstruction
     public IdRef ReferenceCoordinates => Inner.GetOperand<IdRef>("referenceCoordinates") ?? default;
     public IdRef BlockSize => Inner.GetOperand<IdRef>("blockSize") ?? default;
 
-    public RefOpImageBlockMatchSADQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBlockMatchSADQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBlockMatchSADQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBlockMatchWindowSSDQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TargetSampledImage => Inner.GetOperand<IdRef>("targetSampledImage") ?? default;
@@ -4855,13 +4447,12 @@ public ref struct RefOpImageBlockMatchWindowSSDQCOM : IWrapperInstruction
     public IdRef ReferenceCoordinates => Inner.GetOperand<IdRef>("referenceCoordinates") ?? default;
     public IdRef BlockSize => Inner.GetOperand<IdRef>("blockSize") ?? default;
 
-    public RefOpImageBlockMatchWindowSSDQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBlockMatchWindowSSDQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBlockMatchWindowSSDQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBlockMatchWindowSADQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TargetSampledImage => Inner.GetOperand<IdRef>("targetSampledImage") ?? default;
@@ -4870,13 +4461,12 @@ public ref struct RefOpImageBlockMatchWindowSADQCOM : IWrapperInstruction
     public IdRef ReferenceCoordinates => Inner.GetOperand<IdRef>("referenceCoordinates") ?? default;
     public IdRef BlockSize => Inner.GetOperand<IdRef>("blockSize") ?? default;
 
-    public RefOpImageBlockMatchWindowSADQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBlockMatchWindowSADQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBlockMatchWindowSADQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBlockMatchGatherSSDQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TargetSampledImage => Inner.GetOperand<IdRef>("targetSampledImage") ?? default;
@@ -4885,13 +4475,12 @@ public ref struct RefOpImageBlockMatchGatherSSDQCOM : IWrapperInstruction
     public IdRef ReferenceCoordinates => Inner.GetOperand<IdRef>("referenceCoordinates") ?? default;
     public IdRef BlockSize => Inner.GetOperand<IdRef>("blockSize") ?? default;
 
-    public RefOpImageBlockMatchGatherSSDQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBlockMatchGatherSSDQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBlockMatchGatherSSDQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageBlockMatchGatherSADQCOM : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TargetSampledImage => Inner.GetOperand<IdRef>("targetSampledImage") ?? default;
@@ -4900,261 +4489,239 @@ public ref struct RefOpImageBlockMatchGatherSADQCOM : IWrapperInstruction
     public IdRef ReferenceCoordinates => Inner.GetOperand<IdRef>("referenceCoordinates") ?? default;
     public IdRef BlockSize => Inner.GetOperand<IdRef>("blockSize") ?? default;
 
-    public RefOpImageBlockMatchGatherSADQCOM(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageBlockMatchGatherSADQCOM(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageBlockMatchGatherSADQCOM(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupIAddNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupIAddNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupIAddNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupIAddNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFAddNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFAddNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFAddNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFAddNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFMinNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFMinNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFMinNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFMinNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupUMinNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupUMinNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupUMinNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupUMinNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupSMinNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupSMinNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupSMinNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupSMinNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFMaxNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFMaxNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFMaxNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFMaxNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupUMaxNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupUMaxNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupUMaxNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupUMaxNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupSMaxNonUniformAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupSMaxNonUniformAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupSMaxNonUniformAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupSMaxNonUniformAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFragmentMaskFetchAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
 
-    public RefOpFragmentMaskFetchAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpFragmentMaskFetchAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFragmentMaskFetchAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFragmentFetchAMD : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public IdRef FragmentIndex => Inner.GetOperand<IdRef>("fragmentIndex") ?? default;
 
-    public RefOpFragmentFetchAMD(RefInstruction instruction) => Inner = instruction;
-    public RefOpFragmentFetchAMD(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFragmentFetchAMD(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReadClockKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Scope => Inner.GetOperand<IdScope>("scope") ?? default;
 
-    public RefOpReadClockKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpReadClockKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReadClockKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAllocateNodePayloadsAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Visibility => Inner.GetOperand<IdScope>("visibility") ?? default;
     public IdRef PayloadCount => Inner.GetOperand<IdRef>("payloadCount") ?? default;
     public IdRef NodeIndex => Inner.GetOperand<IdRef>("nodeIndex") ?? default;
 
-    public RefOpAllocateNodePayloadsAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpAllocateNodePayloadsAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAllocateNodePayloadsAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEnqueueNodePayloadsAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef PayloadArray => Inner.GetOperand<IdRef>("payloadArray") ?? default;
 
-    public RefOpEnqueueNodePayloadsAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpEnqueueNodePayloadsAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEnqueueNodePayloadsAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeNodePayloadArrayAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PayloadType => Inner.GetOperand<IdRef>("payloadType") ?? default;
 
-    public RefOpTypeNodePayloadArrayAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeNodePayloadArrayAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeNodePayloadArrayAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFinishWritingNodePayloadAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpFinishWritingNodePayloadAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpFinishWritingNodePayloadAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFinishWritingNodePayloadAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpNodePayloadArrayLengthAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PayloadArray => Inner.GetOperand<IdRef>("payloadArray") ?? default;
 
-    public RefOpNodePayloadArrayLengthAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpNodePayloadArrayLengthAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpNodePayloadArrayLengthAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsNodePayloadValidAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PayloadType => Inner.GetOperand<IdRef>("payloadType") ?? default;
     public IdRef NodeIndex => Inner.GetOperand<IdRef>("nodeIndex") ?? default;
 
-    public RefOpIsNodePayloadValidAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsNodePayloadValidAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsNodePayloadValidAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantStringAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString LiteralString => Inner.GetOperand<LiteralString>("literalString") ?? default;
 
-    public RefOpConstantStringAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantStringAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantStringAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantStringAMDX : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString LiteralString => Inner.GetOperand<LiteralString>("literalString") ?? default;
 
-    public RefOpSpecConstantStringAMDX(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantStringAMDX(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantStringAMDX(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformQuadAllKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupNonUniformQuadAllKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformQuadAllKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformQuadAllKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformQuadAnyKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Predicate => Inner.GetOperand<IdRef>("predicate") ?? default;
 
-    public RefOpGroupNonUniformQuadAnyKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformQuadAnyKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformQuadAnyKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordHitMotionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef AccelerationStructure => Inner.GetOperand<IdRef>("accelerationStructure") ?? default;
     public IdRef InstanceId => Inner.GetOperand<IdRef>("instanceId") ?? default;
@@ -5170,13 +4737,12 @@ public ref struct RefOpHitObjectRecordHitMotionNV : IWrapperInstruction
     public IdRef CurrentTime => Inner.GetOperand<IdRef>("currentTime") ?? default;
     public IdRef HitObjectAttributes => Inner.GetOperand<IdRef>("hitObjectAttributes") ?? default;
 
-    public RefOpHitObjectRecordHitMotionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordHitMotionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordHitMotionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordHitWithIndexMotionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef AccelerationStructure => Inner.GetOperand<IdRef>("accelerationStructure") ?? default;
     public IdRef InstanceId => Inner.GetOperand<IdRef>("instanceId") ?? default;
@@ -5191,13 +4757,12 @@ public ref struct RefOpHitObjectRecordHitWithIndexMotionNV : IWrapperInstruction
     public IdRef CurrentTime => Inner.GetOperand<IdRef>("currentTime") ?? default;
     public IdRef HitObjectAttributes => Inner.GetOperand<IdRef>("hitObjectAttributes") ?? default;
 
-    public RefOpHitObjectRecordHitWithIndexMotionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordHitWithIndexMotionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordHitWithIndexMotionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordMissMotionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef SBTIndex => Inner.GetOperand<IdRef>("sBTIndex") ?? default;
     public IdRef Origin => Inner.GetOperand<IdRef>("origin") ?? default;
@@ -5206,57 +4771,52 @@ public ref struct RefOpHitObjectRecordMissMotionNV : IWrapperInstruction
     public IdRef TMax => Inner.GetOperand<IdRef>("tMax") ?? default;
     public IdRef CurrentTime => Inner.GetOperand<IdRef>("currentTime") ?? default;
 
-    public RefOpHitObjectRecordMissMotionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordMissMotionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordMissMotionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetWorldToObjectNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetWorldToObjectNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetWorldToObjectNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetWorldToObjectNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetObjectToWorldNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetObjectToWorldNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetObjectToWorldNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetObjectToWorldNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetObjectRayDirectionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetObjectRayDirectionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetObjectRayDirectionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetObjectRayDirectionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetObjectRayOriginNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetObjectRayOriginNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetObjectRayOriginNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetObjectRayOriginNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectTraceRayMotionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef AccelerationStructure => Inner.GetOperand<IdRef>("accelerationStructure") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
@@ -5271,44 +4831,40 @@ public ref struct RefOpHitObjectTraceRayMotionNV : IWrapperInstruction
     public IdRef Time => Inner.GetOperand<IdRef>("time") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpHitObjectTraceRayMotionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectTraceRayMotionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectTraceRayMotionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetShaderRecordBufferHandleNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetShaderRecordBufferHandleNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetShaderRecordBufferHandleNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetShaderRecordBufferHandleNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetShaderBindingTableRecordIndexNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetShaderBindingTableRecordIndexNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetShaderBindingTableRecordIndexNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetShaderBindingTableRecordIndexNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordEmptyNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectRecordEmptyNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordEmptyNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordEmptyNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectTraceRayNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef AccelerationStructure => Inner.GetOperand<IdRef>("accelerationStructure") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
@@ -5322,13 +4878,12 @@ public ref struct RefOpHitObjectTraceRayNV : IWrapperInstruction
     public IdRef TMax => Inner.GetOperand<IdRef>("tMax") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpHitObjectTraceRayNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectTraceRayNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectTraceRayNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordHitNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef AccelerationStructure => Inner.GetOperand<IdRef>("accelerationStructure") ?? default;
     public IdRef InstanceId => Inner.GetOperand<IdRef>("instanceId") ?? default;
@@ -5343,13 +4898,12 @@ public ref struct RefOpHitObjectRecordHitNV : IWrapperInstruction
     public IdRef TMax => Inner.GetOperand<IdRef>("tMax") ?? default;
     public IdRef HitObjectAttributes => Inner.GetOperand<IdRef>("hitObjectAttributes") ?? default;
 
-    public RefOpHitObjectRecordHitNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordHitNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordHitNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordHitWithIndexNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef AccelerationStructure => Inner.GetOperand<IdRef>("accelerationStructure") ?? default;
     public IdRef InstanceId => Inner.GetOperand<IdRef>("instanceId") ?? default;
@@ -5363,13 +4917,12 @@ public ref struct RefOpHitObjectRecordHitWithIndexNV : IWrapperInstruction
     public IdRef TMax => Inner.GetOperand<IdRef>("tMax") ?? default;
     public IdRef HitObjectAttributes => Inner.GetOperand<IdRef>("hitObjectAttributes") ?? default;
 
-    public RefOpHitObjectRecordHitWithIndexNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordHitWithIndexNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordHitWithIndexNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectRecordMissNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef SBTIndex => Inner.GetOperand<IdRef>("sBTIndex") ?? default;
     public IdRef Origin => Inner.GetOperand<IdRef>("origin") ?? default;
@@ -5377,206 +4930,187 @@ public ref struct RefOpHitObjectRecordMissNV : IWrapperInstruction
     public IdRef Direction => Inner.GetOperand<IdRef>("direction") ?? default;
     public IdRef TMax => Inner.GetOperand<IdRef>("tMax") ?? default;
 
-    public RefOpHitObjectRecordMissNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectRecordMissNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectRecordMissNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectExecuteShaderNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpHitObjectExecuteShaderNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectExecuteShaderNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectExecuteShaderNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetCurrentTimeNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetCurrentTimeNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetCurrentTimeNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetCurrentTimeNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetAttributesNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef HitObjectAttribute => Inner.GetOperand<IdRef>("hitObjectAttribute") ?? default;
 
-    public RefOpHitObjectGetAttributesNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetAttributesNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetAttributesNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetHitKindNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetHitKindNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetHitKindNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetHitKindNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetPrimitiveIndexNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetPrimitiveIndexNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetPrimitiveIndexNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetPrimitiveIndexNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetGeometryIndexNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetGeometryIndexNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetGeometryIndexNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetGeometryIndexNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetInstanceIdNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetInstanceIdNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetInstanceIdNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetInstanceIdNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetInstanceCustomIndexNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetInstanceCustomIndexNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetInstanceCustomIndexNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetInstanceCustomIndexNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetWorldRayDirectionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetWorldRayDirectionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetWorldRayDirectionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetWorldRayDirectionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetWorldRayOriginNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetWorldRayOriginNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetWorldRayOriginNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetWorldRayOriginNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetRayTMaxNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetRayTMaxNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetRayTMaxNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetRayTMaxNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectGetRayTMinNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectGetRayTMinNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectGetRayTMinNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectGetRayTMinNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectIsEmptyNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectIsEmptyNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectIsEmptyNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectIsEmptyNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectIsHitNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectIsHitNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectIsHitNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectIsHitNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpHitObjectIsMissNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
 
-    public RefOpHitObjectIsMissNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpHitObjectIsMissNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpHitObjectIsMissNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReorderThreadWithHitObjectNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef HitObject => Inner.GetOperand<IdRef>("hitObject") ?? default;
     public IdRef Hint => Inner.GetOperand<IdRef>("hint") ?? default;
     public IdRef Bits => Inner.GetOperand<IdRef>("bits") ?? default;
 
-    public RefOpReorderThreadWithHitObjectNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpReorderThreadWithHitObjectNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReorderThreadWithHitObjectNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReorderThreadWithHintNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Hint => Inner.GetOperand<IdRef>("hint") ?? default;
     public IdRef Bits => Inner.GetOperand<IdRef>("bits") ?? default;
 
-    public RefOpReorderThreadWithHintNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpReorderThreadWithHintNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReorderThreadWithHintNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeHitObjectNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeHitObjectNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeHitObjectNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeHitObjectNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpImageSampleFootprintNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SampledImage => Inner.GetOperand<IdRef>("sampledImage") ?? default;
@@ -5585,67 +5119,61 @@ public ref struct RefOpImageSampleFootprintNV : IWrapperInstruction
     public IdRef Coarse => Inner.GetOperand<IdRef>("coarse") ?? default;
     public ImageOperandsMask Imageoperands => Inner.GetEnumOperand<ImageOperandsMask>("imageoperands");
 
-    public RefOpImageSampleFootprintNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpImageSampleFootprintNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpImageSampleFootprintNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixConvertNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
 
-    public RefOpCooperativeMatrixConvertNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixConvertNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixConvertNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEmitMeshTasksEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef GroupCountX => Inner.GetOperand<IdRef>("groupCountX") ?? default;
     public IdRef GroupCountY => Inner.GetOperand<IdRef>("groupCountY") ?? default;
     public IdRef GroupCountZ => Inner.GetOperand<IdRef>("groupCountZ") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpEmitMeshTasksEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpEmitMeshTasksEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEmitMeshTasksEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSetMeshOutputsEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef VertexCount => Inner.GetOperand<IdRef>("vertexCount") ?? default;
     public IdRef PrimitiveCount => Inner.GetOperand<IdRef>("primitiveCount") ?? default;
 
-    public RefOpSetMeshOutputsEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpSetMeshOutputsEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSetMeshOutputsEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupNonUniformPartitionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpGroupNonUniformPartitionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupNonUniformPartitionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupNonUniformPartitionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpWritePackedPrimitiveIndices4x8NV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef IndexOffset => Inner.GetOperand<IdRef>("indexOffset") ?? default;
     public IdRef PackedIndices => Inner.GetOperand<IdRef>("packedIndices") ?? default;
 
-    public RefOpWritePackedPrimitiveIndices4x8NV(RefInstruction instruction) => Inner = instruction;
-    public RefOpWritePackedPrimitiveIndices4x8NV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpWritePackedPrimitiveIndices4x8NV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFetchMicroTriangleVertexPositionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
@@ -5654,13 +5182,12 @@ public ref struct RefOpFetchMicroTriangleVertexPositionNV : IWrapperInstruction
     public IdRef PrimitiveIndex => Inner.GetOperand<IdRef>("primitiveIndex") ?? default;
     public IdRef Barycentric => Inner.GetOperand<IdRef>("barycentric") ?? default;
 
-    public RefOpFetchMicroTriangleVertexPositionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpFetchMicroTriangleVertexPositionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFetchMicroTriangleVertexPositionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFetchMicroTriangleVertexBarycentricNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
@@ -5669,41 +5196,37 @@ public ref struct RefOpFetchMicroTriangleVertexBarycentricNV : IWrapperInstructi
     public IdRef PrimitiveIndex => Inner.GetOperand<IdRef>("primitiveIndex") ?? default;
     public IdRef Barycentric => Inner.GetOperand<IdRef>("barycentric") ?? default;
 
-    public RefOpFetchMicroTriangleVertexBarycentricNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpFetchMicroTriangleVertexBarycentricNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFetchMicroTriangleVertexBarycentricNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReportIntersectionKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Hit => Inner.GetOperand<IdRef>("hit") ?? default;
     public IdRef HitKind => Inner.GetOperand<IdRef>("hitKind") ?? default;
 
-    public RefOpReportIntersectionKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpReportIntersectionKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReportIntersectionKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIgnoreIntersectionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpIgnoreIntersectionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpIgnoreIntersectionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIgnoreIntersectionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTerminateRayNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpTerminateRayNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTerminateRayNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTerminateRayNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTraceNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
     public IdRef CullMask => Inner.GetOperand<IdRef>("cullMask") ?? default;
@@ -5716,13 +5239,12 @@ public ref struct RefOpTraceNV : IWrapperInstruction
     public IdRef RayTmax => Inner.GetOperand<IdRef>("rayTmax") ?? default;
     public IdRef PayloadId => Inner.GetOperand<IdRef>("payloadId") ?? default;
 
-    public RefOpTraceNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTraceNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTraceNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTraceMotionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
     public IdRef CullMask => Inner.GetOperand<IdRef>("cullMask") ?? default;
@@ -5736,13 +5258,12 @@ public ref struct RefOpTraceMotionNV : IWrapperInstruction
     public IdRef Time => Inner.GetOperand<IdRef>("time") ?? default;
     public IdRef PayloadId => Inner.GetOperand<IdRef>("payloadId") ?? default;
 
-    public RefOpTraceMotionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTraceMotionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTraceMotionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTraceRayMotionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Accel => Inner.GetOperand<IdRef>("accel") ?? default;
     public IdRef RayFlags => Inner.GetOperand<IdRef>("rayFlags") ?? default;
     public IdRef CullMask => Inner.GetOperand<IdRef>("cullMask") ?? default;
@@ -5756,57 +5277,52 @@ public ref struct RefOpTraceRayMotionNV : IWrapperInstruction
     public IdRef Time => Inner.GetOperand<IdRef>("time") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpTraceRayMotionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTraceRayMotionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTraceRayMotionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionTriangleVertexPositionsKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionTriangleVertexPositionsKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionTriangleVertexPositionsKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionTriangleVertexPositionsKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAccelerationStructureKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAccelerationStructureKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAccelerationStructureKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAccelerationStructureKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExecuteCallableNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef SBTIndex => Inner.GetOperand<IdRef>("sBTIndex") ?? default;
     public IdRef CallableDataId => Inner.GetOperand<IdRef>("callableDataId") ?? default;
 
-    public RefOpExecuteCallableNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpExecuteCallableNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExecuteCallableNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeCooperativeMatrixNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ComponentType => Inner.GetOperand<IdRef>("componentType") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdRef Rows => Inner.GetOperand<IdRef>("rows") ?? default;
     public IdRef Columns => Inner.GetOperand<IdRef>("columns") ?? default;
 
-    public RefOpTypeCooperativeMatrixNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeCooperativeMatrixNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeCooperativeMatrixNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixLoadNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -5814,79 +5330,72 @@ public ref struct RefOpCooperativeMatrixLoadNV : IWrapperInstruction
     public IdRef ColumnMajor => Inner.GetOperand<IdRef>("columnMajor") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
 
-    public RefOpCooperativeMatrixLoadNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixLoadNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixLoadNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixStoreNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdRef ObjectId => Inner.GetOperand<IdRef>("objectId") ?? default;
     public IdRef Stride => Inner.GetOperand<IdRef>("stride") ?? default;
     public IdRef ColumnMajor => Inner.GetOperand<IdRef>("columnMajor") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
 
-    public RefOpCooperativeMatrixStoreNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixStoreNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixStoreNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixMulAddNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public IdRef C => Inner.GetOperand<IdRef>("c") ?? default;
 
-    public RefOpCooperativeMatrixMulAddNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixMulAddNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixMulAddNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixLengthNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Type => Inner.GetOperand<IdRef>("type") ?? default;
 
-    public RefOpCooperativeMatrixLengthNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixLengthNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixLengthNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpBeginInvocationInterlockEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpBeginInvocationInterlockEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpBeginInvocationInterlockEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpBeginInvocationInterlockEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpEndInvocationInterlockEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpEndInvocationInterlockEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpEndInvocationInterlockEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpEndInvocationInterlockEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixReduceNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
     public CooperativeMatrixReduceMask Reduce => Inner.GetEnumOperand<CooperativeMatrixReduceMask>("reduce");
     public IdRef CombineFunc => Inner.GetOperand<IdRef>("combineFunc") ?? default;
 
-    public RefOpCooperativeMatrixReduceNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixReduceNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixReduceNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixLoadTensorNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -5895,172 +5404,157 @@ public ref struct RefOpCooperativeMatrixLoadTensorNV : IWrapperInstruction
     public MemoryAccessMask MemoryOperand => Inner.GetEnumOperand<MemoryAccessMask>("memoryOperand");
     public TensorAddressingOperandsMask TensorAddressingOperands => Inner.GetEnumOperand<TensorAddressingOperandsMask>("tensorAddressingOperands");
 
-    public RefOpCooperativeMatrixLoadTensorNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixLoadTensorNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixLoadTensorNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixStoreTensorNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
     public IdRef ObjectId => Inner.GetOperand<IdRef>("objectId") ?? default;
     public IdRef TensorLayout => Inner.GetOperand<IdRef>("tensorLayout") ?? default;
     public MemoryAccessMask MemoryOperand => Inner.GetEnumOperand<MemoryAccessMask>("memoryOperand");
     public TensorAddressingOperandsMask TensorAddressingOperands => Inner.GetEnumOperand<TensorAddressingOperandsMask>("tensorAddressingOperands");
 
-    public RefOpCooperativeMatrixStoreTensorNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixStoreTensorNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixStoreTensorNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixPerElementOpNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
     public IdRef Func => Inner.GetOperand<IdRef>("func") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpCooperativeMatrixPerElementOpNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixPerElementOpNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixPerElementOpNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeTensorLayoutNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Dim => Inner.GetOperand<IdRef>("dim") ?? default;
     public IdRef ClampMode => Inner.GetOperand<IdRef>("clampMode") ?? default;
 
-    public RefOpTypeTensorLayoutNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeTensorLayoutNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeTensorLayoutNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeTensorViewNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Dim => Inner.GetOperand<IdRef>("dim") ?? default;
     public IdRef HasDimensions => Inner.GetOperand<IdRef>("hasDimensions") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTypeTensorViewNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeTensorViewNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeTensorViewNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCreateTensorLayoutNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpCreateTensorLayoutNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCreateTensorLayoutNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCreateTensorLayoutNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorLayoutSetDimensionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorLayout => Inner.GetOperand<IdRef>("tensorLayout") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTensorLayoutSetDimensionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorLayoutSetDimensionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorLayoutSetDimensionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorLayoutSetStrideNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorLayout => Inner.GetOperand<IdRef>("tensorLayout") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTensorLayoutSetStrideNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorLayoutSetStrideNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorLayoutSetStrideNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorLayoutSliceNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorLayout => Inner.GetOperand<IdRef>("tensorLayout") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTensorLayoutSliceNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorLayoutSliceNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorLayoutSliceNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorLayoutSetClampValueNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorLayout => Inner.GetOperand<IdRef>("tensorLayout") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpTensorLayoutSetClampValueNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorLayoutSetClampValueNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorLayoutSetClampValueNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCreateTensorViewNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpCreateTensorViewNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCreateTensorViewNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCreateTensorViewNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorViewSetDimensionNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorView => Inner.GetOperand<IdRef>("tensorView") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTensorViewSetDimensionNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorViewSetDimensionNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorViewSetDimensionNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorViewSetStrideNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorView => Inner.GetOperand<IdRef>("tensorView") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTensorViewSetStrideNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorViewSetStrideNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorViewSetStrideNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDemoteToHelperInvocation : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
 
-    public RefOpDemoteToHelperInvocation(RefInstruction instruction) => Inner = instruction;
-    public RefOpDemoteToHelperInvocation(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDemoteToHelperInvocation(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIsHelperInvocationEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpIsHelperInvocationEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpIsHelperInvocationEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIsHelperInvocationEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorViewSetClipNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorView => Inner.GetOperand<IdRef>("tensorView") ?? default;
@@ -6069,111 +5563,101 @@ public ref struct RefOpTensorViewSetClipNV : IWrapperInstruction
     public IdRef ClipColOffset => Inner.GetOperand<IdRef>("clipColOffset") ?? default;
     public IdRef ClipColSpan => Inner.GetOperand<IdRef>("clipColSpan") ?? default;
 
-    public RefOpTensorViewSetClipNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorViewSetClipNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorViewSetClipNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTensorLayoutSetBlockSizeNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef TensorLayout => Inner.GetOperand<IdRef>("tensorLayout") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTensorLayoutSetBlockSizeNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpTensorLayoutSetBlockSizeNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTensorLayoutSetBlockSizeNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCooperativeMatrixTransposeNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Matrix => Inner.GetOperand<IdRef>("matrix") ?? default;
 
-    public RefOpCooperativeMatrixTransposeNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpCooperativeMatrixTransposeNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCooperativeMatrixTransposeNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertUToImageNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpConvertUToImageNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertUToImageNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertUToImageNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertUToSamplerNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpConvertUToSamplerNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertUToSamplerNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertUToSamplerNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertImageToUNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpConvertImageToUNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertImageToUNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertImageToUNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertSamplerToUNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpConvertSamplerToUNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertSamplerToUNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertSamplerToUNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertUToSampledImageNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpConvertUToSampledImageNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertUToSampledImageNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertUToSampledImageNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertSampledImageToUNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpConvertSampledImageToUNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertSampledImageToUNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertSampledImageToUNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSamplerImageAddressingModeNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralInteger BitWidth => Inner.GetOperand<LiteralInteger>("bitWidth") ?? default;
 
-    public RefOpSamplerImageAddressingModeNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpSamplerImageAddressingModeNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSamplerImageAddressingModeNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRawAccessChainNV : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BaseId => Inner.GetOperand<IdRef>("baseId") ?? default;
@@ -6182,107 +5666,98 @@ public ref struct RefOpRawAccessChainNV : IWrapperInstruction
     public IdRef Byteoffset => Inner.GetOperand<IdRef>("byteoffset") ?? default;
     public RawAccessChainOperandsMask Rawaccesschainoperands => Inner.GetEnumOperand<RawAccessChainOperandsMask>("rawaccesschainoperands");
 
-    public RefOpRawAccessChainNV(RefInstruction instruction) => Inner = instruction;
-    public RefOpRawAccessChainNV(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRawAccessChainNV(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupShuffleINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Data => Inner.GetOperand<IdRef>("data") ?? default;
     public IdRef InvocationId => Inner.GetOperand<IdRef>("invocationId") ?? default;
 
-    public RefOpSubgroupShuffleINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupShuffleINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupShuffleINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupShuffleDownINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Current => Inner.GetOperand<IdRef>("current") ?? default;
     public IdRef Next => Inner.GetOperand<IdRef>("next") ?? default;
     public IdRef Delta => Inner.GetOperand<IdRef>("delta") ?? default;
 
-    public RefOpSubgroupShuffleDownINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupShuffleDownINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupShuffleDownINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupShuffleUpINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Previous => Inner.GetOperand<IdRef>("previous") ?? default;
     public IdRef Current => Inner.GetOperand<IdRef>("current") ?? default;
     public IdRef Delta => Inner.GetOperand<IdRef>("delta") ?? default;
 
-    public RefOpSubgroupShuffleUpINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupShuffleUpINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupShuffleUpINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupShuffleXorINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Data => Inner.GetOperand<IdRef>("data") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpSubgroupShuffleXorINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupShuffleXorINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupShuffleXorINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupBlockReadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Ptr => Inner.GetOperand<IdRef>("ptr") ?? default;
 
-    public RefOpSubgroupBlockReadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupBlockReadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupBlockReadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupBlockWriteINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Ptr => Inner.GetOperand<IdRef>("ptr") ?? default;
     public IdRef Data => Inner.GetOperand<IdRef>("data") ?? default;
 
-    public RefOpSubgroupBlockWriteINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupBlockWriteINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupBlockWriteINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupImageBlockReadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
 
-    public RefOpSubgroupImageBlockReadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupImageBlockReadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupImageBlockReadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupImageBlockWriteINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public IdRef Data => Inner.GetOperand<IdRef>("data") ?? default;
 
-    public RefOpSubgroupImageBlockWriteINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupImageBlockWriteINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupImageBlockWriteINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupImageMediaBlockReadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
@@ -6290,225 +5765,206 @@ public ref struct RefOpSubgroupImageMediaBlockReadINTEL : IWrapperInstruction
     public IdRef Width => Inner.GetOperand<IdRef>("width") ?? default;
     public IdRef Height => Inner.GetOperand<IdRef>("height") ?? default;
 
-    public RefOpSubgroupImageMediaBlockReadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupImageMediaBlockReadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupImageMediaBlockReadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupImageMediaBlockWriteINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Image => Inner.GetOperand<IdRef>("image") ?? default;
     public IdRef Coordinate => Inner.GetOperand<IdRef>("coordinate") ?? default;
     public IdRef Width => Inner.GetOperand<IdRef>("width") ?? default;
     public IdRef Height => Inner.GetOperand<IdRef>("height") ?? default;
     public IdRef Data => Inner.GetOperand<IdRef>("data") ?? default;
 
-    public RefOpSubgroupImageMediaBlockWriteINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupImageMediaBlockWriteINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupImageMediaBlockWriteINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUCountLeadingZerosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpUCountLeadingZerosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUCountLeadingZerosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUCountLeadingZerosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUCountTrailingZerosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand => Inner.GetOperand<IdRef>("operand") ?? default;
 
-    public RefOpUCountTrailingZerosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUCountTrailingZerosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUCountTrailingZerosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAbsISubINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpAbsISubINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAbsISubINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAbsISubINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAbsUSubINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpAbsUSubINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAbsUSubINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAbsUSubINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIAddSatINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIAddSatINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpIAddSatINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIAddSatINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUAddSatINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUAddSatINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUAddSatINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUAddSatINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIAverageINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIAverageINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpIAverageINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIAverageINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUAverageINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUAverageINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUAverageINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUAverageINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIAverageRoundedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIAverageRoundedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpIAverageRoundedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIAverageRoundedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUAverageRoundedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUAverageRoundedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUAverageRoundedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUAverageRoundedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpISubSatINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpISubSatINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpISubSatINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpISubSatINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUSubSatINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUSubSatINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUSubSatINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUSubSatINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpIMul32x16INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpIMul32x16INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpIMul32x16INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpIMul32x16INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpUMul32x16INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Operand1 => Inner.GetOperand<IdRef>("operand1") ?? default;
     public IdRef Operand2 => Inner.GetOperand<IdRef>("operand2") ?? default;
 
-    public RefOpUMul32x16INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpUMul32x16INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpUMul32x16INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantFunctionPointerINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Function => Inner.GetOperand<IdRef>("function") ?? default;
 
-    public RefOpConstantFunctionPointerINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantFunctionPointerINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantFunctionPointerINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFunctionPointerCallINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpFunctionPointerCallINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFunctionPointerCallINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFunctionPointerCallINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAsmTargetINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public LiteralString Asmtarget => Inner.GetOperand<LiteralString>("asmtarget") ?? default;
 
-    public RefOpAsmTargetINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAsmTargetINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAsmTargetINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAsmINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Asmtype => Inner.GetOperand<IdRef>("asmtype") ?? default;
@@ -6516,25 +5972,23 @@ public ref struct RefOpAsmINTEL : IWrapperInstruction
     public LiteralString Asminstructions => Inner.GetOperand<LiteralString>("asminstructions") ?? default;
     public LiteralString Constraints => Inner.GetOperand<LiteralString>("constraints") ?? default;
 
-    public RefOpAsmINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAsmINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAsmINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAsmCallINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Asm => Inner.GetOperand<IdRef>("asm") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpAsmCallINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAsmCallINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAsmCallINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicFMinEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -6542,13 +5996,12 @@ public ref struct RefOpAtomicFMinEXT : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicFMinEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicFMinEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicFMinEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicFMaxEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -6556,311 +6009,281 @@ public ref struct RefOpAtomicFMaxEXT : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicFMaxEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicFMaxEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicFMaxEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAssumeTrueKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Condition => Inner.GetOperand<IdRef>("condition") ?? default;
 
-    public RefOpAssumeTrueKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpAssumeTrueKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAssumeTrueKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpExpectKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
     public IdRef ExpectedValue => Inner.GetOperand<IdRef>("expectedValue") ?? default;
 
-    public RefOpExpectKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpExpectKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpExpectKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpDecorateString : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
     public Decoration Decoration => Inner.GetEnumOperand<Decoration>("decoration");
 
-    public RefOpDecorateString(RefInstruction instruction) => Inner = instruction;
-    public RefOpDecorateString(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpDecorateString(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMemberDecorateString : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef StructType => Inner.GetOperand<IdRef>("structType") ?? default;
     public LiteralInteger Member => Inner.GetOperand<LiteralInteger>("member") ?? default;
     public Decoration Decoration => Inner.GetEnumOperand<Decoration>("decoration");
 
-    public RefOpMemberDecorateString(RefInstruction instruction) => Inner = instruction;
-    public RefOpMemberDecorateString(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMemberDecorateString(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVmeImageINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ImageType => Inner.GetOperand<IdRef>("imageType") ?? default;
     public IdRef Sampler => Inner.GetOperand<IdRef>("sampler") ?? default;
 
-    public RefOpVmeImageINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpVmeImageINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVmeImageINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeVmeImageINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ImageType => Inner.GetOperand<IdRef>("imageType") ?? default;
 
-    public RefOpTypeVmeImageINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeVmeImageINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeVmeImageINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcImePayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcImePayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcImePayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcImePayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcRefPayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcRefPayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcRefPayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcRefPayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcSicPayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcSicPayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcSicPayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcSicPayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcMcePayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcMcePayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcMcePayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcMcePayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcMceResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcMceResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcMceResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcMceResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcImeResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcImeResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcImeResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcImeResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcImeResultSingleReferenceStreamoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcImeResultSingleReferenceStreamoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcImeResultSingleReferenceStreamoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcImeResultSingleReferenceStreamoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcImeResultDualReferenceStreamoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcImeResultDualReferenceStreamoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcImeResultDualReferenceStreamoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcImeResultDualReferenceStreamoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcImeSingleReferenceStreaminINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcImeSingleReferenceStreaminINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcImeSingleReferenceStreaminINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcImeSingleReferenceStreaminINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcImeDualReferenceStreaminINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcImeDualReferenceStreaminINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcImeDualReferenceStreaminINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcImeDualReferenceStreaminINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcRefResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcRefResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcRefResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcRefResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeAvcSicResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpTypeAvcSicResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeAvcSicResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeAvcSicResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SliceType => Inner.GetOperand<IdRef>("sliceType") ?? default;
     public IdRef Qp => Inner.GetOperand<IdRef>("qp") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ReferenceBasePenalty => Inner.GetOperand<IdRef>("referenceBasePenalty") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SliceType => Inner.GetOperand<IdRef>("sliceType") ?? default;
     public IdRef Qp => Inner.GetOperand<IdRef>("qp") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetInterShapePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PackedShapePenalty => Inner.GetOperand<IdRef>("packedShapePenalty") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetInterShapePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetInterShapePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetInterShapePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SliceType => Inner.GetOperand<IdRef>("sliceType") ?? default;
     public IdRef Qp => Inner.GetOperand<IdRef>("qp") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetInterDirectionPenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef DirectionCost => Inner.GetOperand<IdRef>("directionCost") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetInterDirectionPenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetInterDirectionPenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetInterDirectionPenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SliceType => Inner.GetOperand<IdRef>("sliceType") ?? default;
     public IdRef Qp => Inner.GetOperand<IdRef>("qp") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SliceType => Inner.GetOperand<IdRef>("sliceType") ?? default;
     public IdRef Qp => Inner.GetOperand<IdRef>("qp") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PackedCostCenterDelta => Inner.GetOperand<IdRef>("packedCostCenterDelta") ?? default;
@@ -6868,286 +6291,261 @@ public ref struct RefOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IWrapper
     public IdRef CostPrecision => Inner.GetOperand<IdRef>("costPrecision") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SliceType => Inner.GetOperand<IdRef>("sliceType") ?? default;
     public IdRef Qp => Inner.GetOperand<IdRef>("qp") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetAcOnlyHaarINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetAcOnlyHaarINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetAcOnlyHaarINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetAcOnlyHaarINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SourceFieldPolarity => Inner.GetOperand<IdRef>("sourceFieldPolarity") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ReferenceFieldPolarity => Inner.GetOperand<IdRef>("referenceFieldPolarity") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ForwardReferenceFieldPolarity => Inner.GetOperand<IdRef>("forwardReferenceFieldPolarity") ?? default;
     public IdRef BackwardReferenceFieldPolarity => Inner.GetOperand<IdRef>("backwardReferenceFieldPolarity") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceConvertToImePayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceConvertToImePayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceConvertToImePayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceConvertToImePayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceConvertToImeResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceConvertToImeResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceConvertToImeResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceConvertToImeResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceConvertToRefPayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceConvertToRefPayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceConvertToRefPayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceConvertToRefPayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceConvertToRefResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceConvertToRefResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceConvertToRefResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceConvertToRefResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceConvertToSicPayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceConvertToSicPayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceConvertToSicPayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceConvertToSicPayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceConvertToSicResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceConvertToSicResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceConvertToSicResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceConvertToSicResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetMotionVectorsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetMotionVectorsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetMotionVectorsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetMotionVectorsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterDistortionsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterDistortionsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterDistortionsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterDistortionsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetBestInterDistortionsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetBestInterDistortionsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetBestInterDistortionsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetBestInterDistortionsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterMajorShapeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterMajorShapeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterMajorShapeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterMajorShapeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterMinorShapeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterMinorShapeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterMinorShapeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterMinorShapeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterDirectionsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterDirectionsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterDirectionsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterDirectionsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterMotionVectorCountINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterMotionVectorCountINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterMotionVectorCountINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterMotionVectorCountINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterReferenceIdsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterReferenceIdsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterReferenceIdsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterReferenceIdsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PackedReferenceIds => Inner.GetOperand<IdRef>("packedReferenceIds") ?? default;
     public IdRef PackedReferenceParameterFieldPolarities => Inner.GetOperand<IdRef>("packedReferenceParameterFieldPolarities") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeInitializeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcCoord => Inner.GetOperand<IdRef>("srcCoord") ?? default;
     public IdRef PartitionMask => Inner.GetOperand<IdRef>("partitionMask") ?? default;
     public IdRef SADAdjustment => Inner.GetOperand<IdRef>("sADAdjustment") ?? default;
 
-    public RefOpSubgroupAvcImeInitializeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeInitializeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeInitializeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeSetSingleReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RefOffset => Inner.GetOperand<IdRef>("refOffset") ?? default;
     public IdRef SearchWindowConfig => Inner.GetOperand<IdRef>("searchWindowConfig") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeSetSingleReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeSetSingleReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeSetSingleReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeSetDualReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef FwdRefOffset => Inner.GetOperand<IdRef>("fwdRefOffset") ?? default;
@@ -7155,25 +6553,23 @@ public ref struct RefOpSubgroupAvcImeSetDualReferenceINTEL : IWrapperInstruction
     public IdRef IdSearchWindowConfig => Inner.GetOperand<IdRef>("idSearchWindowConfig") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeSetDualReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeSetDualReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeSetDualReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeRefWindowSizeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SearchWindowConfig => Inner.GetOperand<IdRef>("searchWindowConfig") ?? default;
     public IdRef DualRef => Inner.GetOperand<IdRef>("dualRef") ?? default;
 
-    public RefOpSubgroupAvcImeRefWindowSizeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeRefWindowSizeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeRefWindowSizeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeAdjustRefOffsetINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RefOffset => Inner.GetOperand<IdRef>("refOffset") ?? default;
@@ -7181,84 +6577,77 @@ public ref struct RefOpSubgroupAvcImeAdjustRefOffsetINTEL : IWrapperInstruction
     public IdRef RefWindowSize => Inner.GetOperand<IdRef>("refWindowSize") ?? default;
     public IdRef ImageSize => Inner.GetOperand<IdRef>("imageSize") ?? default;
 
-    public RefOpSubgroupAvcImeAdjustRefOffsetINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeAdjustRefOffsetINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeAdjustRefOffsetINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeConvertToMcePayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeConvertToMcePayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeConvertToMcePayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeConvertToMcePayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeSetMaxMotionVectorCountINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef MaxMotionVectorCount => Inner.GetOperand<IdRef>("maxMotionVectorCount") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeSetMaxMotionVectorCountINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeSetMaxMotionVectorCountINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeSetMaxMotionVectorCountINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Threshold => Inner.GetOperand<IdRef>("threshold") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeSetWeightedSadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PackedSadWeights => Inner.GetOperand<IdRef>("packedSadWeights") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeSetWeightedSadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeSetWeightedSadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeSetWeightedSadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef RefImage => Inner.GetOperand<IdRef>("refImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7266,13 +6655,12 @@ public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IWrapperIn
     public IdRef BwdRefImage => Inner.GetOperand<IdRef>("bwdRefImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithDualReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7280,13 +6668,12 @@ public ref struct RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL : 
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef StreaminComponents => Inner.GetOperand<IdRef>("streaminComponents") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7295,26 +6682,24 @@ public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL : IW
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef StreaminComponents => Inner.GetOperand<IdRef>("streaminComponents") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef RefImage => Inner.GetOperand<IdRef>("refImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7322,13 +6707,12 @@ public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL : I
     public IdRef BwdRefImage => Inner.GetOperand<IdRef>("bwdRefImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7336,13 +6720,12 @@ public ref struct RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef StreaminComponents => Inner.GetOperand<IdRef>("streaminComponents") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7351,199 +6734,182 @@ public ref struct RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL :
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef StreaminComponents => Inner.GetOperand<IdRef>("streaminComponents") ?? default;
 
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeConvertToMceResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeConvertToMceResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeConvertToMceResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeConvertToMceResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetSingleReferenceStreaminINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetSingleReferenceStreaminINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetSingleReferenceStreaminINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetSingleReferenceStreaminINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetDualReferenceStreaminINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetDualReferenceStreaminINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetDualReferenceStreaminINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetDualReferenceStreaminINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeStripDualReferenceStreamoutINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeStripDualReferenceStreamoutINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeStripDualReferenceStreamoutINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeStripDualReferenceStreamoutINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef MajorShape => Inner.GetOperand<IdRef>("majorShape") ?? default;
 
-    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef MajorShape => Inner.GetOperand<IdRef>("majorShape") ?? default;
 
-    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef MajorShape => Inner.GetOperand<IdRef>("majorShape") ?? default;
 
-    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef MajorShape => Inner.GetOperand<IdRef>("majorShape") ?? default;
     public IdRef Direction => Inner.GetOperand<IdRef>("direction") ?? default;
 
-    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef MajorShape => Inner.GetOperand<IdRef>("majorShape") ?? default;
     public IdRef Direction => Inner.GetOperand<IdRef>("direction") ?? default;
 
-    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
     public IdRef MajorShape => Inner.GetOperand<IdRef>("majorShape") ?? default;
     public IdRef Direction => Inner.GetOperand<IdRef>("direction") ?? default;
 
-    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetBorderReachedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ImageSelect => Inner.GetOperand<IdRef>("imageSelect") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetBorderReachedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetBorderReachedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetBorderReachedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcFmeInitializeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcCoord => Inner.GetOperand<IdRef>("srcCoord") ?? default;
@@ -7554,13 +6920,12 @@ public ref struct RefOpSubgroupAvcFmeInitializeINTEL : IWrapperInstruction
     public IdRef PixelResolution => Inner.GetOperand<IdRef>("pixelResolution") ?? default;
     public IdRef SadAdjustment => Inner.GetOperand<IdRef>("sadAdjustment") ?? default;
 
-    public RefOpSubgroupAvcFmeInitializeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcFmeInitializeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcFmeInitializeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcBmeInitializeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcCoord => Inner.GetOperand<IdRef>("srcCoord") ?? default;
@@ -7572,59 +6937,54 @@ public ref struct RefOpSubgroupAvcBmeInitializeINTEL : IWrapperInstruction
     public IdRef BidirectionalWeight => Inner.GetOperand<IdRef>("bidirectionalWeight") ?? default;
     public IdRef SadAdjustment => Inner.GetOperand<IdRef>("sadAdjustment") ?? default;
 
-    public RefOpSubgroupAvcBmeInitializeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcBmeInitializeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcBmeInitializeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefConvertToMcePayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefConvertToMcePayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefConvertToMcePayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefConvertToMcePayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefSetBidirectionalMixDisableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefSetBidirectionalMixDisableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefSetBidirectionalMixDisableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefSetBidirectionalMixDisableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefSetBilinearFilterEnableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefSetBilinearFilterEnableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefSetBilinearFilterEnableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefSetBilinearFilterEnableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef RefImage => Inner.GetOperand<IdRef>("refImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7632,26 +6992,24 @@ public ref struct RefOpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IWrapperIn
     public IdRef BwdRefImage => Inner.GetOperand<IdRef>("bwdRefImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefEvaluateWithDualReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefEvaluateWithDualReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefEvaluateWithDualReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef PackedReferenceIds => Inner.GetOperand<IdRef>("packedReferenceIds") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7659,35 +7017,32 @@ public ref struct RefOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL :
     public IdRef PackedReferenceFieldPolarities => Inner.GetOperand<IdRef>("packedReferenceFieldPolarities") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcRefConvertToMceResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcRefConvertToMceResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcRefConvertToMceResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcRefConvertToMceResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicInitializeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcCoord => Inner.GetOperand<IdRef>("srcCoord") ?? default;
 
-    public RefOpSubgroupAvcSicInitializeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicInitializeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicInitializeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicConfigureSkcINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SkipBlockPartitionType => Inner.GetOperand<IdRef>("skipBlockPartitionType") ?? default;
@@ -7697,13 +7052,12 @@ public ref struct RefOpSubgroupAvcSicConfigureSkcINTEL : IWrapperInstruction
     public IdRef SadAdjustment => Inner.GetOperand<IdRef>("sadAdjustment") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicConfigureSkcINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicConfigureSkcINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicConfigureSkcINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicConfigureIpeLumaINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef LumaIntraPartitionMask => Inner.GetOperand<IdRef>("lumaIntraPartitionMask") ?? default;
@@ -7715,13 +7069,12 @@ public ref struct RefOpSubgroupAvcSicConfigureIpeLumaINTEL : IWrapperInstruction
     public IdRef SadAdjustment => Inner.GetOperand<IdRef>("sadAdjustment") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicConfigureIpeLumaINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicConfigureIpeLumaINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicConfigureIpeLumaINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef LumaIntraPartitionMask => Inner.GetOperand<IdRef>("lumaIntraPartitionMask") ?? default;
@@ -7736,48 +7089,44 @@ public ref struct RefOpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IWrapperInstr
     public IdRef SadAdjustment => Inner.GetOperand<IdRef>("sadAdjustment") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicConfigureIpeLumaChromaINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicConfigureIpeLumaChromaINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicConfigureIpeLumaChromaINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetMotionVectorMaskINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SkipBlockPartitionType => Inner.GetOperand<IdRef>("skipBlockPartitionType") ?? default;
     public IdRef Direction => Inner.GetOperand<IdRef>("direction") ?? default;
 
-    public RefOpSubgroupAvcSicGetMotionVectorMaskINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetMotionVectorMaskINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetMotionVectorMaskINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicConvertToMcePayloadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicConvertToMcePayloadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicConvertToMcePayloadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicConvertToMcePayloadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PackedShapePenalty => Inner.GetOperand<IdRef>("packedShapePenalty") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef LumaModePenalty => Inner.GetOperand<IdRef>("lumaModePenalty") ?? default;
@@ -7785,85 +7134,78 @@ public ref struct RefOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IWrappe
     public IdRef LumaPackedNonDcPenalty => Inner.GetOperand<IdRef>("lumaPackedNonDcPenalty") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef ChromaModeBasePenalty => Inner.GetOperand<IdRef>("chromaModeBasePenalty") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicSetBilinearFilterEnableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicSetBilinearFilterEnableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicSetBilinearFilterEnableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicSetBilinearFilterEnableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PackedSadCoefficients => Inner.GetOperand<IdRef>("packedSadCoefficients") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BlockBasedSkipType => Inner.GetOperand<IdRef>("blockBasedSkipType") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicEvaluateIpeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicEvaluateIpeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicEvaluateIpeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicEvaluateIpeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef RefImage => Inner.GetOperand<IdRef>("refImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7871,26 +7213,24 @@ public ref struct RefOpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IWrapperIn
     public IdRef BwdRefImage => Inner.GetOperand<IdRef>("bwdRefImage") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicEvaluateWithDualReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicEvaluateWithDualReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicEvaluateWithDualReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
     public IdRef PackedReferenceIds => Inner.GetOperand<IdRef>("packedReferenceIds") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef SrcImage => Inner.GetOperand<IdRef>("srcImage") ?? default;
@@ -7898,142 +7238,129 @@ public ref struct RefOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL :
     public IdRef PackedReferenceFieldPolarities => Inner.GetOperand<IdRef>("packedReferenceFieldPolarities") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicConvertToMceResultINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicConvertToMceResultINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicConvertToMceResultINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicConvertToMceResultINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetIpeLumaShapeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetIpeLumaShapeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetIpeLumaShapeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetIpeLumaShapeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetPackedIpeLumaModesINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetPackedIpeLumaModesINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetPackedIpeLumaModesINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetPackedIpeLumaModesINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetIpeChromaModeINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetIpeChromaModeINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetIpeChromaModeINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetIpeChromaModeINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupAvcSicGetInterRawSadsINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Payload => Inner.GetOperand<IdRef>("payload") ?? default;
 
-    public RefOpSubgroupAvcSicGetInterRawSadsINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupAvcSicGetInterRawSadsINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupAvcSicGetInterRawSadsINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpVariableLengthArrayINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Lenght => Inner.GetOperand<IdRef>("lenght") ?? default;
 
-    public RefOpVariableLengthArrayINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpVariableLengthArrayINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpVariableLengthArrayINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSaveMemoryINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
 
-    public RefOpSaveMemoryINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSaveMemoryINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSaveMemoryINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRestoreMemoryINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Ptr => Inner.GetOperand<IdRef>("ptr") ?? default;
 
-    public RefOpRestoreMemoryINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpRestoreMemoryINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRestoreMemoryINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatSinCosPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8044,13 +7371,12 @@ public ref struct RefOpArbitraryFloatSinCosPiINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatSinCosPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatSinCosPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatSinCosPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatCastINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8060,13 +7386,12 @@ public ref struct RefOpArbitraryFloatCastINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatCastINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatCastINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatCastINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatCastFromIntINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8076,13 +7401,12 @@ public ref struct RefOpArbitraryFloatCastFromIntINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatCastFromIntINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatCastFromIntINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatCastFromIntINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatCastToIntINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8091,13 +7415,12 @@ public ref struct RefOpArbitraryFloatCastToIntINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatCastToIntINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatCastToIntINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatCastToIntINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatAddINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8109,13 +7432,12 @@ public ref struct RefOpArbitraryFloatAddINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatAddINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatAddINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatAddINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatSubINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8127,13 +7449,12 @@ public ref struct RefOpArbitraryFloatSubINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatSubINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatSubINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatSubINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatMulINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8145,13 +7466,12 @@ public ref struct RefOpArbitraryFloatMulINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatMulINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatMulINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatMulINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatDivINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8163,13 +7483,12 @@ public ref struct RefOpArbitraryFloatDivINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatDivINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatDivINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatDivINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatGTINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8177,13 +7496,12 @@ public ref struct RefOpArbitraryFloatGTINTEL : IWrapperInstruction
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public LiteralInteger M2 => Inner.GetOperand<LiteralInteger>("m2") ?? default;
 
-    public RefOpArbitraryFloatGTINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatGTINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatGTINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatGEINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8191,13 +7509,12 @@ public ref struct RefOpArbitraryFloatGEINTEL : IWrapperInstruction
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public LiteralInteger M2 => Inner.GetOperand<LiteralInteger>("m2") ?? default;
 
-    public RefOpArbitraryFloatGEINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatGEINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatGEINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatLTINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8205,13 +7522,12 @@ public ref struct RefOpArbitraryFloatLTINTEL : IWrapperInstruction
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public LiteralInteger M2 => Inner.GetOperand<LiteralInteger>("m2") ?? default;
 
-    public RefOpArbitraryFloatLTINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatLTINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatLTINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatLEINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8219,13 +7535,12 @@ public ref struct RefOpArbitraryFloatLEINTEL : IWrapperInstruction
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public LiteralInteger M2 => Inner.GetOperand<LiteralInteger>("m2") ?? default;
 
-    public RefOpArbitraryFloatLEINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatLEINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatLEINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatEQINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8233,13 +7548,12 @@ public ref struct RefOpArbitraryFloatEQINTEL : IWrapperInstruction
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public LiteralInteger M2 => Inner.GetOperand<LiteralInteger>("m2") ?? default;
 
-    public RefOpArbitraryFloatEQINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatEQINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatEQINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatRecipINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8249,13 +7563,12 @@ public ref struct RefOpArbitraryFloatRecipINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatRecipINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatRecipINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatRecipINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatRSqrtINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8265,13 +7578,12 @@ public ref struct RefOpArbitraryFloatRSqrtINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatRSqrtINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatRSqrtINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatRSqrtINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatCbrtINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8281,13 +7593,12 @@ public ref struct RefOpArbitraryFloatCbrtINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatCbrtINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatCbrtINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatCbrtINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatHypotINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8299,13 +7610,12 @@ public ref struct RefOpArbitraryFloatHypotINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatHypotINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatHypotINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatHypotINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatSqrtINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8315,13 +7625,12 @@ public ref struct RefOpArbitraryFloatSqrtINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatSqrtINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatSqrtINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatSqrtINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatLogINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8331,13 +7640,12 @@ public ref struct RefOpArbitraryFloatLogINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatLogINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatLogINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatLogINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatLog2INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8347,13 +7655,12 @@ public ref struct RefOpArbitraryFloatLog2INTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatLog2INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatLog2INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatLog2INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatLog10INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8363,13 +7670,12 @@ public ref struct RefOpArbitraryFloatLog10INTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatLog10INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatLog10INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatLog10INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatLog1pINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8379,13 +7685,12 @@ public ref struct RefOpArbitraryFloatLog1pINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatLog1pINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatLog1pINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatLog1pINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatExpINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8395,13 +7700,12 @@ public ref struct RefOpArbitraryFloatExpINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatExpINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatExpINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatExpINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatExp2INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8411,13 +7715,12 @@ public ref struct RefOpArbitraryFloatExp2INTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatExp2INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatExp2INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatExp2INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatExp10INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8427,13 +7730,12 @@ public ref struct RefOpArbitraryFloatExp10INTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatExp10INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatExp10INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatExp10INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatExpm1INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8443,13 +7745,12 @@ public ref struct RefOpArbitraryFloatExpm1INTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatExpm1INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatExpm1INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatExpm1INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatSinINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8459,13 +7760,12 @@ public ref struct RefOpArbitraryFloatSinINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatSinINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatSinINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatSinINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatCosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8475,13 +7775,12 @@ public ref struct RefOpArbitraryFloatCosINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatCosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatCosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatCosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatSinCosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8491,13 +7790,12 @@ public ref struct RefOpArbitraryFloatSinCosINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatSinCosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatSinCosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatSinCosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatSinPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8507,13 +7805,12 @@ public ref struct RefOpArbitraryFloatSinPiINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatSinPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatSinPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatSinPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatCosPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8523,13 +7820,12 @@ public ref struct RefOpArbitraryFloatCosPiINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatCosPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatCosPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatCosPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatASinINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8539,13 +7835,12 @@ public ref struct RefOpArbitraryFloatASinINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatASinINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatASinINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatASinINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatASinPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8555,13 +7850,12 @@ public ref struct RefOpArbitraryFloatASinPiINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatASinPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatASinPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatASinPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatACosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8571,13 +7865,12 @@ public ref struct RefOpArbitraryFloatACosINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatACosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatACosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatACosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatACosPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8587,13 +7880,12 @@ public ref struct RefOpArbitraryFloatACosPiINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatACosPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatACosPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatACosPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatATanINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8603,13 +7895,12 @@ public ref struct RefOpArbitraryFloatATanINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatATanINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatATanINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatATanINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatATanPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8619,13 +7910,12 @@ public ref struct RefOpArbitraryFloatATanPiINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatATanPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatATanPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatATanPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatATan2INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8637,13 +7927,12 @@ public ref struct RefOpArbitraryFloatATan2INTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatATan2INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatATan2INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatATan2INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatPowINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8655,13 +7944,12 @@ public ref struct RefOpArbitraryFloatPowINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatPowINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatPowINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatPowINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatPowRINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8673,13 +7961,12 @@ public ref struct RefOpArbitraryFloatPowRINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatPowRINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatPowRINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatPowRINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArbitraryFloatPowNINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
@@ -8690,53 +7977,48 @@ public ref struct RefOpArbitraryFloatPowNINTEL : IWrapperInstruction
     public LiteralInteger RoundingMode => Inner.GetOperand<LiteralInteger>("roundingMode") ?? default;
     public LiteralInteger RoundingAccuracy => Inner.GetOperand<LiteralInteger>("roundingAccuracy") ?? default;
 
-    public RefOpArbitraryFloatPowNINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpArbitraryFloatPowNINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArbitraryFloatPowNINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpLoopControlINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public LiteralInteger Values => Inner.GetOperand<LiteralInteger>("values") ?? default;
 
-    public RefOpLoopControlINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpLoopControlINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpLoopControlINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAliasDomainDeclINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Name => Inner.GetOperand<IdRef>("name") ?? default;
 
-    public RefOpAliasDomainDeclINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAliasDomainDeclINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAliasDomainDeclINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAliasScopeDeclINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef AliasDomain => Inner.GetOperand<IdRef>("aliasDomain") ?? default;
     public IdRef Name => Inner.GetOperand<IdRef>("name") ?? default;
 
-    public RefOpAliasScopeDeclINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAliasScopeDeclINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAliasScopeDeclINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAliasScopeListDeclINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpAliasScopeListDeclINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpAliasScopeListDeclINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAliasScopeListDeclINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedSqrtINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8747,13 +8029,12 @@ public ref struct RefOpFixedSqrtINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedSqrtINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedSqrtINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedSqrtINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedRecipINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8764,13 +8045,12 @@ public ref struct RefOpFixedRecipINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedRecipINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedRecipINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedRecipINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedRsqrtINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8781,13 +8061,12 @@ public ref struct RefOpFixedRsqrtINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedRsqrtINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedRsqrtINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedRsqrtINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedSinINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8798,13 +8077,12 @@ public ref struct RefOpFixedSinINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedSinINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedSinINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedSinINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedCosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8815,13 +8093,12 @@ public ref struct RefOpFixedCosINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedCosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedCosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedCosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedSinCosINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8832,13 +8109,12 @@ public ref struct RefOpFixedSinCosINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedSinCosINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedSinCosINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedSinCosINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedSinPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8849,13 +8125,12 @@ public ref struct RefOpFixedSinPiINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedSinPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedSinPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedSinPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedCosPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8866,13 +8141,12 @@ public ref struct RefOpFixedCosPiINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedCosPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedCosPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedCosPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedSinCosPiINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8883,13 +8157,12 @@ public ref struct RefOpFixedSinCosPiINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedSinCosPiINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedSinCosPiINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedSinCosPiINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedLogINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8900,13 +8173,12 @@ public ref struct RefOpFixedLogINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedLogINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedLogINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedLogINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFixedExpINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef InputType => Inner.GetOperand<IdRef>("inputType") ?? default;
@@ -8917,270 +8189,247 @@ public ref struct RefOpFixedExpINTEL : IWrapperInstruction
     public LiteralInteger Q => Inner.GetOperand<LiteralInteger>("q") ?? default;
     public LiteralInteger O => Inner.GetOperand<LiteralInteger>("o") ?? default;
 
-    public RefOpFixedExpINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFixedExpINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFixedExpINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpPtrCastToCrossWorkgroupINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpPtrCastToCrossWorkgroupINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpPtrCastToCrossWorkgroupINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpPtrCastToCrossWorkgroupINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCrossWorkgroupCastToPtrINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
 
-    public RefOpCrossWorkgroupCastToPtrINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpCrossWorkgroupCastToPtrINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCrossWorkgroupCastToPtrINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpReadPipeBlockingINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpReadPipeBlockingINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpReadPipeBlockingINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpReadPipeBlockingINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpWritePipeBlockingINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PacketSize => Inner.GetOperand<IdRef>("packetSize") ?? default;
     public IdRef PacketAlignment => Inner.GetOperand<IdRef>("packetAlignment") ?? default;
 
-    public RefOpWritePipeBlockingINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpWritePipeBlockingINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpWritePipeBlockingINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpFPGARegINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Result => Inner.GetOperand<IdRef>("result") ?? default;
     public IdRef Input => Inner.GetOperand<IdRef>("input") ?? default;
 
-    public RefOpFPGARegINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpFPGARegINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpFPGARegINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetRayTMinKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryGetRayTMinKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetRayTMinKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetRayTMinKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetRayFlagsKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryGetRayFlagsKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetRayFlagsKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetRayFlagsKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionTKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionTKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionTKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionTKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionInstanceCustomIndexKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionInstanceCustomIndexKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionInstanceCustomIndexKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionInstanceCustomIndexKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionInstanceIdKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionInstanceIdKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionInstanceIdKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionInstanceIdKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionGeometryIndexKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionGeometryIndexKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionGeometryIndexKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionGeometryIndexKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionPrimitiveIndexKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionPrimitiveIndexKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionPrimitiveIndexKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionPrimitiveIndexKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionBarycentricsKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionBarycentricsKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionBarycentricsKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionBarycentricsKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionFrontFaceKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionFrontFaceKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionFrontFaceKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionFrontFaceKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionCandidateAABBOpaqueKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryGetIntersectionCandidateAABBOpaqueKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionCandidateAABBOpaqueKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionCandidateAABBOpaqueKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionObjectRayDirectionKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionObjectRayDirectionKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionObjectRayDirectionKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionObjectRayDirectionKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionObjectRayOriginKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionObjectRayOriginKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionObjectRayOriginKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionObjectRayOriginKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetWorldRayDirectionKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryGetWorldRayDirectionKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetWorldRayDirectionKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetWorldRayDirectionKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetWorldRayOriginKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
 
-    public RefOpRayQueryGetWorldRayOriginKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetWorldRayOriginKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetWorldRayOriginKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionObjectToWorldKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionObjectToWorldKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionObjectToWorldKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionObjectToWorldKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpRayQueryGetIntersectionWorldToObjectKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef RayQuery => Inner.GetOperand<IdRef>("rayQuery") ?? default;
     public IdRef Intersection => Inner.GetOperand<IdRef>("intersection") ?? default;
 
-    public RefOpRayQueryGetIntersectionWorldToObjectKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpRayQueryGetIntersectionWorldToObjectKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpRayQueryGetIntersectionWorldToObjectKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpAtomicFAddEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Pointer => Inner.GetOperand<IdRef>("pointer") ?? default;
@@ -9188,231 +8437,211 @@ public ref struct RefOpAtomicFAddEXT : IWrapperInstruction
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefOpAtomicFAddEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpAtomicFAddEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpAtomicFAddEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeBufferSurfaceINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public AccessQualifier AccessQualifier => Inner.GetEnumOperand<AccessQualifier>("accessQualifier");
 
-    public RefOpTypeBufferSurfaceINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeBufferSurfaceINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeBufferSurfaceINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpTypeStructContinuedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpTypeStructContinuedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpTypeStructContinuedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpTypeStructContinuedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConstantCompositeContinuedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpConstantCompositeContinuedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpConstantCompositeContinuedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConstantCompositeContinuedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSpecConstantCompositeContinuedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpSpecConstantCompositeContinuedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSpecConstantCompositeContinuedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSpecConstantCompositeContinuedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpCompositeConstructContinuedINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Values => Inner.GetOperand<IdRef>("values") ?? default;
 
-    public RefOpCompositeConstructContinuedINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpCompositeConstructContinuedINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpCompositeConstructContinuedINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertFToBF16INTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef FloatValue => Inner.GetOperand<IdRef>("floatValue") ?? default;
 
-    public RefOpConvertFToBF16INTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertFToBF16INTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertFToBF16INTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpConvertBF16ToFINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef BFloat16Value => Inner.GetOperand<IdRef>("bFloat16Value") ?? default;
 
-    public RefOpConvertBF16ToFINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpConvertBF16ToFINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpConvertBF16ToFINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpControlBarrierArriveINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpControlBarrierArriveINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpControlBarrierArriveINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpControlBarrierArriveINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpControlBarrierWaitINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public IdScope Memory => Inner.GetOperand<IdScope>("memory") ?? default;
     public IdMemorySemantics Semantics => Inner.GetOperand<IdMemorySemantics>("semantics") ?? default;
 
-    public RefOpControlBarrierWaitINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpControlBarrierWaitINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpControlBarrierWaitINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpArithmeticFenceEXT : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef Target => Inner.GetOperand<IdRef>("target") ?? default;
 
-    public RefOpArithmeticFenceEXT(RefInstruction instruction) => Inner = instruction;
-    public RefOpArithmeticFenceEXT(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpArithmeticFenceEXT(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpSubgroupBlockPrefetchINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Ptr => Inner.GetOperand<IdRef>("ptr") ?? default;
     public IdRef NumBytes => Inner.GetOperand<IdRef>("numBytes") ?? default;
     public MemoryAccessMask Memoryaccess => Inner.GetEnumOperand<MemoryAccessMask>("memoryaccess");
 
-    public RefOpSubgroupBlockPrefetchINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpSubgroupBlockPrefetchINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpSubgroupBlockPrefetchINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupIMulKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupIMulKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupIMulKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupIMulKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupFMulKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupFMulKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupFMulKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupFMulKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupBitwiseAndKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupBitwiseAndKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupBitwiseAndKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupBitwiseAndKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupBitwiseOrKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupBitwiseOrKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupBitwiseOrKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupBitwiseOrKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupBitwiseXorKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupBitwiseXorKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupBitwiseXorKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupBitwiseXorKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupLogicalAndKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupLogicalAndKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupLogicalAndKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupLogicalAndKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupLogicalOrKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupLogicalOrKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupLogicalOrKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupLogicalOrKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpGroupLogicalXorKHR : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdScope Execution => Inner.GetOperand<IdScope>("execution") ?? default;
     public GroupOperation Operation => Inner.GetEnumOperand<GroupOperation>("operation");
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefOpGroupLogicalXorKHR(RefInstruction instruction) => Inner = instruction;
-    public RefOpGroupLogicalXorKHR(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpGroupLogicalXorKHR(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMaskedGatherINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdResultType ResultType => Inner.GetOperand<IdResultType>("resultType") ?? default;
     public IdResult ResultId => Inner.GetOperand<IdResult>("resultId") ?? default;
     public IdRef PtrVector => Inner.GetOperand<IdRef>("ptrVector") ?? default;
@@ -9420,786 +8649,703 @@ public ref struct RefOpMaskedGatherINTEL : IWrapperInstruction
     public IdRef Mask => Inner.GetOperand<IdRef>("mask") ?? default;
     public IdRef FillEmpty => Inner.GetOperand<IdRef>("fillEmpty") ?? default;
 
-    public RefOpMaskedGatherINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpMaskedGatherINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMaskedGatherINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefOpMaskedScatterINTEL : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef InputVector => Inner.GetOperand<IdRef>("inputVector") ?? default;
     public IdRef PtrVector => Inner.GetOperand<IdRef>("ptrVector") ?? default;
     public LiteralInteger Alignment => Inner.GetOperand<LiteralInteger>("alignment") ?? default;
     public IdRef Mask => Inner.GetOperand<IdRef>("mask") ?? default;
 
-    public RefOpMaskedScatterINTEL(RefInstruction instruction) => Inner = instruction;
-    public RefOpMaskedScatterINTEL(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefOpMaskedScatterINTEL(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLRound : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLRound(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLRound(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRound(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLRoundEven : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLRoundEven(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLRoundEven(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRoundEven(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLTrunc : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLTrunc(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLTrunc(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLTrunc(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFAbs : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLFAbs(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFAbs(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFAbs(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSAbs : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLSAbs(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSAbs(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSAbs(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFSign : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLFSign(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFSign(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFSign(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSSign : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLSSign(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSSign(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSSign(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFloor : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLFloor(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFloor(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFloor(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLCeil : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLCeil(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLCeil(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCeil(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFract : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLFract(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFract(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLRadians : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Degrees => Inner.GetOperand<IdRef>("degrees") ?? default;
 
-    public RefGLSLRadians(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLRadians(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRadians(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLDegrees : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Radians => Inner.GetOperand<IdRef>("radians") ?? default;
 
-    public RefGLSLDegrees(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLDegrees(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLDegrees(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLSin(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLCos : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLCos(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLCos(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCos(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLTan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLTan(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLTan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLTan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAsin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLAsin(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAsin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAsin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAcos : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLAcos(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAcos(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAcos(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAtan : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Y_over_x => Inner.GetOperand<IdRef>("y_over_x") ?? default;
 
-    public RefGLSLAtan(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAtan(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAtan(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSinh : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLSinh(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSinh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSinh(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLCosh : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLCosh(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLCosh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCosh(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLTanh : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLTanh(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLTanh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLTanh(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAsinh : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLAsinh(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAsinh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAsinh(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAcosh : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLAcosh(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAcosh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAcosh(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAtanh : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLAtanh(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAtanh(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAtanh(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLAtan2 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLAtan2(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLAtan2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLAtan2(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPow : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLPow(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPow(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPow(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLExp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLExp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLExp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLExp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLLog : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLLog(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLLog(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLog(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLExp2 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLExp2(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLExp2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLExp2(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLLog2 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLLog2(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLLog2(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLog2(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSqrt : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLSqrt(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSqrt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSqrt(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLInverseSqrt : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLInverseSqrt(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLInverseSqrt(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInverseSqrt(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLDeterminant : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLDeterminant(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLDeterminant(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLDeterminant(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLMatrixInverse : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLMatrixInverse(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLMatrixInverse(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLMatrixInverse(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLModf : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
 
-    public RefGLSLModf(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLModf(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLModf(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLModfStruct : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLModfStruct(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLModfStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLModfStruct(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLFMin(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLUMin(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLSMin(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLFMax(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLUMax(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLSMax(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFClamp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefGLSLFClamp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFClamp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUClamp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefGLSLUClamp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUClamp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSClamp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefGLSLSClamp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSClamp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFMix : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
 
-    public RefGLSLFMix(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFMix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFMix(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLIMix : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
 
-    public RefGLSLIMix(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLIMix(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLIMix(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLStep : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Edge => Inner.GetOperand<IdRef>("edge") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLStep(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLStep(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLStep(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLSmoothStep : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Edge0 => Inner.GetOperand<IdRef>("edge0") ?? default;
     public IdRef Edge1 => Inner.GetOperand<IdRef>("edge1") ?? default;
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLSmoothStep(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLSmoothStep(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLSmoothStep(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFma : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef A => Inner.GetOperand<IdRef>("a") ?? default;
     public IdRef B => Inner.GetOperand<IdRef>("b") ?? default;
     public IdRef C => Inner.GetOperand<IdRef>("c") ?? default;
 
-    public RefGLSLFma(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFma(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFma(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFrexp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Exp => Inner.GetOperand<IdRef>("exp") ?? default;
 
-    public RefGLSLFrexp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFrexp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFrexp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFrexpStruct : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLFrexpStruct(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFrexpStruct(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFrexpStruct(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLLdexp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Exp => Inner.GetOperand<IdRef>("exp") ?? default;
 
-    public RefGLSLLdexp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLLdexp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLdexp(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPackSnorm4x8 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLPackSnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPackSnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackSnorm4x8(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPackUnorm4x8 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLPackUnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPackUnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackUnorm4x8(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPackSnorm2x16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLPackSnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPackSnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackSnorm2x16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPackUnorm2x16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLPackUnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPackUnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackUnorm2x16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPackHalf2x16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLPackHalf2x16(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPackHalf2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackHalf2x16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLPackDouble2x32 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLPackDouble2x32(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLPackDouble2x32(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLPackDouble2x32(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUnpackSnorm2x16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefGLSLUnpackSnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUnpackSnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackSnorm2x16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUnpackUnorm2x16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefGLSLUnpackUnorm2x16(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUnpackUnorm2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackUnorm2x16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUnpackHalf2x16 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLUnpackHalf2x16(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUnpackHalf2x16(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackHalf2x16(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUnpackSnorm4x8 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefGLSLUnpackSnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUnpackSnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackSnorm4x8(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUnpackUnorm4x8 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef P => Inner.GetOperand<IdRef>("p") ?? default;
 
-    public RefGLSLUnpackUnorm4x8(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUnpackUnorm4x8(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackUnorm4x8(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLUnpackDouble2x32 : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef V => Inner.GetOperand<IdRef>("v") ?? default;
 
-    public RefGLSLUnpackDouble2x32(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLUnpackDouble2x32(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLUnpackDouble2x32(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLLength : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLLength(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLLength(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLLength(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLDistance : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef P0 => Inner.GetOperand<IdRef>("p0") ?? default;
     public IdRef P1 => Inner.GetOperand<IdRef>("p1") ?? default;
 
-    public RefGLSLDistance(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLDistance(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLDistance(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLCross : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLCross(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLCross(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLCross(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLNormalize : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
 
-    public RefGLSLNormalize(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLNormalize(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNormalize(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFaceForward : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef N => Inner.GetOperand<IdRef>("n") ?? default;
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
     public IdRef Nref => Inner.GetOperand<IdRef>("nref") ?? default;
 
-    public RefGLSLFaceForward(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFaceForward(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFaceForward(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLReflect : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
     public IdRef N => Inner.GetOperand<IdRef>("n") ?? default;
 
-    public RefGLSLReflect(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLReflect(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLReflect(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLRefract : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef I => Inner.GetOperand<IdRef>("i") ?? default;
     public IdRef N => Inner.GetOperand<IdRef>("n") ?? default;
     public IdRef Eta => Inner.GetOperand<IdRef>("eta") ?? default;
 
-    public RefGLSLRefract(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLRefract(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLRefract(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFindILsb : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefGLSLFindILsb(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFindILsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFindILsb(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFindSMsb : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefGLSLFindSMsb(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFindSMsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFindSMsb(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLFindUMsb : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Value => Inner.GetOperand<IdRef>("value") ?? default;
 
-    public RefGLSLFindUMsb(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLFindUMsb(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLFindUMsb(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLInterpolateAtCentroid : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Interpolant => Inner.GetOperand<IdRef>("interpolant") ?? default;
 
-    public RefGLSLInterpolateAtCentroid(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLInterpolateAtCentroid(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInterpolateAtCentroid(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLInterpolateAtSample : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Interpolant => Inner.GetOperand<IdRef>("interpolant") ?? default;
     public IdRef Sample => Inner.GetOperand<IdRef>("sample") ?? default;
 
-    public RefGLSLInterpolateAtSample(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLInterpolateAtSample(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInterpolateAtSample(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLInterpolateAtOffset : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef Interpolant => Inner.GetOperand<IdRef>("interpolant") ?? default;
     public IdRef Offset => Inner.GetOperand<IdRef>("offset") ?? default;
 
-    public RefGLSLInterpolateAtOffset(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLInterpolateAtOffset(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLInterpolateAtOffset(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLNMin : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLNMin(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLNMin(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNMin(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLNMax : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef Y => Inner.GetOperand<IdRef>("y") ?? default;
 
-    public RefGLSLNMax(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLNMax(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNMax(Instruction instruction) => Inner = instruction;
 }
 
 public ref struct RefGLSLNClamp : IWrapperInstruction
 {
-    public RefInstruction Inner { get; set; }
+    public Instruction Inner { get; set; }
     public IdRef X => Inner.GetOperand<IdRef>("x") ?? default;
     public IdRef MinVal => Inner.GetOperand<IdRef>("minVal") ?? default;
     public IdRef MaxVal => Inner.GetOperand<IdRef>("maxVal") ?? default;
 
-    public RefGLSLNClamp(RefInstruction instruction) => Inner = instruction;
-    public RefGLSLNClamp(Span<int> buffer) => Inner = RefInstruction.ParseRef(buffer);
+    public RefGLSLNClamp(Instruction instruction) => Inner = instruction;
 }

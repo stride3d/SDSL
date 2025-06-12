@@ -1,4 +1,4 @@
-﻿using static Spv.Specification;
+﻿using static Stride.Shaders.Spirv.Specification;
 using Stride.Shaders.Spirv.Core.Buffers;
 
 namespace Stride.Shaders.Spirv.Core;

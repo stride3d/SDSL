@@ -1,10 +1,11 @@
-﻿using static Spv.Specification;
+﻿using static Stride.Shaders.Spirv.Specification;
 
 namespace Stride.Shaders.Spirv.Core;
 
 public enum OperandKind
 {
     None,
+    ExecutionModel,
     ImageOperands,
     FPFastMathMode,
     SelectionControl,
@@ -17,7 +18,6 @@ public enum OperandKind
     FragmentShadingRate,
     RawAccessChainOperands,
     SourceLanguage,
-    ExecutionModel,
     AddressingModel,
     MemoryModel,
     ExecutionMode,

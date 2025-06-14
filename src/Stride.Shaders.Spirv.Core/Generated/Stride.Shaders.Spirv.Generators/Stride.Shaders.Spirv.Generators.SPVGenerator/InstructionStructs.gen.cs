@@ -1,15 +1,6 @@
 ﻿using static Stride.Shaders.Spirv.Specification;
 
 namespace Stride.Shaders.Spirv.Core;
-public ref struct InstOpSDSLDecorateSemantic : IWrapperInstruction
-{
-    public Instruction Inner { get; set; }
-    public IdRef Target => Inner.GetOperand<IdRef /*Id*/>("target") ?? default;
-    public LiteralString Semantic => Inner.GetOperand<LiteralString /*Literal*/>("semantic") ?? default;
-
-    public InstOpSDSLDecorateSemantic(Instruction instruction) => Inner = instruction;
-}
-
 public ref struct InstOpSDSLShader : IWrapperInstruction
 {
     public Instruction Inner { get; set; }

@@ -4,18 +4,6 @@ using Stride.Shaders.Spirv.Core.Buffers;
 namespace Stride.Shaders.Spirv.Core;
 public static class SpirvBufferExtensions
 {
-    public static Instruction AddOpSDSLDecorateSemantic(this SpirvBuffer buffer, IdRef target, LiteralString semantic)
-    {
-        var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(semantic);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLDecorateSemantic, ..target.AsSpirvSpan(), ..semantic.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLDecorateSemantic(this SpirvBuffer buffer, int position, IdRef target, LiteralString semantic)
-    {
-        var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(semantic);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLDecorateSemantic, ..target.AsSpirvSpan(), ..semantic.AsSpirvSpan()]);
-    }
-
     public static Instruction AddOpSDSLShader(this SpirvBuffer buffer, LiteralString shaderName)
     {
         var wordLength = 1 + buffer.GetWordLength(shaderName);

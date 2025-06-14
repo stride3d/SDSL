@@ -5,8 +5,6 @@ public partial class InstructionInfo
 {
     static InstructionInfo()
     {
-        Instance.Register(SDSLOp.OpSDSLDecorateSemantic, OperandKind.IdRef, OperandQuantifier.One, "target", "Miscellaneous");
-        Instance.Register(SDSLOp.OpSDSLDecorateSemantic, OperandKind.LiteralString, OperandQuantifier.One, "semantic", "Miscellaneous");
         Instance.Register(SDSLOp.OpSDSLShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous");
         Instance.Register(SDSLOp.OpSDSLShaderEnd, OperandKind.None, null, "Debug");
         Instance.Register(SDSLOp.OpSDSLMixinInherit, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous");

@@ -1412,7 +1412,7 @@ public static class SpirvBufferExtensions
     public static Instruction AddOpDecorate(this SpirvBuffer buffer, IdRef target, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
     {
         var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorateString, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
     }
 
     /// <summary>
@@ -1424,7 +1424,7 @@ public static class SpirvBufferExtensions
     public static Instruction InsertOpDecorate(this SpirvBuffer buffer, int position, IdRef target, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
     {
         var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDecorateString, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
     }
 
     public static Instruction AddOpMemberDecorate(this SpirvBuffer buffer, IdRef structureType, LiteralInteger member, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
@@ -6264,7 +6264,7 @@ public static class SpirvBufferExtensions
     public static Instruction AddOpDecorateId(this SpirvBuffer buffer, IdRef target, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
     {
         var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorateString, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
     }
 
     /// <summary>
@@ -6276,7 +6276,7 @@ public static class SpirvBufferExtensions
     public static Instruction InsertOpDecorateId(this SpirvBuffer buffer, int position, IdRef target, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
     {
         var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDecorateString, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
     }
 
     public static Instruction AddOpGroupNonUniformElect(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, IdScope execution)
@@ -10208,7 +10208,7 @@ public static class SpirvBufferExtensions
     public static Instruction AddOpDecorateString(this SpirvBuffer buffer, IdRef target, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
     {
         var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
+        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpDecorateString, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
     }
 
     /// <summary>
@@ -10220,7 +10220,7 @@ public static class SpirvBufferExtensions
     public static Instruction InsertOpDecorateString(this SpirvBuffer buffer, int position, IdRef target, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)
     {
         var wordLength = 1 + buffer.GetWordLength(target) + buffer.GetWordLength(decoration) + buffer.GetWordLength(additional1) + buffer.GetWordLength(additional2) + buffer.GetWordLength(additionalString);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDecorate, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
+        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpDecorateString, target, ..decoration.AsSpirvSpan(), ..additional1.AsSpirvSpan(), ..additional2.AsSpirvSpan(), ..additionalString.AsSpirvSpan()]);
     }
 
     public static Instruction AddOpMemberDecorateString(this SpirvBuffer buffer, IdRef structureType, LiteralInteger member, Decoration decoration, int? additional1 = null, int? additional2 = null, string? additionalString = null)

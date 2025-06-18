@@ -98,66 +98,6 @@ public static class SpirvBufferExtensions
         return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLImportVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..variableName.AsSpirvSpan(), ..shader.AsSpirvSpan()]);
     }
 
-    public static Instruction AddOpSDSLMixinVariable(this SpirvBuffer buffer, IdResult resultId, IdRef mixinId, IdRef variableId)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(mixinId) + buffer.GetWordLength(variableId);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLMixinVariable, ..resultId.AsSpirvSpan(), ..mixinId.AsSpirvSpan(), ..variableId.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLMixinVariable(this SpirvBuffer buffer, int position, IdResult resultId, IdRef mixinId, IdRef variableId)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultId) + buffer.GetWordLength(mixinId) + buffer.GetWordLength(variableId);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLMixinVariable, ..resultId.AsSpirvSpan(), ..mixinId.AsSpirvSpan(), ..variableId.AsSpirvSpan()]);
-    }
-
-    public static Instruction AddOpSDSLVariable(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, StorageClass storageclass, LiteralString name, IdRef? initializer)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(storageclass) + buffer.GetWordLength(name) + buffer.GetWordLength(initializer);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..storageclass.AsSpirvSpan(), ..name.AsSpirvSpan(), ..initializer.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLVariable(this SpirvBuffer buffer, int position, IdResult resultId, IdResultType resultType, StorageClass storageclass, LiteralString name, IdRef? initializer)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(storageclass) + buffer.GetWordLength(name) + buffer.GetWordLength(initializer);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..storageclass.AsSpirvSpan(), ..name.AsSpirvSpan(), ..initializer.AsSpirvSpan()]);
-    }
-
-    public static Instruction AddOpSDSLFunctionParameter(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, LiteralString name)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(name);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLFunctionParameter, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..name.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLFunctionParameter(this SpirvBuffer buffer, int position, IdResult resultId, IdResultType resultType, LiteralString name)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(name);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLFunctionParameter, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..name.AsSpirvSpan()]);
-    }
-
-    public static Instruction AddOpSDSLIOVariable(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, StorageClass storageclass, ExecutionModel executionmodel, LiteralString name, LiteralString semantic, IdRef? initializer)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(storageclass) + buffer.GetWordLength(executionmodel) + buffer.GetWordLength(name) + buffer.GetWordLength(semantic) + buffer.GetWordLength(initializer);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLIOVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..storageclass.AsSpirvSpan(), ..executionmodel.AsSpirvSpan(), ..name.AsSpirvSpan(), ..semantic.AsSpirvSpan(), ..initializer.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLIOVariable(this SpirvBuffer buffer, int position, IdResult resultId, IdResultType resultType, StorageClass storageclass, ExecutionModel executionmodel, LiteralString name, LiteralString semantic, IdRef? initializer)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(storageclass) + buffer.GetWordLength(executionmodel) + buffer.GetWordLength(name) + buffer.GetWordLength(semantic) + buffer.GetWordLength(initializer);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLIOVariable, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..storageclass.AsSpirvSpan(), ..executionmodel.AsSpirvSpan(), ..name.AsSpirvSpan(), ..semantic.AsSpirvSpan(), ..initializer.AsSpirvSpan()]);
-    }
-
-    public static Instruction AddOpSDSLFunction(this SpirvBuffer buffer, IdResult resultId, IdResultType resultType, FunctionControlMask functioncontrol, IdRef functionType, LiteralString functionName)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(functioncontrol) + buffer.GetWordLength(functionType) + buffer.GetWordLength(functionName);
-        return buffer.Add([wordLength << 16 | (int)SDSLOp.OpSDSLFunction, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..functioncontrol.AsSpirvSpan(), ..functionType.AsSpirvSpan(), ..functionName.AsSpirvSpan()]);
-    }
-
-    public static Instruction InsertOpSDSLFunction(this SpirvBuffer buffer, int position, IdResult resultId, IdResultType resultType, FunctionControlMask functioncontrol, IdRef functionType, LiteralString functionName)
-    {
-        var wordLength = 1 + buffer.GetWordLength(resultType) + buffer.GetWordLength(resultId) + buffer.GetWordLength(functioncontrol) + buffer.GetWordLength(functionType) + buffer.GetWordLength(functionName);
-        return buffer.Insert(position, [wordLength << 16 | (int)SDSLOp.OpSDSLFunction, ..resultType.AsSpirvSpan(), ..resultId.AsSpirvSpan(), ..functioncontrol.AsSpirvSpan(), ..functionType.AsSpirvSpan(), ..functionName.AsSpirvSpan()]);
-    }
-
     public static Instruction AddOpNop(this SpirvBuffer buffer)
     {
         return buffer.Add([1 << 16 | (int)SDSLOp.OpNop]);

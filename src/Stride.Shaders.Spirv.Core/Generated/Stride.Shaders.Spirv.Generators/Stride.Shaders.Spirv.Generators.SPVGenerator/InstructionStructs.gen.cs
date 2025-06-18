@@ -80,69 +80,6 @@ public ref struct InstOpSDSLImportVariable : IWrapperInstruction
     public static implicit operator InstOpSDSLImportVariable(Instruction instruction) => new(instruction);
 }
 
-public ref struct InstOpSDSLMixinVariable : IWrapperInstruction
-{
-    public Instruction Inner { get; set; }
-    public IdResult ResultId { get => new IdResult(Inner.Memory.Span[1]); set => Inner.Memory.Span[1] = value; }
-    public IdRef MixinId { get => new IdRef(Inner.Memory.Span[2]); set => Inner.Memory.Span[2] = value; }
-    public IdRef VariableId { get => new IdRef(Inner.Memory.Span[3]); set => Inner.Memory.Span[3] = value; }
-
-    public InstOpSDSLMixinVariable(Instruction instruction) => Inner = instruction;
-    public static implicit operator InstOpSDSLMixinVariable(Instruction instruction) => new(instruction);
-}
-
-public ref struct InstOpSDSLVariable : IWrapperInstruction
-{
-    public Instruction Inner { get; set; }
-    public IdResultType ResultType { get => new IdResultType(Inner.Memory.Span[1]); set => Inner.Memory.Span[1] = value; }
-    public IdResult ResultId { get => new IdResult(Inner.Memory.Span[2]); set => Inner.Memory.Span[2] = value; }
-    public StorageClass Storageclass { get => (StorageClass)Inner.Memory.Span[3]; set => Inner.Memory.Span[3] = (int)value; }
-    public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
-    public IdRef Initializer => Inner.GetOperand<IdRef>("initializer") ?? default;
-
-    public InstOpSDSLVariable(Instruction instruction) => Inner = instruction;
-    public static implicit operator InstOpSDSLVariable(Instruction instruction) => new(instruction);
-}
-
-public ref struct InstOpSDSLFunctionParameter : IWrapperInstruction
-{
-    public Instruction Inner { get; set; }
-    public IdResultType ResultType { get => new IdResultType(Inner.Memory.Span[1]); set => Inner.Memory.Span[1] = value; }
-    public IdResult ResultId { get => new IdResult(Inner.Memory.Span[2]); set => Inner.Memory.Span[2] = value; }
-    public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
-
-    public InstOpSDSLFunctionParameter(Instruction instruction) => Inner = instruction;
-    public static implicit operator InstOpSDSLFunctionParameter(Instruction instruction) => new(instruction);
-}
-
-public ref struct InstOpSDSLIOVariable : IWrapperInstruction
-{
-    public Instruction Inner { get; set; }
-    public IdResultType ResultType { get => new IdResultType(Inner.Memory.Span[1]); set => Inner.Memory.Span[1] = value; }
-    public IdResult ResultId { get => new IdResult(Inner.Memory.Span[2]); set => Inner.Memory.Span[2] = value; }
-    public StorageClass Storageclass { get => (StorageClass)Inner.Memory.Span[3]; set => Inner.Memory.Span[3] = (int)value; }
-    public ExecutionModel Executionmodel { get => (ExecutionModel)Inner.Memory.Span[4]; set => Inner.Memory.Span[4] = (int)value; }
-    public LiteralString Name => Inner.GetOperand<LiteralString>("name") ?? default;
-    public LiteralString Semantic => Inner.GetOperand<LiteralString>("semantic") ?? default;
-    public IdRef Initializer => Inner.GetOperand<IdRef>("initializer") ?? default;
-
-    public InstOpSDSLIOVariable(Instruction instruction) => Inner = instruction;
-    public static implicit operator InstOpSDSLIOVariable(Instruction instruction) => new(instruction);
-}
-
-public ref struct InstOpSDSLFunction : IWrapperInstruction
-{
-    public Instruction Inner { get; set; }
-    public IdResultType ResultType { get => new IdResultType(Inner.Memory.Span[1]); set => Inner.Memory.Span[1] = value; }
-    public IdResult ResultId { get => new IdResult(Inner.Memory.Span[2]); set => Inner.Memory.Span[2] = value; }
-    public FunctionControlMask Functioncontrol { get => (FunctionControlMask)Inner.Memory.Span[3]; set => Inner.Memory.Span[3] = (int)value; }
-    public IdRef FunctionType { get => new IdRef(Inner.Memory.Span[4]); set => Inner.Memory.Span[4] = value; }
-    public LiteralString FunctionName => Inner.GetOperand<LiteralString>("functionName") ?? default;
-
-    public InstOpSDSLFunction(Instruction instruction) => Inner = instruction;
-    public static implicit operator InstOpSDSLFunction(Instruction instruction) => new(instruction);
-}
-
 public ref struct InstOpNop : IWrapperInstruction
 {
     public Instruction Inner { get; set; }

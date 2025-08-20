@@ -31,7 +31,8 @@ public readonly struct LiteralString : ISpirvElement, IFromSpirv<LiteralString>
             chars[i * 4 + 1] = (char)(words[i] >> 8 & 0xFF);
             chars[i * 4 + 2] = (char)(words[i] >> 16 & 0xFF);
             chars[i * 4 + 3] = (char)(words[i] >> 24 & 0xFF);
-        };
+        }
+        ;
         var real = chars[..chars.IndexOf('\0')];
         Value = pool.GetOrAdd(real);
     }
@@ -116,6 +117,7 @@ public readonly struct LiteralString : ISpirvElement, IFromSpirv<LiteralString>
     {
         return Value.AsSpanOwner();
     }
+    
 }
 
 public static class SpirvStringExtensions

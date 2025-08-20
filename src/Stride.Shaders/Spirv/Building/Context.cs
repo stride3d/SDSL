@@ -201,6 +201,7 @@ public class SpirvContext(SpirvModule module) : IDisposable
                 > 32 => lit.DoubleValue,
                 _ => (float)lit.DoubleValue,
             },
+            _ => throw new NotImplementedException($"Literal type {literal.GetType()} is not supported")
         };
 
         if (LiteralConstants.TryGetValue((literal.Type, literalValue), out var result))

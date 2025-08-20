@@ -8,6 +8,7 @@ public record struct IdResultType(int Value) : ISpirvElement, IFromSpirv<IdResul
     public readonly int WordCount => 1;
 
     public static implicit operator int(IdResultType r) => r.Value;
+    public static implicit operator IdRef(IdResultType r) => r.Value;
     public static implicit operator IdResultType(int v) => new(v);
     public static implicit operator LiteralInteger(IdResultType v) => new(v);
     public static IdResultType From(Span<int> words) => new() { Value = words[0] };

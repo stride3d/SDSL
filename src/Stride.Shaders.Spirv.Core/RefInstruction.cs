@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using Stride.Shaders.Spirv.Core.Buffers;
@@ -55,6 +56,26 @@ public ref struct RefInstruction
             }
         }
         return null;
+    }
+
+    internal T? GetEnumOperand<T>(string name)
+        where T : Enum
+    {
+        var info = InstructionInfo.GetInfo(OpCode);
+        var infoEnumerator = info.GetEnumerator();
+        var operandEnumerator = GetEnumerator();
+        while (infoEnumerator.MoveNext())
+        {
+            if (operandEnumerator.MoveNext())
+            {
+                if (infoEnumerator.Current.Name == name)
+                {
+                    var curr = operandEnumerator.Current;
+                    return Unsafe.As<int, T>(ref curr.Words[0]);
+                }
+            }
+        }
+        return default;
     }
 
     public bool TryGetOperand<T>(string name, out T? operand)
@@ -161,7 +182,7 @@ public ref struct RefInstruction
 
     public readonly Instruction ToOwned(SpirvBuffer buffer)
     {
-        if(InstructionIndex == -1) throw new Exception("Instruction not found");
+        if (InstructionIndex == -1) throw new Exception("Instruction not found");
         return new(buffer, buffer.Memory[WordIndex..(WordIndex + WordCount)], InstructionIndex, WordIndex);
     }
 
@@ -175,4 +196,9 @@ public ref struct RefInstruction
         }
         return builder.ToString();
     }
+}
+
+public interface IWrapperInstruction
+{
+    RefInstruction Inner { get; set; }
 }

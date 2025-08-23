@@ -23,6 +23,8 @@ public partial class SPVGenerator : IIncrementalGenerator
 
     Dictionary<string, OpKind> operandKinds = [];
 
+    static readonly JsonSerializerOptions options = new();
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         // #if DEBUG
@@ -48,13 +50,19 @@ public partial class SPVGenerator : IIncrementalGenerator
         string resourceGlslRegistryName =
             assembly.GetManifestResourceNames()
             .Single(str => str.EndsWith("GLSL.std.450.html"));
+        
+        if (!options.Converters.Any(x => x is EquatableListJsonConverter<OperandData>))
+            options.Converters.Add(new EquatableListJsonConverter<OperandData>());
+        if (!options.Converters.Any(x => x is EquatableListJsonConverter<InstructionData>))
+            options.Converters.Add(new EquatableListJsonConverter<InstructionData>());
+        if (!options.Converters.Any(x => x is EquatableListJsonConverter<OpKind>))
+            options.Converters.Add(new EquatableListJsonConverter<OpKind>());
 
+        spirvCore = JsonSerializer.Deserialize<SpirvGrammar>(new StreamReader(assembly.GetManifestResourceStream(resourceCoreName)).ReadToEnd(), options);
+        spirvGlsl = JsonSerializer.Deserialize<SpirvGrammar>(new StreamReader(assembly.GetManifestResourceStream(resourceGlslName)).ReadToEnd(), options);
+        spirvSDSL = JsonSerializer.Deserialize<SpirvGrammar>(new StreamReader(assembly.GetManifestResourceStream(resourceSDSLName)).ReadToEnd(), options);
 
-
-
-        spirvCore = JsonSerializer.Deserialize<SpirvGrammar>(new StreamReader(assembly.GetManifestResourceStream(resourceCoreName)).ReadToEnd());
-        spirvGlsl = JsonSerializer.Deserialize<SpirvGrammar>(new StreamReader(assembly.GetManifestResourceStream(resourceGlslName)).ReadToEnd());
-        spirvSDSL = JsonSerializer.Deserialize<SpirvGrammar>(new StreamReader(assembly.GetManifestResourceStream(resourceSDSLName)).ReadToEnd());
+        GenerateStructs(context);
 
         var config = Configuration.Default.WithDefaultLoader();
         var htmlContext = BrowsingContext.New(config);
@@ -84,9 +92,9 @@ public partial class SPVGenerator : IIncrementalGenerator
         var sdslInstructions = spirvSDSL!.Instructions;
         var glslInstruction = spirvGlsl!.Instructions;
 
-        instructions.ForEach(x => CreateOperation(x, code));
-        sdslInstructions.ForEach(x => CreateOperation(x, code));
-        glslInstruction.ForEach(x => CreateGlslOperation(x, code));
+        instructions.AsList()?.ForEach(x => CreateOperation(x, code));
+        sdslInstructions.AsList()?.ForEach(x => CreateOperation(x, code));
+        glslInstruction.AsList()?.ForEach(x => CreateGlslOperation(x, code));
 
         code.AppendLine("}");
 
@@ -201,7 +209,7 @@ public partial class SPVGenerator : IIncrementalGenerator
                 .AppendLine("}");
         }
 
-        else if (op.Operands is not null && op.Operands.Count > 0)
+        else if (op.Operands.AsList() is List<OperandData> operands && operands.Count > 0)
         {
             var parameters = ConvertOperandsToParameters(op);
             var parameterNames = ConvertOperandsToParameterNames(op);
@@ -278,7 +286,7 @@ public partial class SPVGenerator : IIncrementalGenerator
         var opname = op.OpName;
         var opcode = op.OpCode;
         
-        if (op.Operands is not null)
+        if (op.Operands.AsList() is not null)
         {
             var parameters = ConvertOperandsToParameters(op);
             parameters.Add("int set");

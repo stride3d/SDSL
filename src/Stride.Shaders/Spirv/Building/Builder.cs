@@ -1,6 +1,7 @@
 using Stride.Shaders.Core;
 using Stride.Shaders.Spirv.Core;
 using Stride.Shaders.Spirv.Core.Buffers;
+using Stride.Shaders.Spirv.Tools;
 
 namespace Stride.Shaders.Spirv.Building;
 
@@ -12,7 +13,7 @@ public partial class SpirvBuilder() : IDisposable
     public SpirvBuffer Buffer { get; init; } = new();
     public SpirvFunction? CurrentFunction { get; private set; }
     public SpirvBlock? CurrentBlock { get; private set; }
-    public int Position { get; private set; } = 5;
+    public int Position { get; internal set; } = 5;
 
     public void SetPositionTo<TBlock>(TBlock block, bool beggining = false)
         where TBlock : IInstructionBlock
@@ -63,4 +64,8 @@ public partial class SpirvBuilder() : IDisposable
     }
 
     public void Dispose() => Buffer.Dispose();
+    public override string ToString()
+    {
+        return new SpirvDis<SpirvBuffer>(Buffer).Disassemble();
+    }
 }

@@ -32,6 +32,8 @@ public partial struct SpirvDis<TBuffer>
     public readonly void Append<T>(T value) where T : Enum
     {
         var name = Enum.GetName(typeof(T), value);
+        if (name == "MaskNone")
+            name = "None";
         writer.Append(' ').Append(name);
     }
     public readonly void Append(IdRef id, bool ignoreName = false)
@@ -122,7 +124,7 @@ public partial struct SpirvDis<TBuffer>
     {
         if (o.Kind == OperandKind.IdRef)
             foreach (var e in o.Words)
-                Append(new IdRef(e), instruction.OpCode == SDSLOp.OpName);
+                Append(new IdRef(e), false);
         else if (o.Kind == OperandKind.IdResultType)
             foreach (var e in o.Words)
                 Append((IdResultType)e);

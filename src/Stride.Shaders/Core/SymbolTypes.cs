@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Stride.Shaders.Core;
@@ -6,6 +7,12 @@ namespace Stride.Shaders.Core;
 
 public abstract record SymbolType()
 {
+    /// <summary>
+    /// Converts to an identifier compatible with <see cref="Spirv.Core.SDSLOp.OpName"/>.
+    /// </summary>
+    /// <returns></returns>
+    public virtual string ToId() => ToString();
+
     public static bool TryGetNumeric(string name, out SymbolType? result)
     {
         if(ScalarType.Types.TryGetValue(name, out var s))
@@ -46,6 +53,7 @@ public sealed record UndefinedType(string TypeName) : SymbolType()
 
 public sealed record PointerType(SymbolType BaseType) : SymbolType()
 {
+    public override string ToId() => $"ptr_{BaseType.ToId()}";
     public override string ToString() => $"*{BaseType}";
 }
 
@@ -65,9 +73,37 @@ public sealed record ArrayType(SymbolType BaseType, int Size) : SymbolType()
 {
     public override string ToString() => $"{BaseType}[{Size}]";
 }
-public sealed record StructType(string Name, SortedList<string, SymbolType> Fields) : SymbolType()
+public sealed record StructType(string Name, List<(string Name, SymbolType Type)> Fields) : SymbolType()
 {
-    public override string ToString() => $"{Name}{{{string.Join(", ", Fields.Select(x => $"{x.Value} {x.Key}"))}}}";
+    public override string ToId() => Name;
+    public override string ToString() => $"{Name}{{{string.Join(", ", Fields.Select(x => $"{x.Type} {x.Name}"))}}}";
+
+    public bool TryGetFieldType(string name, [MaybeNullWhen(false)] out SymbolType type)
+    {
+        foreach (var field in Fields)
+        {
+            if (field.Name == name)
+            {
+                type = field.Type;
+                return true;
+            }
+        }
+
+        type = null;
+        return false;
+    }
+    public int TryGetFieldIndex(string name)
+    {
+        for (var index = 0; index < Fields.Count; index++)
+        {
+            var field = Fields[index];
+            if (field.Name == name)
+                return index;
+        }
+
+        return -1;
+    }
+
 }
 public sealed record BufferType(SymbolType BaseType, int Size) : SymbolType()
 {
@@ -117,6 +153,18 @@ public sealed record FunctionType(SymbolType ReturnType, List<SymbolType> Parame
         return hash;
     }
 
+    public override string ToId()
+    {
+        var builder = new StringBuilder();
+        builder.Append($"fn_");
+        for (int i = 0; i < ParameterTypes.Count; i++)
+        {
+            builder.Append(ParameterTypes[i].ToId());
+                builder.Append('_');
+        }
+        return builder.Append(ReturnType.ToId()).ToString();
+    }
+
     public override string ToString()
     {
         var builder = new StringBuilder();
@@ -130,6 +178,8 @@ public sealed record FunctionType(SymbolType ReturnType, List<SymbolType> Parame
         return builder.Append($")->{ReturnType}").ToString();
     }
 }
+
+public sealed record StreamsSymbol : SymbolType;
 
 public sealed record ConstantBufferSymbol(string Name, List<Symbol> Symbols) : SymbolType;
 public sealed record ParamsSymbol(string Name, List<Symbol> Symbols) : SymbolType;

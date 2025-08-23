@@ -11,33 +11,37 @@ public partial class SpirvBuilder
     {
         foreach(var t in ftype.ParameterTypes)
             context.GetOrRegister(t);
-        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(ftype.ReturnType), mask, context.GetOrRegister(ftype));
+        OpFunction func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(ftype.ReturnType), mask, context.GetOrRegister(ftype));
         Position += func.WordCount;
         context.AddName(func, name);
         var result = new SpirvFunction(func.ResultId!.Value, name, ftype);
-        Buffer.InsertOpFunctionEnd(Position);
         CurrentFunction = result;
+        context.Module.Functions.Add(result);
         return result;
+    }
+
+    public void EndFunction(SpirvContext context)
+    {
+        Position += Buffer.InsertOpFunctionEnd(Position).WordCount;
     }
 
     public SpirvValue AddFunctionParameter(SpirvContext context, string name, SymbolType type)
     {
-        var p = Buffer.InsertOpFunctionParameter(Position, context.Bound++, context.GetOrRegister(type));
+        OpFunctionParameter p = Buffer.InsertOpFunctionParameter(Position, context.Bound++, context.GetOrRegister(type));
         Position += p.WordCount;
         context.AddName(p, name);
-        CurrentFunction!.Value.Parameters.Add(name, new(p, name));
-        return new(p, name);
+        CurrentFunction!.Value.Parameters.Add(name, new(p.ResultId, p.ResultType, name));
+        return new(p.ResultId, p.ResultType, name);
     }
     public SpirvFunction CreateEntryPoint(SpirvContext context, ExecutionModel execModel, string name, FunctionType type, ReadOnlySpan<Symbol> variables, FunctionControlMask mask = FunctionControlMask.MaskNone)
     {
-        var func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(type.ReturnType), mask, context.GetOrRegister(type));
+        OpFunction func = Buffer.AddOpFunction(context.Bound++, context.GetOrRegister(type.ReturnType), mask, context.GetOrRegister(type));
         context.AddName(func, name);
         context.SetEntryPoint(execModel, func, name, variables);
         var result = new SpirvFunction(func.ResultId!.Value, name, type);
         if(!variables.IsEmpty)
             foreach(var p in variables)
                 context.AddName(context.Variables[p.Id.Name], p.Id.Name);
-        Position += Buffer.InsertOpFunctionEnd(Position).WordCount;
         CurrentFunction = result;
         return result;
     }

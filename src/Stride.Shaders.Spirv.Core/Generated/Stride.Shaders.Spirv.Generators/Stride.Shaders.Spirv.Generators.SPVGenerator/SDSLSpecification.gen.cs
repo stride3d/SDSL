@@ -1,6 +1,11 @@
 ﻿namespace Stride.Shaders.Spirv;
 public static partial class Specification
 {
+    public static uint MagicNumber { get; } = 0x07230203;
+    public static uint MajorVersion { get; } = 1;
+    public static uint MinorVersion { get; } = 6;
+    public static uint Revision { get; } = 4;
+
     public enum ExecutionModel
     {
         Mixin = 5367,

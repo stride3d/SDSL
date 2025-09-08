@@ -47,7 +47,7 @@ public struct OpSDSLShader : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "shaderName")
-                ShaderName = o.To<string>();
+                ShaderName = o.ToLiteral<string>();
         }
     }
 
@@ -157,7 +157,7 @@ public struct OpSDSLMixinInherit : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "shader")
-                Shader = o.To<int>();
+                Shader = o.ToLiteral<int>();
         }
     }
 
@@ -239,9 +239,9 @@ public struct OpSDSLCompose : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "mixin")
-                Mixin = o.To<string>();
+                Mixin = o.ToLiteral<string>();
             if (o.Name == "name")
-                Name = o.To<string>();
+                Name = o.ToLiteral<string>();
         }
     }
 
@@ -314,7 +314,7 @@ public struct OpSDSLStage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "stagedElement")
-                StagedElement = o.To<int>();
+                StagedElement = o.ToLiteral<int>();
         }
     }
 
@@ -398,9 +398,9 @@ public struct OpSDSLImportShader : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "shaderName")
-                ShaderName = o.To<string>();
+                ShaderName = o.ToLiteral<string>();
         }
     }
 
@@ -505,13 +505,13 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "functionName")
-                FunctionName = o.To<string>();
+                FunctionName = o.ToLiteral<string>();
             if (o.Name == "shader")
-                Shader = o.To<int>();
+                Shader = o.ToLiteral<int>();
         }
     }
 
@@ -618,13 +618,13 @@ public struct OpSDSLImportVariable : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "variableName")
-                VariableName = o.To<string>();
+                VariableName = o.ToLiteral<string>();
             if (o.Name == "shader")
-                Shader = o.To<int>();
+                Shader = o.ToLiteral<int>();
         }
     }
 
@@ -749,9 +749,9 @@ public struct OpUndef : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -824,7 +824,7 @@ public struct OpSourceContinued : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "continuedSource")
-                ContinuedSource = o.To<string>();
+                ContinuedSource = o.ToLiteral<string>();
         }
     }
 
@@ -928,11 +928,11 @@ public struct OpSource : IMemoryInstruction
             if (o.Name == "sourcelanguage")
                 Sourcelanguage = o.ToEnum<SourceLanguage>();
             if (o.Name == "version")
-                Version = o.To<int>();
+                Version = o.ToLiteral<int>();
             if (o.Name == "file")
-                File = o.To<int?>();
+                File = o.ToLiteral<int?>();
             if (o.Name == "source")
-                Source = o.To<string?>();
+                Source = o.ToLiteral<string?>();
         }
     }
 
@@ -1007,7 +1007,7 @@ public struct OpSourceExtension : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "extension")
-                Extension = o.To<string>();
+                Extension = o.ToLiteral<string>();
         }
     }
 
@@ -1089,9 +1089,9 @@ public struct OpName : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "name")
-                Name = o.To<string>();
+                Name = o.ToLiteral<string>();
         }
     }
 
@@ -1184,11 +1184,11 @@ public struct OpMemberName : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "type")
-                Type = o.To<int>();
+                Type = o.ToLiteral<int>();
             if (o.Name == "member")
-                Member = o.To<int>();
+                Member = o.ToLiteral<int>();
             if (o.Name == "name")
-                Name = o.To<string>();
+                Name = o.ToLiteral<string>();
         }
     }
 
@@ -1274,9 +1274,9 @@ public struct OpString : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<string>();
+                Value = o.ToLiteral<string>();
         }
     }
 
@@ -1369,11 +1369,11 @@ public struct OpLine : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "file")
-                File = o.To<int>();
+                File = o.ToLiteral<int>();
             if (o.Name == "line")
-                Line = o.To<int>();
+                Line = o.ToLiteral<int>();
             if (o.Name == "column")
-                Column = o.To<int>();
+                Column = o.ToLiteral<int>();
         }
     }
 
@@ -1447,7 +1447,7 @@ public struct OpExtension : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "name")
-                Name = o.To<string>();
+                Name = o.ToLiteral<string>();
         }
     }
 
@@ -1531,9 +1531,9 @@ public struct OpExtInstImport : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "name")
-                Name = o.To<string>();
+                Name = o.ToLiteral<string>();
         }
     }
 
@@ -1648,15 +1648,15 @@ public struct OpExtInst : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<int>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "instruction")
-                Instruction = o.To<int>();
+                Instruction = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -1849,11 +1849,11 @@ public struct OpEntryPoint : IMemoryInstruction
             if (o.Name == "executionmodel")
                 Executionmodel = o.ToEnum<ExecutionModel>();
             if (o.Name == "entryPoint")
-                EntryPoint = o.To<int>();
+                EntryPoint = o.ToLiteral<int>();
             if (o.Name == "name")
-                Name = o.To<string>();
+                Name = o.ToLiteral<string>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -1938,7 +1938,7 @@ public struct OpExecutionMode : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "entryPoint")
-                EntryPoint = o.To<int>();
+                EntryPoint = o.ToLiteral<int>();
             if (o.Name == "mode")
                 Mode = o.ToEnum<ExecutionMode>();
         }
@@ -2087,7 +2087,7 @@ public struct OpTypeVoid : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -2161,7 +2161,7 @@ public struct OpTypeBool : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -2255,11 +2255,11 @@ public struct OpTypeInt : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "width")
-                Width = o.To<int>();
+                Width = o.ToLiteral<int>();
             if (o.Name == "signedness")
-                Signedness = o.To<int>();
+                Signedness = o.ToLiteral<int>();
         }
     }
 
@@ -2355,9 +2355,9 @@ public struct OpTypeFloat : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "width")
-                Width = o.To<int>();
+                Width = o.ToLiteral<int>();
             if (o.Name == "floatingPointEncoding")
                 FloatingPointEncoding = o.ToEnum<FPEncoding>();
         }
@@ -2455,11 +2455,11 @@ public struct OpTypeVector : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "componentType")
-                ComponentType = o.To<int>();
+                ComponentType = o.ToLiteral<int>();
             if (o.Name == "componentCount")
-                ComponentCount = o.To<int>();
+                ComponentCount = o.ToLiteral<int>();
         }
     }
 
@@ -2555,11 +2555,11 @@ public struct OpTypeMatrix : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "columnType")
-                ColumnType = o.To<int>();
+                ColumnType = o.ToLiteral<int>();
             if (o.Name == "columnCount")
-                ColumnCount = o.To<int>();
+                ColumnCount = o.ToLiteral<int>();
         }
     }
 
@@ -2715,19 +2715,19 @@ public struct OpTypeImage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledType")
-                SampledType = o.To<int>();
+                SampledType = o.ToLiteral<int>();
             if (o.Name == "dim")
                 Dim = o.ToEnum<Dim>();
             if (o.Name == "depth")
-                Depth = o.To<int>();
+                Depth = o.ToLiteral<int>();
             if (o.Name == "arrayed")
-                Arrayed = o.To<int>();
+                Arrayed = o.ToLiteral<int>();
             if (o.Name == "mS")
-                MS = o.To<int>();
+                MS = o.ToLiteral<int>();
             if (o.Name == "sampled")
-                Sampled = o.To<int>();
+                Sampled = o.ToLiteral<int>();
             if (o.Name == "imageformat")
                 Imageformat = o.ToEnum<ImageFormat>();
             if (o.Name == "accessqualifier")
@@ -2813,7 +2813,7 @@ public struct OpTypeSampler : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -2897,9 +2897,9 @@ public struct OpTypeSampledImage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "imageType")
-                ImageType = o.To<int>();
+                ImageType = o.ToLiteral<int>();
         }
     }
 
@@ -2994,11 +2994,11 @@ public struct OpTypeArray : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "elementType")
-                ElementType = o.To<int>();
+                ElementType = o.ToLiteral<int>();
             if (o.Name == "length")
-                Length = o.To<int>();
+                Length = o.ToLiteral<int>();
         }
     }
 
@@ -3084,9 +3084,9 @@ public struct OpTypeRuntimeArray : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "elementType")
-                ElementType = o.To<int>();
+                ElementType = o.ToLiteral<int>();
         }
     }
 
@@ -3171,9 +3171,9 @@ public struct OpTypeStruct : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -3258,9 +3258,9 @@ public struct OpTypeOpaque : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "thenameoftheopaquetype")
-                Thenameoftheopaquetype = o.To<string>();
+                Thenameoftheopaquetype = o.ToLiteral<string>();
         }
     }
 
@@ -3355,11 +3355,11 @@ public struct OpTypePointer : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
             if (o.Name == "type")
-                Type = o.To<int>();
+                Type = o.ToLiteral<int>();
         }
     }
 
@@ -3455,11 +3455,11 @@ public struct OpTypeFunction : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "returnType")
-                ReturnType = o.To<int>();
+                ReturnType = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -3535,7 +3535,7 @@ public struct OpTypeEvent : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -3609,7 +3609,7 @@ public struct OpTypeDeviceEvent : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -3683,7 +3683,7 @@ public struct OpTypeReserveId : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -3757,7 +3757,7 @@ public struct OpTypeQueue : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -3841,7 +3841,7 @@ public struct OpTypePipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "qualifier")
                 Qualifier = o.ToEnum<AccessQualifier>();
         }
@@ -3926,7 +3926,7 @@ public struct OpTypeForwardPointer : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointerType")
-                PointerType = o.To<int>();
+                PointerType = o.ToLiteral<int>();
             if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
         }
@@ -4013,9 +4013,9 @@ public struct OpConstantTrue : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -4100,9 +4100,9 @@ public struct OpConstantFalse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -4198,11 +4198,11 @@ public struct OpConstant<T> : IMemoryInstruction where T : struct, INumber<T>
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<LiteralValue<T>>();
+                Value = o.ToLiteral<T>();
         }
     }
 
@@ -4298,11 +4298,11 @@ public struct OpConstantComposite : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -4418,13 +4418,13 @@ public struct OpConstantSampler : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampleraddressingmode")
                 Sampleraddressingmode = o.ToEnum<SamplerAddressingMode>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "samplerfiltermode")
                 Samplerfiltermode = o.ToEnum<SamplerFilterMode>();
         }
@@ -4514,9 +4514,9 @@ public struct OpConstantNull : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -4601,9 +4601,9 @@ public struct OpSpecConstantTrue : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -4688,9 +4688,9 @@ public struct OpSpecConstantFalse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -4786,11 +4786,11 @@ public struct OpSpecConstant<T> : IMemoryInstruction where T : struct, INumber<T
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<LiteralValue<T>>();
+                Value = o.ToLiteral<T>();
         }
     }
 
@@ -4886,11 +4886,11 @@ public struct OpSpecConstantComposite : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -4986,11 +4986,11 @@ public struct OpSpecConstantOp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "opcode")
-                Opcode = o.To<int>();
+                Opcode = o.ToLiteral<int>();
         }
     }
 
@@ -5096,13 +5096,13 @@ public struct OpFunction : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "functioncontrol")
                 Functioncontrol = o.ToEnum<FunctionControlMask>();
             if (o.Name == "functionType")
-                FunctionType = o.To<int>();
+                FunctionType = o.ToLiteral<int>();
         }
     }
 
@@ -5189,9 +5189,9 @@ public struct OpFunctionParameter : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -5334,13 +5334,13 @@ public struct OpFunctionCall : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "function")
-                Function = o.To<int>();
+                Function = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -5447,13 +5447,13 @@ public struct OpVariable : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
             if (o.Name == "initializer")
-                Initializer = o.To<int?>();
+                Initializer = o.ToLiteral<int?>();
         }
     }
 
@@ -5570,15 +5570,15 @@ public struct OpImageTexelPointer : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "sample")
-                Sample = o.To<int>();
+                Sample = o.ToLiteral<int>();
         }
     }
 
@@ -5686,11 +5686,11 @@ public struct OpLoad : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memoryaccess")
                 Memoryaccess = o.ToEnum<MemoryAccessMask>();
         }
@@ -5787,9 +5787,9 @@ public struct OpStore : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "objectId")
-                ObjectId = o.To<int>();
+                ObjectId = o.ToLiteral<int>();
             if (o.Name == "memoryaccess")
                 Memoryaccess = o.ToEnum<MemoryAccessMask>();
         }
@@ -5897,13 +5897,13 @@ public struct OpAccessChain : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -6010,13 +6010,13 @@ public struct OpInBoundsAccessChain : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -6133,15 +6133,15 @@ public struct OpPtrAccessChain : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "element")
-                Element = o.To<int>();
+                Element = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -6249,13 +6249,13 @@ public struct OpArrayLength : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "structure")
-                Structure = o.To<int>();
+                Structure = o.ToLiteral<int>();
             if (o.Name == "arraymember")
-                Arraymember = o.To<int>();
+                Arraymember = o.ToLiteral<int>();
         }
     }
 
@@ -6352,11 +6352,11 @@ public struct OpGenericPtrMemSemantics : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -6472,15 +6472,15 @@ public struct OpInBoundsPtrAccessChain : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "element")
-                Element = o.To<int>();
+                Element = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -6596,15 +6596,15 @@ public struct OpDecorate : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "target")
-                Target = o.To<LiteralValue<int>>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
             if (o.Name == "additional1")
-                Additional1 = o.To<LiteralValue<int?>>();
+                Additional1 = o.ToLiteral<int?>();
             if (o.Name == "additional2")
-                Additional2 = o.To<LiteralValue<int?>>();
+                Additional2 = o.ToLiteral<int?>();
             if (o.Name == "additionalString")
-                AdditionalString = o.To<LiteralValue<string?>>();
+                AdditionalString = o.ToLiteral<string?>();
         }
     }
 
@@ -6730,17 +6730,17 @@ public struct OpMemberDecorate : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "structureType")
-                StructureType = o.To<LiteralValue<int>>();
+                StructureType = o.ToLiteral<int>();
             if (o.Name == "member")
-                Member = o.To<LiteralValue<int>>();
+                Member = o.ToLiteral<int>();
             if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
             if (o.Name == "additional1")
-                Additional1 = o.To<LiteralValue<int?>>();
+                Additional1 = o.ToLiteral<int?>();
             if (o.Name == "additional2")
-                Additional2 = o.To<LiteralValue<int?>>();
+                Additional2 = o.ToLiteral<int?>();
             if (o.Name == "additionalString")
-                AdditionalString = o.To<LiteralValue<string?>>();
+                AdditionalString = o.ToLiteral<string?>();
         }
     }
 
@@ -6819,7 +6819,7 @@ public struct OpDecorationGroup : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -6931,15 +6931,15 @@ public struct OpGroupDecorate : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "decorationGroup")
-                DecorationGroup = o.To<LiteralValue<int>>();
+                DecorationGroup = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
             if (o.Name == "additional1")
-                Additional1 = o.To<LiteralValue<int?>>();
+                Additional1 = o.ToLiteral<int?>();
             if (o.Name == "additional2")
-                Additional2 = o.To<LiteralValue<int?>>();
+                Additional2 = o.ToLiteral<int?>();
             if (o.Name == "additionalString")
-                AdditionalString = o.To<LiteralValue<string?>>();
+                AdditionalString = o.ToLiteral<string?>();
         }
     }
 
@@ -7055,15 +7055,15 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "decorationGroup")
-                DecorationGroup = o.To<LiteralValue<int>>();
+                DecorationGroup = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<(int, int)>>();
+                Values = o.ToLiteralArray<(int, int)>();
             if (o.Name == "additional1")
-                Additional1 = o.To<LiteralValue<int?>>();
+                Additional1 = o.ToLiteral<int?>();
             if (o.Name == "additional2")
-                Additional2 = o.To<LiteralValue<int?>>();
+                Additional2 = o.ToLiteral<int?>();
             if (o.Name == "additionalString")
-                AdditionalString = o.To<LiteralValue<string?>>();
+                AdditionalString = o.ToLiteral<string?>();
         }
     }
 
@@ -7171,13 +7171,13 @@ public struct OpVectorExtractDynamic : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
         }
     }
 
@@ -7294,15 +7294,15 @@ public struct OpVectorInsertDynamic : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
             if (o.Name == "component")
-                Component = o.To<int>();
+                Component = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
         }
     }
 
@@ -7420,15 +7420,15 @@ public struct OpVectorShuffle : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -7526,11 +7526,11 @@ public struct OpCompositeConstruct : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -7636,13 +7636,13 @@ public struct OpCompositeExtract : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "composite")
-                Composite = o.To<int>();
+                Composite = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -7759,15 +7759,15 @@ public struct OpCompositeInsert : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "objectId")
-                ObjectId = o.To<int>();
+                ObjectId = o.ToLiteral<int>();
             if (o.Name == "composite")
-                Composite = o.To<int>();
+                Composite = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -7865,11 +7865,11 @@ public struct OpCopyObject : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -7965,11 +7965,11 @@ public struct OpTranspose : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
         }
     }
 
@@ -8075,13 +8075,13 @@ public struct OpSampledImage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "sampler")
-                Sampler = o.To<int>();
+                Sampler = o.ToLiteral<int>();
         }
     }
 
@@ -8198,13 +8198,13 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -8324,13 +8324,13 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -8460,15 +8460,15 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -8599,15 +8599,15 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -8728,13 +8728,13 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -8854,13 +8854,13 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -8990,15 +8990,15 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9129,15 +9129,15 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9258,13 +9258,13 @@ public struct OpImageFetch : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9394,15 +9394,15 @@ public struct OpImageGather : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "component")
-                Component = o.To<int>();
+                Component = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9533,15 +9533,15 @@ public struct OpImageDrefGather : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9662,13 +9662,13 @@ public struct OpImageRead : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9776,11 +9776,11 @@ public struct OpImageWrite : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "texel")
-                Texel = o.To<int>();
+                Texel = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -9879,11 +9879,11 @@ public struct OpImage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
         }
     }
 
@@ -9979,11 +9979,11 @@ public struct OpImageQueryFormat : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
         }
     }
 
@@ -10079,11 +10079,11 @@ public struct OpImageQueryOrder : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
         }
     }
 
@@ -10189,13 +10189,13 @@ public struct OpImageQuerySizeLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "levelofDetail")
-                LevelofDetail = o.To<int>();
+                LevelofDetail = o.ToLiteral<int>();
         }
     }
 
@@ -10292,11 +10292,11 @@ public struct OpImageQuerySize : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
         }
     }
 
@@ -10402,13 +10402,13 @@ public struct OpImageQueryLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
         }
     }
 
@@ -10505,11 +10505,11 @@ public struct OpImageQueryLevels : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
         }
     }
 
@@ -10605,11 +10605,11 @@ public struct OpImageQuerySamples : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
         }
     }
 
@@ -10705,11 +10705,11 @@ public struct OpConvertFToU : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "floatValue")
-                FloatValue = o.To<int>();
+                FloatValue = o.ToLiteral<int>();
         }
     }
 
@@ -10805,11 +10805,11 @@ public struct OpConvertFToS : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "floatValue")
-                FloatValue = o.To<int>();
+                FloatValue = o.ToLiteral<int>();
         }
     }
 
@@ -10905,11 +10905,11 @@ public struct OpConvertSToF : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "signedValue")
-                SignedValue = o.To<int>();
+                SignedValue = o.ToLiteral<int>();
         }
     }
 
@@ -11005,11 +11005,11 @@ public struct OpConvertUToF : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "unsignedValue")
-                UnsignedValue = o.To<int>();
+                UnsignedValue = o.ToLiteral<int>();
         }
     }
 
@@ -11105,11 +11105,11 @@ public struct OpUConvert : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "unsignedValue")
-                UnsignedValue = o.To<int>();
+                UnsignedValue = o.ToLiteral<int>();
         }
     }
 
@@ -11205,11 +11205,11 @@ public struct OpSConvert : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "signedValue")
-                SignedValue = o.To<int>();
+                SignedValue = o.ToLiteral<int>();
         }
     }
 
@@ -11305,11 +11305,11 @@ public struct OpFConvert : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "floatValue")
-                FloatValue = o.To<int>();
+                FloatValue = o.ToLiteral<int>();
         }
     }
 
@@ -11405,11 +11405,11 @@ public struct OpQuantizeToF16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -11505,11 +11505,11 @@ public struct OpConvertPtrToU : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -11605,11 +11605,11 @@ public struct OpSatConvertSToU : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "signedValue")
-                SignedValue = o.To<int>();
+                SignedValue = o.ToLiteral<int>();
         }
     }
 
@@ -11705,11 +11705,11 @@ public struct OpSatConvertUToS : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "unsignedValue")
-                UnsignedValue = o.To<int>();
+                UnsignedValue = o.ToLiteral<int>();
         }
     }
 
@@ -11805,11 +11805,11 @@ public struct OpConvertUToPtr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "integerValue")
-                IntegerValue = o.To<int>();
+                IntegerValue = o.ToLiteral<int>();
         }
     }
 
@@ -11905,11 +11905,11 @@ public struct OpPtrCastToGeneric : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -12005,11 +12005,11 @@ public struct OpGenericCastToPtr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -12115,11 +12115,11 @@ public struct OpGenericCastToPtrExplicit : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "storage")
                 Storage = o.ToEnum<StorageClass>();
         }
@@ -12218,11 +12218,11 @@ public struct OpBitcast : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -12318,11 +12318,11 @@ public struct OpSNegate : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -12418,11 +12418,11 @@ public struct OpFNegate : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -12528,13 +12528,13 @@ public struct OpIAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -12641,13 +12641,13 @@ public struct OpFAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -12754,13 +12754,13 @@ public struct OpISub : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -12867,13 +12867,13 @@ public struct OpFSub : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -12980,13 +12980,13 @@ public struct OpIMul : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13093,13 +13093,13 @@ public struct OpFMul : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13206,13 +13206,13 @@ public struct OpUDiv : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13319,13 +13319,13 @@ public struct OpSDiv : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13432,13 +13432,13 @@ public struct OpFDiv : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13545,13 +13545,13 @@ public struct OpUMod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13658,13 +13658,13 @@ public struct OpSRem : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13771,13 +13771,13 @@ public struct OpSMod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13884,13 +13884,13 @@ public struct OpFRem : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -13997,13 +13997,13 @@ public struct OpFMod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -14110,13 +14110,13 @@ public struct OpVectorTimesScalar : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
             if (o.Name == "scalar")
-                Scalar = o.To<int>();
+                Scalar = o.ToLiteral<int>();
         }
     }
 
@@ -14223,13 +14223,13 @@ public struct OpMatrixTimesScalar : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
             if (o.Name == "scalar")
-                Scalar = o.To<int>();
+                Scalar = o.ToLiteral<int>();
         }
     }
 
@@ -14336,13 +14336,13 @@ public struct OpVectorTimesMatrix : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
         }
     }
 
@@ -14449,13 +14449,13 @@ public struct OpMatrixTimesVector : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
         }
     }
 
@@ -14562,13 +14562,13 @@ public struct OpMatrixTimesMatrix : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "leftMatrix")
-                LeftMatrix = o.To<int>();
+                LeftMatrix = o.ToLiteral<int>();
             if (o.Name == "rightMatrix")
-                RightMatrix = o.To<int>();
+                RightMatrix = o.ToLiteral<int>();
         }
     }
 
@@ -14675,13 +14675,13 @@ public struct OpOuterProduct : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
         }
     }
 
@@ -14788,13 +14788,13 @@ public struct OpDot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
         }
     }
 
@@ -14901,13 +14901,13 @@ public struct OpIAddCarry : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -15014,13 +15014,13 @@ public struct OpISubBorrow : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -15127,13 +15127,13 @@ public struct OpUMulExtended : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -15240,13 +15240,13 @@ public struct OpSMulExtended : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -15343,11 +15343,11 @@ public struct OpAny : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
         }
     }
 
@@ -15443,11 +15443,11 @@ public struct OpAll : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector")
-                Vector = o.To<int>();
+                Vector = o.ToLiteral<int>();
         }
     }
 
@@ -15543,11 +15543,11 @@ public struct OpIsNan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -15643,11 +15643,11 @@ public struct OpIsInf : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -15743,11 +15743,11 @@ public struct OpIsFinite : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -15843,11 +15843,11 @@ public struct OpIsNormal : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -15943,11 +15943,11 @@ public struct OpSignBitSet : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -16053,13 +16053,13 @@ public struct OpLessOrGreater : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<int>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -16166,13 +16166,13 @@ public struct OpOrdered : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<int>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -16279,13 +16279,13 @@ public struct OpUnordered : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<int>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -16392,13 +16392,13 @@ public struct OpLogicalEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -16505,13 +16505,13 @@ public struct OpLogicalNotEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -16618,13 +16618,13 @@ public struct OpLogicalOr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -16731,13 +16731,13 @@ public struct OpLogicalAnd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -16834,11 +16834,11 @@ public struct OpLogicalNot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -16954,15 +16954,15 @@ public struct OpSelect : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "condition")
-                Condition = o.To<int>();
+                Condition = o.ToLiteral<int>();
             if (o.Name == "object1")
-                Object1 = o.To<int>();
+                Object1 = o.ToLiteral<int>();
             if (o.Name == "object2")
-                Object2 = o.To<int>();
+                Object2 = o.ToLiteral<int>();
         }
     }
 
@@ -17070,13 +17070,13 @@ public struct OpIEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17183,13 +17183,13 @@ public struct OpINotEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17296,13 +17296,13 @@ public struct OpUGreaterThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17409,13 +17409,13 @@ public struct OpSGreaterThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17522,13 +17522,13 @@ public struct OpUGreaterThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17635,13 +17635,13 @@ public struct OpSGreaterThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17748,13 +17748,13 @@ public struct OpULessThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17861,13 +17861,13 @@ public struct OpSLessThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -17974,13 +17974,13 @@ public struct OpULessThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18087,13 +18087,13 @@ public struct OpSLessThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18200,13 +18200,13 @@ public struct OpFOrdEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18313,13 +18313,13 @@ public struct OpFUnordEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18426,13 +18426,13 @@ public struct OpFOrdNotEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18539,13 +18539,13 @@ public struct OpFUnordNotEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18652,13 +18652,13 @@ public struct OpFOrdLessThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18765,13 +18765,13 @@ public struct OpFUnordLessThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18878,13 +18878,13 @@ public struct OpFOrdGreaterThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -18991,13 +18991,13 @@ public struct OpFUnordGreaterThan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -19104,13 +19104,13 @@ public struct OpFOrdLessThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -19217,13 +19217,13 @@ public struct OpFUnordLessThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -19330,13 +19330,13 @@ public struct OpFOrdGreaterThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -19443,13 +19443,13 @@ public struct OpFUnordGreaterThanEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -19556,13 +19556,13 @@ public struct OpShiftRightLogical : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "shift")
-                Shift = o.To<int>();
+                Shift = o.ToLiteral<int>();
         }
     }
 
@@ -19669,13 +19669,13 @@ public struct OpShiftRightArithmetic : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "shift")
-                Shift = o.To<int>();
+                Shift = o.ToLiteral<int>();
         }
     }
 
@@ -19782,13 +19782,13 @@ public struct OpShiftLeftLogical : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "shift")
-                Shift = o.To<int>();
+                Shift = o.ToLiteral<int>();
         }
     }
 
@@ -19895,13 +19895,13 @@ public struct OpBitwiseOr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -20008,13 +20008,13 @@ public struct OpBitwiseXor : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -20121,13 +20121,13 @@ public struct OpBitwiseAnd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -20224,11 +20224,11 @@ public struct OpNot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -20354,17 +20354,17 @@ public struct OpBitFieldInsert : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "insert")
-                Insert = o.To<int>();
+                Insert = o.ToLiteral<int>();
             if (o.Name == "offset")
-                Offset = o.To<int>();
+                Offset = o.ToLiteral<int>();
             if (o.Name == "count")
-                Count = o.To<int>();
+                Count = o.ToLiteral<int>();
         }
     }
 
@@ -20483,15 +20483,15 @@ public struct OpBitFieldSExtract : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "offset")
-                Offset = o.To<int>();
+                Offset = o.ToLiteral<int>();
             if (o.Name == "count")
-                Count = o.To<int>();
+                Count = o.ToLiteral<int>();
         }
     }
 
@@ -20609,15 +20609,15 @@ public struct OpBitFieldUExtract : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "offset")
-                Offset = o.To<int>();
+                Offset = o.ToLiteral<int>();
             if (o.Name == "count")
-                Count = o.To<int>();
+                Count = o.ToLiteral<int>();
         }
     }
 
@@ -20715,11 +20715,11 @@ public struct OpBitReverse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
         }
     }
 
@@ -20815,11 +20815,11 @@ public struct OpBitCount : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
         }
     }
 
@@ -20915,11 +20915,11 @@ public struct OpDPdx : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21015,11 +21015,11 @@ public struct OpDPdy : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21115,11 +21115,11 @@ public struct OpFwidth : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21215,11 +21215,11 @@ public struct OpDPdxFine : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21315,11 +21315,11 @@ public struct OpDPdyFine : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21415,11 +21415,11 @@ public struct OpFwidthFine : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21515,11 +21515,11 @@ public struct OpDPdxCoarse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21615,11 +21615,11 @@ public struct OpDPdyCoarse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21715,11 +21715,11 @@ public struct OpFwidthCoarse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<int>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -21869,7 +21869,7 @@ public struct OpEmitStreamVertex : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "stream")
-                Stream = o.To<int>();
+                Stream = o.ToLiteral<int>();
         }
     }
 
@@ -21941,7 +21941,7 @@ public struct OpEndStreamPrimitive : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "stream")
-                Stream = o.To<int>();
+                Stream = o.ToLiteral<int>();
         }
     }
 
@@ -22033,11 +22033,11 @@ public struct OpControlBarrier : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -22121,9 +22121,9 @@ public struct OpMemoryBarrier : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -22238,15 +22238,15 @@ public struct OpAtomicLoad : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -22352,13 +22352,13 @@ public struct OpAtomicStore : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -22485,17 +22485,17 @@ public struct OpAtomicExchange : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -22644,21 +22644,21 @@ public struct OpAtomicCompareExchange : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "equal")
-                Equal = o.To<int>();
+                Equal = o.ToLiteral<int>();
             if (o.Name == "unequal")
-                Unequal = o.To<int>();
+                Unequal = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "comparator")
-                Comparator = o.To<int>();
+                Comparator = o.ToLiteral<int>();
         }
     }
 
@@ -22809,21 +22809,21 @@ public struct OpAtomicCompareExchangeWeak : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "equal")
-                Equal = o.To<int>();
+                Equal = o.ToLiteral<int>();
             if (o.Name == "unequal")
-                Unequal = o.To<int>();
+                Unequal = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "comparator")
-                Comparator = o.To<int>();
+                Comparator = o.ToLiteral<int>();
         }
     }
 
@@ -22944,15 +22944,15 @@ public struct OpAtomicIIncrement : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -23070,15 +23070,15 @@ public struct OpAtomicIDecrement : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -23206,17 +23206,17 @@ public struct OpAtomicIAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -23345,17 +23345,17 @@ public struct OpAtomicISub : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -23484,17 +23484,17 @@ public struct OpAtomicSMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -23623,17 +23623,17 @@ public struct OpAtomicUMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -23762,17 +23762,17 @@ public struct OpAtomicSMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -23901,17 +23901,17 @@ public struct OpAtomicUMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -24040,17 +24040,17 @@ public struct OpAtomicAnd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -24179,17 +24179,17 @@ public struct OpAtomicOr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -24318,17 +24318,17 @@ public struct OpAtomicXor : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -24427,11 +24427,11 @@ public struct OpPhi : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<(int, int)>>();
+                Values = o.ToLiteralArray<(int, int)>();
         }
     }
 
@@ -24525,9 +24525,9 @@ public struct OpLoopMerge : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "mergeBlock")
-                MergeBlock = o.To<int>();
+                MergeBlock = o.ToLiteral<int>();
             if (o.Name == "continueTarget")
-                ContinueTarget = o.To<int>();
+                ContinueTarget = o.ToLiteral<int>();
             if (o.Name == "loopcontrol")
                 Loopcontrol = o.ToEnum<LoopControlMask>();
         }
@@ -24613,7 +24613,7 @@ public struct OpSelectionMerge : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "mergeBlock")
-                MergeBlock = o.To<int>();
+                MergeBlock = o.ToLiteral<int>();
             if (o.Name == "selectioncontrol")
                 Selectioncontrol = o.ToEnum<SelectionControlMask>();
         }
@@ -24690,7 +24690,7 @@ public struct OpLabel : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -24762,7 +24762,7 @@ public struct OpBranch : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "targetLabel")
-                TargetLabel = o.To<int>();
+                TargetLabel = o.ToLiteral<int>();
         }
     }
 
@@ -24864,13 +24864,13 @@ public struct OpBranchConditional : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "condition")
-                Condition = o.To<int>();
+                Condition = o.ToLiteral<int>();
             if (o.Name == "trueLabel")
-                TrueLabel = o.To<int>();
+                TrueLabel = o.ToLiteral<int>();
             if (o.Name == "falseLabel")
-                FalseLabel = o.To<int>();
+                FalseLabel = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -24965,11 +24965,11 @@ public struct OpSwitch : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "selector")
-                Selector = o.To<int>();
+                Selector = o.ToLiteral<int>();
             if (o.Name == "defaultId")
-                DefaultId = o.To<int>();
+                DefaultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<(int, int)>>();
+                Values = o.ToLiteralArray<(int, int)>();
         }
     }
 
@@ -25119,7 +25119,7 @@ public struct OpReturnValue : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -25239,9 +25239,9 @@ public struct OpLifetimeStart : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "size")
-                Size = o.To<int>();
+                Size = o.ToLiteral<int>();
         }
     }
 
@@ -25324,9 +25324,9 @@ public struct OpLifetimeStop : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "size")
-                Size = o.To<int>();
+                Size = o.ToLiteral<int>();
         }
     }
 
@@ -25471,21 +25471,21 @@ public struct OpGroupAsyncCopy : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "destination")
-                Destination = o.To<int>();
+                Destination = o.ToLiteral<int>();
             if (o.Name == "source")
-                Source = o.To<int>();
+                Source = o.ToLiteral<int>();
             if (o.Name == "numElements")
-                NumElements = o.To<int>();
+                NumElements = o.ToLiteral<int>();
             if (o.Name == "stride")
-                Stride = o.To<int>();
+                Stride = o.ToLiteral<int>();
             if (o.Name == "eventId")
-                EventId = o.To<int>();
+                EventId = o.ToLiteral<int>();
         }
     }
 
@@ -25584,11 +25584,11 @@ public struct OpGroupWaitEvents : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "numEvents")
-                NumEvents = o.To<int>();
+                NumEvents = o.ToLiteral<int>();
             if (o.Name == "eventsList")
-                EventsList = o.To<int>();
+                EventsList = o.ToLiteral<int>();
         }
     }
 
@@ -25694,13 +25694,13 @@ public struct OpGroupAll : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -25807,13 +25807,13 @@ public struct OpGroupAny : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -25930,15 +25930,15 @@ public struct OpGroupBroadcast : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "localId")
-                LocalId = o.To<int>();
+                LocalId = o.ToLiteral<int>();
         }
     }
 
@@ -26056,15 +26056,15 @@ public struct OpGroupIAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26182,15 +26182,15 @@ public struct OpGroupFAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26308,15 +26308,15 @@ public struct OpGroupFMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26434,15 +26434,15 @@ public struct OpGroupUMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26560,15 +26560,15 @@ public struct OpGroupSMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26686,15 +26686,15 @@ public struct OpGroupFMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26812,15 +26812,15 @@ public struct OpGroupUMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -26938,15 +26938,15 @@ public struct OpGroupSMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -27074,17 +27074,17 @@ public struct OpReadPipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -27213,17 +27213,17 @@ public struct OpWritePipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -27372,21 +27372,21 @@ public struct OpReservedReadPipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -27537,21 +27537,21 @@ public struct OpReservedWritePipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -27682,17 +27682,17 @@ public struct OpReserveReadPipePackets : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "numPackets")
-                NumPackets = o.To<int>();
+                NumPackets = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -27821,17 +27821,17 @@ public struct OpReserveWritePipePackets : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "numPackets")
-                NumPackets = o.To<int>();
+                NumPackets = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -27938,13 +27938,13 @@ public struct OpCommitReadPipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28049,13 +28049,13 @@ public struct OpCommitWritePipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28152,11 +28152,11 @@ public struct OpIsValidReserveId : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
         }
     }
 
@@ -28272,15 +28272,15 @@ public struct OpGetNumPipePackets : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28398,15 +28398,15 @@ public struct OpGetMaxPipePackets : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28544,19 +28544,19 @@ public struct OpGroupReserveReadPipePackets : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "numPackets")
-                NumPackets = o.To<int>();
+                NumPackets = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28696,19 +28696,19 @@ public struct OpGroupReserveWritePipePackets : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "numPackets")
-                NumPackets = o.To<int>();
+                NumPackets = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28826,15 +28826,15 @@ public struct OpGroupCommitReadPipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -28950,15 +28950,15 @@ public struct OpGroupCommitWritePipe : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "pipe")
-                Pipe = o.To<int>();
+                Pipe = o.ToLiteral<int>();
             if (o.Name == "reserveId")
-                ReserveId = o.To<int>();
+                ReserveId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -29086,17 +29086,17 @@ public struct OpEnqueueMarker : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "queue")
-                Queue = o.To<int>();
+                Queue = o.ToLiteral<int>();
             if (o.Name == "numEvents")
-                NumEvents = o.To<int>();
+                NumEvents = o.ToLiteral<int>();
             if (o.Name == "waitEvents")
-                WaitEvents = o.To<int>();
+                WaitEvents = o.ToLiteral<int>();
             if (o.Name == "retEvent")
-                RetEvent = o.To<int>();
+                RetEvent = o.ToLiteral<int>();
         }
     }
 
@@ -29295,31 +29295,31 @@ public struct OpEnqueueKernel : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "queue")
-                Queue = o.To<int>();
+                Queue = o.ToLiteral<int>();
             if (o.Name == "flags")
-                Flags = o.To<int>();
+                Flags = o.ToLiteral<int>();
             if (o.Name == "nDRange")
-                NDRange = o.To<int>();
+                NDRange = o.ToLiteral<int>();
             if (o.Name == "numEvents")
-                NumEvents = o.To<int>();
+                NumEvents = o.ToLiteral<int>();
             if (o.Name == "waitEvents")
-                WaitEvents = o.To<int>();
+                WaitEvents = o.ToLiteral<int>();
             if (o.Name == "retEvent")
-                RetEvent = o.To<int>();
+                RetEvent = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -29465,19 +29465,19 @@ public struct OpGetKernelNDrangeSubGroupCount : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "nDRange")
-                NDRange = o.To<int>();
+                NDRange = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
         }
     }
 
@@ -29617,19 +29617,19 @@ public struct OpGetKernelNDrangeMaxSubGroupSize : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "nDRange")
-                NDRange = o.To<int>();
+                NDRange = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
         }
     }
 
@@ -29759,17 +29759,17 @@ public struct OpGetKernelWorkGroupSize : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
         }
     }
 
@@ -29898,17 +29898,17 @@ public struct OpGetKernelPreferredWorkGroupSizeMultiple : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
         }
     }
 
@@ -29985,7 +29985,7 @@ public struct OpRetainEvent : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "eventId")
-                EventId = o.To<int>();
+                EventId = o.ToLiteral<int>();
         }
     }
 
@@ -30057,7 +30057,7 @@ public struct OpReleaseEvent : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "eventId")
-                EventId = o.To<int>();
+                EventId = o.ToLiteral<int>();
         }
     }
 
@@ -30141,9 +30141,9 @@ public struct OpCreateUserEvent : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -30238,11 +30238,11 @@ public struct OpIsValidEvent : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "eventId")
-                EventId = o.To<int>();
+                EventId = o.ToLiteral<int>();
         }
     }
 
@@ -30326,9 +30326,9 @@ public struct OpSetUserEventStatus : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "eventId")
-                EventId = o.To<int>();
+                EventId = o.ToLiteral<int>();
             if (o.Name == "status")
-                Status = o.To<int>();
+                Status = o.ToLiteral<int>();
         }
     }
 
@@ -30421,11 +30421,11 @@ public struct OpCaptureEventProfilingInfo : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "eventId")
-                EventId = o.To<int>();
+                EventId = o.ToLiteral<int>();
             if (o.Name == "profilingInfo")
-                ProfilingInfo = o.To<int>();
+                ProfilingInfo = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -30511,9 +30511,9 @@ public struct OpGetDefaultQueue : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -30628,15 +30628,15 @@ public struct OpBuildNDRange : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "globalWorkSize")
-                GlobalWorkSize = o.To<int>();
+                GlobalWorkSize = o.ToLiteral<int>();
             if (o.Name == "localWorkSize")
-                LocalWorkSize = o.To<int>();
+                LocalWorkSize = o.ToLiteral<int>();
             if (o.Name == "globalWorkOffset")
-                GlobalWorkOffset = o.To<int>();
+                GlobalWorkOffset = o.ToLiteral<int>();
         }
     }
 
@@ -30754,13 +30754,13 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -30880,13 +30880,13 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31016,15 +31016,15 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31155,15 +31155,15 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31284,13 +31284,13 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31410,13 +31410,13 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31546,15 +31546,15 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31685,15 +31685,15 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31814,13 +31814,13 @@ public struct OpImageSparseFetch : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -31950,15 +31950,15 @@ public struct OpImageSparseGather : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "component")
-                Component = o.To<int>();
+                Component = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -32089,15 +32089,15 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "dref")
-                Dref = o.To<int>();
+                Dref = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -32198,11 +32198,11 @@ public struct OpImageSparseTexelsResident : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "residentCode")
-                ResidentCode = o.To<int>();
+                ResidentCode = o.ToLiteral<int>();
         }
     }
 
@@ -32356,15 +32356,15 @@ public struct OpAtomicFlagTestAndSet : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -32460,11 +32460,11 @@ public struct OpAtomicFlagClear : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -32580,13 +32580,13 @@ public struct OpImageSparseRead : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -32686,11 +32686,11 @@ public struct OpSizeOf : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -32766,7 +32766,7 @@ public struct OpTypePipeStorage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -32880,15 +32880,15 @@ public struct OpConstantPipeStorage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
             if (o.Name == "capacity")
-                Capacity = o.To<int>();
+                Capacity = o.ToLiteral<int>();
         }
     }
 
@@ -32986,11 +32986,11 @@ public struct OpCreatePipeFromPipeStorage : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pipeStorage")
-                PipeStorage = o.To<int>();
+                PipeStorage = o.ToLiteral<int>();
         }
     }
 
@@ -33126,19 +33126,19 @@ public struct OpGetKernelLocalSizeForSubgroupCount : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "subgroupCount")
-                SubgroupCount = o.To<int>();
+                SubgroupCount = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
         }
     }
 
@@ -33268,17 +33268,17 @@ public struct OpGetKernelMaxNumSubgroups : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "invoke")
-                Invoke = o.To<int>();
+                Invoke = o.ToLiteral<int>();
             if (o.Name == "param")
-                Param = o.To<int>();
+                Param = o.ToLiteral<int>();
             if (o.Name == "paramSize")
-                ParamSize = o.To<int>();
+                ParamSize = o.ToLiteral<int>();
             if (o.Name == "paramAlign")
-                ParamAlign = o.To<int>();
+                ParamAlign = o.ToLiteral<int>();
         }
     }
 
@@ -33357,7 +33357,7 @@ public struct OpTypeNamedBarrier : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -33451,11 +33451,11 @@ public struct OpNamedBarrierInitialize : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "subgroupCount")
-                SubgroupCount = o.To<int>();
+                SubgroupCount = o.ToLiteral<int>();
         }
     }
 
@@ -33549,11 +33549,11 @@ public struct OpMemoryNamedBarrier : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "namedBarrier")
-                NamedBarrier = o.To<int>();
+                NamedBarrier = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -33627,7 +33627,7 @@ public struct OpModuleProcessed : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "process")
-                Process = o.To<string>();
+                Process = o.ToLiteral<string>();
         }
     }
 
@@ -33709,7 +33709,7 @@ public struct OpExecutionModeId : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "entryPoint")
-                EntryPoint = o.To<int>();
+                EntryPoint = o.ToLiteral<int>();
             if (o.Name == "mode")
                 Mode = o.ToEnum<ExecutionMode>();
         }
@@ -33794,7 +33794,7 @@ public struct OpDecorateId : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
         }
@@ -33891,11 +33891,11 @@ public struct OpGroupNonUniformElect : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
         }
     }
 
@@ -34001,13 +34001,13 @@ public struct OpGroupNonUniformAll : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -34114,13 +34114,13 @@ public struct OpGroupNonUniformAny : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -34227,13 +34227,13 @@ public struct OpGroupNonUniformAllEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -34350,15 +34350,15 @@ public struct OpGroupNonUniformBroadcast : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "id")
-                Id = o.To<int>();
+                Id = o.ToLiteral<int>();
         }
     }
 
@@ -34466,13 +34466,13 @@ public struct OpGroupNonUniformBroadcastFirst : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -34579,13 +34579,13 @@ public struct OpGroupNonUniformBallot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -34692,13 +34692,13 @@ public struct OpGroupNonUniformInverseBallot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -34815,15 +34815,15 @@ public struct OpGroupNonUniformBallotBitExtract : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
         }
     }
 
@@ -34941,15 +34941,15 @@ public struct OpGroupNonUniformBallotBitCount : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -35057,13 +35057,13 @@ public struct OpGroupNonUniformBallotFindLSB : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -35170,13 +35170,13 @@ public struct OpGroupNonUniformBallotFindMSB : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -35293,15 +35293,15 @@ public struct OpGroupNonUniformShuffle : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "id")
-                Id = o.To<int>();
+                Id = o.ToLiteral<int>();
         }
     }
 
@@ -35419,15 +35419,15 @@ public struct OpGroupNonUniformShuffleXor : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "mask")
-                Mask = o.To<int>();
+                Mask = o.ToLiteral<int>();
         }
     }
 
@@ -35545,15 +35545,15 @@ public struct OpGroupNonUniformShuffleUp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "delta")
-                Delta = o.To<int>();
+                Delta = o.ToLiteral<int>();
         }
     }
 
@@ -35671,15 +35671,15 @@ public struct OpGroupNonUniformShuffleDown : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "delta")
-                Delta = o.To<int>();
+                Delta = o.ToLiteral<int>();
         }
     }
 
@@ -35807,17 +35807,17 @@ public struct OpGroupNonUniformIAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -35946,17 +35946,17 @@ public struct OpGroupNonUniformFAdd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36085,17 +36085,17 @@ public struct OpGroupNonUniformIMul : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36224,17 +36224,17 @@ public struct OpGroupNonUniformFMul : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36363,17 +36363,17 @@ public struct OpGroupNonUniformSMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36502,17 +36502,17 @@ public struct OpGroupNonUniformUMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36641,17 +36641,17 @@ public struct OpGroupNonUniformFMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36780,17 +36780,17 @@ public struct OpGroupNonUniformSMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -36919,17 +36919,17 @@ public struct OpGroupNonUniformUMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37058,17 +37058,17 @@ public struct OpGroupNonUniformFMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37197,17 +37197,17 @@ public struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37336,17 +37336,17 @@ public struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37475,17 +37475,17 @@ public struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37614,17 +37614,17 @@ public struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37753,17 +37753,17 @@ public struct OpGroupNonUniformLogicalOr : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -37892,17 +37892,17 @@ public struct OpGroupNonUniformLogicalXor : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -38021,15 +38021,15 @@ public struct OpGroupNonUniformQuadBroadcast : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
         }
     }
 
@@ -38147,15 +38147,15 @@ public struct OpGroupNonUniformQuadSwap : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
         }
     }
 
@@ -38253,11 +38253,11 @@ public struct OpCopyLogical : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -38363,13 +38363,13 @@ public struct OpPtrEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -38476,13 +38476,13 @@ public struct OpPtrNotEqual : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -38589,13 +38589,13 @@ public struct OpPtrDiff : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -38702,13 +38702,13 @@ public struct OpColorAttachmentReadEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "attachment")
-                Attachment = o.To<int>();
+                Attachment = o.ToLiteral<int>();
             if (o.Name == "sample")
-                Sample = o.To<int?>();
+                Sample = o.ToLiteral<int?>();
         }
     }
 
@@ -38805,11 +38805,11 @@ public struct OpDepthAttachmentReadEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sample")
-                Sample = o.To<int?>();
+                Sample = o.ToLiteral<int?>();
         }
     }
 
@@ -38905,11 +38905,11 @@ public struct OpStencilAttachmentReadEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sample")
-                Sample = o.To<int?>();
+                Sample = o.ToLiteral<int?>();
         }
     }
 
@@ -39033,7 +39033,7 @@ public struct OpTypeUntypedPointerKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
         }
@@ -39150,15 +39150,15 @@ public struct OpUntypedVariableKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
             if (o.Name == "dataType")
-                DataType = o.To<int?>();
+                DataType = o.ToLiteral<int?>();
             if (o.Name == "initializer")
-                Initializer = o.To<int?>();
+                Initializer = o.ToLiteral<int?>();
         }
     }
 
@@ -39276,15 +39276,15 @@ public struct OpUntypedAccessChainKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseType")
-                BaseType = o.To<int>();
+                BaseType = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -39402,15 +39402,15 @@ public struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseType")
-                BaseType = o.To<int>();
+                BaseType = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -39508,11 +39508,11 @@ public struct OpSubgroupBallotKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -39608,11 +39608,11 @@ public struct OpSubgroupFirstInvocationKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -39738,17 +39738,17 @@ public struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseType")
-                BaseType = o.To<int>();
+                BaseType = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "element")
-                Element = o.To<int>();
+                Element = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -39877,17 +39877,17 @@ public struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseType")
-                BaseType = o.To<int>();
+                BaseType = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "element")
-                Element = o.To<int>();
+                Element = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -40006,15 +40006,15 @@ public struct OpUntypedArrayLengthKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "structure")
-                Structure = o.To<int>();
+                Structure = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "arraymember")
-                Arraymember = o.To<int>();
+                Arraymember = o.ToLiteral<int>();
         }
     }
 
@@ -40130,15 +40130,15 @@ public struct OpUntypedPrefetchKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointerType")
-                PointerType = o.To<int>();
+                PointerType = o.ToLiteral<int>();
             if (o.Name == "numBytes")
-                NumBytes = o.To<int>();
+                NumBytes = o.ToLiteral<int>();
             if (o.Name == "rW")
-                RW = o.To<int?>();
+                RW = o.ToLiteral<int?>();
             if (o.Name == "locality")
-                Locality = o.To<int?>();
+                Locality = o.ToLiteral<int?>();
             if (o.Name == "cacheType")
-                CacheType = o.To<int?>();
+                CacheType = o.ToLiteral<int?>();
         }
     }
 
@@ -40236,11 +40236,11 @@ public struct OpSubgroupAllKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -40336,11 +40336,11 @@ public struct OpSubgroupAnyKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -40436,11 +40436,11 @@ public struct OpSubgroupAllEqualKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -40566,17 +40566,17 @@ public struct OpGroupNonUniformRotateKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "delta")
-                Delta = o.To<int>();
+                Delta = o.ToLiteral<int>();
             if (o.Name == "clusterSize")
-                ClusterSize = o.To<int?>();
+                ClusterSize = o.ToLiteral<int?>();
         }
     }
 
@@ -40685,13 +40685,13 @@ public struct OpSubgroupReadInvocationKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "index")
-                Index = o.To<int>();
+                Index = o.ToLiteral<int>();
         }
     }
 
@@ -40808,15 +40808,15 @@ public struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<int>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "instruction")
-                Instruction = o.To<int>();
+                Instruction = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -40992,27 +40992,27 @@ public struct OpTraceRayKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullMask")
-                CullMask = o.To<int>();
+                CullMask = o.ToLiteral<int>();
             if (o.Name == "sBTOffset")
-                SBTOffset = o.To<int>();
+                SBTOffset = o.ToLiteral<int>();
             if (o.Name == "sBTStride")
-                SBTStride = o.To<int>();
+                SBTStride = o.ToLiteral<int>();
             if (o.Name == "missIndex")
-                MissIndex = o.To<int>();
+                MissIndex = o.ToLiteral<int>();
             if (o.Name == "rayOrigin")
-                RayOrigin = o.To<int>();
+                RayOrigin = o.ToLiteral<int>();
             if (o.Name == "rayTmin")
-                RayTmin = o.To<int>();
+                RayTmin = o.ToLiteral<int>();
             if (o.Name == "rayDirection")
-                RayDirection = o.To<int>();
+                RayDirection = o.ToLiteral<int>();
             if (o.Name == "rayTmax")
-                RayTmax = o.To<int>();
+                RayTmax = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -41104,9 +41104,9 @@ public struct OpExecuteCallableKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "sBTIndex")
-                SBTIndex = o.To<int>();
+                SBTIndex = o.ToLiteral<int>();
             if (o.Name == "callableData")
-                CallableData = o.To<int>();
+                CallableData = o.ToLiteral<int>();
         }
     }
 
@@ -41201,11 +41201,11 @@ public struct OpConvertUToAccelerationStructureKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
         }
     }
 
@@ -41397,13 +41397,13 @@ public struct OpSDot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "packedVectorFormat")
                 PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
         }
@@ -41523,13 +41523,13 @@ public struct OpUDot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "packedVectorFormat")
                 PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
         }
@@ -41649,13 +41649,13 @@ public struct OpSUDot : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "packedVectorFormat")
                 PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
         }
@@ -41785,15 +41785,15 @@ public struct OpSDotAccSat : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "accumulator")
-                Accumulator = o.To<int>();
+                Accumulator = o.ToLiteral<int>();
             if (o.Name == "packedVectorFormat")
                 PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
         }
@@ -41924,15 +41924,15 @@ public struct OpUDotAccSat : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "accumulator")
-                Accumulator = o.To<int>();
+                Accumulator = o.ToLiteral<int>();
             if (o.Name == "packedVectorFormat")
                 PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
         }
@@ -42063,15 +42063,15 @@ public struct OpSUDotAccSat : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "vector1")
-                Vector1 = o.To<int>();
+                Vector1 = o.ToLiteral<int>();
             if (o.Name == "vector2")
-                Vector2 = o.To<int>();
+                Vector2 = o.ToLiteral<int>();
             if (o.Name == "accumulator")
-                Accumulator = o.To<int>();
+                Accumulator = o.ToLiteral<int>();
             if (o.Name == "packedVectorFormat")
                 PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
         }
@@ -42202,17 +42202,17 @@ public struct OpTypeCooperativeMatrixKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "componentType")
-                ComponentType = o.To<int>();
+                ComponentType = o.ToLiteral<int>();
             if (o.Name == "scope")
-                Scope = o.To<int>();
+                Scope = o.ToLiteral<int>();
             if (o.Name == "rows")
-                Rows = o.To<int>();
+                Rows = o.ToLiteral<int>();
             if (o.Name == "columns")
-                Columns = o.To<int>();
+                Columns = o.ToLiteral<int>();
             if (o.Name == "use")
-                Use = o.To<int>();
+                Use = o.ToLiteral<int>();
         }
     }
 
@@ -42341,15 +42341,15 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memoryLayout")
-                MemoryLayout = o.To<int>();
+                MemoryLayout = o.ToLiteral<int>();
             if (o.Name == "stride")
-                Stride = o.To<int?>();
+                Stride = o.ToLiteral<int?>();
             if (o.Name == "memoryOperand")
                 MemoryOperand = o.ToEnum<MemoryAccessMask>();
         }
@@ -42468,13 +42468,13 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "objectId")
-                ObjectId = o.To<int>();
+                ObjectId = o.ToLiteral<int>();
             if (o.Name == "memoryLayout")
-                MemoryLayout = o.To<int>();
+                MemoryLayout = o.ToLiteral<int>();
             if (o.Name == "stride")
-                Stride = o.To<int?>();
+                Stride = o.ToLiteral<int?>();
             if (o.Name == "memoryOperand")
                 MemoryOperand = o.ToEnum<MemoryAccessMask>();
         }
@@ -42604,15 +42604,15 @@ public struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "c")
-                C = o.To<int>();
+                C = o.ToLiteral<int>();
             if (o.Name == "cooperativeMatrixOperands")
                 CooperativeMatrixOperands = o.ToEnum<CooperativeMatrixOperandsMask>();
         }
@@ -42713,11 +42713,11 @@ public struct OpCooperativeMatrixLengthKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "type")
-                Type = o.To<int>();
+                Type = o.ToLiteral<int>();
         }
     }
 
@@ -42813,11 +42813,11 @@ public struct OpConstantCompositeReplicateEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -42913,11 +42913,11 @@ public struct OpSpecConstantCompositeReplicateEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -43013,11 +43013,11 @@ public struct OpCompositeConstructReplicateEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -43093,7 +43093,7 @@ public struct OpTypeRayQueryKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -43235,21 +43235,21 @@ public struct OpRayQueryInitializeKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullMask")
-                CullMask = o.To<int>();
+                CullMask = o.ToLiteral<int>();
             if (o.Name == "rayOrigin")
-                RayOrigin = o.To<int>();
+                RayOrigin = o.ToLiteral<int>();
             if (o.Name == "rayTMin")
-                RayTMin = o.To<int>();
+                RayTMin = o.ToLiteral<int>();
             if (o.Name == "rayDirection")
-                RayDirection = o.To<int>();
+                RayDirection = o.ToLiteral<int>();
             if (o.Name == "rayTMax")
-                RayTMax = o.To<int>();
+                RayTMax = o.ToLiteral<int>();
         }
     }
 
@@ -43328,7 +43328,7 @@ public struct OpRayQueryTerminateKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -43410,9 +43410,9 @@ public struct OpRayQueryGenerateIntersectionKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "hitT")
-                HitT = o.To<int>();
+                HitT = o.ToLiteral<int>();
         }
     }
 
@@ -43485,7 +43485,7 @@ public struct OpRayQueryConfirmIntersectionKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -43579,11 +43579,11 @@ public struct OpRayQueryProceedKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -43689,13 +43689,13 @@ public struct OpRayQueryGetIntersectionTypeKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -43812,15 +43812,15 @@ public struct OpImageSampleWeightedQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "texture")
-                Texture = o.To<int>();
+                Texture = o.ToLiteral<int>();
             if (o.Name == "coordinates")
-                Coordinates = o.To<int>();
+                Coordinates = o.ToLiteral<int>();
             if (o.Name == "weights")
-                Weights = o.To<int>();
+                Weights = o.ToLiteral<int>();
         }
     }
 
@@ -43938,15 +43938,15 @@ public struct OpImageBoxFilterQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "texture")
-                Texture = o.To<int>();
+                Texture = o.ToLiteral<int>();
             if (o.Name == "coordinates")
-                Coordinates = o.To<int>();
+                Coordinates = o.ToLiteral<int>();
             if (o.Name == "boxSize")
-                BoxSize = o.To<int>();
+                BoxSize = o.ToLiteral<int>();
         }
     }
 
@@ -44084,19 +44084,19 @@ public struct OpImageBlockMatchSSDQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "targetCoordinates")
-                TargetCoordinates = o.To<int>();
+                TargetCoordinates = o.ToLiteral<int>();
             if (o.Name == "reference")
-                Reference = o.To<int>();
+                Reference = o.ToLiteral<int>();
             if (o.Name == "referenceCoordinates")
-                ReferenceCoordinates = o.To<int>();
+                ReferenceCoordinates = o.ToLiteral<int>();
             if (o.Name == "blockSize")
-                BlockSize = o.To<int>();
+                BlockSize = o.ToLiteral<int>();
         }
     }
 
@@ -44236,19 +44236,19 @@ public struct OpImageBlockMatchSADQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "targetCoordinates")
-                TargetCoordinates = o.To<int>();
+                TargetCoordinates = o.ToLiteral<int>();
             if (o.Name == "reference")
-                Reference = o.To<int>();
+                Reference = o.ToLiteral<int>();
             if (o.Name == "referenceCoordinates")
-                ReferenceCoordinates = o.To<int>();
+                ReferenceCoordinates = o.ToLiteral<int>();
             if (o.Name == "blockSize")
-                BlockSize = o.To<int>();
+                BlockSize = o.ToLiteral<int>();
         }
     }
 
@@ -44388,19 +44388,19 @@ public struct OpImageBlockMatchWindowSSDQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "targetSampledImage")
-                TargetSampledImage = o.To<int>();
+                TargetSampledImage = o.ToLiteral<int>();
             if (o.Name == "targetCoordinates")
-                TargetCoordinates = o.To<int>();
+                TargetCoordinates = o.ToLiteral<int>();
             if (o.Name == "referenceSampledImage")
-                ReferenceSampledImage = o.To<int>();
+                ReferenceSampledImage = o.ToLiteral<int>();
             if (o.Name == "referenceCoordinates")
-                ReferenceCoordinates = o.To<int>();
+                ReferenceCoordinates = o.ToLiteral<int>();
             if (o.Name == "blockSize")
-                BlockSize = o.To<int>();
+                BlockSize = o.ToLiteral<int>();
         }
     }
 
@@ -44540,19 +44540,19 @@ public struct OpImageBlockMatchWindowSADQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "targetSampledImage")
-                TargetSampledImage = o.To<int>();
+                TargetSampledImage = o.ToLiteral<int>();
             if (o.Name == "targetCoordinates")
-                TargetCoordinates = o.To<int>();
+                TargetCoordinates = o.ToLiteral<int>();
             if (o.Name == "referenceSampledImage")
-                ReferenceSampledImage = o.To<int>();
+                ReferenceSampledImage = o.ToLiteral<int>();
             if (o.Name == "referenceCoordinates")
-                ReferenceCoordinates = o.To<int>();
+                ReferenceCoordinates = o.ToLiteral<int>();
             if (o.Name == "blockSize")
-                BlockSize = o.To<int>();
+                BlockSize = o.ToLiteral<int>();
         }
     }
 
@@ -44692,19 +44692,19 @@ public struct OpImageBlockMatchGatherSSDQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "targetSampledImage")
-                TargetSampledImage = o.To<int>();
+                TargetSampledImage = o.ToLiteral<int>();
             if (o.Name == "targetCoordinates")
-                TargetCoordinates = o.To<int>();
+                TargetCoordinates = o.ToLiteral<int>();
             if (o.Name == "referenceSampledImage")
-                ReferenceSampledImage = o.To<int>();
+                ReferenceSampledImage = o.ToLiteral<int>();
             if (o.Name == "referenceCoordinates")
-                ReferenceCoordinates = o.To<int>();
+                ReferenceCoordinates = o.ToLiteral<int>();
             if (o.Name == "blockSize")
-                BlockSize = o.To<int>();
+                BlockSize = o.ToLiteral<int>();
         }
     }
 
@@ -44844,19 +44844,19 @@ public struct OpImageBlockMatchGatherSADQCOM : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "targetSampledImage")
-                TargetSampledImage = o.To<int>();
+                TargetSampledImage = o.ToLiteral<int>();
             if (o.Name == "targetCoordinates")
-                TargetCoordinates = o.To<int>();
+                TargetCoordinates = o.ToLiteral<int>();
             if (o.Name == "referenceSampledImage")
-                ReferenceSampledImage = o.To<int>();
+                ReferenceSampledImage = o.ToLiteral<int>();
             if (o.Name == "referenceCoordinates")
-                ReferenceCoordinates = o.To<int>();
+                ReferenceCoordinates = o.ToLiteral<int>();
             if (o.Name == "blockSize")
-                BlockSize = o.To<int>();
+                BlockSize = o.ToLiteral<int>();
         }
     }
 
@@ -44976,15 +44976,15 @@ public struct OpGroupIAddNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45102,15 +45102,15 @@ public struct OpGroupFAddNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45228,15 +45228,15 @@ public struct OpGroupFMinNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45354,15 +45354,15 @@ public struct OpGroupUMinNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45480,15 +45480,15 @@ public struct OpGroupSMinNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45606,15 +45606,15 @@ public struct OpGroupFMaxNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45732,15 +45732,15 @@ public struct OpGroupUMaxNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45858,15 +45858,15 @@ public struct OpGroupSMaxNonUniformAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -45974,13 +45974,13 @@ public struct OpFragmentMaskFetchAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
         }
     }
 
@@ -46097,15 +46097,15 @@ public struct OpFragmentFetchAMD : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "fragmentIndex")
-                FragmentIndex = o.To<int>();
+                FragmentIndex = o.ToLiteral<int>();
         }
     }
 
@@ -46203,11 +46203,11 @@ public struct OpReadClockKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "scope")
-                Scope = o.To<int>();
+                Scope = o.ToLiteral<int>();
         }
     }
 
@@ -46323,15 +46323,15 @@ public struct OpAllocateNodePayloadsAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "visibility")
-                Visibility = o.To<int>();
+                Visibility = o.ToLiteral<int>();
             if (o.Name == "payloadCount")
-                PayloadCount = o.To<int>();
+                PayloadCount = o.ToLiteral<int>();
             if (o.Name == "nodeIndex")
-                NodeIndex = o.To<int>();
+                NodeIndex = o.ToLiteral<int>();
         }
     }
 
@@ -46407,7 +46407,7 @@ public struct OpEnqueueNodePayloadsAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "payloadArray")
-                PayloadArray = o.To<int>();
+                PayloadArray = o.ToLiteral<int>();
         }
     }
 
@@ -46491,9 +46491,9 @@ public struct OpTypeNodePayloadArrayAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payloadType")
-                PayloadType = o.To<int>();
+                PayloadType = o.ToLiteral<int>();
         }
     }
 
@@ -46588,11 +46588,11 @@ public struct OpFinishWritingNodePayloadAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -46688,11 +46688,11 @@ public struct OpNodePayloadArrayLengthAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payloadArray")
-                PayloadArray = o.To<int>();
+                PayloadArray = o.ToLiteral<int>();
         }
     }
 
@@ -46798,13 +46798,13 @@ public struct OpIsNodePayloadValidAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payloadType")
-                PayloadType = o.To<int>();
+                PayloadType = o.ToLiteral<int>();
             if (o.Name == "nodeIndex")
-                NodeIndex = o.To<int>();
+                NodeIndex = o.ToLiteral<int>();
         }
     }
 
@@ -46891,9 +46891,9 @@ public struct OpConstantStringAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "literalString")
-                LiteralString = o.To<string>();
+                LiteralString = o.ToLiteral<string>();
         }
     }
 
@@ -46978,9 +46978,9 @@ public struct OpSpecConstantStringAMDX : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "literalString")
-                LiteralString = o.To<string>();
+                LiteralString = o.ToLiteral<string>();
         }
     }
 
@@ -47075,11 +47075,11 @@ public struct OpGroupNonUniformQuadAllKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -47175,11 +47175,11 @@ public struct OpGroupNonUniformQuadAnyKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "predicate")
-                Predicate = o.To<int>();
+                Predicate = o.ToLiteral<int>();
         }
     }
 
@@ -47383,33 +47383,33 @@ public struct OpHitObjectRecordHitMotionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "accelerationStructure")
-                AccelerationStructure = o.To<int>();
+                AccelerationStructure = o.ToLiteral<int>();
             if (o.Name == "instanceId")
-                InstanceId = o.To<int>();
+                InstanceId = o.ToLiteral<int>();
             if (o.Name == "primitiveId")
-                PrimitiveId = o.To<int>();
+                PrimitiveId = o.ToLiteral<int>();
             if (o.Name == "geometryIndex")
-                GeometryIndex = o.To<int>();
+                GeometryIndex = o.ToLiteral<int>();
             if (o.Name == "hitKind")
-                HitKind = o.To<int>();
+                HitKind = o.ToLiteral<int>();
             if (o.Name == "sBTRecordOffset")
-                SBTRecordOffset = o.To<int>();
+                SBTRecordOffset = o.ToLiteral<int>();
             if (o.Name == "sBTRecordStride")
-                SBTRecordStride = o.To<int>();
+                SBTRecordStride = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "currentTime")
-                CurrentTime = o.To<int>();
+                CurrentTime = o.ToLiteral<int>();
             if (o.Name == "hitObjectAttributes")
-                HitObjectAttributes = o.To<int>();
+                HitObjectAttributes = o.ToLiteral<int>();
         }
     }
 
@@ -47614,31 +47614,31 @@ public struct OpHitObjectRecordHitWithIndexMotionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "accelerationStructure")
-                AccelerationStructure = o.To<int>();
+                AccelerationStructure = o.ToLiteral<int>();
             if (o.Name == "instanceId")
-                InstanceId = o.To<int>();
+                InstanceId = o.ToLiteral<int>();
             if (o.Name == "primitiveId")
-                PrimitiveId = o.To<int>();
+                PrimitiveId = o.ToLiteral<int>();
             if (o.Name == "geometryIndex")
-                GeometryIndex = o.To<int>();
+                GeometryIndex = o.ToLiteral<int>();
             if (o.Name == "hitKind")
-                HitKind = o.To<int>();
+                HitKind = o.ToLiteral<int>();
             if (o.Name == "sBTRecordIndex")
-                SBTRecordIndex = o.To<int>();
+                SBTRecordIndex = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "currentTime")
-                CurrentTime = o.To<int>();
+                CurrentTime = o.ToLiteral<int>();
             if (o.Name == "hitObjectAttributes")
-                HitObjectAttributes = o.To<int>();
+                HitObjectAttributes = o.ToLiteral<int>();
         }
     }
 
@@ -47782,19 +47782,19 @@ public struct OpHitObjectRecordMissMotionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "sBTIndex")
-                SBTIndex = o.To<int>();
+                SBTIndex = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "currentTime")
-                CurrentTime = o.To<int>();
+                CurrentTime = o.ToLiteral<int>();
         }
     }
 
@@ -47894,11 +47894,11 @@ public struct OpHitObjectGetWorldToObjectNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -47994,11 +47994,11 @@ public struct OpHitObjectGetObjectToWorldNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -48094,11 +48094,11 @@ public struct OpHitObjectGetObjectRayDirectionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -48194,11 +48194,11 @@ public struct OpHitObjectGetObjectRayOriginNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -48392,31 +48392,31 @@ public struct OpHitObjectTraceRayMotionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "accelerationStructure")
-                AccelerationStructure = o.To<int>();
+                AccelerationStructure = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullmask")
-                Cullmask = o.To<int>();
+                Cullmask = o.ToLiteral<int>();
             if (o.Name == "sBTRecordOffset")
-                SBTRecordOffset = o.To<int>();
+                SBTRecordOffset = o.ToLiteral<int>();
             if (o.Name == "sBTRecordStride")
-                SBTRecordStride = o.To<int>();
+                SBTRecordStride = o.ToLiteral<int>();
             if (o.Name == "missIndex")
-                MissIndex = o.To<int>();
+                MissIndex = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "time")
-                Time = o.To<int>();
+                Time = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -48522,11 +48522,11 @@ public struct OpHitObjectGetShaderRecordBufferHandleNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -48622,11 +48622,11 @@ public struct OpHitObjectGetShaderBindingTableRecordIndexNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -48700,7 +48700,7 @@ public struct OpHitObjectRecordEmptyNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -48882,29 +48882,29 @@ public struct OpHitObjectTraceRayNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "accelerationStructure")
-                AccelerationStructure = o.To<int>();
+                AccelerationStructure = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullmask")
-                Cullmask = o.To<int>();
+                Cullmask = o.ToLiteral<int>();
             if (o.Name == "sBTRecordOffset")
-                SBTRecordOffset = o.To<int>();
+                SBTRecordOffset = o.ToLiteral<int>();
             if (o.Name == "sBTRecordStride")
-                SBTRecordStride = o.To<int>();
+                SBTRecordStride = o.ToLiteral<int>();
             if (o.Name == "missIndex")
-                MissIndex = o.To<int>();
+                MissIndex = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -49107,31 +49107,31 @@ public struct OpHitObjectRecordHitNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "accelerationStructure")
-                AccelerationStructure = o.To<int>();
+                AccelerationStructure = o.ToLiteral<int>();
             if (o.Name == "instanceId")
-                InstanceId = o.To<int>();
+                InstanceId = o.ToLiteral<int>();
             if (o.Name == "primitiveId")
-                PrimitiveId = o.To<int>();
+                PrimitiveId = o.ToLiteral<int>();
             if (o.Name == "geometryIndex")
-                GeometryIndex = o.To<int>();
+                GeometryIndex = o.ToLiteral<int>();
             if (o.Name == "hitKind")
-                HitKind = o.To<int>();
+                HitKind = o.ToLiteral<int>();
             if (o.Name == "sBTRecordOffset")
-                SBTRecordOffset = o.To<int>();
+                SBTRecordOffset = o.ToLiteral<int>();
             if (o.Name == "sBTRecordStride")
-                SBTRecordStride = o.To<int>();
+                SBTRecordStride = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "hitObjectAttributes")
-                HitObjectAttributes = o.To<int>();
+                HitObjectAttributes = o.ToLiteral<int>();
         }
     }
 
@@ -49325,29 +49325,29 @@ public struct OpHitObjectRecordHitWithIndexNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "accelerationStructure")
-                AccelerationStructure = o.To<int>();
+                AccelerationStructure = o.ToLiteral<int>();
             if (o.Name == "instanceId")
-                InstanceId = o.To<int>();
+                InstanceId = o.ToLiteral<int>();
             if (o.Name == "primitiveId")
-                PrimitiveId = o.To<int>();
+                PrimitiveId = o.ToLiteral<int>();
             if (o.Name == "geometryIndex")
-                GeometryIndex = o.To<int>();
+                GeometryIndex = o.ToLiteral<int>();
             if (o.Name == "hitKind")
-                HitKind = o.To<int>();
+                HitKind = o.ToLiteral<int>();
             if (o.Name == "sBTRecordIndex")
-                SBTRecordIndex = o.To<int>();
+                SBTRecordIndex = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
             if (o.Name == "hitObjectAttributes")
-                HitObjectAttributes = o.To<int>();
+                HitObjectAttributes = o.ToLiteral<int>();
         }
     }
 
@@ -49480,17 +49480,17 @@ public struct OpHitObjectRecordMissNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "sBTIndex")
-                SBTIndex = o.To<int>();
+                SBTIndex = o.ToLiteral<int>();
             if (o.Name == "origin")
-                Origin = o.To<int>();
+                Origin = o.ToLiteral<int>();
             if (o.Name == "tMin")
-                TMin = o.To<int>();
+                TMin = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "tMax")
-                TMax = o.To<int>();
+                TMax = o.ToLiteral<int>();
         }
     }
 
@@ -49577,9 +49577,9 @@ public struct OpHitObjectExecuteShaderNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -49674,11 +49674,11 @@ public struct OpHitObjectGetCurrentTimeNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -49762,9 +49762,9 @@ public struct OpHitObjectGetAttributesNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "hitObjectAttribute")
-                HitObjectAttribute = o.To<int>();
+                HitObjectAttribute = o.ToLiteral<int>();
         }
     }
 
@@ -49859,11 +49859,11 @@ public struct OpHitObjectGetHitKindNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -49959,11 +49959,11 @@ public struct OpHitObjectGetPrimitiveIndexNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50059,11 +50059,11 @@ public struct OpHitObjectGetGeometryIndexNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50159,11 +50159,11 @@ public struct OpHitObjectGetInstanceIdNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50259,11 +50259,11 @@ public struct OpHitObjectGetInstanceCustomIndexNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50359,11 +50359,11 @@ public struct OpHitObjectGetWorldRayDirectionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50459,11 +50459,11 @@ public struct OpHitObjectGetWorldRayOriginNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50559,11 +50559,11 @@ public struct OpHitObjectGetRayTMaxNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50659,11 +50659,11 @@ public struct OpHitObjectGetRayTMinNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50759,11 +50759,11 @@ public struct OpHitObjectIsEmptyNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50859,11 +50859,11 @@ public struct OpHitObjectIsHitNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -50959,11 +50959,11 @@ public struct OpHitObjectIsMissNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
         }
     }
 
@@ -51057,11 +51057,11 @@ public struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hitObject")
-                HitObject = o.To<int>();
+                HitObject = o.ToLiteral<int>();
             if (o.Name == "hint")
-                Hint = o.To<int?>();
+                Hint = o.ToLiteral<int?>();
             if (o.Name == "bits")
-                Bits = o.To<int?>();
+                Bits = o.ToLiteral<int?>();
         }
     }
 
@@ -51145,9 +51145,9 @@ public struct OpReorderThreadWithHintNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "hint")
-                Hint = o.To<int>();
+                Hint = o.ToLiteral<int>();
             if (o.Name == "bits")
-                Bits = o.To<int>();
+                Bits = o.ToLiteral<int>();
         }
     }
 
@@ -51222,7 +51222,7 @@ public struct OpTypeHitObjectNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -51356,17 +51356,17 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sampledImage")
-                SampledImage = o.To<int>();
+                SampledImage = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "granularity")
-                Granularity = o.To<int>();
+                Granularity = o.ToLiteral<int>();
             if (o.Name == "coarse")
-                Coarse = o.To<int>();
+                Coarse = o.ToLiteral<int>();
             if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
         }
@@ -51468,11 +51468,11 @@ public struct OpCooperativeMatrixConvertNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
         }
     }
 
@@ -51576,13 +51576,13 @@ public struct OpEmitMeshTasksEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "groupCountX")
-                GroupCountX = o.To<int>();
+                GroupCountX = o.ToLiteral<int>();
             if (o.Name == "groupCountY")
-                GroupCountY = o.To<int>();
+                GroupCountY = o.ToLiteral<int>();
             if (o.Name == "groupCountZ")
-                GroupCountZ = o.To<int>();
+                GroupCountZ = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int?>();
+                Payload = o.ToLiteral<int?>();
         }
     }
 
@@ -51667,9 +51667,9 @@ public struct OpSetMeshOutputsEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "vertexCount")
-                VertexCount = o.To<int>();
+                VertexCount = o.ToLiteral<int>();
             if (o.Name == "primitiveCount")
-                PrimitiveCount = o.To<int>();
+                PrimitiveCount = o.ToLiteral<int>();
         }
     }
 
@@ -51764,11 +51764,11 @@ public struct OpGroupNonUniformPartitionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -51852,9 +51852,9 @@ public struct OpWritePackedPrimitiveIndices4x8NV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "indexOffset")
-                IndexOffset = o.To<int>();
+                IndexOffset = o.ToLiteral<int>();
             if (o.Name == "packedIndices")
-                PackedIndices = o.To<int>();
+                PackedIndices = o.ToLiteral<int>();
         }
     }
 
@@ -51989,19 +51989,19 @@ public struct OpFetchMicroTriangleVertexPositionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "instanceId")
-                InstanceId = o.To<int>();
+                InstanceId = o.ToLiteral<int>();
             if (o.Name == "geometryIndex")
-                GeometryIndex = o.To<int>();
+                GeometryIndex = o.ToLiteral<int>();
             if (o.Name == "primitiveIndex")
-                PrimitiveIndex = o.To<int>();
+                PrimitiveIndex = o.ToLiteral<int>();
             if (o.Name == "barycentric")
-                Barycentric = o.To<int>();
+                Barycentric = o.ToLiteral<int>();
         }
     }
 
@@ -52141,19 +52141,19 @@ public struct OpFetchMicroTriangleVertexBarycentricNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "instanceId")
-                InstanceId = o.To<int>();
+                InstanceId = o.ToLiteral<int>();
             if (o.Name == "geometryIndex")
-                GeometryIndex = o.To<int>();
+                GeometryIndex = o.ToLiteral<int>();
             if (o.Name == "primitiveIndex")
-                PrimitiveIndex = o.To<int>();
+                PrimitiveIndex = o.ToLiteral<int>();
             if (o.Name == "barycentric")
-                Barycentric = o.To<int>();
+                Barycentric = o.ToLiteral<int>();
         }
     }
 
@@ -52263,13 +52263,13 @@ public struct OpReportIntersectionKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "hit")
-                Hit = o.To<int>();
+                Hit = o.ToLiteral<int>();
             if (o.Name == "hitKind")
-                HitKind = o.To<int>();
+                HitKind = o.ToLiteral<int>();
         }
     }
 
@@ -52520,27 +52520,27 @@ public struct OpTraceNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullMask")
-                CullMask = o.To<int>();
+                CullMask = o.ToLiteral<int>();
             if (o.Name == "sBTOffset")
-                SBTOffset = o.To<int>();
+                SBTOffset = o.ToLiteral<int>();
             if (o.Name == "sBTStride")
-                SBTStride = o.To<int>();
+                SBTStride = o.ToLiteral<int>();
             if (o.Name == "missIndex")
-                MissIndex = o.To<int>();
+                MissIndex = o.ToLiteral<int>();
             if (o.Name == "rayOrigin")
-                RayOrigin = o.To<int>();
+                RayOrigin = o.ToLiteral<int>();
             if (o.Name == "rayTmin")
-                RayTmin = o.To<int>();
+                RayTmin = o.ToLiteral<int>();
             if (o.Name == "rayDirection")
-                RayDirection = o.To<int>();
+                RayDirection = o.ToLiteral<int>();
             if (o.Name == "rayTmax")
-                RayTmax = o.To<int>();
+                RayTmax = o.ToLiteral<int>();
             if (o.Name == "payloadId")
-                PayloadId = o.To<int>();
+                PayloadId = o.ToLiteral<int>();
         }
     }
 
@@ -52732,29 +52732,29 @@ public struct OpTraceMotionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullMask")
-                CullMask = o.To<int>();
+                CullMask = o.ToLiteral<int>();
             if (o.Name == "sBTOffset")
-                SBTOffset = o.To<int>();
+                SBTOffset = o.ToLiteral<int>();
             if (o.Name == "sBTStride")
-                SBTStride = o.To<int>();
+                SBTStride = o.ToLiteral<int>();
             if (o.Name == "missIndex")
-                MissIndex = o.To<int>();
+                MissIndex = o.ToLiteral<int>();
             if (o.Name == "rayOrigin")
-                RayOrigin = o.To<int>();
+                RayOrigin = o.ToLiteral<int>();
             if (o.Name == "rayTmin")
-                RayTmin = o.To<int>();
+                RayTmin = o.ToLiteral<int>();
             if (o.Name == "rayDirection")
-                RayDirection = o.To<int>();
+                RayDirection = o.ToLiteral<int>();
             if (o.Name == "rayTmax")
-                RayTmax = o.To<int>();
+                RayTmax = o.ToLiteral<int>();
             if (o.Name == "time")
-                Time = o.To<int>();
+                Time = o.ToLiteral<int>();
             if (o.Name == "payloadId")
-                PayloadId = o.To<int>();
+                PayloadId = o.ToLiteral<int>();
         }
     }
 
@@ -52947,29 +52947,29 @@ public struct OpTraceRayMotionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "accel")
-                Accel = o.To<int>();
+                Accel = o.ToLiteral<int>();
             if (o.Name == "rayFlags")
-                RayFlags = o.To<int>();
+                RayFlags = o.ToLiteral<int>();
             if (o.Name == "cullMask")
-                CullMask = o.To<int>();
+                CullMask = o.ToLiteral<int>();
             if (o.Name == "sBTOffset")
-                SBTOffset = o.To<int>();
+                SBTOffset = o.ToLiteral<int>();
             if (o.Name == "sBTStride")
-                SBTStride = o.To<int>();
+                SBTStride = o.ToLiteral<int>();
             if (o.Name == "missIndex")
-                MissIndex = o.To<int>();
+                MissIndex = o.ToLiteral<int>();
             if (o.Name == "rayOrigin")
-                RayOrigin = o.To<int>();
+                RayOrigin = o.ToLiteral<int>();
             if (o.Name == "rayTmin")
-                RayTmin = o.To<int>();
+                RayTmin = o.ToLiteral<int>();
             if (o.Name == "rayDirection")
-                RayDirection = o.To<int>();
+                RayDirection = o.ToLiteral<int>();
             if (o.Name == "rayTmax")
-                RayTmax = o.To<int>();
+                RayTmax = o.ToLiteral<int>();
             if (o.Name == "time")
-                Time = o.To<int>();
+                Time = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -53084,13 +53084,13 @@ public struct OpRayQueryGetIntersectionTriangleVertexPositionsKHR : IMemoryInstr
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -53167,7 +53167,7 @@ public struct OpTypeAccelerationStructureKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -53249,9 +53249,9 @@ public struct OpExecuteCallableNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "sBTIndex")
-                SBTIndex = o.To<int>();
+                SBTIndex = o.ToLiteral<int>();
             if (o.Name == "callableDataId")
-                CallableDataId = o.To<int>();
+                CallableDataId = o.ToLiteral<int>();
         }
     }
 
@@ -53366,15 +53366,15 @@ public struct OpTypeCooperativeMatrixNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "componentType")
-                ComponentType = o.To<int>();
+                ComponentType = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "rows")
-                Rows = o.To<int>();
+                Rows = o.ToLiteral<int>();
             if (o.Name == "columns")
-                Columns = o.To<int>();
+                Columns = o.ToLiteral<int>();
         }
     }
 
@@ -53502,15 +53502,15 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "stride")
-                Stride = o.To<int>();
+                Stride = o.ToLiteral<int>();
             if (o.Name == "columnMajor")
-                ColumnMajor = o.To<int>();
+                ColumnMajor = o.ToLiteral<int>();
             if (o.Name == "memoryaccess")
                 Memoryaccess = o.ToEnum<MemoryAccessMask>();
         }
@@ -53629,13 +53629,13 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "objectId")
-                ObjectId = o.To<int>();
+                ObjectId = o.ToLiteral<int>();
             if (o.Name == "stride")
-                Stride = o.To<int>();
+                Stride = o.ToLiteral<int>();
             if (o.Name == "columnMajor")
-                ColumnMajor = o.To<int>();
+                ColumnMajor = o.ToLiteral<int>();
             if (o.Name == "memoryaccess")
                 Memoryaccess = o.ToEnum<MemoryAccessMask>();
         }
@@ -53755,15 +53755,15 @@ public struct OpCooperativeMatrixMulAddNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "c")
-                C = o.To<int>();
+                C = o.ToLiteral<int>();
         }
     }
 
@@ -53861,11 +53861,11 @@ public struct OpCooperativeMatrixLengthNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "type")
-                Type = o.To<int>();
+                Type = o.ToLiteral<int>();
         }
     }
 
@@ -54057,15 +54057,15 @@ public struct OpCooperativeMatrixReduceNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
             if (o.Name == "reduce")
                 Reduce = o.ToEnum<CooperativeMatrixReduceMask>();
             if (o.Name == "combineFunc")
-                CombineFunc = o.To<int>();
+                CombineFunc = o.ToLiteral<int>();
         }
     }
 
@@ -54203,15 +54203,15 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "objectId")
-                ObjectId = o.To<int>();
+                ObjectId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "memoryOperand")
                 MemoryOperand = o.ToEnum<MemoryAccessMask>();
             if (o.Name == "tensorAddressingOperands")
@@ -54333,11 +54333,11 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "objectId")
-                ObjectId = o.To<int>();
+                ObjectId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "memoryOperand")
                 MemoryOperand = o.ToEnum<MemoryAccessMask>();
             if (o.Name == "tensorAddressingOperands")
@@ -54459,15 +54459,15 @@ public struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
             if (o.Name == "func")
-                Func = o.To<int>();
+                Func = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -54565,11 +54565,11 @@ public struct OpTypeTensorLayoutNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "dim")
-                Dim = o.To<int>();
+                Dim = o.ToLiteral<int>();
             if (o.Name == "clampMode")
-                ClampMode = o.To<int>();
+                ClampMode = o.ToLiteral<int>();
         }
     }
 
@@ -54675,13 +54675,13 @@ public struct OpTypeTensorViewNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "dim")
-                Dim = o.To<int>();
+                Dim = o.ToLiteral<int>();
             if (o.Name == "hasDimensions")
-                HasDimensions = o.To<int>();
+                HasDimensions = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -54768,9 +54768,9 @@ public struct OpCreateTensorLayoutNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -54875,13 +54875,13 @@ public struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -54988,13 +54988,13 @@ public struct OpTensorLayoutSetStrideNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -55101,13 +55101,13 @@ public struct OpTensorLayoutSliceNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -55214,13 +55214,13 @@ public struct OpTensorLayoutSetClampValueNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -55307,9 +55307,9 @@ public struct OpCreateTensorViewNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -55414,13 +55414,13 @@ public struct OpTensorViewSetDimensionNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorView")
-                TensorView = o.To<int>();
+                TensorView = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -55527,13 +55527,13 @@ public struct OpTensorViewSetStrideNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorView")
-                TensorView = o.To<int>();
+                TensorView = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -55658,9 +55658,9 @@ public struct OpIsHelperInvocationEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -55795,19 +55795,19 @@ public struct OpTensorViewSetClipNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorView")
-                TensorView = o.To<int>();
+                TensorView = o.ToLiteral<int>();
             if (o.Name == "clipRowOffset")
-                ClipRowOffset = o.To<int>();
+                ClipRowOffset = o.ToLiteral<int>();
             if (o.Name == "clipRowSpan")
-                ClipRowSpan = o.To<int>();
+                ClipRowSpan = o.ToLiteral<int>();
             if (o.Name == "clipColOffset")
-                ClipColOffset = o.To<int>();
+                ClipColOffset = o.ToLiteral<int>();
             if (o.Name == "clipColSpan")
-                ClipColSpan = o.To<int>();
+                ClipColSpan = o.ToLiteral<int>();
         }
     }
 
@@ -55917,13 +55917,13 @@ public struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "tensorLayout")
-                TensorLayout = o.To<int>();
+                TensorLayout = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -56020,11 +56020,11 @@ public struct OpCooperativeMatrixTransposeNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "matrix")
-                Matrix = o.To<int>();
+                Matrix = o.ToLiteral<int>();
         }
     }
 
@@ -56120,11 +56120,11 @@ public struct OpConvertUToImageNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -56220,11 +56220,11 @@ public struct OpConvertUToSamplerNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -56320,11 +56320,11 @@ public struct OpConvertImageToUNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -56420,11 +56420,11 @@ public struct OpConvertSamplerToUNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -56520,11 +56520,11 @@ public struct OpConvertUToSampledImageNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -56620,11 +56620,11 @@ public struct OpConvertSampledImageToUNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -56698,7 +56698,7 @@ public struct OpSamplerImageAddressingModeNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "bitWidth")
-                BitWidth = o.To<int>();
+                BitWidth = o.ToLiteral<int>();
         }
     }
 
@@ -56832,17 +56832,17 @@ public struct OpRawAccessChainNV : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "baseId")
-                BaseId = o.To<int>();
+                BaseId = o.ToLiteral<int>();
             if (o.Name == "bytestride")
-                Bytestride = o.To<int>();
+                Bytestride = o.ToLiteral<int>();
             if (o.Name == "elementindex")
-                Elementindex = o.To<int>();
+                Elementindex = o.ToLiteral<int>();
             if (o.Name == "byteoffset")
-                Byteoffset = o.To<int>();
+                Byteoffset = o.ToLiteral<int>();
             if (o.Name == "rawaccesschainoperands")
                 Rawaccesschainoperands = o.ToEnum<RawAccessChainOperandsMask>();
         }
@@ -56954,13 +56954,13 @@ public struct OpSubgroupShuffleINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "data")
-                Data = o.To<int>();
+                Data = o.ToLiteral<int>();
             if (o.Name == "invocationId")
-                InvocationId = o.To<int>();
+                InvocationId = o.ToLiteral<int>();
         }
     }
 
@@ -57077,15 +57077,15 @@ public struct OpSubgroupShuffleDownINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "current")
-                Current = o.To<int>();
+                Current = o.ToLiteral<int>();
             if (o.Name == "next")
-                Next = o.To<int>();
+                Next = o.ToLiteral<int>();
             if (o.Name == "delta")
-                Delta = o.To<int>();
+                Delta = o.ToLiteral<int>();
         }
     }
 
@@ -57203,15 +57203,15 @@ public struct OpSubgroupShuffleUpINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "previous")
-                Previous = o.To<int>();
+                Previous = o.ToLiteral<int>();
             if (o.Name == "current")
-                Current = o.To<int>();
+                Current = o.ToLiteral<int>();
             if (o.Name == "delta")
-                Delta = o.To<int>();
+                Delta = o.ToLiteral<int>();
         }
     }
 
@@ -57319,13 +57319,13 @@ public struct OpSubgroupShuffleXorINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "data")
-                Data = o.To<int>();
+                Data = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -57422,11 +57422,11 @@ public struct OpSubgroupBlockReadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "ptr")
-                Ptr = o.To<int>();
+                Ptr = o.ToLiteral<int>();
         }
     }
 
@@ -57510,9 +57510,9 @@ public struct OpSubgroupBlockWriteINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "ptr")
-                Ptr = o.To<int>();
+                Ptr = o.ToLiteral<int>();
             if (o.Name == "data")
-                Data = o.To<int>();
+                Data = o.ToLiteral<int>();
         }
     }
 
@@ -57617,13 +57617,13 @@ public struct OpSubgroupImageBlockReadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
         }
     }
 
@@ -57718,11 +57718,11 @@ public struct OpSubgroupImageBlockWriteINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "data")
-                Data = o.To<int>();
+                Data = o.ToLiteral<int>();
         }
     }
 
@@ -57848,17 +57848,17 @@ public struct OpSubgroupImageMediaBlockReadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "width")
-                Width = o.To<int>();
+                Width = o.ToLiteral<int>();
             if (o.Name == "height")
-                Height = o.To<int>();
+                Height = o.ToLiteral<int>();
         }
     }
 
@@ -57975,15 +57975,15 @@ public struct OpSubgroupImageMediaBlockWriteINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "image")
-                Image = o.To<int>();
+                Image = o.ToLiteral<int>();
             if (o.Name == "coordinate")
-                Coordinate = o.To<int>();
+                Coordinate = o.ToLiteral<int>();
             if (o.Name == "width")
-                Width = o.To<int>();
+                Width = o.ToLiteral<int>();
             if (o.Name == "height")
-                Height = o.To<int>();
+                Height = o.ToLiteral<int>();
             if (o.Name == "data")
-                Data = o.To<int>();
+                Data = o.ToLiteral<int>();
         }
     }
 
@@ -58081,11 +58081,11 @@ public struct OpUCountLeadingZerosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -58181,11 +58181,11 @@ public struct OpUCountTrailingZerosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand")
-                Operand = o.To<int>();
+                Operand = o.ToLiteral<int>();
         }
     }
 
@@ -58291,13 +58291,13 @@ public struct OpAbsISubINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -58404,13 +58404,13 @@ public struct OpAbsUSubINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -58517,13 +58517,13 @@ public struct OpIAddSatINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -58630,13 +58630,13 @@ public struct OpUAddSatINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -58743,13 +58743,13 @@ public struct OpIAverageINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -58856,13 +58856,13 @@ public struct OpUAverageINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -58969,13 +58969,13 @@ public struct OpIAverageRoundedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -59082,13 +59082,13 @@ public struct OpUAverageRoundedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -59195,13 +59195,13 @@ public struct OpISubSatINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -59308,13 +59308,13 @@ public struct OpUSubSatINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -59421,13 +59421,13 @@ public struct OpIMul32x16INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -59534,13 +59534,13 @@ public struct OpUMul32x16INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "operand1")
-                Operand1 = o.To<int>();
+                Operand1 = o.ToLiteral<int>();
             if (o.Name == "operand2")
-                Operand2 = o.To<int>();
+                Operand2 = o.ToLiteral<int>();
         }
     }
 
@@ -59637,11 +59637,11 @@ public struct OpConstantFunctionPointerINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "function")
-                Function = o.To<int>();
+                Function = o.ToLiteral<int>();
         }
     }
 
@@ -59737,11 +59737,11 @@ public struct OpFunctionPointerCallINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -59837,11 +59837,11 @@ public struct OpAsmTargetINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "asmtarget")
-                Asmtarget = o.To<string>();
+                Asmtarget = o.ToLiteral<string>();
         }
     }
 
@@ -59967,17 +59967,17 @@ public struct OpAsmINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "asmtype")
-                Asmtype = o.To<int>();
+                Asmtype = o.ToLiteral<int>();
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "asminstructions")
-                Asminstructions = o.To<string>();
+                Asminstructions = o.ToLiteral<string>();
             if (o.Name == "constraints")
-                Constraints = o.To<string>();
+                Constraints = o.ToLiteral<string>();
         }
     }
 
@@ -60086,13 +60086,13 @@ public struct OpAsmCallINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "asm")
-                Asm = o.To<int>();
+                Asm = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -60219,17 +60219,17 @@ public struct OpAtomicFMinEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -60358,17 +60358,17 @@ public struct OpAtomicFMaxEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -60445,7 +60445,7 @@ public struct OpAssumeTrueKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "condition")
-                Condition = o.To<int>();
+                Condition = o.ToLiteral<int>();
         }
     }
 
@@ -60549,13 +60549,13 @@ public struct OpExpectKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
             if (o.Name == "expectedValue")
-                ExpectedValue = o.To<int>();
+                ExpectedValue = o.ToLiteral<int>();
         }
     }
 
@@ -60640,7 +60640,7 @@ public struct OpDecorateString : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
             if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
         }
@@ -60735,9 +60735,9 @@ public struct OpMemberDecorateString : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "structType")
-                StructType = o.To<int>();
+                StructType = o.ToLiteral<int>();
             if (o.Name == "member")
-                Member = o.To<int>();
+                Member = o.ToLiteral<int>();
             if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
         }
@@ -60845,13 +60845,13 @@ public struct OpVmeImageINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "imageType")
-                ImageType = o.To<int>();
+                ImageType = o.ToLiteral<int>();
             if (o.Name == "sampler")
-                Sampler = o.To<int>();
+                Sampler = o.ToLiteral<int>();
         }
     }
 
@@ -60938,9 +60938,9 @@ public struct OpTypeVmeImageINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "imageType")
-                ImageType = o.To<int>();
+                ImageType = o.ToLiteral<int>();
         }
     }
 
@@ -61015,7 +61015,7 @@ public struct OpTypeAvcImePayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61089,7 +61089,7 @@ public struct OpTypeAvcRefPayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61163,7 +61163,7 @@ public struct OpTypeAvcSicPayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61237,7 +61237,7 @@ public struct OpTypeAvcMcePayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61311,7 +61311,7 @@ public struct OpTypeAvcMceResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61385,7 +61385,7 @@ public struct OpTypeAvcImeResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61459,7 +61459,7 @@ public struct OpTypeAvcImeResultSingleReferenceStreamoutINTEL : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61533,7 +61533,7 @@ public struct OpTypeAvcImeResultDualReferenceStreamoutINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61607,7 +61607,7 @@ public struct OpTypeAvcImeSingleReferenceStreaminINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61681,7 +61681,7 @@ public struct OpTypeAvcImeDualReferenceStreaminINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61755,7 +61755,7 @@ public struct OpTypeAvcRefResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61829,7 +61829,7 @@ public struct OpTypeAvcSicResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -61933,13 +61933,13 @@ public struct OpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL : IM
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sliceType")
-                SliceType = o.To<int>();
+                SliceType = o.ToLiteral<int>();
             if (o.Name == "qp")
-                Qp = o.To<int>();
+                Qp = o.ToLiteral<int>();
         }
     }
 
@@ -62046,13 +62046,13 @@ public struct OpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL : IMemoryIn
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "referenceBasePenalty")
-                ReferenceBasePenalty = o.To<int>();
+                ReferenceBasePenalty = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -62159,13 +62159,13 @@ public struct OpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sliceType")
-                SliceType = o.To<int>();
+                SliceType = o.ToLiteral<int>();
             if (o.Name == "qp")
-                Qp = o.To<int>();
+                Qp = o.ToLiteral<int>();
         }
     }
 
@@ -62272,13 +62272,13 @@ public struct OpSubgroupAvcMceSetInterShapePenaltyINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packedShapePenalty")
-                PackedShapePenalty = o.To<int>();
+                PackedShapePenalty = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -62385,13 +62385,13 @@ public struct OpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL : IMemoryInst
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sliceType")
-                SliceType = o.To<int>();
+                SliceType = o.ToLiteral<int>();
             if (o.Name == "qp")
-                Qp = o.To<int>();
+                Qp = o.ToLiteral<int>();
         }
     }
 
@@ -62498,13 +62498,13 @@ public struct OpSubgroupAvcMceSetInterDirectionPenaltyINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "directionCost")
-                DirectionCost = o.To<int>();
+                DirectionCost = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -62611,13 +62611,13 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL : IMemoryInst
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sliceType")
-                SliceType = o.To<int>();
+                SliceType = o.ToLiteral<int>();
             if (o.Name == "qp")
-                Qp = o.To<int>();
+                Qp = o.ToLiteral<int>();
         }
     }
 
@@ -62724,13 +62724,13 @@ public struct OpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sliceType")
-                SliceType = o.To<int>();
+                SliceType = o.ToLiteral<int>();
             if (o.Name == "qp")
-                Qp = o.To<int>();
+                Qp = o.ToLiteral<int>();
         }
     }
 
@@ -62817,9 +62817,9 @@ public struct OpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL : IMemoryInstr
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -62904,9 +62904,9 @@ public struct OpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL : IMemoryIns
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -62991,9 +62991,9 @@ public struct OpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL : IMemoryInstru
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -63118,17 +63118,17 @@ public struct OpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packedCostCenterDelta")
-                PackedCostCenterDelta = o.To<int>();
+                PackedCostCenterDelta = o.ToLiteral<int>();
             if (o.Name == "packedCostTable")
-                PackedCostTable = o.To<int>();
+                PackedCostTable = o.ToLiteral<int>();
             if (o.Name == "costPrecision")
-                CostPrecision = o.To<int>();
+                CostPrecision = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -63237,13 +63237,13 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL : IMemoryInstr
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sliceType")
-                SliceType = o.To<int>();
+                SliceType = o.ToLiteral<int>();
             if (o.Name == "qp")
-                Qp = o.To<int>();
+                Qp = o.ToLiteral<int>();
         }
     }
 
@@ -63330,9 +63330,9 @@ public struct OpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL : IMemoryInst
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -63417,9 +63417,9 @@ public struct OpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -63514,11 +63514,11 @@ public struct OpSubgroupAvcMceSetAcOnlyHaarINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -63624,13 +63624,13 @@ public struct OpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL : IMemoryIns
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "sourceFieldPolarity")
-                SourceFieldPolarity = o.To<int>();
+                SourceFieldPolarity = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -63737,13 +63737,13 @@ public struct OpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL : I
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "referenceFieldPolarity")
-                ReferenceFieldPolarity = o.To<int>();
+                ReferenceFieldPolarity = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -63860,15 +63860,15 @@ public struct OpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL : I
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "forwardReferenceFieldPolarity")
-                ForwardReferenceFieldPolarity = o.To<int>();
+                ForwardReferenceFieldPolarity = o.ToLiteral<int>();
             if (o.Name == "backwardReferenceFieldPolarity")
-                BackwardReferenceFieldPolarity = o.To<int>();
+                BackwardReferenceFieldPolarity = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -63966,11 +63966,11 @@ public struct OpSubgroupAvcMceConvertToImePayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64066,11 +64066,11 @@ public struct OpSubgroupAvcMceConvertToImeResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64166,11 +64166,11 @@ public struct OpSubgroupAvcMceConvertToRefPayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64266,11 +64266,11 @@ public struct OpSubgroupAvcMceConvertToRefResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64366,11 +64366,11 @@ public struct OpSubgroupAvcMceConvertToSicPayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64466,11 +64466,11 @@ public struct OpSubgroupAvcMceConvertToSicResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64566,11 +64566,11 @@ public struct OpSubgroupAvcMceGetMotionVectorsINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64666,11 +64666,11 @@ public struct OpSubgroupAvcMceGetInterDistortionsINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64766,11 +64766,11 @@ public struct OpSubgroupAvcMceGetBestInterDistortionsINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64866,11 +64866,11 @@ public struct OpSubgroupAvcMceGetInterMajorShapeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -64966,11 +64966,11 @@ public struct OpSubgroupAvcMceGetInterMinorShapeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65066,11 +65066,11 @@ public struct OpSubgroupAvcMceGetInterDirectionsINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65166,11 +65166,11 @@ public struct OpSubgroupAvcMceGetInterMotionVectorCountINTEL : IMemoryInstructio
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65266,11 +65266,11 @@ public struct OpSubgroupAvcMceGetInterReferenceIdsINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65386,15 +65386,15 @@ public struct OpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL : 
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packedReferenceIds")
-                PackedReferenceIds = o.To<int>();
+                PackedReferenceIds = o.ToLiteral<int>();
             if (o.Name == "packedReferenceParameterFieldPolarities")
-                PackedReferenceParameterFieldPolarities = o.To<int>();
+                PackedReferenceParameterFieldPolarities = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65512,15 +65512,15 @@ public struct OpSubgroupAvcImeInitializeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcCoord")
-                SrcCoord = o.To<int>();
+                SrcCoord = o.ToLiteral<int>();
             if (o.Name == "partitionMask")
-                PartitionMask = o.To<int>();
+                PartitionMask = o.ToLiteral<int>();
             if (o.Name == "sADAdjustment")
-                SADAdjustment = o.To<int>();
+                SADAdjustment = o.ToLiteral<int>();
         }
     }
 
@@ -65638,15 +65638,15 @@ public struct OpSubgroupAvcImeSetSingleReferenceINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "refOffset")
-                RefOffset = o.To<int>();
+                RefOffset = o.ToLiteral<int>();
             if (o.Name == "searchWindowConfig")
-                SearchWindowConfig = o.To<int>();
+                SearchWindowConfig = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65774,17 +65774,17 @@ public struct OpSubgroupAvcImeSetDualReferenceINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "fwdRefOffset")
-                FwdRefOffset = o.To<int>();
+                FwdRefOffset = o.ToLiteral<int>();
             if (o.Name == "bwdRefOffset")
-                BwdRefOffset = o.To<int>();
+                BwdRefOffset = o.ToLiteral<int>();
             if (o.Name == "idSearchWindowConfig")
-                IdSearchWindowConfig = o.To<int>();
+                IdSearchWindowConfig = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -65893,13 +65893,13 @@ public struct OpSubgroupAvcImeRefWindowSizeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "searchWindowConfig")
-                SearchWindowConfig = o.To<int>();
+                SearchWindowConfig = o.ToLiteral<int>();
             if (o.Name == "dualRef")
-                DualRef = o.To<int>();
+                DualRef = o.ToLiteral<int>();
         }
     }
 
@@ -66026,17 +66026,17 @@ public struct OpSubgroupAvcImeAdjustRefOffsetINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "refOffset")
-                RefOffset = o.To<int>();
+                RefOffset = o.ToLiteral<int>();
             if (o.Name == "srcCoord")
-                SrcCoord = o.To<int>();
+                SrcCoord = o.ToLiteral<int>();
             if (o.Name == "refWindowSize")
-                RefWindowSize = o.To<int>();
+                RefWindowSize = o.ToLiteral<int>();
             if (o.Name == "imageSize")
-                ImageSize = o.To<int>();
+                ImageSize = o.ToLiteral<int>();
         }
     }
 
@@ -66135,11 +66135,11 @@ public struct OpSubgroupAvcImeConvertToMcePayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66245,13 +66245,13 @@ public struct OpSubgroupAvcImeSetMaxMotionVectorCountINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "maxMotionVectorCount")
-                MaxMotionVectorCount = o.To<int>();
+                MaxMotionVectorCount = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66348,11 +66348,11 @@ public struct OpSubgroupAvcImeSetUnidirectionalMixDisableINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66458,13 +66458,13 @@ public struct OpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL : IMemoryI
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "threshold")
-                Threshold = o.To<int>();
+                Threshold = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66571,13 +66571,13 @@ public struct OpSubgroupAvcImeSetWeightedSadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packedSadWeights")
-                PackedSadWeights = o.To<int>();
+                PackedSadWeights = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66694,15 +66694,15 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "refImage")
-                RefImage = o.To<int>();
+                RefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66830,17 +66830,17 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IMemoryInstructio
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "fwdRefImage")
-                FwdRefImage = o.To<int>();
+                FwdRefImage = o.ToLiteral<int>();
             if (o.Name == "bwdRefImage")
-                BwdRefImage = o.To<int>();
+                BwdRefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -66969,17 +66969,17 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL : IMemory
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "refImage")
-                RefImage = o.To<int>();
+                RefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "streaminComponents")
-                StreaminComponents = o.To<int>();
+                StreaminComponents = o.ToLiteral<int>();
         }
     }
 
@@ -67118,19 +67118,19 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL : IMemoryIn
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "fwdRefImage")
-                FwdRefImage = o.To<int>();
+                FwdRefImage = o.ToLiteral<int>();
             if (o.Name == "bwdRefImage")
-                BwdRefImage = o.To<int>();
+                BwdRefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "streaminComponents")
-                StreaminComponents = o.To<int>();
+                StreaminComponents = o.ToLiteral<int>();
         }
     }
 
@@ -67250,15 +67250,15 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "refImage")
-                RefImage = o.To<int>();
+                RefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -67386,17 +67386,17 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL : IMemoryI
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "fwdRefImage")
-                FwdRefImage = o.To<int>();
+                FwdRefImage = o.ToLiteral<int>();
             if (o.Name == "bwdRefImage")
-                BwdRefImage = o.To<int>();
+                BwdRefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -67525,17 +67525,17 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL : IMem
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "refImage")
-                RefImage = o.To<int>();
+                RefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "streaminComponents")
-                StreaminComponents = o.To<int>();
+                StreaminComponents = o.ToLiteral<int>();
         }
     }
 
@@ -67674,19 +67674,19 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "fwdRefImage")
-                FwdRefImage = o.To<int>();
+                FwdRefImage = o.ToLiteral<int>();
             if (o.Name == "bwdRefImage")
-                BwdRefImage = o.To<int>();
+                BwdRefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "streaminComponents")
-                StreaminComponents = o.To<int>();
+                StreaminComponents = o.ToLiteral<int>();
         }
     }
 
@@ -67786,11 +67786,11 @@ public struct OpSubgroupAvcImeConvertToMceResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -67886,11 +67886,11 @@ public struct OpSubgroupAvcImeGetSingleReferenceStreaminINTEL : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -67986,11 +67986,11 @@ public struct OpSubgroupAvcImeGetDualReferenceStreaminINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -68086,11 +68086,11 @@ public struct OpSubgroupAvcImeStripSingleReferenceStreamoutINTEL : IMemoryInstru
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -68186,11 +68186,11 @@ public struct OpSubgroupAvcImeStripDualReferenceStreamoutINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -68296,13 +68296,13 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectors
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "majorShape")
-                MajorShape = o.To<int>();
+                MajorShape = o.ToLiteral<int>();
         }
     }
 
@@ -68409,13 +68409,13 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsIN
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "majorShape")
-                MajorShape = o.To<int>();
+                MajorShape = o.ToLiteral<int>();
         }
     }
 
@@ -68522,13 +68522,13 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsI
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "majorShape")
-                MajorShape = o.To<int>();
+                MajorShape = o.ToLiteral<int>();
         }
     }
 
@@ -68645,15 +68645,15 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsIN
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "majorShape")
-                MajorShape = o.To<int>();
+                MajorShape = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
         }
     }
 
@@ -68771,15 +68771,15 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTE
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "majorShape")
-                MajorShape = o.To<int>();
+                MajorShape = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
         }
     }
 
@@ -68897,15 +68897,15 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINT
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
             if (o.Name == "majorShape")
-                MajorShape = o.To<int>();
+                MajorShape = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
         }
     }
 
@@ -69013,13 +69013,13 @@ public struct OpSubgroupAvcImeGetBorderReachedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "imageSelect")
-                ImageSelect = o.To<int>();
+                ImageSelect = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -69116,11 +69116,11 @@ public struct OpSubgroupAvcImeGetTruncatedSearchIndicationINTEL : IMemoryInstruc
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -69216,11 +69216,11 @@ public struct OpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL : IMe
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -69316,11 +69316,11 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL : IMem
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -69416,11 +69416,11 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -69576,23 +69576,23 @@ public struct OpSubgroupAvcFmeInitializeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcCoord")
-                SrcCoord = o.To<int>();
+                SrcCoord = o.ToLiteral<int>();
             if (o.Name == "motionVectors")
-                MotionVectors = o.To<int>();
+                MotionVectors = o.ToLiteral<int>();
             if (o.Name == "majorShapes")
-                MajorShapes = o.To<int>();
+                MajorShapes = o.ToLiteral<int>();
             if (o.Name == "minorShapes")
-                MinorShapes = o.To<int>();
+                MinorShapes = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "pixelResolution")
-                PixelResolution = o.To<int>();
+                PixelResolution = o.ToLiteral<int>();
             if (o.Name == "sadAdjustment")
-                SadAdjustment = o.To<int>();
+                SadAdjustment = o.ToLiteral<int>();
         }
     }
 
@@ -69764,25 +69764,25 @@ public struct OpSubgroupAvcBmeInitializeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcCoord")
-                SrcCoord = o.To<int>();
+                SrcCoord = o.ToLiteral<int>();
             if (o.Name == "motionVectors")
-                MotionVectors = o.To<int>();
+                MotionVectors = o.ToLiteral<int>();
             if (o.Name == "majorShapes")
-                MajorShapes = o.To<int>();
+                MajorShapes = o.ToLiteral<int>();
             if (o.Name == "minorShapes")
-                MinorShapes = o.To<int>();
+                MinorShapes = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
             if (o.Name == "pixelResolution")
-                PixelResolution = o.To<int>();
+                PixelResolution = o.ToLiteral<int>();
             if (o.Name == "bidirectionalWeight")
-                BidirectionalWeight = o.To<int>();
+                BidirectionalWeight = o.ToLiteral<int>();
             if (o.Name == "sadAdjustment")
-                SadAdjustment = o.To<int>();
+                SadAdjustment = o.ToLiteral<int>();
         }
     }
 
@@ -69885,11 +69885,11 @@ public struct OpSubgroupAvcRefConvertToMcePayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -69985,11 +69985,11 @@ public struct OpSubgroupAvcRefSetBidirectionalMixDisableINTEL : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70085,11 +70085,11 @@ public struct OpSubgroupAvcRefSetBilinearFilterEnableINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70205,15 +70205,15 @@ public struct OpSubgroupAvcRefEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "refImage")
-                RefImage = o.To<int>();
+                RefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70341,17 +70341,17 @@ public struct OpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IMemoryInstructio
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "fwdRefImage")
-                FwdRefImage = o.To<int>();
+                FwdRefImage = o.ToLiteral<int>();
             if (o.Name == "bwdRefImage")
-                BwdRefImage = o.To<int>();
+                BwdRefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70470,15 +70470,15 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceINTEL : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "packedReferenceIds")
-                PackedReferenceIds = o.To<int>();
+                PackedReferenceIds = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70606,17 +70606,17 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "packedReferenceIds")
-                PackedReferenceIds = o.To<int>();
+                PackedReferenceIds = o.ToLiteral<int>();
             if (o.Name == "packedReferenceFieldPolarities")
-                PackedReferenceFieldPolarities = o.To<int>();
+                PackedReferenceFieldPolarities = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70715,11 +70715,11 @@ public struct OpSubgroupAvcRefConvertToMceResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -70815,11 +70815,11 @@ public struct OpSubgroupAvcSicInitializeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcCoord")
-                SrcCoord = o.To<int>();
+                SrcCoord = o.ToLiteral<int>();
         }
     }
 
@@ -70965,21 +70965,21 @@ public struct OpSubgroupAvcSicConfigureSkcINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "skipBlockPartitionType")
-                SkipBlockPartitionType = o.To<int>();
+                SkipBlockPartitionType = o.ToLiteral<int>();
             if (o.Name == "skipMotionVectorMask")
-                SkipMotionVectorMask = o.To<int>();
+                SkipMotionVectorMask = o.ToLiteral<int>();
             if (o.Name == "motionVectors")
-                MotionVectors = o.To<int>();
+                MotionVectors = o.ToLiteral<int>();
             if (o.Name == "bidirectionalWeight")
-                BidirectionalWeight = o.To<int>();
+                BidirectionalWeight = o.ToLiteral<int>();
             if (o.Name == "sadAdjustment")
-                SadAdjustment = o.To<int>();
+                SadAdjustment = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -71150,25 +71150,25 @@ public struct OpSubgroupAvcSicConfigureIpeLumaINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "lumaIntraPartitionMask")
-                LumaIntraPartitionMask = o.To<int>();
+                LumaIntraPartitionMask = o.ToLiteral<int>();
             if (o.Name == "intraNeighbourAvailabilty")
-                IntraNeighbourAvailabilty = o.To<int>();
+                IntraNeighbourAvailabilty = o.ToLiteral<int>();
             if (o.Name == "leftEdgeLumaPixels")
-                LeftEdgeLumaPixels = o.To<int>();
+                LeftEdgeLumaPixels = o.ToLiteral<int>();
             if (o.Name == "upperLeftCornerLumaPixel")
-                UpperLeftCornerLumaPixel = o.To<int>();
+                UpperLeftCornerLumaPixel = o.ToLiteral<int>();
             if (o.Name == "upperEdgeLumaPixels")
-                UpperEdgeLumaPixels = o.To<int>();
+                UpperEdgeLumaPixels = o.ToLiteral<int>();
             if (o.Name == "upperRightEdgeLumaPixels")
-                UpperRightEdgeLumaPixels = o.To<int>();
+                UpperRightEdgeLumaPixels = o.ToLiteral<int>();
             if (o.Name == "sadAdjustment")
-                SadAdjustment = o.To<int>();
+                SadAdjustment = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -71371,31 +71371,31 @@ public struct OpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "lumaIntraPartitionMask")
-                LumaIntraPartitionMask = o.To<int>();
+                LumaIntraPartitionMask = o.ToLiteral<int>();
             if (o.Name == "intraNeighbourAvailabilty")
-                IntraNeighbourAvailabilty = o.To<int>();
+                IntraNeighbourAvailabilty = o.ToLiteral<int>();
             if (o.Name == "leftEdgeLumaPixels")
-                LeftEdgeLumaPixels = o.To<int>();
+                LeftEdgeLumaPixels = o.ToLiteral<int>();
             if (o.Name == "upperLeftCornerLumaPixel")
-                UpperLeftCornerLumaPixel = o.To<int>();
+                UpperLeftCornerLumaPixel = o.ToLiteral<int>();
             if (o.Name == "upperEdgeLumaPixels")
-                UpperEdgeLumaPixels = o.To<int>();
+                UpperEdgeLumaPixels = o.ToLiteral<int>();
             if (o.Name == "upperRightEdgeLumaPixels")
-                UpperRightEdgeLumaPixels = o.To<int>();
+                UpperRightEdgeLumaPixels = o.ToLiteral<int>();
             if (o.Name == "leftEdgeChromaPixels")
-                LeftEdgeChromaPixels = o.To<int>();
+                LeftEdgeChromaPixels = o.ToLiteral<int>();
             if (o.Name == "upperLeftCornerChromaPixel")
-                UpperLeftCornerChromaPixel = o.To<int>();
+                UpperLeftCornerChromaPixel = o.ToLiteral<int>();
             if (o.Name == "upperEdgeChromaPixels")
-                UpperEdgeChromaPixels = o.To<int>();
+                UpperEdgeChromaPixels = o.ToLiteral<int>();
             if (o.Name == "sadAdjustment")
-                SadAdjustment = o.To<int>();
+                SadAdjustment = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -71511,13 +71511,13 @@ public struct OpSubgroupAvcSicGetMotionVectorMaskINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "skipBlockPartitionType")
-                SkipBlockPartitionType = o.To<int>();
+                SkipBlockPartitionType = o.ToLiteral<int>();
             if (o.Name == "direction")
-                Direction = o.To<int>();
+                Direction = o.ToLiteral<int>();
         }
     }
 
@@ -71614,11 +71614,11 @@ public struct OpSubgroupAvcSicConvertToMcePayloadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -71724,13 +71724,13 @@ public struct OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packedShapePenalty")
-                PackedShapePenalty = o.To<int>();
+                PackedShapePenalty = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -71857,17 +71857,17 @@ public struct OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IMemoryInstruc
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "lumaModePenalty")
-                LumaModePenalty = o.To<int>();
+                LumaModePenalty = o.ToLiteral<int>();
             if (o.Name == "lumaPackedNeighborModes")
-                LumaPackedNeighborModes = o.To<int>();
+                LumaPackedNeighborModes = o.ToLiteral<int>();
             if (o.Name == "lumaPackedNonDcPenalty")
-                LumaPackedNonDcPenalty = o.To<int>();
+                LumaPackedNonDcPenalty = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -71976,13 +71976,13 @@ public struct OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL : IMemoryInstr
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "chromaModeBasePenalty")
-                ChromaModeBasePenalty = o.To<int>();
+                ChromaModeBasePenalty = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72079,11 +72079,11 @@ public struct OpSubgroupAvcSicSetBilinearFilterEnableINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72189,13 +72189,13 @@ public struct OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL : IMemoryInstruc
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packedSadCoefficients")
-                PackedSadCoefficients = o.To<int>();
+                PackedSadCoefficients = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72302,13 +72302,13 @@ public struct OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "blockBasedSkipType")
-                BlockBasedSkipType = o.To<int>();
+                BlockBasedSkipType = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72415,13 +72415,13 @@ public struct OpSubgroupAvcSicEvaluateIpeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72538,15 +72538,15 @@ public struct OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "refImage")
-                RefImage = o.To<int>();
+                RefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72674,17 +72674,17 @@ public struct OpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IMemoryInstructio
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "fwdRefImage")
-                FwdRefImage = o.To<int>();
+                FwdRefImage = o.ToLiteral<int>();
             if (o.Name == "bwdRefImage")
-                BwdRefImage = o.To<int>();
+                BwdRefImage = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72803,15 +72803,15 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "packedReferenceIds")
-                PackedReferenceIds = o.To<int>();
+                PackedReferenceIds = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -72939,17 +72939,17 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL : IMemor
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "srcImage")
-                SrcImage = o.To<int>();
+                SrcImage = o.ToLiteral<int>();
             if (o.Name == "packedReferenceIds")
-                PackedReferenceIds = o.To<int>();
+                PackedReferenceIds = o.ToLiteral<int>();
             if (o.Name == "packedReferenceFieldPolarities")
-                PackedReferenceFieldPolarities = o.To<int>();
+                PackedReferenceFieldPolarities = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73048,11 +73048,11 @@ public struct OpSubgroupAvcSicConvertToMceResultINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73148,11 +73148,11 @@ public struct OpSubgroupAvcSicGetIpeLumaShapeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73248,11 +73248,11 @@ public struct OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73348,11 +73348,11 @@ public struct OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73448,11 +73448,11 @@ public struct OpSubgroupAvcSicGetPackedIpeLumaModesINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73548,11 +73548,11 @@ public struct OpSubgroupAvcSicGetIpeChromaModeINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73648,11 +73648,11 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL : IMemoryInstr
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73748,11 +73748,11 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL : IMemoryInstruc
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73848,11 +73848,11 @@ public struct OpSubgroupAvcSicGetInterRawSadsINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "payload")
-                Payload = o.To<int>();
+                Payload = o.ToLiteral<int>();
         }
     }
 
@@ -73948,11 +73948,11 @@ public struct OpVariableLengthArrayINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "lenght")
-                Lenght = o.To<int>();
+                Lenght = o.ToLiteral<int>();
         }
     }
 
@@ -74038,9 +74038,9 @@ public struct OpSaveMemoryINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
         }
     }
 
@@ -74113,7 +74113,7 @@ public struct OpRestoreMemoryINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "ptr")
-                Ptr = o.To<int>();
+                Ptr = o.ToLiteral<int>();
         }
     }
 
@@ -74267,23 +74267,23 @@ public struct OpArbitraryFloatSinCosPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "fromSign")
-                FromSign = o.To<int>();
+                FromSign = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -74435,21 +74435,21 @@ public struct OpArbitraryFloatCastINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -74600,21 +74600,21 @@ public struct OpArbitraryFloatCastFromIntINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "fromSign")
-                FromSign = o.To<int>();
+                FromSign = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -74755,19 +74755,19 @@ public struct OpArbitraryFloatCastToIntINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -74937,25 +74937,25 @@ public struct OpArbitraryFloatAddINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -75128,25 +75128,25 @@ public struct OpArbitraryFloatSubINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -75319,25 +75319,25 @@ public struct OpArbitraryFloatMulINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -75510,25 +75510,25 @@ public struct OpArbitraryFloatDivINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -75661,17 +75661,17 @@ public struct OpArbitraryFloatGTINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
         }
     }
 
@@ -75800,17 +75800,17 @@ public struct OpArbitraryFloatGEINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
         }
     }
 
@@ -75939,17 +75939,17 @@ public struct OpArbitraryFloatLTINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
         }
     }
 
@@ -76078,17 +76078,17 @@ public struct OpArbitraryFloatLEINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
         }
     }
 
@@ -76217,17 +76217,17 @@ public struct OpArbitraryFloatEQINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
         }
     }
 
@@ -76376,21 +76376,21 @@ public struct OpArbitraryFloatRecipINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -76541,21 +76541,21 @@ public struct OpArbitraryFloatRSqrtINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -76706,21 +76706,21 @@ public struct OpArbitraryFloatCbrtINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -76891,25 +76891,25 @@ public struct OpArbitraryFloatHypotINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -77062,21 +77062,21 @@ public struct OpArbitraryFloatSqrtINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -77227,21 +77227,21 @@ public struct OpArbitraryFloatLogINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -77392,21 +77392,21 @@ public struct OpArbitraryFloatLog2INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -77557,21 +77557,21 @@ public struct OpArbitraryFloatLog10INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -77722,21 +77722,21 @@ public struct OpArbitraryFloatLog1pINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -77887,21 +77887,21 @@ public struct OpArbitraryFloatExpINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -78052,21 +78052,21 @@ public struct OpArbitraryFloatExp2INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -78217,21 +78217,21 @@ public struct OpArbitraryFloatExp10INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -78382,21 +78382,21 @@ public struct OpArbitraryFloatExpm1INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -78547,21 +78547,21 @@ public struct OpArbitraryFloatSinINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -78712,21 +78712,21 @@ public struct OpArbitraryFloatCosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -78877,21 +78877,21 @@ public struct OpArbitraryFloatSinCosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -79042,21 +79042,21 @@ public struct OpArbitraryFloatSinPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -79207,21 +79207,21 @@ public struct OpArbitraryFloatCosPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -79372,21 +79372,21 @@ public struct OpArbitraryFloatASinINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -79537,21 +79537,21 @@ public struct OpArbitraryFloatASinPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -79702,21 +79702,21 @@ public struct OpArbitraryFloatACosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -79867,21 +79867,21 @@ public struct OpArbitraryFloatACosPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -80032,21 +80032,21 @@ public struct OpArbitraryFloatATanINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -80197,21 +80197,21 @@ public struct OpArbitraryFloatATanPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -80382,25 +80382,25 @@ public struct OpArbitraryFloatATan2INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -80573,25 +80573,25 @@ public struct OpArbitraryFloatPowINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -80764,25 +80764,25 @@ public struct OpArbitraryFloatPowRINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "m2")
-                M2 = o.To<int>();
+                M2 = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -80945,23 +80945,23 @@ public struct OpArbitraryFloatPowNINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<int>();
+                A = o.ToLiteral<int>();
             if (o.Name == "m1")
-                M1 = o.To<int>();
+                M1 = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<int>();
+                B = o.ToLiteral<int>();
             if (o.Name == "mout")
-                Mout = o.To<int>();
+                Mout = o.ToLiteral<int>();
             if (o.Name == "enableSubnormals")
-                EnableSubnormals = o.To<int>();
+                EnableSubnormals = o.ToLiteral<int>();
             if (o.Name == "roundingMode")
-                RoundingMode = o.To<int>();
+                RoundingMode = o.ToLiteral<int>();
             if (o.Name == "roundingAccuracy")
-                RoundingAccuracy = o.To<int>();
+                RoundingAccuracy = o.ToLiteral<int>();
         }
     }
 
@@ -81041,7 +81041,7 @@ public struct OpLoopControlINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -81125,9 +81125,9 @@ public struct OpAliasDomainDeclINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "name")
-                Name = o.To<int?>();
+                Name = o.ToLiteral<int?>();
         }
     }
 
@@ -81222,11 +81222,11 @@ public struct OpAliasScopeDeclINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "aliasDomain")
-                AliasDomain = o.To<int>();
+                AliasDomain = o.ToLiteral<int>();
             if (o.Name == "name")
-                Name = o.To<int?>();
+                Name = o.ToLiteral<int?>();
         }
     }
 
@@ -81312,9 +81312,9 @@ public struct OpAliasScopeListDeclINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -81469,23 +81469,23 @@ public struct OpFixedSqrtINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -81647,23 +81647,23 @@ public struct OpFixedRecipINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -81825,23 +81825,23 @@ public struct OpFixedRsqrtINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -82003,23 +82003,23 @@ public struct OpFixedSinINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -82181,23 +82181,23 @@ public struct OpFixedCosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -82359,23 +82359,23 @@ public struct OpFixedSinCosINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -82537,23 +82537,23 @@ public struct OpFixedSinPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -82715,23 +82715,23 @@ public struct OpFixedCosPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -82893,23 +82893,23 @@ public struct OpFixedSinCosPiINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -83071,23 +83071,23 @@ public struct OpFixedLogINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -83249,23 +83249,23 @@ public struct OpFixedExpINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "inputType")
-                InputType = o.To<int>();
+                InputType = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
             if (o.Name == "s")
-                S = o.To<int>();
+                S = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<int>();
+                I = o.ToLiteral<int>();
             if (o.Name == "rI")
-                RI = o.To<int>();
+                RI = o.ToLiteral<int>();
             if (o.Name == "q")
-                Q = o.To<int>();
+                Q = o.ToLiteral<int>();
             if (o.Name == "o")
-                O = o.To<int>();
+                O = o.ToLiteral<int>();
         }
     }
 
@@ -83367,11 +83367,11 @@ public struct OpPtrCastToCrossWorkgroupINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -83467,11 +83467,11 @@ public struct OpCrossWorkgroupCastToPtrINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
         }
     }
 
@@ -83577,13 +83577,13 @@ public struct OpReadPipeBlockingINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -83690,13 +83690,13 @@ public struct OpWritePipeBlockingINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "packetSize")
-                PacketSize = o.To<int>();
+                PacketSize = o.ToLiteral<int>();
             if (o.Name == "packetAlignment")
-                PacketAlignment = o.To<int>();
+                PacketAlignment = o.ToLiteral<int>();
         }
     }
 
@@ -83803,13 +83803,13 @@ public struct OpFPGARegINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "result")
-                Result = o.To<int>();
+                Result = o.ToLiteral<int>();
             if (o.Name == "input")
-                Input = o.To<int>();
+                Input = o.ToLiteral<int>();
         }
     }
 
@@ -83906,11 +83906,11 @@ public struct OpRayQueryGetRayTMinKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -84006,11 +84006,11 @@ public struct OpRayQueryGetRayFlagsKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -84116,13 +84116,13 @@ public struct OpRayQueryGetIntersectionTKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84229,13 +84229,13 @@ public struct OpRayQueryGetIntersectionInstanceCustomIndexKHR : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84342,13 +84342,13 @@ public struct OpRayQueryGetIntersectionInstanceIdKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84455,13 +84455,13 @@ public struct OpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84568,13 +84568,13 @@ public struct OpRayQueryGetIntersectionGeometryIndexKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84681,13 +84681,13 @@ public struct OpRayQueryGetIntersectionPrimitiveIndexKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84794,13 +84794,13 @@ public struct OpRayQueryGetIntersectionBarycentricsKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -84907,13 +84907,13 @@ public struct OpRayQueryGetIntersectionFrontFaceKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -85010,11 +85010,11 @@ public struct OpRayQueryGetIntersectionCandidateAABBOpaqueKHR : IMemoryInstructi
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -85120,13 +85120,13 @@ public struct OpRayQueryGetIntersectionObjectRayDirectionKHR : IMemoryInstructio
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -85233,13 +85233,13 @@ public struct OpRayQueryGetIntersectionObjectRayOriginKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -85336,11 +85336,11 @@ public struct OpRayQueryGetWorldRayDirectionKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -85436,11 +85436,11 @@ public struct OpRayQueryGetWorldRayOriginKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
         }
     }
 
@@ -85546,13 +85546,13 @@ public struct OpRayQueryGetIntersectionObjectToWorldKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -85659,13 +85659,13 @@ public struct OpRayQueryGetIntersectionWorldToObjectKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "rayQuery")
-                RayQuery = o.To<int>();
+                RayQuery = o.ToLiteral<int>();
             if (o.Name == "intersection")
-                Intersection = o.To<int>();
+                Intersection = o.ToLiteral<int>();
         }
     }
 
@@ -85792,17 +85792,17 @@ public struct OpAtomicFAddEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "pointer")
-                Pointer = o.To<int>();
+                Pointer = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<int>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -85891,7 +85891,7 @@ public struct OpTypeBufferSurfaceINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "accessQualifier")
                 AccessQualifier = o.ToEnum<AccessQualifier>();
         }
@@ -85966,7 +85966,7 @@ public struct OpTypeStructContinuedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -86038,7 +86038,7 @@ public struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -86110,7 +86110,7 @@ public struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -86204,11 +86204,11 @@ public struct OpCompositeConstructContinuedINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "values")
-                Values = o.To<LiteralArray<int>>();
+                Values = o.ToLiteralArray<int>();
         }
     }
 
@@ -86304,11 +86304,11 @@ public struct OpConvertFToBF16INTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "floatValue")
-                FloatValue = o.To<int>();
+                FloatValue = o.ToLiteral<int>();
         }
     }
 
@@ -86404,11 +86404,11 @@ public struct OpConvertBF16ToFINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "bFloat16Value")
-                BFloat16Value = o.To<int>();
+                BFloat16Value = o.ToLiteral<int>();
         }
     }
 
@@ -86502,11 +86502,11 @@ public struct OpControlBarrierArriveINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -86600,11 +86600,11 @@ public struct OpControlBarrierWaitINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "memory")
-                Memory = o.To<int>();
+                Memory = o.ToLiteral<int>();
             if (o.Name == "semantics")
-                Semantics = o.To<int>();
+                Semantics = o.ToLiteral<int>();
         }
     }
 
@@ -86700,11 +86700,11 @@ public struct OpArithmeticFenceEXT : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "target")
-                Target = o.To<int>();
+                Target = o.ToLiteral<int>();
         }
     }
 
@@ -86798,9 +86798,9 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "ptr")
-                Ptr = o.To<int>();
+                Ptr = o.ToLiteral<int>();
             if (o.Name == "numBytes")
-                NumBytes = o.To<int>();
+                NumBytes = o.ToLiteral<int>();
             if (o.Name == "memoryaccess")
                 Memoryaccess = o.ToEnum<MemoryAccessMask>();
         }
@@ -86918,15 +86918,15 @@ public struct OpGroupIMulKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87044,15 +87044,15 @@ public struct OpGroupFMulKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87170,15 +87170,15 @@ public struct OpGroupBitwiseAndKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87296,15 +87296,15 @@ public struct OpGroupBitwiseOrKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87422,15 +87422,15 @@ public struct OpGroupBitwiseXorKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87548,15 +87548,15 @@ public struct OpGroupLogicalAndKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87674,15 +87674,15 @@ public struct OpGroupLogicalOrKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87800,15 +87800,15 @@ public struct OpGroupLogicalXorKHR : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "execution")
-                Execution = o.To<int>();
+                Execution = o.ToLiteral<int>();
             if (o.Name == "operation")
                 Operation = o.ToEnum<GroupOperation>();
             if (o.Name == "x")
-                X = o.To<int>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -87936,17 +87936,17 @@ public struct OpMaskedGatherINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<int>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<int>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "ptrVector")
-                PtrVector = o.To<int>();
+                PtrVector = o.ToLiteral<int>();
             if (o.Name == "alignment")
-                Alignment = o.To<int>();
+                Alignment = o.ToLiteral<int>();
             if (o.Name == "mask")
-                Mask = o.To<int>();
+                Mask = o.ToLiteral<int>();
             if (o.Name == "fillEmpty")
-                FillEmpty = o.To<int>();
+                FillEmpty = o.ToLiteral<int>();
         }
     }
 
@@ -88053,13 +88053,13 @@ public struct OpMaskedScatterINTEL : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "inputVector")
-                InputVector = o.To<int>();
+                InputVector = o.ToLiteral<int>();
             if (o.Name == "ptrVector")
-                PtrVector = o.To<int>();
+                PtrVector = o.ToLiteral<int>();
             if (o.Name == "alignment")
-                Alignment = o.To<int>();
+                Alignment = o.ToLiteral<int>();
             if (o.Name == "mask")
-                Mask = o.To<int>();
+                Mask = o.ToLiteral<int>();
         }
     }
 
@@ -88168,13 +88168,13 @@ public struct GLSLRound : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88283,13 +88283,13 @@ public struct GLSLRoundEven : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88398,13 +88398,13 @@ public struct GLSLTrunc : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88513,13 +88513,13 @@ public struct GLSLFAbs : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88628,13 +88628,13 @@ public struct GLSLSAbs : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88743,13 +88743,13 @@ public struct GLSLFSign : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88858,13 +88858,13 @@ public struct GLSLSSign : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -88973,13 +88973,13 @@ public struct GLSLFloor : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -89088,13 +89088,13 @@ public struct GLSLCeil : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -89203,13 +89203,13 @@ public struct GLSLFract : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -89318,13 +89318,13 @@ public struct GLSLRadians : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "degrees")
-                Degrees = o.To<LiteralValue<int>>();
+                Degrees = o.ToLiteral<int>();
         }
     }
 
@@ -89433,13 +89433,13 @@ public struct GLSLDegrees : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "radians")
-                Radians = o.To<LiteralValue<int>>();
+                Radians = o.ToLiteral<int>();
         }
     }
 
@@ -89548,13 +89548,13 @@ public struct GLSLSin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -89663,13 +89663,13 @@ public struct GLSLCos : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -89778,13 +89778,13 @@ public struct GLSLTan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -89893,13 +89893,13 @@ public struct GLSLAsin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90008,13 +90008,13 @@ public struct GLSLAcos : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90123,13 +90123,13 @@ public struct GLSLAtan : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "y_over_x")
-                Y_over_x = o.To<LiteralValue<int>>();
+                Y_over_x = o.ToLiteral<int>();
         }
     }
 
@@ -90238,13 +90238,13 @@ public struct GLSLSinh : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90353,13 +90353,13 @@ public struct GLSLCosh : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90468,13 +90468,13 @@ public struct GLSLTanh : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90583,13 +90583,13 @@ public struct GLSLAsinh : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90698,13 +90698,13 @@ public struct GLSLAcosh : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90813,13 +90813,13 @@ public struct GLSLAtanh : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -90938,15 +90938,15 @@ public struct GLSLAtan2 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91066,15 +91066,15 @@ public struct GLSLPow : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -91184,13 +91184,13 @@ public struct GLSLExp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91299,13 +91299,13 @@ public struct GLSLLog : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91414,13 +91414,13 @@ public struct GLSLExp2 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91529,13 +91529,13 @@ public struct GLSLLog2 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91644,13 +91644,13 @@ public struct GLSLSqrt : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91759,13 +91759,13 @@ public struct GLSLInverseSqrt : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91874,13 +91874,13 @@ public struct GLSLDeterminant : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -91989,13 +91989,13 @@ public struct GLSLMatrixInverse : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -92114,15 +92114,15 @@ public struct GLSLModf : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<LiteralValue<int>>();
+                I = o.ToLiteral<int>();
         }
     }
 
@@ -92232,13 +92232,13 @@ public struct GLSLModfStruct : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -92357,15 +92357,15 @@ public struct GLSLFMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -92485,15 +92485,15 @@ public struct GLSLUMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -92613,15 +92613,15 @@ public struct GLSLSMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -92741,15 +92741,15 @@ public struct GLSLFMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -92869,15 +92869,15 @@ public struct GLSLUMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -92997,15 +92997,15 @@ public struct GLSLSMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -93135,17 +93135,17 @@ public struct GLSLFClamp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "minVal")
-                MinVal = o.To<LiteralValue<int>>();
+                MinVal = o.ToLiteral<int>();
             if (o.Name == "maxVal")
-                MaxVal = o.To<LiteralValue<int>>();
+                MaxVal = o.ToLiteral<int>();
         }
     }
 
@@ -93276,17 +93276,17 @@ public struct GLSLUClamp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "minVal")
-                MinVal = o.To<LiteralValue<int>>();
+                MinVal = o.ToLiteral<int>();
             if (o.Name == "maxVal")
-                MaxVal = o.To<LiteralValue<int>>();
+                MaxVal = o.ToLiteral<int>();
         }
     }
 
@@ -93417,17 +93417,17 @@ public struct GLSLSClamp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "minVal")
-                MinVal = o.To<LiteralValue<int>>();
+                MinVal = o.ToLiteral<int>();
             if (o.Name == "maxVal")
-                MaxVal = o.To<LiteralValue<int>>();
+                MaxVal = o.ToLiteral<int>();
         }
     }
 
@@ -93558,17 +93558,17 @@ public struct GLSLFMix : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<LiteralValue<int>>();
+                A = o.ToLiteral<int>();
         }
     }
 
@@ -93699,17 +93699,17 @@ public struct GLSLIMix : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<LiteralValue<int>>();
+                A = o.ToLiteral<int>();
         }
     }
 
@@ -93830,15 +93830,15 @@ public struct GLSLStep : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "edge")
-                Edge = o.To<LiteralValue<int>>();
+                Edge = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -93968,17 +93968,17 @@ public struct GLSLSmoothStep : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "edge0")
-                Edge0 = o.To<LiteralValue<int>>();
+                Edge0 = o.ToLiteral<int>();
             if (o.Name == "edge1")
-                Edge1 = o.To<LiteralValue<int>>();
+                Edge1 = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -94109,17 +94109,17 @@ public struct GLSLFma : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "a")
-                A = o.To<LiteralValue<int>>();
+                A = o.ToLiteral<int>();
             if (o.Name == "b")
-                B = o.To<LiteralValue<int>>();
+                B = o.ToLiteral<int>();
             if (o.Name == "c")
-                C = o.To<LiteralValue<int>>();
+                C = o.ToLiteral<int>();
         }
     }
 
@@ -94240,15 +94240,15 @@ public struct GLSLFrexp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "exp")
-                Exp = o.To<LiteralValue<int>>();
+                Exp = o.ToLiteral<int>();
         }
     }
 
@@ -94358,13 +94358,13 @@ public struct GLSLFrexpStruct : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -94483,15 +94483,15 @@ public struct GLSLLdexp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "exp")
-                Exp = o.To<LiteralValue<int>>();
+                Exp = o.ToLiteral<int>();
         }
     }
 
@@ -94601,13 +94601,13 @@ public struct GLSLPackSnorm4x8 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -94716,13 +94716,13 @@ public struct GLSLPackUnorm4x8 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -94831,13 +94831,13 @@ public struct GLSLPackSnorm2x16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -94946,13 +94946,13 @@ public struct GLSLPackUnorm2x16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -95061,13 +95061,13 @@ public struct GLSLPackHalf2x16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -95176,13 +95176,13 @@ public struct GLSLPackDouble2x32 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -95291,13 +95291,13 @@ public struct GLSLUnpackSnorm2x16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<LiteralValue<int>>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -95406,13 +95406,13 @@ public struct GLSLUnpackUnorm2x16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<LiteralValue<int>>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -95521,13 +95521,13 @@ public struct GLSLUnpackHalf2x16 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -95636,13 +95636,13 @@ public struct GLSLUnpackSnorm4x8 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<LiteralValue<int>>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -95751,13 +95751,13 @@ public struct GLSLUnpackUnorm4x8 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "p")
-                P = o.To<LiteralValue<int>>();
+                P = o.ToLiteral<int>();
         }
     }
 
@@ -95866,13 +95866,13 @@ public struct GLSLUnpackDouble2x32 : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "v")
-                V = o.To<LiteralValue<int>>();
+                V = o.ToLiteral<int>();
         }
     }
 
@@ -95981,13 +95981,13 @@ public struct GLSLLength : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -96106,15 +96106,15 @@ public struct GLSLDistance : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "p0")
-                P0 = o.To<LiteralValue<int>>();
+                P0 = o.ToLiteral<int>();
             if (o.Name == "p1")
-                P1 = o.To<LiteralValue<int>>();
+                P1 = o.ToLiteral<int>();
         }
     }
 
@@ -96234,15 +96234,15 @@ public struct GLSLCross : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -96352,13 +96352,13 @@ public struct GLSLNormalize : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
         }
     }
 
@@ -96487,17 +96487,17 @@ public struct GLSLFaceForward : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "n")
-                N = o.To<LiteralValue<int>>();
+                N = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<LiteralValue<int>>();
+                I = o.ToLiteral<int>();
             if (o.Name == "nref")
-                Nref = o.To<LiteralValue<int>>();
+                Nref = o.ToLiteral<int>();
         }
     }
 
@@ -96618,15 +96618,15 @@ public struct GLSLReflect : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<LiteralValue<int>>();
+                I = o.ToLiteral<int>();
             if (o.Name == "n")
-                N = o.To<LiteralValue<int>>();
+                N = o.ToLiteral<int>();
         }
     }
 
@@ -96756,17 +96756,17 @@ public struct GLSLRefract : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "i")
-                I = o.To<LiteralValue<int>>();
+                I = o.ToLiteral<int>();
             if (o.Name == "n")
-                N = o.To<LiteralValue<int>>();
+                N = o.ToLiteral<int>();
             if (o.Name == "eta")
-                Eta = o.To<LiteralValue<int>>();
+                Eta = o.ToLiteral<int>();
         }
     }
 
@@ -96877,13 +96877,13 @@ public struct GLSLFindILsb : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<LiteralValue<int>>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -96992,13 +96992,13 @@ public struct GLSLFindSMsb : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<LiteralValue<int>>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -97107,13 +97107,13 @@ public struct GLSLFindUMsb : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "value")
-                Value = o.To<LiteralValue<int>>();
+                Value = o.ToLiteral<int>();
         }
     }
 
@@ -97222,13 +97222,13 @@ public struct GLSLInterpolateAtCentroid : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "interpolant")
-                Interpolant = o.To<LiteralValue<int>>();
+                Interpolant = o.ToLiteral<int>();
         }
     }
 
@@ -97347,15 +97347,15 @@ public struct GLSLInterpolateAtSample : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "interpolant")
-                Interpolant = o.To<LiteralValue<int>>();
+                Interpolant = o.ToLiteral<int>();
             if (o.Name == "sample")
-                Sample = o.To<LiteralValue<int>>();
+                Sample = o.ToLiteral<int>();
         }
     }
 
@@ -97475,15 +97475,15 @@ public struct GLSLInterpolateAtOffset : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "interpolant")
-                Interpolant = o.To<LiteralValue<int>>();
+                Interpolant = o.ToLiteral<int>();
             if (o.Name == "offset")
-                Offset = o.To<LiteralValue<int>>();
+                Offset = o.ToLiteral<int>();
         }
     }
 
@@ -97603,15 +97603,15 @@ public struct GLSLNMin : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -97731,15 +97731,15 @@ public struct GLSLNMax : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "y")
-                Y = o.To<LiteralValue<int>>();
+                Y = o.ToLiteral<int>();
         }
     }
 
@@ -97869,17 +97869,17 @@ public struct GLSLNClamp : IMemoryInstruction
         foreach (var o in index.Buffer[index.Index])
         {
             if (o.Name == "resultType")
-                ResultType = o.To<LiteralValue<int>>();
+                ResultType = o.ToLiteral<int>();
             if (o.Name == "resultId")
-                ResultId = o.To<LiteralValue<int>>();
+                ResultId = o.ToLiteral<int>();
             if (o.Name == "set")
-                Set = o.To<LiteralValue<int>>();
+                Set = o.ToLiteral<int>();
             if (o.Name == "x")
-                X = o.To<LiteralValue<int>>();
+                X = o.ToLiteral<int>();
             if (o.Name == "minVal")
-                MinVal = o.To<LiteralValue<int>>();
+                MinVal = o.ToLiteral<int>();
             if (o.Name == "maxVal")
-                MaxVal = o.To<LiteralValue<int>>();
+                MaxVal = o.ToLiteral<int>();
         }
     }
 

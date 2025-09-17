@@ -14,7 +14,7 @@ public struct OpSDSLShader : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23,8 +23,8 @@ public struct OpSDSLShader : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50,7 +50,7 @@ public struct OpSDSLShader : IMemoryInstruction
 
     public OpSDSLShader(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "shaderName")
                 ShaderName = o.ToLiteral<string>();
@@ -94,7 +94,7 @@ public struct OpSDSLShaderEnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103,8 +103,8 @@ public struct OpSDSLShaderEnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -138,7 +138,7 @@ public struct OpSDSLMixinInherit : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -147,8 +147,8 @@ public struct OpSDSLMixinInherit : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -174,7 +174,7 @@ public struct OpSDSLMixinInherit : IMemoryInstruction
 
     public OpSDSLMixinInherit(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "shader")
                 Shader = o.ToLiteral<int>();
@@ -218,7 +218,7 @@ public struct OpSDSLCompose : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -227,8 +227,8 @@ public struct OpSDSLCompose : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -265,7 +265,7 @@ public struct OpSDSLCompose : IMemoryInstruction
 
     public OpSDSLCompose(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "mixin")
                 Mixin = o.ToLiteral<string>();
@@ -312,7 +312,7 @@ public struct OpSDSLStage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -321,8 +321,8 @@ public struct OpSDSLStage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -348,7 +348,7 @@ public struct OpSDSLStage : IMemoryInstruction
 
     public OpSDSLStage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "stagedElement")
                 StagedElement = o.ToLiteral<int>();
@@ -392,7 +392,7 @@ public struct OpSDSLImportShader : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -401,8 +401,8 @@ public struct OpSDSLImportShader : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -441,7 +441,7 @@ public struct OpSDSLImportShader : IMemoryInstruction
 
     public OpSDSLImportShader(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -488,7 +488,7 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -497,8 +497,8 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -559,7 +559,7 @@ public struct OpSDSLImportFunction : IMemoryInstruction
 
     public OpSDSLImportFunction(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -612,7 +612,7 @@ public struct OpSDSLImportVariable : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -621,8 +621,8 @@ public struct OpSDSLImportVariable : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -683,7 +683,7 @@ public struct OpSDSLImportVariable : IMemoryInstruction
 
     public OpSDSLImportVariable(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -736,7 +736,7 @@ public struct OpNop : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -745,8 +745,8 @@ public struct OpNop : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -780,7 +780,7 @@ public struct OpUndef : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -789,8 +789,8 @@ public struct OpUndef : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -829,7 +829,7 @@ public struct OpUndef : IMemoryInstruction
 
     public OpUndef(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -876,7 +876,7 @@ public struct OpSourceContinued : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -885,8 +885,8 @@ public struct OpSourceContinued : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -912,7 +912,7 @@ public struct OpSourceContinued : IMemoryInstruction
 
     public OpSourceContinued(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "continuedSource")
                 ContinuedSource = o.ToLiteral<string>();
@@ -956,7 +956,7 @@ public struct OpSource : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -965,8 +965,8 @@ public struct OpSource : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1025,7 +1025,7 @@ public struct OpSource : IMemoryInstruction
 
     public OpSource(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "sourcelanguage")
                 Sourcelanguage = o.ToEnum<SourceLanguage>();
@@ -1078,7 +1078,7 @@ public struct OpSourceExtension : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1087,8 +1087,8 @@ public struct OpSourceExtension : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1114,7 +1114,7 @@ public struct OpSourceExtension : IMemoryInstruction
 
     public OpSourceExtension(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "extension")
                 Extension = o.ToLiteral<string>();
@@ -1158,7 +1158,7 @@ public struct OpName : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1167,8 +1167,8 @@ public struct OpName : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1205,7 +1205,7 @@ public struct OpName : IMemoryInstruction
 
     public OpName(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "target")
                 Target = o.ToLiteral<int>();
@@ -1252,7 +1252,7 @@ public struct OpMemberName : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1261,8 +1261,8 @@ public struct OpMemberName : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1310,7 +1310,7 @@ public struct OpMemberName : IMemoryInstruction
 
     public OpMemberName(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "type")
                 Type = o.ToLiteral<int>();
@@ -1360,7 +1360,7 @@ public struct OpString : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1369,8 +1369,8 @@ public struct OpString : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1409,7 +1409,7 @@ public struct OpString : IMemoryInstruction
 
     public OpString(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -1456,7 +1456,7 @@ public struct OpLine : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1465,8 +1465,8 @@ public struct OpLine : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1514,7 +1514,7 @@ public struct OpLine : IMemoryInstruction
 
     public OpLine(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "file")
                 File = o.ToLiteral<int>();
@@ -1564,7 +1564,7 @@ public struct OpExtension : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1573,8 +1573,8 @@ public struct OpExtension : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1600,7 +1600,7 @@ public struct OpExtension : IMemoryInstruction
 
     public OpExtension(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "name")
                 Name = o.ToLiteral<string>();
@@ -1644,7 +1644,7 @@ public struct OpExtInstImport : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1653,8 +1653,8 @@ public struct OpExtInstImport : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1693,7 +1693,7 @@ public struct OpExtInstImport : IMemoryInstruction
 
     public OpExtInstImport(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -1740,7 +1740,7 @@ public struct OpExtInst : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1749,8 +1749,8 @@ public struct OpExtInst : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1822,7 +1822,7 @@ public struct OpExtInst : IMemoryInstruction
 
     public OpExtInst(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -1878,7 +1878,7 @@ public struct OpMemoryModel : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1887,8 +1887,8 @@ public struct OpMemoryModel : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -1925,7 +1925,7 @@ public struct OpMemoryModel : IMemoryInstruction
 
     public OpMemoryModel(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "addressingmodel")
                 Addressingmodel = o.ToEnum<AddressingModel>();
@@ -1972,7 +1972,7 @@ public struct OpEntryPoint : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -1981,8 +1981,8 @@ public struct OpEntryPoint : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2041,7 +2041,7 @@ public struct OpEntryPoint : IMemoryInstruction
 
     public OpEntryPoint(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "executionmodel")
                 Executionmodel = o.ToEnum<ExecutionModel>();
@@ -2094,7 +2094,7 @@ public struct OpExecutionMode : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2103,8 +2103,8 @@ public struct OpExecutionMode : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2141,7 +2141,7 @@ public struct OpExecutionMode : IMemoryInstruction
 
     public OpExecutionMode(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "entryPoint")
                 EntryPoint = o.ToLiteral<int>();
@@ -2188,7 +2188,7 @@ public struct OpCapability : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2197,8 +2197,8 @@ public struct OpCapability : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2224,7 +2224,7 @@ public struct OpCapability : IMemoryInstruction
 
     public OpCapability(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "capability")
                 Capability = o.ToEnum<Capability>();
@@ -2268,7 +2268,7 @@ public struct OpTypeVoid : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2277,8 +2277,8 @@ public struct OpTypeVoid : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2306,7 +2306,7 @@ public struct OpTypeVoid : IMemoryInstruction
 
     public OpTypeVoid(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -2350,7 +2350,7 @@ public struct OpTypeBool : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2359,8 +2359,8 @@ public struct OpTypeBool : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2388,7 +2388,7 @@ public struct OpTypeBool : IMemoryInstruction
 
     public OpTypeBool(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -2432,7 +2432,7 @@ public struct OpTypeInt : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2441,8 +2441,8 @@ public struct OpTypeInt : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2492,7 +2492,7 @@ public struct OpTypeInt : IMemoryInstruction
 
     public OpTypeInt(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -2542,7 +2542,7 @@ public struct OpTypeFloat : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2551,8 +2551,8 @@ public struct OpTypeFloat : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2602,7 +2602,7 @@ public struct OpTypeFloat : IMemoryInstruction
 
     public OpTypeFloat(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -2652,7 +2652,7 @@ public struct OpTypeVector : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2661,8 +2661,8 @@ public struct OpTypeVector : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2712,7 +2712,7 @@ public struct OpTypeVector : IMemoryInstruction
 
     public OpTypeVector(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -2762,7 +2762,7 @@ public struct OpTypeMatrix : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2771,8 +2771,8 @@ public struct OpTypeMatrix : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2822,7 +2822,7 @@ public struct OpTypeMatrix : IMemoryInstruction
 
     public OpTypeMatrix(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -2872,7 +2872,7 @@ public struct OpTypeImage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -2881,8 +2881,8 @@ public struct OpTypeImage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -2998,7 +2998,7 @@ public struct OpTypeImage : IMemoryInstruction
 
     public OpTypeImage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3066,7 +3066,7 @@ public struct OpTypeSampler : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3075,8 +3075,8 @@ public struct OpTypeSampler : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3104,7 +3104,7 @@ public struct OpTypeSampler : IMemoryInstruction
 
     public OpTypeSampler(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3148,7 +3148,7 @@ public struct OpTypeSampledImage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3157,8 +3157,8 @@ public struct OpTypeSampledImage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3197,7 +3197,7 @@ public struct OpTypeSampledImage : IMemoryInstruction
 
     public OpTypeSampledImage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3244,7 +3244,7 @@ public struct OpTypeArray : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3253,8 +3253,8 @@ public struct OpTypeArray : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3304,7 +3304,7 @@ public struct OpTypeArray : IMemoryInstruction
 
     public OpTypeArray(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3354,7 +3354,7 @@ public struct OpTypeRuntimeArray : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3363,8 +3363,8 @@ public struct OpTypeRuntimeArray : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3403,7 +3403,7 @@ public struct OpTypeRuntimeArray : IMemoryInstruction
 
     public OpTypeRuntimeArray(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3450,7 +3450,7 @@ public struct OpTypeStruct : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3459,8 +3459,8 @@ public struct OpTypeStruct : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3499,7 +3499,7 @@ public struct OpTypeStruct : IMemoryInstruction
 
     public OpTypeStruct(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3546,7 +3546,7 @@ public struct OpTypeOpaque : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3555,8 +3555,8 @@ public struct OpTypeOpaque : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3595,7 +3595,7 @@ public struct OpTypeOpaque : IMemoryInstruction
 
     public OpTypeOpaque(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3642,7 +3642,7 @@ public struct OpTypePointer : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3651,8 +3651,8 @@ public struct OpTypePointer : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3702,7 +3702,7 @@ public struct OpTypePointer : IMemoryInstruction
 
     public OpTypePointer(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3752,7 +3752,7 @@ public struct OpTypeFunction : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3761,8 +3761,8 @@ public struct OpTypeFunction : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3812,7 +3812,7 @@ public struct OpTypeFunction : IMemoryInstruction
 
     public OpTypeFunction(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3862,7 +3862,7 @@ public struct OpTypeEvent : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3871,8 +3871,8 @@ public struct OpTypeEvent : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3900,7 +3900,7 @@ public struct OpTypeEvent : IMemoryInstruction
 
     public OpTypeEvent(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -3944,7 +3944,7 @@ public struct OpTypeDeviceEvent : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -3953,8 +3953,8 @@ public struct OpTypeDeviceEvent : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -3982,7 +3982,7 @@ public struct OpTypeDeviceEvent : IMemoryInstruction
 
     public OpTypeDeviceEvent(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -4026,7 +4026,7 @@ public struct OpTypeReserveId : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4035,8 +4035,8 @@ public struct OpTypeReserveId : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4064,7 +4064,7 @@ public struct OpTypeReserveId : IMemoryInstruction
 
     public OpTypeReserveId(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -4108,7 +4108,7 @@ public struct OpTypeQueue : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4117,8 +4117,8 @@ public struct OpTypeQueue : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4146,7 +4146,7 @@ public struct OpTypeQueue : IMemoryInstruction
 
     public OpTypeQueue(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -4190,7 +4190,7 @@ public struct OpTypePipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4199,8 +4199,8 @@ public struct OpTypePipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4239,7 +4239,7 @@ public struct OpTypePipe : IMemoryInstruction
 
     public OpTypePipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -4286,7 +4286,7 @@ public struct OpTypeForwardPointer : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4295,8 +4295,8 @@ public struct OpTypeForwardPointer : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4333,7 +4333,7 @@ public struct OpTypeForwardPointer : IMemoryInstruction
 
     public OpTypeForwardPointer(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointerType")
                 PointerType = o.ToLiteral<int>();
@@ -4380,7 +4380,7 @@ public struct OpConstantTrue : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4389,8 +4389,8 @@ public struct OpConstantTrue : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4429,7 +4429,7 @@ public struct OpConstantTrue : IMemoryInstruction
 
     public OpConstantTrue(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -4476,7 +4476,7 @@ public struct OpConstantFalse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4485,8 +4485,8 @@ public struct OpConstantFalse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4525,7 +4525,7 @@ public struct OpConstantFalse : IMemoryInstruction
 
     public OpConstantFalse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -4573,7 +4573,7 @@ public struct OpConstant<T> : IMemoryInstruction where T : struct, INumber<T>
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4582,8 +4582,8 @@ public struct OpConstant<T> : IMemoryInstruction where T : struct, INumber<T>
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4628,7 +4628,7 @@ public struct OpConstant<T> : IMemoryInstruction where T : struct, INumber<T>
     public OpConstant(OpDataIndex index)
     {
         DataIndex = index;
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -4678,7 +4678,7 @@ public struct OpConstantComposite : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4687,8 +4687,8 @@ public struct OpConstantComposite : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4738,7 +4738,7 @@ public struct OpConstantComposite : IMemoryInstruction
 
     public OpConstantComposite(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -4788,7 +4788,7 @@ public struct OpConstantSampler : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4797,8 +4797,8 @@ public struct OpConstantSampler : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4870,7 +4870,7 @@ public struct OpConstantSampler : IMemoryInstruction
 
     public OpConstantSampler(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -4926,7 +4926,7 @@ public struct OpConstantNull : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -4935,8 +4935,8 @@ public struct OpConstantNull : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -4975,7 +4975,7 @@ public struct OpConstantNull : IMemoryInstruction
 
     public OpConstantNull(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5022,7 +5022,7 @@ public struct OpSpecConstantTrue : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5031,8 +5031,8 @@ public struct OpSpecConstantTrue : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5071,7 +5071,7 @@ public struct OpSpecConstantTrue : IMemoryInstruction
 
     public OpSpecConstantTrue(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5118,7 +5118,7 @@ public struct OpSpecConstantFalse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5127,8 +5127,8 @@ public struct OpSpecConstantFalse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5167,7 +5167,7 @@ public struct OpSpecConstantFalse : IMemoryInstruction
 
     public OpSpecConstantFalse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5215,7 +5215,7 @@ public struct OpSpecConstant<T> : IMemoryInstruction where T : struct, INumber<T
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5224,8 +5224,8 @@ public struct OpSpecConstant<T> : IMemoryInstruction where T : struct, INumber<T
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5270,7 +5270,7 @@ public struct OpSpecConstant<T> : IMemoryInstruction where T : struct, INumber<T
     public OpSpecConstant(OpDataIndex index)
     {
         DataIndex = index;
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5320,7 +5320,7 @@ public struct OpSpecConstantComposite : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5329,8 +5329,8 @@ public struct OpSpecConstantComposite : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5380,7 +5380,7 @@ public struct OpSpecConstantComposite : IMemoryInstruction
 
     public OpSpecConstantComposite(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5430,7 +5430,7 @@ public struct OpSpecConstantOp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5439,8 +5439,8 @@ public struct OpSpecConstantOp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5490,7 +5490,7 @@ public struct OpSpecConstantOp : IMemoryInstruction
 
     public OpSpecConstantOp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5540,7 +5540,7 @@ public struct OpFunction : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5549,8 +5549,8 @@ public struct OpFunction : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5611,7 +5611,7 @@ public struct OpFunction : IMemoryInstruction
 
     public OpFunction(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5664,7 +5664,7 @@ public struct OpFunctionParameter : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5673,8 +5673,8 @@ public struct OpFunctionParameter : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5713,7 +5713,7 @@ public struct OpFunctionParameter : IMemoryInstruction
 
     public OpFunctionParameter(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5760,7 +5760,7 @@ public struct OpFunctionEnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5769,8 +5769,8 @@ public struct OpFunctionEnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5804,7 +5804,7 @@ public struct OpFunctionCall : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5813,8 +5813,8 @@ public struct OpFunctionCall : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5875,7 +5875,7 @@ public struct OpFunctionCall : IMemoryInstruction
 
     public OpFunctionCall(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -5928,7 +5928,7 @@ public struct OpVariable : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -5937,8 +5937,8 @@ public struct OpVariable : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -5999,7 +5999,7 @@ public struct OpVariable : IMemoryInstruction
 
     public OpVariable(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6052,7 +6052,7 @@ public struct OpImageTexelPointer : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6061,8 +6061,8 @@ public struct OpImageTexelPointer : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6134,7 +6134,7 @@ public struct OpImageTexelPointer : IMemoryInstruction
 
     public OpImageTexelPointer(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6190,7 +6190,7 @@ public struct OpLoad : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6199,8 +6199,8 @@ public struct OpLoad : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6261,7 +6261,7 @@ public struct OpLoad : IMemoryInstruction
 
     public OpLoad(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6314,7 +6314,7 @@ public struct OpStore : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6323,8 +6323,8 @@ public struct OpStore : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6372,7 +6372,7 @@ public struct OpStore : IMemoryInstruction
 
     public OpStore(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -6422,7 +6422,7 @@ public struct OpAccessChain : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6431,8 +6431,8 @@ public struct OpAccessChain : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6493,7 +6493,7 @@ public struct OpAccessChain : IMemoryInstruction
 
     public OpAccessChain(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6546,7 +6546,7 @@ public struct OpInBoundsAccessChain : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6555,8 +6555,8 @@ public struct OpInBoundsAccessChain : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6617,7 +6617,7 @@ public struct OpInBoundsAccessChain : IMemoryInstruction
 
     public OpInBoundsAccessChain(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6670,7 +6670,7 @@ public struct OpPtrAccessChain : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6679,8 +6679,8 @@ public struct OpPtrAccessChain : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6752,7 +6752,7 @@ public struct OpPtrAccessChain : IMemoryInstruction
 
     public OpPtrAccessChain(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6808,7 +6808,7 @@ public struct OpArrayLength : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6817,8 +6817,8 @@ public struct OpArrayLength : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6879,7 +6879,7 @@ public struct OpArrayLength : IMemoryInstruction
 
     public OpArrayLength(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -6932,7 +6932,7 @@ public struct OpGenericPtrMemSemantics : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -6941,8 +6941,8 @@ public struct OpGenericPtrMemSemantics : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -6992,7 +6992,7 @@ public struct OpGenericPtrMemSemantics : IMemoryInstruction
 
     public OpGenericPtrMemSemantics(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -7042,7 +7042,7 @@ public struct OpInBoundsPtrAccessChain : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7051,8 +7051,8 @@ public struct OpInBoundsPtrAccessChain : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7124,7 +7124,7 @@ public struct OpInBoundsPtrAccessChain : IMemoryInstruction
 
     public OpInBoundsPtrAccessChain(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -7180,7 +7180,7 @@ public struct OpDecorate : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7189,8 +7189,8 @@ public struct OpDecorate : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7254,7 +7254,7 @@ public struct OpDecorate : IMemoryInstruction
 
     public OpDecorate(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "target")
                 Target = o.ToLiteral<int>();
@@ -7310,7 +7310,7 @@ public struct OpMemberDecorate : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7319,8 +7319,8 @@ public struct OpMemberDecorate : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7395,7 +7395,7 @@ public struct OpMemberDecorate : IMemoryInstruction
 
     public OpMemberDecorate(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "structureType")
                 StructureType = o.ToLiteral<int>();
@@ -7454,7 +7454,7 @@ public struct OpDecorationGroup : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7463,8 +7463,8 @@ public struct OpDecorationGroup : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7492,7 +7492,7 @@ public struct OpDecorationGroup : IMemoryInstruction
 
     public OpDecorationGroup(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -7536,7 +7536,7 @@ public struct OpGroupDecorate : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7545,8 +7545,8 @@ public struct OpGroupDecorate : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7610,7 +7610,7 @@ public struct OpGroupDecorate : IMemoryInstruction
 
     public OpGroupDecorate(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "decorationGroup")
                 DecorationGroup = o.ToLiteral<int>();
@@ -7666,7 +7666,7 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7675,8 +7675,8 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7740,7 +7740,7 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
 
     public OpGroupMemberDecorate(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "decorationGroup")
                 DecorationGroup = o.ToLiteral<int>();
@@ -7796,7 +7796,7 @@ public struct OpVectorExtractDynamic : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7805,8 +7805,8 @@ public struct OpVectorExtractDynamic : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -7867,7 +7867,7 @@ public struct OpVectorExtractDynamic : IMemoryInstruction
 
     public OpVectorExtractDynamic(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -7920,7 +7920,7 @@ public struct OpVectorInsertDynamic : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -7929,8 +7929,8 @@ public struct OpVectorInsertDynamic : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8002,7 +8002,7 @@ public struct OpVectorInsertDynamic : IMemoryInstruction
 
     public OpVectorInsertDynamic(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8058,7 +8058,7 @@ public struct OpVectorShuffle : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8067,8 +8067,8 @@ public struct OpVectorShuffle : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8140,7 +8140,7 @@ public struct OpVectorShuffle : IMemoryInstruction
 
     public OpVectorShuffle(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8196,7 +8196,7 @@ public struct OpCompositeConstruct : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8205,8 +8205,8 @@ public struct OpCompositeConstruct : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8256,7 +8256,7 @@ public struct OpCompositeConstruct : IMemoryInstruction
 
     public OpCompositeConstruct(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8306,7 +8306,7 @@ public struct OpCompositeExtract : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8315,8 +8315,8 @@ public struct OpCompositeExtract : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8377,7 +8377,7 @@ public struct OpCompositeExtract : IMemoryInstruction
 
     public OpCompositeExtract(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8430,7 +8430,7 @@ public struct OpCompositeInsert : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8439,8 +8439,8 @@ public struct OpCompositeInsert : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8512,7 +8512,7 @@ public struct OpCompositeInsert : IMemoryInstruction
 
     public OpCompositeInsert(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8568,7 +8568,7 @@ public struct OpCopyObject : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8577,8 +8577,8 @@ public struct OpCopyObject : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8628,7 +8628,7 @@ public struct OpCopyObject : IMemoryInstruction
 
     public OpCopyObject(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8678,7 +8678,7 @@ public struct OpTranspose : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8687,8 +8687,8 @@ public struct OpTranspose : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8738,7 +8738,7 @@ public struct OpTranspose : IMemoryInstruction
 
     public OpTranspose(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8788,7 +8788,7 @@ public struct OpSampledImage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8797,8 +8797,8 @@ public struct OpSampledImage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8859,7 +8859,7 @@ public struct OpSampledImage : IMemoryInstruction
 
     public OpSampledImage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -8912,7 +8912,7 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -8921,8 +8921,8 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -8994,7 +8994,7 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
 
     public OpImageSampleImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9050,7 +9050,7 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9059,8 +9059,8 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -9132,7 +9132,7 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
 
     public OpImageSampleExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9188,7 +9188,7 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9197,8 +9197,8 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -9281,7 +9281,7 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
 
     public OpImageSampleDrefImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9340,7 +9340,7 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9349,8 +9349,8 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -9433,7 +9433,7 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
 
     public OpImageSampleDrefExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9492,7 +9492,7 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9501,8 +9501,8 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -9574,7 +9574,7 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
 
     public OpImageSampleProjImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9630,7 +9630,7 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9639,8 +9639,8 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -9712,7 +9712,7 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
 
     public OpImageSampleProjExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9768,7 +9768,7 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9777,8 +9777,8 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -9861,7 +9861,7 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
 
     public OpImageSampleProjDrefImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -9920,7 +9920,7 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -9929,8 +9929,8 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10013,7 +10013,7 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
 
     public OpImageSampleProjDrefExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10072,7 +10072,7 @@ public struct OpImageFetch : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10081,8 +10081,8 @@ public struct OpImageFetch : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10154,7 +10154,7 @@ public struct OpImageFetch : IMemoryInstruction
 
     public OpImageFetch(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10210,7 +10210,7 @@ public struct OpImageGather : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10219,8 +10219,8 @@ public struct OpImageGather : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10303,7 +10303,7 @@ public struct OpImageGather : IMemoryInstruction
 
     public OpImageGather(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10362,7 +10362,7 @@ public struct OpImageDrefGather : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10371,8 +10371,8 @@ public struct OpImageDrefGather : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10455,7 +10455,7 @@ public struct OpImageDrefGather : IMemoryInstruction
 
     public OpImageDrefGather(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10514,7 +10514,7 @@ public struct OpImageRead : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10523,8 +10523,8 @@ public struct OpImageRead : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10596,7 +10596,7 @@ public struct OpImageRead : IMemoryInstruction
 
     public OpImageRead(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10652,7 +10652,7 @@ public struct OpImageWrite : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10661,8 +10661,8 @@ public struct OpImageWrite : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10721,7 +10721,7 @@ public struct OpImageWrite : IMemoryInstruction
 
     public OpImageWrite(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "image")
                 Image = o.ToLiteral<int>();
@@ -10774,7 +10774,7 @@ public struct OpImage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10783,8 +10783,8 @@ public struct OpImage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10834,7 +10834,7 @@ public struct OpImage : IMemoryInstruction
 
     public OpImage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10884,7 +10884,7 @@ public struct OpImageQueryFormat : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -10893,8 +10893,8 @@ public struct OpImageQueryFormat : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -10944,7 +10944,7 @@ public struct OpImageQueryFormat : IMemoryInstruction
 
     public OpImageQueryFormat(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -10994,7 +10994,7 @@ public struct OpImageQueryOrder : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11003,8 +11003,8 @@ public struct OpImageQueryOrder : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11054,7 +11054,7 @@ public struct OpImageQueryOrder : IMemoryInstruction
 
     public OpImageQueryOrder(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11104,7 +11104,7 @@ public struct OpImageQuerySizeLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11113,8 +11113,8 @@ public struct OpImageQuerySizeLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11175,7 +11175,7 @@ public struct OpImageQuerySizeLod : IMemoryInstruction
 
     public OpImageQuerySizeLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11228,7 +11228,7 @@ public struct OpImageQuerySize : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11237,8 +11237,8 @@ public struct OpImageQuerySize : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11288,7 +11288,7 @@ public struct OpImageQuerySize : IMemoryInstruction
 
     public OpImageQuerySize(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11338,7 +11338,7 @@ public struct OpImageQueryLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11347,8 +11347,8 @@ public struct OpImageQueryLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11409,7 +11409,7 @@ public struct OpImageQueryLod : IMemoryInstruction
 
     public OpImageQueryLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11462,7 +11462,7 @@ public struct OpImageQueryLevels : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11471,8 +11471,8 @@ public struct OpImageQueryLevels : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11522,7 +11522,7 @@ public struct OpImageQueryLevels : IMemoryInstruction
 
     public OpImageQueryLevels(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11572,7 +11572,7 @@ public struct OpImageQuerySamples : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11581,8 +11581,8 @@ public struct OpImageQuerySamples : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11632,7 +11632,7 @@ public struct OpImageQuerySamples : IMemoryInstruction
 
     public OpImageQuerySamples(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11682,7 +11682,7 @@ public struct OpConvertFToU : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11691,8 +11691,8 @@ public struct OpConvertFToU : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11742,7 +11742,7 @@ public struct OpConvertFToU : IMemoryInstruction
 
     public OpConvertFToU(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11792,7 +11792,7 @@ public struct OpConvertFToS : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11801,8 +11801,8 @@ public struct OpConvertFToS : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11852,7 +11852,7 @@ public struct OpConvertFToS : IMemoryInstruction
 
     public OpConvertFToS(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -11902,7 +11902,7 @@ public struct OpConvertSToF : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -11911,8 +11911,8 @@ public struct OpConvertSToF : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -11962,7 +11962,7 @@ public struct OpConvertSToF : IMemoryInstruction
 
     public OpConvertSToF(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12012,7 +12012,7 @@ public struct OpConvertUToF : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12021,8 +12021,8 @@ public struct OpConvertUToF : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12072,7 +12072,7 @@ public struct OpConvertUToF : IMemoryInstruction
 
     public OpConvertUToF(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12122,7 +12122,7 @@ public struct OpUConvert : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12131,8 +12131,8 @@ public struct OpUConvert : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12182,7 +12182,7 @@ public struct OpUConvert : IMemoryInstruction
 
     public OpUConvert(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12232,7 +12232,7 @@ public struct OpSConvert : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12241,8 +12241,8 @@ public struct OpSConvert : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12292,7 +12292,7 @@ public struct OpSConvert : IMemoryInstruction
 
     public OpSConvert(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12342,7 +12342,7 @@ public struct OpFConvert : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12351,8 +12351,8 @@ public struct OpFConvert : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12402,7 +12402,7 @@ public struct OpFConvert : IMemoryInstruction
 
     public OpFConvert(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12452,7 +12452,7 @@ public struct OpQuantizeToF16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12461,8 +12461,8 @@ public struct OpQuantizeToF16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12512,7 +12512,7 @@ public struct OpQuantizeToF16 : IMemoryInstruction
 
     public OpQuantizeToF16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12562,7 +12562,7 @@ public struct OpConvertPtrToU : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12571,8 +12571,8 @@ public struct OpConvertPtrToU : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12622,7 +12622,7 @@ public struct OpConvertPtrToU : IMemoryInstruction
 
     public OpConvertPtrToU(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12672,7 +12672,7 @@ public struct OpSatConvertSToU : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12681,8 +12681,8 @@ public struct OpSatConvertSToU : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12732,7 +12732,7 @@ public struct OpSatConvertSToU : IMemoryInstruction
 
     public OpSatConvertSToU(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12782,7 +12782,7 @@ public struct OpSatConvertUToS : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12791,8 +12791,8 @@ public struct OpSatConvertUToS : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12842,7 +12842,7 @@ public struct OpSatConvertUToS : IMemoryInstruction
 
     public OpSatConvertUToS(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -12892,7 +12892,7 @@ public struct OpConvertUToPtr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -12901,8 +12901,8 @@ public struct OpConvertUToPtr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -12952,7 +12952,7 @@ public struct OpConvertUToPtr : IMemoryInstruction
 
     public OpConvertUToPtr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13002,7 +13002,7 @@ public struct OpPtrCastToGeneric : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13011,8 +13011,8 @@ public struct OpPtrCastToGeneric : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13062,7 +13062,7 @@ public struct OpPtrCastToGeneric : IMemoryInstruction
 
     public OpPtrCastToGeneric(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13112,7 +13112,7 @@ public struct OpGenericCastToPtr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13121,8 +13121,8 @@ public struct OpGenericCastToPtr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13172,7 +13172,7 @@ public struct OpGenericCastToPtr : IMemoryInstruction
 
     public OpGenericCastToPtr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13222,7 +13222,7 @@ public struct OpGenericCastToPtrExplicit : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13231,8 +13231,8 @@ public struct OpGenericCastToPtrExplicit : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13293,7 +13293,7 @@ public struct OpGenericCastToPtrExplicit : IMemoryInstruction
 
     public OpGenericCastToPtrExplicit(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13346,7 +13346,7 @@ public struct OpBitcast : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13355,8 +13355,8 @@ public struct OpBitcast : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13406,7 +13406,7 @@ public struct OpBitcast : IMemoryInstruction
 
     public OpBitcast(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13456,7 +13456,7 @@ public struct OpSNegate : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13465,8 +13465,8 @@ public struct OpSNegate : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13516,7 +13516,7 @@ public struct OpSNegate : IMemoryInstruction
 
     public OpSNegate(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13566,7 +13566,7 @@ public struct OpFNegate : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13575,8 +13575,8 @@ public struct OpFNegate : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13626,7 +13626,7 @@ public struct OpFNegate : IMemoryInstruction
 
     public OpFNegate(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13676,7 +13676,7 @@ public struct OpIAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13685,8 +13685,8 @@ public struct OpIAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13747,7 +13747,7 @@ public struct OpIAdd : IMemoryInstruction
 
     public OpIAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13800,7 +13800,7 @@ public struct OpFAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13809,8 +13809,8 @@ public struct OpFAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13871,7 +13871,7 @@ public struct OpFAdd : IMemoryInstruction
 
     public OpFAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -13924,7 +13924,7 @@ public struct OpISub : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -13933,8 +13933,8 @@ public struct OpISub : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -13995,7 +13995,7 @@ public struct OpISub : IMemoryInstruction
 
     public OpISub(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14048,7 +14048,7 @@ public struct OpFSub : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14057,8 +14057,8 @@ public struct OpFSub : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14119,7 +14119,7 @@ public struct OpFSub : IMemoryInstruction
 
     public OpFSub(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14172,7 +14172,7 @@ public struct OpIMul : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14181,8 +14181,8 @@ public struct OpIMul : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14243,7 +14243,7 @@ public struct OpIMul : IMemoryInstruction
 
     public OpIMul(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14296,7 +14296,7 @@ public struct OpFMul : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14305,8 +14305,8 @@ public struct OpFMul : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14367,7 +14367,7 @@ public struct OpFMul : IMemoryInstruction
 
     public OpFMul(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14420,7 +14420,7 @@ public struct OpUDiv : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14429,8 +14429,8 @@ public struct OpUDiv : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14491,7 +14491,7 @@ public struct OpUDiv : IMemoryInstruction
 
     public OpUDiv(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14544,7 +14544,7 @@ public struct OpSDiv : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14553,8 +14553,8 @@ public struct OpSDiv : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14615,7 +14615,7 @@ public struct OpSDiv : IMemoryInstruction
 
     public OpSDiv(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14668,7 +14668,7 @@ public struct OpFDiv : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14677,8 +14677,8 @@ public struct OpFDiv : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14739,7 +14739,7 @@ public struct OpFDiv : IMemoryInstruction
 
     public OpFDiv(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14792,7 +14792,7 @@ public struct OpUMod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14801,8 +14801,8 @@ public struct OpUMod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14863,7 +14863,7 @@ public struct OpUMod : IMemoryInstruction
 
     public OpUMod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -14916,7 +14916,7 @@ public struct OpSRem : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -14925,8 +14925,8 @@ public struct OpSRem : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -14987,7 +14987,7 @@ public struct OpSRem : IMemoryInstruction
 
     public OpSRem(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15040,7 +15040,7 @@ public struct OpSMod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15049,8 +15049,8 @@ public struct OpSMod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15111,7 +15111,7 @@ public struct OpSMod : IMemoryInstruction
 
     public OpSMod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15164,7 +15164,7 @@ public struct OpFRem : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15173,8 +15173,8 @@ public struct OpFRem : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15235,7 +15235,7 @@ public struct OpFRem : IMemoryInstruction
 
     public OpFRem(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15288,7 +15288,7 @@ public struct OpFMod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15297,8 +15297,8 @@ public struct OpFMod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15359,7 +15359,7 @@ public struct OpFMod : IMemoryInstruction
 
     public OpFMod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15412,7 +15412,7 @@ public struct OpVectorTimesScalar : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15421,8 +15421,8 @@ public struct OpVectorTimesScalar : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15483,7 +15483,7 @@ public struct OpVectorTimesScalar : IMemoryInstruction
 
     public OpVectorTimesScalar(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15536,7 +15536,7 @@ public struct OpMatrixTimesScalar : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15545,8 +15545,8 @@ public struct OpMatrixTimesScalar : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15607,7 +15607,7 @@ public struct OpMatrixTimesScalar : IMemoryInstruction
 
     public OpMatrixTimesScalar(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15660,7 +15660,7 @@ public struct OpVectorTimesMatrix : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15669,8 +15669,8 @@ public struct OpVectorTimesMatrix : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15731,7 +15731,7 @@ public struct OpVectorTimesMatrix : IMemoryInstruction
 
     public OpVectorTimesMatrix(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15784,7 +15784,7 @@ public struct OpMatrixTimesVector : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15793,8 +15793,8 @@ public struct OpMatrixTimesVector : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15855,7 +15855,7 @@ public struct OpMatrixTimesVector : IMemoryInstruction
 
     public OpMatrixTimesVector(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -15908,7 +15908,7 @@ public struct OpMatrixTimesMatrix : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -15917,8 +15917,8 @@ public struct OpMatrixTimesMatrix : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -15979,7 +15979,7 @@ public struct OpMatrixTimesMatrix : IMemoryInstruction
 
     public OpMatrixTimesMatrix(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16032,7 +16032,7 @@ public struct OpOuterProduct : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16041,8 +16041,8 @@ public struct OpOuterProduct : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16103,7 +16103,7 @@ public struct OpOuterProduct : IMemoryInstruction
 
     public OpOuterProduct(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16156,7 +16156,7 @@ public struct OpDot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16165,8 +16165,8 @@ public struct OpDot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16227,7 +16227,7 @@ public struct OpDot : IMemoryInstruction
 
     public OpDot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16280,7 +16280,7 @@ public struct OpIAddCarry : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16289,8 +16289,8 @@ public struct OpIAddCarry : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16351,7 +16351,7 @@ public struct OpIAddCarry : IMemoryInstruction
 
     public OpIAddCarry(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16404,7 +16404,7 @@ public struct OpISubBorrow : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16413,8 +16413,8 @@ public struct OpISubBorrow : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16475,7 +16475,7 @@ public struct OpISubBorrow : IMemoryInstruction
 
     public OpISubBorrow(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16528,7 +16528,7 @@ public struct OpUMulExtended : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16537,8 +16537,8 @@ public struct OpUMulExtended : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16599,7 +16599,7 @@ public struct OpUMulExtended : IMemoryInstruction
 
     public OpUMulExtended(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16652,7 +16652,7 @@ public struct OpSMulExtended : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16661,8 +16661,8 @@ public struct OpSMulExtended : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16723,7 +16723,7 @@ public struct OpSMulExtended : IMemoryInstruction
 
     public OpSMulExtended(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16776,7 +16776,7 @@ public struct OpAny : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16785,8 +16785,8 @@ public struct OpAny : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16836,7 +16836,7 @@ public struct OpAny : IMemoryInstruction
 
     public OpAny(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16886,7 +16886,7 @@ public struct OpAll : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -16895,8 +16895,8 @@ public struct OpAll : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -16946,7 +16946,7 @@ public struct OpAll : IMemoryInstruction
 
     public OpAll(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -16996,7 +16996,7 @@ public struct OpIsNan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17005,8 +17005,8 @@ public struct OpIsNan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17056,7 +17056,7 @@ public struct OpIsNan : IMemoryInstruction
 
     public OpIsNan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17106,7 +17106,7 @@ public struct OpIsInf : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17115,8 +17115,8 @@ public struct OpIsInf : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17166,7 +17166,7 @@ public struct OpIsInf : IMemoryInstruction
 
     public OpIsInf(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17216,7 +17216,7 @@ public struct OpIsFinite : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17225,8 +17225,8 @@ public struct OpIsFinite : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17276,7 +17276,7 @@ public struct OpIsFinite : IMemoryInstruction
 
     public OpIsFinite(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17326,7 +17326,7 @@ public struct OpIsNormal : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17335,8 +17335,8 @@ public struct OpIsNormal : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17386,7 +17386,7 @@ public struct OpIsNormal : IMemoryInstruction
 
     public OpIsNormal(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17436,7 +17436,7 @@ public struct OpSignBitSet : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17445,8 +17445,8 @@ public struct OpSignBitSet : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17496,7 +17496,7 @@ public struct OpSignBitSet : IMemoryInstruction
 
     public OpSignBitSet(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17546,7 +17546,7 @@ public struct OpLessOrGreater : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17555,8 +17555,8 @@ public struct OpLessOrGreater : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17617,7 +17617,7 @@ public struct OpLessOrGreater : IMemoryInstruction
 
     public OpLessOrGreater(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17670,7 +17670,7 @@ public struct OpOrdered : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17679,8 +17679,8 @@ public struct OpOrdered : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17741,7 +17741,7 @@ public struct OpOrdered : IMemoryInstruction
 
     public OpOrdered(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17794,7 +17794,7 @@ public struct OpUnordered : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17803,8 +17803,8 @@ public struct OpUnordered : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17865,7 +17865,7 @@ public struct OpUnordered : IMemoryInstruction
 
     public OpUnordered(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -17918,7 +17918,7 @@ public struct OpLogicalEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -17927,8 +17927,8 @@ public struct OpLogicalEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -17989,7 +17989,7 @@ public struct OpLogicalEqual : IMemoryInstruction
 
     public OpLogicalEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18042,7 +18042,7 @@ public struct OpLogicalNotEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18051,8 +18051,8 @@ public struct OpLogicalNotEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18113,7 +18113,7 @@ public struct OpLogicalNotEqual : IMemoryInstruction
 
     public OpLogicalNotEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18166,7 +18166,7 @@ public struct OpLogicalOr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18175,8 +18175,8 @@ public struct OpLogicalOr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18237,7 +18237,7 @@ public struct OpLogicalOr : IMemoryInstruction
 
     public OpLogicalOr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18290,7 +18290,7 @@ public struct OpLogicalAnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18299,8 +18299,8 @@ public struct OpLogicalAnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18361,7 +18361,7 @@ public struct OpLogicalAnd : IMemoryInstruction
 
     public OpLogicalAnd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18414,7 +18414,7 @@ public struct OpLogicalNot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18423,8 +18423,8 @@ public struct OpLogicalNot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18474,7 +18474,7 @@ public struct OpLogicalNot : IMemoryInstruction
 
     public OpLogicalNot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18524,7 +18524,7 @@ public struct OpSelect : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18533,8 +18533,8 @@ public struct OpSelect : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18606,7 +18606,7 @@ public struct OpSelect : IMemoryInstruction
 
     public OpSelect(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18662,7 +18662,7 @@ public struct OpIEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18671,8 +18671,8 @@ public struct OpIEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18733,7 +18733,7 @@ public struct OpIEqual : IMemoryInstruction
 
     public OpIEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18786,7 +18786,7 @@ public struct OpINotEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18795,8 +18795,8 @@ public struct OpINotEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18857,7 +18857,7 @@ public struct OpINotEqual : IMemoryInstruction
 
     public OpINotEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -18910,7 +18910,7 @@ public struct OpUGreaterThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -18919,8 +18919,8 @@ public struct OpUGreaterThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -18981,7 +18981,7 @@ public struct OpUGreaterThan : IMemoryInstruction
 
     public OpUGreaterThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19034,7 +19034,7 @@ public struct OpSGreaterThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19043,8 +19043,8 @@ public struct OpSGreaterThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19105,7 +19105,7 @@ public struct OpSGreaterThan : IMemoryInstruction
 
     public OpSGreaterThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19158,7 +19158,7 @@ public struct OpUGreaterThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19167,8 +19167,8 @@ public struct OpUGreaterThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19229,7 +19229,7 @@ public struct OpUGreaterThanEqual : IMemoryInstruction
 
     public OpUGreaterThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19282,7 +19282,7 @@ public struct OpSGreaterThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19291,8 +19291,8 @@ public struct OpSGreaterThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19353,7 +19353,7 @@ public struct OpSGreaterThanEqual : IMemoryInstruction
 
     public OpSGreaterThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19406,7 +19406,7 @@ public struct OpULessThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19415,8 +19415,8 @@ public struct OpULessThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19477,7 +19477,7 @@ public struct OpULessThan : IMemoryInstruction
 
     public OpULessThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19530,7 +19530,7 @@ public struct OpSLessThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19539,8 +19539,8 @@ public struct OpSLessThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19601,7 +19601,7 @@ public struct OpSLessThan : IMemoryInstruction
 
     public OpSLessThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19654,7 +19654,7 @@ public struct OpULessThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19663,8 +19663,8 @@ public struct OpULessThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19725,7 +19725,7 @@ public struct OpULessThanEqual : IMemoryInstruction
 
     public OpULessThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19778,7 +19778,7 @@ public struct OpSLessThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19787,8 +19787,8 @@ public struct OpSLessThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19849,7 +19849,7 @@ public struct OpSLessThanEqual : IMemoryInstruction
 
     public OpSLessThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -19902,7 +19902,7 @@ public struct OpFOrdEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -19911,8 +19911,8 @@ public struct OpFOrdEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -19973,7 +19973,7 @@ public struct OpFOrdEqual : IMemoryInstruction
 
     public OpFOrdEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20026,7 +20026,7 @@ public struct OpFUnordEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20035,8 +20035,8 @@ public struct OpFUnordEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20097,7 +20097,7 @@ public struct OpFUnordEqual : IMemoryInstruction
 
     public OpFUnordEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20150,7 +20150,7 @@ public struct OpFOrdNotEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20159,8 +20159,8 @@ public struct OpFOrdNotEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20221,7 +20221,7 @@ public struct OpFOrdNotEqual : IMemoryInstruction
 
     public OpFOrdNotEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20274,7 +20274,7 @@ public struct OpFUnordNotEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20283,8 +20283,8 @@ public struct OpFUnordNotEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20345,7 +20345,7 @@ public struct OpFUnordNotEqual : IMemoryInstruction
 
     public OpFUnordNotEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20398,7 +20398,7 @@ public struct OpFOrdLessThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20407,8 +20407,8 @@ public struct OpFOrdLessThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20469,7 +20469,7 @@ public struct OpFOrdLessThan : IMemoryInstruction
 
     public OpFOrdLessThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20522,7 +20522,7 @@ public struct OpFUnordLessThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20531,8 +20531,8 @@ public struct OpFUnordLessThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20593,7 +20593,7 @@ public struct OpFUnordLessThan : IMemoryInstruction
 
     public OpFUnordLessThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20646,7 +20646,7 @@ public struct OpFOrdGreaterThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20655,8 +20655,8 @@ public struct OpFOrdGreaterThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20717,7 +20717,7 @@ public struct OpFOrdGreaterThan : IMemoryInstruction
 
     public OpFOrdGreaterThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20770,7 +20770,7 @@ public struct OpFUnordGreaterThan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20779,8 +20779,8 @@ public struct OpFUnordGreaterThan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20841,7 +20841,7 @@ public struct OpFUnordGreaterThan : IMemoryInstruction
 
     public OpFUnordGreaterThan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -20894,7 +20894,7 @@ public struct OpFOrdLessThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -20903,8 +20903,8 @@ public struct OpFOrdLessThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -20965,7 +20965,7 @@ public struct OpFOrdLessThanEqual : IMemoryInstruction
 
     public OpFOrdLessThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21018,7 +21018,7 @@ public struct OpFUnordLessThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21027,8 +21027,8 @@ public struct OpFUnordLessThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21089,7 +21089,7 @@ public struct OpFUnordLessThanEqual : IMemoryInstruction
 
     public OpFUnordLessThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21142,7 +21142,7 @@ public struct OpFOrdGreaterThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21151,8 +21151,8 @@ public struct OpFOrdGreaterThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21213,7 +21213,7 @@ public struct OpFOrdGreaterThanEqual : IMemoryInstruction
 
     public OpFOrdGreaterThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21266,7 +21266,7 @@ public struct OpFUnordGreaterThanEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21275,8 +21275,8 @@ public struct OpFUnordGreaterThanEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21337,7 +21337,7 @@ public struct OpFUnordGreaterThanEqual : IMemoryInstruction
 
     public OpFUnordGreaterThanEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21390,7 +21390,7 @@ public struct OpShiftRightLogical : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21399,8 +21399,8 @@ public struct OpShiftRightLogical : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21461,7 +21461,7 @@ public struct OpShiftRightLogical : IMemoryInstruction
 
     public OpShiftRightLogical(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21514,7 +21514,7 @@ public struct OpShiftRightArithmetic : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21523,8 +21523,8 @@ public struct OpShiftRightArithmetic : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21585,7 +21585,7 @@ public struct OpShiftRightArithmetic : IMemoryInstruction
 
     public OpShiftRightArithmetic(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21638,7 +21638,7 @@ public struct OpShiftLeftLogical : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21647,8 +21647,8 @@ public struct OpShiftLeftLogical : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21709,7 +21709,7 @@ public struct OpShiftLeftLogical : IMemoryInstruction
 
     public OpShiftLeftLogical(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21762,7 +21762,7 @@ public struct OpBitwiseOr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21771,8 +21771,8 @@ public struct OpBitwiseOr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21833,7 +21833,7 @@ public struct OpBitwiseOr : IMemoryInstruction
 
     public OpBitwiseOr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -21886,7 +21886,7 @@ public struct OpBitwiseXor : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -21895,8 +21895,8 @@ public struct OpBitwiseXor : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -21957,7 +21957,7 @@ public struct OpBitwiseXor : IMemoryInstruction
 
     public OpBitwiseXor(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22010,7 +22010,7 @@ public struct OpBitwiseAnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22019,8 +22019,8 @@ public struct OpBitwiseAnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22081,7 +22081,7 @@ public struct OpBitwiseAnd : IMemoryInstruction
 
     public OpBitwiseAnd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22134,7 +22134,7 @@ public struct OpNot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22143,8 +22143,8 @@ public struct OpNot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22194,7 +22194,7 @@ public struct OpNot : IMemoryInstruction
 
     public OpNot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22244,7 +22244,7 @@ public struct OpBitFieldInsert : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22253,8 +22253,8 @@ public struct OpBitFieldInsert : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22337,7 +22337,7 @@ public struct OpBitFieldInsert : IMemoryInstruction
 
     public OpBitFieldInsert(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22396,7 +22396,7 @@ public struct OpBitFieldSExtract : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22405,8 +22405,8 @@ public struct OpBitFieldSExtract : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22478,7 +22478,7 @@ public struct OpBitFieldSExtract : IMemoryInstruction
 
     public OpBitFieldSExtract(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22534,7 +22534,7 @@ public struct OpBitFieldUExtract : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22543,8 +22543,8 @@ public struct OpBitFieldUExtract : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22616,7 +22616,7 @@ public struct OpBitFieldUExtract : IMemoryInstruction
 
     public OpBitFieldUExtract(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22672,7 +22672,7 @@ public struct OpBitReverse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22681,8 +22681,8 @@ public struct OpBitReverse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22732,7 +22732,7 @@ public struct OpBitReverse : IMemoryInstruction
 
     public OpBitReverse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22782,7 +22782,7 @@ public struct OpBitCount : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22791,8 +22791,8 @@ public struct OpBitCount : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22842,7 +22842,7 @@ public struct OpBitCount : IMemoryInstruction
 
     public OpBitCount(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -22892,7 +22892,7 @@ public struct OpDPdx : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -22901,8 +22901,8 @@ public struct OpDPdx : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -22952,7 +22952,7 @@ public struct OpDPdx : IMemoryInstruction
 
     public OpDPdx(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23002,7 +23002,7 @@ public struct OpDPdy : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23011,8 +23011,8 @@ public struct OpDPdy : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23062,7 +23062,7 @@ public struct OpDPdy : IMemoryInstruction
 
     public OpDPdy(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23112,7 +23112,7 @@ public struct OpFwidth : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23121,8 +23121,8 @@ public struct OpFwidth : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23172,7 +23172,7 @@ public struct OpFwidth : IMemoryInstruction
 
     public OpFwidth(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23222,7 +23222,7 @@ public struct OpDPdxFine : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23231,8 +23231,8 @@ public struct OpDPdxFine : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23282,7 +23282,7 @@ public struct OpDPdxFine : IMemoryInstruction
 
     public OpDPdxFine(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23332,7 +23332,7 @@ public struct OpDPdyFine : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23341,8 +23341,8 @@ public struct OpDPdyFine : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23392,7 +23392,7 @@ public struct OpDPdyFine : IMemoryInstruction
 
     public OpDPdyFine(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23442,7 +23442,7 @@ public struct OpFwidthFine : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23451,8 +23451,8 @@ public struct OpFwidthFine : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23502,7 +23502,7 @@ public struct OpFwidthFine : IMemoryInstruction
 
     public OpFwidthFine(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23552,7 +23552,7 @@ public struct OpDPdxCoarse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23561,8 +23561,8 @@ public struct OpDPdxCoarse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23612,7 +23612,7 @@ public struct OpDPdxCoarse : IMemoryInstruction
 
     public OpDPdxCoarse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23662,7 +23662,7 @@ public struct OpDPdyCoarse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23671,8 +23671,8 @@ public struct OpDPdyCoarse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23722,7 +23722,7 @@ public struct OpDPdyCoarse : IMemoryInstruction
 
     public OpDPdyCoarse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23772,7 +23772,7 @@ public struct OpFwidthCoarse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23781,8 +23781,8 @@ public struct OpFwidthCoarse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23832,7 +23832,7 @@ public struct OpFwidthCoarse : IMemoryInstruction
 
     public OpFwidthCoarse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -23882,7 +23882,7 @@ public struct OpEmitVertex : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23891,8 +23891,8 @@ public struct OpEmitVertex : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23926,7 +23926,7 @@ public struct OpEndPrimitive : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23935,8 +23935,8 @@ public struct OpEndPrimitive : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -23970,7 +23970,7 @@ public struct OpEmitStreamVertex : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -23979,8 +23979,8 @@ public struct OpEmitStreamVertex : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24006,7 +24006,7 @@ public struct OpEmitStreamVertex : IMemoryInstruction
 
     public OpEmitStreamVertex(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "stream")
                 Stream = o.ToLiteral<int>();
@@ -24050,7 +24050,7 @@ public struct OpEndStreamPrimitive : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24059,8 +24059,8 @@ public struct OpEndStreamPrimitive : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24086,7 +24086,7 @@ public struct OpEndStreamPrimitive : IMemoryInstruction
 
     public OpEndStreamPrimitive(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "stream")
                 Stream = o.ToLiteral<int>();
@@ -24130,7 +24130,7 @@ public struct OpControlBarrier : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24139,8 +24139,8 @@ public struct OpControlBarrier : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24188,7 +24188,7 @@ public struct OpControlBarrier : IMemoryInstruction
 
     public OpControlBarrier(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "execution")
                 Execution = o.ToLiteral<int>();
@@ -24238,7 +24238,7 @@ public struct OpMemoryBarrier : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24247,8 +24247,8 @@ public struct OpMemoryBarrier : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24285,7 +24285,7 @@ public struct OpMemoryBarrier : IMemoryInstruction
 
     public OpMemoryBarrier(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "memory")
                 Memory = o.ToLiteral<int>();
@@ -24332,7 +24332,7 @@ public struct OpAtomicLoad : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24341,8 +24341,8 @@ public struct OpAtomicLoad : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24414,7 +24414,7 @@ public struct OpAtomicLoad : IMemoryInstruction
 
     public OpAtomicLoad(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -24470,7 +24470,7 @@ public struct OpAtomicStore : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24479,8 +24479,8 @@ public struct OpAtomicStore : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24539,7 +24539,7 @@ public struct OpAtomicStore : IMemoryInstruction
 
     public OpAtomicStore(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -24592,7 +24592,7 @@ public struct OpAtomicExchange : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24601,8 +24601,8 @@ public struct OpAtomicExchange : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24685,7 +24685,7 @@ public struct OpAtomicExchange : IMemoryInstruction
 
     public OpAtomicExchange(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -24744,7 +24744,7 @@ public struct OpAtomicCompareExchange : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24753,8 +24753,8 @@ public struct OpAtomicCompareExchange : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -24859,7 +24859,7 @@ public struct OpAtomicCompareExchange : IMemoryInstruction
 
     public OpAtomicCompareExchange(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -24924,7 +24924,7 @@ public struct OpAtomicCompareExchangeWeak : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -24933,8 +24933,8 @@ public struct OpAtomicCompareExchangeWeak : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25039,7 +25039,7 @@ public struct OpAtomicCompareExchangeWeak : IMemoryInstruction
 
     public OpAtomicCompareExchangeWeak(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25104,7 +25104,7 @@ public struct OpAtomicIIncrement : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25113,8 +25113,8 @@ public struct OpAtomicIIncrement : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25186,7 +25186,7 @@ public struct OpAtomicIIncrement : IMemoryInstruction
 
     public OpAtomicIIncrement(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25242,7 +25242,7 @@ public struct OpAtomicIDecrement : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25251,8 +25251,8 @@ public struct OpAtomicIDecrement : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25324,7 +25324,7 @@ public struct OpAtomicIDecrement : IMemoryInstruction
 
     public OpAtomicIDecrement(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25380,7 +25380,7 @@ public struct OpAtomicIAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25389,8 +25389,8 @@ public struct OpAtomicIAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25473,7 +25473,7 @@ public struct OpAtomicIAdd : IMemoryInstruction
 
     public OpAtomicIAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25532,7 +25532,7 @@ public struct OpAtomicISub : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25541,8 +25541,8 @@ public struct OpAtomicISub : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25625,7 +25625,7 @@ public struct OpAtomicISub : IMemoryInstruction
 
     public OpAtomicISub(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25684,7 +25684,7 @@ public struct OpAtomicSMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25693,8 +25693,8 @@ public struct OpAtomicSMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25777,7 +25777,7 @@ public struct OpAtomicSMin : IMemoryInstruction
 
     public OpAtomicSMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25836,7 +25836,7 @@ public struct OpAtomicUMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25845,8 +25845,8 @@ public struct OpAtomicUMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -25929,7 +25929,7 @@ public struct OpAtomicUMin : IMemoryInstruction
 
     public OpAtomicUMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -25988,7 +25988,7 @@ public struct OpAtomicSMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -25997,8 +25997,8 @@ public struct OpAtomicSMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26081,7 +26081,7 @@ public struct OpAtomicSMax : IMemoryInstruction
 
     public OpAtomicSMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -26140,7 +26140,7 @@ public struct OpAtomicUMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26149,8 +26149,8 @@ public struct OpAtomicUMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26233,7 +26233,7 @@ public struct OpAtomicUMax : IMemoryInstruction
 
     public OpAtomicUMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -26292,7 +26292,7 @@ public struct OpAtomicAnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26301,8 +26301,8 @@ public struct OpAtomicAnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26385,7 +26385,7 @@ public struct OpAtomicAnd : IMemoryInstruction
 
     public OpAtomicAnd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -26444,7 +26444,7 @@ public struct OpAtomicOr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26453,8 +26453,8 @@ public struct OpAtomicOr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26537,7 +26537,7 @@ public struct OpAtomicOr : IMemoryInstruction
 
     public OpAtomicOr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -26596,7 +26596,7 @@ public struct OpAtomicXor : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26605,8 +26605,8 @@ public struct OpAtomicXor : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26689,7 +26689,7 @@ public struct OpAtomicXor : IMemoryInstruction
 
     public OpAtomicXor(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -26748,7 +26748,7 @@ public struct OpPhi : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26757,8 +26757,8 @@ public struct OpPhi : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26808,7 +26808,7 @@ public struct OpPhi : IMemoryInstruction
 
     public OpPhi(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -26858,7 +26858,7 @@ public struct OpLoopMerge : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26867,8 +26867,8 @@ public struct OpLoopMerge : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -26916,7 +26916,7 @@ public struct OpLoopMerge : IMemoryInstruction
 
     public OpLoopMerge(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "mergeBlock")
                 MergeBlock = o.ToLiteral<int>();
@@ -26966,7 +26966,7 @@ public struct OpSelectionMerge : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -26975,8 +26975,8 @@ public struct OpSelectionMerge : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27013,7 +27013,7 @@ public struct OpSelectionMerge : IMemoryInstruction
 
     public OpSelectionMerge(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "mergeBlock")
                 MergeBlock = o.ToLiteral<int>();
@@ -27060,7 +27060,7 @@ public struct OpLabel : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27069,8 +27069,8 @@ public struct OpLabel : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27098,7 +27098,7 @@ public struct OpLabel : IMemoryInstruction
 
     public OpLabel(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -27142,7 +27142,7 @@ public struct OpBranch : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27151,8 +27151,8 @@ public struct OpBranch : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27178,7 +27178,7 @@ public struct OpBranch : IMemoryInstruction
 
     public OpBranch(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "targetLabel")
                 TargetLabel = o.ToLiteral<int>();
@@ -27222,7 +27222,7 @@ public struct OpBranchConditional : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27231,8 +27231,8 @@ public struct OpBranchConditional : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27291,7 +27291,7 @@ public struct OpBranchConditional : IMemoryInstruction
 
     public OpBranchConditional(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "condition")
                 Condition = o.ToLiteral<int>();
@@ -27344,7 +27344,7 @@ public struct OpSwitch : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27353,8 +27353,8 @@ public struct OpSwitch : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27402,7 +27402,7 @@ public struct OpSwitch : IMemoryInstruction
 
     public OpSwitch(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "selector")
                 Selector = o.ToLiteral<int>();
@@ -27452,7 +27452,7 @@ public struct OpKill : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27461,8 +27461,8 @@ public struct OpKill : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27496,7 +27496,7 @@ public struct OpReturn : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27505,8 +27505,8 @@ public struct OpReturn : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27540,7 +27540,7 @@ public struct OpReturnValue : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27549,8 +27549,8 @@ public struct OpReturnValue : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27576,7 +27576,7 @@ public struct OpReturnValue : IMemoryInstruction
 
     public OpReturnValue(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "value")
                 Value = o.ToLiteral<int>();
@@ -27620,7 +27620,7 @@ public struct OpUnreachable : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27629,8 +27629,8 @@ public struct OpUnreachable : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27664,7 +27664,7 @@ public struct OpLifetimeStart : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27673,8 +27673,8 @@ public struct OpLifetimeStart : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27711,7 +27711,7 @@ public struct OpLifetimeStart : IMemoryInstruction
 
     public OpLifetimeStart(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -27758,7 +27758,7 @@ public struct OpLifetimeStop : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27767,8 +27767,8 @@ public struct OpLifetimeStop : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27805,7 +27805,7 @@ public struct OpLifetimeStop : IMemoryInstruction
 
     public OpLifetimeStop(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -27852,7 +27852,7 @@ public struct OpGroupAsyncCopy : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -27861,8 +27861,8 @@ public struct OpGroupAsyncCopy : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -27967,7 +27967,7 @@ public struct OpGroupAsyncCopy : IMemoryInstruction
 
     public OpGroupAsyncCopy(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28032,7 +28032,7 @@ public struct OpGroupWaitEvents : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28041,8 +28041,8 @@ public struct OpGroupWaitEvents : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28090,7 +28090,7 @@ public struct OpGroupWaitEvents : IMemoryInstruction
 
     public OpGroupWaitEvents(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "execution")
                 Execution = o.ToLiteral<int>();
@@ -28140,7 +28140,7 @@ public struct OpGroupAll : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28149,8 +28149,8 @@ public struct OpGroupAll : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28211,7 +28211,7 @@ public struct OpGroupAll : IMemoryInstruction
 
     public OpGroupAll(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28264,7 +28264,7 @@ public struct OpGroupAny : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28273,8 +28273,8 @@ public struct OpGroupAny : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28335,7 +28335,7 @@ public struct OpGroupAny : IMemoryInstruction
 
     public OpGroupAny(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28388,7 +28388,7 @@ public struct OpGroupBroadcast : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28397,8 +28397,8 @@ public struct OpGroupBroadcast : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28470,7 +28470,7 @@ public struct OpGroupBroadcast : IMemoryInstruction
 
     public OpGroupBroadcast(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28526,7 +28526,7 @@ public struct OpGroupIAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28535,8 +28535,8 @@ public struct OpGroupIAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28608,7 +28608,7 @@ public struct OpGroupIAdd : IMemoryInstruction
 
     public OpGroupIAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28664,7 +28664,7 @@ public struct OpGroupFAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28673,8 +28673,8 @@ public struct OpGroupFAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28746,7 +28746,7 @@ public struct OpGroupFAdd : IMemoryInstruction
 
     public OpGroupFAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28802,7 +28802,7 @@ public struct OpGroupFMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28811,8 +28811,8 @@ public struct OpGroupFMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -28884,7 +28884,7 @@ public struct OpGroupFMin : IMemoryInstruction
 
     public OpGroupFMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -28940,7 +28940,7 @@ public struct OpGroupUMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -28949,8 +28949,8 @@ public struct OpGroupUMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29022,7 +29022,7 @@ public struct OpGroupUMin : IMemoryInstruction
 
     public OpGroupUMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29078,7 +29078,7 @@ public struct OpGroupSMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29087,8 +29087,8 @@ public struct OpGroupSMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29160,7 +29160,7 @@ public struct OpGroupSMin : IMemoryInstruction
 
     public OpGroupSMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29216,7 +29216,7 @@ public struct OpGroupFMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29225,8 +29225,8 @@ public struct OpGroupFMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29298,7 +29298,7 @@ public struct OpGroupFMax : IMemoryInstruction
 
     public OpGroupFMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29354,7 +29354,7 @@ public struct OpGroupUMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29363,8 +29363,8 @@ public struct OpGroupUMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29436,7 +29436,7 @@ public struct OpGroupUMax : IMemoryInstruction
 
     public OpGroupUMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29492,7 +29492,7 @@ public struct OpGroupSMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29501,8 +29501,8 @@ public struct OpGroupSMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29574,7 +29574,7 @@ public struct OpGroupSMax : IMemoryInstruction
 
     public OpGroupSMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29630,7 +29630,7 @@ public struct OpReadPipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29639,8 +29639,8 @@ public struct OpReadPipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29723,7 +29723,7 @@ public struct OpReadPipe : IMemoryInstruction
 
     public OpReadPipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29782,7 +29782,7 @@ public struct OpWritePipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29791,8 +29791,8 @@ public struct OpWritePipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -29875,7 +29875,7 @@ public struct OpWritePipe : IMemoryInstruction
 
     public OpWritePipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -29934,7 +29934,7 @@ public struct OpReservedReadPipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -29943,8 +29943,8 @@ public struct OpReservedReadPipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30049,7 +30049,7 @@ public struct OpReservedReadPipe : IMemoryInstruction
 
     public OpReservedReadPipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -30114,7 +30114,7 @@ public struct OpReservedWritePipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30123,8 +30123,8 @@ public struct OpReservedWritePipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30229,7 +30229,7 @@ public struct OpReservedWritePipe : IMemoryInstruction
 
     public OpReservedWritePipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -30294,7 +30294,7 @@ public struct OpReserveReadPipePackets : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30303,8 +30303,8 @@ public struct OpReserveReadPipePackets : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30387,7 +30387,7 @@ public struct OpReserveReadPipePackets : IMemoryInstruction
 
     public OpReserveReadPipePackets(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -30446,7 +30446,7 @@ public struct OpReserveWritePipePackets : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30455,8 +30455,8 @@ public struct OpReserveWritePipePackets : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30539,7 +30539,7 @@ public struct OpReserveWritePipePackets : IMemoryInstruction
 
     public OpReserveWritePipePackets(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -30598,7 +30598,7 @@ public struct OpCommitReadPipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30607,8 +30607,8 @@ public struct OpCommitReadPipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30667,7 +30667,7 @@ public struct OpCommitReadPipe : IMemoryInstruction
 
     public OpCommitReadPipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pipe")
                 Pipe = o.ToLiteral<int>();
@@ -30720,7 +30720,7 @@ public struct OpCommitWritePipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30729,8 +30729,8 @@ public struct OpCommitWritePipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30789,7 +30789,7 @@ public struct OpCommitWritePipe : IMemoryInstruction
 
     public OpCommitWritePipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pipe")
                 Pipe = o.ToLiteral<int>();
@@ -30842,7 +30842,7 @@ public struct OpIsValidReserveId : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30851,8 +30851,8 @@ public struct OpIsValidReserveId : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -30902,7 +30902,7 @@ public struct OpIsValidReserveId : IMemoryInstruction
 
     public OpIsValidReserveId(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -30952,7 +30952,7 @@ public struct OpGetNumPipePackets : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -30961,8 +30961,8 @@ public struct OpGetNumPipePackets : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31034,7 +31034,7 @@ public struct OpGetNumPipePackets : IMemoryInstruction
 
     public OpGetNumPipePackets(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -31090,7 +31090,7 @@ public struct OpGetMaxPipePackets : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31099,8 +31099,8 @@ public struct OpGetMaxPipePackets : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31172,7 +31172,7 @@ public struct OpGetMaxPipePackets : IMemoryInstruction
 
     public OpGetMaxPipePackets(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -31228,7 +31228,7 @@ public struct OpGroupReserveReadPipePackets : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31237,8 +31237,8 @@ public struct OpGroupReserveReadPipePackets : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31332,7 +31332,7 @@ public struct OpGroupReserveReadPipePackets : IMemoryInstruction
 
     public OpGroupReserveReadPipePackets(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -31394,7 +31394,7 @@ public struct OpGroupReserveWritePipePackets : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31403,8 +31403,8 @@ public struct OpGroupReserveWritePipePackets : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31498,7 +31498,7 @@ public struct OpGroupReserveWritePipePackets : IMemoryInstruction
 
     public OpGroupReserveWritePipePackets(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -31560,7 +31560,7 @@ public struct OpGroupCommitReadPipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31569,8 +31569,8 @@ public struct OpGroupCommitReadPipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31640,7 +31640,7 @@ public struct OpGroupCommitReadPipe : IMemoryInstruction
 
     public OpGroupCommitReadPipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "execution")
                 Execution = o.ToLiteral<int>();
@@ -31696,7 +31696,7 @@ public struct OpGroupCommitWritePipe : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31705,8 +31705,8 @@ public struct OpGroupCommitWritePipe : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31776,7 +31776,7 @@ public struct OpGroupCommitWritePipe : IMemoryInstruction
 
     public OpGroupCommitWritePipe(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "execution")
                 Execution = o.ToLiteral<int>();
@@ -31832,7 +31832,7 @@ public struct OpEnqueueMarker : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31841,8 +31841,8 @@ public struct OpEnqueueMarker : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -31925,7 +31925,7 @@ public struct OpEnqueueMarker : IMemoryInstruction
 
     public OpEnqueueMarker(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -31984,7 +31984,7 @@ public struct OpEnqueueKernel : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -31993,8 +31993,8 @@ public struct OpEnqueueKernel : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32154,7 +32154,7 @@ public struct OpEnqueueKernel : IMemoryInstruction
 
     public OpEnqueueKernel(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -32234,7 +32234,7 @@ public struct OpGetKernelNDrangeSubGroupCount : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -32243,8 +32243,8 @@ public struct OpGetKernelNDrangeSubGroupCount : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32338,7 +32338,7 @@ public struct OpGetKernelNDrangeSubGroupCount : IMemoryInstruction
 
     public OpGetKernelNDrangeSubGroupCount(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -32400,7 +32400,7 @@ public struct OpGetKernelNDrangeMaxSubGroupSize : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -32409,8 +32409,8 @@ public struct OpGetKernelNDrangeMaxSubGroupSize : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32504,7 +32504,7 @@ public struct OpGetKernelNDrangeMaxSubGroupSize : IMemoryInstruction
 
     public OpGetKernelNDrangeMaxSubGroupSize(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -32566,7 +32566,7 @@ public struct OpGetKernelWorkGroupSize : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -32575,8 +32575,8 @@ public struct OpGetKernelWorkGroupSize : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32659,7 +32659,7 @@ public struct OpGetKernelWorkGroupSize : IMemoryInstruction
 
     public OpGetKernelWorkGroupSize(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -32718,7 +32718,7 @@ public struct OpGetKernelPreferredWorkGroupSizeMultiple : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -32727,8 +32727,8 @@ public struct OpGetKernelPreferredWorkGroupSizeMultiple : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32811,7 +32811,7 @@ public struct OpGetKernelPreferredWorkGroupSizeMultiple : IMemoryInstruction
 
     public OpGetKernelPreferredWorkGroupSizeMultiple(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -32870,7 +32870,7 @@ public struct OpRetainEvent : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -32879,8 +32879,8 @@ public struct OpRetainEvent : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32906,7 +32906,7 @@ public struct OpRetainEvent : IMemoryInstruction
 
     public OpRetainEvent(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "eventId")
                 EventId = o.ToLiteral<int>();
@@ -32950,7 +32950,7 @@ public struct OpReleaseEvent : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -32959,8 +32959,8 @@ public struct OpReleaseEvent : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -32986,7 +32986,7 @@ public struct OpReleaseEvent : IMemoryInstruction
 
     public OpReleaseEvent(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "eventId")
                 EventId = o.ToLiteral<int>();
@@ -33030,7 +33030,7 @@ public struct OpCreateUserEvent : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33039,8 +33039,8 @@ public struct OpCreateUserEvent : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33079,7 +33079,7 @@ public struct OpCreateUserEvent : IMemoryInstruction
 
     public OpCreateUserEvent(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -33126,7 +33126,7 @@ public struct OpIsValidEvent : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33135,8 +33135,8 @@ public struct OpIsValidEvent : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33186,7 +33186,7 @@ public struct OpIsValidEvent : IMemoryInstruction
 
     public OpIsValidEvent(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -33236,7 +33236,7 @@ public struct OpSetUserEventStatus : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33245,8 +33245,8 @@ public struct OpSetUserEventStatus : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33283,7 +33283,7 @@ public struct OpSetUserEventStatus : IMemoryInstruction
 
     public OpSetUserEventStatus(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "eventId")
                 EventId = o.ToLiteral<int>();
@@ -33330,7 +33330,7 @@ public struct OpCaptureEventProfilingInfo : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33339,8 +33339,8 @@ public struct OpCaptureEventProfilingInfo : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33388,7 +33388,7 @@ public struct OpCaptureEventProfilingInfo : IMemoryInstruction
 
     public OpCaptureEventProfilingInfo(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "eventId")
                 EventId = o.ToLiteral<int>();
@@ -33438,7 +33438,7 @@ public struct OpGetDefaultQueue : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33447,8 +33447,8 @@ public struct OpGetDefaultQueue : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33487,7 +33487,7 @@ public struct OpGetDefaultQueue : IMemoryInstruction
 
     public OpGetDefaultQueue(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -33534,7 +33534,7 @@ public struct OpBuildNDRange : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33543,8 +33543,8 @@ public struct OpBuildNDRange : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33616,7 +33616,7 @@ public struct OpBuildNDRange : IMemoryInstruction
 
     public OpBuildNDRange(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -33672,7 +33672,7 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33681,8 +33681,8 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33754,7 +33754,7 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -33810,7 +33810,7 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33819,8 +33819,8 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -33892,7 +33892,7 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -33948,7 +33948,7 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -33957,8 +33957,8 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34041,7 +34041,7 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleDrefImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34100,7 +34100,7 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34109,8 +34109,8 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34193,7 +34193,7 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleDrefExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34252,7 +34252,7 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34261,8 +34261,8 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34334,7 +34334,7 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleProjImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34390,7 +34390,7 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34399,8 +34399,8 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34472,7 +34472,7 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleProjExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34528,7 +34528,7 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34537,8 +34537,8 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34621,7 +34621,7 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleProjDrefImplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34680,7 +34680,7 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34689,8 +34689,8 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34773,7 +34773,7 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
 
     public OpImageSparseSampleProjDrefExplicitLod(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34832,7 +34832,7 @@ public struct OpImageSparseFetch : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34841,8 +34841,8 @@ public struct OpImageSparseFetch : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -34914,7 +34914,7 @@ public struct OpImageSparseFetch : IMemoryInstruction
 
     public OpImageSparseFetch(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -34970,7 +34970,7 @@ public struct OpImageSparseGather : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -34979,8 +34979,8 @@ public struct OpImageSparseGather : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35063,7 +35063,7 @@ public struct OpImageSparseGather : IMemoryInstruction
 
     public OpImageSparseGather(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -35122,7 +35122,7 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35131,8 +35131,8 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35215,7 +35215,7 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
 
     public OpImageSparseDrefGather(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -35274,7 +35274,7 @@ public struct OpImageSparseTexelsResident : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35283,8 +35283,8 @@ public struct OpImageSparseTexelsResident : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35334,7 +35334,7 @@ public struct OpImageSparseTexelsResident : IMemoryInstruction
 
     public OpImageSparseTexelsResident(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -35384,7 +35384,7 @@ public struct OpNoLine : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35393,8 +35393,8 @@ public struct OpNoLine : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35428,7 +35428,7 @@ public struct OpAtomicFlagTestAndSet : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35437,8 +35437,8 @@ public struct OpAtomicFlagTestAndSet : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35510,7 +35510,7 @@ public struct OpAtomicFlagTestAndSet : IMemoryInstruction
 
     public OpAtomicFlagTestAndSet(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -35566,7 +35566,7 @@ public struct OpAtomicFlagClear : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35575,8 +35575,8 @@ public struct OpAtomicFlagClear : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35624,7 +35624,7 @@ public struct OpAtomicFlagClear : IMemoryInstruction
 
     public OpAtomicFlagClear(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -35674,7 +35674,7 @@ public struct OpImageSparseRead : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35683,8 +35683,8 @@ public struct OpImageSparseRead : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35756,7 +35756,7 @@ public struct OpImageSparseRead : IMemoryInstruction
 
     public OpImageSparseRead(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -35812,7 +35812,7 @@ public struct OpSizeOf : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35821,8 +35821,8 @@ public struct OpSizeOf : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35872,7 +35872,7 @@ public struct OpSizeOf : IMemoryInstruction
 
     public OpSizeOf(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -35922,7 +35922,7 @@ public struct OpTypePipeStorage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -35931,8 +35931,8 @@ public struct OpTypePipeStorage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -35960,7 +35960,7 @@ public struct OpTypePipeStorage : IMemoryInstruction
 
     public OpTypePipeStorage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -36004,7 +36004,7 @@ public struct OpConstantPipeStorage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36013,8 +36013,8 @@ public struct OpConstantPipeStorage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36086,7 +36086,7 @@ public struct OpConstantPipeStorage : IMemoryInstruction
 
     public OpConstantPipeStorage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -36142,7 +36142,7 @@ public struct OpCreatePipeFromPipeStorage : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36151,8 +36151,8 @@ public struct OpCreatePipeFromPipeStorage : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36202,7 +36202,7 @@ public struct OpCreatePipeFromPipeStorage : IMemoryInstruction
 
     public OpCreatePipeFromPipeStorage(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -36252,7 +36252,7 @@ public struct OpGetKernelLocalSizeForSubgroupCount : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36261,8 +36261,8 @@ public struct OpGetKernelLocalSizeForSubgroupCount : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36356,7 +36356,7 @@ public struct OpGetKernelLocalSizeForSubgroupCount : IMemoryInstruction
 
     public OpGetKernelLocalSizeForSubgroupCount(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -36418,7 +36418,7 @@ public struct OpGetKernelMaxNumSubgroups : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36427,8 +36427,8 @@ public struct OpGetKernelMaxNumSubgroups : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36511,7 +36511,7 @@ public struct OpGetKernelMaxNumSubgroups : IMemoryInstruction
 
     public OpGetKernelMaxNumSubgroups(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -36570,7 +36570,7 @@ public struct OpTypeNamedBarrier : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36579,8 +36579,8 @@ public struct OpTypeNamedBarrier : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36608,7 +36608,7 @@ public struct OpTypeNamedBarrier : IMemoryInstruction
 
     public OpTypeNamedBarrier(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -36652,7 +36652,7 @@ public struct OpNamedBarrierInitialize : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36661,8 +36661,8 @@ public struct OpNamedBarrierInitialize : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36712,7 +36712,7 @@ public struct OpNamedBarrierInitialize : IMemoryInstruction
 
     public OpNamedBarrierInitialize(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -36762,7 +36762,7 @@ public struct OpMemoryNamedBarrier : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36771,8 +36771,8 @@ public struct OpMemoryNamedBarrier : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36820,7 +36820,7 @@ public struct OpMemoryNamedBarrier : IMemoryInstruction
 
     public OpMemoryNamedBarrier(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "namedBarrier")
                 NamedBarrier = o.ToLiteral<int>();
@@ -36870,7 +36870,7 @@ public struct OpModuleProcessed : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36879,8 +36879,8 @@ public struct OpModuleProcessed : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36906,7 +36906,7 @@ public struct OpModuleProcessed : IMemoryInstruction
 
     public OpModuleProcessed(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "process")
                 Process = o.ToLiteral<string>();
@@ -36950,7 +36950,7 @@ public struct OpExecutionModeId : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -36959,8 +36959,8 @@ public struct OpExecutionModeId : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -36997,7 +36997,7 @@ public struct OpExecutionModeId : IMemoryInstruction
 
     public OpExecutionModeId(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "entryPoint")
                 EntryPoint = o.ToLiteral<int>();
@@ -37044,7 +37044,7 @@ public struct OpDecorateId : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37053,8 +37053,8 @@ public struct OpDecorateId : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37091,7 +37091,7 @@ public struct OpDecorateId : IMemoryInstruction
 
     public OpDecorateId(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "target")
                 Target = o.ToLiteral<int>();
@@ -37138,7 +37138,7 @@ public struct OpGroupNonUniformElect : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37147,8 +37147,8 @@ public struct OpGroupNonUniformElect : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37198,7 +37198,7 @@ public struct OpGroupNonUniformElect : IMemoryInstruction
 
     public OpGroupNonUniformElect(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -37248,7 +37248,7 @@ public struct OpGroupNonUniformAll : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37257,8 +37257,8 @@ public struct OpGroupNonUniformAll : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37319,7 +37319,7 @@ public struct OpGroupNonUniformAll : IMemoryInstruction
 
     public OpGroupNonUniformAll(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -37372,7 +37372,7 @@ public struct OpGroupNonUniformAny : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37381,8 +37381,8 @@ public struct OpGroupNonUniformAny : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37443,7 +37443,7 @@ public struct OpGroupNonUniformAny : IMemoryInstruction
 
     public OpGroupNonUniformAny(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -37496,7 +37496,7 @@ public struct OpGroupNonUniformAllEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37505,8 +37505,8 @@ public struct OpGroupNonUniformAllEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37567,7 +37567,7 @@ public struct OpGroupNonUniformAllEqual : IMemoryInstruction
 
     public OpGroupNonUniformAllEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -37620,7 +37620,7 @@ public struct OpGroupNonUniformBroadcast : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37629,8 +37629,8 @@ public struct OpGroupNonUniformBroadcast : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37702,7 +37702,7 @@ public struct OpGroupNonUniformBroadcast : IMemoryInstruction
 
     public OpGroupNonUniformBroadcast(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -37758,7 +37758,7 @@ public struct OpGroupNonUniformBroadcastFirst : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37767,8 +37767,8 @@ public struct OpGroupNonUniformBroadcastFirst : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37829,7 +37829,7 @@ public struct OpGroupNonUniformBroadcastFirst : IMemoryInstruction
 
     public OpGroupNonUniformBroadcastFirst(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -37882,7 +37882,7 @@ public struct OpGroupNonUniformBallot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -37891,8 +37891,8 @@ public struct OpGroupNonUniformBallot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -37953,7 +37953,7 @@ public struct OpGroupNonUniformBallot : IMemoryInstruction
 
     public OpGroupNonUniformBallot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38006,7 +38006,7 @@ public struct OpGroupNonUniformInverseBallot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38015,8 +38015,8 @@ public struct OpGroupNonUniformInverseBallot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38077,7 +38077,7 @@ public struct OpGroupNonUniformInverseBallot : IMemoryInstruction
 
     public OpGroupNonUniformInverseBallot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38130,7 +38130,7 @@ public struct OpGroupNonUniformBallotBitExtract : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38139,8 +38139,8 @@ public struct OpGroupNonUniformBallotBitExtract : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38212,7 +38212,7 @@ public struct OpGroupNonUniformBallotBitExtract : IMemoryInstruction
 
     public OpGroupNonUniformBallotBitExtract(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38268,7 +38268,7 @@ public struct OpGroupNonUniformBallotBitCount : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38277,8 +38277,8 @@ public struct OpGroupNonUniformBallotBitCount : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38350,7 +38350,7 @@ public struct OpGroupNonUniformBallotBitCount : IMemoryInstruction
 
     public OpGroupNonUniformBallotBitCount(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38406,7 +38406,7 @@ public struct OpGroupNonUniformBallotFindLSB : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38415,8 +38415,8 @@ public struct OpGroupNonUniformBallotFindLSB : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38477,7 +38477,7 @@ public struct OpGroupNonUniformBallotFindLSB : IMemoryInstruction
 
     public OpGroupNonUniformBallotFindLSB(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38530,7 +38530,7 @@ public struct OpGroupNonUniformBallotFindMSB : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38539,8 +38539,8 @@ public struct OpGroupNonUniformBallotFindMSB : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38601,7 +38601,7 @@ public struct OpGroupNonUniformBallotFindMSB : IMemoryInstruction
 
     public OpGroupNonUniformBallotFindMSB(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38654,7 +38654,7 @@ public struct OpGroupNonUniformShuffle : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38663,8 +38663,8 @@ public struct OpGroupNonUniformShuffle : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38736,7 +38736,7 @@ public struct OpGroupNonUniformShuffle : IMemoryInstruction
 
     public OpGroupNonUniformShuffle(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38792,7 +38792,7 @@ public struct OpGroupNonUniformShuffleXor : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38801,8 +38801,8 @@ public struct OpGroupNonUniformShuffleXor : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -38874,7 +38874,7 @@ public struct OpGroupNonUniformShuffleXor : IMemoryInstruction
 
     public OpGroupNonUniformShuffleXor(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -38930,7 +38930,7 @@ public struct OpGroupNonUniformShuffleUp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -38939,8 +38939,8 @@ public struct OpGroupNonUniformShuffleUp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39012,7 +39012,7 @@ public struct OpGroupNonUniformShuffleUp : IMemoryInstruction
 
     public OpGroupNonUniformShuffleUp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39068,7 +39068,7 @@ public struct OpGroupNonUniformShuffleDown : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39077,8 +39077,8 @@ public struct OpGroupNonUniformShuffleDown : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39150,7 +39150,7 @@ public struct OpGroupNonUniformShuffleDown : IMemoryInstruction
 
     public OpGroupNonUniformShuffleDown(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39206,7 +39206,7 @@ public struct OpGroupNonUniformIAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39215,8 +39215,8 @@ public struct OpGroupNonUniformIAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39299,7 +39299,7 @@ public struct OpGroupNonUniformIAdd : IMemoryInstruction
 
     public OpGroupNonUniformIAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39358,7 +39358,7 @@ public struct OpGroupNonUniformFAdd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39367,8 +39367,8 @@ public struct OpGroupNonUniformFAdd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39451,7 +39451,7 @@ public struct OpGroupNonUniformFAdd : IMemoryInstruction
 
     public OpGroupNonUniformFAdd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39510,7 +39510,7 @@ public struct OpGroupNonUniformIMul : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39519,8 +39519,8 @@ public struct OpGroupNonUniformIMul : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39603,7 +39603,7 @@ public struct OpGroupNonUniformIMul : IMemoryInstruction
 
     public OpGroupNonUniformIMul(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39662,7 +39662,7 @@ public struct OpGroupNonUniformFMul : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39671,8 +39671,8 @@ public struct OpGroupNonUniformFMul : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39755,7 +39755,7 @@ public struct OpGroupNonUniformFMul : IMemoryInstruction
 
     public OpGroupNonUniformFMul(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39814,7 +39814,7 @@ public struct OpGroupNonUniformSMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39823,8 +39823,8 @@ public struct OpGroupNonUniformSMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -39907,7 +39907,7 @@ public struct OpGroupNonUniformSMin : IMemoryInstruction
 
     public OpGroupNonUniformSMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -39966,7 +39966,7 @@ public struct OpGroupNonUniformUMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -39975,8 +39975,8 @@ public struct OpGroupNonUniformUMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40059,7 +40059,7 @@ public struct OpGroupNonUniformUMin : IMemoryInstruction
 
     public OpGroupNonUniformUMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -40118,7 +40118,7 @@ public struct OpGroupNonUniformFMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -40127,8 +40127,8 @@ public struct OpGroupNonUniformFMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40211,7 +40211,7 @@ public struct OpGroupNonUniformFMin : IMemoryInstruction
 
     public OpGroupNonUniformFMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -40270,7 +40270,7 @@ public struct OpGroupNonUniformSMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -40279,8 +40279,8 @@ public struct OpGroupNonUniformSMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40363,7 +40363,7 @@ public struct OpGroupNonUniformSMax : IMemoryInstruction
 
     public OpGroupNonUniformSMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -40422,7 +40422,7 @@ public struct OpGroupNonUniformUMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -40431,8 +40431,8 @@ public struct OpGroupNonUniformUMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40515,7 +40515,7 @@ public struct OpGroupNonUniformUMax : IMemoryInstruction
 
     public OpGroupNonUniformUMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -40574,7 +40574,7 @@ public struct OpGroupNonUniformFMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -40583,8 +40583,8 @@ public struct OpGroupNonUniformFMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40667,7 +40667,7 @@ public struct OpGroupNonUniformFMax : IMemoryInstruction
 
     public OpGroupNonUniformFMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -40726,7 +40726,7 @@ public struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -40735,8 +40735,8 @@ public struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40819,7 +40819,7 @@ public struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
 
     public OpGroupNonUniformBitwiseAnd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -40878,7 +40878,7 @@ public struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -40887,8 +40887,8 @@ public struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -40971,7 +40971,7 @@ public struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
 
     public OpGroupNonUniformBitwiseOr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41030,7 +41030,7 @@ public struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41039,8 +41039,8 @@ public struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41123,7 +41123,7 @@ public struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
 
     public OpGroupNonUniformBitwiseXor(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41182,7 +41182,7 @@ public struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41191,8 +41191,8 @@ public struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41275,7 +41275,7 @@ public struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
 
     public OpGroupNonUniformLogicalAnd(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41334,7 +41334,7 @@ public struct OpGroupNonUniformLogicalOr : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41343,8 +41343,8 @@ public struct OpGroupNonUniformLogicalOr : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41427,7 +41427,7 @@ public struct OpGroupNonUniformLogicalOr : IMemoryInstruction
 
     public OpGroupNonUniformLogicalOr(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41486,7 +41486,7 @@ public struct OpGroupNonUniformLogicalXor : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41495,8 +41495,8 @@ public struct OpGroupNonUniformLogicalXor : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41579,7 +41579,7 @@ public struct OpGroupNonUniformLogicalXor : IMemoryInstruction
 
     public OpGroupNonUniformLogicalXor(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41638,7 +41638,7 @@ public struct OpGroupNonUniformQuadBroadcast : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41647,8 +41647,8 @@ public struct OpGroupNonUniformQuadBroadcast : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41720,7 +41720,7 @@ public struct OpGroupNonUniformQuadBroadcast : IMemoryInstruction
 
     public OpGroupNonUniformQuadBroadcast(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41776,7 +41776,7 @@ public struct OpGroupNonUniformQuadSwap : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41785,8 +41785,8 @@ public struct OpGroupNonUniformQuadSwap : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41858,7 +41858,7 @@ public struct OpGroupNonUniformQuadSwap : IMemoryInstruction
 
     public OpGroupNonUniformQuadSwap(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -41914,7 +41914,7 @@ public struct OpCopyLogical : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -41923,8 +41923,8 @@ public struct OpCopyLogical : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -41974,7 +41974,7 @@ public struct OpCopyLogical : IMemoryInstruction
 
     public OpCopyLogical(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42024,7 +42024,7 @@ public struct OpPtrEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42033,8 +42033,8 @@ public struct OpPtrEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42095,7 +42095,7 @@ public struct OpPtrEqual : IMemoryInstruction
 
     public OpPtrEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42148,7 +42148,7 @@ public struct OpPtrNotEqual : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42157,8 +42157,8 @@ public struct OpPtrNotEqual : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42219,7 +42219,7 @@ public struct OpPtrNotEqual : IMemoryInstruction
 
     public OpPtrNotEqual(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42272,7 +42272,7 @@ public struct OpPtrDiff : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42281,8 +42281,8 @@ public struct OpPtrDiff : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42343,7 +42343,7 @@ public struct OpPtrDiff : IMemoryInstruction
 
     public OpPtrDiff(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42396,7 +42396,7 @@ public struct OpColorAttachmentReadEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42405,8 +42405,8 @@ public struct OpColorAttachmentReadEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42467,7 +42467,7 @@ public struct OpColorAttachmentReadEXT : IMemoryInstruction
 
     public OpColorAttachmentReadEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42520,7 +42520,7 @@ public struct OpDepthAttachmentReadEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42529,8 +42529,8 @@ public struct OpDepthAttachmentReadEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42580,7 +42580,7 @@ public struct OpDepthAttachmentReadEXT : IMemoryInstruction
 
     public OpDepthAttachmentReadEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42630,7 +42630,7 @@ public struct OpStencilAttachmentReadEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42639,8 +42639,8 @@ public struct OpStencilAttachmentReadEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42690,7 +42690,7 @@ public struct OpStencilAttachmentReadEXT : IMemoryInstruction
 
     public OpStencilAttachmentReadEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -42740,7 +42740,7 @@ public struct OpTerminateInvocation : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42749,8 +42749,8 @@ public struct OpTerminateInvocation : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42784,7 +42784,7 @@ public struct OpTypeUntypedPointerKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42793,8 +42793,8 @@ public struct OpTypeUntypedPointerKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42833,7 +42833,7 @@ public struct OpTypeUntypedPointerKHR : IMemoryInstruction
 
     public OpTypeUntypedPointerKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -42880,7 +42880,7 @@ public struct OpUntypedVariableKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -42889,8 +42889,8 @@ public struct OpUntypedVariableKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -42962,7 +42962,7 @@ public struct OpUntypedVariableKHR : IMemoryInstruction
 
     public OpUntypedVariableKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43018,7 +43018,7 @@ public struct OpUntypedAccessChainKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43027,8 +43027,8 @@ public struct OpUntypedAccessChainKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43100,7 +43100,7 @@ public struct OpUntypedAccessChainKHR : IMemoryInstruction
 
     public OpUntypedAccessChainKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43156,7 +43156,7 @@ public struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43165,8 +43165,8 @@ public struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43238,7 +43238,7 @@ public struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
 
     public OpUntypedInBoundsAccessChainKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43294,7 +43294,7 @@ public struct OpSubgroupBallotKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43303,8 +43303,8 @@ public struct OpSubgroupBallotKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43354,7 +43354,7 @@ public struct OpSubgroupBallotKHR : IMemoryInstruction
 
     public OpSubgroupBallotKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43404,7 +43404,7 @@ public struct OpSubgroupFirstInvocationKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43413,8 +43413,8 @@ public struct OpSubgroupFirstInvocationKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43464,7 +43464,7 @@ public struct OpSubgroupFirstInvocationKHR : IMemoryInstruction
 
     public OpSubgroupFirstInvocationKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43514,7 +43514,7 @@ public struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43523,8 +43523,8 @@ public struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43607,7 +43607,7 @@ public struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
 
     public OpUntypedPtrAccessChainKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43666,7 +43666,7 @@ public struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43675,8 +43675,8 @@ public struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43759,7 +43759,7 @@ public struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstruction
 
     public OpUntypedInBoundsPtrAccessChainKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43818,7 +43818,7 @@ public struct OpUntypedArrayLengthKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43827,8 +43827,8 @@ public struct OpUntypedArrayLengthKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -43900,7 +43900,7 @@ public struct OpUntypedArrayLengthKHR : IMemoryInstruction
 
     public OpUntypedArrayLengthKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -43956,7 +43956,7 @@ public struct OpUntypedPrefetchKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -43965,8 +43965,8 @@ public struct OpUntypedPrefetchKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44036,7 +44036,7 @@ public struct OpUntypedPrefetchKHR : IMemoryInstruction
 
     public OpUntypedPrefetchKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointerType")
                 PointerType = o.ToLiteral<int>();
@@ -44092,7 +44092,7 @@ public struct OpSubgroupAllKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44101,8 +44101,8 @@ public struct OpSubgroupAllKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44152,7 +44152,7 @@ public struct OpSubgroupAllKHR : IMemoryInstruction
 
     public OpSubgroupAllKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -44202,7 +44202,7 @@ public struct OpSubgroupAnyKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44211,8 +44211,8 @@ public struct OpSubgroupAnyKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44262,7 +44262,7 @@ public struct OpSubgroupAnyKHR : IMemoryInstruction
 
     public OpSubgroupAnyKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -44312,7 +44312,7 @@ public struct OpSubgroupAllEqualKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44321,8 +44321,8 @@ public struct OpSubgroupAllEqualKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44372,7 +44372,7 @@ public struct OpSubgroupAllEqualKHR : IMemoryInstruction
 
     public OpSubgroupAllEqualKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -44422,7 +44422,7 @@ public struct OpGroupNonUniformRotateKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44431,8 +44431,8 @@ public struct OpGroupNonUniformRotateKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44515,7 +44515,7 @@ public struct OpGroupNonUniformRotateKHR : IMemoryInstruction
 
     public OpGroupNonUniformRotateKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -44574,7 +44574,7 @@ public struct OpSubgroupReadInvocationKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44583,8 +44583,8 @@ public struct OpSubgroupReadInvocationKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44645,7 +44645,7 @@ public struct OpSubgroupReadInvocationKHR : IMemoryInstruction
 
     public OpSubgroupReadInvocationKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -44698,7 +44698,7 @@ public struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44707,8 +44707,8 @@ public struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44780,7 +44780,7 @@ public struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
 
     public OpExtInstWithForwardRefsKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -44836,7 +44836,7 @@ public struct OpTraceRayKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -44845,8 +44845,8 @@ public struct OpTraceRayKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -44982,7 +44982,7 @@ public struct OpTraceRayKHR : IMemoryInstruction
 
     public OpTraceRayKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "accel")
                 Accel = o.ToLiteral<int>();
@@ -45056,7 +45056,7 @@ public struct OpExecuteCallableKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45065,8 +45065,8 @@ public struct OpExecuteCallableKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45103,7 +45103,7 @@ public struct OpExecuteCallableKHR : IMemoryInstruction
 
     public OpExecuteCallableKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "sBTIndex")
                 SBTIndex = o.ToLiteral<int>();
@@ -45150,7 +45150,7 @@ public struct OpConvertUToAccelerationStructureKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45159,8 +45159,8 @@ public struct OpConvertUToAccelerationStructureKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45210,7 +45210,7 @@ public struct OpConvertUToAccelerationStructureKHR : IMemoryInstruction
 
     public OpConvertUToAccelerationStructureKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -45260,7 +45260,7 @@ public struct OpIgnoreIntersectionKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45269,8 +45269,8 @@ public struct OpIgnoreIntersectionKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45304,7 +45304,7 @@ public struct OpTerminateRayKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45313,8 +45313,8 @@ public struct OpTerminateRayKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45348,7 +45348,7 @@ public struct OpSDot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45357,8 +45357,8 @@ public struct OpSDot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45430,7 +45430,7 @@ public struct OpSDot : IMemoryInstruction
 
     public OpSDot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -45486,7 +45486,7 @@ public struct OpUDot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45495,8 +45495,8 @@ public struct OpUDot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45568,7 +45568,7 @@ public struct OpUDot : IMemoryInstruction
 
     public OpUDot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -45624,7 +45624,7 @@ public struct OpSUDot : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45633,8 +45633,8 @@ public struct OpSUDot : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45706,7 +45706,7 @@ public struct OpSUDot : IMemoryInstruction
 
     public OpSUDot(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -45762,7 +45762,7 @@ public struct OpSDotAccSat : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45771,8 +45771,8 @@ public struct OpSDotAccSat : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -45855,7 +45855,7 @@ public struct OpSDotAccSat : IMemoryInstruction
 
     public OpSDotAccSat(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -45914,7 +45914,7 @@ public struct OpUDotAccSat : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -45923,8 +45923,8 @@ public struct OpUDotAccSat : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46007,7 +46007,7 @@ public struct OpUDotAccSat : IMemoryInstruction
 
     public OpUDotAccSat(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -46066,7 +46066,7 @@ public struct OpSUDotAccSat : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46075,8 +46075,8 @@ public struct OpSUDotAccSat : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46159,7 +46159,7 @@ public struct OpSUDotAccSat : IMemoryInstruction
 
     public OpSUDotAccSat(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -46218,7 +46218,7 @@ public struct OpTypeCooperativeMatrixKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46227,8 +46227,8 @@ public struct OpTypeCooperativeMatrixKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46311,7 +46311,7 @@ public struct OpTypeCooperativeMatrixKHR : IMemoryInstruction
 
     public OpTypeCooperativeMatrixKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -46370,7 +46370,7 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46379,8 +46379,8 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46463,7 +46463,7 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
 
     public OpCooperativeMatrixLoadKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -46522,7 +46522,7 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46531,8 +46531,8 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46602,7 +46602,7 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
 
     public OpCooperativeMatrixStoreKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -46658,7 +46658,7 @@ public struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46667,8 +46667,8 @@ public struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46751,7 +46751,7 @@ public struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
 
     public OpCooperativeMatrixMulAddKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -46810,7 +46810,7 @@ public struct OpCooperativeMatrixLengthKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46819,8 +46819,8 @@ public struct OpCooperativeMatrixLengthKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46870,7 +46870,7 @@ public struct OpCooperativeMatrixLengthKHR : IMemoryInstruction
 
     public OpCooperativeMatrixLengthKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -46920,7 +46920,7 @@ public struct OpConstantCompositeReplicateEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -46929,8 +46929,8 @@ public struct OpConstantCompositeReplicateEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -46980,7 +46980,7 @@ public struct OpConstantCompositeReplicateEXT : IMemoryInstruction
 
     public OpConstantCompositeReplicateEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -47030,7 +47030,7 @@ public struct OpSpecConstantCompositeReplicateEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47039,8 +47039,8 @@ public struct OpSpecConstantCompositeReplicateEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47090,7 +47090,7 @@ public struct OpSpecConstantCompositeReplicateEXT : IMemoryInstruction
 
     public OpSpecConstantCompositeReplicateEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -47140,7 +47140,7 @@ public struct OpCompositeConstructReplicateEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47149,8 +47149,8 @@ public struct OpCompositeConstructReplicateEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47200,7 +47200,7 @@ public struct OpCompositeConstructReplicateEXT : IMemoryInstruction
 
     public OpCompositeConstructReplicateEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -47250,7 +47250,7 @@ public struct OpTypeRayQueryKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47259,8 +47259,8 @@ public struct OpTypeRayQueryKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47288,7 +47288,7 @@ public struct OpTypeRayQueryKHR : IMemoryInstruction
 
     public OpTypeRayQueryKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -47332,7 +47332,7 @@ public struct OpRayQueryInitializeKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47341,8 +47341,8 @@ public struct OpRayQueryInitializeKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47445,7 +47445,7 @@ public struct OpRayQueryInitializeKHR : IMemoryInstruction
 
     public OpRayQueryInitializeKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "rayQuery")
                 RayQuery = o.ToLiteral<int>();
@@ -47510,7 +47510,7 @@ public struct OpRayQueryTerminateKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47519,8 +47519,8 @@ public struct OpRayQueryTerminateKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47546,7 +47546,7 @@ public struct OpRayQueryTerminateKHR : IMemoryInstruction
 
     public OpRayQueryTerminateKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "rayQuery")
                 RayQuery = o.ToLiteral<int>();
@@ -47590,7 +47590,7 @@ public struct OpRayQueryGenerateIntersectionKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47599,8 +47599,8 @@ public struct OpRayQueryGenerateIntersectionKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47637,7 +47637,7 @@ public struct OpRayQueryGenerateIntersectionKHR : IMemoryInstruction
 
     public OpRayQueryGenerateIntersectionKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "rayQuery")
                 RayQuery = o.ToLiteral<int>();
@@ -47684,7 +47684,7 @@ public struct OpRayQueryConfirmIntersectionKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47693,8 +47693,8 @@ public struct OpRayQueryConfirmIntersectionKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47720,7 +47720,7 @@ public struct OpRayQueryConfirmIntersectionKHR : IMemoryInstruction
 
     public OpRayQueryConfirmIntersectionKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "rayQuery")
                 RayQuery = o.ToLiteral<int>();
@@ -47764,7 +47764,7 @@ public struct OpRayQueryProceedKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47773,8 +47773,8 @@ public struct OpRayQueryProceedKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47824,7 +47824,7 @@ public struct OpRayQueryProceedKHR : IMemoryInstruction
 
     public OpRayQueryProceedKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -47874,7 +47874,7 @@ public struct OpRayQueryGetIntersectionTypeKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -47883,8 +47883,8 @@ public struct OpRayQueryGetIntersectionTypeKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -47945,7 +47945,7 @@ public struct OpRayQueryGetIntersectionTypeKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionTypeKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -47998,7 +47998,7 @@ public struct OpImageSampleWeightedQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48007,8 +48007,8 @@ public struct OpImageSampleWeightedQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -48080,7 +48080,7 @@ public struct OpImageSampleWeightedQCOM : IMemoryInstruction
 
     public OpImageSampleWeightedQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -48136,7 +48136,7 @@ public struct OpImageBoxFilterQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48145,8 +48145,8 @@ public struct OpImageBoxFilterQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -48218,7 +48218,7 @@ public struct OpImageBoxFilterQCOM : IMemoryInstruction
 
     public OpImageBoxFilterQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -48274,7 +48274,7 @@ public struct OpImageBlockMatchSSDQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48283,8 +48283,8 @@ public struct OpImageBlockMatchSSDQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -48378,7 +48378,7 @@ public struct OpImageBlockMatchSSDQCOM : IMemoryInstruction
 
     public OpImageBlockMatchSSDQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -48440,7 +48440,7 @@ public struct OpImageBlockMatchSADQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48449,8 +48449,8 @@ public struct OpImageBlockMatchSADQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -48544,7 +48544,7 @@ public struct OpImageBlockMatchSADQCOM : IMemoryInstruction
 
     public OpImageBlockMatchSADQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -48606,7 +48606,7 @@ public struct OpImageBlockMatchWindowSSDQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48615,8 +48615,8 @@ public struct OpImageBlockMatchWindowSSDQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -48710,7 +48710,7 @@ public struct OpImageBlockMatchWindowSSDQCOM : IMemoryInstruction
 
     public OpImageBlockMatchWindowSSDQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -48772,7 +48772,7 @@ public struct OpImageBlockMatchWindowSADQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48781,8 +48781,8 @@ public struct OpImageBlockMatchWindowSADQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -48876,7 +48876,7 @@ public struct OpImageBlockMatchWindowSADQCOM : IMemoryInstruction
 
     public OpImageBlockMatchWindowSADQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -48938,7 +48938,7 @@ public struct OpImageBlockMatchGatherSSDQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -48947,8 +48947,8 @@ public struct OpImageBlockMatchGatherSSDQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49042,7 +49042,7 @@ public struct OpImageBlockMatchGatherSSDQCOM : IMemoryInstruction
 
     public OpImageBlockMatchGatherSSDQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49104,7 +49104,7 @@ public struct OpImageBlockMatchGatherSADQCOM : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49113,8 +49113,8 @@ public struct OpImageBlockMatchGatherSADQCOM : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49208,7 +49208,7 @@ public struct OpImageBlockMatchGatherSADQCOM : IMemoryInstruction
 
     public OpImageBlockMatchGatherSADQCOM(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49270,7 +49270,7 @@ public struct OpGroupIAddNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49279,8 +49279,8 @@ public struct OpGroupIAddNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49352,7 +49352,7 @@ public struct OpGroupIAddNonUniformAMD : IMemoryInstruction
 
     public OpGroupIAddNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49408,7 +49408,7 @@ public struct OpGroupFAddNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49417,8 +49417,8 @@ public struct OpGroupFAddNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49490,7 +49490,7 @@ public struct OpGroupFAddNonUniformAMD : IMemoryInstruction
 
     public OpGroupFAddNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49546,7 +49546,7 @@ public struct OpGroupFMinNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49555,8 +49555,8 @@ public struct OpGroupFMinNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49628,7 +49628,7 @@ public struct OpGroupFMinNonUniformAMD : IMemoryInstruction
 
     public OpGroupFMinNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49684,7 +49684,7 @@ public struct OpGroupUMinNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49693,8 +49693,8 @@ public struct OpGroupUMinNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49766,7 +49766,7 @@ public struct OpGroupUMinNonUniformAMD : IMemoryInstruction
 
     public OpGroupUMinNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49822,7 +49822,7 @@ public struct OpGroupSMinNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49831,8 +49831,8 @@ public struct OpGroupSMinNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -49904,7 +49904,7 @@ public struct OpGroupSMinNonUniformAMD : IMemoryInstruction
 
     public OpGroupSMinNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -49960,7 +49960,7 @@ public struct OpGroupFMaxNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -49969,8 +49969,8 @@ public struct OpGroupFMaxNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50042,7 +50042,7 @@ public struct OpGroupFMaxNonUniformAMD : IMemoryInstruction
 
     public OpGroupFMaxNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50098,7 +50098,7 @@ public struct OpGroupUMaxNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50107,8 +50107,8 @@ public struct OpGroupUMaxNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50180,7 +50180,7 @@ public struct OpGroupUMaxNonUniformAMD : IMemoryInstruction
 
     public OpGroupUMaxNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50236,7 +50236,7 @@ public struct OpGroupSMaxNonUniformAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50245,8 +50245,8 @@ public struct OpGroupSMaxNonUniformAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50318,7 +50318,7 @@ public struct OpGroupSMaxNonUniformAMD : IMemoryInstruction
 
     public OpGroupSMaxNonUniformAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50374,7 +50374,7 @@ public struct OpFragmentMaskFetchAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50383,8 +50383,8 @@ public struct OpFragmentMaskFetchAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50445,7 +50445,7 @@ public struct OpFragmentMaskFetchAMD : IMemoryInstruction
 
     public OpFragmentMaskFetchAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50498,7 +50498,7 @@ public struct OpFragmentFetchAMD : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50507,8 +50507,8 @@ public struct OpFragmentFetchAMD : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50580,7 +50580,7 @@ public struct OpFragmentFetchAMD : IMemoryInstruction
 
     public OpFragmentFetchAMD(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50636,7 +50636,7 @@ public struct OpReadClockKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50645,8 +50645,8 @@ public struct OpReadClockKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50696,7 +50696,7 @@ public struct OpReadClockKHR : IMemoryInstruction
 
     public OpReadClockKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50746,7 +50746,7 @@ public struct OpAllocateNodePayloadsAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50755,8 +50755,8 @@ public struct OpAllocateNodePayloadsAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50828,7 +50828,7 @@ public struct OpAllocateNodePayloadsAMDX : IMemoryInstruction
 
     public OpAllocateNodePayloadsAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -50884,7 +50884,7 @@ public struct OpEnqueueNodePayloadsAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50893,8 +50893,8 @@ public struct OpEnqueueNodePayloadsAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -50920,7 +50920,7 @@ public struct OpEnqueueNodePayloadsAMDX : IMemoryInstruction
 
     public OpEnqueueNodePayloadsAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "payloadArray")
                 PayloadArray = o.ToLiteral<int>();
@@ -50964,7 +50964,7 @@ public struct OpTypeNodePayloadArrayAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -50973,8 +50973,8 @@ public struct OpTypeNodePayloadArrayAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51013,7 +51013,7 @@ public struct OpTypeNodePayloadArrayAMDX : IMemoryInstruction
 
     public OpTypeNodePayloadArrayAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -51060,7 +51060,7 @@ public struct OpFinishWritingNodePayloadAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51069,8 +51069,8 @@ public struct OpFinishWritingNodePayloadAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51120,7 +51120,7 @@ public struct OpFinishWritingNodePayloadAMDX : IMemoryInstruction
 
     public OpFinishWritingNodePayloadAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -51170,7 +51170,7 @@ public struct OpNodePayloadArrayLengthAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51179,8 +51179,8 @@ public struct OpNodePayloadArrayLengthAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51230,7 +51230,7 @@ public struct OpNodePayloadArrayLengthAMDX : IMemoryInstruction
 
     public OpNodePayloadArrayLengthAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -51280,7 +51280,7 @@ public struct OpIsNodePayloadValidAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51289,8 +51289,8 @@ public struct OpIsNodePayloadValidAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51351,7 +51351,7 @@ public struct OpIsNodePayloadValidAMDX : IMemoryInstruction
 
     public OpIsNodePayloadValidAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -51404,7 +51404,7 @@ public struct OpConstantStringAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51413,8 +51413,8 @@ public struct OpConstantStringAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51453,7 +51453,7 @@ public struct OpConstantStringAMDX : IMemoryInstruction
 
     public OpConstantStringAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -51500,7 +51500,7 @@ public struct OpSpecConstantStringAMDX : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51509,8 +51509,8 @@ public struct OpSpecConstantStringAMDX : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51549,7 +51549,7 @@ public struct OpSpecConstantStringAMDX : IMemoryInstruction
 
     public OpSpecConstantStringAMDX(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -51596,7 +51596,7 @@ public struct OpGroupNonUniformQuadAllKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51605,8 +51605,8 @@ public struct OpGroupNonUniformQuadAllKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51656,7 +51656,7 @@ public struct OpGroupNonUniformQuadAllKHR : IMemoryInstruction
 
     public OpGroupNonUniformQuadAllKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -51706,7 +51706,7 @@ public struct OpGroupNonUniformQuadAnyKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51715,8 +51715,8 @@ public struct OpGroupNonUniformQuadAnyKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51766,7 +51766,7 @@ public struct OpGroupNonUniformQuadAnyKHR : IMemoryInstruction
 
     public OpGroupNonUniformQuadAnyKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -51816,7 +51816,7 @@ public struct OpHitObjectRecordHitMotionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -51825,8 +51825,8 @@ public struct OpHitObjectRecordHitMotionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -51995,7 +51995,7 @@ public struct OpHitObjectRecordHitMotionNV : IMemoryInstruction
 
     public OpHitObjectRecordHitMotionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -52078,7 +52078,7 @@ public struct OpHitObjectRecordHitWithIndexMotionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52087,8 +52087,8 @@ public struct OpHitObjectRecordHitWithIndexMotionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -52246,7 +52246,7 @@ public struct OpHitObjectRecordHitWithIndexMotionNV : IMemoryInstruction
 
     public OpHitObjectRecordHitWithIndexMotionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -52326,7 +52326,7 @@ public struct OpHitObjectRecordMissMotionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52335,8 +52335,8 @@ public struct OpHitObjectRecordMissMotionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -52428,7 +52428,7 @@ public struct OpHitObjectRecordMissMotionNV : IMemoryInstruction
 
     public OpHitObjectRecordMissMotionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -52490,7 +52490,7 @@ public struct OpHitObjectGetWorldToObjectNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52499,8 +52499,8 @@ public struct OpHitObjectGetWorldToObjectNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -52550,7 +52550,7 @@ public struct OpHitObjectGetWorldToObjectNV : IMemoryInstruction
 
     public OpHitObjectGetWorldToObjectNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -52600,7 +52600,7 @@ public struct OpHitObjectGetObjectToWorldNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52609,8 +52609,8 @@ public struct OpHitObjectGetObjectToWorldNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -52660,7 +52660,7 @@ public struct OpHitObjectGetObjectToWorldNV : IMemoryInstruction
 
     public OpHitObjectGetObjectToWorldNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -52710,7 +52710,7 @@ public struct OpHitObjectGetObjectRayDirectionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52719,8 +52719,8 @@ public struct OpHitObjectGetObjectRayDirectionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -52770,7 +52770,7 @@ public struct OpHitObjectGetObjectRayDirectionNV : IMemoryInstruction
 
     public OpHitObjectGetObjectRayDirectionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -52820,7 +52820,7 @@ public struct OpHitObjectGetObjectRayOriginNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52829,8 +52829,8 @@ public struct OpHitObjectGetObjectRayOriginNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -52880,7 +52880,7 @@ public struct OpHitObjectGetObjectRayOriginNV : IMemoryInstruction
 
     public OpHitObjectGetObjectRayOriginNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -52930,7 +52930,7 @@ public struct OpHitObjectTraceRayMotionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -52939,8 +52939,8 @@ public struct OpHitObjectTraceRayMotionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -53098,7 +53098,7 @@ public struct OpHitObjectTraceRayMotionNV : IMemoryInstruction
 
     public OpHitObjectTraceRayMotionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -53178,7 +53178,7 @@ public struct OpHitObjectGetShaderRecordBufferHandleNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -53187,8 +53187,8 @@ public struct OpHitObjectGetShaderRecordBufferHandleNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -53238,7 +53238,7 @@ public struct OpHitObjectGetShaderRecordBufferHandleNV : IMemoryInstruction
 
     public OpHitObjectGetShaderRecordBufferHandleNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -53288,7 +53288,7 @@ public struct OpHitObjectGetShaderBindingTableRecordIndexNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -53297,8 +53297,8 @@ public struct OpHitObjectGetShaderBindingTableRecordIndexNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -53348,7 +53348,7 @@ public struct OpHitObjectGetShaderBindingTableRecordIndexNV : IMemoryInstruction
 
     public OpHitObjectGetShaderBindingTableRecordIndexNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -53398,7 +53398,7 @@ public struct OpHitObjectRecordEmptyNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -53407,8 +53407,8 @@ public struct OpHitObjectRecordEmptyNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -53434,7 +53434,7 @@ public struct OpHitObjectRecordEmptyNV : IMemoryInstruction
 
     public OpHitObjectRecordEmptyNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -53478,7 +53478,7 @@ public struct OpHitObjectTraceRayNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -53487,8 +53487,8 @@ public struct OpHitObjectTraceRayNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -53635,7 +53635,7 @@ public struct OpHitObjectTraceRayNV : IMemoryInstruction
 
     public OpHitObjectTraceRayNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -53712,7 +53712,7 @@ public struct OpHitObjectRecordHitNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -53721,8 +53721,8 @@ public struct OpHitObjectRecordHitNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -53880,7 +53880,7 @@ public struct OpHitObjectRecordHitNV : IMemoryInstruction
 
     public OpHitObjectRecordHitNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -53960,7 +53960,7 @@ public struct OpHitObjectRecordHitWithIndexNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -53969,8 +53969,8 @@ public struct OpHitObjectRecordHitWithIndexNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54117,7 +54117,7 @@ public struct OpHitObjectRecordHitWithIndexNV : IMemoryInstruction
 
     public OpHitObjectRecordHitWithIndexNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -54194,7 +54194,7 @@ public struct OpHitObjectRecordMissNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54203,8 +54203,8 @@ public struct OpHitObjectRecordMissNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54285,7 +54285,7 @@ public struct OpHitObjectRecordMissNV : IMemoryInstruction
 
     public OpHitObjectRecordMissNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -54344,7 +54344,7 @@ public struct OpHitObjectExecuteShaderNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54353,8 +54353,8 @@ public struct OpHitObjectExecuteShaderNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54391,7 +54391,7 @@ public struct OpHitObjectExecuteShaderNV : IMemoryInstruction
 
     public OpHitObjectExecuteShaderNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -54438,7 +54438,7 @@ public struct OpHitObjectGetCurrentTimeNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54447,8 +54447,8 @@ public struct OpHitObjectGetCurrentTimeNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54498,7 +54498,7 @@ public struct OpHitObjectGetCurrentTimeNV : IMemoryInstruction
 
     public OpHitObjectGetCurrentTimeNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -54548,7 +54548,7 @@ public struct OpHitObjectGetAttributesNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54557,8 +54557,8 @@ public struct OpHitObjectGetAttributesNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54595,7 +54595,7 @@ public struct OpHitObjectGetAttributesNV : IMemoryInstruction
 
     public OpHitObjectGetAttributesNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -54642,7 +54642,7 @@ public struct OpHitObjectGetHitKindNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54651,8 +54651,8 @@ public struct OpHitObjectGetHitKindNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54702,7 +54702,7 @@ public struct OpHitObjectGetHitKindNV : IMemoryInstruction
 
     public OpHitObjectGetHitKindNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -54752,7 +54752,7 @@ public struct OpHitObjectGetPrimitiveIndexNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54761,8 +54761,8 @@ public struct OpHitObjectGetPrimitiveIndexNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54812,7 +54812,7 @@ public struct OpHitObjectGetPrimitiveIndexNV : IMemoryInstruction
 
     public OpHitObjectGetPrimitiveIndexNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -54862,7 +54862,7 @@ public struct OpHitObjectGetGeometryIndexNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54871,8 +54871,8 @@ public struct OpHitObjectGetGeometryIndexNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -54922,7 +54922,7 @@ public struct OpHitObjectGetGeometryIndexNV : IMemoryInstruction
 
     public OpHitObjectGetGeometryIndexNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -54972,7 +54972,7 @@ public struct OpHitObjectGetInstanceIdNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -54981,8 +54981,8 @@ public struct OpHitObjectGetInstanceIdNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55032,7 +55032,7 @@ public struct OpHitObjectGetInstanceIdNV : IMemoryInstruction
 
     public OpHitObjectGetInstanceIdNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55082,7 +55082,7 @@ public struct OpHitObjectGetInstanceCustomIndexNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55091,8 +55091,8 @@ public struct OpHitObjectGetInstanceCustomIndexNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55142,7 +55142,7 @@ public struct OpHitObjectGetInstanceCustomIndexNV : IMemoryInstruction
 
     public OpHitObjectGetInstanceCustomIndexNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55192,7 +55192,7 @@ public struct OpHitObjectGetWorldRayDirectionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55201,8 +55201,8 @@ public struct OpHitObjectGetWorldRayDirectionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55252,7 +55252,7 @@ public struct OpHitObjectGetWorldRayDirectionNV : IMemoryInstruction
 
     public OpHitObjectGetWorldRayDirectionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55302,7 +55302,7 @@ public struct OpHitObjectGetWorldRayOriginNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55311,8 +55311,8 @@ public struct OpHitObjectGetWorldRayOriginNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55362,7 +55362,7 @@ public struct OpHitObjectGetWorldRayOriginNV : IMemoryInstruction
 
     public OpHitObjectGetWorldRayOriginNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55412,7 +55412,7 @@ public struct OpHitObjectGetRayTMaxNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55421,8 +55421,8 @@ public struct OpHitObjectGetRayTMaxNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55472,7 +55472,7 @@ public struct OpHitObjectGetRayTMaxNV : IMemoryInstruction
 
     public OpHitObjectGetRayTMaxNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55522,7 +55522,7 @@ public struct OpHitObjectGetRayTMinNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55531,8 +55531,8 @@ public struct OpHitObjectGetRayTMinNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55582,7 +55582,7 @@ public struct OpHitObjectGetRayTMinNV : IMemoryInstruction
 
     public OpHitObjectGetRayTMinNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55632,7 +55632,7 @@ public struct OpHitObjectIsEmptyNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55641,8 +55641,8 @@ public struct OpHitObjectIsEmptyNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55692,7 +55692,7 @@ public struct OpHitObjectIsEmptyNV : IMemoryInstruction
 
     public OpHitObjectIsEmptyNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55742,7 +55742,7 @@ public struct OpHitObjectIsHitNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55751,8 +55751,8 @@ public struct OpHitObjectIsHitNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55802,7 +55802,7 @@ public struct OpHitObjectIsHitNV : IMemoryInstruction
 
     public OpHitObjectIsHitNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55852,7 +55852,7 @@ public struct OpHitObjectIsMissNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55861,8 +55861,8 @@ public struct OpHitObjectIsMissNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -55912,7 +55912,7 @@ public struct OpHitObjectIsMissNV : IMemoryInstruction
 
     public OpHitObjectIsMissNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -55962,7 +55962,7 @@ public struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -55971,8 +55971,8 @@ public struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56020,7 +56020,7 @@ public struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
 
     public OpReorderThreadWithHitObjectNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
@@ -56070,7 +56070,7 @@ public struct OpReorderThreadWithHintNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56079,8 +56079,8 @@ public struct OpReorderThreadWithHintNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56117,7 +56117,7 @@ public struct OpReorderThreadWithHintNV : IMemoryInstruction
 
     public OpReorderThreadWithHintNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "hint")
                 Hint = o.ToLiteral<int>();
@@ -56164,7 +56164,7 @@ public struct OpTypeHitObjectNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56173,8 +56173,8 @@ public struct OpTypeHitObjectNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56202,7 +56202,7 @@ public struct OpTypeHitObjectNV : IMemoryInstruction
 
     public OpTypeHitObjectNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -56246,7 +56246,7 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56255,8 +56255,8 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56350,7 +56350,7 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
 
     public OpImageSampleFootprintNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -56412,7 +56412,7 @@ public struct OpCooperativeMatrixConvertNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56421,8 +56421,8 @@ public struct OpCooperativeMatrixConvertNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56472,7 +56472,7 @@ public struct OpCooperativeMatrixConvertNV : IMemoryInstruction
 
     public OpCooperativeMatrixConvertNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -56522,7 +56522,7 @@ public struct OpEmitMeshTasksEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56531,8 +56531,8 @@ public struct OpEmitMeshTasksEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56591,7 +56591,7 @@ public struct OpEmitMeshTasksEXT : IMemoryInstruction
 
     public OpEmitMeshTasksEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "groupCountX")
                 GroupCountX = o.ToLiteral<int>();
@@ -56644,7 +56644,7 @@ public struct OpSetMeshOutputsEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56653,8 +56653,8 @@ public struct OpSetMeshOutputsEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56691,7 +56691,7 @@ public struct OpSetMeshOutputsEXT : IMemoryInstruction
 
     public OpSetMeshOutputsEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "vertexCount")
                 VertexCount = o.ToLiteral<int>();
@@ -56738,7 +56738,7 @@ public struct OpGroupNonUniformPartitionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56747,8 +56747,8 @@ public struct OpGroupNonUniformPartitionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56798,7 +56798,7 @@ public struct OpGroupNonUniformPartitionNV : IMemoryInstruction
 
     public OpGroupNonUniformPartitionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -56848,7 +56848,7 @@ public struct OpWritePackedPrimitiveIndices4x8NV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56857,8 +56857,8 @@ public struct OpWritePackedPrimitiveIndices4x8NV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -56895,7 +56895,7 @@ public struct OpWritePackedPrimitiveIndices4x8NV : IMemoryInstruction
 
     public OpWritePackedPrimitiveIndices4x8NV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "indexOffset")
                 IndexOffset = o.ToLiteral<int>();
@@ -56942,7 +56942,7 @@ public struct OpFetchMicroTriangleVertexPositionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -56951,8 +56951,8 @@ public struct OpFetchMicroTriangleVertexPositionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57046,7 +57046,7 @@ public struct OpFetchMicroTriangleVertexPositionNV : IMemoryInstruction
 
     public OpFetchMicroTriangleVertexPositionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -57108,7 +57108,7 @@ public struct OpFetchMicroTriangleVertexBarycentricNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57117,8 +57117,8 @@ public struct OpFetchMicroTriangleVertexBarycentricNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57212,7 +57212,7 @@ public struct OpFetchMicroTriangleVertexBarycentricNV : IMemoryInstruction
 
     public OpFetchMicroTriangleVertexBarycentricNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -57274,7 +57274,7 @@ public struct OpReportIntersectionKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57283,8 +57283,8 @@ public struct OpReportIntersectionKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57345,7 +57345,7 @@ public struct OpReportIntersectionKHR : IMemoryInstruction
 
     public OpReportIntersectionKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -57398,7 +57398,7 @@ public struct OpIgnoreIntersectionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57407,8 +57407,8 @@ public struct OpIgnoreIntersectionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57442,7 +57442,7 @@ public struct OpTerminateRayNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57451,8 +57451,8 @@ public struct OpTerminateRayNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57486,7 +57486,7 @@ public struct OpTraceNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57495,8 +57495,8 @@ public struct OpTraceNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57632,7 +57632,7 @@ public struct OpTraceNV : IMemoryInstruction
 
     public OpTraceNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "accel")
                 Accel = o.ToLiteral<int>();
@@ -57706,7 +57706,7 @@ public struct OpTraceMotionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57715,8 +57715,8 @@ public struct OpTraceMotionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -57863,7 +57863,7 @@ public struct OpTraceMotionNV : IMemoryInstruction
 
     public OpTraceMotionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "accel")
                 Accel = o.ToLiteral<int>();
@@ -57940,7 +57940,7 @@ public struct OpTraceRayMotionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -57949,8 +57949,8 @@ public struct OpTraceRayMotionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58097,7 +58097,7 @@ public struct OpTraceRayMotionNV : IMemoryInstruction
 
     public OpTraceRayMotionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "accel")
                 Accel = o.ToLiteral<int>();
@@ -58174,7 +58174,7 @@ public struct OpRayQueryGetIntersectionTriangleVertexPositionsKHR : IMemoryInstr
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58183,8 +58183,8 @@ public struct OpRayQueryGetIntersectionTriangleVertexPositionsKHR : IMemoryInstr
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58245,7 +58245,7 @@ public struct OpRayQueryGetIntersectionTriangleVertexPositionsKHR : IMemoryInstr
 
     public OpRayQueryGetIntersectionTriangleVertexPositionsKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -58298,7 +58298,7 @@ public struct OpTypeAccelerationStructureKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58307,8 +58307,8 @@ public struct OpTypeAccelerationStructureKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58336,7 +58336,7 @@ public struct OpTypeAccelerationStructureKHR : IMemoryInstruction
 
     public OpTypeAccelerationStructureKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -58380,7 +58380,7 @@ public struct OpExecuteCallableNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58389,8 +58389,8 @@ public struct OpExecuteCallableNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58427,7 +58427,7 @@ public struct OpExecuteCallableNV : IMemoryInstruction
 
     public OpExecuteCallableNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "sBTIndex")
                 SBTIndex = o.ToLiteral<int>();
@@ -58474,7 +58474,7 @@ public struct OpTypeCooperativeMatrixNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58483,8 +58483,8 @@ public struct OpTypeCooperativeMatrixNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58556,7 +58556,7 @@ public struct OpTypeCooperativeMatrixNV : IMemoryInstruction
 
     public OpTypeCooperativeMatrixNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -58612,7 +58612,7 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58621,8 +58621,8 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58705,7 +58705,7 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
 
     public OpCooperativeMatrixLoadNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -58764,7 +58764,7 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58773,8 +58773,8 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58844,7 +58844,7 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
 
     public OpCooperativeMatrixStoreNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -58900,7 +58900,7 @@ public struct OpCooperativeMatrixMulAddNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -58909,8 +58909,8 @@ public struct OpCooperativeMatrixMulAddNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -58982,7 +58982,7 @@ public struct OpCooperativeMatrixMulAddNV : IMemoryInstruction
 
     public OpCooperativeMatrixMulAddNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -59038,7 +59038,7 @@ public struct OpCooperativeMatrixLengthNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59047,8 +59047,8 @@ public struct OpCooperativeMatrixLengthNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59098,7 +59098,7 @@ public struct OpCooperativeMatrixLengthNV : IMemoryInstruction
 
     public OpCooperativeMatrixLengthNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -59148,7 +59148,7 @@ public struct OpBeginInvocationInterlockEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59157,8 +59157,8 @@ public struct OpBeginInvocationInterlockEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59192,7 +59192,7 @@ public struct OpEndInvocationInterlockEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59201,8 +59201,8 @@ public struct OpEndInvocationInterlockEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59236,7 +59236,7 @@ public struct OpCooperativeMatrixReduceNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59245,8 +59245,8 @@ public struct OpCooperativeMatrixReduceNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59318,7 +59318,7 @@ public struct OpCooperativeMatrixReduceNV : IMemoryInstruction
 
     public OpCooperativeMatrixReduceNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -59374,7 +59374,7 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59383,8 +59383,8 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59478,7 +59478,7 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
 
     public OpCooperativeMatrixLoadTensorNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -59540,7 +59540,7 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59549,8 +59549,8 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59620,7 +59620,7 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
 
     public OpCooperativeMatrixStoreTensorNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
@@ -59676,7 +59676,7 @@ public struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59685,8 +59685,8 @@ public struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59758,7 +59758,7 @@ public struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
 
     public OpCooperativeMatrixPerElementOpNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -59814,7 +59814,7 @@ public struct OpTypeTensorLayoutNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59823,8 +59823,8 @@ public struct OpTypeTensorLayoutNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59874,7 +59874,7 @@ public struct OpTypeTensorLayoutNV : IMemoryInstruction
 
     public OpTypeTensorLayoutNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -59924,7 +59924,7 @@ public struct OpTypeTensorViewNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -59933,8 +59933,8 @@ public struct OpTypeTensorViewNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -59995,7 +59995,7 @@ public struct OpTypeTensorViewNV : IMemoryInstruction
 
     public OpTypeTensorViewNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -60048,7 +60048,7 @@ public struct OpCreateTensorLayoutNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60057,8 +60057,8 @@ public struct OpCreateTensorLayoutNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60097,7 +60097,7 @@ public struct OpCreateTensorLayoutNV : IMemoryInstruction
 
     public OpCreateTensorLayoutNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60144,7 +60144,7 @@ public struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60153,8 +60153,8 @@ public struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60215,7 +60215,7 @@ public struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
 
     public OpTensorLayoutSetDimensionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60268,7 +60268,7 @@ public struct OpTensorLayoutSetStrideNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60277,8 +60277,8 @@ public struct OpTensorLayoutSetStrideNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60339,7 +60339,7 @@ public struct OpTensorLayoutSetStrideNV : IMemoryInstruction
 
     public OpTensorLayoutSetStrideNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60392,7 +60392,7 @@ public struct OpTensorLayoutSliceNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60401,8 +60401,8 @@ public struct OpTensorLayoutSliceNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60463,7 +60463,7 @@ public struct OpTensorLayoutSliceNV : IMemoryInstruction
 
     public OpTensorLayoutSliceNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60516,7 +60516,7 @@ public struct OpTensorLayoutSetClampValueNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60525,8 +60525,8 @@ public struct OpTensorLayoutSetClampValueNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60587,7 +60587,7 @@ public struct OpTensorLayoutSetClampValueNV : IMemoryInstruction
 
     public OpTensorLayoutSetClampValueNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60640,7 +60640,7 @@ public struct OpCreateTensorViewNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60649,8 +60649,8 @@ public struct OpCreateTensorViewNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60689,7 +60689,7 @@ public struct OpCreateTensorViewNV : IMemoryInstruction
 
     public OpCreateTensorViewNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60736,7 +60736,7 @@ public struct OpTensorViewSetDimensionNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60745,8 +60745,8 @@ public struct OpTensorViewSetDimensionNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60807,7 +60807,7 @@ public struct OpTensorViewSetDimensionNV : IMemoryInstruction
 
     public OpTensorViewSetDimensionNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60860,7 +60860,7 @@ public struct OpTensorViewSetStrideNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60869,8 +60869,8 @@ public struct OpTensorViewSetStrideNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -60931,7 +60931,7 @@ public struct OpTensorViewSetStrideNV : IMemoryInstruction
 
     public OpTensorViewSetStrideNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -60984,7 +60984,7 @@ public struct OpDemoteToHelperInvocation : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -60993,8 +60993,8 @@ public struct OpDemoteToHelperInvocation : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61028,7 +61028,7 @@ public struct OpIsHelperInvocationEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61037,8 +61037,8 @@ public struct OpIsHelperInvocationEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61077,7 +61077,7 @@ public struct OpIsHelperInvocationEXT : IMemoryInstruction
 
     public OpIsHelperInvocationEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61124,7 +61124,7 @@ public struct OpTensorViewSetClipNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61133,8 +61133,8 @@ public struct OpTensorViewSetClipNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61228,7 +61228,7 @@ public struct OpTensorViewSetClipNV : IMemoryInstruction
 
     public OpTensorViewSetClipNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61290,7 +61290,7 @@ public struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61299,8 +61299,8 @@ public struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61361,7 +61361,7 @@ public struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
 
     public OpTensorLayoutSetBlockSizeNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61414,7 +61414,7 @@ public struct OpCooperativeMatrixTransposeNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61423,8 +61423,8 @@ public struct OpCooperativeMatrixTransposeNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61474,7 +61474,7 @@ public struct OpCooperativeMatrixTransposeNV : IMemoryInstruction
 
     public OpCooperativeMatrixTransposeNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61524,7 +61524,7 @@ public struct OpConvertUToImageNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61533,8 +61533,8 @@ public struct OpConvertUToImageNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61584,7 +61584,7 @@ public struct OpConvertUToImageNV : IMemoryInstruction
 
     public OpConvertUToImageNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61634,7 +61634,7 @@ public struct OpConvertUToSamplerNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61643,8 +61643,8 @@ public struct OpConvertUToSamplerNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61694,7 +61694,7 @@ public struct OpConvertUToSamplerNV : IMemoryInstruction
 
     public OpConvertUToSamplerNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61744,7 +61744,7 @@ public struct OpConvertImageToUNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61753,8 +61753,8 @@ public struct OpConvertImageToUNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61804,7 +61804,7 @@ public struct OpConvertImageToUNV : IMemoryInstruction
 
     public OpConvertImageToUNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61854,7 +61854,7 @@ public struct OpConvertSamplerToUNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61863,8 +61863,8 @@ public struct OpConvertSamplerToUNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -61914,7 +61914,7 @@ public struct OpConvertSamplerToUNV : IMemoryInstruction
 
     public OpConvertSamplerToUNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -61964,7 +61964,7 @@ public struct OpConvertUToSampledImageNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -61973,8 +61973,8 @@ public struct OpConvertUToSampledImageNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62024,7 +62024,7 @@ public struct OpConvertUToSampledImageNV : IMemoryInstruction
 
     public OpConvertUToSampledImageNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62074,7 +62074,7 @@ public struct OpConvertSampledImageToUNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62083,8 +62083,8 @@ public struct OpConvertSampledImageToUNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62134,7 +62134,7 @@ public struct OpConvertSampledImageToUNV : IMemoryInstruction
 
     public OpConvertSampledImageToUNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62184,7 +62184,7 @@ public struct OpSamplerImageAddressingModeNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62193,8 +62193,8 @@ public struct OpSamplerImageAddressingModeNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62220,7 +62220,7 @@ public struct OpSamplerImageAddressingModeNV : IMemoryInstruction
 
     public OpSamplerImageAddressingModeNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "bitWidth")
                 BitWidth = o.ToLiteral<int>();
@@ -62264,7 +62264,7 @@ public struct OpRawAccessChainNV : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62273,8 +62273,8 @@ public struct OpRawAccessChainNV : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62368,7 +62368,7 @@ public struct OpRawAccessChainNV : IMemoryInstruction
 
     public OpRawAccessChainNV(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62430,7 +62430,7 @@ public struct OpSubgroupShuffleINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62439,8 +62439,8 @@ public struct OpSubgroupShuffleINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62501,7 +62501,7 @@ public struct OpSubgroupShuffleINTEL : IMemoryInstruction
 
     public OpSubgroupShuffleINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62554,7 +62554,7 @@ public struct OpSubgroupShuffleDownINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62563,8 +62563,8 @@ public struct OpSubgroupShuffleDownINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62636,7 +62636,7 @@ public struct OpSubgroupShuffleDownINTEL : IMemoryInstruction
 
     public OpSubgroupShuffleDownINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62692,7 +62692,7 @@ public struct OpSubgroupShuffleUpINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62701,8 +62701,8 @@ public struct OpSubgroupShuffleUpINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62774,7 +62774,7 @@ public struct OpSubgroupShuffleUpINTEL : IMemoryInstruction
 
     public OpSubgroupShuffleUpINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62830,7 +62830,7 @@ public struct OpSubgroupShuffleXorINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62839,8 +62839,8 @@ public struct OpSubgroupShuffleXorINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -62901,7 +62901,7 @@ public struct OpSubgroupShuffleXorINTEL : IMemoryInstruction
 
     public OpSubgroupShuffleXorINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -62954,7 +62954,7 @@ public struct OpSubgroupBlockReadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -62963,8 +62963,8 @@ public struct OpSubgroupBlockReadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63014,7 +63014,7 @@ public struct OpSubgroupBlockReadINTEL : IMemoryInstruction
 
     public OpSubgroupBlockReadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -63064,7 +63064,7 @@ public struct OpSubgroupBlockWriteINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63073,8 +63073,8 @@ public struct OpSubgroupBlockWriteINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63111,7 +63111,7 @@ public struct OpSubgroupBlockWriteINTEL : IMemoryInstruction
 
     public OpSubgroupBlockWriteINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "ptr")
                 Ptr = o.ToLiteral<int>();
@@ -63158,7 +63158,7 @@ public struct OpSubgroupImageBlockReadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63167,8 +63167,8 @@ public struct OpSubgroupImageBlockReadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63229,7 +63229,7 @@ public struct OpSubgroupImageBlockReadINTEL : IMemoryInstruction
 
     public OpSubgroupImageBlockReadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -63282,7 +63282,7 @@ public struct OpSubgroupImageBlockWriteINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63291,8 +63291,8 @@ public struct OpSubgroupImageBlockWriteINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63340,7 +63340,7 @@ public struct OpSubgroupImageBlockWriteINTEL : IMemoryInstruction
 
     public OpSubgroupImageBlockWriteINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "image")
                 Image = o.ToLiteral<int>();
@@ -63390,7 +63390,7 @@ public struct OpSubgroupImageMediaBlockReadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63399,8 +63399,8 @@ public struct OpSubgroupImageMediaBlockReadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63483,7 +63483,7 @@ public struct OpSubgroupImageMediaBlockReadINTEL : IMemoryInstruction
 
     public OpSubgroupImageMediaBlockReadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -63542,7 +63542,7 @@ public struct OpSubgroupImageMediaBlockWriteINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63551,8 +63551,8 @@ public struct OpSubgroupImageMediaBlockWriteINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63622,7 +63622,7 @@ public struct OpSubgroupImageMediaBlockWriteINTEL : IMemoryInstruction
 
     public OpSubgroupImageMediaBlockWriteINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "image")
                 Image = o.ToLiteral<int>();
@@ -63678,7 +63678,7 @@ public struct OpUCountLeadingZerosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63687,8 +63687,8 @@ public struct OpUCountLeadingZerosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63738,7 +63738,7 @@ public struct OpUCountLeadingZerosINTEL : IMemoryInstruction
 
     public OpUCountLeadingZerosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -63788,7 +63788,7 @@ public struct OpUCountTrailingZerosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63797,8 +63797,8 @@ public struct OpUCountTrailingZerosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63848,7 +63848,7 @@ public struct OpUCountTrailingZerosINTEL : IMemoryInstruction
 
     public OpUCountTrailingZerosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -63898,7 +63898,7 @@ public struct OpAbsISubINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -63907,8 +63907,8 @@ public struct OpAbsISubINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -63969,7 +63969,7 @@ public struct OpAbsISubINTEL : IMemoryInstruction
 
     public OpAbsISubINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64022,7 +64022,7 @@ public struct OpAbsUSubINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64031,8 +64031,8 @@ public struct OpAbsUSubINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64093,7 +64093,7 @@ public struct OpAbsUSubINTEL : IMemoryInstruction
 
     public OpAbsUSubINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64146,7 +64146,7 @@ public struct OpIAddSatINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64155,8 +64155,8 @@ public struct OpIAddSatINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64217,7 +64217,7 @@ public struct OpIAddSatINTEL : IMemoryInstruction
 
     public OpIAddSatINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64270,7 +64270,7 @@ public struct OpUAddSatINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64279,8 +64279,8 @@ public struct OpUAddSatINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64341,7 +64341,7 @@ public struct OpUAddSatINTEL : IMemoryInstruction
 
     public OpUAddSatINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64394,7 +64394,7 @@ public struct OpIAverageINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64403,8 +64403,8 @@ public struct OpIAverageINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64465,7 +64465,7 @@ public struct OpIAverageINTEL : IMemoryInstruction
 
     public OpIAverageINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64518,7 +64518,7 @@ public struct OpUAverageINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64527,8 +64527,8 @@ public struct OpUAverageINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64589,7 +64589,7 @@ public struct OpUAverageINTEL : IMemoryInstruction
 
     public OpUAverageINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64642,7 +64642,7 @@ public struct OpIAverageRoundedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64651,8 +64651,8 @@ public struct OpIAverageRoundedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64713,7 +64713,7 @@ public struct OpIAverageRoundedINTEL : IMemoryInstruction
 
     public OpIAverageRoundedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64766,7 +64766,7 @@ public struct OpUAverageRoundedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64775,8 +64775,8 @@ public struct OpUAverageRoundedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64837,7 +64837,7 @@ public struct OpUAverageRoundedINTEL : IMemoryInstruction
 
     public OpUAverageRoundedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -64890,7 +64890,7 @@ public struct OpISubSatINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -64899,8 +64899,8 @@ public struct OpISubSatINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -64961,7 +64961,7 @@ public struct OpISubSatINTEL : IMemoryInstruction
 
     public OpISubSatINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65014,7 +65014,7 @@ public struct OpUSubSatINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65023,8 +65023,8 @@ public struct OpUSubSatINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65085,7 +65085,7 @@ public struct OpUSubSatINTEL : IMemoryInstruction
 
     public OpUSubSatINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65138,7 +65138,7 @@ public struct OpIMul32x16INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65147,8 +65147,8 @@ public struct OpIMul32x16INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65209,7 +65209,7 @@ public struct OpIMul32x16INTEL : IMemoryInstruction
 
     public OpIMul32x16INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65262,7 +65262,7 @@ public struct OpUMul32x16INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65271,8 +65271,8 @@ public struct OpUMul32x16INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65333,7 +65333,7 @@ public struct OpUMul32x16INTEL : IMemoryInstruction
 
     public OpUMul32x16INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65386,7 +65386,7 @@ public struct OpConstantFunctionPointerINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65395,8 +65395,8 @@ public struct OpConstantFunctionPointerINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65446,7 +65446,7 @@ public struct OpConstantFunctionPointerINTEL : IMemoryInstruction
 
     public OpConstantFunctionPointerINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65496,7 +65496,7 @@ public struct OpFunctionPointerCallINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65505,8 +65505,8 @@ public struct OpFunctionPointerCallINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65556,7 +65556,7 @@ public struct OpFunctionPointerCallINTEL : IMemoryInstruction
 
     public OpFunctionPointerCallINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65606,7 +65606,7 @@ public struct OpAsmTargetINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65615,8 +65615,8 @@ public struct OpAsmTargetINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65666,7 +65666,7 @@ public struct OpAsmTargetINTEL : IMemoryInstruction
 
     public OpAsmTargetINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65716,7 +65716,7 @@ public struct OpAsmINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65725,8 +65725,8 @@ public struct OpAsmINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65809,7 +65809,7 @@ public struct OpAsmINTEL : IMemoryInstruction
 
     public OpAsmINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65868,7 +65868,7 @@ public struct OpAsmCallINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -65877,8 +65877,8 @@ public struct OpAsmCallINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -65939,7 +65939,7 @@ public struct OpAsmCallINTEL : IMemoryInstruction
 
     public OpAsmCallINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -65992,7 +65992,7 @@ public struct OpAtomicFMinEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66001,8 +66001,8 @@ public struct OpAtomicFMinEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66085,7 +66085,7 @@ public struct OpAtomicFMinEXT : IMemoryInstruction
 
     public OpAtomicFMinEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -66144,7 +66144,7 @@ public struct OpAtomicFMaxEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66153,8 +66153,8 @@ public struct OpAtomicFMaxEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66237,7 +66237,7 @@ public struct OpAtomicFMaxEXT : IMemoryInstruction
 
     public OpAtomicFMaxEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -66296,7 +66296,7 @@ public struct OpAssumeTrueKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66305,8 +66305,8 @@ public struct OpAssumeTrueKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66332,7 +66332,7 @@ public struct OpAssumeTrueKHR : IMemoryInstruction
 
     public OpAssumeTrueKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "condition")
                 Condition = o.ToLiteral<int>();
@@ -66376,7 +66376,7 @@ public struct OpExpectKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66385,8 +66385,8 @@ public struct OpExpectKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66447,7 +66447,7 @@ public struct OpExpectKHR : IMemoryInstruction
 
     public OpExpectKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -66500,7 +66500,7 @@ public struct OpDecorateString : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66509,8 +66509,8 @@ public struct OpDecorateString : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66547,7 +66547,7 @@ public struct OpDecorateString : IMemoryInstruction
 
     public OpDecorateString(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "target")
                 Target = o.ToLiteral<int>();
@@ -66594,7 +66594,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66603,8 +66603,8 @@ public struct OpMemberDecorateString : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66652,7 +66652,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
 
     public OpMemberDecorateString(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "structType")
                 StructType = o.ToLiteral<int>();
@@ -66702,7 +66702,7 @@ public struct OpVmeImageINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66711,8 +66711,8 @@ public struct OpVmeImageINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66773,7 +66773,7 @@ public struct OpVmeImageINTEL : IMemoryInstruction
 
     public OpVmeImageINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -66826,7 +66826,7 @@ public struct OpTypeVmeImageINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66835,8 +66835,8 @@ public struct OpTypeVmeImageINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66875,7 +66875,7 @@ public struct OpTypeVmeImageINTEL : IMemoryInstruction
 
     public OpTypeVmeImageINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -66922,7 +66922,7 @@ public struct OpTypeAvcImePayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -66931,8 +66931,8 @@ public struct OpTypeAvcImePayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -66960,7 +66960,7 @@ public struct OpTypeAvcImePayloadINTEL : IMemoryInstruction
 
     public OpTypeAvcImePayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67004,7 +67004,7 @@ public struct OpTypeAvcRefPayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67013,8 +67013,8 @@ public struct OpTypeAvcRefPayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67042,7 +67042,7 @@ public struct OpTypeAvcRefPayloadINTEL : IMemoryInstruction
 
     public OpTypeAvcRefPayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67086,7 +67086,7 @@ public struct OpTypeAvcSicPayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67095,8 +67095,8 @@ public struct OpTypeAvcSicPayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67124,7 +67124,7 @@ public struct OpTypeAvcSicPayloadINTEL : IMemoryInstruction
 
     public OpTypeAvcSicPayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67168,7 +67168,7 @@ public struct OpTypeAvcMcePayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67177,8 +67177,8 @@ public struct OpTypeAvcMcePayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67206,7 +67206,7 @@ public struct OpTypeAvcMcePayloadINTEL : IMemoryInstruction
 
     public OpTypeAvcMcePayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67250,7 +67250,7 @@ public struct OpTypeAvcMceResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67259,8 +67259,8 @@ public struct OpTypeAvcMceResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67288,7 +67288,7 @@ public struct OpTypeAvcMceResultINTEL : IMemoryInstruction
 
     public OpTypeAvcMceResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67332,7 +67332,7 @@ public struct OpTypeAvcImeResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67341,8 +67341,8 @@ public struct OpTypeAvcImeResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67370,7 +67370,7 @@ public struct OpTypeAvcImeResultINTEL : IMemoryInstruction
 
     public OpTypeAvcImeResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67414,7 +67414,7 @@ public struct OpTypeAvcImeResultSingleReferenceStreamoutINTEL : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67423,8 +67423,8 @@ public struct OpTypeAvcImeResultSingleReferenceStreamoutINTEL : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67452,7 +67452,7 @@ public struct OpTypeAvcImeResultSingleReferenceStreamoutINTEL : IMemoryInstructi
 
     public OpTypeAvcImeResultSingleReferenceStreamoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67496,7 +67496,7 @@ public struct OpTypeAvcImeResultDualReferenceStreamoutINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67505,8 +67505,8 @@ public struct OpTypeAvcImeResultDualReferenceStreamoutINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67534,7 +67534,7 @@ public struct OpTypeAvcImeResultDualReferenceStreamoutINTEL : IMemoryInstruction
 
     public OpTypeAvcImeResultDualReferenceStreamoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67578,7 +67578,7 @@ public struct OpTypeAvcImeSingleReferenceStreaminINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67587,8 +67587,8 @@ public struct OpTypeAvcImeSingleReferenceStreaminINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67616,7 +67616,7 @@ public struct OpTypeAvcImeSingleReferenceStreaminINTEL : IMemoryInstruction
 
     public OpTypeAvcImeSingleReferenceStreaminINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67660,7 +67660,7 @@ public struct OpTypeAvcImeDualReferenceStreaminINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67669,8 +67669,8 @@ public struct OpTypeAvcImeDualReferenceStreaminINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67698,7 +67698,7 @@ public struct OpTypeAvcImeDualReferenceStreaminINTEL : IMemoryInstruction
 
     public OpTypeAvcImeDualReferenceStreaminINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67742,7 +67742,7 @@ public struct OpTypeAvcRefResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67751,8 +67751,8 @@ public struct OpTypeAvcRefResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67780,7 +67780,7 @@ public struct OpTypeAvcRefResultINTEL : IMemoryInstruction
 
     public OpTypeAvcRefResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67824,7 +67824,7 @@ public struct OpTypeAvcSicResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67833,8 +67833,8 @@ public struct OpTypeAvcSicResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67862,7 +67862,7 @@ public struct OpTypeAvcSicResultINTEL : IMemoryInstruction
 
     public OpTypeAvcSicResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -67906,7 +67906,7 @@ public struct OpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL : IM
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -67915,8 +67915,8 @@ public struct OpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL : IM
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -67977,7 +67977,7 @@ public struct OpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL : IM
 
     public OpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68030,7 +68030,7 @@ public struct OpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL : IMemoryIn
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68039,8 +68039,8 @@ public struct OpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL : IMemoryIn
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68101,7 +68101,7 @@ public struct OpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL : IMemoryIn
 
     public OpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68154,7 +68154,7 @@ public struct OpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68163,8 +68163,8 @@ public struct OpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68225,7 +68225,7 @@ public struct OpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL : IMemoryInstruct
 
     public OpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68278,7 +68278,7 @@ public struct OpSubgroupAvcMceSetInterShapePenaltyINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68287,8 +68287,8 @@ public struct OpSubgroupAvcMceSetInterShapePenaltyINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68349,7 +68349,7 @@ public struct OpSubgroupAvcMceSetInterShapePenaltyINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceSetInterShapePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68402,7 +68402,7 @@ public struct OpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL : IMemoryInst
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68411,8 +68411,8 @@ public struct OpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL : IMemoryInst
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68473,7 +68473,7 @@ public struct OpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL : IMemoryInst
 
     public OpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68526,7 +68526,7 @@ public struct OpSubgroupAvcMceSetInterDirectionPenaltyINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68535,8 +68535,8 @@ public struct OpSubgroupAvcMceSetInterDirectionPenaltyINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68597,7 +68597,7 @@ public struct OpSubgroupAvcMceSetInterDirectionPenaltyINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceSetInterDirectionPenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68650,7 +68650,7 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL : IMemoryInst
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68659,8 +68659,8 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL : IMemoryInst
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68721,7 +68721,7 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL : IMemoryInst
 
     public OpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68774,7 +68774,7 @@ public struct OpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68783,8 +68783,8 @@ public struct OpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68845,7 +68845,7 @@ public struct OpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL : IMemor
 
     public OpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68898,7 +68898,7 @@ public struct OpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL : IMemoryInstr
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -68907,8 +68907,8 @@ public struct OpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL : IMemoryInstr
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -68947,7 +68947,7 @@ public struct OpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL : IMemoryInstr
 
     public OpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -68994,7 +68994,7 @@ public struct OpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL : IMemoryIns
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69003,8 +69003,8 @@ public struct OpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL : IMemoryIns
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69043,7 +69043,7 @@ public struct OpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL : IMemoryIns
 
     public OpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69090,7 +69090,7 @@ public struct OpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL : IMemoryInstru
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69099,8 +69099,8 @@ public struct OpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL : IMemoryInstru
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69139,7 +69139,7 @@ public struct OpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL : IMemoryInstru
 
     public OpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69186,7 +69186,7 @@ public struct OpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69195,8 +69195,8 @@ public struct OpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69279,7 +69279,7 @@ public struct OpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IMemoryInstruct
 
     public OpSubgroupAvcMceSetMotionVectorCostFunctionINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69338,7 +69338,7 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL : IMemoryInstr
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69347,8 +69347,8 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL : IMemoryInstr
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69409,7 +69409,7 @@ public struct OpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL : IMemoryInstr
 
     public OpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69462,7 +69462,7 @@ public struct OpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL : IMemoryInst
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69471,8 +69471,8 @@ public struct OpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL : IMemoryInst
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69511,7 +69511,7 @@ public struct OpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL : IMemoryInst
 
     public OpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69558,7 +69558,7 @@ public struct OpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69567,8 +69567,8 @@ public struct OpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69607,7 +69607,7 @@ public struct OpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL : IMemor
 
     public OpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69654,7 +69654,7 @@ public struct OpSubgroupAvcMceSetAcOnlyHaarINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69663,8 +69663,8 @@ public struct OpSubgroupAvcMceSetAcOnlyHaarINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69714,7 +69714,7 @@ public struct OpSubgroupAvcMceSetAcOnlyHaarINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceSetAcOnlyHaarINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69764,7 +69764,7 @@ public struct OpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL : IMemoryIns
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69773,8 +69773,8 @@ public struct OpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL : IMemoryIns
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69835,7 +69835,7 @@ public struct OpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL : IMemoryIns
 
     public OpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -69888,7 +69888,7 @@ public struct OpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL : I
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -69897,8 +69897,8 @@ public struct OpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL : I
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -69959,7 +69959,7 @@ public struct OpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL : I
 
     public OpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70012,7 +70012,7 @@ public struct OpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL : I
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70021,8 +70021,8 @@ public struct OpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL : I
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70094,7 +70094,7 @@ public struct OpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL : I
 
     public OpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70150,7 +70150,7 @@ public struct OpSubgroupAvcMceConvertToImePayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70159,8 +70159,8 @@ public struct OpSubgroupAvcMceConvertToImePayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70210,7 +70210,7 @@ public struct OpSubgroupAvcMceConvertToImePayloadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceConvertToImePayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70260,7 +70260,7 @@ public struct OpSubgroupAvcMceConvertToImeResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70269,8 +70269,8 @@ public struct OpSubgroupAvcMceConvertToImeResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70320,7 +70320,7 @@ public struct OpSubgroupAvcMceConvertToImeResultINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceConvertToImeResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70370,7 +70370,7 @@ public struct OpSubgroupAvcMceConvertToRefPayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70379,8 +70379,8 @@ public struct OpSubgroupAvcMceConvertToRefPayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70430,7 +70430,7 @@ public struct OpSubgroupAvcMceConvertToRefPayloadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceConvertToRefPayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70480,7 +70480,7 @@ public struct OpSubgroupAvcMceConvertToRefResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70489,8 +70489,8 @@ public struct OpSubgroupAvcMceConvertToRefResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70540,7 +70540,7 @@ public struct OpSubgroupAvcMceConvertToRefResultINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceConvertToRefResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70590,7 +70590,7 @@ public struct OpSubgroupAvcMceConvertToSicPayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70599,8 +70599,8 @@ public struct OpSubgroupAvcMceConvertToSicPayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70650,7 +70650,7 @@ public struct OpSubgroupAvcMceConvertToSicPayloadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceConvertToSicPayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70700,7 +70700,7 @@ public struct OpSubgroupAvcMceConvertToSicResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70709,8 +70709,8 @@ public struct OpSubgroupAvcMceConvertToSicResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70760,7 +70760,7 @@ public struct OpSubgroupAvcMceConvertToSicResultINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceConvertToSicResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70810,7 +70810,7 @@ public struct OpSubgroupAvcMceGetMotionVectorsINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70819,8 +70819,8 @@ public struct OpSubgroupAvcMceGetMotionVectorsINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70870,7 +70870,7 @@ public struct OpSubgroupAvcMceGetMotionVectorsINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetMotionVectorsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -70920,7 +70920,7 @@ public struct OpSubgroupAvcMceGetInterDistortionsINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -70929,8 +70929,8 @@ public struct OpSubgroupAvcMceGetInterDistortionsINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -70980,7 +70980,7 @@ public struct OpSubgroupAvcMceGetInterDistortionsINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetInterDistortionsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71030,7 +71030,7 @@ public struct OpSubgroupAvcMceGetBestInterDistortionsINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71039,8 +71039,8 @@ public struct OpSubgroupAvcMceGetBestInterDistortionsINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71090,7 +71090,7 @@ public struct OpSubgroupAvcMceGetBestInterDistortionsINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetBestInterDistortionsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71140,7 +71140,7 @@ public struct OpSubgroupAvcMceGetInterMajorShapeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71149,8 +71149,8 @@ public struct OpSubgroupAvcMceGetInterMajorShapeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71200,7 +71200,7 @@ public struct OpSubgroupAvcMceGetInterMajorShapeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetInterMajorShapeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71250,7 +71250,7 @@ public struct OpSubgroupAvcMceGetInterMinorShapeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71259,8 +71259,8 @@ public struct OpSubgroupAvcMceGetInterMinorShapeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71310,7 +71310,7 @@ public struct OpSubgroupAvcMceGetInterMinorShapeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetInterMinorShapeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71360,7 +71360,7 @@ public struct OpSubgroupAvcMceGetInterDirectionsINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71369,8 +71369,8 @@ public struct OpSubgroupAvcMceGetInterDirectionsINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71420,7 +71420,7 @@ public struct OpSubgroupAvcMceGetInterDirectionsINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetInterDirectionsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71470,7 +71470,7 @@ public struct OpSubgroupAvcMceGetInterMotionVectorCountINTEL : IMemoryInstructio
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71479,8 +71479,8 @@ public struct OpSubgroupAvcMceGetInterMotionVectorCountINTEL : IMemoryInstructio
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71530,7 +71530,7 @@ public struct OpSubgroupAvcMceGetInterMotionVectorCountINTEL : IMemoryInstructio
 
     public OpSubgroupAvcMceGetInterMotionVectorCountINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71580,7 +71580,7 @@ public struct OpSubgroupAvcMceGetInterReferenceIdsINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71589,8 +71589,8 @@ public struct OpSubgroupAvcMceGetInterReferenceIdsINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71640,7 +71640,7 @@ public struct OpSubgroupAvcMceGetInterReferenceIdsINTEL : IMemoryInstruction
 
     public OpSubgroupAvcMceGetInterReferenceIdsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71690,7 +71690,7 @@ public struct OpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL : 
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71699,8 +71699,8 @@ public struct OpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL : 
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71772,7 +71772,7 @@ public struct OpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL : 
 
     public OpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71828,7 +71828,7 @@ public struct OpSubgroupAvcImeInitializeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71837,8 +71837,8 @@ public struct OpSubgroupAvcImeInitializeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -71910,7 +71910,7 @@ public struct OpSubgroupAvcImeInitializeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeInitializeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -71966,7 +71966,7 @@ public struct OpSubgroupAvcImeSetSingleReferenceINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -71975,8 +71975,8 @@ public struct OpSubgroupAvcImeSetSingleReferenceINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72048,7 +72048,7 @@ public struct OpSubgroupAvcImeSetSingleReferenceINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeSetSingleReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72104,7 +72104,7 @@ public struct OpSubgroupAvcImeSetDualReferenceINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72113,8 +72113,8 @@ public struct OpSubgroupAvcImeSetDualReferenceINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72197,7 +72197,7 @@ public struct OpSubgroupAvcImeSetDualReferenceINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeSetDualReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72256,7 +72256,7 @@ public struct OpSubgroupAvcImeRefWindowSizeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72265,8 +72265,8 @@ public struct OpSubgroupAvcImeRefWindowSizeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72327,7 +72327,7 @@ public struct OpSubgroupAvcImeRefWindowSizeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeRefWindowSizeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72380,7 +72380,7 @@ public struct OpSubgroupAvcImeAdjustRefOffsetINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72389,8 +72389,8 @@ public struct OpSubgroupAvcImeAdjustRefOffsetINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72473,7 +72473,7 @@ public struct OpSubgroupAvcImeAdjustRefOffsetINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeAdjustRefOffsetINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72532,7 +72532,7 @@ public struct OpSubgroupAvcImeConvertToMcePayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72541,8 +72541,8 @@ public struct OpSubgroupAvcImeConvertToMcePayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72592,7 +72592,7 @@ public struct OpSubgroupAvcImeConvertToMcePayloadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeConvertToMcePayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72642,7 +72642,7 @@ public struct OpSubgroupAvcImeSetMaxMotionVectorCountINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72651,8 +72651,8 @@ public struct OpSubgroupAvcImeSetMaxMotionVectorCountINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72713,7 +72713,7 @@ public struct OpSubgroupAvcImeSetMaxMotionVectorCountINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeSetMaxMotionVectorCountINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72766,7 +72766,7 @@ public struct OpSubgroupAvcImeSetUnidirectionalMixDisableINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72775,8 +72775,8 @@ public struct OpSubgroupAvcImeSetUnidirectionalMixDisableINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72826,7 +72826,7 @@ public struct OpSubgroupAvcImeSetUnidirectionalMixDisableINTEL : IMemoryInstruct
 
     public OpSubgroupAvcImeSetUnidirectionalMixDisableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -72876,7 +72876,7 @@ public struct OpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL : IMemoryI
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -72885,8 +72885,8 @@ public struct OpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL : IMemoryI
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -72947,7 +72947,7 @@ public struct OpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL : IMemoryI
 
     public OpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73000,7 +73000,7 @@ public struct OpSubgroupAvcImeSetWeightedSadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73009,8 +73009,8 @@ public struct OpSubgroupAvcImeSetWeightedSadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73071,7 +73071,7 @@ public struct OpSubgroupAvcImeSetWeightedSadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeSetWeightedSadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73124,7 +73124,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73133,8 +73133,8 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73206,7 +73206,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceINTEL : IMemoryInstruct
 
     public OpSubgroupAvcImeEvaluateWithSingleReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73262,7 +73262,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IMemoryInstructio
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73271,8 +73271,8 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IMemoryInstructio
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73355,7 +73355,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IMemoryInstructio
 
     public OpSubgroupAvcImeEvaluateWithDualReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73414,7 +73414,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL : IMemory
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73423,8 +73423,8 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL : IMemory
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73507,7 +73507,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL : IMemory
 
     public OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73566,7 +73566,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL : IMemoryIn
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73575,8 +73575,8 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL : IMemoryIn
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73670,7 +73670,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL : IMemoryIn
 
     public OpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73732,7 +73732,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73741,8 +73741,8 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73814,7 +73814,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL : IMemor
 
     public OpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -73870,7 +73870,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL : IMemoryI
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -73879,8 +73879,8 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL : IMemoryI
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -73963,7 +73963,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL : IMemoryI
 
     public OpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74022,7 +74022,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL : IMem
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74031,8 +74031,8 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL : IMem
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74115,7 +74115,7 @@ public struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL : IMem
 
     public OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74174,7 +74174,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74183,8 +74183,8 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74278,7 +74278,7 @@ public struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL : IMemor
 
     public OpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74340,7 +74340,7 @@ public struct OpSubgroupAvcImeConvertToMceResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74349,8 +74349,8 @@ public struct OpSubgroupAvcImeConvertToMceResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74400,7 +74400,7 @@ public struct OpSubgroupAvcImeConvertToMceResultINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeConvertToMceResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74450,7 +74450,7 @@ public struct OpSubgroupAvcImeGetSingleReferenceStreaminINTEL : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74459,8 +74459,8 @@ public struct OpSubgroupAvcImeGetSingleReferenceStreaminINTEL : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74510,7 +74510,7 @@ public struct OpSubgroupAvcImeGetSingleReferenceStreaminINTEL : IMemoryInstructi
 
     public OpSubgroupAvcImeGetSingleReferenceStreaminINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74560,7 +74560,7 @@ public struct OpSubgroupAvcImeGetDualReferenceStreaminINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74569,8 +74569,8 @@ public struct OpSubgroupAvcImeGetDualReferenceStreaminINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74620,7 +74620,7 @@ public struct OpSubgroupAvcImeGetDualReferenceStreaminINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeGetDualReferenceStreaminINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74670,7 +74670,7 @@ public struct OpSubgroupAvcImeStripSingleReferenceStreamoutINTEL : IMemoryInstru
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74679,8 +74679,8 @@ public struct OpSubgroupAvcImeStripSingleReferenceStreamoutINTEL : IMemoryInstru
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74730,7 +74730,7 @@ public struct OpSubgroupAvcImeStripSingleReferenceStreamoutINTEL : IMemoryInstru
 
     public OpSubgroupAvcImeStripSingleReferenceStreamoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74780,7 +74780,7 @@ public struct OpSubgroupAvcImeStripDualReferenceStreamoutINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74789,8 +74789,8 @@ public struct OpSubgroupAvcImeStripDualReferenceStreamoutINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74840,7 +74840,7 @@ public struct OpSubgroupAvcImeStripDualReferenceStreamoutINTEL : IMemoryInstruct
 
     public OpSubgroupAvcImeStripDualReferenceStreamoutINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -74890,7 +74890,7 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectors
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -74899,8 +74899,8 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectors
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -74961,7 +74961,7 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectors
 
     public OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75014,7 +75014,7 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsIN
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75023,8 +75023,8 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsIN
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75085,7 +75085,7 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsIN
 
     public OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75138,7 +75138,7 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsI
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75147,8 +75147,8 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsI
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75209,7 +75209,7 @@ public struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsI
 
     public OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75262,7 +75262,7 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsIN
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75271,8 +75271,8 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsIN
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75344,7 +75344,7 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsIN
 
     public OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75400,7 +75400,7 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTE
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75409,8 +75409,8 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTE
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75482,7 +75482,7 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTE
 
     public OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75538,7 +75538,7 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINT
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75547,8 +75547,8 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINT
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75620,7 +75620,7 @@ public struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINT
 
     public OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75676,7 +75676,7 @@ public struct OpSubgroupAvcImeGetBorderReachedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75685,8 +75685,8 @@ public struct OpSubgroupAvcImeGetBorderReachedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75747,7 +75747,7 @@ public struct OpSubgroupAvcImeGetBorderReachedINTEL : IMemoryInstruction
 
     public OpSubgroupAvcImeGetBorderReachedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75800,7 +75800,7 @@ public struct OpSubgroupAvcImeGetTruncatedSearchIndicationINTEL : IMemoryInstruc
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75809,8 +75809,8 @@ public struct OpSubgroupAvcImeGetTruncatedSearchIndicationINTEL : IMemoryInstruc
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75860,7 +75860,7 @@ public struct OpSubgroupAvcImeGetTruncatedSearchIndicationINTEL : IMemoryInstruc
 
     public OpSubgroupAvcImeGetTruncatedSearchIndicationINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -75910,7 +75910,7 @@ public struct OpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL : IMe
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -75919,8 +75919,8 @@ public struct OpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL : IMe
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -75970,7 +75970,7 @@ public struct OpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL : IMe
 
     public OpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76020,7 +76020,7 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL : IMem
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76029,8 +76029,8 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL : IMem
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76080,7 +76080,7 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL : IMem
 
     public OpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76130,7 +76130,7 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76139,8 +76139,8 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76190,7 +76190,7 @@ public struct OpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL : IMemor
 
     public OpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76240,7 +76240,7 @@ public struct OpSubgroupAvcFmeInitializeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76249,8 +76249,8 @@ public struct OpSubgroupAvcFmeInitializeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76366,7 +76366,7 @@ public struct OpSubgroupAvcFmeInitializeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcFmeInitializeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76434,7 +76434,7 @@ public struct OpSubgroupAvcBmeInitializeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76443,8 +76443,8 @@ public struct OpSubgroupAvcBmeInitializeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76571,7 +76571,7 @@ public struct OpSubgroupAvcBmeInitializeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcBmeInitializeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76642,7 +76642,7 @@ public struct OpSubgroupAvcRefConvertToMcePayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76651,8 +76651,8 @@ public struct OpSubgroupAvcRefConvertToMcePayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76702,7 +76702,7 @@ public struct OpSubgroupAvcRefConvertToMcePayloadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcRefConvertToMcePayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76752,7 +76752,7 @@ public struct OpSubgroupAvcRefSetBidirectionalMixDisableINTEL : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76761,8 +76761,8 @@ public struct OpSubgroupAvcRefSetBidirectionalMixDisableINTEL : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76812,7 +76812,7 @@ public struct OpSubgroupAvcRefSetBidirectionalMixDisableINTEL : IMemoryInstructi
 
     public OpSubgroupAvcRefSetBidirectionalMixDisableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76862,7 +76862,7 @@ public struct OpSubgroupAvcRefSetBilinearFilterEnableINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76871,8 +76871,8 @@ public struct OpSubgroupAvcRefSetBilinearFilterEnableINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -76922,7 +76922,7 @@ public struct OpSubgroupAvcRefSetBilinearFilterEnableINTEL : IMemoryInstruction
 
     public OpSubgroupAvcRefSetBilinearFilterEnableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -76972,7 +76972,7 @@ public struct OpSubgroupAvcRefEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -76981,8 +76981,8 @@ public struct OpSubgroupAvcRefEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77054,7 +77054,7 @@ public struct OpSubgroupAvcRefEvaluateWithSingleReferenceINTEL : IMemoryInstruct
 
     public OpSubgroupAvcRefEvaluateWithSingleReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77110,7 +77110,7 @@ public struct OpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IMemoryInstructio
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77119,8 +77119,8 @@ public struct OpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IMemoryInstructio
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77203,7 +77203,7 @@ public struct OpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IMemoryInstructio
 
     public OpSubgroupAvcRefEvaluateWithDualReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77262,7 +77262,7 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceINTEL : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77271,8 +77271,8 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceINTEL : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77344,7 +77344,7 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceINTEL : IMemoryInstructi
 
     public OpSubgroupAvcRefEvaluateWithMultiReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77400,7 +77400,7 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77409,8 +77409,8 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77493,7 +77493,7 @@ public struct OpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL : IMemor
 
     public OpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77552,7 +77552,7 @@ public struct OpSubgroupAvcRefConvertToMceResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77561,8 +77561,8 @@ public struct OpSubgroupAvcRefConvertToMceResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77612,7 +77612,7 @@ public struct OpSubgroupAvcRefConvertToMceResultINTEL : IMemoryInstruction
 
     public OpSubgroupAvcRefConvertToMceResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77662,7 +77662,7 @@ public struct OpSubgroupAvcSicInitializeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77671,8 +77671,8 @@ public struct OpSubgroupAvcSicInitializeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77722,7 +77722,7 @@ public struct OpSubgroupAvcSicInitializeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicInitializeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77772,7 +77772,7 @@ public struct OpSubgroupAvcSicConfigureSkcINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77781,8 +77781,8 @@ public struct OpSubgroupAvcSicConfigureSkcINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -77887,7 +77887,7 @@ public struct OpSubgroupAvcSicConfigureSkcINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicConfigureSkcINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -77952,7 +77952,7 @@ public struct OpSubgroupAvcSicConfigureIpeLumaINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -77961,8 +77961,8 @@ public struct OpSubgroupAvcSicConfigureIpeLumaINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78089,7 +78089,7 @@ public struct OpSubgroupAvcSicConfigureIpeLumaINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicConfigureIpeLumaINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -78160,7 +78160,7 @@ public struct OpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -78169,8 +78169,8 @@ public struct OpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78330,7 +78330,7 @@ public struct OpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicConfigureIpeLumaChromaINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -78410,7 +78410,7 @@ public struct OpSubgroupAvcSicGetMotionVectorMaskINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -78419,8 +78419,8 @@ public struct OpSubgroupAvcSicGetMotionVectorMaskINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78481,7 +78481,7 @@ public struct OpSubgroupAvcSicGetMotionVectorMaskINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicGetMotionVectorMaskINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -78534,7 +78534,7 @@ public struct OpSubgroupAvcSicConvertToMcePayloadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -78543,8 +78543,8 @@ public struct OpSubgroupAvcSicConvertToMcePayloadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78594,7 +78594,7 @@ public struct OpSubgroupAvcSicConvertToMcePayloadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicConvertToMcePayloadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -78644,7 +78644,7 @@ public struct OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -78653,8 +78653,8 @@ public struct OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78715,7 +78715,7 @@ public struct OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -78768,7 +78768,7 @@ public struct OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IMemoryInstruc
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -78777,8 +78777,8 @@ public struct OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IMemoryInstruc
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78861,7 +78861,7 @@ public struct OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IMemoryInstruc
 
     public OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -78920,7 +78920,7 @@ public struct OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL : IMemoryInstr
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -78929,8 +78929,8 @@ public struct OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL : IMemoryInstr
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -78991,7 +78991,7 @@ public struct OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL : IMemoryInstr
 
     public OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79044,7 +79044,7 @@ public struct OpSubgroupAvcSicSetBilinearFilterEnableINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79053,8 +79053,8 @@ public struct OpSubgroupAvcSicSetBilinearFilterEnableINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79104,7 +79104,7 @@ public struct OpSubgroupAvcSicSetBilinearFilterEnableINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicSetBilinearFilterEnableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79154,7 +79154,7 @@ public struct OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL : IMemoryInstruc
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79163,8 +79163,8 @@ public struct OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL : IMemoryInstruc
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79225,7 +79225,7 @@ public struct OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL : IMemoryInstruc
 
     public OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79278,7 +79278,7 @@ public struct OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79287,8 +79287,8 @@ public struct OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79349,7 +79349,7 @@ public struct OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79402,7 +79402,7 @@ public struct OpSubgroupAvcSicEvaluateIpeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79411,8 +79411,8 @@ public struct OpSubgroupAvcSicEvaluateIpeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79473,7 +79473,7 @@ public struct OpSubgroupAvcSicEvaluateIpeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicEvaluateIpeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79526,7 +79526,7 @@ public struct OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79535,8 +79535,8 @@ public struct OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL : IMemoryInstruct
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79608,7 +79608,7 @@ public struct OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL : IMemoryInstruct
 
     public OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79664,7 +79664,7 @@ public struct OpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IMemoryInstructio
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79673,8 +79673,8 @@ public struct OpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IMemoryInstructio
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79757,7 +79757,7 @@ public struct OpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IMemoryInstructio
 
     public OpSubgroupAvcSicEvaluateWithDualReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79816,7 +79816,7 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79825,8 +79825,8 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -79898,7 +79898,7 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL : IMemoryInstructi
 
     public OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -79954,7 +79954,7 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL : IMemor
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -79963,8 +79963,8 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL : IMemor
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80047,7 +80047,7 @@ public struct OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL : IMemor
 
     public OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80106,7 +80106,7 @@ public struct OpSubgroupAvcSicConvertToMceResultINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80115,8 +80115,8 @@ public struct OpSubgroupAvcSicConvertToMceResultINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80166,7 +80166,7 @@ public struct OpSubgroupAvcSicConvertToMceResultINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicConvertToMceResultINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80216,7 +80216,7 @@ public struct OpSubgroupAvcSicGetIpeLumaShapeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80225,8 +80225,8 @@ public struct OpSubgroupAvcSicGetIpeLumaShapeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80276,7 +80276,7 @@ public struct OpSubgroupAvcSicGetIpeLumaShapeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicGetIpeLumaShapeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80326,7 +80326,7 @@ public struct OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80335,8 +80335,8 @@ public struct OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80386,7 +80386,7 @@ public struct OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80436,7 +80436,7 @@ public struct OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80445,8 +80445,8 @@ public struct OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80496,7 +80496,7 @@ public struct OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL : IMemoryInstructi
 
     public OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80546,7 +80546,7 @@ public struct OpSubgroupAvcSicGetPackedIpeLumaModesINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80555,8 +80555,8 @@ public struct OpSubgroupAvcSicGetPackedIpeLumaModesINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80606,7 +80606,7 @@ public struct OpSubgroupAvcSicGetPackedIpeLumaModesINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicGetPackedIpeLumaModesINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80656,7 +80656,7 @@ public struct OpSubgroupAvcSicGetIpeChromaModeINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80665,8 +80665,8 @@ public struct OpSubgroupAvcSicGetIpeChromaModeINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80716,7 +80716,7 @@ public struct OpSubgroupAvcSicGetIpeChromaModeINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicGetIpeChromaModeINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80766,7 +80766,7 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL : IMemoryInstr
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80775,8 +80775,8 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL : IMemoryInstr
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80826,7 +80826,7 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL : IMemoryInstr
 
     public OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80876,7 +80876,7 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL : IMemoryInstruc
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80885,8 +80885,8 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL : IMemoryInstruc
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -80936,7 +80936,7 @@ public struct OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL : IMemoryInstruc
 
     public OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -80986,7 +80986,7 @@ public struct OpSubgroupAvcSicGetInterRawSadsINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -80995,8 +80995,8 @@ public struct OpSubgroupAvcSicGetInterRawSadsINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81046,7 +81046,7 @@ public struct OpSubgroupAvcSicGetInterRawSadsINTEL : IMemoryInstruction
 
     public OpSubgroupAvcSicGetInterRawSadsINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -81096,7 +81096,7 @@ public struct OpVariableLengthArrayINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81105,8 +81105,8 @@ public struct OpVariableLengthArrayINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81156,7 +81156,7 @@ public struct OpVariableLengthArrayINTEL : IMemoryInstruction
 
     public OpVariableLengthArrayINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -81206,7 +81206,7 @@ public struct OpSaveMemoryINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81215,8 +81215,8 @@ public struct OpSaveMemoryINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81255,7 +81255,7 @@ public struct OpSaveMemoryINTEL : IMemoryInstruction
 
     public OpSaveMemoryINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -81302,7 +81302,7 @@ public struct OpRestoreMemoryINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81311,8 +81311,8 @@ public struct OpRestoreMemoryINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81338,7 +81338,7 @@ public struct OpRestoreMemoryINTEL : IMemoryInstruction
 
     public OpRestoreMemoryINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "ptr")
                 Ptr = o.ToLiteral<int>();
@@ -81382,7 +81382,7 @@ public struct OpArbitraryFloatSinCosPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81391,8 +81391,8 @@ public struct OpArbitraryFloatSinCosPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81508,7 +81508,7 @@ public struct OpArbitraryFloatSinCosPiINTEL : IMemoryInstruction
 
     public OpArbitraryFloatSinCosPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -81576,7 +81576,7 @@ public struct OpArbitraryFloatCastINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81585,8 +81585,8 @@ public struct OpArbitraryFloatCastINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81691,7 +81691,7 @@ public struct OpArbitraryFloatCastINTEL : IMemoryInstruction
 
     public OpArbitraryFloatCastINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -81756,7 +81756,7 @@ public struct OpArbitraryFloatCastFromIntINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81765,8 +81765,8 @@ public struct OpArbitraryFloatCastFromIntINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -81871,7 +81871,7 @@ public struct OpArbitraryFloatCastFromIntINTEL : IMemoryInstruction
 
     public OpArbitraryFloatCastFromIntINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -81936,7 +81936,7 @@ public struct OpArbitraryFloatCastToIntINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -81945,8 +81945,8 @@ public struct OpArbitraryFloatCastToIntINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -82040,7 +82040,7 @@ public struct OpArbitraryFloatCastToIntINTEL : IMemoryInstruction
 
     public OpArbitraryFloatCastToIntINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -82102,7 +82102,7 @@ public struct OpArbitraryFloatAddINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -82111,8 +82111,8 @@ public struct OpArbitraryFloatAddINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -82239,7 +82239,7 @@ public struct OpArbitraryFloatAddINTEL : IMemoryInstruction
 
     public OpArbitraryFloatAddINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -82310,7 +82310,7 @@ public struct OpArbitraryFloatSubINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -82319,8 +82319,8 @@ public struct OpArbitraryFloatSubINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -82447,7 +82447,7 @@ public struct OpArbitraryFloatSubINTEL : IMemoryInstruction
 
     public OpArbitraryFloatSubINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -82518,7 +82518,7 @@ public struct OpArbitraryFloatMulINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -82527,8 +82527,8 @@ public struct OpArbitraryFloatMulINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -82655,7 +82655,7 @@ public struct OpArbitraryFloatMulINTEL : IMemoryInstruction
 
     public OpArbitraryFloatMulINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -82726,7 +82726,7 @@ public struct OpArbitraryFloatDivINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -82735,8 +82735,8 @@ public struct OpArbitraryFloatDivINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -82863,7 +82863,7 @@ public struct OpArbitraryFloatDivINTEL : IMemoryInstruction
 
     public OpArbitraryFloatDivINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -82934,7 +82934,7 @@ public struct OpArbitraryFloatGTINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -82943,8 +82943,8 @@ public struct OpArbitraryFloatGTINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83027,7 +83027,7 @@ public struct OpArbitraryFloatGTINTEL : IMemoryInstruction
 
     public OpArbitraryFloatGTINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -83086,7 +83086,7 @@ public struct OpArbitraryFloatGEINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -83095,8 +83095,8 @@ public struct OpArbitraryFloatGEINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83179,7 +83179,7 @@ public struct OpArbitraryFloatGEINTEL : IMemoryInstruction
 
     public OpArbitraryFloatGEINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -83238,7 +83238,7 @@ public struct OpArbitraryFloatLTINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -83247,8 +83247,8 @@ public struct OpArbitraryFloatLTINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83331,7 +83331,7 @@ public struct OpArbitraryFloatLTINTEL : IMemoryInstruction
 
     public OpArbitraryFloatLTINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -83390,7 +83390,7 @@ public struct OpArbitraryFloatLEINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -83399,8 +83399,8 @@ public struct OpArbitraryFloatLEINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83483,7 +83483,7 @@ public struct OpArbitraryFloatLEINTEL : IMemoryInstruction
 
     public OpArbitraryFloatLEINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -83542,7 +83542,7 @@ public struct OpArbitraryFloatEQINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -83551,8 +83551,8 @@ public struct OpArbitraryFloatEQINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83635,7 +83635,7 @@ public struct OpArbitraryFloatEQINTEL : IMemoryInstruction
 
     public OpArbitraryFloatEQINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -83694,7 +83694,7 @@ public struct OpArbitraryFloatRecipINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -83703,8 +83703,8 @@ public struct OpArbitraryFloatRecipINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83809,7 +83809,7 @@ public struct OpArbitraryFloatRecipINTEL : IMemoryInstruction
 
     public OpArbitraryFloatRecipINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -83874,7 +83874,7 @@ public struct OpArbitraryFloatRSqrtINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -83883,8 +83883,8 @@ public struct OpArbitraryFloatRSqrtINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -83989,7 +83989,7 @@ public struct OpArbitraryFloatRSqrtINTEL : IMemoryInstruction
 
     public OpArbitraryFloatRSqrtINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -84054,7 +84054,7 @@ public struct OpArbitraryFloatCbrtINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -84063,8 +84063,8 @@ public struct OpArbitraryFloatCbrtINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -84169,7 +84169,7 @@ public struct OpArbitraryFloatCbrtINTEL : IMemoryInstruction
 
     public OpArbitraryFloatCbrtINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -84234,7 +84234,7 @@ public struct OpArbitraryFloatHypotINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -84243,8 +84243,8 @@ public struct OpArbitraryFloatHypotINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -84371,7 +84371,7 @@ public struct OpArbitraryFloatHypotINTEL : IMemoryInstruction
 
     public OpArbitraryFloatHypotINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -84442,7 +84442,7 @@ public struct OpArbitraryFloatSqrtINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -84451,8 +84451,8 @@ public struct OpArbitraryFloatSqrtINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -84557,7 +84557,7 @@ public struct OpArbitraryFloatSqrtINTEL : IMemoryInstruction
 
     public OpArbitraryFloatSqrtINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -84622,7 +84622,7 @@ public struct OpArbitraryFloatLogINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -84631,8 +84631,8 @@ public struct OpArbitraryFloatLogINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -84737,7 +84737,7 @@ public struct OpArbitraryFloatLogINTEL : IMemoryInstruction
 
     public OpArbitraryFloatLogINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -84802,7 +84802,7 @@ public struct OpArbitraryFloatLog2INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -84811,8 +84811,8 @@ public struct OpArbitraryFloatLog2INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -84917,7 +84917,7 @@ public struct OpArbitraryFloatLog2INTEL : IMemoryInstruction
 
     public OpArbitraryFloatLog2INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -84982,7 +84982,7 @@ public struct OpArbitraryFloatLog10INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -84991,8 +84991,8 @@ public struct OpArbitraryFloatLog10INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -85097,7 +85097,7 @@ public struct OpArbitraryFloatLog10INTEL : IMemoryInstruction
 
     public OpArbitraryFloatLog10INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -85162,7 +85162,7 @@ public struct OpArbitraryFloatLog1pINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -85171,8 +85171,8 @@ public struct OpArbitraryFloatLog1pINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -85277,7 +85277,7 @@ public struct OpArbitraryFloatLog1pINTEL : IMemoryInstruction
 
     public OpArbitraryFloatLog1pINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -85342,7 +85342,7 @@ public struct OpArbitraryFloatExpINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -85351,8 +85351,8 @@ public struct OpArbitraryFloatExpINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -85457,7 +85457,7 @@ public struct OpArbitraryFloatExpINTEL : IMemoryInstruction
 
     public OpArbitraryFloatExpINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -85522,7 +85522,7 @@ public struct OpArbitraryFloatExp2INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -85531,8 +85531,8 @@ public struct OpArbitraryFloatExp2INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -85637,7 +85637,7 @@ public struct OpArbitraryFloatExp2INTEL : IMemoryInstruction
 
     public OpArbitraryFloatExp2INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -85702,7 +85702,7 @@ public struct OpArbitraryFloatExp10INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -85711,8 +85711,8 @@ public struct OpArbitraryFloatExp10INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -85817,7 +85817,7 @@ public struct OpArbitraryFloatExp10INTEL : IMemoryInstruction
 
     public OpArbitraryFloatExp10INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -85882,7 +85882,7 @@ public struct OpArbitraryFloatExpm1INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -85891,8 +85891,8 @@ public struct OpArbitraryFloatExpm1INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -85997,7 +85997,7 @@ public struct OpArbitraryFloatExpm1INTEL : IMemoryInstruction
 
     public OpArbitraryFloatExpm1INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -86062,7 +86062,7 @@ public struct OpArbitraryFloatSinINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -86071,8 +86071,8 @@ public struct OpArbitraryFloatSinINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -86177,7 +86177,7 @@ public struct OpArbitraryFloatSinINTEL : IMemoryInstruction
 
     public OpArbitraryFloatSinINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -86242,7 +86242,7 @@ public struct OpArbitraryFloatCosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -86251,8 +86251,8 @@ public struct OpArbitraryFloatCosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -86357,7 +86357,7 @@ public struct OpArbitraryFloatCosINTEL : IMemoryInstruction
 
     public OpArbitraryFloatCosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -86422,7 +86422,7 @@ public struct OpArbitraryFloatSinCosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -86431,8 +86431,8 @@ public struct OpArbitraryFloatSinCosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -86537,7 +86537,7 @@ public struct OpArbitraryFloatSinCosINTEL : IMemoryInstruction
 
     public OpArbitraryFloatSinCosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -86602,7 +86602,7 @@ public struct OpArbitraryFloatSinPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -86611,8 +86611,8 @@ public struct OpArbitraryFloatSinPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -86717,7 +86717,7 @@ public struct OpArbitraryFloatSinPiINTEL : IMemoryInstruction
 
     public OpArbitraryFloatSinPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -86782,7 +86782,7 @@ public struct OpArbitraryFloatCosPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -86791,8 +86791,8 @@ public struct OpArbitraryFloatCosPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -86897,7 +86897,7 @@ public struct OpArbitraryFloatCosPiINTEL : IMemoryInstruction
 
     public OpArbitraryFloatCosPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -86962,7 +86962,7 @@ public struct OpArbitraryFloatASinINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -86971,8 +86971,8 @@ public struct OpArbitraryFloatASinINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -87077,7 +87077,7 @@ public struct OpArbitraryFloatASinINTEL : IMemoryInstruction
 
     public OpArbitraryFloatASinINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -87142,7 +87142,7 @@ public struct OpArbitraryFloatASinPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -87151,8 +87151,8 @@ public struct OpArbitraryFloatASinPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -87257,7 +87257,7 @@ public struct OpArbitraryFloatASinPiINTEL : IMemoryInstruction
 
     public OpArbitraryFloatASinPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -87322,7 +87322,7 @@ public struct OpArbitraryFloatACosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -87331,8 +87331,8 @@ public struct OpArbitraryFloatACosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -87437,7 +87437,7 @@ public struct OpArbitraryFloatACosINTEL : IMemoryInstruction
 
     public OpArbitraryFloatACosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -87502,7 +87502,7 @@ public struct OpArbitraryFloatACosPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -87511,8 +87511,8 @@ public struct OpArbitraryFloatACosPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -87617,7 +87617,7 @@ public struct OpArbitraryFloatACosPiINTEL : IMemoryInstruction
 
     public OpArbitraryFloatACosPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -87682,7 +87682,7 @@ public struct OpArbitraryFloatATanINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -87691,8 +87691,8 @@ public struct OpArbitraryFloatATanINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -87797,7 +87797,7 @@ public struct OpArbitraryFloatATanINTEL : IMemoryInstruction
 
     public OpArbitraryFloatATanINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -87862,7 +87862,7 @@ public struct OpArbitraryFloatATanPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -87871,8 +87871,8 @@ public struct OpArbitraryFloatATanPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -87977,7 +87977,7 @@ public struct OpArbitraryFloatATanPiINTEL : IMemoryInstruction
 
     public OpArbitraryFloatATanPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -88042,7 +88042,7 @@ public struct OpArbitraryFloatATan2INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -88051,8 +88051,8 @@ public struct OpArbitraryFloatATan2INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -88179,7 +88179,7 @@ public struct OpArbitraryFloatATan2INTEL : IMemoryInstruction
 
     public OpArbitraryFloatATan2INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -88250,7 +88250,7 @@ public struct OpArbitraryFloatPowINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -88259,8 +88259,8 @@ public struct OpArbitraryFloatPowINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -88387,7 +88387,7 @@ public struct OpArbitraryFloatPowINTEL : IMemoryInstruction
 
     public OpArbitraryFloatPowINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -88458,7 +88458,7 @@ public struct OpArbitraryFloatPowRINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -88467,8 +88467,8 @@ public struct OpArbitraryFloatPowRINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -88595,7 +88595,7 @@ public struct OpArbitraryFloatPowRINTEL : IMemoryInstruction
 
     public OpArbitraryFloatPowRINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -88666,7 +88666,7 @@ public struct OpArbitraryFloatPowNINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -88675,8 +88675,8 @@ public struct OpArbitraryFloatPowNINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -88792,7 +88792,7 @@ public struct OpArbitraryFloatPowNINTEL : IMemoryInstruction
 
     public OpArbitraryFloatPowNINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -88860,7 +88860,7 @@ public struct OpLoopControlINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -88869,8 +88869,8 @@ public struct OpLoopControlINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -88896,7 +88896,7 @@ public struct OpLoopControlINTEL : IMemoryInstruction
 
     public OpLoopControlINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "values")
                 Values = o.ToLiteralArray<int>();
@@ -88940,7 +88940,7 @@ public struct OpAliasDomainDeclINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -88949,8 +88949,8 @@ public struct OpAliasDomainDeclINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -88989,7 +88989,7 @@ public struct OpAliasDomainDeclINTEL : IMemoryInstruction
 
     public OpAliasDomainDeclINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -89036,7 +89036,7 @@ public struct OpAliasScopeDeclINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -89045,8 +89045,8 @@ public struct OpAliasScopeDeclINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -89096,7 +89096,7 @@ public struct OpAliasScopeDeclINTEL : IMemoryInstruction
 
     public OpAliasScopeDeclINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -89146,7 +89146,7 @@ public struct OpAliasScopeListDeclINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -89155,8 +89155,8 @@ public struct OpAliasScopeListDeclINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -89195,7 +89195,7 @@ public struct OpAliasScopeListDeclINTEL : IMemoryInstruction
 
     public OpAliasScopeListDeclINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -89242,7 +89242,7 @@ public struct OpFixedSqrtINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -89251,8 +89251,8 @@ public struct OpFixedSqrtINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -89368,7 +89368,7 @@ public struct OpFixedSqrtINTEL : IMemoryInstruction
 
     public OpFixedSqrtINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -89436,7 +89436,7 @@ public struct OpFixedRecipINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -89445,8 +89445,8 @@ public struct OpFixedRecipINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -89562,7 +89562,7 @@ public struct OpFixedRecipINTEL : IMemoryInstruction
 
     public OpFixedRecipINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -89630,7 +89630,7 @@ public struct OpFixedRsqrtINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -89639,8 +89639,8 @@ public struct OpFixedRsqrtINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -89756,7 +89756,7 @@ public struct OpFixedRsqrtINTEL : IMemoryInstruction
 
     public OpFixedRsqrtINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -89824,7 +89824,7 @@ public struct OpFixedSinINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -89833,8 +89833,8 @@ public struct OpFixedSinINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -89950,7 +89950,7 @@ public struct OpFixedSinINTEL : IMemoryInstruction
 
     public OpFixedSinINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -90018,7 +90018,7 @@ public struct OpFixedCosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -90027,8 +90027,8 @@ public struct OpFixedCosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -90144,7 +90144,7 @@ public struct OpFixedCosINTEL : IMemoryInstruction
 
     public OpFixedCosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -90212,7 +90212,7 @@ public struct OpFixedSinCosINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -90221,8 +90221,8 @@ public struct OpFixedSinCosINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -90338,7 +90338,7 @@ public struct OpFixedSinCosINTEL : IMemoryInstruction
 
     public OpFixedSinCosINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -90406,7 +90406,7 @@ public struct OpFixedSinPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -90415,8 +90415,8 @@ public struct OpFixedSinPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -90532,7 +90532,7 @@ public struct OpFixedSinPiINTEL : IMemoryInstruction
 
     public OpFixedSinPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -90600,7 +90600,7 @@ public struct OpFixedCosPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -90609,8 +90609,8 @@ public struct OpFixedCosPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -90726,7 +90726,7 @@ public struct OpFixedCosPiINTEL : IMemoryInstruction
 
     public OpFixedCosPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -90794,7 +90794,7 @@ public struct OpFixedSinCosPiINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -90803,8 +90803,8 @@ public struct OpFixedSinCosPiINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -90920,7 +90920,7 @@ public struct OpFixedSinCosPiINTEL : IMemoryInstruction
 
     public OpFixedSinCosPiINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -90988,7 +90988,7 @@ public struct OpFixedLogINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -90997,8 +90997,8 @@ public struct OpFixedLogINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91114,7 +91114,7 @@ public struct OpFixedLogINTEL : IMemoryInstruction
 
     public OpFixedLogINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91182,7 +91182,7 @@ public struct OpFixedExpINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91191,8 +91191,8 @@ public struct OpFixedExpINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91308,7 +91308,7 @@ public struct OpFixedExpINTEL : IMemoryInstruction
 
     public OpFixedExpINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91376,7 +91376,7 @@ public struct OpPtrCastToCrossWorkgroupINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91385,8 +91385,8 @@ public struct OpPtrCastToCrossWorkgroupINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91436,7 +91436,7 @@ public struct OpPtrCastToCrossWorkgroupINTEL : IMemoryInstruction
 
     public OpPtrCastToCrossWorkgroupINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91486,7 +91486,7 @@ public struct OpCrossWorkgroupCastToPtrINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91495,8 +91495,8 @@ public struct OpCrossWorkgroupCastToPtrINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91546,7 +91546,7 @@ public struct OpCrossWorkgroupCastToPtrINTEL : IMemoryInstruction
 
     public OpCrossWorkgroupCastToPtrINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91596,7 +91596,7 @@ public struct OpReadPipeBlockingINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91605,8 +91605,8 @@ public struct OpReadPipeBlockingINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91667,7 +91667,7 @@ public struct OpReadPipeBlockingINTEL : IMemoryInstruction
 
     public OpReadPipeBlockingINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91720,7 +91720,7 @@ public struct OpWritePipeBlockingINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91729,8 +91729,8 @@ public struct OpWritePipeBlockingINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91791,7 +91791,7 @@ public struct OpWritePipeBlockingINTEL : IMemoryInstruction
 
     public OpWritePipeBlockingINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91844,7 +91844,7 @@ public struct OpFPGARegINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91853,8 +91853,8 @@ public struct OpFPGARegINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -91915,7 +91915,7 @@ public struct OpFPGARegINTEL : IMemoryInstruction
 
     public OpFPGARegINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -91968,7 +91968,7 @@ public struct OpRayQueryGetRayTMinKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -91977,8 +91977,8 @@ public struct OpRayQueryGetRayTMinKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92028,7 +92028,7 @@ public struct OpRayQueryGetRayTMinKHR : IMemoryInstruction
 
     public OpRayQueryGetRayTMinKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92078,7 +92078,7 @@ public struct OpRayQueryGetRayFlagsKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92087,8 +92087,8 @@ public struct OpRayQueryGetRayFlagsKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92138,7 +92138,7 @@ public struct OpRayQueryGetRayFlagsKHR : IMemoryInstruction
 
     public OpRayQueryGetRayFlagsKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92188,7 +92188,7 @@ public struct OpRayQueryGetIntersectionTKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92197,8 +92197,8 @@ public struct OpRayQueryGetIntersectionTKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92259,7 +92259,7 @@ public struct OpRayQueryGetIntersectionTKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionTKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92312,7 +92312,7 @@ public struct OpRayQueryGetIntersectionInstanceCustomIndexKHR : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92321,8 +92321,8 @@ public struct OpRayQueryGetIntersectionInstanceCustomIndexKHR : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92383,7 +92383,7 @@ public struct OpRayQueryGetIntersectionInstanceCustomIndexKHR : IMemoryInstructi
 
     public OpRayQueryGetIntersectionInstanceCustomIndexKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92436,7 +92436,7 @@ public struct OpRayQueryGetIntersectionInstanceIdKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92445,8 +92445,8 @@ public struct OpRayQueryGetIntersectionInstanceIdKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92507,7 +92507,7 @@ public struct OpRayQueryGetIntersectionInstanceIdKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionInstanceIdKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92560,7 +92560,7 @@ public struct OpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92569,8 +92569,8 @@ public struct OpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92631,7 +92631,7 @@ public struct OpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR
 
     public OpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92684,7 +92684,7 @@ public struct OpRayQueryGetIntersectionGeometryIndexKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92693,8 +92693,8 @@ public struct OpRayQueryGetIntersectionGeometryIndexKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92755,7 +92755,7 @@ public struct OpRayQueryGetIntersectionGeometryIndexKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionGeometryIndexKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92808,7 +92808,7 @@ public struct OpRayQueryGetIntersectionPrimitiveIndexKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92817,8 +92817,8 @@ public struct OpRayQueryGetIntersectionPrimitiveIndexKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -92879,7 +92879,7 @@ public struct OpRayQueryGetIntersectionPrimitiveIndexKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionPrimitiveIndexKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -92932,7 +92932,7 @@ public struct OpRayQueryGetIntersectionBarycentricsKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -92941,8 +92941,8 @@ public struct OpRayQueryGetIntersectionBarycentricsKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93003,7 +93003,7 @@ public struct OpRayQueryGetIntersectionBarycentricsKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionBarycentricsKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93056,7 +93056,7 @@ public struct OpRayQueryGetIntersectionFrontFaceKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93065,8 +93065,8 @@ public struct OpRayQueryGetIntersectionFrontFaceKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93127,7 +93127,7 @@ public struct OpRayQueryGetIntersectionFrontFaceKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionFrontFaceKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93180,7 +93180,7 @@ public struct OpRayQueryGetIntersectionCandidateAABBOpaqueKHR : IMemoryInstructi
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93189,8 +93189,8 @@ public struct OpRayQueryGetIntersectionCandidateAABBOpaqueKHR : IMemoryInstructi
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93240,7 +93240,7 @@ public struct OpRayQueryGetIntersectionCandidateAABBOpaqueKHR : IMemoryInstructi
 
     public OpRayQueryGetIntersectionCandidateAABBOpaqueKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93290,7 +93290,7 @@ public struct OpRayQueryGetIntersectionObjectRayDirectionKHR : IMemoryInstructio
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93299,8 +93299,8 @@ public struct OpRayQueryGetIntersectionObjectRayDirectionKHR : IMemoryInstructio
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93361,7 +93361,7 @@ public struct OpRayQueryGetIntersectionObjectRayDirectionKHR : IMemoryInstructio
 
     public OpRayQueryGetIntersectionObjectRayDirectionKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93414,7 +93414,7 @@ public struct OpRayQueryGetIntersectionObjectRayOriginKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93423,8 +93423,8 @@ public struct OpRayQueryGetIntersectionObjectRayOriginKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93485,7 +93485,7 @@ public struct OpRayQueryGetIntersectionObjectRayOriginKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionObjectRayOriginKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93538,7 +93538,7 @@ public struct OpRayQueryGetWorldRayDirectionKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93547,8 +93547,8 @@ public struct OpRayQueryGetWorldRayDirectionKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93598,7 +93598,7 @@ public struct OpRayQueryGetWorldRayDirectionKHR : IMemoryInstruction
 
     public OpRayQueryGetWorldRayDirectionKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93648,7 +93648,7 @@ public struct OpRayQueryGetWorldRayOriginKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93657,8 +93657,8 @@ public struct OpRayQueryGetWorldRayOriginKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93708,7 +93708,7 @@ public struct OpRayQueryGetWorldRayOriginKHR : IMemoryInstruction
 
     public OpRayQueryGetWorldRayOriginKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93758,7 +93758,7 @@ public struct OpRayQueryGetIntersectionObjectToWorldKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93767,8 +93767,8 @@ public struct OpRayQueryGetIntersectionObjectToWorldKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93829,7 +93829,7 @@ public struct OpRayQueryGetIntersectionObjectToWorldKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionObjectToWorldKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -93882,7 +93882,7 @@ public struct OpRayQueryGetIntersectionWorldToObjectKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -93891,8 +93891,8 @@ public struct OpRayQueryGetIntersectionWorldToObjectKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -93953,7 +93953,7 @@ public struct OpRayQueryGetIntersectionWorldToObjectKHR : IMemoryInstruction
 
     public OpRayQueryGetIntersectionWorldToObjectKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -94006,7 +94006,7 @@ public struct OpAtomicFAddEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94015,8 +94015,8 @@ public struct OpAtomicFAddEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94099,7 +94099,7 @@ public struct OpAtomicFAddEXT : IMemoryInstruction
 
     public OpAtomicFAddEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -94158,7 +94158,7 @@ public struct OpTypeBufferSurfaceINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94167,8 +94167,8 @@ public struct OpTypeBufferSurfaceINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94207,7 +94207,7 @@ public struct OpTypeBufferSurfaceINTEL : IMemoryInstruction
 
     public OpTypeBufferSurfaceINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
@@ -94254,7 +94254,7 @@ public struct OpTypeStructContinuedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94263,8 +94263,8 @@ public struct OpTypeStructContinuedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94290,7 +94290,7 @@ public struct OpTypeStructContinuedINTEL : IMemoryInstruction
 
     public OpTypeStructContinuedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "values")
                 Values = o.ToLiteralArray<int>();
@@ -94334,7 +94334,7 @@ public struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94343,8 +94343,8 @@ public struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94370,7 +94370,7 @@ public struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
 
     public OpConstantCompositeContinuedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "values")
                 Values = o.ToLiteralArray<int>();
@@ -94414,7 +94414,7 @@ public struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94423,8 +94423,8 @@ public struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94450,7 +94450,7 @@ public struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruction
 
     public OpSpecConstantCompositeContinuedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "values")
                 Values = o.ToLiteralArray<int>();
@@ -94494,7 +94494,7 @@ public struct OpCompositeConstructContinuedINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94503,8 +94503,8 @@ public struct OpCompositeConstructContinuedINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94554,7 +94554,7 @@ public struct OpCompositeConstructContinuedINTEL : IMemoryInstruction
 
     public OpCompositeConstructContinuedINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -94604,7 +94604,7 @@ public struct OpConvertFToBF16INTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94613,8 +94613,8 @@ public struct OpConvertFToBF16INTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94664,7 +94664,7 @@ public struct OpConvertFToBF16INTEL : IMemoryInstruction
 
     public OpConvertFToBF16INTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -94714,7 +94714,7 @@ public struct OpConvertBF16ToFINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94723,8 +94723,8 @@ public struct OpConvertBF16ToFINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94774,7 +94774,7 @@ public struct OpConvertBF16ToFINTEL : IMemoryInstruction
 
     public OpConvertBF16ToFINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -94824,7 +94824,7 @@ public struct OpControlBarrierArriveINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94833,8 +94833,8 @@ public struct OpControlBarrierArriveINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94882,7 +94882,7 @@ public struct OpControlBarrierArriveINTEL : IMemoryInstruction
 
     public OpControlBarrierArriveINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "execution")
                 Execution = o.ToLiteral<int>();
@@ -94932,7 +94932,7 @@ public struct OpControlBarrierWaitINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -94941,8 +94941,8 @@ public struct OpControlBarrierWaitINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -94990,7 +94990,7 @@ public struct OpControlBarrierWaitINTEL : IMemoryInstruction
 
     public OpControlBarrierWaitINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "execution")
                 Execution = o.ToLiteral<int>();
@@ -95040,7 +95040,7 @@ public struct OpArithmeticFenceEXT : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95049,8 +95049,8 @@ public struct OpArithmeticFenceEXT : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95100,7 +95100,7 @@ public struct OpArithmeticFenceEXT : IMemoryInstruction
 
     public OpArithmeticFenceEXT(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -95150,7 +95150,7 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95159,8 +95159,8 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95208,7 +95208,7 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
 
     public OpSubgroupBlockPrefetchINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "ptr")
                 Ptr = o.ToLiteral<int>();
@@ -95258,7 +95258,7 @@ public struct OpGroupIMulKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95267,8 +95267,8 @@ public struct OpGroupIMulKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95340,7 +95340,7 @@ public struct OpGroupIMulKHR : IMemoryInstruction
 
     public OpGroupIMulKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -95396,7 +95396,7 @@ public struct OpGroupFMulKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95405,8 +95405,8 @@ public struct OpGroupFMulKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95478,7 +95478,7 @@ public struct OpGroupFMulKHR : IMemoryInstruction
 
     public OpGroupFMulKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -95534,7 +95534,7 @@ public struct OpGroupBitwiseAndKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95543,8 +95543,8 @@ public struct OpGroupBitwiseAndKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95616,7 +95616,7 @@ public struct OpGroupBitwiseAndKHR : IMemoryInstruction
 
     public OpGroupBitwiseAndKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -95672,7 +95672,7 @@ public struct OpGroupBitwiseOrKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95681,8 +95681,8 @@ public struct OpGroupBitwiseOrKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95754,7 +95754,7 @@ public struct OpGroupBitwiseOrKHR : IMemoryInstruction
 
     public OpGroupBitwiseOrKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -95810,7 +95810,7 @@ public struct OpGroupBitwiseXorKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95819,8 +95819,8 @@ public struct OpGroupBitwiseXorKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -95892,7 +95892,7 @@ public struct OpGroupBitwiseXorKHR : IMemoryInstruction
 
     public OpGroupBitwiseXorKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -95948,7 +95948,7 @@ public struct OpGroupLogicalAndKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -95957,8 +95957,8 @@ public struct OpGroupLogicalAndKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96030,7 +96030,7 @@ public struct OpGroupLogicalAndKHR : IMemoryInstruction
 
     public OpGroupLogicalAndKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96086,7 +96086,7 @@ public struct OpGroupLogicalOrKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96095,8 +96095,8 @@ public struct OpGroupLogicalOrKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96168,7 +96168,7 @@ public struct OpGroupLogicalOrKHR : IMemoryInstruction
 
     public OpGroupLogicalOrKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96224,7 +96224,7 @@ public struct OpGroupLogicalXorKHR : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96233,8 +96233,8 @@ public struct OpGroupLogicalXorKHR : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96306,7 +96306,7 @@ public struct OpGroupLogicalXorKHR : IMemoryInstruction
 
     public OpGroupLogicalXorKHR(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96362,7 +96362,7 @@ public struct OpMaskedGatherINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96371,8 +96371,8 @@ public struct OpMaskedGatherINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96455,7 +96455,7 @@ public struct OpMaskedGatherINTEL : IMemoryInstruction
 
     public OpMaskedGatherINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96514,7 +96514,7 @@ public struct OpMaskedScatterINTEL : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96523,8 +96523,8 @@ public struct OpMaskedScatterINTEL : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96583,7 +96583,7 @@ public struct OpMaskedScatterINTEL : IMemoryInstruction
 
     public OpMaskedScatterINTEL(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "inputVector")
                 InputVector = o.ToLiteral<int>();
@@ -96636,7 +96636,7 @@ public struct GLSLRound : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96645,8 +96645,8 @@ public struct GLSLRound : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96703,7 +96703,7 @@ public struct GLSLRound : IMemoryInstruction
 
     public GLSLRound(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96756,7 +96756,7 @@ public struct GLSLRoundEven : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96765,8 +96765,8 @@ public struct GLSLRoundEven : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96823,7 +96823,7 @@ public struct GLSLRoundEven : IMemoryInstruction
 
     public GLSLRoundEven(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96876,7 +96876,7 @@ public struct GLSLTrunc : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -96885,8 +96885,8 @@ public struct GLSLTrunc : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -96943,7 +96943,7 @@ public struct GLSLTrunc : IMemoryInstruction
 
     public GLSLTrunc(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -96996,7 +96996,7 @@ public struct GLSLFAbs : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97005,8 +97005,8 @@ public struct GLSLFAbs : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97063,7 +97063,7 @@ public struct GLSLFAbs : IMemoryInstruction
 
     public GLSLFAbs(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97116,7 +97116,7 @@ public struct GLSLSAbs : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97125,8 +97125,8 @@ public struct GLSLSAbs : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97183,7 +97183,7 @@ public struct GLSLSAbs : IMemoryInstruction
 
     public GLSLSAbs(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97236,7 +97236,7 @@ public struct GLSLFSign : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97245,8 +97245,8 @@ public struct GLSLFSign : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97303,7 +97303,7 @@ public struct GLSLFSign : IMemoryInstruction
 
     public GLSLFSign(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97356,7 +97356,7 @@ public struct GLSLSSign : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97365,8 +97365,8 @@ public struct GLSLSSign : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97423,7 +97423,7 @@ public struct GLSLSSign : IMemoryInstruction
 
     public GLSLSSign(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97476,7 +97476,7 @@ public struct GLSLFloor : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97485,8 +97485,8 @@ public struct GLSLFloor : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97543,7 +97543,7 @@ public struct GLSLFloor : IMemoryInstruction
 
     public GLSLFloor(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97596,7 +97596,7 @@ public struct GLSLCeil : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97605,8 +97605,8 @@ public struct GLSLCeil : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97663,7 +97663,7 @@ public struct GLSLCeil : IMemoryInstruction
 
     public GLSLCeil(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97716,7 +97716,7 @@ public struct GLSLFract : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97725,8 +97725,8 @@ public struct GLSLFract : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97783,7 +97783,7 @@ public struct GLSLFract : IMemoryInstruction
 
     public GLSLFract(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97836,7 +97836,7 @@ public struct GLSLRadians : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97845,8 +97845,8 @@ public struct GLSLRadians : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -97903,7 +97903,7 @@ public struct GLSLRadians : IMemoryInstruction
 
     public GLSLRadians(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -97956,7 +97956,7 @@ public struct GLSLDegrees : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -97965,8 +97965,8 @@ public struct GLSLDegrees : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98023,7 +98023,7 @@ public struct GLSLDegrees : IMemoryInstruction
 
     public GLSLDegrees(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98076,7 +98076,7 @@ public struct GLSLSin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98085,8 +98085,8 @@ public struct GLSLSin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98143,7 +98143,7 @@ public struct GLSLSin : IMemoryInstruction
 
     public GLSLSin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98196,7 +98196,7 @@ public struct GLSLCos : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98205,8 +98205,8 @@ public struct GLSLCos : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98263,7 +98263,7 @@ public struct GLSLCos : IMemoryInstruction
 
     public GLSLCos(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98316,7 +98316,7 @@ public struct GLSLTan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98325,8 +98325,8 @@ public struct GLSLTan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98383,7 +98383,7 @@ public struct GLSLTan : IMemoryInstruction
 
     public GLSLTan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98436,7 +98436,7 @@ public struct GLSLAsin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98445,8 +98445,8 @@ public struct GLSLAsin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98503,7 +98503,7 @@ public struct GLSLAsin : IMemoryInstruction
 
     public GLSLAsin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98556,7 +98556,7 @@ public struct GLSLAcos : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98565,8 +98565,8 @@ public struct GLSLAcos : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98623,7 +98623,7 @@ public struct GLSLAcos : IMemoryInstruction
 
     public GLSLAcos(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98676,7 +98676,7 @@ public struct GLSLAtan : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98685,8 +98685,8 @@ public struct GLSLAtan : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98743,7 +98743,7 @@ public struct GLSLAtan : IMemoryInstruction
 
     public GLSLAtan(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98796,7 +98796,7 @@ public struct GLSLSinh : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98805,8 +98805,8 @@ public struct GLSLSinh : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98863,7 +98863,7 @@ public struct GLSLSinh : IMemoryInstruction
 
     public GLSLSinh(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -98916,7 +98916,7 @@ public struct GLSLCosh : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -98925,8 +98925,8 @@ public struct GLSLCosh : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -98983,7 +98983,7 @@ public struct GLSLCosh : IMemoryInstruction
 
     public GLSLCosh(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99036,7 +99036,7 @@ public struct GLSLTanh : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99045,8 +99045,8 @@ public struct GLSLTanh : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99103,7 +99103,7 @@ public struct GLSLTanh : IMemoryInstruction
 
     public GLSLTanh(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99156,7 +99156,7 @@ public struct GLSLAsinh : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99165,8 +99165,8 @@ public struct GLSLAsinh : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99223,7 +99223,7 @@ public struct GLSLAsinh : IMemoryInstruction
 
     public GLSLAsinh(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99276,7 +99276,7 @@ public struct GLSLAcosh : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99285,8 +99285,8 @@ public struct GLSLAcosh : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99343,7 +99343,7 @@ public struct GLSLAcosh : IMemoryInstruction
 
     public GLSLAcosh(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99396,7 +99396,7 @@ public struct GLSLAtanh : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99405,8 +99405,8 @@ public struct GLSLAtanh : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99463,7 +99463,7 @@ public struct GLSLAtanh : IMemoryInstruction
 
     public GLSLAtanh(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99516,7 +99516,7 @@ public struct GLSLAtan2 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99525,8 +99525,8 @@ public struct GLSLAtan2 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99594,7 +99594,7 @@ public struct GLSLAtan2 : IMemoryInstruction
 
     public GLSLAtan2(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99650,7 +99650,7 @@ public struct GLSLPow : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99659,8 +99659,8 @@ public struct GLSLPow : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99728,7 +99728,7 @@ public struct GLSLPow : IMemoryInstruction
 
     public GLSLPow(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99784,7 +99784,7 @@ public struct GLSLExp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99793,8 +99793,8 @@ public struct GLSLExp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99851,7 +99851,7 @@ public struct GLSLExp : IMemoryInstruction
 
     public GLSLExp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -99904,7 +99904,7 @@ public struct GLSLLog : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -99913,8 +99913,8 @@ public struct GLSLLog : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -99971,7 +99971,7 @@ public struct GLSLLog : IMemoryInstruction
 
     public GLSLLog(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100024,7 +100024,7 @@ public struct GLSLExp2 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100033,8 +100033,8 @@ public struct GLSLExp2 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100091,7 +100091,7 @@ public struct GLSLExp2 : IMemoryInstruction
 
     public GLSLExp2(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100144,7 +100144,7 @@ public struct GLSLLog2 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100153,8 +100153,8 @@ public struct GLSLLog2 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100211,7 +100211,7 @@ public struct GLSLLog2 : IMemoryInstruction
 
     public GLSLLog2(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100264,7 +100264,7 @@ public struct GLSLSqrt : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100273,8 +100273,8 @@ public struct GLSLSqrt : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100331,7 +100331,7 @@ public struct GLSLSqrt : IMemoryInstruction
 
     public GLSLSqrt(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100384,7 +100384,7 @@ public struct GLSLInverseSqrt : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100393,8 +100393,8 @@ public struct GLSLInverseSqrt : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100451,7 +100451,7 @@ public struct GLSLInverseSqrt : IMemoryInstruction
 
     public GLSLInverseSqrt(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100504,7 +100504,7 @@ public struct GLSLDeterminant : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100513,8 +100513,8 @@ public struct GLSLDeterminant : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100571,7 +100571,7 @@ public struct GLSLDeterminant : IMemoryInstruction
 
     public GLSLDeterminant(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100624,7 +100624,7 @@ public struct GLSLMatrixInverse : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100633,8 +100633,8 @@ public struct GLSLMatrixInverse : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100691,7 +100691,7 @@ public struct GLSLMatrixInverse : IMemoryInstruction
 
     public GLSLMatrixInverse(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100744,7 +100744,7 @@ public struct GLSLModf : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100753,8 +100753,8 @@ public struct GLSLModf : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100822,7 +100822,7 @@ public struct GLSLModf : IMemoryInstruction
 
     public GLSLModf(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100878,7 +100878,7 @@ public struct GLSLModfStruct : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -100887,8 +100887,8 @@ public struct GLSLModfStruct : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -100945,7 +100945,7 @@ public struct GLSLModfStruct : IMemoryInstruction
 
     public GLSLModfStruct(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -100998,7 +100998,7 @@ public struct GLSLFMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101007,8 +101007,8 @@ public struct GLSLFMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101076,7 +101076,7 @@ public struct GLSLFMin : IMemoryInstruction
 
     public GLSLFMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101132,7 +101132,7 @@ public struct GLSLUMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101141,8 +101141,8 @@ public struct GLSLUMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101210,7 +101210,7 @@ public struct GLSLUMin : IMemoryInstruction
 
     public GLSLUMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101266,7 +101266,7 @@ public struct GLSLSMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101275,8 +101275,8 @@ public struct GLSLSMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101344,7 +101344,7 @@ public struct GLSLSMin : IMemoryInstruction
 
     public GLSLSMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101400,7 +101400,7 @@ public struct GLSLFMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101409,8 +101409,8 @@ public struct GLSLFMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101478,7 +101478,7 @@ public struct GLSLFMax : IMemoryInstruction
 
     public GLSLFMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101534,7 +101534,7 @@ public struct GLSLUMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101543,8 +101543,8 @@ public struct GLSLUMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101612,7 +101612,7 @@ public struct GLSLUMax : IMemoryInstruction
 
     public GLSLUMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101668,7 +101668,7 @@ public struct GLSLSMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101677,8 +101677,8 @@ public struct GLSLSMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101746,7 +101746,7 @@ public struct GLSLSMax : IMemoryInstruction
 
     public GLSLSMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101802,7 +101802,7 @@ public struct GLSLFClamp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101811,8 +101811,8 @@ public struct GLSLFClamp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -101891,7 +101891,7 @@ public struct GLSLFClamp : IMemoryInstruction
 
     public GLSLFClamp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -101950,7 +101950,7 @@ public struct GLSLUClamp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -101959,8 +101959,8 @@ public struct GLSLUClamp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102039,7 +102039,7 @@ public struct GLSLUClamp : IMemoryInstruction
 
     public GLSLUClamp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102098,7 +102098,7 @@ public struct GLSLSClamp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102107,8 +102107,8 @@ public struct GLSLSClamp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102187,7 +102187,7 @@ public struct GLSLSClamp : IMemoryInstruction
 
     public GLSLSClamp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102246,7 +102246,7 @@ public struct GLSLFMix : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102255,8 +102255,8 @@ public struct GLSLFMix : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102335,7 +102335,7 @@ public struct GLSLFMix : IMemoryInstruction
 
     public GLSLFMix(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102394,7 +102394,7 @@ public struct GLSLIMix : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102403,8 +102403,8 @@ public struct GLSLIMix : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102483,7 +102483,7 @@ public struct GLSLIMix : IMemoryInstruction
 
     public GLSLIMix(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102542,7 +102542,7 @@ public struct GLSLStep : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102551,8 +102551,8 @@ public struct GLSLStep : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102620,7 +102620,7 @@ public struct GLSLStep : IMemoryInstruction
 
     public GLSLStep(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102676,7 +102676,7 @@ public struct GLSLSmoothStep : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102685,8 +102685,8 @@ public struct GLSLSmoothStep : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102765,7 +102765,7 @@ public struct GLSLSmoothStep : IMemoryInstruction
 
     public GLSLSmoothStep(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102824,7 +102824,7 @@ public struct GLSLFma : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102833,8 +102833,8 @@ public struct GLSLFma : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -102913,7 +102913,7 @@ public struct GLSLFma : IMemoryInstruction
 
     public GLSLFma(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -102972,7 +102972,7 @@ public struct GLSLFrexp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -102981,8 +102981,8 @@ public struct GLSLFrexp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103050,7 +103050,7 @@ public struct GLSLFrexp : IMemoryInstruction
 
     public GLSLFrexp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103106,7 +103106,7 @@ public struct GLSLFrexpStruct : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103115,8 +103115,8 @@ public struct GLSLFrexpStruct : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103173,7 +103173,7 @@ public struct GLSLFrexpStruct : IMemoryInstruction
 
     public GLSLFrexpStruct(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103226,7 +103226,7 @@ public struct GLSLLdexp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103235,8 +103235,8 @@ public struct GLSLLdexp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103304,7 +103304,7 @@ public struct GLSLLdexp : IMemoryInstruction
 
     public GLSLLdexp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103360,7 +103360,7 @@ public struct GLSLPackSnorm4x8 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103369,8 +103369,8 @@ public struct GLSLPackSnorm4x8 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103427,7 +103427,7 @@ public struct GLSLPackSnorm4x8 : IMemoryInstruction
 
     public GLSLPackSnorm4x8(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103480,7 +103480,7 @@ public struct GLSLPackUnorm4x8 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103489,8 +103489,8 @@ public struct GLSLPackUnorm4x8 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103547,7 +103547,7 @@ public struct GLSLPackUnorm4x8 : IMemoryInstruction
 
     public GLSLPackUnorm4x8(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103600,7 +103600,7 @@ public struct GLSLPackSnorm2x16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103609,8 +103609,8 @@ public struct GLSLPackSnorm2x16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103667,7 +103667,7 @@ public struct GLSLPackSnorm2x16 : IMemoryInstruction
 
     public GLSLPackSnorm2x16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103720,7 +103720,7 @@ public struct GLSLPackUnorm2x16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103729,8 +103729,8 @@ public struct GLSLPackUnorm2x16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103787,7 +103787,7 @@ public struct GLSLPackUnorm2x16 : IMemoryInstruction
 
     public GLSLPackUnorm2x16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103840,7 +103840,7 @@ public struct GLSLPackHalf2x16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103849,8 +103849,8 @@ public struct GLSLPackHalf2x16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -103907,7 +103907,7 @@ public struct GLSLPackHalf2x16 : IMemoryInstruction
 
     public GLSLPackHalf2x16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -103960,7 +103960,7 @@ public struct GLSLPackDouble2x32 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -103969,8 +103969,8 @@ public struct GLSLPackDouble2x32 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104027,7 +104027,7 @@ public struct GLSLPackDouble2x32 : IMemoryInstruction
 
     public GLSLPackDouble2x32(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104080,7 +104080,7 @@ public struct GLSLUnpackSnorm2x16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104089,8 +104089,8 @@ public struct GLSLUnpackSnorm2x16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104147,7 +104147,7 @@ public struct GLSLUnpackSnorm2x16 : IMemoryInstruction
 
     public GLSLUnpackSnorm2x16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104200,7 +104200,7 @@ public struct GLSLUnpackUnorm2x16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104209,8 +104209,8 @@ public struct GLSLUnpackUnorm2x16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104267,7 +104267,7 @@ public struct GLSLUnpackUnorm2x16 : IMemoryInstruction
 
     public GLSLUnpackUnorm2x16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104320,7 +104320,7 @@ public struct GLSLUnpackHalf2x16 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104329,8 +104329,8 @@ public struct GLSLUnpackHalf2x16 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104387,7 +104387,7 @@ public struct GLSLUnpackHalf2x16 : IMemoryInstruction
 
     public GLSLUnpackHalf2x16(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104440,7 +104440,7 @@ public struct GLSLUnpackSnorm4x8 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104449,8 +104449,8 @@ public struct GLSLUnpackSnorm4x8 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104507,7 +104507,7 @@ public struct GLSLUnpackSnorm4x8 : IMemoryInstruction
 
     public GLSLUnpackSnorm4x8(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104560,7 +104560,7 @@ public struct GLSLUnpackUnorm4x8 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104569,8 +104569,8 @@ public struct GLSLUnpackUnorm4x8 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104627,7 +104627,7 @@ public struct GLSLUnpackUnorm4x8 : IMemoryInstruction
 
     public GLSLUnpackUnorm4x8(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104680,7 +104680,7 @@ public struct GLSLUnpackDouble2x32 : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104689,8 +104689,8 @@ public struct GLSLUnpackDouble2x32 : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104747,7 +104747,7 @@ public struct GLSLUnpackDouble2x32 : IMemoryInstruction
 
     public GLSLUnpackDouble2x32(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104800,7 +104800,7 @@ public struct GLSLLength : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104809,8 +104809,8 @@ public struct GLSLLength : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104867,7 +104867,7 @@ public struct GLSLLength : IMemoryInstruction
 
     public GLSLLength(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -104920,7 +104920,7 @@ public struct GLSLDistance : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -104929,8 +104929,8 @@ public struct GLSLDistance : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -104998,7 +104998,7 @@ public struct GLSLDistance : IMemoryInstruction
 
     public GLSLDistance(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105054,7 +105054,7 @@ public struct GLSLCross : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105063,8 +105063,8 @@ public struct GLSLCross : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105132,7 +105132,7 @@ public struct GLSLCross : IMemoryInstruction
 
     public GLSLCross(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105188,7 +105188,7 @@ public struct GLSLNormalize : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105197,8 +105197,8 @@ public struct GLSLNormalize : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105255,7 +105255,7 @@ public struct GLSLNormalize : IMemoryInstruction
 
     public GLSLNormalize(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105308,7 +105308,7 @@ public struct GLSLFaceForward : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105317,8 +105317,8 @@ public struct GLSLFaceForward : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105397,7 +105397,7 @@ public struct GLSLFaceForward : IMemoryInstruction
 
     public GLSLFaceForward(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105456,7 +105456,7 @@ public struct GLSLReflect : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105465,8 +105465,8 @@ public struct GLSLReflect : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105534,7 +105534,7 @@ public struct GLSLReflect : IMemoryInstruction
 
     public GLSLReflect(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105590,7 +105590,7 @@ public struct GLSLRefract : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105599,8 +105599,8 @@ public struct GLSLRefract : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105679,7 +105679,7 @@ public struct GLSLRefract : IMemoryInstruction
 
     public GLSLRefract(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105738,7 +105738,7 @@ public struct GLSLFindILsb : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105747,8 +105747,8 @@ public struct GLSLFindILsb : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105805,7 +105805,7 @@ public struct GLSLFindILsb : IMemoryInstruction
 
     public GLSLFindILsb(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105858,7 +105858,7 @@ public struct GLSLFindSMsb : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105867,8 +105867,8 @@ public struct GLSLFindSMsb : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -105925,7 +105925,7 @@ public struct GLSLFindSMsb : IMemoryInstruction
 
     public GLSLFindSMsb(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -105978,7 +105978,7 @@ public struct GLSLFindUMsb : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -105987,8 +105987,8 @@ public struct GLSLFindUMsb : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106045,7 +106045,7 @@ public struct GLSLFindUMsb : IMemoryInstruction
 
     public GLSLFindUMsb(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -106098,7 +106098,7 @@ public struct GLSLInterpolateAtCentroid : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -106107,8 +106107,8 @@ public struct GLSLInterpolateAtCentroid : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106165,7 +106165,7 @@ public struct GLSLInterpolateAtCentroid : IMemoryInstruction
 
     public GLSLInterpolateAtCentroid(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -106218,7 +106218,7 @@ public struct GLSLInterpolateAtSample : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -106227,8 +106227,8 @@ public struct GLSLInterpolateAtSample : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106296,7 +106296,7 @@ public struct GLSLInterpolateAtSample : IMemoryInstruction
 
     public GLSLInterpolateAtSample(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -106352,7 +106352,7 @@ public struct GLSLInterpolateAtOffset : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -106361,8 +106361,8 @@ public struct GLSLInterpolateAtOffset : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106430,7 +106430,7 @@ public struct GLSLInterpolateAtOffset : IMemoryInstruction
 
     public GLSLInterpolateAtOffset(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -106486,7 +106486,7 @@ public struct GLSLNMin : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -106495,8 +106495,8 @@ public struct GLSLNMin : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106564,7 +106564,7 @@ public struct GLSLNMin : IMemoryInstruction
 
     public GLSLNMin(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -106620,7 +106620,7 @@ public struct GLSLNMax : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -106629,8 +106629,8 @@ public struct GLSLNMax : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106698,7 +106698,7 @@ public struct GLSLNMax : IMemoryInstruction
 
     public GLSLNMax(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
@@ -106754,7 +106754,7 @@ public struct GLSLNClamp : IMemoryInstruction
         readonly get
         {
             if (DataIndex is OpDataIndex odi)
-                return odi.Buffer[odi.Index].Memory;
+                return odi.Data.Memory;
             else
                 return field;
         }
@@ -106763,8 +106763,8 @@ public struct GLSLNClamp : IMemoryInstruction
         {
             if (DataIndex is OpDataIndex odi)
             {
-                odi.Buffer[odi.Index].Memory.Dispose();
-                odi.Buffer[odi.Index].Memory = value;
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
             }
             else
                 field = value;
@@ -106843,7 +106843,7 @@ public struct GLSLNClamp : IMemoryInstruction
 
     public GLSLNClamp(OpDataIndex index)
     {
-        foreach (var o in index.Buffer[index.Index])
+        foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();

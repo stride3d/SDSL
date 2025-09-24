@@ -7237,6 +7237,17 @@ public struct OpDecorate : IMemoryInstruction
         }
     }
 
+    public int? AdditionalInteger2
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpDecorate(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -7247,16 +7258,19 @@ public struct OpDecorate : IMemoryInstruction
                 Decoration = o.ToEnum<Decoration>();
             else if (o.Name == "additionalInteger")
                 AdditionalInteger = o.ToLiteral<int?>();
+            else if (o.Name == "additionalInteger2")
+                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpDecorate(int target, Decoration decoration, int? additionalInteger = null)
+    public OpDecorate(int target, Decoration decoration, int? additionalInteger = null, int? additionalInteger2 = null)
     {
         Target = target;
         Decoration = decoration;
         AdditionalInteger = additionalInteger;
+        AdditionalInteger2 = additionalInteger2;
         UpdateInstructionMemory();
     }
 
@@ -7264,7 +7278,7 @@ public struct OpDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDecorate, Target, (int)Decoration, ..AdditionalInteger.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpDecorate, Target, (int)Decoration, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7350,6 +7364,17 @@ public struct OpMemberDecorate : IMemoryInstruction
         }
     }
 
+    public int? AdditionalInteger2
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpMemberDecorate(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -7362,17 +7387,20 @@ public struct OpMemberDecorate : IMemoryInstruction
                 Decoration = o.ToEnum<Decoration>();
             else if (o.Name == "additionalInteger")
                 AdditionalInteger = o.ToLiteral<int?>();
+            else if (o.Name == "additionalInteger2")
+                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpMemberDecorate(int structureType, int member, Decoration decoration, int? additionalInteger = null)
+    public OpMemberDecorate(int structureType, int member, Decoration decoration, int? additionalInteger = null, int? additionalInteger2 = null)
     {
         StructureType = structureType;
         Member = member;
         Decoration = decoration;
         AdditionalInteger = additionalInteger;
+        AdditionalInteger2 = additionalInteger2;
         UpdateInstructionMemory();
     }
 
@@ -7380,7 +7408,7 @@ public struct OpMemberDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpMemberDecorate, StructureType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalInteger.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpMemberDecorate, StructureType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7537,6 +7565,17 @@ public struct OpGroupDecorate : IMemoryInstruction
         }
     }
 
+    public int? AdditionalInteger2
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpGroupDecorate(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -7547,16 +7586,19 @@ public struct OpGroupDecorate : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
             else if (o.Name == "additionalInteger")
                 AdditionalInteger = o.ToLiteral<int?>();
+            else if (o.Name == "additionalInteger2")
+                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpGroupDecorate(int decorationGroup, LiteralArray<int> values, int? additionalInteger = null)
+    public OpGroupDecorate(int decorationGroup, LiteralArray<int> values, int? additionalInteger = null, int? additionalInteger2 = null)
     {
         DecorationGroup = decorationGroup;
         Values.Assign(values);
         AdditionalInteger = additionalInteger;
+        AdditionalInteger2 = additionalInteger2;
         UpdateInstructionMemory();
     }
 
@@ -7564,7 +7606,7 @@ public struct OpGroupDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpGroupDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7639,6 +7681,17 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
         }
     }
 
+    public int? AdditionalInteger2
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpGroupMemberDecorate(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -7649,16 +7702,19 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
                 Values = o.ToLiteralArray<(int, int)>();
             else if (o.Name == "additionalInteger")
                 AdditionalInteger = o.ToLiteral<int?>();
+            else if (o.Name == "additionalInteger2")
+                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpGroupMemberDecorate(int decorationGroup, LiteralArray<(int, int)> values, int? additionalInteger = null)
+    public OpGroupMemberDecorate(int decorationGroup, LiteralArray<(int, int)> values, int? additionalInteger = null, int? additionalInteger2 = null)
     {
         DecorationGroup = decorationGroup;
         Values.Assign(values);
         AdditionalInteger = additionalInteger;
+        AdditionalInteger2 = additionalInteger2;
         UpdateInstructionMemory();
     }
 
@@ -7666,7 +7722,7 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupMemberDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpGroupMemberDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -66502,7 +66558,7 @@ public struct OpDecorateString : IMemoryInstruction
         }
     }
 
-    public string AdditionalString
+    public string? AdditionalString
     {
         get;
         set
@@ -66522,13 +66578,13 @@ public struct OpDecorateString : IMemoryInstruction
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
             else if (o.Name == "additionalString")
-                AdditionalString = o.ToLiteral<string>();
+                AdditionalString = o.ToLiteral<string?>();
         }
 
         DataIndex = index;
     }
 
-    public OpDecorateString(int target, Decoration decoration, string additionalString)
+    public OpDecorateString(int target, Decoration decoration, string? additionalString = null)
     {
         Target = target;
         Decoration = decoration;
@@ -66615,7 +66671,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
         }
     }
 
-    public string AdditionalString
+    public string? AdditionalString
     {
         get;
         set
@@ -66637,13 +66693,13 @@ public struct OpMemberDecorateString : IMemoryInstruction
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
             else if (o.Name == "additionalString")
-                AdditionalString = o.ToLiteral<string>();
+                AdditionalString = o.ToLiteral<string?>();
         }
 
         DataIndex = index;
     }
 
-    public OpMemberDecorateString(int structType, int member, Decoration decoration, string additionalString)
+    public OpMemberDecorateString(int structType, int member, Decoration decoration, string? additionalString = null)
     {
         StructType = structType;
         Member = member;

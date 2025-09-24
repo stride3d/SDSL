@@ -1847,7 +1847,7 @@ public struct OpExtInst : IMemoryInstruction
         ResultId = resultId;
         Set = set;
         Instruction = instruction;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -2063,7 +2063,7 @@ public struct OpEntryPoint : IMemoryInstruction
         Executionmodel = executionmodel;
         EntryPoint = entryPoint;
         Name = name;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -3517,7 +3517,7 @@ public struct OpTypeStruct : IMemoryInstruction
     public OpTypeStruct(int resultId, LiteralArray<int> values)
     {
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -3833,7 +3833,7 @@ public struct OpTypeFunction : IMemoryInstruction
     {
         ResultId = resultId;
         ReturnType = returnType;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -4759,7 +4759,7 @@ public struct OpConstantComposite : IMemoryInstruction
     {
         ResultType = resultType;
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -5401,7 +5401,7 @@ public struct OpSpecConstantComposite : IMemoryInstruction
     {
         ResultType = resultType;
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -5899,7 +5899,7 @@ public struct OpFunctionCall : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         Function = function;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -6520,7 +6520,7 @@ public struct OpAccessChain : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         BaseId = baseId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -6644,7 +6644,7 @@ public struct OpInBoundsAccessChain : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         BaseId = baseId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -6782,7 +6782,7 @@ public struct OpPtrAccessChain : IMemoryInstruction
         ResultId = resultId;
         BaseId = baseId;
         Element = element;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -7154,7 +7154,7 @@ public struct OpInBoundsPtrAccessChain : IMemoryInstruction
         ResultId = resultId;
         BaseId = baseId;
         Element = element;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -8058,7 +8058,7 @@ public struct OpVectorShuffle : IMemoryInstruction
         ResultId = resultId;
         Vector1 = vector1;
         Vector2 = vector2;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -8168,7 +8168,7 @@ public struct OpCompositeConstruct : IMemoryInstruction
     {
         ResultType = resultType;
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -8292,7 +8292,7 @@ public struct OpCompositeExtract : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         Composite = composite;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -8430,7 +8430,7 @@ public struct OpCompositeInsert : IMemoryInstruction
         ResultId = resultId;
         ObjectId = objectId;
         Composite = composite;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -26729,7 +26729,7 @@ public struct OpPhi : IMemoryInstruction
     {
         ResultType = resultType;
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -27215,7 +27215,7 @@ public struct OpBranchConditional : IMemoryInstruction
         Condition = condition;
         TrueLabel = trueLabel;
         FalseLabel = falseLabel;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -27323,7 +27323,7 @@ public struct OpSwitch : IMemoryInstruction
     {
         Selector = selector;
         DefaultId = defaultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -32105,7 +32105,7 @@ public struct OpEnqueueKernel : IMemoryInstruction
         Param = param;
         ParamSize = paramSize;
         ParamAlign = paramAlign;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -43064,7 +43064,7 @@ public struct OpUntypedAccessChainKHR : IMemoryInstruction
         ResultId = resultId;
         BaseType = baseType;
         BaseId = baseId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -43202,7 +43202,7 @@ public struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
         ResultId = resultId;
         BaseType = baseType;
         BaseId = baseId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -43574,7 +43574,7 @@ public struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
         BaseType = baseType;
         BaseId = baseId;
         Element = element;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -43726,7 +43726,7 @@ public struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstruction
         BaseType = baseType;
         BaseId = baseId;
         Element = element;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -44748,7 +44748,7 @@ public struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
         ResultId = resultId;
         Set = set;
         Instruction = instruction;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -59743,7 +59743,7 @@ public struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
         ResultId = resultId;
         Matrix = matrix;
         Func = func;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -59977,7 +59977,7 @@ public struct OpTypeTensorViewNV : IMemoryInstruction
         ResultId = resultId;
         Dim = dim;
         HasDimensions = hasDimensions;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -60197,7 +60197,7 @@ public struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         TensorLayout = tensorLayout;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -60321,7 +60321,7 @@ public struct OpTensorLayoutSetStrideNV : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         TensorLayout = tensorLayout;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -60445,7 +60445,7 @@ public struct OpTensorLayoutSliceNV : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         TensorLayout = tensorLayout;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -60789,7 +60789,7 @@ public struct OpTensorViewSetDimensionNV : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         TensorView = tensorView;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -60913,7 +60913,7 @@ public struct OpTensorViewSetStrideNV : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         TensorView = tensorView;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -61343,7 +61343,7 @@ public struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         TensorLayout = tensorLayout;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -65536,7 +65536,7 @@ public struct OpFunctionPointerCallINTEL : IMemoryInstruction
     {
         ResultType = resultType;
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -65922,7 +65922,7 @@ public struct OpAsmCallINTEL : IMemoryInstruction
         ResultType = resultType;
         ResultId = resultId;
         Asm = asm;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -88886,7 +88886,7 @@ public struct OpLoopControlINTEL : IMemoryInstruction
 
     public OpLoopControlINTEL(LiteralArray<int> values)
     {
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -89190,7 +89190,7 @@ public struct OpAliasScopeListDeclINTEL : IMemoryInstruction
     public OpAliasScopeListDeclINTEL(int resultId, LiteralArray<int> values)
     {
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -94282,7 +94282,7 @@ public struct OpTypeStructContinuedINTEL : IMemoryInstruction
 
     public OpTypeStructContinuedINTEL(LiteralArray<int> values)
     {
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -94362,7 +94362,7 @@ public struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
 
     public OpConstantCompositeContinuedINTEL(LiteralArray<int> values)
     {
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -94442,7 +94442,7 @@ public struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruction
 
     public OpSpecConstantCompositeContinuedINTEL(LiteralArray<int> values)
     {
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -94552,7 +94552,7 @@ public struct OpCompositeConstructContinuedINTEL : IMemoryInstruction
     {
         ResultType = resultType;
         ResultId = resultId;
-        Values.Assign(values);
+        Values = values;
         UpdateInstructionMemory();
     }
 

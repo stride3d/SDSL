@@ -7278,7 +7278,7 @@ public struct OpDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDecorate, Target, (int)Decoration, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpDecorate, Target, (int)Decoration, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7408,7 +7408,7 @@ public struct OpMemberDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpMemberDecorate, StructureType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpMemberDecorate, StructureType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7606,7 +7606,7 @@ public struct OpGroupDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpGroupDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7722,7 +7722,7 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupMemberDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpGroupMemberDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -66596,7 +66596,7 @@ public struct OpDecorateString : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDecorateString, Target, (int)Decoration, ..AdditionalString.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpDecorateString, Target, (int)Decoration, ..AdditionalString is null ? (Span<int>)[] : AdditionalString.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -66712,7 +66712,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpMemberDecorateString, StructType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalString.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpMemberDecorateString, StructType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalString is null ? (Span<int>)[] : AdditionalString.AsDisposableLiteralValue().Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

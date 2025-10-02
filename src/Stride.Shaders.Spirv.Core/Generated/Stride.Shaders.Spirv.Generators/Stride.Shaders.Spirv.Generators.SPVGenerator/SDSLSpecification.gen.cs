@@ -6,6 +6,16 @@ public static partial class Specification
     public static uint MinorVersion { get; } = 6;
     public static uint Revision { get; } = 4;
 
+    [Flags]
+    public enum FunctionFlagsMask
+    {
+        None = 0,
+        Abstract = 1,
+        Virtual = 2,
+        Override = 4,
+        Static = 16,
+    }
+
     public enum ExecutionModel
     {
         Mixin = 5367,

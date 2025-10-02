@@ -5,6 +5,7 @@ namespace Stride.Shaders.Spirv.Core;
 public enum OperandKind
 {
     None,
+    FunctionFlags,
     ExecutionModel,
     ImageOperands,
     FPFastMathMode,

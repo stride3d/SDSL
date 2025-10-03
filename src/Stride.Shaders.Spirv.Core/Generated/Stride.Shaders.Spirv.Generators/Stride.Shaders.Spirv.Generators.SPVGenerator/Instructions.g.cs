@@ -759,7 +759,7 @@ public struct OpSDSLFunctionInfo : IMemoryInstruction
         InstructionMemory.Span[0] = (int)Op.OpSDSLFunctionInfo | (1 << 16);
     }
 
-    public int ParentFunction
+    public FunctionFlagsMask Flags
     {
         get;
         set
@@ -770,7 +770,7 @@ public struct OpSDSLFunctionInfo : IMemoryInstruction
         }
     }
 
-    public FunctionFlagsMask Flags
+    public int Parent
     {
         get;
         set
@@ -785,19 +785,19 @@ public struct OpSDSLFunctionInfo : IMemoryInstruction
     {
         foreach (var o in index.Data)
         {
-            if (o.Name == "parentFunction")
-                ParentFunction = o.ToLiteral<int>();
-            else if (o.Name == "flags")
+            if (o.Name == "flags")
                 Flags = o.ToEnum<FunctionFlagsMask>();
+            else if (o.Name == "parent")
+                Parent = o.ToLiteral<int>();
         }
 
         DataIndex = index;
     }
 
-    public OpSDSLFunctionInfo(int parentFunction, FunctionFlagsMask flags)
+    public OpSDSLFunctionInfo(FunctionFlagsMask flags, int parent)
     {
-        ParentFunction = parentFunction;
         Flags = flags;
+        Parent = parent;
         UpdateInstructionMemory();
     }
 
@@ -805,7 +805,7 @@ public struct OpSDSLFunctionInfo : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLFunctionInfo, ParentFunction, (int)Flags];
+        Span<int> instruction = [(int)Op.OpSDSLFunctionInfo, (int)Flags, Parent];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -819,6 +819,50 @@ public struct OpSDSLFunctionInfo : IMemoryInstruction
     }
 
     public static implicit operator OpSDSLFunctionInfo(OpDataIndex odi) => new(odi);
+}
+
+public struct OpSDSLBase : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLBase()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLBase | (1 << 16);
+    }
+
+    public OpSDSLBase(OpDataIndex index)
+    {
+        DataIndex = index;
+    }
+
+    public void UpdateInstructionMemory()
+    {
+    }
+
+    public static implicit operator OpSDSLBase(OpDataIndex odi) => new(odi);
 }
 
 public struct OpNop : IMemoryInstruction

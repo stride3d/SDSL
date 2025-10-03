@@ -12,6 +12,7 @@ public enum SDSLOp : int
     OpSDSLImportFunction = 6436,
     OpSDSLImportVariable = 6437,
     OpSDSLFunctionInfo = 6438,
+    OpSDSLBase = 6439,
     OpNop = 0,
     OpUndef = 1,
     OpSourceContinued = 2,

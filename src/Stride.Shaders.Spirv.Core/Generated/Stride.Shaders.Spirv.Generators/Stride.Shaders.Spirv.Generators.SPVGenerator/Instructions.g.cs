@@ -129,6 +129,130 @@ public struct OpSDSLShaderEnd : IMemoryInstruction
     public static implicit operator OpSDSLShaderEnd(OpDataIndex odi) => new(odi);
 }
 
+public struct OpSDSLEffect : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLEffect()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLEffect | (1 << 16);
+    }
+
+    public string EffectName
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLEffect(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "effectName")
+                EffectName = o.ToLiteral<string>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpSDSLEffect(string effectName)
+    {
+        EffectName = effectName;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLEffect, ..EffectName.AsDisposableLiteralValue().Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLEffect(OpDataIndex odi) => new(odi);
+}
+
+public struct OpSDSLEffectEnd : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLEffectEnd()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLEffectEnd | (1 << 16);
+    }
+
+    public OpSDSLEffectEnd(OpDataIndex index)
+    {
+        DataIndex = index;
+    }
+
+    public void UpdateInstructionMemory()
+    {
+    }
+
+    public static implicit operator OpSDSLEffectEnd(OpDataIndex odi) => new(odi);
+}
+
 public struct OpSDSLMixinInherit : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }
@@ -957,6 +1081,180 @@ public struct OpSDSLCallBase : IMemoryInstruction
     }
 
     public static implicit operator OpSDSLCallBase(OpDataIndex odi) => new(odi);
+}
+
+public struct OpSDSLMixin : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLMixin()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLMixin | (1 << 16);
+    }
+
+    public string Mixin
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLMixin(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "mixin")
+                Mixin = o.ToLiteral<string>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpSDSLMixin(string mixin)
+    {
+        Mixin = mixin;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLMixin, ..Mixin.AsDisposableLiteralValue().Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLMixin(OpDataIndex odi) => new(odi);
+}
+
+public struct OpSDSLMixinCompose : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLMixinCompose()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLMixinCompose | (1 << 16);
+    }
+
+    public string Identifier
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public string Mixin
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLMixinCompose(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "identifier")
+                Identifier = o.ToLiteral<string>();
+            else if (o.Name == "mixin")
+                Mixin = o.ToLiteral<string>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpSDSLMixinCompose(string identifier, string mixin)
+    {
+        Identifier = identifier;
+        Mixin = mixin;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLMixinCompose, ..Identifier.AsDisposableLiteralValue().Words, ..Mixin.AsDisposableLiteralValue().Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLMixinCompose(OpDataIndex odi) => new(odi);
 }
 
 public struct OpNop : IMemoryInstruction

@@ -13,6 +13,7 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLStage, OperandKind.IdRef, OperandQuantifier.One, "stagedElement", "Miscellaneous");
         Instance.Register(Op.OpSDSLImportShader, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous");
         Instance.Register(Op.OpSDSLImportShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous");
+        Instance.Register(Op.OpSDSLImportShader, OperandKind.ImportType, OperandQuantifier.One, "type", "Miscellaneous");
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous");
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous");
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.LiteralString, OperandQuantifier.One, "functionName", "Miscellaneous");
@@ -23,7 +24,8 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLImportVariable, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous");
         Instance.Register(Op.OpSDSLFunctionInfo, OperandKind.FunctionFlags, OperandQuantifier.One, "flags", "Miscellaneous");
         Instance.Register(Op.OpSDSLFunctionInfo, OperandKind.IdRef, OperandQuantifier.One, "parent", "Miscellaneous");
-        Instance.Register(Op.OpSDSLBase, OperandKind.None, null, "Debug");
+        Instance.Register(Op.OpSDSLCallTarget, OperandKind.IdRef, OperandQuantifier.One, "target", "Miscellaneous");
+        Instance.Register(Op.OpSDSLCallBase, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpNop, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpUndef, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous");
         Instance.Register(Op.OpUndef, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous");

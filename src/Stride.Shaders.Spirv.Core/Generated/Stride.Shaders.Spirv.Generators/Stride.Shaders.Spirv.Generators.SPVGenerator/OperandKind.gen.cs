@@ -6,6 +6,7 @@ public enum OperandKind
 {
     None,
     FunctionFlags,
+    ImportType,
     ExecutionModel,
     ImageOperands,
     FPFastMathMode,

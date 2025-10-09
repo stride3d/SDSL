@@ -16,6 +16,12 @@ public static partial class Specification
         Static = 16,
     }
 
+    public enum ImportType
+    {
+        External = 0,
+        Inherit = 1,
+    }
+
     public enum ExecutionModel
     {
         Mixin = 5367,

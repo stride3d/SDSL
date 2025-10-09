@@ -439,6 +439,17 @@ public struct OpSDSLImportShader : IMemoryInstruction
         }
     }
 
+    public ImportType Type
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLImportShader(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -447,15 +458,18 @@ public struct OpSDSLImportShader : IMemoryInstruction
                 ResultId = o.ToLiteral<int>();
             else if (o.Name == "shaderName")
                 ShaderName = o.ToLiteral<string>();
+            else if (o.Name == "type")
+                Type = o.ToEnum<ImportType>();
         }
 
         DataIndex = index;
     }
 
-    public OpSDSLImportShader(int resultId, string shaderName)
+    public OpSDSLImportShader(int resultId, string shaderName, ImportType type)
     {
         ResultId = resultId;
         ShaderName = shaderName;
+        Type = type;
         UpdateInstructionMemory();
     }
 
@@ -463,7 +477,7 @@ public struct OpSDSLImportShader : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLImportShader, ResultId, ..ShaderName.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpSDSLImportShader, ResultId, ..ShaderName.AsDisposableLiteralValue().Words, (int)Type];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -821,7 +835,7 @@ public struct OpSDSLFunctionInfo : IMemoryInstruction
     public static implicit operator OpSDSLFunctionInfo(OpDataIndex odi) => new(odi);
 }
 
-public struct OpSDSLBase : IMemoryInstruction
+public struct OpSDSLCallTarget : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }
 
@@ -847,13 +861,93 @@ public struct OpSDSLBase : IMemoryInstruction
         }
     }
 
-    public OpSDSLBase()
+    public OpSDSLCallTarget()
     {
         InstructionMemory = MemoryOwner<int>.Allocate(1);
-        InstructionMemory.Span[0] = (int)Op.OpSDSLBase | (1 << 16);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLCallTarget | (1 << 16);
     }
 
-    public OpSDSLBase(OpDataIndex index)
+    public int Target
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLCallTarget(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "target")
+                Target = o.ToLiteral<int>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpSDSLCallTarget(int target)
+    {
+        Target = target;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLCallTarget, Target];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLCallTarget(OpDataIndex odi) => new(odi);
+}
+
+public struct OpSDSLCallBase : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLCallBase()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLCallBase | (1 << 16);
+    }
+
+    public OpSDSLCallBase(OpDataIndex index)
     {
         DataIndex = index;
     }
@@ -862,7 +956,7 @@ public struct OpSDSLBase : IMemoryInstruction
     {
     }
 
-    public static implicit operator OpSDSLBase(OpDataIndex odi) => new(odi);
+    public static implicit operator OpSDSLCallBase(OpDataIndex odi) => new(odi);
 }
 
 public struct OpNop : IMemoryInstruction

@@ -10,10 +10,10 @@ public static partial class Specification
     public enum FunctionFlagsMask
     {
         None = 0,
-        Abstract = 1,
-        Virtual = 2,
-        Override = 4,
-        Static = 16,
+        Stage = 1,
+        Abstract = 16,
+        Virtual = 32,
+        Override = 64,
     }
 
     public enum ImportType

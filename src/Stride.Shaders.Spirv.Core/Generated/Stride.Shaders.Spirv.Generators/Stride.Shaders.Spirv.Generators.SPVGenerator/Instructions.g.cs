@@ -695,6 +695,17 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         }
     }
 
+    public FunctionFlagsMask Flags
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLImportFunction(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -707,17 +718,20 @@ public struct OpSDSLImportFunction : IMemoryInstruction
                 FunctionName = o.ToLiteral<string>();
             else if (o.Name == "shader")
                 Shader = o.ToLiteral<int>();
+            else if (o.Name == "flags")
+                Flags = o.ToEnum<FunctionFlagsMask>();
         }
 
         DataIndex = index;
     }
 
-    public OpSDSLImportFunction(int resultType, int resultId, string functionName, int shader)
+    public OpSDSLImportFunction(int resultType, int resultId, string functionName, int shader, FunctionFlagsMask flags)
     {
         ResultType = resultType;
         ResultId = resultId;
         FunctionName = functionName;
         Shader = shader;
+        Flags = flags;
         UpdateInstructionMemory();
     }
 
@@ -725,7 +739,7 @@ public struct OpSDSLImportFunction : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLImportFunction, ResultType, ResultId, ..FunctionName.AsDisposableLiteralValue().Words, Shader];
+        Span<int> instruction = [(int)Op.OpSDSLImportFunction, ResultType, ResultId, ..FunctionName.AsDisposableLiteralValue().Words, Shader, (int)Flags];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

@@ -1599,7 +1599,7 @@ public struct OpSource : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSource, (int)Sourcelanguage, ..Version.AsDisposableLiteralValue().Words, ..File is null ? (Span<int>)[] : [File.Value], ..Source is null ? (Span<int>)[] : Source.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpSource, (int)Sourcelanguage, ..Version.AsDisposableLiteralValue().Words, ..(File is null ? (Span<int>)[] : [File.Value]), ..(Source is null ? (Span<int>)[] : Source.AsDisposableLiteralValue().Words)];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -2674,7 +2674,7 @@ public struct OpExecutionMode : IMemoryInstruction
         }
     }
 
-    public ExecutionMode Mode
+    public ParameterizedFlag<ExecutionMode> Mode
     {
         get;
         set
@@ -2698,7 +2698,7 @@ public struct OpExecutionMode : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpExecutionMode(int entryPoint, ExecutionMode mode)
+    public OpExecutionMode(int entryPoint, ParameterizedFlag<ExecutionMode> mode)
     {
         EntryPoint = entryPoint;
         Mode = mode;
@@ -2709,7 +2709,7 @@ public struct OpExecutionMode : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExecutionMode, EntryPoint, (int)Mode];
+        Span<int> instruction = [(int)Op.OpExecutionMode, EntryPoint, ..(Span<int>)[(int)Mode.Value, ..Mode.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -3174,7 +3174,7 @@ public struct OpTypeFloat : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpTypeFloat, ResultId, ..Width.AsDisposableLiteralValue().Words, ..FloatingPointEncoding is null ? (Span<int>)[] : [(int)FloatingPointEncoding.Value]];
+        Span<int> instruction = [(int)Op.OpTypeFloat, ResultId, ..Width.AsDisposableLiteralValue().Words, ..(FloatingPointEncoding is null ? (Span<int>)[] : [(int)FloatingPointEncoding.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -3589,7 +3589,7 @@ public struct OpTypeImage : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpTypeImage, ResultId, SampledType, (int)Dim, ..Depth.AsDisposableLiteralValue().Words, ..Arrayed.AsDisposableLiteralValue().Words, ..MS.AsDisposableLiteralValue().Words, ..Sampled.AsDisposableLiteralValue().Words, (int)Imageformat, ..Accessqualifier is null ? (Span<int>)[] : [(int)Accessqualifier.Value]];
+        Span<int> instruction = [(int)Op.OpTypeImage, ResultId, SampledType, (int)Dim, ..Depth.AsDisposableLiteralValue().Words, ..Arrayed.AsDisposableLiteralValue().Words, ..MS.AsDisposableLiteralValue().Words, ..Sampled.AsDisposableLiteralValue().Words, (int)Imageformat, ..(Accessqualifier is null ? (Span<int>)[] : [(int)Accessqualifier.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -6576,7 +6576,7 @@ public struct OpVariable : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpVariable, ResultType, ResultId, (int)Storageclass, ..Initializer is null ? (Span<int>)[] : [Initializer.Value]];
+        Span<int> instruction = [(int)Op.OpVariable, ResultType, ResultId, (int)Storageclass, ..(Initializer is null ? (Span<int>)[] : [Initializer.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -6797,7 +6797,7 @@ public struct OpLoad : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? Memoryaccess
+    public ParameterizedFlag<MemoryAccessMask>? Memoryaccess
     {
         get;
         set
@@ -6826,7 +6826,7 @@ public struct OpLoad : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpLoad(int resultType, int resultId, int pointer, MemoryAccessMask? memoryaccess)
+    public OpLoad(int resultType, int resultId, int pointer, ParameterizedFlag<MemoryAccessMask>? memoryaccess)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -6839,7 +6839,7 @@ public struct OpLoad : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpLoad, ResultType, ResultId, Pointer, ..Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value]];
+        Span<int> instruction = [(int)Op.OpLoad, ResultType, ResultId, Pointer, ..(Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value.Value, ..Memoryaccess.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -6909,7 +6909,7 @@ public struct OpStore : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? Memoryaccess
+    public ParameterizedFlag<MemoryAccessMask>? Memoryaccess
     {
         get;
         set
@@ -6936,7 +6936,7 @@ public struct OpStore : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpStore(int pointer, int objectId, MemoryAccessMask? memoryaccess)
+    public OpStore(int pointer, int objectId, ParameterizedFlag<MemoryAccessMask>? memoryaccess)
     {
         Pointer = pointer;
         ObjectId = objectId;
@@ -6948,7 +6948,7 @@ public struct OpStore : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpStore, Pointer, ObjectId, ..Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value]];
+        Span<int> instruction = [(int)Op.OpStore, Pointer, ObjectId, ..(Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value.Value, ..Memoryaccess.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7748,6 +7748,12 @@ public struct OpDecorate : IMemoryInstruction
         }
     }
 
+    public OpDecorate()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpDecorate | (1 << 16);
+    }
+
     public int Target
     {
         get;
@@ -7759,29 +7765,7 @@ public struct OpDecorate : IMemoryInstruction
         }
     }
 
-    public Decoration Decoration
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int? AdditionalInteger
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int? AdditionalInteger2
+    public ParameterizedFlag<Decoration> Decoration
     {
         get;
         set
@@ -7800,21 +7784,15 @@ public struct OpDecorate : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "additionalInteger")
-                AdditionalInteger = o.ToLiteral<int?>();
-            else if (o.Name == "additionalInteger2")
-                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpDecorate(int target, Decoration decoration, int? additionalInteger = null, int? additionalInteger2 = null)
+    public OpDecorate(int target, ParameterizedFlag<Decoration> decoration)
     {
         Target = target;
         Decoration = decoration;
-        AdditionalInteger = additionalInteger;
-        AdditionalInteger2 = additionalInteger2;
         UpdateInstructionMemory();
     }
 
@@ -7822,7 +7800,7 @@ public struct OpDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDecorate, Target, (int)Decoration, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpDecorate, Target, ..(Span<int>)[(int)Decoration.Value, ..Decoration.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -7864,6 +7842,12 @@ public struct OpMemberDecorate : IMemoryInstruction
         }
     }
 
+    public OpMemberDecorate()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpMemberDecorate | (1 << 16);
+    }
+
     public int StructureType
     {
         get;
@@ -7886,29 +7870,7 @@ public struct OpMemberDecorate : IMemoryInstruction
         }
     }
 
-    public Decoration Decoration
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int? AdditionalInteger
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int? AdditionalInteger2
+    public ParameterizedFlag<Decoration> Decoration
     {
         get;
         set
@@ -7929,22 +7891,16 @@ public struct OpMemberDecorate : IMemoryInstruction
                 Member = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "additionalInteger")
-                AdditionalInteger = o.ToLiteral<int?>();
-            else if (o.Name == "additionalInteger2")
-                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpMemberDecorate(int structureType, int member, Decoration decoration, int? additionalInteger = null, int? additionalInteger2 = null)
+    public OpMemberDecorate(int structureType, int member, ParameterizedFlag<Decoration> decoration)
     {
         StructureType = structureType;
         Member = member;
         Decoration = decoration;
-        AdditionalInteger = additionalInteger;
-        AdditionalInteger2 = additionalInteger2;
         UpdateInstructionMemory();
     }
 
@@ -7952,7 +7908,7 @@ public struct OpMemberDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpMemberDecorate, StructureType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpMemberDecorate, StructureType, ..Member.AsDisposableLiteralValue().Words, ..(Span<int>)[(int)Decoration.Value, ..Decoration.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -8076,6 +8032,12 @@ public struct OpGroupDecorate : IMemoryInstruction
         }
     }
 
+    public OpGroupDecorate()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpGroupDecorate | (1 << 16);
+    }
+
     public int DecorationGroup
     {
         get;
@@ -8098,28 +8060,6 @@ public struct OpGroupDecorate : IMemoryInstruction
         }
     }
 
-    public int? AdditionalInteger
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int? AdditionalInteger2
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
     public OpGroupDecorate(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -8128,21 +8068,15 @@ public struct OpGroupDecorate : IMemoryInstruction
                 DecorationGroup = o.ToLiteral<int>();
             else if (o.Name == "values")
                 Values = o.ToLiteralArray<int>();
-            else if (o.Name == "additionalInteger")
-                AdditionalInteger = o.ToLiteral<int?>();
-            else if (o.Name == "additionalInteger2")
-                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpGroupDecorate(int decorationGroup, LiteralArray<int> values, int? additionalInteger = null, int? additionalInteger2 = null)
+    public OpGroupDecorate(int decorationGroup, LiteralArray<int> values)
     {
         DecorationGroup = decorationGroup;
-        Values.Assign(values);
-        AdditionalInteger = additionalInteger;
-        AdditionalInteger2 = additionalInteger2;
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -8150,7 +8084,7 @@ public struct OpGroupDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpGroupDecorate, DecorationGroup, ..Values.Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -8192,6 +8126,12 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
         }
     }
 
+    public OpGroupMemberDecorate()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpGroupMemberDecorate | (1 << 16);
+    }
+
     public int DecorationGroup
     {
         get;
@@ -8214,28 +8154,6 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
         }
     }
 
-    public int? AdditionalInteger
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int? AdditionalInteger2
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
     public OpGroupMemberDecorate(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -8244,21 +8162,15 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
                 DecorationGroup = o.ToLiteral<int>();
             else if (o.Name == "values")
                 Values = o.ToLiteralArray<(int, int)>();
-            else if (o.Name == "additionalInteger")
-                AdditionalInteger = o.ToLiteral<int?>();
-            else if (o.Name == "additionalInteger2")
-                AdditionalInteger2 = o.ToLiteral<int?>();
         }
 
         DataIndex = index;
     }
 
-    public OpGroupMemberDecorate(int decorationGroup, LiteralArray<(int, int)> values, int? additionalInteger = null, int? additionalInteger2 = null)
+    public OpGroupMemberDecorate(int decorationGroup, LiteralArray<(int, int)> values)
     {
         DecorationGroup = decorationGroup;
-        Values.Assign(values);
-        AdditionalInteger = additionalInteger;
-        AdditionalInteger2 = additionalInteger2;
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -8266,7 +8178,7 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupMemberDecorate, DecorationGroup, ..Values.Words, ..AdditionalInteger is null ? (Span<int>)[] : AdditionalInteger.AsDisposableLiteralValue().Words, ..AdditionalInteger2 is null ? (Span<int>)[] : AdditionalInteger2.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpGroupMemberDecorate, DecorationGroup, ..Values.Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -9476,7 +9388,7 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -9507,7 +9419,7 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageSampleImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -9521,7 +9433,7 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSampleImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -9615,7 +9527,7 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -9645,7 +9557,7 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask imageoperands)
+    public OpImageSampleExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -9659,7 +9571,7 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleExplicitLod, ResultType, ResultId, SampledImage, Coordinate, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSampleExplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -9764,7 +9676,7 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -9797,7 +9709,7 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask? imageoperands)
+    public OpImageSampleDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -9812,7 +9724,7 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSampleDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -9917,7 +9829,7 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -9949,7 +9861,7 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask imageoperands)
+    public OpImageSampleDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -9964,7 +9876,7 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSampleDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10058,7 +9970,7 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -10089,7 +10001,7 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleProjImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageSampleProjImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10103,7 +10015,7 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleProjImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSampleProjImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10197,7 +10109,7 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -10227,7 +10139,7 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleProjExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask imageoperands)
+    public OpImageSampleProjExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10241,7 +10153,7 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleProjExplicitLod, ResultType, ResultId, SampledImage, Coordinate, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSampleProjExplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10346,7 +10258,7 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -10379,7 +10291,7 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleProjDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask? imageoperands)
+    public OpImageSampleProjDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10394,7 +10306,7 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleProjDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSampleProjDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10499,7 +10411,7 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -10531,7 +10443,7 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleProjDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask imageoperands)
+    public OpImageSampleProjDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10546,7 +10458,7 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleProjDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSampleProjDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10640,7 +10552,7 @@ public struct OpImageFetch : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -10671,7 +10583,7 @@ public struct OpImageFetch : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageFetch(int resultType, int resultId, int image, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageFetch(int resultType, int resultId, int image, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10685,7 +10597,7 @@ public struct OpImageFetch : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageFetch, ResultType, ResultId, Image, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageFetch, ResultType, ResultId, Image, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10790,7 +10702,7 @@ public struct OpImageGather : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -10823,7 +10735,7 @@ public struct OpImageGather : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageGather(int resultType, int resultId, int sampledImage, int coordinate, int component, ImageOperandsMask? imageoperands)
+    public OpImageGather(int resultType, int resultId, int sampledImage, int coordinate, int component, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10838,7 +10750,7 @@ public struct OpImageGather : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageGather, ResultType, ResultId, SampledImage, Coordinate, Component, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageGather, ResultType, ResultId, SampledImage, Coordinate, Component, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -10943,7 +10855,7 @@ public struct OpImageDrefGather : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -10976,7 +10888,7 @@ public struct OpImageDrefGather : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageDrefGather(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask? imageoperands)
+    public OpImageDrefGather(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -10991,7 +10903,7 @@ public struct OpImageDrefGather : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageDrefGather, ResultType, ResultId, SampledImage, Coordinate, Dref, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageDrefGather, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -11085,7 +10997,7 @@ public struct OpImageRead : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -11116,7 +11028,7 @@ public struct OpImageRead : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageRead(int resultType, int resultId, int image, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageRead(int resultType, int resultId, int image, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -11130,7 +11042,7 @@ public struct OpImageRead : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageRead, ResultType, ResultId, Image, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageRead, ResultType, ResultId, Image, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -11211,7 +11123,7 @@ public struct OpImageWrite : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -11240,7 +11152,7 @@ public struct OpImageWrite : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageWrite(int image, int coordinate, int texel, ImageOperandsMask? imageoperands)
+    public OpImageWrite(int image, int coordinate, int texel, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         Image = image;
         Coordinate = coordinate;
@@ -11253,7 +11165,7 @@ public struct OpImageWrite : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageWrite, Image, Coordinate, Texel, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageWrite, Image, Coordinate, Texel, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -27407,7 +27319,7 @@ public struct OpLoopMerge : IMemoryInstruction
         }
     }
 
-    public LoopControlMask Loopcontrol
+    public ParameterizedFlag<LoopControlMask> Loopcontrol
     {
         get;
         set
@@ -27433,7 +27345,7 @@ public struct OpLoopMerge : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpLoopMerge(int mergeBlock, int continueTarget, LoopControlMask loopcontrol)
+    public OpLoopMerge(int mergeBlock, int continueTarget, ParameterizedFlag<LoopControlMask> loopcontrol)
     {
         MergeBlock = mergeBlock;
         ContinueTarget = continueTarget;
@@ -27445,7 +27357,7 @@ public struct OpLoopMerge : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpLoopMerge, MergeBlock, ContinueTarget, (int)Loopcontrol];
+        Span<int> instruction = [(int)Op.OpLoopMerge, MergeBlock, ContinueTarget, ..(Span<int>)[(int)Loopcontrol.Value, ..Loopcontrol.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -34245,7 +34157,7 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -34276,7 +34188,7 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageSparseSampleImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -34290,7 +34202,7 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -34384,7 +34296,7 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -34414,7 +34326,7 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask imageoperands)
+    public OpImageSparseSampleExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -34428,7 +34340,7 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleExplicitLod, ResultType, ResultId, SampledImage, Coordinate, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleExplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -34533,7 +34445,7 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -34566,7 +34478,7 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask? imageoperands)
+    public OpImageSparseSampleDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -34581,7 +34493,7 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -34686,7 +34598,7 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -34718,7 +34630,7 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask imageoperands)
+    public OpImageSparseSampleDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -34733,7 +34645,7 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -34827,7 +34739,7 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -34858,7 +34770,7 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleProjImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageSparseSampleProjImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -34872,7 +34784,7 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleProjImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleProjImplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -34966,7 +34878,7 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -34996,7 +34908,7 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleProjExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ImageOperandsMask imageoperands)
+    public OpImageSparseSampleProjExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -35010,7 +34922,7 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleProjExplicitLod, ResultType, ResultId, SampledImage, Coordinate, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleProjExplicitLod, ResultType, ResultId, SampledImage, Coordinate, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -35115,7 +35027,7 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -35148,7 +35060,7 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleProjDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask? imageoperands)
+    public OpImageSparseSampleProjDrefImplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -35163,7 +35075,7 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleProjDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleProjDrefImplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -35268,7 +35180,7 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask Imageoperands
+    public ParameterizedFlag<ImageOperandsMask> Imageoperands
     {
         get;
         set
@@ -35300,7 +35212,7 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseSampleProjDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask imageoperands)
+    public OpImageSparseSampleProjDrefExplicitLod(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask> imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -35315,7 +35227,7 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseSampleProjDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, (int)Imageoperands];
+        Span<int> instruction = [(int)Op.OpImageSparseSampleProjDrefExplicitLod, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Span<int>)[(int)Imageoperands.Value, ..Imageoperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -35409,7 +35321,7 @@ public struct OpImageSparseFetch : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -35440,7 +35352,7 @@ public struct OpImageSparseFetch : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseFetch(int resultType, int resultId, int image, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageSparseFetch(int resultType, int resultId, int image, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -35454,7 +35366,7 @@ public struct OpImageSparseFetch : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseFetch, ResultType, ResultId, Image, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseFetch, ResultType, ResultId, Image, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -35559,7 +35471,7 @@ public struct OpImageSparseGather : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -35592,7 +35504,7 @@ public struct OpImageSparseGather : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseGather(int resultType, int resultId, int sampledImage, int coordinate, int component, ImageOperandsMask? imageoperands)
+    public OpImageSparseGather(int resultType, int resultId, int sampledImage, int coordinate, int component, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -35607,7 +35519,7 @@ public struct OpImageSparseGather : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseGather, ResultType, ResultId, SampledImage, Coordinate, Component, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseGather, ResultType, ResultId, SampledImage, Coordinate, Component, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -35712,7 +35624,7 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -35745,7 +35657,7 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseDrefGather(int resultType, int resultId, int sampledImage, int coordinate, int dref, ImageOperandsMask? imageoperands)
+    public OpImageSparseDrefGather(int resultType, int resultId, int sampledImage, int coordinate, int dref, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -35760,7 +35672,7 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseDrefGather, ResultType, ResultId, SampledImage, Coordinate, Dref, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseDrefGather, ResultType, ResultId, SampledImage, Coordinate, Dref, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -36254,7 +36166,7 @@ public struct OpImageSparseRead : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -36285,7 +36197,7 @@ public struct OpImageSparseRead : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSparseRead(int resultType, int resultId, int image, int coordinate, ImageOperandsMask? imageoperands)
+    public OpImageSparseRead(int resultType, int resultId, int image, int coordinate, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -36299,7 +36211,7 @@ public struct OpImageSparseRead : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSparseRead, ResultType, ResultId, Image, Coordinate, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSparseRead, ResultType, ResultId, Image, Coordinate, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -37496,7 +37408,7 @@ public struct OpExecutionModeId : IMemoryInstruction
         }
     }
 
-    public ExecutionMode Mode
+    public ParameterizedFlag<ExecutionMode> Mode
     {
         get;
         set
@@ -37520,7 +37432,7 @@ public struct OpExecutionModeId : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpExecutionModeId(int entryPoint, ExecutionMode mode)
+    public OpExecutionModeId(int entryPoint, ParameterizedFlag<ExecutionMode> mode)
     {
         EntryPoint = entryPoint;
         Mode = mode;
@@ -37531,7 +37443,7 @@ public struct OpExecutionModeId : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExecutionModeId, EntryPoint, (int)Mode];
+        Span<int> instruction = [(int)Op.OpExecutionModeId, EntryPoint, ..(Span<int>)[(int)Mode.Value, ..Mode.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -37573,6 +37485,12 @@ public struct OpDecorateId : IMemoryInstruction
         }
     }
 
+    public OpDecorateId()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpDecorateId | (1 << 16);
+    }
+
     public int Target
     {
         get;
@@ -37584,18 +37502,7 @@ public struct OpDecorateId : IMemoryInstruction
         }
     }
 
-    public Decoration Decoration
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public int AdditionalId
+    public ParameterizedFlag<Decoration> Decoration
     {
         get;
         set
@@ -37614,18 +37521,15 @@ public struct OpDecorateId : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "additionalId")
-                AdditionalId = o.ToLiteral<int>();
         }
 
         DataIndex = index;
     }
 
-    public OpDecorateId(int target, Decoration decoration, int additionalId)
+    public OpDecorateId(int target, ParameterizedFlag<Decoration> decoration)
     {
         Target = target;
         Decoration = decoration;
-        AdditionalId = additionalId;
         UpdateInstructionMemory();
     }
 
@@ -37633,7 +37537,7 @@ public struct OpDecorateId : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDecorateId, Target, (int)Decoration, ..AdditionalId.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpDecorateId, Target, ..(Span<int>)[(int)Decoration.Value, ..Decoration.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -39854,7 +39758,7 @@ public struct OpGroupNonUniformIAdd : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformIAdd, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformIAdd, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40007,7 +39911,7 @@ public struct OpGroupNonUniformFAdd : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformFAdd, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformFAdd, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40160,7 +40064,7 @@ public struct OpGroupNonUniformIMul : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformIMul, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformIMul, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40313,7 +40217,7 @@ public struct OpGroupNonUniformFMul : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformFMul, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformFMul, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40466,7 +40370,7 @@ public struct OpGroupNonUniformSMin : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformSMin, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformSMin, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40619,7 +40523,7 @@ public struct OpGroupNonUniformUMin : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformUMin, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformUMin, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40772,7 +40676,7 @@ public struct OpGroupNonUniformFMin : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformFMin, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformFMin, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -40925,7 +40829,7 @@ public struct OpGroupNonUniformSMax : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformSMax, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformSMax, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41078,7 +40982,7 @@ public struct OpGroupNonUniformUMax : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformUMax, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformUMax, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41231,7 +41135,7 @@ public struct OpGroupNonUniformFMax : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformFMax, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformFMax, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41384,7 +41288,7 @@ public struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformBitwiseAnd, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformBitwiseAnd, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41537,7 +41441,7 @@ public struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformBitwiseOr, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformBitwiseOr, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41690,7 +41594,7 @@ public struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformBitwiseXor, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformBitwiseXor, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41843,7 +41747,7 @@ public struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformLogicalAnd, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformLogicalAnd, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -41996,7 +41900,7 @@ public struct OpGroupNonUniformLogicalOr : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformLogicalOr, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformLogicalOr, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -42149,7 +42053,7 @@ public struct OpGroupNonUniformLogicalXor : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformLogicalXor, ResultType, ResultId, Execution, (int)Operation, Value, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformLogicalXor, ResultType, ResultId, Execution, (int)Operation, Value, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -43032,7 +42936,7 @@ public struct OpColorAttachmentReadEXT : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpColorAttachmentReadEXT, ResultType, ResultId, Attachment, ..Sample is null ? (Span<int>)[] : [Sample.Value]];
+        Span<int> instruction = [(int)Op.OpColorAttachmentReadEXT, ResultType, ResultId, Attachment, ..(Sample is null ? (Span<int>)[] : [Sample.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -43143,7 +43047,7 @@ public struct OpDepthAttachmentReadEXT : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDepthAttachmentReadEXT, ResultType, ResultId, ..Sample is null ? (Span<int>)[] : [Sample.Value]];
+        Span<int> instruction = [(int)Op.OpDepthAttachmentReadEXT, ResultType, ResultId, ..(Sample is null ? (Span<int>)[] : [Sample.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -43254,7 +43158,7 @@ public struct OpStencilAttachmentReadEXT : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpStencilAttachmentReadEXT, ResultType, ResultId, ..Sample is null ? (Span<int>)[] : [Sample.Value]];
+        Span<int> instruction = [(int)Op.OpStencilAttachmentReadEXT, ResultType, ResultId, ..(Sample is null ? (Span<int>)[] : [Sample.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -43534,7 +43438,7 @@ public struct OpUntypedVariableKHR : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpUntypedVariableKHR, ResultType, ResultId, (int)Storageclass, ..DataType is null ? (Span<int>)[] : [DataType.Value], ..Initializer is null ? (Span<int>)[] : [Initializer.Value]];
+        Span<int> instruction = [(int)Op.OpUntypedVariableKHR, ResultType, ResultId, (int)Storageclass, ..(DataType is null ? (Span<int>)[] : [DataType.Value]), ..(Initializer is null ? (Span<int>)[] : [Initializer.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -44611,7 +44515,7 @@ public struct OpUntypedPrefetchKHR : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpUntypedPrefetchKHR, PointerType, NumBytes, ..RW is null ? (Span<int>)[] : [RW.Value], ..Locality is null ? (Span<int>)[] : [Locality.Value], ..CacheType is null ? (Span<int>)[] : [CacheType.Value]];
+        Span<int> instruction = [(int)Op.OpUntypedPrefetchKHR, PointerType, NumBytes, ..(RW is null ? (Span<int>)[] : [RW.Value]), ..(Locality is null ? (Span<int>)[] : [Locality.Value]), ..(CacheType is null ? (Span<int>)[] : [CacheType.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -45094,7 +44998,7 @@ public struct OpGroupNonUniformRotateKHR : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpGroupNonUniformRotateKHR, ResultType, ResultId, Execution, Value, Delta, ..ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value]];
+        Span<int> instruction = [(int)Op.OpGroupNonUniformRotateKHR, ResultType, ResultId, Execution, Value, Delta, ..(ClusterSize is null ? (Span<int>)[] : [ClusterSize.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -46007,7 +45911,7 @@ public struct OpSDot : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDot, ResultType, ResultId, Vector1, Vector2, ..PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value]];
+        Span<int> instruction = [(int)Op.OpSDot, ResultType, ResultId, Vector1, Vector2, ..(PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -46146,7 +46050,7 @@ public struct OpUDot : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpUDot, ResultType, ResultId, Vector1, Vector2, ..PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value]];
+        Span<int> instruction = [(int)Op.OpUDot, ResultType, ResultId, Vector1, Vector2, ..(PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -46285,7 +46189,7 @@ public struct OpSUDot : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSUDot, ResultType, ResultId, Vector1, Vector2, ..PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value]];
+        Span<int> instruction = [(int)Op.OpSUDot, ResultType, ResultId, Vector1, Vector2, ..(PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -46438,7 +46342,7 @@ public struct OpSDotAccSat : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDotAccSat, ResultType, ResultId, Vector1, Vector2, Accumulator, ..PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value]];
+        Span<int> instruction = [(int)Op.OpSDotAccSat, ResultType, ResultId, Vector1, Vector2, Accumulator, ..(PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -46591,7 +46495,7 @@ public struct OpUDotAccSat : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpUDotAccSat, ResultType, ResultId, Vector1, Vector2, Accumulator, ..PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value]];
+        Span<int> instruction = [(int)Op.OpUDotAccSat, ResultType, ResultId, Vector1, Vector2, Accumulator, ..(PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -46744,7 +46648,7 @@ public struct OpSUDotAccSat : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSUDotAccSat, ResultType, ResultId, Vector1, Vector2, Accumulator, ..PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value]];
+        Span<int> instruction = [(int)Op.OpSUDotAccSat, ResultType, ResultId, Vector1, Vector2, Accumulator, ..(PackedVectorFormat is null ? (Span<int>)[] : [(int)PackedVectorFormat.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -47001,7 +46905,7 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? MemoryOperand
+    public ParameterizedFlag<MemoryAccessMask>? MemoryOperand
     {
         get;
         set
@@ -47035,7 +46939,7 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpCooperativeMatrixLoadKHR(int resultType, int resultId, int pointer, int memoryLayout, int? stride, MemoryAccessMask? memoryOperand)
+    public OpCooperativeMatrixLoadKHR(int resultType, int resultId, int pointer, int memoryLayout, int? stride, ParameterizedFlag<MemoryAccessMask>? memoryOperand)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -47050,7 +46954,7 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixLoadKHR, ResultType, ResultId, Pointer, MemoryLayout, ..Stride is null ? (Span<int>)[] : [Stride.Value], ..MemoryOperand is null ? (Span<int>)[] : [(int)MemoryOperand.Value]];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixLoadKHR, ResultType, ResultId, Pointer, MemoryLayout, ..(Stride is null ? (Span<int>)[] : [Stride.Value]), ..(MemoryOperand is null ? (Span<int>)[] : [(int)MemoryOperand.Value.Value, ..MemoryOperand.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -47142,7 +47046,7 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? MemoryOperand
+    public ParameterizedFlag<MemoryAccessMask>? MemoryOperand
     {
         get;
         set
@@ -47174,7 +47078,7 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpCooperativeMatrixStoreKHR(int pointer, int objectId, int memoryLayout, int? stride, MemoryAccessMask? memoryOperand)
+    public OpCooperativeMatrixStoreKHR(int pointer, int objectId, int memoryLayout, int? stride, ParameterizedFlag<MemoryAccessMask>? memoryOperand)
     {
         Pointer = pointer;
         ObjectId = objectId;
@@ -47188,7 +47092,7 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixStoreKHR, Pointer, ObjectId, MemoryLayout, ..Stride is null ? (Span<int>)[] : [Stride.Value], ..MemoryOperand is null ? (Span<int>)[] : [(int)MemoryOperand.Value]];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixStoreKHR, Pointer, ObjectId, MemoryLayout, ..(Stride is null ? (Span<int>)[] : [Stride.Value]), ..(MemoryOperand is null ? (Span<int>)[] : [(int)MemoryOperand.Value.Value, ..MemoryOperand.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -47341,7 +47245,7 @@ public struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixMulAddKHR, ResultType, ResultId, A, B, C, ..CooperativeMatrixOperands is null ? (Span<int>)[] : [(int)CooperativeMatrixOperands.Value]];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixMulAddKHR, ResultType, ResultId, A, B, C, ..(CooperativeMatrixOperands is null ? (Span<int>)[] : [(int)CooperativeMatrixOperands.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -56603,7 +56507,7 @@ public struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpReorderThreadWithHitObjectNV, HitObject, ..Hint is null ? (Span<int>)[] : [Hint.Value], ..Bits is null ? (Span<int>)[] : [Bits.Value]];
+        Span<int> instruction = [(int)Op.OpReorderThreadWithHitObjectNV, HitObject, ..(Hint is null ? (Span<int>)[] : [Hint.Value]), ..(Bits is null ? (Span<int>)[] : [Bits.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -56895,7 +56799,7 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
         }
     }
 
-    public ImageOperandsMask? Imageoperands
+    public ParameterizedFlag<ImageOperandsMask>? Imageoperands
     {
         get;
         set
@@ -56930,7 +56834,7 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpImageSampleFootprintNV(int resultType, int resultId, int sampledImage, int coordinate, int granularity, int coarse, ImageOperandsMask? imageoperands)
+    public OpImageSampleFootprintNV(int resultType, int resultId, int sampledImage, int coordinate, int granularity, int coarse, ParameterizedFlag<ImageOperandsMask>? imageoperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -56946,7 +56850,7 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpImageSampleFootprintNV, ResultType, ResultId, SampledImage, Coordinate, Granularity, Coarse, ..Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value]];
+        Span<int> instruction = [(int)Op.OpImageSampleFootprintNV, ResultType, ResultId, SampledImage, Coordinate, Granularity, Coarse, ..(Imageoperands is null ? (Span<int>)[] : [(int)Imageoperands.Value.Value, ..Imageoperands.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -57179,7 +57083,7 @@ public struct OpEmitMeshTasksEXT : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpEmitMeshTasksEXT, GroupCountX, GroupCountY, GroupCountZ, ..Payload is null ? (Span<int>)[] : [Payload.Value]];
+        Span<int> instruction = [(int)Op.OpEmitMeshTasksEXT, GroupCountX, GroupCountY, GroupCountZ, ..(Payload is null ? (Span<int>)[] : [Payload.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -59252,7 +59156,7 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? Memoryaccess
+    public ParameterizedFlag<MemoryAccessMask>? Memoryaccess
     {
         get;
         set
@@ -59285,7 +59189,7 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpCooperativeMatrixLoadNV(int resultType, int resultId, int pointer, int stride, int columnMajor, MemoryAccessMask? memoryaccess)
+    public OpCooperativeMatrixLoadNV(int resultType, int resultId, int pointer, int stride, int columnMajor, ParameterizedFlag<MemoryAccessMask>? memoryaccess)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -59300,7 +59204,7 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixLoadNV, ResultType, ResultId, Pointer, Stride, ColumnMajor, ..Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value]];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixLoadNV, ResultType, ResultId, Pointer, Stride, ColumnMajor, ..(Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value.Value, ..Memoryaccess.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -59392,7 +59296,7 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? Memoryaccess
+    public ParameterizedFlag<MemoryAccessMask>? Memoryaccess
     {
         get;
         set
@@ -59423,7 +59327,7 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpCooperativeMatrixStoreNV(int pointer, int objectId, int stride, int columnMajor, MemoryAccessMask? memoryaccess)
+    public OpCooperativeMatrixStoreNV(int pointer, int objectId, int stride, int columnMajor, ParameterizedFlag<MemoryAccessMask>? memoryaccess)
     {
         Pointer = pointer;
         ObjectId = objectId;
@@ -59437,7 +59341,7 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixStoreNV, Pointer, ObjectId, Stride, ColumnMajor, ..Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value]];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixStoreNV, Pointer, ObjectId, Stride, ColumnMajor, ..(Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value.Value, ..Memoryaccess.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -60016,7 +59920,7 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask MemoryOperand
+    public ParameterizedFlag<MemoryAccessMask> MemoryOperand
     {
         get;
         set
@@ -60027,7 +59931,7 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         }
     }
 
-    public TensorAddressingOperandsMask TensorAddressingOperands
+    public ParameterizedFlag<TensorAddressingOperandsMask> TensorAddressingOperands
     {
         get;
         set
@@ -60061,7 +59965,7 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpCooperativeMatrixLoadTensorNV(int resultType, int resultId, int pointer, int objectId, int tensorLayout, MemoryAccessMask memoryOperand, TensorAddressingOperandsMask tensorAddressingOperands)
+    public OpCooperativeMatrixLoadTensorNV(int resultType, int resultId, int pointer, int objectId, int tensorLayout, ParameterizedFlag<MemoryAccessMask> memoryOperand, ParameterizedFlag<TensorAddressingOperandsMask> tensorAddressingOperands)
     {
         ResultType = resultType;
         ResultId = resultId;
@@ -60077,7 +59981,7 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixLoadTensorNV, ResultType, ResultId, Pointer, ObjectId, TensorLayout, (int)MemoryOperand, (int)TensorAddressingOperands];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixLoadTensorNV, ResultType, ResultId, Pointer, ObjectId, TensorLayout, ..(Span<int>)[(int)MemoryOperand.Value, ..MemoryOperand.Span], ..(Span<int>)[(int)TensorAddressingOperands.Value, ..TensorAddressingOperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -60158,7 +60062,7 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask MemoryOperand
+    public ParameterizedFlag<MemoryAccessMask> MemoryOperand
     {
         get;
         set
@@ -60169,7 +60073,7 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         }
     }
 
-    public TensorAddressingOperandsMask TensorAddressingOperands
+    public ParameterizedFlag<TensorAddressingOperandsMask> TensorAddressingOperands
     {
         get;
         set
@@ -60199,7 +60103,7 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpCooperativeMatrixStoreTensorNV(int pointer, int objectId, int tensorLayout, MemoryAccessMask memoryOperand, TensorAddressingOperandsMask tensorAddressingOperands)
+    public OpCooperativeMatrixStoreTensorNV(int pointer, int objectId, int tensorLayout, ParameterizedFlag<MemoryAccessMask> memoryOperand, ParameterizedFlag<TensorAddressingOperandsMask> tensorAddressingOperands)
     {
         Pointer = pointer;
         ObjectId = objectId;
@@ -60213,7 +60117,7 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpCooperativeMatrixStoreTensorNV, Pointer, ObjectId, TensorLayout, (int)MemoryOperand, (int)TensorAddressingOperands];
+        Span<int> instruction = [(int)Op.OpCooperativeMatrixStoreTensorNV, Pointer, ObjectId, TensorLayout, ..(Span<int>)[(int)MemoryOperand.Value, ..MemoryOperand.Span], ..(Span<int>)[(int)TensorAddressingOperands.Value, ..TensorAddressingOperands.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -62968,7 +62872,7 @@ public struct OpRawAccessChainNV : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpRawAccessChainNV, ResultType, ResultId, BaseId, Bytestride, Elementindex, Byteoffset, ..Rawaccesschainoperands is null ? (Span<int>)[] : [(int)Rawaccesschainoperands.Value]];
+        Span<int> instruction = [(int)Op.OpRawAccessChainNV, ResultType, ResultId, BaseId, Bytestride, Elementindex, Byteoffset, ..(Rawaccesschainoperands is null ? (Span<int>)[] : [(int)Rawaccesschainoperands.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -67080,6 +66984,12 @@ public struct OpDecorateString : IMemoryInstruction
         }
     }
 
+    public OpDecorateString()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpDecorateString | (1 << 16);
+    }
+
     public int Target
     {
         get;
@@ -67091,18 +67001,7 @@ public struct OpDecorateString : IMemoryInstruction
         }
     }
 
-    public Decoration Decoration
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public string? AdditionalString
+    public ParameterizedFlag<Decoration> Decoration
     {
         get;
         set
@@ -67121,18 +67020,15 @@ public struct OpDecorateString : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "additionalString")
-                AdditionalString = o.ToLiteral<string?>();
         }
 
         DataIndex = index;
     }
 
-    public OpDecorateString(int target, Decoration decoration, string? additionalString = null)
+    public OpDecorateString(int target, ParameterizedFlag<Decoration> decoration)
     {
         Target = target;
         Decoration = decoration;
-        AdditionalString = additionalString;
         UpdateInstructionMemory();
     }
 
@@ -67140,7 +67036,7 @@ public struct OpDecorateString : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpDecorateString, Target, (int)Decoration, ..AdditionalString is null ? (Span<int>)[] : AdditionalString.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpDecorateString, Target, ..(Span<int>)[(int)Decoration.Value, ..Decoration.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -67182,6 +67078,12 @@ public struct OpMemberDecorateString : IMemoryInstruction
         }
     }
 
+    public OpMemberDecorateString()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpMemberDecorateString | (1 << 16);
+    }
+
     public int StructType
     {
         get;
@@ -67204,18 +67106,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
         }
     }
 
-    public Decoration Decoration
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
-    public string? AdditionalString
+    public ParameterizedFlag<Decoration> Decoration
     {
         get;
         set
@@ -67236,19 +67127,16 @@ public struct OpMemberDecorateString : IMemoryInstruction
                 Member = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "additionalString")
-                AdditionalString = o.ToLiteral<string?>();
         }
 
         DataIndex = index;
     }
 
-    public OpMemberDecorateString(int structType, int member, Decoration decoration, string? additionalString = null)
+    public OpMemberDecorateString(int structType, int member, ParameterizedFlag<Decoration> decoration)
     {
         StructType = structType;
         Member = member;
         Decoration = decoration;
-        AdditionalString = additionalString;
         UpdateInstructionMemory();
     }
 
@@ -67256,7 +67144,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpMemberDecorateString, StructType, ..Member.AsDisposableLiteralValue().Words, (int)Decoration, ..AdditionalString is null ? (Span<int>)[] : AdditionalString.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpMemberDecorateString, StructType, ..Member.AsDisposableLiteralValue().Words, ..(Span<int>)[(int)Decoration.Value, ..Decoration.Span]];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -89591,7 +89479,7 @@ public struct OpAliasDomainDeclINTEL : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpAliasDomainDeclINTEL, ResultId, ..Name is null ? (Span<int>)[] : [Name.Value]];
+        Span<int> instruction = [(int)Op.OpAliasDomainDeclINTEL, ResultId, ..(Name is null ? (Span<int>)[] : [Name.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -89702,7 +89590,7 @@ public struct OpAliasScopeDeclINTEL : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpAliasScopeDeclINTEL, ResultId, AliasDomain, ..Name is null ? (Span<int>)[] : [Name.Value]];
+        Span<int> instruction = [(int)Op.OpAliasScopeDeclINTEL, ResultId, AliasDomain, ..(Name is null ? (Span<int>)[] : [Name.Value])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -95776,7 +95664,7 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
         }
     }
 
-    public MemoryAccessMask? Memoryaccess
+    public ParameterizedFlag<MemoryAccessMask>? Memoryaccess
     {
         get;
         set
@@ -95803,7 +95691,7 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpSubgroupBlockPrefetchINTEL(int ptr, int numBytes, MemoryAccessMask? memoryaccess)
+    public OpSubgroupBlockPrefetchINTEL(int ptr, int numBytes, ParameterizedFlag<MemoryAccessMask>? memoryaccess)
     {
         Ptr = ptr;
         NumBytes = numBytes;
@@ -95815,7 +95703,7 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSubgroupBlockPrefetchINTEL, Ptr, NumBytes, ..Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value]];
+        Span<int> instruction = [(int)Op.OpSubgroupBlockPrefetchINTEL, Ptr, NumBytes, ..(Memoryaccess is null ? (Span<int>)[] : [(int)Memoryaccess.Value.Value, ..Memoryaccess.Value.Span])];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

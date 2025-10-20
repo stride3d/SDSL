@@ -2382,6 +2382,8 @@ public struct OpExtInst : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -2599,6 +2601,8 @@ public struct OpEntryPoint : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -4055,6 +4059,8 @@ public struct OpTypeStruct : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -4370,6 +4376,8 @@ public struct OpTypeFunction : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -5296,6 +5304,8 @@ public struct OpConstantComposite : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -5938,6 +5948,8 @@ public struct OpSpecConstantComposite : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -6435,6 +6447,8 @@ public struct OpFunctionCall : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -7056,6 +7070,8 @@ public struct OpAccessChain : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -7180,6 +7196,8 @@ public struct OpInBoundsAccessChain : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -7317,6 +7335,8 @@ public struct OpPtrAccessChain : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -7689,6 +7709,8 @@ public struct OpInBoundsPtrAccessChain : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -8070,6 +8092,8 @@ public struct OpGroupDecorate : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -8164,6 +8188,8 @@ public struct OpGroupMemberDecorate : IMemoryInstruction
                 Values = o.ToLiteralArray<(int, int)>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -8561,6 +8587,8 @@ public struct OpVectorShuffle : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -8673,6 +8701,8 @@ public struct OpCompositeConstruct : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -8796,6 +8826,8 @@ public struct OpCompositeExtract : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -8933,6 +8965,8 @@ public struct OpCompositeInsert : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -27234,6 +27268,8 @@ public struct OpPhi : IMemoryInstruction
                 Values = o.ToLiteralArray<(int, int)>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -27719,6 +27755,8 @@ public struct OpBranchConditional : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -27828,6 +27866,8 @@ public struct OpSwitch : IMemoryInstruction
                 Values = o.ToLiteralArray<(int, int)>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -32600,6 +32640,8 @@ public struct OpEnqueueKernel : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -43559,6 +43601,8 @@ public struct OpUntypedAccessChainKHR : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -43697,6 +43741,8 @@ public struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -44068,6 +44114,8 @@ public struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -44220,6 +44268,8 @@ public struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -45243,6 +45293,8 @@ public struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -60238,6 +60290,8 @@ public struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -60473,6 +60527,8 @@ public struct OpTypeTensorViewNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -60693,6 +60749,8 @@ public struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -60817,6 +60875,8 @@ public struct OpTensorLayoutSetStrideNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -60941,6 +61001,8 @@ public struct OpTensorLayoutSliceNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -61285,6 +61347,8 @@ public struct OpTensorViewSetDimensionNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -61409,6 +61473,8 @@ public struct OpTensorViewSetStrideNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -61839,6 +61905,8 @@ public struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -66033,6 +66101,8 @@ public struct OpFunctionPointerCallINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -66418,6 +66488,8 @@ public struct OpAsmCallINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -89369,6 +89441,8 @@ public struct OpLoopControlINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -89672,6 +89746,8 @@ public struct OpAliasScopeListDeclINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -94765,6 +94841,8 @@ public struct OpTypeStructContinuedINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -94845,6 +94923,8 @@ public struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -94925,6 +95005,8 @@ public struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
@@ -95033,6 +95115,8 @@ public struct OpCompositeConstructContinuedINTEL : IMemoryInstruction
                 Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 

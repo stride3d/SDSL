@@ -1,7 +1,6 @@
 ﻿using static Stride.Shaders.Spirv.Specification;
 
 namespace Stride.Shaders.Spirv.Core;
-
 public enum OperandKind
 {
     None,
@@ -74,4 +73,70 @@ public enum OperandKind
     PairLiteralIntegerIdRef,
     PairIdRefLiteralInteger,
     PairIdRefIdRef,
+}
+
+public static class OperandKindExtensions
+{
+    public static string? ToEnumValueString(this int value, OperandKind kind)
+    {
+        return kind switch
+        {
+            OperandKind.FunctionFlags => ((FunctionFlagsMask)value).ToString(),
+            OperandKind.ImportType => ((ImportType)value).ToString(),
+            OperandKind.ExecutionModel => ((ExecutionModel)value).ToString(),
+            OperandKind.ImageOperands => ((ImageOperandsMask)value).ToString(),
+            OperandKind.FPFastMathMode => ((FPFastMathModeMask)value).ToString(),
+            OperandKind.SelectionControl => ((SelectionControlMask)value).ToString(),
+            OperandKind.LoopControl => ((LoopControlMask)value).ToString(),
+            OperandKind.FunctionControl => ((FunctionControlMask)value).ToString(),
+            OperandKind.MemorySemantics => ((MemorySemanticsMask)value).ToString(),
+            OperandKind.MemoryAccess => ((MemoryAccessMask)value).ToString(),
+            OperandKind.KernelProfilingInfo => ((KernelProfilingInfoMask)value).ToString(),
+            OperandKind.RayFlags => ((RayFlagsMask)value).ToString(),
+            OperandKind.FragmentShadingRate => ((FragmentShadingRateMask)value).ToString(),
+            OperandKind.RawAccessChainOperands => ((RawAccessChainOperandsMask)value).ToString(),
+            OperandKind.SourceLanguage => ((SourceLanguage)value).ToString(),
+            OperandKind.AddressingModel => ((AddressingModel)value).ToString(),
+            OperandKind.MemoryModel => ((MemoryModel)value).ToString(),
+            OperandKind.ExecutionMode => ((ExecutionMode)value).ToString(),
+            OperandKind.StorageClass => ((StorageClass)value).ToString(),
+            OperandKind.Dim => ((Dim)value).ToString(),
+            OperandKind.SamplerAddressingMode => ((SamplerAddressingMode)value).ToString(),
+            OperandKind.SamplerFilterMode => ((SamplerFilterMode)value).ToString(),
+            OperandKind.ImageFormat => ((ImageFormat)value).ToString(),
+            OperandKind.ImageChannelOrder => ((ImageChannelOrder)value).ToString(),
+            OperandKind.ImageChannelDataType => ((ImageChannelDataType)value).ToString(),
+            OperandKind.FPRoundingMode => ((FPRoundingMode)value).ToString(),
+            OperandKind.FPDenormMode => ((FPDenormMode)value).ToString(),
+            OperandKind.QuantizationModes => ((QuantizationModes)value).ToString(),
+            OperandKind.FPOperationMode => ((FPOperationMode)value).ToString(),
+            OperandKind.OverflowModes => ((OverflowModes)value).ToString(),
+            OperandKind.LinkageType => ((LinkageType)value).ToString(),
+            OperandKind.AccessQualifier => ((AccessQualifier)value).ToString(),
+            OperandKind.HostAccessQualifier => ((HostAccessQualifier)value).ToString(),
+            OperandKind.FunctionParameterAttribute => ((FunctionParameterAttribute)value).ToString(),
+            OperandKind.Decoration => ((Decoration)value).ToString(),
+            OperandKind.BuiltIn => ((BuiltIn)value).ToString(),
+            OperandKind.Scope => ((Scope)value).ToString(),
+            OperandKind.GroupOperation => ((GroupOperation)value).ToString(),
+            OperandKind.KernelEnqueueFlags => ((KernelEnqueueFlags)value).ToString(),
+            OperandKind.Capability => ((Capability)value).ToString(),
+            OperandKind.RayQueryIntersection => ((RayQueryIntersection)value).ToString(),
+            OperandKind.RayQueryCommittedIntersectionType => ((RayQueryCommittedIntersectionType)value).ToString(),
+            OperandKind.RayQueryCandidateIntersectionType => ((RayQueryCandidateIntersectionType)value).ToString(),
+            OperandKind.PackedVectorFormat => ((PackedVectorFormat)value).ToString(),
+            OperandKind.CooperativeMatrixOperands => ((CooperativeMatrixOperandsMask)value).ToString(),
+            OperandKind.CooperativeMatrixLayout => ((CooperativeMatrixLayout)value).ToString(),
+            OperandKind.CooperativeMatrixUse => ((CooperativeMatrixUse)value).ToString(),
+            OperandKind.CooperativeMatrixReduce => ((CooperativeMatrixReduceMask)value).ToString(),
+            OperandKind.TensorClampMode => ((TensorClampMode)value).ToString(),
+            OperandKind.TensorAddressingOperands => ((TensorAddressingOperandsMask)value).ToString(),
+            OperandKind.InitializationModeQualifier => ((InitializationModeQualifier)value).ToString(),
+            OperandKind.LoadCacheControl => ((LoadCacheControl)value).ToString(),
+            OperandKind.StoreCacheControl => ((StoreCacheControl)value).ToString(),
+            OperandKind.NamedMaximumNumberOfRegisters => ((NamedMaximumNumberOfRegisters)value).ToString(),
+            OperandKind.FPEncoding => ((FPEncoding)value).ToString(),
+            _ => null
+        };
+    }
 }

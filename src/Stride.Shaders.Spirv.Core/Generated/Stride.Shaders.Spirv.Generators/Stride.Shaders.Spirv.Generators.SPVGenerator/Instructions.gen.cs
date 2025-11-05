@@ -1576,11 +1576,15 @@ public struct OpSource : IMemoryInstruction
             else if (o.Name == "version")
                 Version = o.ToLiteral<int>();
             else if (o.Name == "file")
+            {
                 if (o.Words.Length > 0)
                     File = o.ToLiteral<int?>();
-                else if (o.Name == "source")
-                    if (o.Words.Length > 0)
-                        Source = o.ToLiteral<string?>();
+            }
+            else if (o.Name == "source")
+            {
+                if (o.Words.Length > 0)
+                    Source = o.ToLiteral<string?>();
+            }
         }
 
         DataIndex = index;
@@ -3159,8 +3163,10 @@ public struct OpTypeFloat : IMemoryInstruction
             else if (o.Name == "width")
                 Width = o.ToLiteral<int>();
             else if (o.Name == "floatingPointEncoding")
+            {
                 if (o.Words.Length > 0)
                     FloatingPointEncoding = o.ToEnum<FPEncoding>();
+            }
         }
 
         DataIndex = index;
@@ -3568,8 +3574,10 @@ public struct OpTypeImage : IMemoryInstruction
             else if (o.Name == "imageformat")
                 Imageformat = o.ToEnum<ImageFormat>();
             else if (o.Name == "accessqualifier")
+            {
                 if (o.Words.Length > 0)
                     Accessqualifier = o.ToEnum<AccessQualifier>();
+            }
         }
 
         DataIndex = index;
@@ -6570,8 +6578,10 @@ public struct OpVariable : IMemoryInstruction
             else if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
             else if (o.Name == "initializer")
+            {
                 if (o.Words.Length > 0)
                     Initializer = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -6833,8 +6843,10 @@ public struct OpLoad : IMemoryInstruction
             else if (o.Name == "pointer")
                 Pointer = o.ToLiteral<int>();
             else if (o.Name == "memoryaccess")
+            {
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;
@@ -6943,8 +6955,10 @@ public struct OpStore : IMemoryInstruction
             else if (o.Name == "objectId")
                 ObjectId = o.ToLiteral<int>();
             else if (o.Name == "memoryaccess")
+            {
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;
@@ -9446,8 +9460,10 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -9736,8 +9752,10 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
             else if (o.Name == "dref")
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -10028,8 +10046,10 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -10318,8 +10338,10 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
             else if (o.Name == "dref")
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -10610,8 +10632,10 @@ public struct OpImageFetch : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -10762,8 +10786,10 @@ public struct OpImageGather : IMemoryInstruction
             else if (o.Name == "component")
                 Component = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -10915,8 +10941,10 @@ public struct OpImageDrefGather : IMemoryInstruction
             else if (o.Name == "dref")
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -11055,8 +11083,10 @@ public struct OpImageRead : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -11179,8 +11209,10 @@ public struct OpImageWrite : IMemoryInstruction
             else if (o.Name == "texel")
                 Texel = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -34223,8 +34255,10 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -34513,8 +34547,10 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
             else if (o.Name == "dref")
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -34805,8 +34841,10 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -35095,8 +35133,10 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
             else if (o.Name == "dref")
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -35387,8 +35427,10 @@ public struct OpImageSparseFetch : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -35539,8 +35581,10 @@ public struct OpImageSparseGather : IMemoryInstruction
             else if (o.Name == "component")
                 Component = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -35692,8 +35736,10 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
             else if (o.Name == "dref")
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -36232,8 +36278,10 @@ public struct OpImageSparseRead : IMemoryInstruction
             else if (o.Name == "coordinate")
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -39778,8 +39826,10 @@ public struct OpGroupNonUniformIAdd : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -39931,8 +39981,10 @@ public struct OpGroupNonUniformFAdd : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -40084,8 +40136,10 @@ public struct OpGroupNonUniformIMul : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -40237,8 +40291,10 @@ public struct OpGroupNonUniformFMul : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -40390,8 +40446,10 @@ public struct OpGroupNonUniformSMin : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -40543,8 +40601,10 @@ public struct OpGroupNonUniformUMin : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -40696,8 +40756,10 @@ public struct OpGroupNonUniformFMin : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -40849,8 +40911,10 @@ public struct OpGroupNonUniformSMax : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41002,8 +41066,10 @@ public struct OpGroupNonUniformUMax : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41155,8 +41221,10 @@ public struct OpGroupNonUniformFMax : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41308,8 +41376,10 @@ public struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41461,8 +41531,10 @@ public struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41614,8 +41686,10 @@ public struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41767,8 +41841,10 @@ public struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -41920,8 +41996,10 @@ public struct OpGroupNonUniformLogicalOr : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -42073,8 +42151,10 @@ public struct OpGroupNonUniformLogicalXor : IMemoryInstruction
             else if (o.Name == "value")
                 Value = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -42958,8 +43038,10 @@ public struct OpColorAttachmentReadEXT : IMemoryInstruction
             else if (o.Name == "attachment")
                 Attachment = o.ToLiteral<int>();
             else if (o.Name == "sample")
+            {
                 if (o.Words.Length > 0)
                     Sample = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -43070,8 +43152,10 @@ public struct OpDepthAttachmentReadEXT : IMemoryInstruction
             else if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
             else if (o.Name == "sample")
+            {
                 if (o.Words.Length > 0)
                     Sample = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -43181,8 +43265,10 @@ public struct OpStencilAttachmentReadEXT : IMemoryInstruction
             else if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
             else if (o.Name == "sample")
+            {
                 if (o.Words.Length > 0)
                     Sample = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -43456,11 +43542,15 @@ public struct OpUntypedVariableKHR : IMemoryInstruction
             else if (o.Name == "storageclass")
                 Storageclass = o.ToEnum<StorageClass>();
             else if (o.Name == "dataType")
+            {
                 if (o.Words.Length > 0)
                     DataType = o.ToLiteral<int?>();
-                else if (o.Name == "initializer")
-                    if (o.Words.Length > 0)
-                        Initializer = o.ToLiteral<int?>();
+            }
+            else if (o.Name == "initializer")
+            {
+                if (o.Words.Length > 0)
+                    Initializer = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -44538,14 +44628,20 @@ public struct OpUntypedPrefetchKHR : IMemoryInstruction
             else if (o.Name == "numBytes")
                 NumBytes = o.ToLiteral<int>();
             else if (o.Name == "rW")
+            {
                 if (o.Words.Length > 0)
                     RW = o.ToLiteral<int?>();
-                else if (o.Name == "locality")
-                    if (o.Words.Length > 0)
-                        Locality = o.ToLiteral<int?>();
-                    else if (o.Name == "cacheType")
-                        if (o.Words.Length > 0)
-                            CacheType = o.ToLiteral<int?>();
+            }
+            else if (o.Name == "locality")
+            {
+                if (o.Words.Length > 0)
+                    Locality = o.ToLiteral<int?>();
+            }
+            else if (o.Name == "cacheType")
+            {
+                if (o.Words.Length > 0)
+                    CacheType = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -45026,8 +45122,10 @@ public struct OpGroupNonUniformRotateKHR : IMemoryInstruction
             else if (o.Name == "delta")
                 Delta = o.ToLiteral<int>();
             else if (o.Name == "clusterSize")
+            {
                 if (o.Words.Length > 0)
                     ClusterSize = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -45942,8 +46040,10 @@ public struct OpSDot : IMemoryInstruction
             else if (o.Name == "vector2")
                 Vector2 = o.ToLiteral<int>();
             else if (o.Name == "packedVectorFormat")
+            {
                 if (o.Words.Length > 0)
                     PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
+            }
         }
 
         DataIndex = index;
@@ -46081,8 +46181,10 @@ public struct OpUDot : IMemoryInstruction
             else if (o.Name == "vector2")
                 Vector2 = o.ToLiteral<int>();
             else if (o.Name == "packedVectorFormat")
+            {
                 if (o.Words.Length > 0)
                     PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
+            }
         }
 
         DataIndex = index;
@@ -46220,8 +46322,10 @@ public struct OpSUDot : IMemoryInstruction
             else if (o.Name == "vector2")
                 Vector2 = o.ToLiteral<int>();
             else if (o.Name == "packedVectorFormat")
+            {
                 if (o.Words.Length > 0)
                     PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
+            }
         }
 
         DataIndex = index;
@@ -46372,8 +46476,10 @@ public struct OpSDotAccSat : IMemoryInstruction
             else if (o.Name == "accumulator")
                 Accumulator = o.ToLiteral<int>();
             else if (o.Name == "packedVectorFormat")
+            {
                 if (o.Words.Length > 0)
                     PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
+            }
         }
 
         DataIndex = index;
@@ -46525,8 +46631,10 @@ public struct OpUDotAccSat : IMemoryInstruction
             else if (o.Name == "accumulator")
                 Accumulator = o.ToLiteral<int>();
             else if (o.Name == "packedVectorFormat")
+            {
                 if (o.Words.Length > 0)
                     PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
+            }
         }
 
         DataIndex = index;
@@ -46678,8 +46786,10 @@ public struct OpSUDotAccSat : IMemoryInstruction
             else if (o.Name == "accumulator")
                 Accumulator = o.ToLiteral<int>();
             else if (o.Name == "packedVectorFormat")
+            {
                 if (o.Words.Length > 0)
                     PackedVectorFormat = o.ToEnum<PackedVectorFormat>();
+            }
         }
 
         DataIndex = index;
@@ -46981,11 +47091,15 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
             else if (o.Name == "memoryLayout")
                 MemoryLayout = o.ToLiteral<int>();
             else if (o.Name == "stride")
+            {
                 if (o.Words.Length > 0)
                     Stride = o.ToLiteral<int?>();
-                else if (o.Name == "memoryOperand")
-                    if (o.Words.Length > 0)
-                        MemoryOperand = o.ToEnum<MemoryAccessMask>();
+            }
+            else if (o.Name == "memoryOperand")
+            {
+                if (o.Words.Length > 0)
+                    MemoryOperand = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;
@@ -47120,11 +47234,15 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
             else if (o.Name == "memoryLayout")
                 MemoryLayout = o.ToLiteral<int>();
             else if (o.Name == "stride")
+            {
                 if (o.Words.Length > 0)
                     Stride = o.ToLiteral<int?>();
-                else if (o.Name == "memoryOperand")
-                    if (o.Words.Length > 0)
-                        MemoryOperand = o.ToEnum<MemoryAccessMask>();
+            }
+            else if (o.Name == "memoryOperand")
+            {
+                if (o.Words.Length > 0)
+                    MemoryOperand = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;
@@ -47275,8 +47393,10 @@ public struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
             else if (o.Name == "c")
                 C = o.ToLiteral<int>();
             else if (o.Name == "cooperativeMatrixOperands")
+            {
                 if (o.Words.Length > 0)
                     CooperativeMatrixOperands = o.ToEnum<CooperativeMatrixOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -56537,11 +56657,15 @@ public struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
             if (o.Name == "hitObject")
                 HitObject = o.ToLiteral<int>();
             else if (o.Name == "hint")
+            {
                 if (o.Words.Length > 0)
                     Hint = o.ToLiteral<int?>();
-                else if (o.Name == "bits")
-                    if (o.Words.Length > 0)
-                        Bits = o.ToLiteral<int?>();
+            }
+            else if (o.Name == "bits")
+            {
+                if (o.Words.Length > 0)
+                    Bits = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -56879,8 +57003,10 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
             else if (o.Name == "coarse")
                 Coarse = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
+            {
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -57115,8 +57241,10 @@ public struct OpEmitMeshTasksEXT : IMemoryInstruction
             else if (o.Name == "groupCountZ")
                 GroupCountZ = o.ToLiteral<int>();
             else if (o.Name == "payload")
+            {
                 if (o.Words.Length > 0)
                     Payload = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -59234,8 +59362,10 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
             else if (o.Name == "columnMajor")
                 ColumnMajor = o.ToLiteral<int>();
             else if (o.Name == "memoryaccess")
+            {
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;
@@ -59372,8 +59502,10 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
             else if (o.Name == "columnMajor")
                 ColumnMajor = o.ToLiteral<int>();
             else if (o.Name == "memoryaccess")
+            {
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;
@@ -62917,8 +63049,10 @@ public struct OpRawAccessChainNV : IMemoryInstruction
             else if (o.Name == "byteoffset")
                 Byteoffset = o.ToLiteral<int>();
             else if (o.Name == "rawaccesschainoperands")
+            {
                 if (o.Words.Length > 0)
                     Rawaccesschainoperands = o.ToEnum<RawAccessChainOperandsMask>();
+            }
         }
 
         DataIndex = index;
@@ -89535,8 +89669,10 @@ public struct OpAliasDomainDeclINTEL : IMemoryInstruction
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
             else if (o.Name == "name")
+            {
                 if (o.Words.Length > 0)
                     Name = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -89645,8 +89781,10 @@ public struct OpAliasScopeDeclINTEL : IMemoryInstruction
             else if (o.Name == "aliasDomain")
                 AliasDomain = o.ToLiteral<int>();
             else if (o.Name == "name")
+            {
                 if (o.Words.Length > 0)
                     Name = o.ToLiteral<int?>();
+            }
         }
 
         DataIndex = index;
@@ -95768,8 +95906,10 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
             else if (o.Name == "numBytes")
                 NumBytes = o.ToLiteral<int>();
             else if (o.Name == "memoryaccess")
+            {
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
+            }
         }
 
         DataIndex = index;

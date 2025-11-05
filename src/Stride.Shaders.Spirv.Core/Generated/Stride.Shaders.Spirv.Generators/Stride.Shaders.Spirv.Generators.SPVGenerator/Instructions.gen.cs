@@ -2701,6 +2701,8 @@ public struct OpExecutionMode : IMemoryInstruction
                 EntryPoint = o.ToLiteral<int>();
             else if (o.Name == "mode")
                 Mode = o.ToEnum<ExecutionMode>();
+            else if (o.Name == "numberofInvocationinvocations" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "vertexcount" || o.Name == "vectortype" || o.Name == "subgroupSize" || o.Name == "subgroupsPerWorkgroup" || o.Name == "subgroupsPerWorkgroup" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "xsizehint" || o.Name == "ysizehint" || o.Name == "zsizehint" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "isEntry" || o.Name == "numberofrecursions" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "shaderIndex" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "nodeName" || o.Name == "shaderIndex" || o.Name == "primitivecount" || o.Name == "size" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "maxxsize" || o.Name == "maxysize" || o.Name == "maxzsize" || o.Name == "maxdimensions" || o.Name == "vectorwidth" || o.Name == "targetfmax" || o.Name == "targetType" || o.Name == "fastMathMode" || o.Name == "stallFreeReturn" || o.Name == "waitForDoneWrite" || o.Name == "barrierCount" || o.Name == "numberofRegisters" || o.Name == "numberofRegisters" || o.Name == "namedMaximumNumberofRegisters")
+                Mode = new(Mode.Value, o.Words);
         }
 
         DataIndex = index;
@@ -6847,6 +6849,8 @@ public struct OpLoad : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                Memoryaccess = new(Memoryaccess.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -6959,6 +6963,8 @@ public struct OpStore : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                Memoryaccess = new(Memoryaccess.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -7820,6 +7826,8 @@ public struct OpDecorate : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
+            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+                Decoration = new(Decoration.Value, o.Words);
         }
 
         DataIndex = index;
@@ -7927,6 +7935,8 @@ public struct OpMemberDecorate : IMemoryInstruction
                 Member = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
+            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+                Decoration = new(Decoration.Value, o.Words);
         }
 
         DataIndex = index;
@@ -9464,6 +9474,8 @@ public struct OpImageSampleImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -9602,6 +9614,8 @@ public struct OpImageSampleExplicitLod : IMemoryInstruction
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -9756,6 +9770,8 @@ public struct OpImageSampleDrefImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -9908,6 +9924,8 @@ public struct OpImageSampleDrefExplicitLod : IMemoryInstruction
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10050,6 +10068,8 @@ public struct OpImageSampleProjImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10188,6 +10208,8 @@ public struct OpImageSampleProjExplicitLod : IMemoryInstruction
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10342,6 +10364,8 @@ public struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10494,6 +10518,8 @@ public struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10636,6 +10662,8 @@ public struct OpImageFetch : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10790,6 +10818,8 @@ public struct OpImageGather : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -10945,6 +10975,8 @@ public struct OpImageDrefGather : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -11087,6 +11119,8 @@ public struct OpImageRead : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -11213,6 +11247,8 @@ public struct OpImageWrite : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -27408,6 +27444,8 @@ public struct OpLoopMerge : IMemoryInstruction
                 ContinueTarget = o.ToLiteral<int>();
             else if (o.Name == "loopcontrol")
                 Loopcontrol = o.ToEnum<LoopControlMask>();
+            else if (o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0" || o.Name == "literalinteger0")
+                Loopcontrol = new(Loopcontrol.Value, o.Words);
         }
 
         DataIndex = index;
@@ -34259,6 +34297,8 @@ public struct OpImageSparseSampleImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -34397,6 +34437,8 @@ public struct OpImageSparseSampleExplicitLod : IMemoryInstruction
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -34551,6 +34593,8 @@ public struct OpImageSparseSampleDrefImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -34703,6 +34747,8 @@ public struct OpImageSparseSampleDrefExplicitLod : IMemoryInstruction
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -34845,6 +34891,8 @@ public struct OpImageSparseSampleProjImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -34983,6 +35031,8 @@ public struct OpImageSparseSampleProjExplicitLod : IMemoryInstruction
                 Coordinate = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -35137,6 +35187,8 @@ public struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -35289,6 +35341,8 @@ public struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstruction
                 Dref = o.ToLiteral<int>();
             else if (o.Name == "imageoperands")
                 Imageoperands = o.ToEnum<ImageOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -35431,6 +35485,8 @@ public struct OpImageSparseFetch : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -35585,6 +35641,8 @@ public struct OpImageSparseGather : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -35740,6 +35798,8 @@ public struct OpImageSparseDrefGather : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -36282,6 +36342,8 @@ public struct OpImageSparseRead : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -37517,6 +37579,8 @@ public struct OpExecutionModeId : IMemoryInstruction
                 EntryPoint = o.ToLiteral<int>();
             else if (o.Name == "mode")
                 Mode = o.ToEnum<ExecutionMode>();
+            else if (o.Name == "numberofInvocationinvocations" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "vertexcount" || o.Name == "vectortype" || o.Name == "subgroupSize" || o.Name == "subgroupsPerWorkgroup" || o.Name == "subgroupsPerWorkgroup" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "xsizehint" || o.Name == "ysizehint" || o.Name == "zsizehint" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "isEntry" || o.Name == "numberofrecursions" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "shaderIndex" || o.Name == "xsize" || o.Name == "ysize" || o.Name == "zsize" || o.Name == "nodeName" || o.Name == "shaderIndex" || o.Name == "primitivecount" || o.Name == "size" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "targetWidth" || o.Name == "maxxsize" || o.Name == "maxysize" || o.Name == "maxzsize" || o.Name == "maxdimensions" || o.Name == "vectorwidth" || o.Name == "targetfmax" || o.Name == "targetType" || o.Name == "fastMathMode" || o.Name == "stallFreeReturn" || o.Name == "waitForDoneWrite" || o.Name == "barrierCount" || o.Name == "numberofRegisters" || o.Name == "numberofRegisters" || o.Name == "namedMaximumNumberofRegisters")
+                Mode = new(Mode.Value, o.Words);
         }
 
         DataIndex = index;
@@ -37611,6 +37675,8 @@ public struct OpDecorateId : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
+            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+                Decoration = new(Decoration.Value, o.Words);
         }
 
         DataIndex = index;
@@ -47100,6 +47166,8 @@ public struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
                 if (o.Words.Length > 0)
                     MemoryOperand = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                MemoryOperand = new(MemoryOperand.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -47243,6 +47311,8 @@ public struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
                 if (o.Words.Length > 0)
                     MemoryOperand = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                MemoryOperand = new(MemoryOperand.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -57007,6 +57077,8 @@ public struct OpImageSampleFootprintNV : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Imageoperands = o.ToEnum<ImageOperandsMask>();
             }
+            else if (o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef1" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idRef0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0")
+                Imageoperands = new(Imageoperands.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -59366,6 +59438,8 @@ public struct OpCooperativeMatrixLoadNV : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                Memoryaccess = new(Memoryaccess.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -59506,6 +59580,8 @@ public struct OpCooperativeMatrixStoreNV : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                Memoryaccess = new(Memoryaccess.Value.Value, o.Words);
         }
 
         DataIndex = index;
@@ -60142,8 +60218,12 @@ public struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
                 TensorLayout = o.ToLiteral<int>();
             else if (o.Name == "memoryOperand")
                 MemoryOperand = o.ToEnum<MemoryAccessMask>();
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                MemoryOperand = new(MemoryOperand.Value, o.Words);
             else if (o.Name == "tensorAddressingOperands")
                 TensorAddressingOperands = o.ToEnum<TensorAddressingOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0")
+                TensorAddressingOperands = new(TensorAddressingOperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -60280,8 +60360,12 @@ public struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
                 TensorLayout = o.ToLiteral<int>();
             else if (o.Name == "memoryOperand")
                 MemoryOperand = o.ToEnum<MemoryAccessMask>();
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                MemoryOperand = new(MemoryOperand.Value, o.Words);
             else if (o.Name == "tensorAddressingOperands")
                 TensorAddressingOperands = o.ToEnum<TensorAddressingOperandsMask>();
+            else if (o.Name == "idRef0" || o.Name == "idRef0")
+                TensorAddressingOperands = new(TensorAddressingOperands.Value, o.Words);
         }
 
         DataIndex = index;
@@ -67226,6 +67310,8 @@ public struct OpDecorateString : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
+            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+                Decoration = new(Decoration.Value, o.Words);
         }
 
         DataIndex = index;
@@ -67333,6 +67419,8 @@ public struct OpMemberDecorateString : IMemoryInstruction
                 Member = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
+            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+                Decoration = new(Decoration.Value, o.Words);
         }
 
         DataIndex = index;
@@ -95910,6 +95998,8 @@ public struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
                 if (o.Words.Length > 0)
                     Memoryaccess = o.ToEnum<MemoryAccessMask>();
             }
+            else if (o.Name == "literalinteger0" || o.Name == "idscope0" || o.Name == "idscope0" || o.Name == "idRef0" || o.Name == "idRef0")
+                Memoryaccess = new(Memoryaccess.Value.Value, o.Words);
         }
 
         DataIndex = index;

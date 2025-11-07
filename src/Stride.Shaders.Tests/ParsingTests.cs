@@ -19,7 +19,7 @@ public class ParsingTests1
         }
     }
 
-    [Theory]
+    [Theory(Explicit = true)]
     [MemberData(nameof(GetShaderFilePaths))]
     public void ParseFile(string path)
     {

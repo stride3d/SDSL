@@ -1,0 +1,54 @@
+name: .NET Tests
+
+on:
+  push:
+    branches: [ master, ci-test ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Install OpenGL deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          xvfb \
+          libgl1-mesa-dev \
+          libglu1-mesa-dev \
+          mesa-utils
+
+    - uses: actions/checkout@v4
+      with:
+        repository: KhronosGroup/SPIRV-Cross
+        path: SPIRV-Cross
+    - name: Build and install SPIRV-Cross
+      run: |
+        mkdir build && cd build
+        cmake .. -DSPIRV_CROSS_SHARED=ON -DSPIRV_CROSS_CLI=OFF # Build shared library, disable CLI
+        cmake --build . --config Release
+        sudo cmake --install .
+        sudo ln -s /usr/local/lib/libspirv-cross-c-shared.so /usr/lib/libspirv-cross.so
+        sudo ldconfig
+      working-directory: SPIRV-Cross
+
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test123
+      run: |
+        xvfb-run -s "-screen 0 1280x720x24" env | grep DISPLAY || true
+        xvfb-run -s "-screen 0 1280x720x24" glxinfo -B || true
+    - name: Run tests
+      run: xvfb-run -n 0 -s "-screen 0 1280x720x24" dotnet test --no-build --verbosity normal

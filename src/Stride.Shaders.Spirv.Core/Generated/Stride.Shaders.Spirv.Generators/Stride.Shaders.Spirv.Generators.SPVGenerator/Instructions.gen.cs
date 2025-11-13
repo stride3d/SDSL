@@ -5193,7 +5193,6 @@ public struct OpConstant<T> : IMemoryInstruction where T : struct, INumber<T>
     public static implicit operator int (OpConstant<T> inst) => inst.ResultId;
     public OpConstant(OpDataIndex index)
     {
-        DataIndex = index;
         foreach (var o in index.Data)
         {
             if (o.Name == "resultType")
@@ -5837,7 +5836,6 @@ public struct OpSpecConstant<T> : IMemoryInstruction where T : struct, INumber<T
     public static implicit operator int (OpSpecConstant<T> inst) => inst.ResultId;
     public OpSpecConstant(OpDataIndex index)
     {
-        DataIndex = index;
         foreach (var o in index.Data)
         {
             if (o.Name == "resultType")

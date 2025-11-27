@@ -14,8 +14,9 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLCompose, OperandKind.LiteralString, OperandQuantifier.One, "name", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLStage, OperandKind.IdRef, OperandQuantifier.One, "stagedElement", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportShader, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLImportShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportShader, OperandKind.ImportType, OperandQuantifier.One, "type", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLImportShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLImportShader, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.LiteralString, OperandQuantifier.One, "functionName", "Miscellaneous", []);
@@ -32,6 +33,10 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLMixin, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "identifier", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericParameter, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericParameter, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
+        Instance.Register(Op.OpConstantStringSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
+        Instance.Register(Op.OpConstantStringSDSL, OperandKind.LiteralString, OperandQuantifier.One, "literalString", "Miscellaneous", []);
         Instance.Register(Op.OpNop, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpUndef, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpUndef, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);

@@ -18,6 +18,8 @@ public enum SDSLOp : int
     OpSDSLCallBase = 6442,
     OpSDSLMixin = 6443,
     OpSDSLMixinCompose = 6444,
+    OpSDSLGenericParameter = 6445,
+    OpConstantStringSDSL = 6446,
     OpNop = 0,
     OpUndef = 1,
     OpSourceContinued = 2,

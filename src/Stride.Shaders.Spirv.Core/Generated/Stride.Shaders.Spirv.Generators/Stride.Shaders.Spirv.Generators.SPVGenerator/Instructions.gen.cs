@@ -1343,6 +1343,17 @@ public struct OpSDSLGenericParameter : IMemoryInstruction
         }
     }
 
+    public GenericParameterKindSDSL Kind
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLGenericParameter(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -1351,15 +1362,18 @@ public struct OpSDSLGenericParameter : IMemoryInstruction
                 ResultType = o.ToLiteral<int>();
             else if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
+            else if (o.Name == "kind")
+                Kind = o.ToEnum<GenericParameterKindSDSL>();
         }
 
         DataIndex = index;
     }
 
-    public OpSDSLGenericParameter(int resultType, int resultId)
+    public OpSDSLGenericParameter(int resultType, int resultId, GenericParameterKindSDSL kind)
     {
         ResultType = resultType;
         ResultId = resultId;
+        Kind = kind;
         UpdateInstructionMemory();
     }
 
@@ -1367,7 +1381,7 @@ public struct OpSDSLGenericParameter : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLGenericParameter, ResultType, ResultId];
+        Span<int> instruction = [(int)Op.OpSDSLGenericParameter, ResultType, ResultId, (int)Kind];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -1477,6 +1491,88 @@ public struct OpConstantStringSDSL : IMemoryInstruction
     }
 
     public static implicit operator OpConstantStringSDSL(OpDataIndex odi) => new(odi);
+}
+
+public struct OpTypeGenericLinkSDSL : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpTypeGenericLinkSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpTypeGenericLinkSDSL | (1 << 16);
+    }
+
+    public static implicit operator Id(OpTypeGenericLinkSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpTypeGenericLinkSDSL inst) => inst.ResultId;
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpTypeGenericLinkSDSL(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpTypeGenericLinkSDSL(int resultId)
+    {
+        ResultId = resultId;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpTypeGenericLinkSDSL, ResultId];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpTypeGenericLinkSDSL(OpDataIndex odi) => new(odi);
 }
 
 public struct OpNop : IMemoryInstruction
@@ -8032,7 +8128,7 @@ public struct OpDecorate : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+            else if (o.Name == "name" || o.Name == "idRef0" || o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
                 Decoration = new(Decoration.Value, o.Words);
         }
 
@@ -8141,7 +8237,7 @@ public struct OpMemberDecorate : IMemoryInstruction
                 Member = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+            else if (o.Name == "name" || o.Name == "idRef0" || o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
                 Decoration = new(Decoration.Value, o.Words);
         }
 
@@ -37881,7 +37977,7 @@ public struct OpDecorateId : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+            else if (o.Name == "name" || o.Name == "idRef0" || o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
                 Decoration = new(Decoration.Value, o.Words);
         }
 
@@ -67516,7 +67612,7 @@ public struct OpDecorateString : IMemoryInstruction
                 Target = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+            else if (o.Name == "name" || o.Name == "idRef0" || o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
                 Decoration = new(Decoration.Value, o.Words);
         }
 
@@ -67625,7 +67721,7 @@ public struct OpMemberDecorateString : IMemoryInstruction
                 Member = o.ToLiteral<int>();
             else if (o.Name == "decoration")
                 Decoration = o.ToEnum<Decoration>();
-            else if (o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
+            else if (o.Name == "name" || o.Name == "idRef0" || o.Name == "specializationConstantID" || o.Name == "arrayStride" || o.Name == "matrixStride" || o.Name == "builtin0" || o.Name == "execution" || o.Name == "streamNumber" || o.Name == "location" || o.Name == "component" || o.Name == "index" || o.Name == "bindingPoint" || o.Name == "descriptorSet" || o.Name == "byteOffset" || o.Name == "xFBBufferNumber" || o.Name == "xFBStride" || o.Name == "functionParameterAttribute" || o.Name == "floatingPointRoundingMode" || o.Name == "fastMathMode" || o.Name == "name" || o.Name == "linkageType" || o.Name == "attachmentIndex" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "alignment" || o.Name == "maxByteOffset" || o.Name == "payloadType" || o.Name == "maxnumberofpayloads" || o.Name == "nodeName" || o.Name == "baseIndex" || o.Name == "arraySize" || o.Name == "offset" || o.Name == "n" || o.Name == "register" || o.Name == "kind" || o.Name == "offset" || o.Name == "counterBuffer" || o.Name == "semantic" || o.Name == "userType" || o.Name == "targetWidth" || o.Name == "fPRoundingMode" || o.Name == "targetWidth" || o.Name == "fPDenormMode" || o.Name == "memoryType" || o.Name == "banks" || o.Name == "bankWidth" || o.Name == "maximumCopies" || o.Name == "maximumReplicates" || o.Name == "mergeKey" || o.Name == "mergeType" || o.Name == "bankBits" || o.Name == "forceKey" || o.Name == "strideSize" || o.Name == "wordSize" || o.Name == "cacheSizeinbytes" || o.Name == "prefetcherSizeinbytes" || o.Name == "mode" || o.Name == "propagate" || o.Name == "aliasingScopesList" || o.Name == "aliasingScopesList" || o.Name == "cycles" || o.Name == "invocations" || o.Name == "enable" || o.Name == "bufferLocationID" || o.Name == "iOPipeID" || o.Name == "targetWidth" || o.Name == "fPOperationMode" || o.Name == "maxError" || o.Name == "latencyLabel" || o.Name == "relativeTo" || o.Name == "controlType" || o.Name == "relativeCycle" || o.Name == "addressWidth" || o.Name == "dataWidth" || o.Name == "latency" || o.Name == "readWriteMode" || o.Name == "maxBurstCount" || o.Name == "waitrequest" || o.Name == "access" || o.Name == "name" || o.Name == "trigger" || o.Name == "parameter0" || o.Name == "cacheLevel" || o.Name == "cacheControl" || o.Name == "cacheLevel" || o.Name == "cacheControl")
                 Decoration = new(Decoration.Value, o.Words);
         }
 

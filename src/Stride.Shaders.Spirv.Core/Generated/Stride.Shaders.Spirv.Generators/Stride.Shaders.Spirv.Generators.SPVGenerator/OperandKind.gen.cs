@@ -5,7 +5,9 @@ public enum OperandKind
 {
     None,
     FunctionFlags,
+    Decoration,
     ImportType,
+    GenericParameterKindSDSL,
     ExecutionModel,
     ImageOperands,
     FPFastMathMode,
@@ -38,7 +40,6 @@ public enum OperandKind
     AccessQualifier,
     HostAccessQualifier,
     FunctionParameterAttribute,
-    Decoration,
     BuiltIn,
     Scope,
     GroupOperation,
@@ -82,7 +83,9 @@ public static class OperandKindExtensions
         return kind switch
         {
             OperandKind.FunctionFlags => ((FunctionFlagsMask)value).ToString(),
+            OperandKind.Decoration => ((Decoration)value).ToString(),
             OperandKind.ImportType => ((ImportType)value).ToString(),
+            OperandKind.GenericParameterKindSDSL => ((GenericParameterKindSDSL)value).ToString(),
             OperandKind.ExecutionModel => ((ExecutionModel)value).ToString(),
             OperandKind.ImageOperands => ((ImageOperandsMask)value).ToString(),
             OperandKind.FPFastMathMode => ((FPFastMathModeMask)value).ToString(),
@@ -115,7 +118,6 @@ public static class OperandKindExtensions
             OperandKind.AccessQualifier => ((AccessQualifier)value).ToString(),
             OperandKind.HostAccessQualifier => ((HostAccessQualifier)value).ToString(),
             OperandKind.FunctionParameterAttribute => ((FunctionParameterAttribute)value).ToString(),
-            OperandKind.Decoration => ((Decoration)value).ToString(),
             OperandKind.BuiltIn => ((BuiltIn)value).ToString(),
             OperandKind.Scope => ((Scope)value).ToString(),
             OperandKind.GroupOperation => ((GroupOperation)value).ToString(),

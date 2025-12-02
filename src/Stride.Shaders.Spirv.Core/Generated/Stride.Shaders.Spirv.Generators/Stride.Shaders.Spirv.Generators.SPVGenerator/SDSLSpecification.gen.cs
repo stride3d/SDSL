@@ -20,6 +20,8 @@ public static partial class Specification
     {
         LinkSDSL = 8000,
         LinkIdSDSL = 8001,
+        ResourceGroupSDSL = 8002,
+        LogicalGroupSDSL = 8003,
         RelaxedPrecision = 0,
         SpecId = 1,
         Block = 2,

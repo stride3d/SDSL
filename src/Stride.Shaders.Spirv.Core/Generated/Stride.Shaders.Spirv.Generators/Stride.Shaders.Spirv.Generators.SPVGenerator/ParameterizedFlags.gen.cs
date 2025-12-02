@@ -5,6 +5,8 @@ public static class ParameterizedFlags
 {
     public static ParameterizedFlag<Decoration> DecorationLinkSDSL(string name) => new ParameterizedFlag<Decoration>(Decoration.LinkSDSL, [..name.AsDisposableLiteralValue().Words]);
     public static ParameterizedFlag<Decoration> DecorationLinkIdSDSL(int idRef0) => new ParameterizedFlag<Decoration>(Decoration.LinkIdSDSL, [idRef0]);
+    public static ParameterizedFlag<Decoration> DecorationResourceGroupSDSL(string resourceGroup) => new ParameterizedFlag<Decoration>(Decoration.ResourceGroupSDSL, [..resourceGroup.AsDisposableLiteralValue().Words]);
+    public static ParameterizedFlag<Decoration> DecorationLogicalGroupSDSL(string logicalGroup) => new ParameterizedFlag<Decoration>(Decoration.LogicalGroupSDSL, [..logicalGroup.AsDisposableLiteralValue().Words]);
     public static ParameterizedFlag<Decoration> DecorationSpecId(int specializationConstantID) => new ParameterizedFlag<Decoration>(Decoration.SpecId, [specializationConstantID]);
     public static ParameterizedFlag<Decoration> DecorationArrayStride(int arrayStride) => new ParameterizedFlag<Decoration>(Decoration.ArrayStride, [arrayStride]);
     public static ParameterizedFlag<Decoration> DecorationMatrixStride(int matrixStride) => new ParameterizedFlag<Decoration>(Decoration.MatrixStride, [matrixStride]);

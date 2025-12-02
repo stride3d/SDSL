@@ -166,12 +166,6 @@ public static partial class Specification
         CacheControlStoreINTEL = 6443,
     }
 
-    public enum ImportType
-    {
-        External = 0,
-        Inherit = 1,
-    }
-
     public enum GenericParameterKindSDSL
     {
         Float = 0,

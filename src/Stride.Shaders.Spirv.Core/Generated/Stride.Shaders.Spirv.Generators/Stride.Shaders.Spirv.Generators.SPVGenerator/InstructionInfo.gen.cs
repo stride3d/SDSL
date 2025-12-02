@@ -14,7 +14,6 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLCompose, OperandKind.LiteralString, OperandQuantifier.One, "name", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLStage, OperandKind.IdRef, OperandQuantifier.One, "stagedElement", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportShader, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLImportShader, OperandKind.ImportType, OperandQuantifier.One, "type", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportShader, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
@@ -26,6 +25,9 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLImportVariable, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportVariable, OperandKind.LiteralString, OperandQuantifier.One, "variableName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportVariable, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLImportStruct, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLImportStruct, OperandKind.LiteralString, OperandQuantifier.One, "structName", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLImportStruct, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdRef, OperandQuantifier.One, "instance", "Miscellaneous", []);

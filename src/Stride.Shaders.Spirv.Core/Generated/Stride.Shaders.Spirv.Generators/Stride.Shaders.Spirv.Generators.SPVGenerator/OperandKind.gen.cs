@@ -6,7 +6,6 @@ public enum OperandKind
     None,
     FunctionFlags,
     Decoration,
-    ImportType,
     GenericParameterKindSDSL,
     ExecutionModel,
     ImageOperands,
@@ -84,7 +83,6 @@ public static class OperandKindExtensions
         {
             OperandKind.FunctionFlags => ((FunctionFlagsMask)value).ToString(),
             OperandKind.Decoration => ((Decoration)value).ToString(),
-            OperandKind.ImportType => ((ImportType)value).ToString(),
             OperandKind.GenericParameterKindSDSL => ((GenericParameterKindSDSL)value).ToString(),
             OperandKind.ExecutionModel => ((ExecutionModel)value).ToString(),
             OperandKind.ImageOperands => ((ImageOperandsMask)value).ToString(),

@@ -552,17 +552,6 @@ public struct OpSDSLImportShader : IMemoryInstruction
         }
     }
 
-    public ImportType Type
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
     public string ShaderName
     {
         get;
@@ -591,8 +580,6 @@ public struct OpSDSLImportShader : IMemoryInstruction
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
-            else if (o.Name == "type")
-                Type = o.ToEnum<ImportType>();
             else if (o.Name == "shaderName")
                 ShaderName = o.ToLiteral<string>();
             else if (o.Name == "values")
@@ -604,10 +591,9 @@ public struct OpSDSLImportShader : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpSDSLImportShader(int resultId, ImportType type, string shaderName, LiteralArray<int> values)
+    public OpSDSLImportShader(int resultId, string shaderName, LiteralArray<int> values)
     {
         ResultId = resultId;
-        Type = type;
         ShaderName = shaderName;
         Values = values;
         UpdateInstructionMemory();
@@ -617,7 +603,7 @@ public struct OpSDSLImportShader : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLImportShader, ResultId, (int)Type, ..ShaderName.AsDisposableLiteralValue().Words, ..Values.Words];
+        Span<int> instruction = [(int)Op.OpSDSLImportShader, ResultId, ..ShaderName.AsDisposableLiteralValue().Words, ..Values.Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -893,6 +879,116 @@ public struct OpSDSLImportVariable : IMemoryInstruction
     }
 
     public static implicit operator OpSDSLImportVariable(OpDataIndex odi) => new(odi);
+}
+
+public struct OpSDSLImportStruct : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLImportStruct()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLImportStruct | (1 << 16);
+    }
+
+    public static implicit operator Id(OpSDSLImportStruct inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpSDSLImportStruct inst) => inst.ResultId;
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public string StructName
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int Shader
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLImportStruct(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+            else if (o.Name == "structName")
+                StructName = o.ToLiteral<string>();
+            else if (o.Name == "shader")
+                Shader = o.ToLiteral<int>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpSDSLImportStruct(int resultId, string structName, int shader)
+    {
+        ResultId = resultId;
+        StructName = structName;
+        Shader = shader;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLImportStruct, ResultId, ..StructName.AsDisposableLiteralValue().Words, Shader];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLImportStruct(OpDataIndex odi) => new(odi);
 }
 
 public struct OpMemberAccessSDSL : IMemoryInstruction

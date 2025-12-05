@@ -77,7 +77,70 @@ public enum OperandKind
 
 public static class OperandKindExtensions
 {
-    public static string? ToEnumValueString(this int value, OperandKind kind)
+    public static bool IsEnum(this OperandKind kind)
+    {
+        return kind switch
+        {
+            OperandKind.FunctionFlags => true,
+            OperandKind.Decoration => true,
+            OperandKind.GenericParameterKindSDSL => true,
+            OperandKind.ExecutionModel => true,
+            OperandKind.ImageOperands => true,
+            OperandKind.FPFastMathMode => true,
+            OperandKind.SelectionControl => true,
+            OperandKind.LoopControl => true,
+            OperandKind.FunctionControl => true,
+            OperandKind.MemorySemantics => true,
+            OperandKind.MemoryAccess => true,
+            OperandKind.KernelProfilingInfo => true,
+            OperandKind.RayFlags => true,
+            OperandKind.FragmentShadingRate => true,
+            OperandKind.RawAccessChainOperands => true,
+            OperandKind.SourceLanguage => true,
+            OperandKind.AddressingModel => true,
+            OperandKind.MemoryModel => true,
+            OperandKind.ExecutionMode => true,
+            OperandKind.StorageClass => true,
+            OperandKind.Dim => true,
+            OperandKind.SamplerAddressingMode => true,
+            OperandKind.SamplerFilterMode => true,
+            OperandKind.ImageFormat => true,
+            OperandKind.ImageChannelOrder => true,
+            OperandKind.ImageChannelDataType => true,
+            OperandKind.FPRoundingMode => true,
+            OperandKind.FPDenormMode => true,
+            OperandKind.QuantizationModes => true,
+            OperandKind.FPOperationMode => true,
+            OperandKind.OverflowModes => true,
+            OperandKind.LinkageType => true,
+            OperandKind.AccessQualifier => true,
+            OperandKind.HostAccessQualifier => true,
+            OperandKind.FunctionParameterAttribute => true,
+            OperandKind.BuiltIn => true,
+            OperandKind.Scope => true,
+            OperandKind.GroupOperation => true,
+            OperandKind.KernelEnqueueFlags => true,
+            OperandKind.Capability => true,
+            OperandKind.RayQueryIntersection => true,
+            OperandKind.RayQueryCommittedIntersectionType => true,
+            OperandKind.RayQueryCandidateIntersectionType => true,
+            OperandKind.PackedVectorFormat => true,
+            OperandKind.CooperativeMatrixOperands => true,
+            OperandKind.CooperativeMatrixLayout => true,
+            OperandKind.CooperativeMatrixUse => true,
+            OperandKind.CooperativeMatrixReduce => true,
+            OperandKind.TensorClampMode => true,
+            OperandKind.TensorAddressingOperands => true,
+            OperandKind.InitializationModeQualifier => true,
+            OperandKind.LoadCacheControl => true,
+            OperandKind.StoreCacheControl => true,
+            OperandKind.NamedMaximumNumberOfRegisters => true,
+            OperandKind.FPEncoding => true,
+            _ => false
+        };
+    }
+
+    public static string? ConvertEnumValueToString(this OperandKind kind, int value)
     {
         return kind switch
         {

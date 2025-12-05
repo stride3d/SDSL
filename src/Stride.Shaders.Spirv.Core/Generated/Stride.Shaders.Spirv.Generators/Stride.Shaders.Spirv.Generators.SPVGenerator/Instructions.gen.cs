@@ -1629,6 +1629,100 @@ public struct OpSDSLMixinCompose : IMemoryInstruction
     public static implicit operator OpSDSLMixinCompose(OpDataIndex odi) => new(odi);
 }
 
+public struct OpSDSLMixinComposeArray : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLMixinComposeArray()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLMixinComposeArray | (1 << 16);
+    }
+
+    public string Identifier
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public string Mixin
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLMixinComposeArray(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "identifier")
+                Identifier = o.ToLiteral<string>();
+            else if (o.Name == "mixin")
+                Mixin = o.ToLiteral<string>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpSDSLMixinComposeArray(string identifier, string mixin)
+    {
+        Identifier = identifier;
+        Mixin = mixin;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLMixinComposeArray, ..Identifier.AsDisposableLiteralValue().Words, ..Mixin.AsDisposableLiteralValue().Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLMixinComposeArray(OpDataIndex odi) => new(odi);
+}
+
 public struct OpSDSLGenericParameter : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }
@@ -1915,6 +2009,160 @@ public struct OpTypeGenericLinkSDSL : IMemoryInstruction
     }
 
     public static implicit operator OpTypeGenericLinkSDSL(OpDataIndex odi) => new(odi);
+}
+
+public struct OpForeachSDSL : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpForeachSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpForeachSDSL | (1 << 16);
+    }
+
+    public static implicit operator Id(OpForeachSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpForeachSDSL inst) => inst.ResultId;
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int ResultType
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int Collection
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpForeachSDSL(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+            else if (o.Name == "resultType")
+                ResultType = o.ToLiteral<int>();
+            else if (o.Name == "collection")
+                Collection = o.ToLiteral<int>();
+        }
+
+        DataIndex = index;
+    }
+
+    public OpForeachSDSL(int resultId, int resultType, int collection)
+    {
+        ResultId = resultId;
+        ResultType = resultType;
+        Collection = collection;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpForeachSDSL, ResultId, ResultType, Collection];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpForeachSDSL(OpDataIndex odi) => new(odi);
+}
+
+public struct OpForeachEndSDSL : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpForeachEndSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpForeachEndSDSL | (1 << 16);
+    }
+
+    public OpForeachEndSDSL(OpDataIndex index)
+    {
+        DataIndex = index;
+    }
+
+    public void UpdateInstructionMemory()
+    {
+    }
+
+    public static implicit operator OpForeachEndSDSL(OpDataIndex odi) => new(odi);
 }
 
 public struct OpNop : IMemoryInstruction

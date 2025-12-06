@@ -38,6 +38,7 @@ public partial class InstructionInfo
         Instance.Register(Op.OpThisSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpStageSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixin, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLMixin, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "identifier", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixinComposeArray, OperandKind.LiteralString, OperandQuantifier.One, "identifier", "Miscellaneous", []);

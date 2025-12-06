@@ -1498,20 +1498,36 @@ public struct OpSDSLMixin : IMemoryInstruction
         }
     }
 
+    public LiteralArray<int> Values
+    {
+        get;
+        set
+        {
+            field.Assign(value);
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLMixin(OpDataIndex index)
     {
         foreach (var o in index.Data)
         {
             if (o.Name == "mixin")
                 Mixin = o.ToLiteral<string>();
+            else if (o.Name == "values")
+                Values = o.ToLiteralArray<int>();
         }
 
+        if (Values.WordCount == -1)
+            Values = new();
         DataIndex = index;
     }
 
-    public OpSDSLMixin(string mixin)
+    public OpSDSLMixin(string mixin, LiteralArray<int> values)
     {
         Mixin = mixin;
+        Values = values;
         UpdateInstructionMemory();
     }
 
@@ -1519,7 +1535,7 @@ public struct OpSDSLMixin : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLMixin, ..Mixin.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpSDSLMixin, ..Mixin.AsDisposableLiteralValue().Words, ..Values.Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

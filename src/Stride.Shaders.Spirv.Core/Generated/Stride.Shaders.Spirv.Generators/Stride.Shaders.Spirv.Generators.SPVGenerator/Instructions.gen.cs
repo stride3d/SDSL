@@ -835,6 +835,17 @@ public struct OpSDSLImportVariable : IMemoryInstruction
         }
     }
 
+    public VariableFlagsMask Flags
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLImportVariable(OpDataIndex index)
     {
         foreach (var o in index.Data)
@@ -847,17 +858,20 @@ public struct OpSDSLImportVariable : IMemoryInstruction
                 VariableName = o.ToLiteral<string>();
             else if (o.Name == "shader")
                 Shader = o.ToLiteral<int>();
+            else if (o.Name == "flags")
+                Flags = o.ToEnum<VariableFlagsMask>();
         }
 
         DataIndex = index;
     }
 
-    public OpSDSLImportVariable(int resultId, int resultType, string variableName, int shader)
+    public OpSDSLImportVariable(int resultId, int resultType, string variableName, int shader, VariableFlagsMask flags)
     {
         ResultId = resultId;
         ResultType = resultType;
         VariableName = variableName;
         Shader = shader;
+        Flags = flags;
         UpdateInstructionMemory();
     }
 
@@ -865,7 +879,7 @@ public struct OpSDSLImportVariable : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLImportVariable, ResultId, ResultType, ..VariableName.AsDisposableLiteralValue().Words, Shader];
+        Span<int> instruction = [(int)Op.OpSDSLImportVariable, ResultId, ResultType, ..VariableName.AsDisposableLiteralValue().Words, Shader, (int)Flags];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -989,6 +1003,147 @@ public struct OpSDSLImportStruct : IMemoryInstruction
     }
 
     public static implicit operator OpSDSLImportStruct(OpDataIndex odi) => new(odi);
+}
+
+public struct OpVariableSDSL : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpVariableSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpVariableSDSL | (1 << 16);
+    }
+
+    public static implicit operator Id(OpVariableSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpVariableSDSL inst) => inst.ResultId;
+    public int ResultType
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public StorageClass Storageclass
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public VariableFlagsMask Flags
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int? Initializer
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpVariableSDSL(OpDataIndex index)
+    {
+        foreach (var o in index.Data)
+        {
+            if (o.Name == "resultType")
+                ResultType = o.ToLiteral<int>();
+            else if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+            else if (o.Name == "storageclass")
+                Storageclass = o.ToEnum<StorageClass>();
+            else if (o.Name == "flags")
+                Flags = o.ToEnum<VariableFlagsMask>();
+            else if (o.Name == "initializer")
+            {
+                if (o.Words.Length > 0)
+                    Initializer = o.ToLiteral<int?>();
+            }
+        }
+
+        DataIndex = index;
+    }
+
+    public OpVariableSDSL(int resultType, int resultId, StorageClass storageclass, VariableFlagsMask flags, int? initializer)
+    {
+        ResultType = resultType;
+        ResultId = resultId;
+        Storageclass = storageclass;
+        Flags = flags;
+        Initializer = initializer;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpVariableSDSL, ResultType, ResultId, (int)Storageclass, (int)Flags, ..(Initializer is null ? (Span<int>)[] : [Initializer.Value])];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpVariableSDSL(OpDataIndex odi) => new(odi);
 }
 
 public struct OpMemberAccessSDSL : IMemoryInstruction

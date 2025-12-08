@@ -16,6 +16,13 @@ public static partial class Specification
         Override = 64,
     }
 
+    [Flags]
+    public enum VariableFlagsMask
+    {
+        None = 0,
+        Stage = 1,
+    }
+
     public enum Decoration
     {
         LinkSDSL = 8000,

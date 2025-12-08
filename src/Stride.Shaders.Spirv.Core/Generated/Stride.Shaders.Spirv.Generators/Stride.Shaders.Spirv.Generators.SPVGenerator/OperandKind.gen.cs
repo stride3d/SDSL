@@ -5,6 +5,7 @@ public enum OperandKind
 {
     None,
     FunctionFlags,
+    VariableFlags,
     Decoration,
     GenericParameterKindSDSL,
     ExecutionModel,
@@ -82,6 +83,7 @@ public static class OperandKindExtensions
         return kind switch
         {
             OperandKind.FunctionFlags => true,
+            OperandKind.VariableFlags => true,
             OperandKind.Decoration => true,
             OperandKind.GenericParameterKindSDSL => true,
             OperandKind.ExecutionModel => true,
@@ -145,6 +147,7 @@ public static class OperandKindExtensions
         return kind switch
         {
             OperandKind.FunctionFlags => ((FunctionFlagsMask)value).ToString(),
+            OperandKind.VariableFlags => ((VariableFlagsMask)value).ToString(),
             OperandKind.Decoration => ((Decoration)value).ToString(),
             OperandKind.GenericParameterKindSDSL => ((GenericParameterKindSDSL)value).ToString(),
             OperandKind.ExecutionModel => ((ExecutionModel)value).ToString(),

@@ -55,8 +55,8 @@ public partial class InstructionInfo
         Instance.Register(Op.OpConstantStringSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpConstantStringSDSL, OperandKind.LiteralString, OperandQuantifier.One, "literalString", "Miscellaneous", []);
         Instance.Register(Op.OpTypeGenericLinkSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
-        Instance.Register(Op.OpForeachSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
+        Instance.Register(Op.OpForeachSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdRef, OperandQuantifier.One, "collection", "Miscellaneous", []);
         Instance.Register(Op.OpForeachEndSDSL, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpNop, OperandKind.None, null, "Debug");

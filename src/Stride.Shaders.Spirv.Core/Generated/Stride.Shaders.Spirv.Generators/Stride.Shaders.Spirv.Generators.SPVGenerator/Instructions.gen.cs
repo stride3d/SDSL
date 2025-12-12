@@ -2216,7 +2216,7 @@ public struct OpForeachSDSL : IMemoryInstruction
 
     public static implicit operator Id(OpForeachSDSL inst) => new Id(inst.ResultId);
     public static implicit operator int (OpForeachSDSL inst) => inst.ResultId;
-    public int ResultId
+    public int ResultType
     {
         get;
         set
@@ -2227,7 +2227,7 @@ public struct OpForeachSDSL : IMemoryInstruction
         }
     }
 
-    public int ResultType
+    public int ResultId
     {
         get;
         set
@@ -2253,10 +2253,10 @@ public struct OpForeachSDSL : IMemoryInstruction
     {
         foreach (var o in index.Data)
         {
-            if (o.Name == "resultId")
-                ResultId = o.ToLiteral<int>();
-            else if (o.Name == "resultType")
+            if (o.Name == "resultType")
                 ResultType = o.ToLiteral<int>();
+            else if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
             else if (o.Name == "collection")
                 Collection = o.ToLiteral<int>();
         }
@@ -2264,10 +2264,10 @@ public struct OpForeachSDSL : IMemoryInstruction
         DataIndex = index;
     }
 
-    public OpForeachSDSL(int resultId, int resultType, int collection)
+    public OpForeachSDSL(int resultType, int resultId, int collection)
     {
-        ResultId = resultId;
         ResultType = resultType;
+        ResultId = resultId;
         Collection = collection;
         UpdateInstructionMemory();
     }
@@ -2276,7 +2276,7 @@ public struct OpForeachSDSL : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpForeachSDSL, ResultId, ResultType, Collection];
+        Span<int> instruction = [(int)Op.OpForeachSDSL, ResultType, ResultId, Collection];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

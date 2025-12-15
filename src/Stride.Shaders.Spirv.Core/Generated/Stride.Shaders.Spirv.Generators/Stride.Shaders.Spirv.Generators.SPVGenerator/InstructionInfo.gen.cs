@@ -33,7 +33,7 @@ public partial class InstructionInfo
         Instance.Register(Op.OpVariableSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Memory", []);
         Instance.Register(Op.OpVariableSDSL, OperandKind.StorageClass, OperandQuantifier.One, "storageclass", "Memory", []);
         Instance.Register(Op.OpVariableSDSL, OperandKind.VariableFlags, OperandQuantifier.One, "flags", "Memory", []);
-        Instance.Register(Op.OpVariableSDSL, OperandKind.IdRef, OperandQuantifier.ZeroOrOne, "initializer", "Memory", []);
+        Instance.Register(Op.OpVariableSDSL, OperandKind.IdRef, OperandQuantifier.ZeroOrOne, "methodInitializer", "Memory", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdRef, OperandQuantifier.One, "instance", "Miscellaneous", []);

@@ -17,7 +17,7 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLImportShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportShader, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdResultType, OperandQuantifier.One, "functionType", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.LiteralString, OperandQuantifier.One, "functionName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLImportFunction, OperandKind.FunctionFlags, OperandQuantifier.One, "flags", "Miscellaneous", []);

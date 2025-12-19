@@ -747,7 +747,7 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         }
     }
 
-    public int ResultType
+    public int FunctionType
     {
         get;
         set
@@ -808,8 +808,8 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
-            else if (o.Name == "resultType")
-                ResultType = o.ToLiteral<int>();
+            else if (o.Name == "functionType")
+                FunctionType = o.ToLiteral<int>();
             else if (o.Name == "functionName")
                 FunctionName = o.ToLiteral<string>();
             else if (o.Name == "shader")
@@ -819,10 +819,10 @@ public struct OpSDSLImportFunction : IMemoryInstruction
         }
     }
 
-    public OpSDSLImportFunction(int resultId, int resultType, string functionName, int shader, FunctionFlagsMask flags)
+    public OpSDSLImportFunction(int resultId, int functionType, string functionName, int shader, FunctionFlagsMask flags)
     {
         ResultId = resultId;
-        ResultType = resultType;
+        FunctionType = functionType;
         FunctionName = functionName;
         Shader = shader;
         Flags = flags;
@@ -833,7 +833,7 @@ public struct OpSDSLImportFunction : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLImportFunction, ResultId, ResultType, ..FunctionName.AsDisposableLiteralValue().Words, Shader, (int)Flags];
+        Span<int> instruction = [(int)Op.OpSDSLImportFunction, ResultId, FunctionType, ..FunctionName.AsDisposableLiteralValue().Words, Shader, (int)Flags];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

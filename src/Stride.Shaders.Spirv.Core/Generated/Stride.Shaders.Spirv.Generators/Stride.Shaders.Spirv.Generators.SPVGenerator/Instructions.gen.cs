@@ -1403,6 +1403,129 @@ public struct OpMemberAccessSDSL : IMemoryInstruction
     public static implicit operator OpMemberAccessSDSL(OpData data) => new(data);
 }
 
+public struct OpTypeFunctionSDSL : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpTypeFunctionSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpTypeFunctionSDSL | (1 << 16);
+    }
+
+    public static implicit operator Id(OpTypeFunctionSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpTypeFunctionSDSL inst) => inst.ResultId;
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int ReturnType
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public LiteralArray<(int, int)> Values
+    {
+        get;
+        set
+        {
+            field.Assign(value);
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpTypeFunctionSDSL(OpDataIndex index)
+    {
+        InitializeProperties(index.Data);
+        DataIndex = index;
+    }
+
+    public OpTypeFunctionSDSL(OpData data)
+    {
+        InitializeProperties(data);
+    }
+
+    private void InitializeProperties(OpData data)
+    {
+        foreach (var o in data)
+        {
+            if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+            else if (o.Name == "returnType")
+                ReturnType = o.ToLiteral<int>();
+            else if (o.Name == "values")
+                Values = o.ToLiteralArray<(int, int)>();
+        }
+
+        if (Values.WordCount == -1)
+            Values = new();
+    }
+
+    public OpTypeFunctionSDSL(int resultId, int returnType, LiteralArray<(int, int)> values)
+    {
+        ResultId = resultId;
+        ReturnType = returnType;
+        Values = values;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpTypeFunctionSDSL, ResultId, ReturnType, ..Values.Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpTypeFunctionSDSL(OpDataIndex odi) => new(odi);
+    public static implicit operator OpTypeFunctionSDSL(OpData data) => new(data);
+}
+
 public struct OpSDSLFunctionInfo : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }

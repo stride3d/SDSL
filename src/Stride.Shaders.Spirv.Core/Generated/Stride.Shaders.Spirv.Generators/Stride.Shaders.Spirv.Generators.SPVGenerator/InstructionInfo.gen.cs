@@ -38,6 +38,9 @@ public partial class InstructionInfo
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdRef, OperandQuantifier.One, "instance", "Miscellaneous", []);
         Instance.Register(Op.OpMemberAccessSDSL, OperandKind.IdRef, OperandQuantifier.One, "member", "Miscellaneous", []);
+        Instance.Register(Op.OpTypeFunctionSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Type-Declaration", []);
+        Instance.Register(Op.OpTypeFunctionSDSL, OperandKind.IdRef, OperandQuantifier.One, "returnType", "Type-Declaration", []);
+        Instance.Register(Op.OpTypeFunctionSDSL, OperandKind.PairIdRefLiteralInteger, OperandQuantifier.ZeroOrMore, "values", "Type-Declaration", []);
         Instance.Register(Op.OpSDSLFunctionInfo, OperandKind.FunctionFlags, OperandQuantifier.One, "flags", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLFunctionInfo, OperandKind.IdRef, OperandQuantifier.One, "parent", "Miscellaneous", []);
         Instance.Register(Op.OpBaseSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);

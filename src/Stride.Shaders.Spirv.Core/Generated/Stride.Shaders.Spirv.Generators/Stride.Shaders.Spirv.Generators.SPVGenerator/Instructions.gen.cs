@@ -2277,17 +2277,6 @@ public struct OpSDSLGenericParameter : IMemoryInstruction
         }
     }
 
-    public GenericParameterKindSDSL Kind
-    {
-        get;
-        set
-        {
-            field = value;
-            if (InstructionMemory is not null)
-                UpdateInstructionMemory();
-        }
-    }
-
     public OpSDSLGenericParameter(OpDataIndex index)
     {
         InitializeProperties(index.Data);
@@ -2307,16 +2296,13 @@ public struct OpSDSLGenericParameter : IMemoryInstruction
                 ResultType = o.ToLiteral<int>();
             else if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
-            else if (o.Name == "kind")
-                Kind = o.ToEnum<GenericParameterKindSDSL>();
         }
     }
 
-    public OpSDSLGenericParameter(int resultType, int resultId, GenericParameterKindSDSL kind)
+    public OpSDSLGenericParameter(int resultType, int resultId)
     {
         ResultType = resultType;
         ResultId = resultId;
-        Kind = kind;
         UpdateInstructionMemory();
     }
 
@@ -2324,7 +2310,7 @@ public struct OpSDSLGenericParameter : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLGenericParameter, ResultType, ResultId, (int)Kind];
+        Span<int> instruction = [(int)Op.OpSDSLGenericParameter, ResultType, ResultId];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -2447,7 +2433,7 @@ public struct OpConstantStringSDSL : IMemoryInstruction
     public static implicit operator OpConstantStringSDSL(OpData data) => new(data);
 }
 
-public struct OpTypeGenericLinkSDSL : IMemoryInstruction
+public struct OpTypeGenericSDSL : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }
 
@@ -2473,14 +2459,14 @@ public struct OpTypeGenericLinkSDSL : IMemoryInstruction
         }
     }
 
-    public OpTypeGenericLinkSDSL()
+    public OpTypeGenericSDSL()
     {
         InstructionMemory = MemoryOwner<int>.Allocate(1);
-        InstructionMemory.Span[0] = (int)Op.OpTypeGenericLinkSDSL | (1 << 16);
+        InstructionMemory.Span[0] = (int)Op.OpTypeGenericSDSL | (1 << 16);
     }
 
-    public static implicit operator Id(OpTypeGenericLinkSDSL inst) => new Id(inst.ResultId);
-    public static implicit operator int (OpTypeGenericLinkSDSL inst) => inst.ResultId;
+    public static implicit operator Id(OpTypeGenericSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpTypeGenericSDSL inst) => inst.ResultId;
     public int ResultId
     {
         get;
@@ -2492,13 +2478,24 @@ public struct OpTypeGenericLinkSDSL : IMemoryInstruction
         }
     }
 
-    public OpTypeGenericLinkSDSL(OpDataIndex index)
+    public GenericParameterKindSDSL Kind
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpTypeGenericSDSL(OpDataIndex index)
     {
         InitializeProperties(index.Data);
         DataIndex = index;
     }
 
-    public OpTypeGenericLinkSDSL(OpData data)
+    public OpTypeGenericSDSL(OpData data)
     {
         InitializeProperties(data);
     }
@@ -2509,12 +2506,15 @@ public struct OpTypeGenericLinkSDSL : IMemoryInstruction
         {
             if (o.Name == "resultId")
                 ResultId = o.ToLiteral<int>();
+            else if (o.Name == "kind")
+                Kind = o.ToEnum<GenericParameterKindSDSL>();
         }
     }
 
-    public OpTypeGenericLinkSDSL(int resultId)
+    public OpTypeGenericSDSL(int resultId, GenericParameterKindSDSL kind)
     {
         ResultId = resultId;
+        Kind = kind;
         UpdateInstructionMemory();
     }
 
@@ -2522,7 +2522,7 @@ public struct OpTypeGenericLinkSDSL : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpTypeGenericLinkSDSL, ResultId];
+        Span<int> instruction = [(int)Op.OpTypeGenericSDSL, ResultId, (int)Kind];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -2535,8 +2535,8 @@ public struct OpTypeGenericLinkSDSL : IMemoryInstruction
         }
     }
 
-    public static implicit operator OpTypeGenericLinkSDSL(OpDataIndex odi) => new(odi);
-    public static implicit operator OpTypeGenericLinkSDSL(OpData data) => new(data);
+    public static implicit operator OpTypeGenericSDSL(OpDataIndex odi) => new(odi);
+    public static implicit operator OpTypeGenericSDSL(OpData data) => new(data);
 }
 
 public struct OpForeachSDSL : IMemoryInstruction

@@ -28,7 +28,7 @@ public static partial class Specification
         OpSDSLMixinComposeArray = 6450,
         OpSDSLGenericParameter = 6451,
         OpConstantStringSDSL = 6452,
-        OpTypeGenericLinkSDSL = 6453,
+        OpTypeGenericSDSL = 6453,
         OpForeachSDSL = 6454,
         OpForeachEndSDSL = 6455,
         OpNop = 0,

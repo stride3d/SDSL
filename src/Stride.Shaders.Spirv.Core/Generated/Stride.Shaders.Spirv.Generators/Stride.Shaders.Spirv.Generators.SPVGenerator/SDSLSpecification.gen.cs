@@ -175,10 +175,9 @@ public static partial class Specification
 
     public enum GenericParameterKindSDSL
     {
-        Float = 0,
-        Int = 1,
-        Bool = 2,
-        LinkType = 20,
+        LinkType = 1,
+        Semantic = 2,
+        MemberName = 3,
     }
 
     public enum ExecutionModel

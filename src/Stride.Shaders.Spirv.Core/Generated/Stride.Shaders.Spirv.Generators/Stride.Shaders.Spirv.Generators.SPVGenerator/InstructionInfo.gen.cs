@@ -62,6 +62,8 @@ public partial class InstructionInfo
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdRef, OperandQuantifier.One, "collection", "Miscellaneous", []);
         Instance.Register(Op.OpForeachEndSDSL, OperandKind.None, null, "Debug");
+        Instance.Register(Op.OpUnresolvableShaderSDSL, OperandKind.LiteralString, OperandQuantifier.One, "shaderCode", "Miscellaneous", []);
+        Instance.Register(Op.OpUnresolvableShaderSDSL, OperandKind.LiteralInteger, OperandQuantifier.One, "shaderCodeNameEnd", "Miscellaneous", []);
         Instance.Register(Op.OpNop, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpUndef, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpUndef, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);

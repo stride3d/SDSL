@@ -2714,6 +2714,110 @@ public struct OpForeachEndSDSL : IMemoryInstruction
     public static implicit operator OpForeachEndSDSL(OpData data) => new(data);
 }
 
+public struct OpUnresolvableShaderSDSL : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpUnresolvableShaderSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpUnresolvableShaderSDSL | (1 << 16);
+    }
+
+    public string ShaderCode
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public int ShaderCodeNameEnd
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpUnresolvableShaderSDSL(OpDataIndex index)
+    {
+        InitializeProperties(index.Data);
+        DataIndex = index;
+    }
+
+    public OpUnresolvableShaderSDSL(OpData data)
+    {
+        InitializeProperties(data);
+    }
+
+    private void InitializeProperties(OpData data)
+    {
+        foreach (var o in data)
+        {
+            if (o.Name == "shaderCode")
+                ShaderCode = o.ToLiteral<string>();
+            else if (o.Name == "shaderCodeNameEnd")
+                ShaderCodeNameEnd = o.ToLiteral<int>();
+        }
+    }
+
+    public OpUnresolvableShaderSDSL(string shaderCode, int shaderCodeNameEnd)
+    {
+        ShaderCode = shaderCode;
+        ShaderCodeNameEnd = shaderCodeNameEnd;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpUnresolvableShaderSDSL, ..ShaderCode.AsDisposableLiteralValue().Words, ..ShaderCodeNameEnd.AsDisposableLiteralValue().Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpUnresolvableShaderSDSL(OpDataIndex odi) => new(odi);
+    public static implicit operator OpUnresolvableShaderSDSL(OpData data) => new(data);
+}
+
 public struct OpNop : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }

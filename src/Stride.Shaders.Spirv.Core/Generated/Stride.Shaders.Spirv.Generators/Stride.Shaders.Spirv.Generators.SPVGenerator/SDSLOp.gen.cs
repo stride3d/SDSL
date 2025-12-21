@@ -29,6 +29,7 @@ public enum SDSLOp : int
     OpTypeGenericSDSL = 6453,
     OpForeachSDSL = 6454,
     OpForeachEndSDSL = 6455,
+    OpUnresolvableShaderSDSL = 6456,
     OpNop = 0,
     OpUndef = 1,
     OpSourceContinued = 2,

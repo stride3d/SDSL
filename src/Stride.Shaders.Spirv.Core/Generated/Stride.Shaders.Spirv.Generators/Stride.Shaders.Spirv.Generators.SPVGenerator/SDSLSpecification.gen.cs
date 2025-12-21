@@ -178,6 +178,7 @@ public static partial class Specification
         LinkType = 1,
         Semantic = 2,
         MemberName = 3,
+        MemberNameResolved = 4,
     }
 
     public enum ExecutionModel

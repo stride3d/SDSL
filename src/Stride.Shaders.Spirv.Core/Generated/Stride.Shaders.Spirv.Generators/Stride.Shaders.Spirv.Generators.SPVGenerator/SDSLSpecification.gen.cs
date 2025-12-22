@@ -29,6 +29,15 @@ public static partial class Specification
         LinkIdSDSL = 8001,
         ResourceGroupSDSL = 8002,
         LogicalGroupSDSL = 8003,
+        SamplerStateFilter = 8020,
+        SamplerStateAddressU = 8021,
+        SamplerStateAddressV = 8022,
+        SamplerStateAddressW = 8023,
+        SamplerStateMipLODBias = 8024,
+        SamplerStateMaxAnisotropy = 8025,
+        SamplerStateComparisonFunc = 8026,
+        SamplerStateMinLOD = 8027,
+        SamplerStateMaxLOD = 8028,
         RelaxedPrecision = 0,
         SpecId = 1,
         Block = 2,
@@ -201,6 +210,67 @@ public static partial class Specification
         CallableKHR = 5318,
         TaskEXT = 5364,
         MeshEXT = 5365,
+    }
+
+    public enum SamplerTextureAddressModeSDSL
+    {
+        Wrap = 1,
+        Mirror = 2,
+        Clamp = 3,
+        Border = 4,
+        MirrorOnce = 5,
+    }
+
+    public enum SamplerFilterSDSL
+    {
+        MIN_MAG_MIP_POINT = 0,
+        MIN_MAG_POINT_MIP_LINEAR = 1,
+        MIN_POINT_MAG_LINEAR_MIP_POINT = 4,
+        MIN_POINT_MAG_MIP_LINEAR = 5,
+        MIN_LINEAR_MAG_MIP_POINT = 16,
+        MIN_LINEAR_MAG_POINT_MIP_LINEAR = 17,
+        MIN_MAG_LINEAR_MIP_POINT = 20,
+        MIN_MAG_MIP_LINEAR = 21,
+        ANISOTROPIC = 85,
+        COMPARISON_MIN_MAG_MIP_POINT = 128,
+        COMPARISON_MIN_MAG_POINT_MIP_LINEAR = 129,
+        COMPARISON_MIN_POINT_MAG_LINEAR_MIP_POINT = 132,
+        COMPARISON_MIN_POINT_MAG_MIP_LINEAR = 133,
+        COMPARISON_MIN_LINEAR_MAG_MIP_POINT = 144,
+        COMPARISON_MIN_LINEAR_MAG_POINT_MIP_LINEAR = 145,
+        COMPARISON_MIN_MAG_LINEAR_MIP_POINT = 148,
+        COMPARISON_MIN_MAG_MIP_LINEAR = 149,
+        COMPARISON_ANISOTROPIC = 213,
+        MINIMUM_MIN_MAG_MIP_POINT = 256,
+        MINIMUM_MIN_MAG_POINT_MIP_LINEAR = 257,
+        MINIMUM_MIN_POINT_MAG_LINEAR_MIP_POINT = 260,
+        MINIMUM_MIN_POINT_MAG_MIP_LINEAR = 261,
+        MINIMUM_MIN_LINEAR_MAG_MIP_POINT = 272,
+        MINIMUM_MIN_LINEAR_MAG_POINT_MIP_LINEAR = 273,
+        MINIMUM_MIN_MAG_LINEAR_MIP_POINT = 276,
+        MINIMUM_MIN_MAG_MIP_LINEAR = 277,
+        MINIMUM_ANISOTROPIC = 341,
+        MAXIMUM_MIN_MAG_MIP_POINT = 384,
+        MAXIMUM_MIN_MAG_POINT_MIP_LINEAR = 385,
+        MAXIMUM_MIN_POINT_MAG_LINEAR_MIP_POINT = 388,
+        MAXIMUM_MIN_POINT_MAG_MIP_LINEAR = 389,
+        MAXIMUM_MIN_LINEAR_MAG_MIP_POINT = 400,
+        MAXIMUM_MIN_LINEAR_MAG_POINT_MIP_LINEAR = 401,
+        MAXIMUM_MIN_MAG_LINEAR_MIP_POINT = 404,
+        MAXIMUM_MIN_MAG_MIP_LINEAR = 405,
+        MAXIMUM_ANISOTROPIC = 469,
+    }
+
+    public enum SamplerComparisonFuncSDSL
+    {
+        Never = 1,
+        Less = 2,
+        Equal = 3,
+        LessEqual = 4,
+        Greater = 5,
+        NotEqual = 6,
+        GreaterEqual = 7,
+        Always = 8,
     }
 
     [Flags]

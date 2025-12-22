@@ -240,7 +240,7 @@ public struct OpSDSLEffect : IMemoryInstruction
     public static implicit operator OpSDSLEffect(OpData data) => new(data);
 }
 
-public struct OpSDSLEffectEnd : IMemoryInstruction
+public struct OpSDSLComposition : IMemoryInstruction
 {
     public OpDataIndex? DataIndex { get; set; }
 
@@ -266,19 +266,109 @@ public struct OpSDSLEffectEnd : IMemoryInstruction
         }
     }
 
-    public OpSDSLEffectEnd()
+    public OpSDSLComposition()
     {
         InstructionMemory = MemoryOwner<int>.Allocate(1);
-        InstructionMemory.Span[0] = (int)Op.OpSDSLEffectEnd | (1 << 16);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLComposition | (1 << 16);
     }
 
-    public OpSDSLEffectEnd(OpDataIndex index)
+    public string CompositionPath
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpSDSLComposition(OpDataIndex index)
     {
         InitializeProperties(index.Data);
         DataIndex = index;
     }
 
-    public OpSDSLEffectEnd(OpData data)
+    public OpSDSLComposition(OpData data)
+    {
+        InitializeProperties(data);
+    }
+
+    private void InitializeProperties(OpData data)
+    {
+        foreach (var o in data)
+        {
+            if (o.Name == "compositionPath")
+                CompositionPath = o.ToLiteral<string>();
+        }
+    }
+
+    public OpSDSLComposition(string compositionPath)
+    {
+        CompositionPath = compositionPath;
+        UpdateInstructionMemory();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpSDSLComposition, ..CompositionPath.AsDisposableLiteralValue().Words];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpSDSLComposition(OpDataIndex odi) => new(odi);
+    public static implicit operator OpSDSLComposition(OpData data) => new(data);
+}
+
+public struct OpSDSLCompositionEnd : IMemoryInstruction
+{
+    public OpDataIndex? DataIndex { get; set; }
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        readonly get
+        {
+            if (DataIndex is OpDataIndex odi)
+                return odi.Data.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (DataIndex is OpDataIndex odi)
+            {
+                odi.Data.Memory.Dispose();
+                odi.Data.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpSDSLCompositionEnd()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpSDSLCompositionEnd | (1 << 16);
+    }
+
+    public OpSDSLCompositionEnd(OpDataIndex index)
+    {
+        InitializeProperties(index.Data);
+        DataIndex = index;
+    }
+
+    public OpSDSLCompositionEnd(OpData data)
     {
         InitializeProperties(data);
     }
@@ -291,8 +381,8 @@ public struct OpSDSLEffectEnd : IMemoryInstruction
     {
     }
 
-    public static implicit operator OpSDSLEffectEnd(OpDataIndex odi) => new(odi);
-    public static implicit operator OpSDSLEffectEnd(OpData data) => new(data);
+    public static implicit operator OpSDSLCompositionEnd(OpDataIndex odi) => new(odi);
+    public static implicit operator OpSDSLCompositionEnd(OpData data) => new(data);
 }
 
 public struct OpSDSLMixinInherit : IMemoryInstruction

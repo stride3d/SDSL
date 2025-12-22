@@ -8,7 +8,8 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLShaderEnd, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpSDSLEffect, OperandKind.LiteralString, OperandQuantifier.One, "effectName", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLEffectEnd, OperandKind.None, null, "Debug");
+        Instance.Register(Op.OpSDSLComposition, OperandKind.LiteralString, OperandQuantifier.One, "compositionPath", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLCompositionEnd, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpSDSLMixinInherit, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLCompose, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLCompose, OperandKind.LiteralString, OperandQuantifier.One, "name", "Miscellaneous", []);

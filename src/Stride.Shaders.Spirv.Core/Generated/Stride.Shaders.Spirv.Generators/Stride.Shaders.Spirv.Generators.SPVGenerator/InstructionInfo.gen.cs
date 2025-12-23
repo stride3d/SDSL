@@ -57,6 +57,12 @@ public partial class InstructionInfo
         Instance.Register(Op.OpSDSLMixinComposeArray, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLGenericParameter, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLGenericParameter, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericParameter, OperandKind.LiteralInteger, OperandQuantifier.One, "index", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericParameter, OperandKind.LiteralString, OperandQuantifier.One, "declaringClass", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericReference, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericReference, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericReference, OperandKind.LiteralInteger, OperandQuantifier.One, "index", "Miscellaneous", []);
+        Instance.Register(Op.OpSDSLGenericReference, OperandKind.LiteralString, OperandQuantifier.One, "declaringClass", "Miscellaneous", []);
         Instance.Register(Op.OpConstantStringSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpConstantStringSDSL, OperandKind.LiteralString, OperandQuantifier.One, "literalString", "Miscellaneous", []);
         Instance.Register(Op.OpTypeGenericSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);

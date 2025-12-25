@@ -6,6 +6,7 @@ public static class ParameterizedFlags
     public static ParameterizedFlag<Decoration> DecorationLinkSDSL(string name) => new ParameterizedFlag<Decoration>(Decoration.LinkSDSL, [..name.AsDisposableLiteralValue().Words]);
     public static ParameterizedFlag<Decoration> DecorationLinkIdSDSL(int idRef0) => new ParameterizedFlag<Decoration>(Decoration.LinkIdSDSL, [idRef0]);
     public static ParameterizedFlag<Decoration> DecorationResourceGroupSDSL(string resourceGroup) => new ParameterizedFlag<Decoration>(Decoration.ResourceGroupSDSL, [..resourceGroup.AsDisposableLiteralValue().Words]);
+    public static ParameterizedFlag<Decoration> DecorationResourceGroupIdSDSL(int resourceGroup) => new ParameterizedFlag<Decoration>(Decoration.ResourceGroupIdSDSL, [resourceGroup]);
     public static ParameterizedFlag<Decoration> DecorationLogicalGroupSDSL(string logicalGroup) => new ParameterizedFlag<Decoration>(Decoration.LogicalGroupSDSL, [..logicalGroup.AsDisposableLiteralValue().Words]);
     public static ParameterizedFlag<Decoration> DecorationSamplerStateFilter(SamplerFilterSDSL samplerfiltersdsl0) => new ParameterizedFlag<Decoration>(Decoration.SamplerStateFilter, [(int)samplerfiltersdsl0]);
     public static ParameterizedFlag<Decoration> DecorationSamplerStateAddressU(SamplerTextureAddressModeSDSL samplertextureaddressmodesdsl0) => new ParameterizedFlag<Decoration>(Decoration.SamplerStateAddressU, [(int)samplertextureaddressmodesdsl0]);

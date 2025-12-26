@@ -2297,6 +2297,17 @@ public ref partial struct OpSDSLMixinCompose : IMemoryInstruction
         }
     }
 
+    public LiteralArray<int> Values
+    {
+        get;
+        set
+        {
+            field.Assign(value);
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLMixinCompose(OpDataIndex index)
     {
         InitializeProperties(ref index.Data);
@@ -2322,13 +2333,19 @@ public ref partial struct OpSDSLMixinCompose : IMemoryInstruction
                 Identifier = o.ToLiteral<string>();
             else if (o.Name == "mixin")
                 Mixin = o.ToLiteral<string>();
+            else if (o.Name == "values")
+                Values = o.ToLiteralArray<int>();
         }
+
+        if (Values.WordCount == -1)
+            Values = new();
     }
 
-    public OpSDSLMixinCompose(string identifier, string mixin)
+    public OpSDSLMixinCompose(string identifier, string mixin, LiteralArray<int> values)
     {
         Identifier = identifier;
         Mixin = mixin;
+        Values = values;
         UpdateInstructionMemory();
         opData = ref Unsafe.NullRef<OpData>();
     }
@@ -2337,7 +2354,7 @@ public ref partial struct OpSDSLMixinCompose : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLMixinCompose, ..Identifier.AsDisposableLiteralValue().Words, ..Mixin.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpSDSLMixinCompose, ..Identifier.AsDisposableLiteralValue().Words, ..Mixin.AsDisposableLiteralValue().Words, ..Values.Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -2408,6 +2425,17 @@ public ref partial struct OpSDSLMixinComposeArray : IMemoryInstruction
         }
     }
 
+    public LiteralArray<int> Values
+    {
+        get;
+        set
+        {
+            field.Assign(value);
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
     public OpSDSLMixinComposeArray(OpDataIndex index)
     {
         InitializeProperties(ref index.Data);
@@ -2433,13 +2461,19 @@ public ref partial struct OpSDSLMixinComposeArray : IMemoryInstruction
                 Identifier = o.ToLiteral<string>();
             else if (o.Name == "mixin")
                 Mixin = o.ToLiteral<string>();
+            else if (o.Name == "values")
+                Values = o.ToLiteralArray<int>();
         }
+
+        if (Values.WordCount == -1)
+            Values = new();
     }
 
-    public OpSDSLMixinComposeArray(string identifier, string mixin)
+    public OpSDSLMixinComposeArray(string identifier, string mixin, LiteralArray<int> values)
     {
         Identifier = identifier;
         Mixin = mixin;
+        Values = values;
         UpdateInstructionMemory();
         opData = ref Unsafe.NullRef<OpData>();
     }
@@ -2448,7 +2482,7 @@ public ref partial struct OpSDSLMixinComposeArray : IMemoryInstruction
     {
         if (InstructionMemory is null)
             InstructionMemory = MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpSDSLMixinComposeArray, ..Identifier.AsDisposableLiteralValue().Words, ..Mixin.AsDisposableLiteralValue().Words];
+        Span<int> instruction = [(int)Op.OpSDSLMixinComposeArray, ..Identifier.AsDisposableLiteralValue().Words, ..Mixin.AsDisposableLiteralValue().Words, ..Values.Words];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

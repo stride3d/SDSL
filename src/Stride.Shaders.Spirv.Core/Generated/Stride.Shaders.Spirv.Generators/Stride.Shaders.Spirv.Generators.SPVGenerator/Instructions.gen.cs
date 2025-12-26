@@ -62,6 +62,11 @@ public ref partial struct OpSDSLShader : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -143,6 +148,11 @@ public ref partial struct OpSDSLShaderEnd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -208,6 +218,11 @@ public ref partial struct OpSDSLEffect : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -302,6 +317,11 @@ public ref partial struct OpSDSLComposition : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -383,6 +403,11 @@ public ref partial struct OpSDSLCompositionEnd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -448,6 +473,11 @@ public ref partial struct OpSDSLMixinInherit : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -553,6 +583,11 @@ public ref partial struct OpSDSLCompose : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -646,6 +681,11 @@ public ref partial struct OpSDSLStage : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -762,6 +802,11 @@ public ref partial struct OpSDSLImportShader : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -909,6 +954,11 @@ public ref partial struct OpSDSLImportFunction : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -1061,6 +1111,11 @@ public ref partial struct OpSDSLImportVariable : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1187,6 +1242,11 @@ public ref partial struct OpSDSLImportStruct : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -1333,6 +1393,11 @@ public ref partial struct OpVariableSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1475,6 +1540,11 @@ public ref partial struct OpMemberAccessSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1600,6 +1670,11 @@ public ref partial struct OpTypeFunctionSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1712,6 +1787,11 @@ public ref partial struct OpSDSLFunctionInfo : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1809,6 +1889,11 @@ public ref partial struct OpBaseSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1903,6 +1988,11 @@ public ref partial struct OpThisSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -1995,6 +2085,11 @@ public ref partial struct OpStageSDSL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -2098,6 +2193,11 @@ public ref partial struct OpSDSLMixin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -2209,6 +2309,11 @@ public ref partial struct OpSDSLMixinCompose : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -2313,6 +2418,11 @@ public ref partial struct OpSDSLMixinComposeArray : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -2423,6 +2533,11 @@ public ref partial struct OpSDSLGenericParameter : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -2531,6 +2646,11 @@ public ref partial struct OpConstantStringSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -2637,6 +2757,11 @@ public ref partial struct OpTypeGenericSDSL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -2758,6 +2883,11 @@ public ref partial struct OpForeachSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -2845,6 +2975,11 @@ public ref partial struct OpForeachEndSDSL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -2921,6 +3056,11 @@ public ref partial struct OpUnresolvableShaderSDSL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -3007,6 +3147,11 @@ public ref partial struct OpNop : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -3085,6 +3230,11 @@ public ref partial struct OpUndef : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -3180,6 +3330,11 @@ public ref partial struct OpSourceContinued : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -3307,6 +3462,11 @@ public ref partial struct OpSource : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -3414,6 +3574,11 @@ public ref partial struct OpSourceExtension : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -3515,6 +3680,11 @@ public ref partial struct OpName : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -3634,6 +3804,11 @@ public ref partial struct OpMemberName : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -3743,6 +3918,11 @@ public ref partial struct OpString : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -3862,6 +4042,11 @@ public ref partial struct OpLine : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -3958,6 +4143,11 @@ public ref partial struct OpExtension : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -4063,6 +4253,11 @@ public ref partial struct OpExtInstImport : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -4206,6 +4401,11 @@ public ref partial struct OpExtInst : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -4322,6 +4522,11 @@ public ref partial struct OpMemoryModel : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -4452,6 +4657,11 @@ public ref partial struct OpEntryPoint : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -4567,6 +4777,11 @@ public ref partial struct OpExecutionMode : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -4664,6 +4879,11 @@ public ref partial struct OpCapability : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -4758,6 +4978,11 @@ public ref partial struct OpTypeVoid : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -4850,6 +5075,11 @@ public ref partial struct OpTypeBool : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -4966,6 +5196,11 @@ public ref partial struct OpTypeInt : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -5088,6 +5323,11 @@ public ref partial struct OpTypeFloat : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -5215,6 +5455,11 @@ public ref partial struct OpTypeVector : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -5335,6 +5580,11 @@ public ref partial struct OpTypeMatrix : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -5525,6 +5775,11 @@ public ref partial struct OpTypeImage : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -5646,6 +5901,11 @@ public ref partial struct OpTypeSampler : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -5749,6 +6009,11 @@ public ref partial struct OpTypeSampledImage : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -5870,6 +6135,11 @@ public ref partial struct OpTypeArray : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -5981,6 +6251,11 @@ public ref partial struct OpTypeRuntimeArray : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -6087,6 +6362,11 @@ public ref partial struct OpTypeStruct : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -6198,6 +6478,11 @@ public ref partial struct OpTypeOpaque : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -6317,6 +6602,11 @@ public ref partial struct OpTypePointer : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -6441,6 +6731,11 @@ public ref partial struct OpTypeFunction : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -6544,6 +6839,11 @@ public ref partial struct OpTypeEvent : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -6636,6 +6936,11 @@ public ref partial struct OpTypeDeviceEvent : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -6732,6 +7037,11 @@ public ref partial struct OpTypeReserveId : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -6824,6 +7134,11 @@ public ref partial struct OpTypeQueue : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -6931,6 +7246,11 @@ public ref partial struct OpTypePipe : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -7035,6 +7355,11 @@ public ref partial struct OpTypeForwardPointer : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -7145,6 +7470,11 @@ public ref partial struct OpConstantTrue : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -7251,6 +7581,11 @@ public ref partial struct OpConstantFalse : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -7365,6 +7700,11 @@ public ref struct OpConstant<T> : IMemoryInstruction where T : struct, INumber<T
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -7487,6 +7827,11 @@ public ref partial struct OpConstantComposite : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -7636,6 +7981,11 @@ public ref partial struct OpConstantSampler : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -7753,6 +8103,11 @@ public ref partial struct OpConstantNull : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -7861,6 +8216,11 @@ public ref partial struct OpSpecConstantTrue : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -7967,6 +8327,11 @@ public ref partial struct OpSpecConstantFalse : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -8081,6 +8446,11 @@ public ref struct OpSpecConstant<T> : IMemoryInstruction where T : struct, INumb
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -8203,6 +8573,11 @@ public ref partial struct OpSpecConstantComposite : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -8328,6 +8703,11 @@ public ref partial struct OpSpecConstantOp : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -8463,6 +8843,11 @@ public ref partial struct OpFunction : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -8577,6 +8962,11 @@ public ref partial struct OpFunctionParameter : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -8659,6 +9049,11 @@ public ref partial struct OpFunctionEnd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -8761,6 +9156,11 @@ public ref partial struct OpFunctionCall : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -8900,6 +9300,11 @@ public ref partial struct OpVariable : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -9052,6 +9457,11 @@ public ref partial struct OpImageTexelPointer : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -9191,6 +9601,11 @@ public ref partial struct OpLoad : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -9317,6 +9732,11 @@ public ref partial struct OpStore : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -9457,6 +9877,11 @@ public ref partial struct OpAccessChain : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -9594,6 +10019,11 @@ public ref partial struct OpInBoundsAccessChain : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -9746,6 +10176,11 @@ public ref partial struct OpPtrAccessChain : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -9888,6 +10323,11 @@ public ref partial struct OpArrayLength : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -10011,6 +10451,11 @@ public ref partial struct OpGenericPtrMemSemantics : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -10157,6 +10602,11 @@ public ref partial struct OpInBoundsPtrAccessChain : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -10273,6 +10723,11 @@ public ref partial struct OpDecorate : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -10394,6 +10849,11 @@ public ref partial struct OpMemberDecorate : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -10494,6 +10954,11 @@ public ref partial struct OpDecorationGroup : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -10597,6 +11062,11 @@ public ref partial struct OpGroupDecorate : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -10706,6 +11176,11 @@ public ref partial struct OpGroupMemberDecorate : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -10839,6 +11314,11 @@ public ref partial struct OpVectorExtractDynamic : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -10986,6 +11466,11 @@ public ref partial struct OpVectorInsertDynamic : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -11138,6 +11623,11 @@ public ref partial struct OpVectorShuffle : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -11267,6 +11757,11 @@ public ref partial struct OpCompositeConstruct : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -11403,6 +11898,11 @@ public ref partial struct OpCompositeExtract : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -11555,6 +12055,11 @@ public ref partial struct OpCompositeInsert : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -11686,6 +12191,11 @@ public ref partial struct OpCopyObject : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -11806,6 +12316,11 @@ public ref partial struct OpTranspose : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -11939,6 +12454,11 @@ public ref partial struct OpSampledImage : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -12086,6 +12606,11 @@ public ref partial struct OpImageSampleImplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -12241,6 +12766,11 @@ public ref partial struct OpImageSampleExplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -12404,6 +12934,11 @@ public ref partial struct OpImageSampleDrefImplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -12575,6 +13110,11 @@ public ref partial struct OpImageSampleDrefExplicitLod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -12730,6 +13270,11 @@ public ref partial struct OpImageSampleProjImplicitLod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -12883,6 +13428,11 @@ public ref partial struct OpImageSampleProjExplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -13046,6 +13596,11 @@ public ref partial struct OpImageSampleProjDrefImplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -13217,6 +13772,11 @@ public ref partial struct OpImageSampleProjDrefExplicitLod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -13370,6 +13930,11 @@ public ref partial struct OpImageFetch : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -13536,6 +14101,11 @@ public ref partial struct OpImageGather : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -13707,6 +14277,11 @@ public ref partial struct OpImageDrefGather : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -13865,6 +14440,11 @@ public ref partial struct OpImageRead : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -14007,6 +14587,11 @@ public ref partial struct OpImageWrite : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -14137,6 +14722,11 @@ public ref partial struct OpImage : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -14259,6 +14849,11 @@ public ref partial struct OpImageQueryFormat : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -14379,6 +14974,11 @@ public ref partial struct OpImageQueryOrder : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -14514,6 +15114,11 @@ public ref partial struct OpImageQuerySizeLod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -14637,6 +15242,11 @@ public ref partial struct OpImageQuerySize : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -14772,6 +15382,11 @@ public ref partial struct OpImageQueryLod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -14897,6 +15512,11 @@ public ref partial struct OpImageQueryLevels : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -15017,6 +15637,11 @@ public ref partial struct OpImageQuerySamples : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -15141,6 +15766,11 @@ public ref partial struct OpConvertFToU : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -15261,6 +15891,11 @@ public ref partial struct OpConvertFToS : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -15385,6 +16020,11 @@ public ref partial struct OpConvertSToF : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -15505,6 +16145,11 @@ public ref partial struct OpConvertUToF : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -15629,6 +16274,11 @@ public ref partial struct OpUConvert : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -15749,6 +16399,11 @@ public ref partial struct OpSConvert : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -15873,6 +16528,11 @@ public ref partial struct OpFConvert : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -15993,6 +16653,11 @@ public ref partial struct OpQuantizeToF16 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -16117,6 +16782,11 @@ public ref partial struct OpConvertPtrToU : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -16237,6 +16907,11 @@ public ref partial struct OpSatConvertSToU : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -16361,6 +17036,11 @@ public ref partial struct OpSatConvertUToS : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -16481,6 +17161,11 @@ public ref partial struct OpConvertUToPtr : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -16605,6 +17290,11 @@ public ref partial struct OpPtrCastToGeneric : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -16725,6 +17415,11 @@ public ref partial struct OpGenericCastToPtr : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -16860,6 +17555,11 @@ public ref partial struct OpGenericCastToPtrExplicit : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -16985,6 +17685,11 @@ public ref partial struct OpBitcast : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -17107,6 +17812,11 @@ public ref partial struct OpSNegate : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -17227,6 +17937,11 @@ public ref partial struct OpFNegate : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -17360,6 +18075,11 @@ public ref partial struct OpIAdd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -17498,6 +18218,11 @@ public ref partial struct OpFAdd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -17632,6 +18357,11 @@ public ref partial struct OpISub : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -17770,6 +18500,11 @@ public ref partial struct OpFSub : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -17904,6 +18639,11 @@ public ref partial struct OpIMul : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -18042,6 +18782,11 @@ public ref partial struct OpFMul : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -18176,6 +18921,11 @@ public ref partial struct OpUDiv : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -18314,6 +19064,11 @@ public ref partial struct OpSDiv : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -18448,6 +19203,11 @@ public ref partial struct OpFDiv : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -18586,6 +19346,11 @@ public ref partial struct OpUMod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -18720,6 +19485,11 @@ public ref partial struct OpSRem : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -18858,6 +19628,11 @@ public ref partial struct OpSMod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -18992,6 +19767,11 @@ public ref partial struct OpFRem : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -19130,6 +19910,11 @@ public ref partial struct OpFMod : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -19264,6 +20049,11 @@ public ref partial struct OpVectorTimesScalar : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -19402,6 +20192,11 @@ public ref partial struct OpMatrixTimesScalar : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -19536,6 +20331,11 @@ public ref partial struct OpVectorTimesMatrix : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -19674,6 +20474,11 @@ public ref partial struct OpMatrixTimesVector : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -19808,6 +20613,11 @@ public ref partial struct OpMatrixTimesMatrix : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -19946,6 +20756,11 @@ public ref partial struct OpOuterProduct : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -20080,6 +20895,11 @@ public ref partial struct OpDot : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -20218,6 +21038,11 @@ public ref partial struct OpIAddCarry : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -20352,6 +21177,11 @@ public ref partial struct OpISubBorrow : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -20490,6 +21320,11 @@ public ref partial struct OpUMulExtended : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -20626,6 +21461,11 @@ public ref partial struct OpSMulExtended : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -20751,6 +21591,11 @@ public ref partial struct OpAny : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -20871,6 +21716,11 @@ public ref partial struct OpAll : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -20995,6 +21845,11 @@ public ref partial struct OpIsNan : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -21115,6 +21970,11 @@ public ref partial struct OpIsInf : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -21239,6 +22099,11 @@ public ref partial struct OpIsFinite : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -21361,6 +22226,11 @@ public ref partial struct OpIsNormal : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -21481,6 +22351,11 @@ public ref partial struct OpSignBitSet : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -21614,6 +22489,11 @@ public ref partial struct OpLessOrGreater : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -21752,6 +22632,11 @@ public ref partial struct OpOrdered : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -21886,6 +22771,11 @@ public ref partial struct OpUnordered : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -22024,6 +22914,11 @@ public ref partial struct OpLogicalEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -22158,6 +23053,11 @@ public ref partial struct OpLogicalNotEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -22296,6 +23196,11 @@ public ref partial struct OpLogicalOr : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -22432,6 +23337,11 @@ public ref partial struct OpLogicalAnd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -22555,6 +23465,11 @@ public ref partial struct OpLogicalNot : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -22701,6 +23616,11 @@ public ref partial struct OpSelect : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -22840,6 +23760,11 @@ public ref partial struct OpIEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -22974,6 +23899,11 @@ public ref partial struct OpINotEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -23112,6 +24042,11 @@ public ref partial struct OpUGreaterThan : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -23246,6 +24181,11 @@ public ref partial struct OpSGreaterThan : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -23384,6 +24324,11 @@ public ref partial struct OpUGreaterThanEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -23518,6 +24463,11 @@ public ref partial struct OpSGreaterThanEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -23656,6 +24606,11 @@ public ref partial struct OpULessThan : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -23790,6 +24745,11 @@ public ref partial struct OpSLessThan : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -23928,6 +24888,11 @@ public ref partial struct OpULessThanEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -24062,6 +25027,11 @@ public ref partial struct OpSLessThanEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -24200,6 +25170,11 @@ public ref partial struct OpFOrdEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -24334,6 +25309,11 @@ public ref partial struct OpFUnordEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -24472,6 +25452,11 @@ public ref partial struct OpFOrdNotEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -24606,6 +25591,11 @@ public ref partial struct OpFUnordNotEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -24744,6 +25734,11 @@ public ref partial struct OpFOrdLessThan : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -24878,6 +25873,11 @@ public ref partial struct OpFUnordLessThan : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -25016,6 +26016,11 @@ public ref partial struct OpFOrdGreaterThan : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -25150,6 +26155,11 @@ public ref partial struct OpFUnordGreaterThan : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -25288,6 +26298,11 @@ public ref partial struct OpFOrdLessThanEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -25422,6 +26437,11 @@ public ref partial struct OpFUnordLessThanEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -25560,6 +26580,11 @@ public ref partial struct OpFOrdGreaterThanEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -25694,6 +26719,11 @@ public ref partial struct OpFUnordGreaterThanEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -25832,6 +26862,11 @@ public ref partial struct OpShiftRightLogical : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -25966,6 +27001,11 @@ public ref partial struct OpShiftRightArithmetic : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -26104,6 +27144,11 @@ public ref partial struct OpShiftLeftLogical : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -26238,6 +27283,11 @@ public ref partial struct OpBitwiseOr : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -26376,6 +27426,11 @@ public ref partial struct OpBitwiseXor : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -26512,6 +27567,11 @@ public ref partial struct OpBitwiseAnd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -26635,6 +27695,11 @@ public ref partial struct OpNot : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -26792,6 +27857,11 @@ public ref partial struct OpBitFieldInsert : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -26945,6 +28015,11 @@ public ref partial struct OpBitFieldSExtract : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -27095,6 +28170,11 @@ public ref partial struct OpBitFieldUExtract : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -27223,6 +28303,11 @@ public ref partial struct OpBitReverse : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -27343,6 +28428,11 @@ public ref partial struct OpBitCount : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -27467,6 +28557,11 @@ public ref partial struct OpDPdx : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -27587,6 +28682,11 @@ public ref partial struct OpDPdy : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -27711,6 +28811,11 @@ public ref partial struct OpFwidth : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -27831,6 +28936,11 @@ public ref partial struct OpDPdxFine : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -27955,6 +29065,11 @@ public ref partial struct OpDPdyFine : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -28075,6 +29190,11 @@ public ref partial struct OpFwidthFine : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -28199,6 +29319,11 @@ public ref partial struct OpDPdxCoarse : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -28319,6 +29444,11 @@ public ref partial struct OpDPdyCoarse : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -28443,6 +29573,11 @@ public ref partial struct OpFwidthCoarse : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -28530,6 +29665,11 @@ public ref partial struct OpEmitVertex : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -28584,6 +29724,11 @@ public ref partial struct OpEndPrimitive : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -28651,6 +29796,11 @@ public ref partial struct OpEmitStreamVertex : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -28743,6 +29893,11 @@ public ref partial struct OpEndStreamPrimitive : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -28859,6 +30014,11 @@ public ref partial struct OpControlBarrier : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -28966,6 +30126,11 @@ public ref partial struct OpMemoryBarrier : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -29109,6 +30274,11 @@ public ref partial struct OpAtomicLoad : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -29244,6 +30414,11 @@ public ref partial struct OpAtomicStore : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -29402,6 +30577,11 @@ public ref partial struct OpAtomicExchange : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -29588,6 +30768,11 @@ public ref partial struct OpAtomicCompareExchange : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -29782,6 +30967,11 @@ public ref partial struct OpAtomicCompareExchangeWeak : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -29941,6 +31131,11 @@ public ref partial struct OpAtomicIIncrement : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -30089,6 +31284,11 @@ public ref partial struct OpAtomicIDecrement : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -30250,6 +31450,11 @@ public ref partial struct OpAtomicIAdd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -30416,6 +31621,11 @@ public ref partial struct OpAtomicISub : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -30578,6 +31788,11 @@ public ref partial struct OpAtomicSMin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -30744,6 +31959,11 @@ public ref partial struct OpAtomicUMin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -30906,6 +32126,11 @@ public ref partial struct OpAtomicSMax : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -31072,6 +32297,11 @@ public ref partial struct OpAtomicUMax : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -31234,6 +32464,11 @@ public ref partial struct OpAtomicAnd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -31400,6 +32635,11 @@ public ref partial struct OpAtomicOr : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -31564,6 +32804,11 @@ public ref partial struct OpAtomicXor : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -31695,6 +32940,11 @@ public ref partial struct OpPhi : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -31818,6 +33068,11 @@ public ref partial struct OpLoopMerge : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -31929,6 +33184,11 @@ public ref partial struct OpSelectionMerge : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -32026,6 +33286,11 @@ public ref partial struct OpLabel : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -32116,6 +33381,11 @@ public ref partial struct OpBranch : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -32241,6 +33511,11 @@ public ref partial struct OpBranchConditional : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -32369,6 +33644,11 @@ public ref partial struct OpSwitch : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -32459,6 +33739,11 @@ public ref partial struct OpKill : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -32513,6 +33798,11 @@ public ref partial struct OpReturn : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -32580,6 +33870,11 @@ public ref partial struct OpReturnValue : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -32663,6 +33958,11 @@ public ref partial struct OpUnreachable : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -32739,6 +34039,11 @@ public ref partial struct OpLifetimeStart : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -32845,6 +34150,11 @@ public ref partial struct OpLifetimeStop : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -33021,6 +34331,11 @@ public ref partial struct OpGroupAsyncCopy : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -33156,6 +34471,11 @@ public ref partial struct OpGroupWaitEvents : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -33287,6 +34607,11 @@ public ref partial struct OpGroupAll : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -33423,6 +34748,11 @@ public ref partial struct OpGroupAny : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -33570,6 +34900,11 @@ public ref partial struct OpGroupBroadcast : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -33722,6 +35057,11 @@ public ref partial struct OpGroupIAdd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -33870,6 +35210,11 @@ public ref partial struct OpGroupFAdd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -34022,6 +35367,11 @@ public ref partial struct OpGroupFMin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -34170,6 +35520,11 @@ public ref partial struct OpGroupUMin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -34322,6 +35677,11 @@ public ref partial struct OpGroupSMin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -34470,6 +35830,11 @@ public ref partial struct OpGroupFMax : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -34622,6 +35987,11 @@ public ref partial struct OpGroupUMax : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -34770,6 +36140,11 @@ public ref partial struct OpGroupSMax : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -34931,6 +36306,11 @@ public ref partial struct OpReadPipe : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -35095,6 +36475,11 @@ public ref partial struct OpWritePipe : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -35281,6 +36666,11 @@ public ref partial struct OpReservedReadPipe : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -35475,6 +36865,11 @@ public ref partial struct OpReservedWritePipe : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -35645,6 +37040,11 @@ public ref partial struct OpReserveReadPipePackets : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -35809,6 +37209,11 @@ public ref partial struct OpReserveWritePipePackets : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -35949,6 +37354,11 @@ public ref partial struct OpCommitReadPipe : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -36083,6 +37493,11 @@ public ref partial struct OpCommitWritePipe : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -36206,6 +37621,11 @@ public ref partial struct OpIsValidReserveId : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -36350,6 +37770,11 @@ public ref partial struct OpGetNumPipePackets : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -36500,6 +37925,11 @@ public ref partial struct OpGetMaxPipePackets : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -36672,6 +38102,11 @@ public ref partial struct OpGroupReserveReadPipePackets : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -36852,6 +38287,11 @@ public ref partial struct OpGroupReserveWritePipePackets : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -37006,6 +38446,11 @@ public ref partial struct OpGroupCommitReadPipe : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -37152,6 +38597,11 @@ public ref partial struct OpGroupCommitWritePipe : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -37313,6 +38763,11 @@ public ref partial struct OpEnqueueMarker : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -37556,6 +39011,11 @@ public ref partial struct OpEnqueueKernel : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -37755,6 +39215,11 @@ public ref partial struct OpGetKernelNDrangeSubGroupCount : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -37933,6 +39398,11 @@ public ref partial struct OpGetKernelNDrangeMaxSubGroupSize : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -38100,6 +39570,11 @@ public ref partial struct OpGetKernelWorkGroupSize : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -38264,6 +39739,11 @@ public ref partial struct OpGetKernelPreferredWorkGroupSizeMultiple : IMemoryIns
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -38371,6 +39851,11 @@ public ref partial struct OpRetainEvent : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -38461,6 +39946,11 @@ public ref partial struct OpReleaseEvent : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -38566,6 +40056,11 @@ public ref partial struct OpCreateUserEvent : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -38687,6 +40182,11 @@ public ref partial struct OpIsValidEvent : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -38794,6 +40294,11 @@ public ref partial struct OpSetUserEventStatus : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -38913,6 +40418,11 @@ public ref partial struct OpCaptureEventProfilingInfo : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -39022,6 +40532,11 @@ public ref partial struct OpGetDefaultQueue : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -39163,6 +40678,11 @@ public ref partial struct OpBuildNDRange : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -39313,6 +40833,11 @@ public ref partial struct OpImageSparseSampleImplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -39468,6 +40993,11 @@ public ref partial struct OpImageSparseSampleExplicitLod : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -39631,6 +41161,11 @@ public ref partial struct OpImageSparseSampleDrefImplicitLod : IMemoryInstructio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -39802,6 +41337,11 @@ public ref partial struct OpImageSparseSampleDrefExplicitLod : IMemoryInstructio
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -39957,6 +41497,11 @@ public ref partial struct OpImageSparseSampleProjImplicitLod : IMemoryInstructio
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -40110,6 +41655,11 @@ public ref partial struct OpImageSparseSampleProjExplicitLod : IMemoryInstructio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -40273,6 +41823,11 @@ public ref partial struct OpImageSparseSampleProjDrefImplicitLod : IMemoryInstru
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -40444,6 +41999,11 @@ public ref partial struct OpImageSparseSampleProjDrefExplicitLod : IMemoryInstru
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -40597,6 +42157,11 @@ public ref partial struct OpImageSparseFetch : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -40763,6 +42328,11 @@ public ref partial struct OpImageSparseGather : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -40934,6 +42504,11 @@ public ref partial struct OpImageSparseDrefGather : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -41070,6 +42645,11 @@ public ref partial struct OpImageSparseTexelsResident : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -41155,6 +42735,11 @@ public ref partial struct OpNoLine : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -41268,6 +42853,11 @@ public ref partial struct OpAtomicFlagTestAndSet : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -41394,6 +42984,11 @@ public ref partial struct OpAtomicFlagClear : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -41540,6 +43135,11 @@ public ref partial struct OpImageSparseRead : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -41673,6 +43273,11 @@ public ref partial struct OpSizeOf : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -41771,6 +43376,11 @@ public ref partial struct OpTypePipeStorage : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -41911,6 +43521,11 @@ public ref partial struct OpConstantPipeStorage : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -42037,6 +43652,11 @@ public ref partial struct OpCreatePipeFromPipeStorage : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -42203,6 +43823,11 @@ public ref partial struct OpGetKernelLocalSizeForSubgroupCount : IMemoryInstruct
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -42372,6 +43997,11 @@ public ref partial struct OpGetKernelMaxNumSubgroups : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -42479,6 +44109,11 @@ public ref partial struct OpTypeNamedBarrier : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -42595,6 +44230,11 @@ public ref partial struct OpNamedBarrierInitialize : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -42717,6 +44357,11 @@ public ref partial struct OpMemoryNamedBarrier : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -42813,6 +44458,11 @@ public ref partial struct OpModuleProcessed : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -42916,6 +44566,11 @@ public ref partial struct OpExecutionModeId : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -43024,6 +44679,11 @@ public ref partial struct OpDecorateId : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -43145,6 +44805,11 @@ public ref partial struct OpGroupNonUniformElect : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -43278,6 +44943,11 @@ public ref partial struct OpGroupNonUniformAll : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -43416,6 +45086,11 @@ public ref partial struct OpGroupNonUniformAny : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -43550,6 +45225,11 @@ public ref partial struct OpGroupNonUniformAllEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -43699,6 +45379,11 @@ public ref partial struct OpGroupNonUniformBroadcast : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -43838,6 +45523,11 @@ public ref partial struct OpGroupNonUniformBroadcastFirst : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -43974,6 +45664,11 @@ public ref partial struct OpGroupNonUniformBallot : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -44108,6 +45803,11 @@ public ref partial struct OpGroupNonUniformInverseBallot : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -44255,6 +45955,11 @@ public ref partial struct OpGroupNonUniformBallotBitExtract : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -44407,6 +46112,11 @@ public ref partial struct OpGroupNonUniformBallotBitCount : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -44546,6 +46256,11 @@ public ref partial struct OpGroupNonUniformBallotFindLSB : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -44680,6 +46395,11 @@ public ref partial struct OpGroupNonUniformBallotFindMSB : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -44827,6 +46547,11 @@ public ref partial struct OpGroupNonUniformShuffle : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -44979,6 +46704,11 @@ public ref partial struct OpGroupNonUniformShuffleXor : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -45129,6 +46859,11 @@ public ref partial struct OpGroupNonUniformShuffleUp : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -45277,6 +47012,11 @@ public ref partial struct OpGroupNonUniformShuffleDown : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -45438,6 +47178,11 @@ public ref partial struct OpGroupNonUniformIAdd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -45607,6 +47352,11 @@ public ref partial struct OpGroupNonUniformFAdd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -45772,6 +47522,11 @@ public ref partial struct OpGroupNonUniformIMul : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -45941,6 +47696,11 @@ public ref partial struct OpGroupNonUniformFMul : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -46106,6 +47866,11 @@ public ref partial struct OpGroupNonUniformSMin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -46275,6 +48040,11 @@ public ref partial struct OpGroupNonUniformUMin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -46440,6 +48210,11 @@ public ref partial struct OpGroupNonUniformFMin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -46609,6 +48384,11 @@ public ref partial struct OpGroupNonUniformSMax : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -46774,6 +48554,11 @@ public ref partial struct OpGroupNonUniformUMax : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -46943,6 +48728,11 @@ public ref partial struct OpGroupNonUniformFMax : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -47108,6 +48898,11 @@ public ref partial struct OpGroupNonUniformBitwiseAnd : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -47277,6 +49072,11 @@ public ref partial struct OpGroupNonUniformBitwiseOr : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -47442,6 +49242,11 @@ public ref partial struct OpGroupNonUniformBitwiseXor : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -47611,6 +49416,11 @@ public ref partial struct OpGroupNonUniformLogicalAnd : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -47776,6 +49586,11 @@ public ref partial struct OpGroupNonUniformLogicalOr : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -47945,6 +49760,11 @@ public ref partial struct OpGroupNonUniformLogicalXor : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -48101,6 +49921,11 @@ public ref partial struct OpGroupNonUniformQuadBroadcast : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -48251,6 +50076,11 @@ public ref partial struct OpGroupNonUniformQuadSwap : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -48377,6 +50207,11 @@ public ref partial struct OpCopyLogical : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -48510,6 +50345,11 @@ public ref partial struct OpPtrEqual : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -48648,6 +50488,11 @@ public ref partial struct OpPtrNotEqual : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -48782,6 +50627,11 @@ public ref partial struct OpPtrDiff : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -48920,6 +50770,11 @@ public ref partial struct OpColorAttachmentReadEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -49048,6 +50903,11 @@ public ref partial struct OpDepthAttachmentReadEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -49173,6 +51033,11 @@ public ref partial struct OpStencilAttachmentReadEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -49263,6 +51128,11 @@ public ref partial struct OpTerminateInvocation : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -49341,6 +51211,11 @@ public ref partial struct OpTypeUntypedPointerKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -49482,6 +51357,11 @@ public ref partial struct OpUntypedVariableKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -49640,6 +51520,11 @@ public ref partial struct OpUntypedAccessChainKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -49793,6 +51678,11 @@ public ref partial struct OpUntypedInBoundsAccessChainKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -49924,6 +51814,11 @@ public ref partial struct OpSubgroupBallotKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -50044,6 +51939,11 @@ public ref partial struct OpSubgroupFirstInvocationKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -50199,6 +52099,11 @@ public ref partial struct OpUntypedPtrAccessChainKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -50368,6 +52273,11 @@ public ref partial struct OpUntypedInBoundsPtrAccessChainKHR : IMemoryInstructio
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -50524,6 +52434,11 @@ public ref partial struct OpUntypedArrayLengthKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -50672,6 +52587,11 @@ public ref partial struct OpUntypedPrefetchKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -50809,6 +52729,11 @@ public ref partial struct OpSubgroupAllKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -50931,6 +52856,11 @@ public ref partial struct OpSubgroupAnyKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -51051,6 +52981,11 @@ public ref partial struct OpSubgroupAllEqualKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -51208,6 +53143,11 @@ public ref partial struct OpGroupNonUniformRotateKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -51351,6 +53291,11 @@ public ref partial struct OpSubgroupReadInvocationKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -51498,6 +53443,11 @@ public ref partial struct OpExtInstWithForwardRefsKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -51717,6 +53667,11 @@ public ref partial struct OpTraceRayKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -51850,6 +53805,11 @@ public ref partial struct OpExecuteCallableKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -51969,6 +53929,11 @@ public ref partial struct OpConvertUToAccelerationStructureKHR : IMemoryInstruct
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -52056,6 +54021,11 @@ public ref partial struct OpIgnoreIntersectionKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -52110,6 +54080,11 @@ public ref partial struct OpTerminateRayKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -52223,6 +54198,11 @@ public ref partial struct OpSDot : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -52378,6 +54358,11 @@ public ref partial struct OpUDot : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -52529,6 +54514,11 @@ public ref partial struct OpSUDot : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -52693,6 +54683,11 @@ public ref partial struct OpSDotAccSat : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -52862,6 +54857,11 @@ public ref partial struct OpUDotAccSat : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -53027,6 +55027,11 @@ public ref partial struct OpSUDotAccSat : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -53196,6 +55201,11 @@ public ref partial struct OpTypeCooperativeMatrixKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -53360,6 +55370,11 @@ public ref partial struct OpCooperativeMatrixLoadKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -53517,6 +55532,11 @@ public ref partial struct OpCooperativeMatrixStoreKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -53688,6 +55708,11 @@ public ref partial struct OpCooperativeMatrixMulAddKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -53822,6 +55847,11 @@ public ref partial struct OpCooperativeMatrixLengthKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -53942,6 +55972,11 @@ public ref partial struct OpConstantCompositeReplicateEXT : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -54066,6 +56101,11 @@ public ref partial struct OpSpecConstantCompositeReplicateEXT : IMemoryInstructi
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -54188,6 +56228,11 @@ public ref partial struct OpCompositeConstructReplicateEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -54286,6 +56331,11 @@ public ref partial struct OpTypeRayQueryKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -54457,6 +56507,11 @@ public ref partial struct OpRayQueryInitializeKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -54570,6 +56625,11 @@ public ref partial struct OpRayQueryTerminateKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -54673,6 +56733,11 @@ public ref partial struct OpRayQueryGenerateIntersectionKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -54766,6 +56831,11 @@ public ref partial struct OpRayQueryConfirmIntersectionKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -54882,6 +56952,11 @@ public ref partial struct OpRayQueryProceedKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -55015,6 +57090,11 @@ public ref partial struct OpRayQueryGetIntersectionTypeKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -55162,6 +57242,11 @@ public ref partial struct OpImageSampleWeightedQCOM : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -55312,6 +57397,11 @@ public ref partial struct OpImageBoxFilterQCOM : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -55484,6 +57574,11 @@ public ref partial struct OpImageBlockMatchSSDQCOM : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -55664,6 +57759,11 @@ public ref partial struct OpImageBlockMatchSADQCOM : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -55840,6 +57940,11 @@ public ref partial struct OpImageBlockMatchWindowSSDQCOM : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -56020,6 +58125,11 @@ public ref partial struct OpImageBlockMatchWindowSADQCOM : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -56196,6 +58306,11 @@ public ref partial struct OpImageBlockMatchGatherSSDQCOM : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -56376,6 +58491,11 @@ public ref partial struct OpImageBlockMatchGatherSADQCOM : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -56532,6 +58652,11 @@ public ref partial struct OpGroupIAddNonUniformAMD : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -56680,6 +58805,11 @@ public ref partial struct OpGroupFAddNonUniformAMD : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -56832,6 +58962,11 @@ public ref partial struct OpGroupFMinNonUniformAMD : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -56980,6 +59115,11 @@ public ref partial struct OpGroupUMinNonUniformAMD : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -57132,6 +59272,11 @@ public ref partial struct OpGroupSMinNonUniformAMD : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -57280,6 +59425,11 @@ public ref partial struct OpGroupFMaxNonUniformAMD : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -57432,6 +59582,11 @@ public ref partial struct OpGroupUMaxNonUniformAMD : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -57582,6 +59737,11 @@ public ref partial struct OpGroupSMaxNonUniformAMD : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -57719,6 +59879,11 @@ public ref partial struct OpFragmentMaskFetchAMD : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -57868,6 +60033,11 @@ public ref partial struct OpFragmentFetchAMD : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -57994,6 +60164,11 @@ public ref partial struct OpReadClockKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -58140,6 +60315,11 @@ public ref partial struct OpAllocateNodePayloadsAMDX : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -58242,6 +60422,11 @@ public ref partial struct OpEnqueueNodePayloadsAMDX : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -58347,6 +60532,11 @@ public ref partial struct OpTypeNodePayloadArrayAMDX : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -58466,6 +60656,11 @@ public ref partial struct OpFinishWritingNodePayloadAMDX : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -58588,6 +60783,11 @@ public ref partial struct OpNodePayloadArrayLengthAMDX : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -58723,6 +60923,11 @@ public ref partial struct OpIsNodePayloadValidAMDX : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -58837,6 +61042,11 @@ public ref partial struct OpConstantStringAMDX : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -58943,6 +61153,11 @@ public ref partial struct OpSpecConstantStringAMDX : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -59062,6 +61277,11 @@ public ref partial struct OpGroupNonUniformQuadAllKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -59184,6 +61404,11 @@ public ref partial struct OpGroupNonUniformQuadAnyKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -59425,6 +61650,11 @@ public ref partial struct OpHitObjectRecordHitMotionNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -59690,6 +61920,11 @@ public ref partial struct OpHitObjectRecordHitWithIndexMotionNV : IMemoryInstruc
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -59884,6 +62119,11 @@ public ref partial struct OpHitObjectRecordMissMotionNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -60018,6 +62258,11 @@ public ref partial struct OpHitObjectGetWorldToObjectNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -60138,6 +62383,11 @@ public ref partial struct OpHitObjectGetObjectToWorldNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -60262,6 +62512,11 @@ public ref partial struct OpHitObjectGetObjectRayDirectionNV : IMemoryInstructio
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -60382,6 +62637,11 @@ public ref partial struct OpHitObjectGetObjectRayOriginNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -60614,6 +62874,11 @@ public ref partial struct OpHitObjectTraceRayMotionNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -60766,6 +63031,11 @@ public ref partial struct OpHitObjectGetShaderRecordBufferHandleNV : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -60888,6 +63158,11 @@ public ref partial struct OpHitObjectGetShaderBindingTableRecordIndexNV : IMemor
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -60984,6 +63259,11 @@ public ref partial struct OpHitObjectRecordEmptyNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -61197,6 +63477,11 @@ public ref partial struct OpHitObjectTraceRayNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -61456,6 +63741,11 @@ public ref partial struct OpHitObjectRecordHitNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -61705,6 +63995,11 @@ public ref partial struct OpHitObjectRecordHitWithIndexNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -61885,6 +64180,11 @@ public ref partial struct OpHitObjectRecordMissNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -62001,6 +64301,11 @@ public ref partial struct OpHitObjectExecuteShaderNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -62122,6 +64427,11 @@ public ref partial struct OpHitObjectGetCurrentTimeNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -62229,6 +64539,11 @@ public ref partial struct OpHitObjectGetAttributesNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -62348,6 +64663,11 @@ public ref partial struct OpHitObjectGetHitKindNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -62472,6 +64792,11 @@ public ref partial struct OpHitObjectGetPrimitiveIndexNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -62592,6 +64917,11 @@ public ref partial struct OpHitObjectGetGeometryIndexNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -62716,6 +65046,11 @@ public ref partial struct OpHitObjectGetInstanceIdNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -62836,6 +65171,11 @@ public ref partial struct OpHitObjectGetInstanceCustomIndexNV : IMemoryInstructi
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -62960,6 +65300,11 @@ public ref partial struct OpHitObjectGetWorldRayDirectionNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -63080,6 +65425,11 @@ public ref partial struct OpHitObjectGetWorldRayOriginNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -63204,6 +65554,11 @@ public ref partial struct OpHitObjectGetRayTMaxNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -63324,6 +65679,11 @@ public ref partial struct OpHitObjectGetRayTMinNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -63448,6 +65808,11 @@ public ref partial struct OpHitObjectIsEmptyNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -63568,6 +65933,11 @@ public ref partial struct OpHitObjectIsHitNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -63692,6 +66062,11 @@ public ref partial struct OpHitObjectIsMissNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -63812,6 +66187,11 @@ public ref partial struct OpReorderThreadWithHitObjectNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -63927,6 +66307,11 @@ public ref partial struct OpReorderThreadWithHintNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -64022,6 +66407,11 @@ public ref partial struct OpTypeHitObjectNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -64184,6 +66574,11 @@ public ref partial struct OpImageSampleFootprintNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -64323,6 +66718,11 @@ public ref partial struct OpCooperativeMatrixConvertNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -64454,6 +66854,11 @@ public ref partial struct OpEmitMeshTasksEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -64567,6 +66972,11 @@ public ref partial struct OpSetMeshOutputsEXT : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -64688,6 +67098,11 @@ public ref partial struct OpGroupNonUniformPartitionNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -64795,6 +67210,11 @@ public ref partial struct OpWritePackedPrimitiveIndices4x8NV : IMemoryInstructio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -64958,6 +67378,11 @@ public ref partial struct OpFetchMicroTriangleVertexPositionNV : IMemoryInstruct
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -65138,6 +67563,11 @@ public ref partial struct OpFetchMicroTriangleVertexBarycentricNV : IMemoryInstr
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -65283,6 +67713,11 @@ public ref partial struct OpReportIntersectionKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -65373,6 +67808,11 @@ public ref partial struct OpIgnoreIntersectionNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -65427,6 +67867,11 @@ public ref partial struct OpTerminateRayNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -65604,6 +68049,11 @@ public ref partial struct OpTraceNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -65847,6 +68297,11 @@ public ref partial struct OpTraceMotionNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -66095,6 +68550,11 @@ public ref partial struct OpTraceRayMotionNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -66255,6 +68715,11 @@ public ref partial struct OpRayQueryGetIntersectionTriangleVertexPositionsKHR : 
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -66358,6 +68823,11 @@ public ref partial struct OpTypeAccelerationStructureKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -66459,6 +68929,11 @@ public ref partial struct OpExecuteCallableNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -66600,6 +69075,11 @@ public ref partial struct OpTypeCooperativeMatrixNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -66763,6 +69243,11 @@ public ref partial struct OpCooperativeMatrixLoadNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -66917,6 +69402,11 @@ public ref partial struct OpCooperativeMatrixStoreNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -67074,6 +69564,11 @@ public ref partial struct OpCooperativeMatrixMulAddNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -67202,6 +69697,11 @@ public ref partial struct OpCooperativeMatrixLengthNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -67289,6 +69789,11 @@ public ref partial struct OpBeginInvocationInterlockEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -67343,6 +69848,11 @@ public ref partial struct OpEndInvocationInterlockEXT : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -67456,6 +69966,11 @@ public ref partial struct OpCooperativeMatrixReduceNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -67630,6 +70145,11 @@ public ref partial struct OpCooperativeMatrixLoadTensorNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -67788,6 +70308,11 @@ public ref partial struct OpCooperativeMatrixStoreTensorNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -67942,6 +70467,11 @@ public ref partial struct OpCooperativeMatrixPerElementOpNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -68071,6 +70601,11 @@ public ref partial struct OpTypeTensorLayoutNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -68206,6 +70741,11 @@ public ref partial struct OpTypeTensorViewNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -68321,6 +70861,11 @@ public ref partial struct OpCreateTensorLayoutNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -68451,6 +70996,11 @@ public ref partial struct OpTensorLayoutSetDimensionNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -68592,6 +71142,11 @@ public ref partial struct OpTensorLayoutSetStrideNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -68729,6 +71284,11 @@ public ref partial struct OpTensorLayoutSliceNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -68870,6 +71430,11 @@ public ref partial struct OpTensorLayoutSetClampValueNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -68982,6 +71547,11 @@ public ref partial struct OpCreateTensorViewNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -69112,6 +71682,11 @@ public ref partial struct OpTensorViewSetDimensionNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -69253,6 +71828,11 @@ public ref partial struct OpTensorViewSetStrideNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -69346,6 +71926,11 @@ public ref partial struct OpDemoteToHelperInvocation : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
     }
@@ -69424,6 +72009,11 @@ public ref partial struct OpIsHelperInvocationEXT : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -69589,6 +72179,11 @@ public ref partial struct OpTensorViewSetClipNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -69734,6 +72329,11 @@ public ref partial struct OpTensorLayoutSetBlockSizeNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -69862,6 +72462,11 @@ public ref partial struct OpCooperativeMatrixTransposeNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -69982,6 +72587,11 @@ public ref partial struct OpConvertUToImageNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -70106,6 +72716,11 @@ public ref partial struct OpConvertUToSamplerNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -70226,6 +72841,11 @@ public ref partial struct OpConvertImageToUNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -70350,6 +72970,11 @@ public ref partial struct OpConvertSamplerToUNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -70470,6 +73095,11 @@ public ref partial struct OpConvertUToSampledImageNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -70594,6 +73224,11 @@ public ref partial struct OpConvertSampledImageToUNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -70690,6 +73325,11 @@ public ref partial struct OpSamplerImageAddressingModeNV : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -70852,6 +73492,11 @@ public ref partial struct OpRawAccessChainNV : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -71000,6 +73645,11 @@ public ref partial struct OpSubgroupShuffleINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -71145,6 +73795,11 @@ public ref partial struct OpSubgroupShuffleDownINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -71297,6 +73952,11 @@ public ref partial struct OpSubgroupShuffleUpINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -71436,6 +74096,11 @@ public ref partial struct OpSubgroupShuffleXorINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -71561,6 +74226,11 @@ public ref partial struct OpSubgroupBlockReadINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -71668,6 +74338,11 @@ public ref partial struct OpSubgroupBlockWriteINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -71800,6 +74475,11 @@ public ref partial struct OpSubgroupImageBlockReadINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -71921,6 +74601,11 @@ public ref partial struct OpSubgroupImageBlockWriteINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -72078,6 +74763,11 @@ public ref partial struct OpSubgroupImageMediaBlockReadINTEL : IMemoryInstructio
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -72229,6 +74919,11 @@ public ref partial struct OpSubgroupImageMediaBlockWriteINTEL : IMemoryInstructi
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -72357,6 +75052,11 @@ public ref partial struct OpUCountLeadingZerosINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -72477,6 +75177,11 @@ public ref partial struct OpUCountTrailingZerosINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -72610,6 +75315,11 @@ public ref partial struct OpAbsISubINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -72748,6 +75458,11 @@ public ref partial struct OpAbsUSubINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -72882,6 +75597,11 @@ public ref partial struct OpIAddSatINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -73020,6 +75740,11 @@ public ref partial struct OpUAddSatINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -73154,6 +75879,11 @@ public ref partial struct OpIAverageINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -73292,6 +76022,11 @@ public ref partial struct OpUAverageINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -73426,6 +76161,11 @@ public ref partial struct OpIAverageRoundedINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -73564,6 +76304,11 @@ public ref partial struct OpUAverageRoundedINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -73698,6 +76443,11 @@ public ref partial struct OpISubSatINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -73836,6 +76586,11 @@ public ref partial struct OpUSubSatINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -73970,6 +76725,11 @@ public ref partial struct OpIMul32x16INTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -74108,6 +76868,11 @@ public ref partial struct OpUMul32x16INTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -74233,6 +76998,11 @@ public ref partial struct OpConstantFunctionPointerINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -74353,6 +77123,11 @@ public ref partial struct OpFunctionPointerCallINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -74478,6 +77253,11 @@ public ref partial struct OpAsmTargetINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -74635,6 +77415,11 @@ public ref partial struct OpAsmINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -74775,6 +77560,11 @@ public ref partial struct OpAsmCallINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -74936,6 +77726,11 @@ public ref partial struct OpAtomicFMinEXT : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -75102,6 +77897,11 @@ public ref partial struct OpAtomicFMaxEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -75207,6 +78007,11 @@ public ref partial struct OpAssumeTrueKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -75336,6 +78141,11 @@ public ref partial struct OpExpectKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -75446,6 +78256,11 @@ public ref partial struct OpDecorateString : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -75565,6 +78380,11 @@ public ref partial struct OpMemberDecorateString : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -75702,6 +78522,11 @@ public ref partial struct OpVmeImageINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -75816,6 +78641,11 @@ public ref partial struct OpTypeVmeImageINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -75913,6 +78743,11 @@ public ref partial struct OpTypeAvcImePayloadINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -76005,6 +78840,11 @@ public ref partial struct OpTypeAvcRefPayloadINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -76101,6 +78941,11 @@ public ref partial struct OpTypeAvcSicPayloadINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -76193,6 +79038,11 @@ public ref partial struct OpTypeAvcMcePayloadINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -76289,6 +79139,11 @@ public ref partial struct OpTypeAvcMceResultINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -76381,6 +79236,11 @@ public ref partial struct OpTypeAvcImeResultINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -76477,6 +79337,11 @@ public ref partial struct OpTypeAvcImeResultSingleReferenceStreamoutINTEL : IMem
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -76569,6 +79434,11 @@ public ref partial struct OpTypeAvcImeResultDualReferenceStreamoutINTEL : IMemor
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -76665,6 +79535,11 @@ public ref partial struct OpTypeAvcImeSingleReferenceStreaminINTEL : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -76757,6 +79632,11 @@ public ref partial struct OpTypeAvcImeDualReferenceStreaminINTEL : IMemoryInstru
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -76853,6 +79733,11 @@ public ref partial struct OpTypeAvcRefResultINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -76945,6 +79830,11 @@ public ref partial struct OpTypeAvcSicResultINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -77072,6 +79962,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenal
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -77210,6 +80105,11 @@ public ref partial struct OpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -77344,6 +80244,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL : IMe
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -77482,6 +80387,11 @@ public ref partial struct OpSubgroupAvcMceSetInterShapePenaltyINTEL : IMemoryIns
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -77616,6 +80526,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL :
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -77754,6 +80669,11 @@ public ref partial struct OpSubgroupAvcMceSetInterDirectionPenaltyINTEL : IMemor
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -77888,6 +80808,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL :
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -78026,6 +80951,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultInterMotionVectorCostTableIN
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -78140,6 +81070,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL : 
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -78248,6 +81183,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL 
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -78354,6 +81294,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL : I
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -78508,6 +81453,11 @@ public ref partial struct OpSubgroupAvcMceSetMotionVectorCostFunctionINTEL : IMe
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -78650,6 +81600,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL : 
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -78764,6 +81719,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL :
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -78870,6 +81830,11 @@ public ref partial struct OpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyIN
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -78989,6 +81954,11 @@ public ref partial struct OpSubgroupAvcMceSetAcOnlyHaarINTEL : IMemoryInstructio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -79122,6 +82092,11 @@ public ref partial struct OpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL 
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -79258,6 +82233,11 @@ public ref partial struct OpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolar
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -79407,6 +82387,11 @@ public ref partial struct OpSubgroupAvcMceSetDualReferenceInterlacedFieldPolarit
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -79535,6 +82520,11 @@ public ref partial struct OpSubgroupAvcMceConvertToImePayloadINTEL : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -79655,6 +82645,11 @@ public ref partial struct OpSubgroupAvcMceConvertToImeResultINTEL : IMemoryInstr
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -79779,6 +82774,11 @@ public ref partial struct OpSubgroupAvcMceConvertToRefPayloadINTEL : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -79899,6 +82899,11 @@ public ref partial struct OpSubgroupAvcMceConvertToRefResultINTEL : IMemoryInstr
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -80023,6 +83028,11 @@ public ref partial struct OpSubgroupAvcMceConvertToSicPayloadINTEL : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -80143,6 +83153,11 @@ public ref partial struct OpSubgroupAvcMceConvertToSicResultINTEL : IMemoryInstr
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -80267,6 +83282,11 @@ public ref partial struct OpSubgroupAvcMceGetMotionVectorsINTEL : IMemoryInstruc
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -80387,6 +83407,11 @@ public ref partial struct OpSubgroupAvcMceGetInterDistortionsINTEL : IMemoryInst
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -80511,6 +83536,11 @@ public ref partial struct OpSubgroupAvcMceGetBestInterDistortionsINTEL : IMemory
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -80631,6 +83661,11 @@ public ref partial struct OpSubgroupAvcMceGetInterMajorShapeINTEL : IMemoryInstr
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -80755,6 +83790,11 @@ public ref partial struct OpSubgroupAvcMceGetInterMinorShapeINTEL : IMemoryInstr
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -80875,6 +83915,11 @@ public ref partial struct OpSubgroupAvcMceGetInterDirectionsINTEL : IMemoryInstr
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -80999,6 +84044,11 @@ public ref partial struct OpSubgroupAvcMceGetInterMotionVectorCountINTEL : IMemo
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -81119,6 +84169,11 @@ public ref partial struct OpSubgroupAvcMceGetInterReferenceIdsINTEL : IMemoryIns
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -81263,6 +84318,11 @@ public ref partial struct OpSubgroupAvcMceGetInterReferenceInterlacedFieldPolari
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -81415,6 +84475,11 @@ public ref partial struct OpSubgroupAvcImeInitializeINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -81563,6 +84628,11 @@ public ref partial struct OpSubgroupAvcImeSetSingleReferenceINTEL : IMemoryInstr
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -81726,6 +84796,11 @@ public ref partial struct OpSubgroupAvcImeSetDualReferenceINTEL : IMemoryInstruc
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -81866,6 +84941,11 @@ public ref partial struct OpSubgroupAvcImeRefWindowSizeINTEL : IMemoryInstructio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -82026,6 +85106,11 @@ public ref partial struct OpSubgroupAvcImeAdjustRefOffsetINTEL : IMemoryInstruct
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -82155,6 +85240,11 @@ public ref partial struct OpSubgroupAvcImeConvertToMcePayloadINTEL : IMemoryInst
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -82290,6 +85380,11 @@ public ref partial struct OpSubgroupAvcImeSetMaxMotionVectorCountINTEL : IMemory
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -82413,6 +85508,11 @@ public ref partial struct OpSubgroupAvcImeSetUnidirectionalMixDisableINTEL : IMe
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -82546,6 +85646,11 @@ public ref partial struct OpSubgroupAvcImeSetEarlySearchTerminationThresholdINTE
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -82682,6 +85787,11 @@ public ref partial struct OpSubgroupAvcImeSetWeightedSadINTEL : IMemoryInstructi
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -82829,6 +85939,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithSingleReferenceINTEL : IMe
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -82990,6 +86105,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithDualReferenceINTEL : IMemo
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -83154,6 +86274,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINT
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -83331,6 +86456,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -83485,6 +86615,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutIN
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -83646,6 +86781,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTE
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -83810,6 +86950,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithSingleReferenceStreaminout
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -83987,6 +87132,11 @@ public ref partial struct OpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutIN
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -84121,6 +87271,11 @@ public ref partial struct OpSubgroupAvcImeConvertToMceResultINTEL : IMemoryInstr
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -84241,6 +87396,11 @@ public ref partial struct OpSubgroupAvcImeGetSingleReferenceStreaminINTEL : IMem
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -84365,6 +87525,11 @@ public ref partial struct OpSubgroupAvcImeGetDualReferenceStreaminINTEL : IMemor
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -84487,6 +87652,11 @@ public ref partial struct OpSubgroupAvcImeStripSingleReferenceStreamoutINTEL : I
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -84607,6 +87777,11 @@ public ref partial struct OpSubgroupAvcImeStripDualReferenceStreamoutINTEL : IMe
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -84740,6 +87915,11 @@ public ref partial struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeM
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -84878,6 +88058,11 @@ public ref partial struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeD
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -85012,6 +88197,11 @@ public ref partial struct OpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeR
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -85159,6 +88349,11 @@ public ref partial struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMot
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -85311,6 +88506,11 @@ public ref partial struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDis
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -85461,6 +88661,11 @@ public ref partial struct OpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeRef
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -85600,6 +88805,11 @@ public ref partial struct OpSubgroupAvcImeGetBorderReachedINTEL : IMemoryInstruc
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -85725,6 +88935,11 @@ public ref partial struct OpSubgroupAvcImeGetTruncatedSearchIndicationINTEL : IM
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -85845,6 +89060,11 @@ public ref partial struct OpSubgroupAvcImeGetUnidirectionalEarlySearchTerminatio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -85969,6 +89189,11 @@ public ref partial struct OpSubgroupAvcImeGetWeightingPatternMinimumMotionVector
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -86089,6 +89314,11 @@ public ref partial struct OpSubgroupAvcImeGetWeightingPatternMinimumDistortionIN
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -86277,6 +89507,11 @@ public ref partial struct OpSubgroupAvcFmeInitializeINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -86496,6 +89731,11 @@ public ref partial struct OpSubgroupAvcBmeInitializeINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -86639,6 +89879,11 @@ public ref partial struct OpSubgroupAvcRefConvertToMcePayloadINTEL : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -86761,6 +90006,11 @@ public ref partial struct OpSubgroupAvcRefSetBidirectionalMixDisableINTEL : IMem
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -86881,6 +90131,11 @@ public ref partial struct OpSubgroupAvcRefSetBilinearFilterEnableINTEL : IMemory
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -87025,6 +90280,11 @@ public ref partial struct OpSubgroupAvcRefEvaluateWithSingleReferenceINTEL : IMe
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -87188,6 +90448,11 @@ public ref partial struct OpSubgroupAvcRefEvaluateWithDualReferenceINTEL : IMemo
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -87339,6 +90604,11 @@ public ref partial struct OpSubgroupAvcRefEvaluateWithMultiReferenceINTEL : IMem
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -87502,6 +90772,11 @@ public ref partial struct OpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedIN
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -87633,6 +90908,11 @@ public ref partial struct OpSubgroupAvcRefConvertToMceResultINTEL : IMemoryInstr
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -87753,6 +91033,11 @@ public ref partial struct OpSubgroupAvcSicInitializeINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -87930,6 +91215,11 @@ public ref partial struct OpSubgroupAvcSicConfigureSkcINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -88144,6 +91434,11 @@ public ref partial struct OpSubgroupAvcSicConfigureIpeLumaINTEL : IMemoryInstruc
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -88399,6 +91694,11 @@ public ref partial struct OpSubgroupAvcSicConfigureIpeLumaChromaINTEL : IMemoryI
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -88562,6 +91862,11 @@ public ref partial struct OpSubgroupAvcSicGetMotionVectorMaskINTEL : IMemoryInst
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -88685,6 +91990,11 @@ public ref partial struct OpSubgroupAvcSicConvertToMcePayloadINTEL : IMemoryInst
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -88818,6 +92128,11 @@ public ref partial struct OpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL : IMemor
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -88978,6 +92293,11 @@ public ref partial struct OpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL : IM
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -89120,6 +92440,11 @@ public ref partial struct OpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL : 
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -89243,6 +92568,11 @@ public ref partial struct OpSubgroupAvcSicSetBilinearFilterEnableINTEL : IMemory
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -89376,6 +92706,11 @@ public ref partial struct OpSubgroupAvcSicSetSkcForwardTransformEnableINTEL : IM
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -89514,6 +92849,11 @@ public ref partial struct OpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL : IMemory
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -89648,6 +92988,11 @@ public ref partial struct OpSubgroupAvcSicEvaluateIpeINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -89795,6 +93140,11 @@ public ref partial struct OpSubgroupAvcSicEvaluateWithSingleReferenceINTEL : IMe
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -89958,6 +93308,11 @@ public ref partial struct OpSubgroupAvcSicEvaluateWithDualReferenceINTEL : IMemo
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -90109,6 +93464,11 @@ public ref partial struct OpSubgroupAvcSicEvaluateWithMultiReferenceINTEL : IMem
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -90272,6 +93632,11 @@ public ref partial struct OpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedIN
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -90403,6 +93768,11 @@ public ref partial struct OpSubgroupAvcSicConvertToMceResultINTEL : IMemoryInstr
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -90523,6 +93893,11 @@ public ref partial struct OpSubgroupAvcSicGetIpeLumaShapeINTEL : IMemoryInstruct
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -90647,6 +94022,11 @@ public ref partial struct OpSubgroupAvcSicGetBestIpeLumaDistortionINTEL : IMemor
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -90767,6 +94147,11 @@ public ref partial struct OpSubgroupAvcSicGetBestIpeChromaDistortionINTEL : IMem
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -90891,6 +94276,11 @@ public ref partial struct OpSubgroupAvcSicGetPackedIpeLumaModesINTEL : IMemoryIn
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -91011,6 +94401,11 @@ public ref partial struct OpSubgroupAvcSicGetIpeChromaModeINTEL : IMemoryInstruc
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -91135,6 +94530,11 @@ public ref partial struct OpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL : 
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -91255,6 +94655,11 @@ public ref partial struct OpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL : IM
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -91379,6 +94784,11 @@ public ref partial struct OpSubgroupAvcSicGetInterRawSadsINTEL : IMemoryInstruct
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -91501,6 +94911,11 @@ public ref partial struct OpVariableLengthArrayINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -91612,6 +95027,11 @@ public ref partial struct OpSaveMemoryINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -91705,6 +95125,11 @@ public ref partial struct OpRestoreMemoryINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -91887,6 +95312,11 @@ public ref partial struct OpArbitraryFloatSinCosPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -92084,6 +95514,11 @@ public ref partial struct OpArbitraryFloatCastINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -92276,6 +95711,11 @@ public ref partial struct OpArbitraryFloatCastFromIntINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -92455,6 +95895,11 @@ public ref partial struct OpArbitraryFloatCastToIntINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -92666,6 +96111,11 @@ public ref partial struct OpArbitraryFloatAddINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -92888,6 +96338,11 @@ public ref partial struct OpArbitraryFloatSubINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -93106,6 +96561,11 @@ public ref partial struct OpArbitraryFloatMulINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -93328,6 +96788,11 @@ public ref partial struct OpArbitraryFloatDivINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -93504,6 +96969,11 @@ public ref partial struct OpArbitraryFloatGTINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -93666,6 +97136,11 @@ public ref partial struct OpArbitraryFloatGEINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -93832,6 +97307,11 @@ public ref partial struct OpArbitraryFloatLTINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -93996,6 +97476,11 @@ public ref partial struct OpArbitraryFloatLEINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -94158,6 +97643,11 @@ public ref partial struct OpArbitraryFloatEQINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -94344,6 +97834,11 @@ public ref partial struct OpArbitraryFloatRecipINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -94538,6 +98033,11 @@ public ref partial struct OpArbitraryFloatRSqrtINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -94728,6 +98228,11 @@ public ref partial struct OpArbitraryFloatCbrtINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -94944,6 +98449,11 @@ public ref partial struct OpArbitraryFloatHypotINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -95142,6 +98652,11 @@ public ref partial struct OpArbitraryFloatSqrtINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -95332,6 +98847,11 @@ public ref partial struct OpArbitraryFloatLogINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -95526,6 +99046,11 @@ public ref partial struct OpArbitraryFloatLog2INTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -95716,6 +99241,11 @@ public ref partial struct OpArbitraryFloatLog10INTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -95910,6 +99440,11 @@ public ref partial struct OpArbitraryFloatLog1pINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -96100,6 +99635,11 @@ public ref partial struct OpArbitraryFloatExpINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -96294,6 +99834,11 @@ public ref partial struct OpArbitraryFloatExp2INTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -96484,6 +100029,11 @@ public ref partial struct OpArbitraryFloatExp10INTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -96678,6 +100228,11 @@ public ref partial struct OpArbitraryFloatExpm1INTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -96868,6 +100423,11 @@ public ref partial struct OpArbitraryFloatSinINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -97062,6 +100622,11 @@ public ref partial struct OpArbitraryFloatCosINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -97252,6 +100817,11 @@ public ref partial struct OpArbitraryFloatSinCosINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -97446,6 +101016,11 @@ public ref partial struct OpArbitraryFloatSinPiINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -97636,6 +101211,11 @@ public ref partial struct OpArbitraryFloatCosPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -97830,6 +101410,11 @@ public ref partial struct OpArbitraryFloatASinINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -98020,6 +101605,11 @@ public ref partial struct OpArbitraryFloatASinPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -98214,6 +101804,11 @@ public ref partial struct OpArbitraryFloatACosINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -98404,6 +101999,11 @@ public ref partial struct OpArbitraryFloatACosPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -98598,6 +102198,11 @@ public ref partial struct OpArbitraryFloatATanINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -98788,6 +102393,11 @@ public ref partial struct OpArbitraryFloatATanPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -99002,6 +102612,11 @@ public ref partial struct OpArbitraryFloatATan2INTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -99224,6 +102839,11 @@ public ref partial struct OpArbitraryFloatPowINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -99444,6 +103064,11 @@ public ref partial struct OpArbitraryFloatPowRINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -99653,6 +103278,11 @@ public ref partial struct OpArbitraryFloatPowNINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -99769,6 +103399,11 @@ public ref partial struct OpLoopControlINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -99875,6 +103510,11 @@ public ref partial struct OpAliasDomainDeclINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -99999,6 +103639,11 @@ public ref partial struct OpAliasScopeDeclINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -100111,6 +103756,11 @@ public ref partial struct OpAliasScopeListDeclINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -100299,6 +103949,11 @@ public ref partial struct OpFixedSqrtINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -100507,6 +104162,11 @@ public ref partial struct OpFixedRecipINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -100711,6 +104371,11 @@ public ref partial struct OpFixedRsqrtINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -100919,6 +104584,11 @@ public ref partial struct OpFixedSinINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -101123,6 +104793,11 @@ public ref partial struct OpFixedCosINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -101331,6 +105006,11 @@ public ref partial struct OpFixedSinCosINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -101535,6 +105215,11 @@ public ref partial struct OpFixedSinPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -101743,6 +105428,11 @@ public ref partial struct OpFixedCosPiINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -101947,6 +105637,11 @@ public ref partial struct OpFixedSinCosPiINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -102155,6 +105850,11 @@ public ref partial struct OpFixedLogINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -102361,6 +106061,11 @@ public ref partial struct OpFixedExpINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -102501,6 +106206,11 @@ public ref partial struct OpPtrCastToCrossWorkgroupINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -102621,6 +106331,11 @@ public ref partial struct OpCrossWorkgroupCastToPtrINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -102754,6 +106469,11 @@ public ref partial struct OpReadPipeBlockingINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -102892,6 +106612,11 @@ public ref partial struct OpWritePipeBlockingINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -103028,6 +106753,11 @@ public ref partial struct OpFPGARegINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -103153,6 +106883,11 @@ public ref partial struct OpRayQueryGetRayTMinKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -103273,6 +107008,11 @@ public ref partial struct OpRayQueryGetRayFlagsKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -103406,6 +107146,11 @@ public ref partial struct OpRayQueryGetIntersectionTKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -103544,6 +107289,11 @@ public ref partial struct OpRayQueryGetIntersectionInstanceCustomIndexKHR : IMem
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -103678,6 +107428,11 @@ public ref partial struct OpRayQueryGetIntersectionInstanceIdKHR : IMemoryInstru
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -103816,6 +107571,11 @@ public ref partial struct OpRayQueryGetIntersectionInstanceShaderBindingTableRec
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -103950,6 +107710,11 @@ public ref partial struct OpRayQueryGetIntersectionGeometryIndexKHR : IMemoryIns
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -104088,6 +107853,11 @@ public ref partial struct OpRayQueryGetIntersectionPrimitiveIndexKHR : IMemoryIn
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -104222,6 +107992,11 @@ public ref partial struct OpRayQueryGetIntersectionBarycentricsKHR : IMemoryInst
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -104360,6 +108135,11 @@ public ref partial struct OpRayQueryGetIntersectionFrontFaceKHR : IMemoryInstruc
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -104483,6 +108263,11 @@ public ref partial struct OpRayQueryGetIntersectionCandidateAABBOpaqueKHR : IMem
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -104616,6 +108401,11 @@ public ref partial struct OpRayQueryGetIntersectionObjectRayDirectionKHR : IMemo
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -104754,6 +108544,11 @@ public ref partial struct OpRayQueryGetIntersectionObjectRayOriginKHR : IMemoryI
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -104879,6 +108674,11 @@ public ref partial struct OpRayQueryGetWorldRayDirectionKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -104999,6 +108799,11 @@ public ref partial struct OpRayQueryGetWorldRayOriginKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -105132,6 +108937,11 @@ public ref partial struct OpRayQueryGetIntersectionObjectToWorldKHR : IMemoryIns
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -105268,6 +109078,11 @@ public ref partial struct OpRayQueryGetIntersectionWorldToObjectKHR : IMemoryIns
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -105428,6 +109243,11 @@ public ref partial struct OpAtomicFAddEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -105548,6 +109368,11 @@ public ref partial struct OpTypeBufferSurfaceINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -105641,6 +109466,11 @@ public ref partial struct OpTypeStructContinuedINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -105738,6 +109568,11 @@ public ref partial struct OpConstantCompositeContinuedINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -105831,6 +109666,11 @@ public ref partial struct OpSpecConstantCompositeContinuedINTEL : IMemoryInstruc
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -105950,6 +109790,11 @@ public ref partial struct OpCompositeConstructContinuedINTEL : IMemoryInstructio
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -106077,6 +109922,11 @@ public ref partial struct OpConvertFToBF16INTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -106199,6 +110049,11 @@ public ref partial struct OpConvertBF16ToFINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -106319,6 +110174,11 @@ public ref partial struct OpControlBarrierArriveINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -106437,6 +110297,11 @@ public ref partial struct OpControlBarrierWaitINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -106561,6 +110426,11 @@ public ref partial struct OpArithmeticFenceEXT : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -106679,6 +110549,11 @@ public ref partial struct OpSubgroupBlockPrefetchINTEL : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -106828,6 +110703,11 @@ public ref partial struct OpGroupIMulKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -106980,6 +110860,11 @@ public ref partial struct OpGroupFMulKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -107128,6 +111013,11 @@ public ref partial struct OpGroupBitwiseAndKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -107280,6 +111170,11 @@ public ref partial struct OpGroupBitwiseOrKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -107428,6 +111323,11 @@ public ref partial struct OpGroupBitwiseXorKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -107580,6 +111480,11 @@ public ref partial struct OpGroupLogicalAndKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -107730,6 +111635,11 @@ public ref partial struct OpGroupLogicalOrKHR : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -107878,6 +111788,11 @@ public ref partial struct OpGroupLogicalXorKHR : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -108041,6 +111956,11 @@ public ref partial struct OpMaskedGatherINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -108181,6 +112101,11 @@ public ref partial struct OpMaskedScatterINTEL : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -108311,6 +112236,11 @@ public ref struct GLSLRound : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -108445,6 +112375,11 @@ public ref struct GLSLRoundEven : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -108575,6 +112510,11 @@ public ref struct GLSLTrunc : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -108709,6 +112649,11 @@ public ref struct GLSLFAbs : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -108839,6 +112784,11 @@ public ref struct GLSLSAbs : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -108973,6 +112923,11 @@ public ref struct GLSLFSign : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -109103,6 +113058,11 @@ public ref struct GLSLSSign : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -109237,6 +113197,11 @@ public ref struct GLSLFloor : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -109367,6 +113332,11 @@ public ref struct GLSLCeil : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -109501,6 +113471,11 @@ public ref struct GLSLFract : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -109631,6 +113606,11 @@ public ref struct GLSLRadians : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -109765,6 +113745,11 @@ public ref struct GLSLDegrees : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -109895,6 +113880,11 @@ public ref struct GLSLSin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -110029,6 +114019,11 @@ public ref struct GLSLCos : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -110159,6 +114154,11 @@ public ref struct GLSLTan : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -110293,6 +114293,11 @@ public ref struct GLSLAsin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -110423,6 +114428,11 @@ public ref struct GLSLAcos : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -110557,6 +114567,11 @@ public ref struct GLSLAtan : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -110687,6 +114702,11 @@ public ref struct GLSLSinh : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -110821,6 +114841,11 @@ public ref struct GLSLCosh : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -110951,6 +114976,11 @@ public ref struct GLSLTanh : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -111085,6 +115115,11 @@ public ref struct GLSLAsinh : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -111217,6 +115252,11 @@ public ref struct GLSLAcosh : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -111347,6 +115387,11 @@ public ref struct GLSLAtanh : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -111490,6 +115535,11 @@ public ref struct GLSLAtan2 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -111638,6 +115688,11 @@ public ref struct GLSLPow : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -111773,6 +115828,11 @@ public ref struct GLSLExp : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -111903,6 +115963,11 @@ public ref struct GLSLLog : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -112037,6 +116102,11 @@ public ref struct GLSLExp2 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -112167,6 +116237,11 @@ public ref struct GLSLLog2 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -112301,6 +116376,11 @@ public ref struct GLSLSqrt : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -112431,6 +116511,11 @@ public ref struct GLSLInverseSqrt : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -112565,6 +116650,11 @@ public ref struct GLSLDeterminant : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -112695,6 +116785,11 @@ public ref struct GLSLMatrixInverse : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -112840,6 +116935,11 @@ public ref struct GLSLModf : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -112973,6 +117073,11 @@ public ref struct GLSLModfStruct : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -113116,6 +117221,11 @@ public ref struct GLSLFMin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -113264,6 +117374,11 @@ public ref struct GLSLUMin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -113408,6 +117523,11 @@ public ref struct GLSLSMin : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -113556,6 +117676,11 @@ public ref struct GLSLFMax : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -113702,6 +117827,11 @@ public ref struct GLSLUMax : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -113846,6 +117976,11 @@ public ref struct GLSLSMax : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -114003,6 +118138,11 @@ public ref struct GLSLFClamp : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -114165,6 +118305,11 @@ public ref struct GLSLUClamp : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -114323,6 +118468,11 @@ public ref struct GLSLSClamp : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -114485,6 +118635,11 @@ public ref struct GLSLFMix : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -114645,6 +118800,11 @@ public ref struct GLSLIMix : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -114792,6 +118952,11 @@ public ref struct GLSLStep : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -114949,6 +119114,11 @@ public ref struct GLSLSmoothStep : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -115111,6 +119281,11 @@ public ref struct GLSLFma : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -115260,6 +119435,11 @@ public ref struct GLSLFrexp : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -115393,6 +119573,11 @@ public ref struct GLSLFrexpStruct : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -115538,6 +119723,11 @@ public ref struct GLSLLdexp : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -115673,6 +119863,11 @@ public ref struct GLSLPackSnorm4x8 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -115803,6 +119998,11 @@ public ref struct GLSLPackUnorm4x8 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -115937,6 +120137,11 @@ public ref struct GLSLPackSnorm2x16 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -116067,6 +120272,11 @@ public ref struct GLSLPackUnorm2x16 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -116201,6 +120411,11 @@ public ref struct GLSLPackHalf2x16 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -116331,6 +120546,11 @@ public ref struct GLSLPackDouble2x32 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -116465,6 +120685,11 @@ public ref struct GLSLUnpackSnorm2x16 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -116595,6 +120820,11 @@ public ref struct GLSLUnpackUnorm2x16 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -116729,6 +120959,11 @@ public ref struct GLSLUnpackHalf2x16 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -116859,6 +121094,11 @@ public ref struct GLSLUnpackSnorm4x8 : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -116993,6 +121233,11 @@ public ref struct GLSLUnpackUnorm4x8 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -117125,6 +121370,11 @@ public ref struct GLSLUnpackDouble2x32 : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -117255,6 +121505,11 @@ public ref struct GLSLLength : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -117398,6 +121653,11 @@ public ref struct GLSLDistance : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -117546,6 +121806,11 @@ public ref struct GLSLCross : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -117679,6 +121944,11 @@ public ref struct GLSLNormalize : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -117835,6 +122105,11 @@ public ref struct GLSLFaceForward : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -117982,6 +122257,11 @@ public ref struct GLSLReflect : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -118141,6 +122421,11 @@ public ref struct GLSLRefract : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -118279,6 +122564,11 @@ public ref struct GLSLFindILsb : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -118409,6 +122699,11 @@ public ref struct GLSLFindSMsb : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -118543,6 +122838,11 @@ public ref struct GLSLFindUMsb : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -118673,6 +122973,11 @@ public ref struct GLSLInterpolateAtCentroid : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -118816,6 +123121,11 @@ public ref struct GLSLInterpolateAtSample : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -118964,6 +123274,11 @@ public ref struct GLSLInterpolateAtOffset : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -119110,6 +123425,11 @@ public ref struct GLSLNMin : IMemoryInstruction
         opData = ref data;
     }
 
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
     private void InitializeProperties(ref OpData data)
     {
         foreach (var o in data)
@@ -119254,6 +123574,11 @@ public ref struct GLSLNMax : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)
@@ -119411,6 +123736,11 @@ public ref struct GLSLNClamp : IMemoryInstruction
     {
         InitializeProperties(ref data);
         opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
     }
 
     private void InitializeProperties(ref OpData data)

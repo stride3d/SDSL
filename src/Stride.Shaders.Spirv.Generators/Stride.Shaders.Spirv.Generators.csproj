@@ -21,6 +21,10 @@
     	<PackageReference Include="System.Text.Encodings.Web" Version="10.0.0" GeneratePathProperty="true" PrivateAssets="all" />
 		<PackageReference Include="System.Text.Json" Version="10.0.0" GeneratePathProperty="true" PrivateAssets="all" />
 		<PackageReference Include="AngleSharp" Version="1.4.0" GeneratePathProperty="true" PrivateAssets="all" />
+		<PackageReference Include="PolySharp" Version="1.15.0">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<PropertyGroup>

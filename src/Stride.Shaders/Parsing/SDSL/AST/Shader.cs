@@ -71,7 +71,7 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
             }
             else if (instruction.Op == Op.OpDecorate)
             {
-                OpDecorate decorateInstruction = instruction;
+                var decorateInstruction = new OpDecorate(instruction);
                 if (decorateInstruction.Decoration.Value == Decoration.Block)
                     blocks.Add(decorateInstruction.Target);
             }
@@ -162,6 +162,7 @@ public class ShaderClass(Identifier name, TextLocation info) : ShaderDeclaration
             }
             else if (instruction.Op == Op.OpTypeFunctionSDSL && new OpTypeFunctionSDSL(instruction) is { } typeFunctionInstruction)
             {
+                var tmp = new OpTypeFunction(instruction);
                 var returnType = types[typeFunctionInstruction.ReturnType];
                 var parameterTypes = new List<(SymbolType Type, ParameterModifiers Flags)>();
                 foreach (var operand in typeFunctionInstruction.Values)

@@ -447,16 +447,12 @@ namespace Stride.Shaders.Spirv.Processing
                             && ((OpDecorateString)instruction) is
                             {
                                 Target: int t,
-                                Decoration:
-                                {
-                                    Value: Decoration.UserSemantic,
-                                    Parameters: { } m
-                                }
+                                Decoration: Decoration.UserSemantic,
+                                Value : string m
                             }
                            )
                         {
-                            using var n = new LiteralValue<string>(m.Span);
-                            semanticTable[t] = n.Value;
+                            semanticTable[t] = m;
                         }
                     }
                 }
@@ -527,29 +523,26 @@ namespace Stride.Shaders.Spirv.Processing
             // Process ResourceGroup and LogicalGroup decorations
             foreach (var i in context)
             {
-                if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: { Value: Decoration.ResourceGroupSDSL, Parameters: { } m2 } } resourceGroupDecorate)
+                if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: Decoration.ResourceGroupSDSL, Value: string m2 } resourceGroupDecorate)
                 {
                     if (resources.TryGetValue(resourceGroupDecorate.Target, out var resourceInfo)
                         // Note: ResourceGroup should not be null if set
                         && resourceInfo.ResourceGroup.Name == null)
                     {
-                        using var n = new LiteralValue<string>(m2.Span);
-                        resourceInfo.ResourceGroup.Name = n.Value;
+                        resourceInfo.ResourceGroup.Name = m2;
                     }
                 }
-                else if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: { Value: Decoration.LogicalGroupSDSL, Parameters: { } m3 } } logicalGroupDecorate)
+                else if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: Decoration.LogicalGroupSDSL, Value: string m3 } logicalGroupDecorate)
                 {
                     if (resources.TryGetValue(logicalGroupDecorate.Target, out var resourceInfo)
                         // Note: ResourceGroup should not be null if this decoration is set
                         && resourceInfo.ResourceGroup.LogicalGroup == null)
                     {
-                        using var n = new LiteralValue<string>(m3.Span);
-                        resourceInfo.ResourceGroup.LogicalGroup = n.Value;
+                        resourceInfo.ResourceGroup.LogicalGroup = m3;
                     }
                     else if (cbuffers.TryGetValue(logicalGroupDecorate.Target, out var cbufferInfo))
                     {
-                        using var n = new LiteralValue<string>(m3.Span);
-                        cbufferInfo.LogicalGroup = n.Value;
+                        cbufferInfo.LogicalGroup = m3;
                     }
                 }
             }
@@ -622,7 +615,7 @@ namespace Stride.Shaders.Spirv.Processing
                             stream.Value.InputLayoutLocation = inputLayoutLocationCount++;
                         context.Add(new OpDecorate(variable, ParameterizedFlags.DecorationLocation(stream.Value.InputLayoutLocation.Value)));
                         if (stream.Value.Semantic != null)
-                            context.Add(new OpDecorateString(variable, ParameterizedFlags.DecorationUserSemantic(stream.Value.Semantic)));
+                            context.Add(new OpDecorateString(variable, Decoration.UserSemantic, stream.Value.Semantic));
                     }
 
                     inputStreams.Add((stream.Value, variable.ResultId));
@@ -647,7 +640,7 @@ namespace Stride.Shaders.Spirv.Processing
 
                         context.Add(new OpDecorate(variable, ParameterizedFlags.DecorationLocation(stream.Value.OutputLayoutLocation.Value)));
                         if (stream.Value.Semantic != null)
-                            context.Add(new OpDecorateString(variable, ParameterizedFlags.DecorationUserSemantic(stream.Value.Semantic)));
+                            context.Add(new OpDecorateString(variable, Decoration.UserSemantic, stream.Value.Semantic));
                     }
 
                     outputStreams.Add((stream.Value, variable.ResultId));

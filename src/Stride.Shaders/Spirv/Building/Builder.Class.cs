@@ -669,25 +669,18 @@ public partial class SpirvBuilder
         for (var index = 0; index < shader.Count; index++)
         {
             var i = shader[index];
-            if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: { Value: Decoration.UserSemantic, Parameters: { } m } } decorate)
+            if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: Decoration.UserSemantic, Value : string m } decorate
+                && semantics.TryGetValue(m, out var newSemantic)
+            )
             {
-                var n = new LiteralValue<string>(m.Span);
-                if (semantics.TryGetValue(n.Value, out var newSemantic))
-                {
-                    n.Value = newSemantic;
-                    decorate.Decoration = new(decorate.Decoration.Value, n.Words);
-                }
-                n.Dispose();
+                decorate.Value = newSemantic;
             }
-            else if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: { Value: Decoration.UserSemantic, Parameters: { } m2 } } decorate2)
+            else if (
+                i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: Decoration.UserSemantic, Value : string m2 } decorate2
+                && semantics.TryGetValue(m2, out var newSemantic2)
+            )
             {
-                var n = new LiteralValue<string>(m2.Span);
-                if (semantics.TryGetValue(n.Value, out var newSemantic))
-                {
-                    n.Value = newSemantic;
-                    decorate2.Decoration = new(decorate2.Decoration.Value, n.Words);
-                }
-                n.Dispose();
+                decorate2.Value = newSemantic2;
             }
         }
     }
@@ -762,7 +755,7 @@ public partial class SpirvBuilder
                 using var n = new LiteralValue<int>(m.Span);
                 if (resolvedLinks.TryGetValue(n.Value, out var resolvedValue))
                 {
-                    shader.Replace(index, new OpDecorateString(linkDecorate.Target, new ParameterizedFlag<Decoration>(Decoration.LinkSDSL, [.. resolvedValue.AsDisposableLiteralValue().Words])));
+                    shader.Replace(index, new OpDecorateString(linkDecorate.Target, Decoration.LinkSDSL, resolvedValue));
                 }
             }
             else if (i.Op == Op.OpMemberDecorate && ((OpMemberDecorate)i) is { Decoration: { Value: Decoration.LinkIdSDSL, Parameters: { } m2 } } linkDecorate2)
@@ -770,7 +763,7 @@ public partial class SpirvBuilder
                 using var n = new LiteralValue<int>(m2.Span);
                 if (resolvedLinks.TryGetValue(n.Value, out var resolvedValue))
                 {
-                    shader.Replace(index, new OpMemberDecorateString(linkDecorate2.StructureType, linkDecorate2.Member, new ParameterizedFlag<Decoration>(Decoration.LinkSDSL, [.. resolvedValue.AsDisposableLiteralValue().Words])));
+                    shader.Replace(index, new OpMemberDecorateString(linkDecorate2.StructureType, linkDecorate2.Member, Decoration.LinkSDSL, resolvedValue));
                 }
             }
         }

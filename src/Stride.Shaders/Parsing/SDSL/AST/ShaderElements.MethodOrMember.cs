@@ -8,6 +8,7 @@ using Stride.Shaders.Spirv.Core.Buffers;
 using Stride.Shaders.Spirv.Tools;
 using System.Collections.Immutable;
 using System.Diagnostics.Metrics;
+using static Stride.Shaders.Spirv.Specification;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
@@ -71,14 +72,14 @@ public class ShaderSamplerState(Identifier name, TextLocation info) : MethodOrMe
                         }
                     case "AddressW":
                         {
-                            var addressMode = Enum.Parse<Specification.SamplerTextureAddressModeSDSL>(((Identifier)parameter.Value).Name, true);
+                            var addressMode = Enum.Parse<SamplerTextureAddressModeSDSL>(((Identifier)parameter.Value).Name, true);
                             context.Add(new OpDecorate(variableId, ParameterizedFlags.DecorationSamplerStateAddressW(addressMode)));
                             break;
                         }
                     case "MipLODBias":
                         {
                             var mipLODBias = (float)((FloatLiteral)parameter.Value).Value;
-                            context.Add(new OpDecorateString(variableId, ParameterizedFlags.DecorationSamplerStateMipLODBias(mipLODBias.ToString())));
+                            context.Add(new OpDecorateString(variableId, Decoration.SamplerStateMipLODBias, mipLODBias.ToString()));
                             break;
                         }
                     case "MaxAnisotropy":
@@ -90,18 +91,18 @@ public class ShaderSamplerState(Identifier name, TextLocation info) : MethodOrMe
                     case "MinLOD":
                         {
                             var minLOD = (float)((FloatLiteral)parameter.Value).Value;
-                            context.Add(new OpDecorateString(variableId, ParameterizedFlags.DecorationSamplerStateMinLOD(minLOD.ToString())));
+                            context.Add(new OpDecorateString(variableId, Decoration.SamplerStateMinLOD, minLOD.ToString()));
                             break;
                         }
                     case "MaxLOD":
                         {
                             var maxLOD = (float)((FloatLiteral)parameter.Value).Value;
-                            context.Add(new OpDecorateString(variableId, ParameterizedFlags.DecorationSamplerStateMaxLOD(maxLOD.ToString())));
+                            context.Add(new OpDecorateString(variableId, Decoration.SamplerStateMaxLOD, maxLOD.ToString()));
                             break;
                         }
                     case "ComparisonFunc":
                         {
-                            var filter = Enum.Parse<Specification.SamplerComparisonFuncSDSL>(((Identifier)parameter.Value).Name, true);
+                            var filter = Enum.Parse<SamplerComparisonFuncSDSL>(((Identifier)parameter.Value).Name, true);
                             context.Add(new OpDecorate(variableId, ParameterizedFlags.DecorationSamplerStateComparisonFunc(filter)));
                             break;
                         }
@@ -202,7 +203,7 @@ public sealed class ShaderMember(
 
         builder.Insert(new OpVariableSDSL(registeredType, variable, storageClass, variableFlags, initializerMethod));
         if (Semantic != null)
-            context.Add(new OpDecorateString(variable, ParameterizedFlags.DecorationUserSemantic(Semantic.Name)));
+            context.Add(new OpDecorateString(variable, Decoration.UserSemantic, Semantic.Name));
         context.AddName(variable, Name);
 
         RGroup.DecorateVariableLinkInfo(table, shader, context, Info, Name, Attributes, variable);

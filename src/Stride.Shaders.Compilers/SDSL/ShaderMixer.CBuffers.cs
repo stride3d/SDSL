@@ -23,23 +23,21 @@ namespace Stride.Shaders.Compilers.SDSL
             Dictionary<(int StructType, int Member), (Dictionary<Decoration, string> StringDecorations, Dictionary<Decoration, MemoryOwner<int>> Decorations)> decorations = new();
             foreach (var i in context)
             {
-                if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: { Parameters: var m } } memberDecorate)
+                if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Value : var m } memberDecorate)
                 {
-                    using var n = new LiteralValue<string>(m.Span);
                     if (!decorations.TryGetValue((memberDecorate.StructType, memberDecorate.Member), out var decorationsForThisMember))
-                        decorations.Add((memberDecorate.StructType, memberDecorate.Member), decorationsForThisMember = new(new(), new()));
-                    decorationsForThisMember.StringDecorations.Add(memberDecorate.Decoration.Value, n.Value);
+                        decorations.Add((memberDecorate.StructType, memberDecorate.Member), decorationsForThisMember = new([], []));
+                    decorationsForThisMember.StringDecorations.Add(memberDecorate.Decoration, m);
                 }
-                else if (i.Op == Op.OpMemberDecorate && (OpMemberDecorate)i is { Decoration: { Parameters: var m2 } } memberDecorate2)
+                else if (i.Op == Op.OpMemberDecorate && (OpMemberDecorate)i is { Decoration.Parameters: var m2 } memberDecorate2)
                 {
                     if (!decorations.TryGetValue((memberDecorate2.StructureType, memberDecorate2.Member), out var decorationsForThisMember))
-                        decorations.Add((memberDecorate2.StructureType, memberDecorate2.Member), decorationsForThisMember = new(new(), new()));
+                        decorations.Add((memberDecorate2.StructureType, memberDecorate2.Member), decorationsForThisMember = new([], []));
                     decorationsForThisMember.Decorations.Add(memberDecorate2.Decoration.Value, m2);
                 }
-                else if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: { Value: Decoration.LogicalGroupSDSL, Parameters: var m3 } } decorateLogicalGroup)
+                else if (i.Op == Op.OpDecorateString && (OpDecorateString)i is { Decoration: Decoration.LogicalGroupSDSL, Value: var m3 } decorateLogicalGroup)
                 {
-                    using var n = new LiteralValue<string>(m3.Span);
-                    logicalGroups.Add(decorateLogicalGroup.Target, n.Value);
+                    logicalGroups.Add(decorateLogicalGroup.Target, m3);
                 }
             }
 
@@ -112,15 +110,15 @@ namespace Stride.Shaders.Compilers.SDSL
                             if (!compositionPath.IsNullOrEmpty())
                                 link = $"{link}.{compositionPath}";
 
-                            context.Add(new OpMemberDecorateString(cbufferStructId, mergedMemberIndex, ParameterizedFlags.DecorationLinkSDSL(link)));
+                            context.Add(new OpMemberDecorateString(cbufferStructId, mergedMemberIndex, Decoration.LinkSDSL, link));
                         }
 
                         // Also transfer LogicalGroup (from name)
                         if (cbuffer.LogicalGroup != null)
-                            context.Add(new OpMemberDecorateString(cbufferStructId, mergedMemberIndex, ParameterizedFlags.DecorationLogicalGroupSDSL(cbuffer.LogicalGroup)));
+                            context.Add(new OpMemberDecorateString(cbufferStructId, mergedMemberIndex, Decoration.LogicalGroupSDSL, cbuffer.LogicalGroup));
 
                         foreach (var stringDecoration in decorationsForThisMember.StringDecorations)
-                            context.Add(new OpMemberDecorateString(cbufferStructId, mergedMemberIndex, new ParameterizedFlag<Decoration>(stringDecoration.Key, [.. stringDecoration.Value.AsDisposableLiteralValue().Words])));
+                            context.Add(new OpMemberDecorateString(cbufferStructId, mergedMemberIndex, stringDecoration.Key, stringDecoration.Value));
                         foreach (var decoration in decorationsForThisMember.Decorations)
                             context.Add(new OpMemberDecorate(cbufferStructId, mergedMemberIndex, new ParameterizedFlag<Decoration>(decoration.Key, decoration.Value)));
                     }
@@ -327,15 +325,13 @@ namespace Stride.Shaders.Compilers.SDSL
             Dictionary<(int StructType, int Member), string> logicalGroups = new();
             foreach (var i in context)
             {
-                if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: { Value: Decoration.LinkSDSL, Parameters: { } m } } memberDecorate)
+                if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: Decoration.LinkSDSL, Value : string m } memberDecorate)
                 {
-                    using var n = new LiteralValue<string>(m.Span);
-                    links.Add((memberDecorate.StructType, memberDecorate.Member), n.Value);
+                    links.Add((memberDecorate.StructType, memberDecorate.Member), m);
                 }
-                else if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: { Value: Decoration.LogicalGroupSDSL, Parameters: { } m2 } } memberDecorate2)
+                else if (i.Op == Op.OpMemberDecorateString && (OpMemberDecorateString)i is { Decoration: Decoration.LogicalGroupSDSL, Value : string m2 } memberDecorate2)
                 {
-                    using var n = new LiteralValue<string>(m2.Span);
-                    logicalGroups.Add((memberDecorate2.StructType, memberDecorate2.Member), n.Value);
+                    logicalGroups.Add((memberDecorate2.StructType, memberDecorate2.Member), m2);
                 }
             }
 

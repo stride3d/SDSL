@@ -1,11 +1,8 @@
 using Stride.Shaders.Core;
-using Stride.Shaders.Core.Analysis;
 using Stride.Shaders.Parsing.Analysis;
-using Stride.Shaders.Spirv;
 using Stride.Shaders.Spirv.Building;
 using Stride.Shaders.Spirv.Core;
-using System;
-using System.Collections.Generic;
+using static Stride.Shaders.Spirv.Specification;
 
 namespace Stride.Shaders.Parsing.SDSL.AST;
 
@@ -126,6 +123,7 @@ public static class ShaderVariableInformationExtensions
             "out" => ParameterModifiers.Out,
             "inout" => ParameterModifiers.InOut,
             "const" => ParameterModifiers.Const,
+            _ => throw new NotImplementedException()
         };
     }
 }
@@ -304,12 +302,12 @@ public sealed class CBuffer(string name, TextLocation info) : ShaderBuffer(name,
         Type = constantBufferType;
 
         context.DeclareCBuffer(constantBufferType);
-        var pointerType = new PointerType(Type, Specification.StorageClass.Uniform);
+        var pointerType = new PointerType(Type, Spirv.Specification.StorageClass.Uniform);
         var variable = context.Bound++;
 
         context.AddName(variable, Name);
         if (LogicalGroup != null)
-            context.Add(new OpDecorateString(variable, ParameterizedFlags.DecorationLogicalGroupSDSL(LogicalGroup)));
+            context.Add(new OpDecorateString(variable, Decoration.LogicalGroupSDSL, LogicalGroup));
 
         bool? isStaged = null;
 
@@ -330,16 +328,16 @@ public sealed class CBuffer(string name, TextLocation info) : ShaderBuffer(name,
                 if (linkInfo.LinkId is int linkId)
                     context.Add(new OpMemberDecorate(context.GetOrRegister(Type), index, ParameterizedFlags.DecorationLinkIdSDSL(linkId)));
                 else if (linkInfo.LinkName != null)
-                    context.Add(new OpMemberDecorateString(context.GetOrRegister(Type), index, ParameterizedFlags.DecorationLinkSDSL(linkInfo.LinkName)));
+                    context.Add(new OpMemberDecorateString(context.GetOrRegister(Type), index, Decoration.LinkSDSL, linkInfo.LinkName));
             }
         }
 
         // TODO: Add a StreamSDSL storage class?
-        builder.Insert(new OpVariableSDSL(context.GetOrRegister(pointerType), variable, Specification.StorageClass.Uniform, isStaged == true ? Specification.VariableFlagsMask.Stage : Specification.VariableFlagsMask.None, null));
+        builder.Insert(new OpVariableSDSL(context.GetOrRegister(pointerType), variable, Spirv.Specification.StorageClass.Uniform, isStaged == true ? VariableFlagsMask.Stage : VariableFlagsMask.None, null));
 
         var sid = new SymbolID(Name, SymbolKind.CBuffer, Storage.Uniform);
         var symbol = new Symbol(sid, pointerType, variable);
-        table.CurrentShader.Variables.Add((symbol, (isStaged ?? false) ? Specification.VariableFlagsMask.Stage : Specification.VariableFlagsMask.None));
+        table.CurrentShader.Variables.Add((symbol, (isStaged ?? false) ? VariableFlagsMask.Stage : VariableFlagsMask.None));
     }
 }
 
@@ -357,29 +355,29 @@ public sealed class RGroup(string name, TextLocation info) : ShaderBuffer(name, 
 
             (var storageClass, var kind) = member.Type switch
             {
-                TextureType => (Specification.StorageClass.UniformConstant, SymbolKind.Variable),
-                SamplerType => (Specification.StorageClass.UniformConstant, SymbolKind.SamplerState),
-                BufferType => (Specification.StorageClass.UniformConstant, SymbolKind.TBuffer),
+                TextureType => (Spirv.Specification.StorageClass.UniformConstant, SymbolKind.Variable),
+                SamplerType => (Spirv.Specification.StorageClass.UniformConstant, SymbolKind.SamplerState),
+                BufferType => (Spirv.Specification.StorageClass.UniformConstant, SymbolKind.TBuffer),
                 _ => throw new NotImplementedException(),
             };
 
             var type = new PointerType(member.Type, storageClass);
             var typeId = context.GetOrRegister(type);
-            var variable = builder.Insert(new OpVariableSDSL(typeId, context.Bound++, storageClass, member.IsStaged ? Specification.VariableFlagsMask.Stage : Specification.VariableFlagsMask.None, null));
+            var variable = builder.Insert(new OpVariableSDSL(typeId, context.Bound++, storageClass, member.IsStaged ? VariableFlagsMask.Stage : VariableFlagsMask.None, null));
             context.AddName(variable.ResultId, member.Name);
 
             DecorateVariableLinkInfo(table, shaderClass, context, Info, member.Name, member.Attributes, variable.ResultId);
 
-            context.Add(new OpDecorateString(variable.ResultId, ParameterizedFlags.DecorationResourceGroupSDSL(Name)));
+            context.Add(new OpDecorateString(variable.ResultId, Decoration.ResourceGroupSDSL, Name));
             // We also store an ID because multiple rgroup might have the same name,
             // but we still want to know which one was in the same "block" when we try to optimize them (we can only optimize a resource if all the resource in the same rgroup block can be optimized)
             context.Add(new OpDecorate(variable.ResultId, ParameterizedFlags.DecorationResourceGroupIdSDSL(resourceGroupId)));
             if (LogicalGroup != null)
-                context.Add(new OpDecorateString(variable.ResultId, ParameterizedFlags.DecorationLogicalGroupSDSL(LogicalGroup)));
+                context.Add(new OpDecorateString(variable.ResultId, Decoration.LogicalGroupSDSL, LogicalGroup));
 
             var sid = new SymbolID(member.Name, kind, Storage.Uniform);
             var symbol = new Symbol(sid, type, variable.ResultId);
-            table.CurrentShader.Variables.Add((symbol, member.IsStaged ? Specification.VariableFlagsMask.Stage : Specification.VariableFlagsMask.None));
+            table.CurrentShader.Variables.Add((symbol, member.IsStaged ? VariableFlagsMask.Stage : VariableFlagsMask.None));
         }
     }
 
@@ -389,7 +387,7 @@ public sealed class RGroup(string name, TextLocation info) : ShaderBuffer(name, 
         if (linkInfo.LinkId is int linkId)
             context.Add(new OpDecorate(variableId, ParameterizedFlags.DecorationLinkIdSDSL(linkId)));
         else
-            context.Add(new OpDecorateString(variableId, ParameterizedFlags.DecorationLinkSDSL(linkInfo.LinkName ?? $"{shaderClass.Name}.{memberName}")));
+            context.Add(new OpDecorateString(variableId, Decoration.LinkSDSL, linkInfo.LinkName ?? $"{shaderClass.Name}.{memberName}"));
     }
 }
 

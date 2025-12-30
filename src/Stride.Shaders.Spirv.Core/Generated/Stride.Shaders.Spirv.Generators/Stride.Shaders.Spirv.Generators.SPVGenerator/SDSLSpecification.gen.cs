@@ -21,6 +21,7 @@ public static partial class Specification
     {
         None = 0,
         Stage = 1,
+        Stream = 2,
     }
 
     public enum Decoration

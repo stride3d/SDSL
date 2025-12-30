@@ -47,6 +47,7 @@ public partial class InstructionInfo
         Instance.Register(Op.OpBaseSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpThisSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpStageSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
+        Instance.Register(Op.OpStreamsSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixin, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixin, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "identifier", "Miscellaneous", []);
@@ -67,6 +68,7 @@ public partial class InstructionInfo
         Instance.Register(Op.OpConstantStringSDSL, OperandKind.LiteralString, OperandQuantifier.One, "literalString", "Miscellaneous", []);
         Instance.Register(Op.OpTypeGenericSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpTypeGenericSDSL, OperandKind.GenericParameterKindSDSL, OperandQuantifier.One, "kind", "Miscellaneous", []);
+        Instance.Register(Op.OpTypeStreamsSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpForeachSDSL, OperandKind.IdRef, OperandQuantifier.One, "collection", "Miscellaneous", []);

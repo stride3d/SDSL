@@ -2128,6 +2128,105 @@ public ref partial struct OpStageSDSL : IMemoryInstruction
     public static implicit operator OpStageSDSL(OpDataIndex odi) => new(odi);
 }
 
+public ref partial struct OpStreamsSDSL : IMemoryInstruction
+{
+    private ref OpData opData;
+    public ref OpData OpData => ref opData;
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        get
+        {
+            if (!Unsafe.IsNullRef(ref OpData))
+                return OpData.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (!Unsafe.IsNullRef(ref OpData))
+            {
+                OpData.Memory.Dispose();
+                OpData.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpStreamsSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpStreamsSDSL | (1 << 16);
+    }
+
+    public static implicit operator Id(OpStreamsSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpStreamsSDSL inst) => inst.ResultId;
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpStreamsSDSL(OpDataIndex index)
+    {
+        InitializeProperties(ref index.Data);
+        opData = ref index.Data;
+    }
+
+    public OpStreamsSDSL(ref OpData data)
+    {
+        InitializeProperties(ref data);
+        opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
+    private void InitializeProperties(ref OpData data)
+    {
+        foreach (var o in data)
+        {
+            if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+        }
+    }
+
+    public OpStreamsSDSL(int resultId)
+    {
+        ResultId = resultId;
+        UpdateInstructionMemory();
+        opData = ref Unsafe.NullRef<OpData>();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpStreamsSDSL, ResultId];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpStreamsSDSL(OpDataIndex odi) => new(odi);
+}
+
 public ref partial struct OpSDSLMixin : IMemoryInstruction
 {
     private ref OpData opData;
@@ -3004,6 +3103,105 @@ public ref partial struct OpTypeGenericSDSL : IMemoryInstruction
     }
 
     public static implicit operator OpTypeGenericSDSL(OpDataIndex odi) => new(odi);
+}
+
+public ref partial struct OpTypeStreamsSDSL : IMemoryInstruction
+{
+    private ref OpData opData;
+    public ref OpData OpData => ref opData;
+
+    public MemoryOwner<int> InstructionMemory
+    {
+        get
+        {
+            if (!Unsafe.IsNullRef(ref OpData))
+                return OpData.Memory;
+            else
+                return field;
+        }
+
+        private set
+        {
+            if (!Unsafe.IsNullRef(ref OpData))
+            {
+                OpData.Memory.Dispose();
+                OpData.Memory = value;
+            }
+            else
+                field = value;
+        }
+    }
+
+    public OpTypeStreamsSDSL()
+    {
+        InstructionMemory = MemoryOwner<int>.Allocate(1);
+        InstructionMemory.Span[0] = (int)Op.OpTypeStreamsSDSL | (1 << 16);
+    }
+
+    public static implicit operator Id(OpTypeStreamsSDSL inst) => new Id(inst.ResultId);
+    public static implicit operator int (OpTypeStreamsSDSL inst) => inst.ResultId;
+    public int ResultId
+    {
+        get;
+        set
+        {
+            field = value;
+            if (InstructionMemory is not null)
+                UpdateInstructionMemory();
+        }
+    }
+
+    public OpTypeStreamsSDSL(OpDataIndex index)
+    {
+        InitializeProperties(ref index.Data);
+        opData = ref index.Data;
+    }
+
+    public OpTypeStreamsSDSL(ref OpData data)
+    {
+        InitializeProperties(ref data);
+        opData = ref data;
+    }
+
+    public void Attach(OpDataIndex index)
+    {
+        opData = ref index.Data;
+    }
+
+    private void InitializeProperties(ref OpData data)
+    {
+        foreach (var o in data)
+        {
+            if (o.Name == "resultId")
+                ResultId = o.ToLiteral<int>();
+        }
+    }
+
+    public OpTypeStreamsSDSL(int resultId)
+    {
+        ResultId = resultId;
+        UpdateInstructionMemory();
+        opData = ref Unsafe.NullRef<OpData>();
+    }
+
+    public void UpdateInstructionMemory()
+    {
+        if (InstructionMemory is null)
+            InstructionMemory = MemoryOwner<int>.Empty;
+        Span<int> instruction = [(int)Op.OpTypeStreamsSDSL, ResultId];
+        instruction[0] |= instruction.Length << 16;
+        if (instruction.Length == InstructionMemory.Length)
+            instruction.CopyTo(InstructionMemory.Span);
+        else
+        {
+            var tmp = MemoryOwner<int>.Allocate(instruction.Length);
+            instruction.CopyTo(tmp.Span);
+            InstructionMemory?.Dispose();
+            InstructionMemory = tmp;
+        }
+    }
+
+    public static implicit operator OpTypeStreamsSDSL(OpDataIndex odi) => new(odi);
 }
 
 public ref partial struct OpForeachSDSL : IMemoryInstruction

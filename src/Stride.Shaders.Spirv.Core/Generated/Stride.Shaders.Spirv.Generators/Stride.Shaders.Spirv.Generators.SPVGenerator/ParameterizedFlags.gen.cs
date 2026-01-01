@@ -17,6 +17,7 @@ public static class ParameterizedFlags
     public static ParameterizedFlag<Decoration> DecorationSamplerStateComparisonFunc(SamplerComparisonFuncSDSL samplercomparisonfuncsdsl0) => new ParameterizedFlag<Decoration>(Decoration.SamplerStateComparisonFunc, [(int)samplercomparisonfuncsdsl0]);
     public static ParameterizedFlag<Decoration> DecorationSamplerStateMinLOD(string literalstring0) => new ParameterizedFlag<Decoration>(Decoration.SamplerStateMinLOD, [..literalstring0.AsDisposableLiteralValue().Words]);
     public static ParameterizedFlag<Decoration> DecorationSamplerStateMaxLOD(string literalstring0) => new ParameterizedFlag<Decoration>(Decoration.SamplerStateMaxLOD, [..literalstring0.AsDisposableLiteralValue().Words]);
+    public static ParameterizedFlag<Decoration> DecorationFunctionParameterDefaultValueSDSL(int idRef0) => new ParameterizedFlag<Decoration>(Decoration.FunctionParameterDefaultValueSDSL, [idRef0]);
     public static ParameterizedFlag<Decoration> DecorationSpecId(int specializationConstantID) => new ParameterizedFlag<Decoration>(Decoration.SpecId, [specializationConstantID]);
     public static ParameterizedFlag<Decoration> DecorationArrayStride(int arrayStride) => new ParameterizedFlag<Decoration>(Decoration.ArrayStride, [arrayStride]);
     public static ParameterizedFlag<Decoration> DecorationMatrixStride(int matrixStride) => new ParameterizedFlag<Decoration>(Decoration.MatrixStride, [matrixStride]);

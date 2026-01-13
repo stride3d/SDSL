@@ -119004,7 +119004,7 @@ public ref partial struct GLSLRound : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 1, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLRound, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -119153,7 +119153,7 @@ public ref partial struct GLSLRoundEven : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 2, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLRoundEven, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -119302,7 +119302,7 @@ public ref partial struct GLSLTrunc : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 3, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLTrunc, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -119451,7 +119451,7 @@ public ref partial struct GLSLFAbs : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 4, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFAbs, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -119600,7 +119600,7 @@ public ref partial struct GLSLSAbs : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 5, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSAbs, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -119749,7 +119749,7 @@ public ref partial struct GLSLFSign : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 6, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFSign, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -119898,7 +119898,7 @@ public ref partial struct GLSLSSign : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 7, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSSign, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120047,7 +120047,7 @@ public ref partial struct GLSLFloor : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 8, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFloor, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120196,7 +120196,7 @@ public ref partial struct GLSLCeil : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 9, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLCeil, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120345,7 +120345,7 @@ public ref partial struct GLSLFract : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 10, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFract, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120494,7 +120494,7 @@ public ref partial struct GLSLRadians : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 11, Degrees];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLRadians, Degrees];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120643,7 +120643,7 @@ public ref partial struct GLSLDegrees : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 12, Radians];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLDegrees, Radians];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120792,7 +120792,7 @@ public ref partial struct GLSLSin : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 13, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSin, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -120941,7 +120941,7 @@ public ref partial struct GLSLCos : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 14, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLCos, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121090,7 +121090,7 @@ public ref partial struct GLSLTan : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 15, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLTan, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121239,7 +121239,7 @@ public ref partial struct GLSLAsin : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 16, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAsin, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121388,7 +121388,7 @@ public ref partial struct GLSLAcos : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 17, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAcos, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121537,7 +121537,7 @@ public ref partial struct GLSLAtan : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 18, Y_over_x];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAtan, Y_over_x];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121686,7 +121686,7 @@ public ref partial struct GLSLSinh : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 19, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSinh, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121835,7 +121835,7 @@ public ref partial struct GLSLCosh : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 20, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLCosh, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -121984,7 +121984,7 @@ public ref partial struct GLSLTanh : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 21, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLTanh, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -122133,7 +122133,7 @@ public ref partial struct GLSLAsinh : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 22, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAsinh, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -122282,7 +122282,7 @@ public ref partial struct GLSLAcosh : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 23, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAcosh, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -122431,7 +122431,7 @@ public ref partial struct GLSLAtanh : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 24, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAtanh, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -122592,7 +122592,7 @@ public ref partial struct GLSLAtan2 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 25, Y, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLAtan2, Y, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -122756,7 +122756,7 @@ public ref partial struct GLSLPow : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 26, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPow, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -122908,7 +122908,7 @@ public ref partial struct GLSLExp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 27, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLExp, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123057,7 +123057,7 @@ public ref partial struct GLSLLog : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 28, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLLog, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123206,7 +123206,7 @@ public ref partial struct GLSLExp2 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 29, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLExp2, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123355,7 +123355,7 @@ public ref partial struct GLSLLog2 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 30, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLLog2, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123504,7 +123504,7 @@ public ref partial struct GLSLSqrt : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 31, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSqrt, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123653,7 +123653,7 @@ public ref partial struct GLSLInverseSqrt : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 32, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLInverseSqrt, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123802,7 +123802,7 @@ public ref partial struct GLSLDeterminant : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 33, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLDeterminant, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -123951,7 +123951,7 @@ public ref partial struct GLSLMatrixInverse : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 34, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLMatrixInverse, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -124112,7 +124112,7 @@ public ref partial struct GLSLModf : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 35, X, I];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLModf, X, I];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -124264,7 +124264,7 @@ public ref partial struct GLSLModfStruct : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 36, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLModfStruct, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -124425,7 +124425,7 @@ public ref partial struct GLSLFMin : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 37, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFMin, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -124589,7 +124589,7 @@ public ref partial struct GLSLUMin : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 38, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUMin, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -124753,7 +124753,7 @@ public ref partial struct GLSLSMin : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 39, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSMin, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -124917,7 +124917,7 @@ public ref partial struct GLSLFMax : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 40, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFMax, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -125081,7 +125081,7 @@ public ref partial struct GLSLUMax : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 41, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUMax, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -125245,7 +125245,7 @@ public ref partial struct GLSLSMax : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 42, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSMax, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -125421,7 +125421,7 @@ public ref partial struct GLSLFClamp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 43, X, MinVal, MaxVal];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFClamp, X, MinVal, MaxVal];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -125600,7 +125600,7 @@ public ref partial struct GLSLUClamp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 44, X, MinVal, MaxVal];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUClamp, X, MinVal, MaxVal];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -125779,7 +125779,7 @@ public ref partial struct GLSLSClamp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 45, X, MinVal, MaxVal];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSClamp, X, MinVal, MaxVal];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -125958,7 +125958,7 @@ public ref partial struct GLSLFMix : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 46, X, Y, A];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFMix, X, Y, A];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -126137,7 +126137,7 @@ public ref partial struct GLSLIMix : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 47, X, Y, A];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLIMix, X, Y, A];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -126304,7 +126304,7 @@ public ref partial struct GLSLStep : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 48, Edge, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLStep, Edge, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -126480,7 +126480,7 @@ public ref partial struct GLSLSmoothStep : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 49, Edge0, Edge1, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLSmoothStep, Edge0, Edge1, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -126659,7 +126659,7 @@ public ref partial struct GLSLFma : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 50, A, B, C];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFma, A, B, C];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -126826,7 +126826,7 @@ public ref partial struct GLSLFrexp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 51, X, Exp];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFrexp, X, Exp];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -126978,7 +126978,7 @@ public ref partial struct GLSLFrexpStruct : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 52, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFrexpStruct, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -127139,7 +127139,7 @@ public ref partial struct GLSLLdexp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 53, X, Exp];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLLdexp, X, Exp];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -127291,7 +127291,7 @@ public ref partial struct GLSLPackSnorm4x8 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 54, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPackSnorm4x8, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -127440,7 +127440,7 @@ public ref partial struct GLSLPackUnorm4x8 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 55, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPackUnorm4x8, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -127589,7 +127589,7 @@ public ref partial struct GLSLPackSnorm2x16 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 56, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPackSnorm2x16, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -127738,7 +127738,7 @@ public ref partial struct GLSLPackUnorm2x16 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 57, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPackUnorm2x16, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -127887,7 +127887,7 @@ public ref partial struct GLSLPackHalf2x16 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 58, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPackHalf2x16, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128036,7 +128036,7 @@ public ref partial struct GLSLPackDouble2x32 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 59, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLPackDouble2x32, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128185,7 +128185,7 @@ public ref partial struct GLSLUnpackSnorm2x16 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 60, P];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUnpackSnorm2x16, P];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128334,7 +128334,7 @@ public ref partial struct GLSLUnpackUnorm2x16 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 61, P];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUnpackUnorm2x16, P];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128483,7 +128483,7 @@ public ref partial struct GLSLUnpackHalf2x16 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 62, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUnpackHalf2x16, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128632,7 +128632,7 @@ public ref partial struct GLSLUnpackSnorm4x8 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 63, P];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUnpackSnorm4x8, P];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128781,7 +128781,7 @@ public ref partial struct GLSLUnpackUnorm4x8 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 64, P];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUnpackUnorm4x8, P];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -128930,7 +128930,7 @@ public ref partial struct GLSLUnpackDouble2x32 : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 65, V];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLUnpackDouble2x32, V];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -129079,7 +129079,7 @@ public ref partial struct GLSLLength : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 66, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLLength, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -129240,7 +129240,7 @@ public ref partial struct GLSLDistance : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 67, P0, P1];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLDistance, P0, P1];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -129404,7 +129404,7 @@ public ref partial struct GLSLCross : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 68, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLCross, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -129556,7 +129556,7 @@ public ref partial struct GLSLNormalize : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 69, X];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLNormalize, X];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -129729,7 +129729,7 @@ public ref partial struct GLSLFaceForward : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 70, N, I, Nref];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFaceForward, N, I, Nref];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -129896,7 +129896,7 @@ public ref partial struct GLSLReflect : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 71, I, N];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLReflect, I, N];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130072,7 +130072,7 @@ public ref partial struct GLSLRefract : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 72, I, N, Eta];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLRefract, I, N, Eta];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130227,7 +130227,7 @@ public ref partial struct GLSLFindILsb : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 73, Value];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFindILsb, Value];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130376,7 +130376,7 @@ public ref partial struct GLSLFindSMsb : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 74, Value];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFindSMsb, Value];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130525,7 +130525,7 @@ public ref partial struct GLSLFindUMsb : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 75, Value];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLFindUMsb, Value];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130674,7 +130674,7 @@ public ref partial struct GLSLInterpolateAtCentroid : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 76, Interpolant];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLInterpolateAtCentroid, Interpolant];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130835,7 +130835,7 @@ public ref partial struct GLSLInterpolateAtSample : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 77, Interpolant, Sample];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLInterpolateAtSample, Interpolant, Sample];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -130999,7 +130999,7 @@ public ref partial struct GLSLInterpolateAtOffset : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 78, Interpolant, Offset];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLInterpolateAtOffset, Interpolant, Offset];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -131163,7 +131163,7 @@ public ref partial struct GLSLNMin : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 79, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLNMin, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -131327,7 +131327,7 @@ public ref partial struct GLSLNMax : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 80, X, Y];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLNMax, X, Y];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);
@@ -131503,7 +131503,7 @@ public ref partial struct GLSLNClamp : IMemoryInstruction
     public void UpdateInstructionMemory()
     {
         InstructionMemory ??= MemoryOwner<int>.Empty;
-        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, 81, X, MinVal, MaxVal];
+        Span<int> instruction = [(int)Op.OpExtInst, ResultType, ResultId, Set, (int)GLSLOp.GLSLNClamp, X, MinVal, MaxVal];
         instruction[0] |= instruction.Length << 16;
         if (instruction.Length == InstructionMemory.Length)
             instruction.CopyTo(InstructionMemory.Span);

@@ -41,6 +41,7 @@ public static partial class Specification
         SamplerStateMinLOD = 8027,
         SamplerStateMaxLOD = 8028,
         FunctionParameterDefaultValueSDSL = 8040,
+        ShaderConstantSDSL = 8060,
         RelaxedPrecision = 0,
         SpecId = 1,
         Block = 2,

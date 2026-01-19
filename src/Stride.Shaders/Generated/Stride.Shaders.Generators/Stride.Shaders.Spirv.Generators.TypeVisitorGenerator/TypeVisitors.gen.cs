@@ -47,6 +47,11 @@
             return DefaultVisit(structType);
         }
 
+        public virtual TResult Visit(Stride.Shaders.Core.StructuredBufferType structuredBufferType)
+        {
+            return DefaultVisit(structuredBufferType);
+        }
+
         public virtual TResult Visit(Stride.Shaders.Core.BufferType bufferType)
         {
             return DefaultVisit(bufferType);
@@ -225,6 +230,23 @@
                     Members = membersTemp
                 };
             return (SymbolType)base.Visit(structType);
+        }
+
+        public override SymbolType Visit(Stride.Shaders.Core.StructuredBufferType structuredBufferType)
+        {
+            var membersTemp = (System.Collections.Generic.List<Stride.Shaders.Core.StructuredTypeMember>)VisitNodeList(structuredBufferType.Members);
+            if (!ReferenceEquals(membersTemp, structuredBufferType.Members))
+                structuredBufferType = structuredBufferType with
+                {
+                    Members = membersTemp
+                };
+            var baseTypeTemp = (Stride.Shaders.Core.SymbolType)VisitType(structuredBufferType.BaseType);
+            if (!ReferenceEquals(baseTypeTemp, structuredBufferType.BaseType))
+                structuredBufferType = structuredBufferType with
+                {
+                    BaseType = baseTypeTemp
+                };
+            return (SymbolType)base.Visit(structuredBufferType);
         }
 
         public override SymbolType Visit(Stride.Shaders.Core.BufferType bufferType)
@@ -431,6 +453,11 @@
             DefaultVisit(structType);
         }
 
+        public virtual void Visit(Stride.Shaders.Core.StructuredBufferType structuredBufferType)
+        {
+            DefaultVisit(structuredBufferType);
+        }
+
         public virtual void Visit(Stride.Shaders.Core.BufferType bufferType)
         {
             DefaultVisit(bufferType);
@@ -574,6 +601,13 @@
         {
             VisitNodeList(structType.Members);
             base.Visit(structType);
+        }
+
+        public override void Visit(Stride.Shaders.Core.StructuredBufferType structuredBufferType)
+        {
+            VisitNodeList(structuredBufferType.Members);
+            VisitType(structuredBufferType.BaseType);
+            base.Visit(structuredBufferType);
         }
 
         public override void Visit(Stride.Shaders.Core.BufferType bufferType)
@@ -810,6 +844,22 @@ namespace Stride.Shaders.Core
 namespace Stride.Shaders.Core
 {
     public partial record StructType
+    {
+        public override void Accept(TypeVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
+        public override TResult Accept<TResult>(TypeVisitor<TResult> visitor)
+        {
+            return visitor.Visit(this);
+        }
+    }
+}
+
+namespace Stride.Shaders.Core
+{
+    public partial record StructuredBufferType
     {
         public override void Accept(TypeVisitor visitor)
         {

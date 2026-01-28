@@ -141,6 +141,11 @@
         {
             return DefaultVisit(streamsType);
         }
+
+        public virtual TResult Visit(Stride.Shaders.Core.ShaderMixinType shaderMixinType)
+        {
+            return DefaultVisit(shaderMixinType);
+        }
     }
 
     public partial class TypeRewriter
@@ -404,6 +409,11 @@
         {
             return (SymbolType)base.Visit(streamsType);
         }
+
+        public override SymbolType Visit(Stride.Shaders.Core.ShaderMixinType shaderMixinType)
+        {
+            return (SymbolType)base.Visit(shaderMixinType);
+        }
     }
 
     public partial class TypeVisitor
@@ -546,6 +556,11 @@
         public virtual void Visit(Stride.Shaders.Core.StreamsType streamsType)
         {
             DefaultVisit(streamsType);
+        }
+
+        public virtual void Visit(Stride.Shaders.Core.ShaderMixinType shaderMixinType)
+        {
+            DefaultVisit(shaderMixinType);
         }
     }
 
@@ -709,6 +724,11 @@
         public override void Visit(Stride.Shaders.Core.StreamsType streamsType)
         {
             base.Visit(streamsType);
+        }
+
+        public override void Visit(Stride.Shaders.Core.ShaderMixinType shaderMixinType)
+        {
+            base.Visit(shaderMixinType);
         }
     }
 }
@@ -1148,6 +1168,22 @@ namespace Stride.Shaders.Core
 namespace Stride.Shaders.Core
 {
     public partial record StreamsType
+    {
+        public override void Accept(TypeVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
+        public override TResult Accept<TResult>(TypeVisitor<TResult> visitor)
+        {
+            return visitor.Visit(this);
+        }
+    }
+}
+
+namespace Stride.Shaders.Core
+{
+    public partial record ShaderMixinType
     {
         public override void Accept(TypeVisitor visitor)
         {

@@ -28,8 +28,9 @@ public static partial class Specification
     {
         LinkSDSL = 8000,
         LinkIdSDSL = 8001,
-        ResourceGroupSDSL = 8002,
-        ResourceGroupIdSDSL = 8003,
+        ColorSDSL = 8002,
+        ResourceGroupSDSL = 8010,
+        ResourceGroupIdSDSL = 8011,
         LogicalGroupSDSL = 8004,
         SamplerStateFilter = 8020,
         SamplerStateAddressU = 8021,

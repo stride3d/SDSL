@@ -1,9 +1,9 @@
 ﻿namespace Stride.Shaders.Core;
 using System.Collections.Frozen;
 
-internal static partial class IntrinsicsDefinitions
+public static partial class IntrinsicsDefinitions
 {
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Intrinsics { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Intrinsics { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["D3DCOLORtoUBYTE4"] = [new(new("int", new("4"), null), [new(FromString("in"), null, new("float", new("4"), new(0, 1)), "x"), ]), ],
         ["GetRenderTargetSampleCount"] = [new(new("uint", null, null), []), ],
@@ -292,7 +292,7 @@ internal static partial class IntrinsicsDefinitions
         ["__builtin_LinAlg_MatrixAccumulateToMemory"] = [new(new("void", null, null), [new(null, null, new("int", null, null), "MatrixRef"), new(null, null, new("int", null, null), "GroupSharedMem"), new(null, null, new("int32_only", null, null), "offset"), new(null, null, new("int32_only", null, null), "stride"), new(null, null, new("int32_only", null, null), "layout"), ]), ],
         ["__builtin_LinAlg_MatrixOuterProduct"] = [new(new("void", null, null), [new(null, null, new("int", null, null), "MatrixRef"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> VkIntrinsics { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> VkIntrinsics { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["ReadClock"] = [new(new("u64", null, null), [new(FromString("in"), null, new("uint", null, null), "scope"), ]), ],
         ["RawBufferLoad"] = [new(new("void", null, new(-3, 0)), [new(FromString("in"), null, new("u64", null, null), "addr"), ]), ],
@@ -304,16 +304,16 @@ internal static partial class IntrinsicsDefinitions
         ["static_pointer_cast"] = [new(new("void", null, new(-3, 0)), [new(FromString("in"), null, new("VkBufferPointer", null, null), "ptr"), ]), ],
         ["reinterpret_pointer_cast"] = [new(new("void", null, new(-3, 0)), [new(FromString("in"), null, new("VkBufferPointer", null, null), "ptr"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> BufferPointerMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> BufferPointerMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetBufferContents"] = [new(new("void", null, new(-1, 0)), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> StreamMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> StreamMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["Append"] = [new(new("void", null, null), [new(FromString("in"), null, new("void", null, new(-1, 1)), "x"), ]), ],
         ["RestartStrip"] = [new(new("void", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture1DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture1DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("1"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("1"), null), "x"), ]), ],
@@ -358,7 +358,7 @@ internal static partial class IntrinsicsDefinitions
         ["SampleGrad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("1"), null), "x"), new(FromString("in"), null, new("float", new("1"), null), "ddx"), new(FromString("in"), null, new("float", new("1"), null), "ddy"), new(FromString("in"), null, new("int", new("1"), null), "o"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
         ["SampleGrad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("1"), null), "x"), new(FromString("in"), null, new("float", new("1"), null), "ddx"), new(FromString("in"), null, new("float", new("1"), null), "ddy"), new(FromString("in"), null, new("int", new("1"), null), "o"), new(FromString("in"), null, new("float", null, null), "clamp"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture1DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture1DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("1"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("1"), null), "x"), ]), ],
@@ -403,7 +403,7 @@ internal static partial class IntrinsicsDefinitions
         ["SampleGrad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("float", new("1"), new(2, 2)), "ddx"), new(FromString("in"), null, new("float", new("1"), new(2, 2)), "ddy"), new(FromString("in"), null, new("int", new("1"), null), "o"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
         ["SampleGrad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("float", new("1"), new(2, 2)), "ddx"), new(FromString("in"), null, new("float", new("1"), new(2, 2)), "ddy"), new(FromString("in"), null, new("int", new("1"), null), "o"), new(FromString("in"), null, new("float", null, null), "clamp"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), ]), ],
@@ -497,7 +497,7 @@ internal static partial class IntrinsicsDefinitions
         ["GatherRaw"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("int", new("2"), null), "o"), ]), ],
         ["GatherRaw"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("int", new("2"), null), "o"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), new(FromString("out"), null, new("uint_only", null, null), "samples"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), new(FromString("out"), null, new("float_like", null, null), "samples"), ]), ],
@@ -506,7 +506,7 @@ internal static partial class IntrinsicsDefinitions
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), new(FromString("in"), null, new("int", new("2"), null), "o"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), new(FromString("in"), null, new("int", new("2"), null), "o"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), ]), ],
@@ -600,7 +600,7 @@ internal static partial class IntrinsicsDefinitions
         ["GatherRaw"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("int", new("2"), null), "o"), ]), ],
         ["GatherRaw"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("int", new("2"), null), "o"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DArrayMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture2DArrayMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), new(FromString("out"), null, new("uint_only", null, null), "elements"), new(FromString("out"), null, new("uint_only", null, null), "samples"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), new(FromString("out"), null, new("float_like", null, null), "elements"), new(FromString("out"), null, new("float_like", null, null), "samples"), ]), ],
@@ -609,7 +609,7 @@ internal static partial class IntrinsicsDefinitions
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), new(FromString("in"), null, new("int", new("2"), null), "o"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), new(FromString("in"), null, new("int", new("2"), null), "o"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> Texture3DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> Texture3DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
@@ -636,7 +636,7 @@ internal static partial class IntrinsicsDefinitions
         ["SampleGrad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", new("3"), null), "ddx"), new(FromString("in"), null, new("float", new("3"), null), "ddy"), new(FromString("in"), null, new("int", new("3"), null), "o"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
         ["SampleGrad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", new("3"), null), "ddx"), new(FromString("in"), null, new("float", new("3"), null), "ddy"), new(FromString("in"), null, new("int", new("3"), null), "o"), new(FromString("in"), null, new("float", null, null), "clamp"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> TextureCUBEMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> TextureCUBEMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
@@ -689,7 +689,7 @@ internal static partial class IntrinsicsDefinitions
         ["GatherCmpBlue"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler_cmp", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", null, null), "compareValue"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
         ["GatherCmpAlpha"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler_cmp", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", null, null), "compareValue"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> TextureCUBEArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> TextureCUBEArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["CalculateLevelOfDetail"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
         ["CalculateLevelOfDetailUnclamped"] = [new(new("float", null, null), [new(FromString("in"), null, new("any_sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
@@ -742,41 +742,41 @@ internal static partial class IntrinsicsDefinitions
         ["GatherCmpBlue"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler_cmp", null, null), "s"), new(FromString("in"), null, new("float", new("4"), null), "x"), new(FromString("in"), null, new("float", null, null), "compareValue"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
         ["GatherCmpAlpha"] = [new(new("void", new("4"), new(0, -1)), [new(FromString("in"), null, new("sampler_cmp", null, null), "s"), new(FromString("in"), null, new("float", new("4"), null), "x"), new(FromString("in"), null, new("float", null, null), "compareValue"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> BufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> BufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("1"), null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("1"), null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture1DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture1DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("1"), null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("1"), null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture1DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture1DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "elements"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "elements"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), new(FromString("out"), null, new("uint_only", null, null), "elements"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), new(FromString("out"), null, new("float_like", null, null), "elements"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), new(FromString("out"), null, new("uint_only", null, null), "samples"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), new(FromString("out"), null, new("float_like", null, null), "samples"), ]), ],
@@ -784,7 +784,7 @@ internal static partial class IntrinsicsDefinitions
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("2"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DMSArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture2DMSArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), new(FromString("out"), null, new("uint_only", null, null), "elements"), new(FromString("out"), null, new("uint_only", null, null), "samples"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), new(FromString("out"), null, new("float_like", null, null), "elements"), new(FromString("out"), null, new("float_like", null, null), "samples"), ]), ],
@@ -792,20 +792,20 @@ internal static partial class IntrinsicsDefinitions
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), new(FromString("in"), null, new("int", null, null), "s"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture3DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWTexture3DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), new(FromString("out"), null, new("uint_only", null, null), "height"), new(FromString("out"), null, new("uint_only", null, null), "depth"), ]), ],
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("float_like", null, null), "width"), new(FromString("out"), null, new("float_like", null, null), "height"), new(FromString("out"), null, new("float_like", null, null), "depth"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", new("3"), null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> ByteAddressBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> ByteAddressBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), ]), ],
         ["Load"] = [new(new("void", null, new(-3, 0)), [new(FromString("in"), null, new("uint", null, null), "byteOffset"), ]), ],
@@ -817,7 +817,7 @@ internal static partial class IntrinsicsDefinitions
         ["Load3"] = [new(new("uint", new("3"), null), [new(FromString("in"), null, new("uint", null, null), "byteOffset"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
         ["Load4"] = [new(new("uint", new("4"), null), [new(FromString("in"), null, new("uint", null, null), "byteOffset"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWByteAddressBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWByteAddressBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "width"), ]), ],
         ["Load"] = [new(new("void", null, new(-3, 0)), [new(FromString("in"), null, new("uint", null, null), "byteOffset"), ]), ],
@@ -866,13 +866,13 @@ internal static partial class IntrinsicsDefinitions
         ["InterlockedExchange"] = [new(new("void", null, null), [new(FromString("in"), null, new("uint", null, null), "byteOffset"), new(FromString("in"), null, new("uint", null, null), "value"), new(FromString("out"), null, new("uint", null, null), "original"), ]), ],
         ["InterlockedCompareExchange"] = [new(new("void", null, null), [new(FromString("in"), null, new("uint", null, null), "byteOffset"), new(FromString("in"), null, new("uint", null, null), "compare"), new(FromString("in"), null, new("uint", null, null), "value"), new(FromString("out"), null, new("uint", null, null), "original"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> StructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> StructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "count"), new(FromString("out"), null, new("uint_only", null, null), "stride"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWStructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWStructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "count"), new(FromString("out"), null, new("uint_only", null, null), "stride"), ]), ],
         ["IncrementCounter"] = [new(new("uint", null, null), []), ],
@@ -880,17 +880,17 @@ internal static partial class IntrinsicsDefinitions
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "x"), ]), ],
         ["Load"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "x"), new(FromString("out"), null, new("uint_only", null, null), "status"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> AppendStructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> AppendStructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "count"), new(FromString("out"), null, new("uint_only", null, null), "stride"), ]), ],
         ["Append"] = [new(new("void", null, null), [new(FromString("in"), null, new("void", null, new(-1, 0)), "value"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> ConsumeStructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> ConsumeStructuredBufferMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetDimensions"] = [new(new("void", null, null), [new(FromString("out"), null, new("uint_only", null, null), "count"), new(FromString("out"), null, new("uint_only", null, null), "stride"), ]), ],
         ["Consume"] = [new(new("void", null, new(-1, 0)), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> FeedbackTexture2DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> FeedbackTexture2DMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["WriteSamplerFeedback"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2D", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), ]), ],
         ["WriteSamplerFeedback"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2D", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
@@ -900,7 +900,7 @@ internal static partial class IntrinsicsDefinitions
         ["WriteSamplerFeedbackGrad"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2D", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("float", new("2"), null), "ddx"), new(FromString("in"), null, new("float", new("2"), null), "ddy"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
         ["WriteSamplerFeedbackLevel"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2D", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("2"), null), "x"), new(FromString("in"), null, new("float", null, null), "lod"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> FeedbackTexture2DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> FeedbackTexture2DArrayMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["WriteSamplerFeedback"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2DArray", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), ]), ],
         ["WriteSamplerFeedback"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2DArray", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
@@ -910,7 +910,7 @@ internal static partial class IntrinsicsDefinitions
         ["WriteSamplerFeedbackGrad"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2DArray", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", new("2"), null), "ddx"), new(FromString("in"), null, new("float", new("2"), null), "ddy"), new(FromString("in"), null, new("float", null, null), "clamp"), ]), ],
         ["WriteSamplerFeedbackLevel"] = [new(new("void", null, null), [new(FromString("in"), null, new("Texture2DArray", null, null), "t"), new(FromString("in"), null, new("sampler", null, null), "s"), new(FromString("in"), null, new("float", new("3"), null), "x"), new(FromString("in"), null, new("float", null, null), "lod"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RayQueryMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RayQueryMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["TraceRayInline"] = [new(new("void", null, null), [new(FromString("in"), null, new("acceleration_struct", null, null), "AccelerationStructure"), new(FromString("in"), null, new("uint", null, null), "RayFlags"), new(FromString("in"), null, new("uint", null, null), "InstanceInclusionMask"), new(FromString("in"), null, new("ray_desc", null, null), "Ray"), ]), ],
         ["Proceed"] = [new(new("bool", null, null), []), ],
@@ -957,7 +957,7 @@ internal static partial class IntrinsicsDefinitions
         ["CandidateTriangleObjectPositions"] = [new(new("triangle_positions", null, null), []), ],
         ["CommittedTriangleObjectPositions"] = [new(new("triangle_positions", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> DxHitObjectMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> DxHitObjectMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["MakeNop"] = [new(new("DxHitObject", null, null), []), ],
         ["MakeMiss"] = [new(new("DxHitObject", null, null), [new(FromString("in"), null, new("uint", null, null), "RayFlags"), new(FromString("in"), null, new("uint", null, null), "MissShaderIndex"), new(FromString("in"), null, new("ray_desc", null, null), "Ray"), ]), ],
@@ -991,45 +991,45 @@ internal static partial class IntrinsicsDefinitions
         ["GetClusterID"] = [new(new("uint", null, null), []), ],
         ["TriangleObjectPositions"] = [new(new("triangle_positions", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> DxIntrinsics { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> DxIntrinsics { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["MaybeReorderThread"] = [new(new("void", null, null), [new(FromString("in"), null, new("DxHitObject", null, null), "HitObject"), ]), ],
         ["MaybeReorderThread"] = [new(new("void", null, null), [new(FromString("in"), null, new("uint", null, null), "CoherenceHint"), new(FromString("in"), null, new("uint", null, null), "NumCoherenceHintBitsFromLSB"), ]), ],
         ["MaybeReorderThread"] = [new(new("void", null, null), [new(FromString("in"), null, new("DxHitObject", null, null), "HitObject"), new(FromString("in"), null, new("uint", null, null), "CoherenceHint"), new(FromString("in"), null, new("uint", null, null), "NumCoherenceHintBitsFromLSB"), ]), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> EmptyNodeInputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> EmptyNodeInputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["Count"] = [new(new("uint", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> RWDispatchNodeInputRecordMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> RWDispatchNodeInputRecordMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["FinishedCrossGroupSharing"] = [new(new("bool", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> GroupNodeInputRecordsMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> GroupNodeInputRecordsMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["Count"] = [new(new("uint", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> NodeOutputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> NodeOutputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GetThreadNodeOutputRecords"] = [new(new("ThreadNodeOutputRecords", null, new(0, -2)), [new(FromString("in"), null, new("uint", null, null), "numRecords"), ]), ],
         ["GetGroupNodeOutputRecords"] = [new(new("GroupNodeOutputRecords", null, new(0, -2)), [new(FromString("in"), null, new("uint", null, null), "numRecords"), ]), ],
         ["IsValid"] = [new(new("bool", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> EmptyNodeOutputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> EmptyNodeOutputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["GroupIncrementOutputCount"] = [new(new("void", null, null), [new(FromString("in"), null, new("uint", null, null), "count"), ]), ],
         ["ThreadIncrementOutputCount"] = [new(new("void", null, null), [new(FromString("in"), null, new("uint", null, null), "count"), ]), ],
         ["IsValid"] = [new(new("bool", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> GroupOrThreadNodeOutputRecordsMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> GroupOrThreadNodeOutputRecordsMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["OutputComplete"] = [new(new("void", null, null), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> VkSubpassInputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> VkSubpassInputMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["SubpassLoad"] = [new(new("void", null, new(-1, 0)), []), ],
     }.ToFrozenDictionary();
-    internal static FrozenDictionary<string, IntrinsicDefinition[]> VkSubpassInputMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
+    public static FrozenDictionary<string, IntrinsicDefinition[]> VkSubpassInputMSMethods { get; } = new Dictionary<string, IntrinsicDefinition[]>()
     {
         ["SubpassLoad"] = [new(new("void", null, new(-1, 0)), [new(FromString("in"), null, new("int", null, null), "sample"), ]), ],
     }.ToFrozenDictionary();

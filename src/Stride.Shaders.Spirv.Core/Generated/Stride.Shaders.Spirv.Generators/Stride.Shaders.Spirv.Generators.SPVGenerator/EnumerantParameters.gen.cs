@@ -36,6 +36,21 @@ public static class DecorationParams
         }
     }
 
+    public ref struct ColorSDSL(int idRef0) : IEnumerantParameter<ColorSDSL>
+    {
+        public int IdRef0 { get; set; } = idRef0;
+
+        public static ColorSDSL Create(Span<int> words)
+        {
+            var reader = new EnumerantParametersReader(words);
+            var parameter = new ColorSDSL
+            {
+                IdRef0 = reader.ReadInt(),
+            };
+            return parameter;
+        }
+    }
+
     public ref struct ResourceGroupSDSL(string resourceGroup) : IEnumerantParameter<ResourceGroupSDSL>
     {
         public string ResourceGroup { get; set; } = resourceGroup;
@@ -2475,6 +2490,15 @@ public ref partial struct EnumerantParameters
     }
 
     public static implicit operator EnumerantParameters(DecorationParams.LinkIdSDSL parameter)
+    {
+        Span<int> span = [parameter.IdRef0];
+        MemoryOwner<int> buffer = MemoryOwner<int>.Allocate(span.Length);
+        span.CopyTo(buffer.Span);
+        var result = new EnumerantParameters(buffer);
+        return result;
+    }
+
+    public static implicit operator EnumerantParameters(DecorationParams.ColorSDSL parameter)
     {
         Span<int> span = [parameter.IdRef0];
         MemoryOwner<int> buffer = MemoryOwner<int>.Allocate(span.Length);

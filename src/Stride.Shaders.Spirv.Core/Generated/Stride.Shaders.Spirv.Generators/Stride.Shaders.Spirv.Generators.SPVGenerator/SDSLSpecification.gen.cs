@@ -28,8 +28,9 @@ public static partial class Specification
     {
         LinkSDSL = 8000,
         LinkIdSDSL = 8001,
-        ResourceGroupSDSL = 8002,
-        ResourceGroupIdSDSL = 8003,
+        ColorSDSL = 8002,
+        ResourceGroupSDSL = 8010,
+        ResourceGroupIdSDSL = 8011,
         LogicalGroupSDSL = 8004,
         SamplerStateFilter = 8020,
         SamplerStateAddressU = 8021,
@@ -41,6 +42,8 @@ public static partial class Specification
         SamplerStateMinLOD = 8027,
         SamplerStateMaxLOD = 8028,
         FunctionParameterDefaultValueSDSL = 8040,
+        ShaderConstantSDSL = 8060,
+        PatchConstantFuncSDSL = 8070,
         RelaxedPrecision = 0,
         SpecId = 1,
         Block = 2,
@@ -191,6 +194,27 @@ public static partial class Specification
         Semantic = 2,
         MemberName = 3,
         MemberNameResolved = 4,
+    }
+
+    public enum StreamsKindSDSL
+    {
+        Input = 1,
+        Streams = 2,
+        Output = 3,
+        Constants = 4,
+    }
+
+    public enum GeometryStreamOutputKindSDSL
+    {
+        Point = 1,
+        Line = 2,
+        Triangle = 3,
+    }
+
+    public enum PatchTypeKindSDSL
+    {
+        Input = 1,
+        Output = 2,
     }
 
     public enum ExecutionModel

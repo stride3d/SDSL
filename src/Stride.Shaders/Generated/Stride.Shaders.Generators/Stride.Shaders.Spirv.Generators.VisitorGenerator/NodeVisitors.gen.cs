@@ -4,487 +4,487 @@ namespace Stride.Shaders.Core
 {
     public partial class NodeVisitor
     {
-        public virtual void Visit(Stride.Shaders.Parsing.NoNode noNode)
+        public virtual void VisitNoNode(Stride.Shaders.Parsing.NoNode noNode)
         {
             DefaultVisit(noNode);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.ShaderFile shaderFile)
+        public virtual void VisitShaderFile(Stride.Shaders.Parsing.ShaderFile shaderFile)
         {
             DefaultVisit(shaderFile);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.UsingShaderNamespace usingShaderNamespace)
+        public virtual void VisitUsingShaderNamespace(Stride.Shaders.Parsing.UsingShaderNamespace usingShaderNamespace)
         {
             DefaultVisit(usingShaderNamespace);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.ShaderNamespace shaderNamespace)
+        public virtual void VisitShaderNamespace(Stride.Shaders.Parsing.ShaderNamespace shaderNamespace)
         {
             DefaultVisit(shaderNamespace);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.PreProcessableCode preProcessableCode)
+        public virtual void VisitPreProcessableCode(Stride.Shaders.Parsing.SDSL.AST.PreProcessableCode preProcessableCode)
         {
             DefaultVisit(preProcessableCode);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.DirectiveCode directiveCode)
+        public virtual void VisitDirectiveCode(Stride.Shaders.Parsing.SDSL.AST.DirectiveCode directiveCode)
         {
             DefaultVisit(directiveCode);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ObjectDefineDirective objectDefineDirective)
+        public virtual void VisitObjectDefineDirective(Stride.Shaders.Parsing.SDSL.AST.ObjectDefineDirective objectDefineDirective)
         {
             DefaultVisit(objectDefineDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.FunctionDefineDirective functionDefineDirective)
+        public virtual void VisitFunctionDefineDirective(Stride.Shaders.Parsing.SDSL.AST.FunctionDefineDirective functionDefineDirective)
         {
             DefaultVisit(functionDefineDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.IfDirective ifDirective)
+        public virtual void VisitIfDirective(Stride.Shaders.Parsing.SDSL.AST.IfDirective ifDirective)
         {
             DefaultVisit(ifDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.IfDefDirective ifDefDirective)
+        public virtual void VisitIfDefDirective(Stride.Shaders.Parsing.SDSL.AST.IfDefDirective ifDefDirective)
         {
             DefaultVisit(ifDefDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.IfNDefDirective ifNDefDirective)
+        public virtual void VisitIfNDefDirective(Stride.Shaders.Parsing.SDSL.AST.IfNDefDirective ifNDefDirective)
         {
             DefaultVisit(ifNDefDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ElifDirective elifDirective)
+        public virtual void VisitElifDirective(Stride.Shaders.Parsing.SDSL.AST.ElifDirective elifDirective)
         {
             DefaultVisit(elifDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ElseDirective elseDirective)
+        public virtual void VisitElseDirective(Stride.Shaders.Parsing.SDSL.AST.ElseDirective elseDirective)
         {
             DefaultVisit(elseDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.EndIfDirective endIfDirective)
+        public virtual void VisitEndIfDirective(Stride.Shaders.Parsing.SDSL.AST.EndIfDirective endIfDirective)
         {
             DefaultVisit(endIfDirective);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ConditionalDirectives conditionalDirectives)
+        public virtual void VisitConditionalDirectives(Stride.Shaders.Parsing.SDSL.AST.ConditionalDirectives conditionalDirectives)
         {
             DefaultVisit(conditionalDirectives);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.EmptyExpression emptyExpression)
+        public virtual void VisitEmptyExpression(Stride.Shaders.Parsing.SDSL.AST.EmptyExpression emptyExpression)
         {
             DefaultVisit(emptyExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.MethodCall methodCall)
+        public virtual void VisitMethodCall(Stride.Shaders.Parsing.SDSL.AST.MethodCall methodCall)
         {
             DefaultVisit(methodCall);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.MixinAccess mixinAccess)
+        public virtual void VisitMixinAccess(Stride.Shaders.Parsing.SDSL.AST.MixinAccess mixinAccess)
         {
             DefaultVisit(mixinAccess);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
+        public virtual void VisitPrefixExpression(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
         {
             DefaultVisit(prefixExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.CastExpression castExpression)
+        public virtual void VisitCastExpression(Stride.Shaders.Parsing.SDSL.AST.CastExpression castExpression)
         {
             DefaultVisit(castExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.IndexerExpression indexerExpression)
+        public virtual void VisitIndexerExpression(Stride.Shaders.Parsing.SDSL.AST.IndexerExpression indexerExpression)
         {
             DefaultVisit(indexerExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.PostfixIncrement postfixIncrement)
+        public virtual void VisitPostfixIncrement(Stride.Shaders.Parsing.SDSL.AST.PostfixIncrement postfixIncrement)
         {
             DefaultVisit(postfixIncrement);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.AccessorChainExpression accessorChainExpression)
+        public virtual void VisitAccessorChainExpression(Stride.Shaders.Parsing.SDSL.AST.AccessorChainExpression accessorChainExpression)
         {
             DefaultVisit(accessorChainExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.BinaryExpression binaryExpression)
+        public virtual void VisitBinaryExpression(Stride.Shaders.Parsing.SDSL.AST.BinaryExpression binaryExpression)
         {
             DefaultVisit(binaryExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.TernaryExpression ternaryExpression)
+        public virtual void VisitTernaryExpression(Stride.Shaders.Parsing.SDSL.AST.TernaryExpression ternaryExpression)
         {
             DefaultVisit(ternaryExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.StringLiteral stringLiteral)
+        public virtual void VisitStringLiteral(Stride.Shaders.Parsing.SDSL.AST.StringLiteral stringLiteral)
         {
             DefaultVisit(stringLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.IntegerLiteral integerLiteral)
+        public virtual void VisitIntegerLiteral(Stride.Shaders.Parsing.SDSL.AST.IntegerLiteral integerLiteral)
         {
             DefaultVisit(integerLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.FloatLiteral floatLiteral)
+        public virtual void VisitFloatLiteral(Stride.Shaders.Parsing.SDSL.AST.FloatLiteral floatLiteral)
         {
             DefaultVisit(floatLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.HexLiteral hexLiteral)
+        public virtual void VisitHexLiteral(Stride.Shaders.Parsing.SDSL.AST.HexLiteral hexLiteral)
         {
             DefaultVisit(hexLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.BoolLiteral boolLiteral)
+        public virtual void VisitBoolLiteral(Stride.Shaders.Parsing.SDSL.AST.BoolLiteral boolLiteral)
         {
             DefaultVisit(boolLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ExpressionLiteral expressionLiteral)
+        public virtual void VisitExpressionLiteral(Stride.Shaders.Parsing.SDSL.AST.ExpressionLiteral expressionLiteral)
         {
             DefaultVisit(expressionLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.VectorLiteral vectorLiteral)
+        public virtual void VisitVectorLiteral(Stride.Shaders.Parsing.SDSL.AST.VectorLiteral vectorLiteral)
         {
             DefaultVisit(vectorLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.MatrixLiteral matrixLiteral)
+        public virtual void VisitMatrixLiteral(Stride.Shaders.Parsing.SDSL.AST.MatrixLiteral matrixLiteral)
         {
             DefaultVisit(matrixLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ArrayLiteral arrayLiteral)
+        public virtual void VisitArrayLiteral(Stride.Shaders.Parsing.SDSL.AST.ArrayLiteral arrayLiteral)
         {
             DefaultVisit(arrayLiteral);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Identifier identifier)
+        public virtual void VisitIdentifier(Stride.Shaders.Parsing.SDSL.AST.Identifier identifier)
         {
             DefaultVisit(identifier);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.TypeName typeName)
+        public virtual void VisitTypeName(Stride.Shaders.Parsing.SDSL.AST.TypeName typeName)
         {
             DefaultVisit(typeName);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderClass shaderClass)
+        public virtual void VisitShaderClass(Stride.Shaders.Parsing.SDSL.AST.ShaderClass shaderClass)
         {
             DefaultVisit(shaderClass);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderGenerics shaderGenerics)
+        public virtual void VisitShaderGenerics(Stride.Shaders.Parsing.SDSL.AST.ShaderGenerics shaderGenerics)
         {
             DefaultVisit(shaderGenerics);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
+        public virtual void VisitMixin(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
         {
             DefaultVisit(mixin);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinExpression shaderMixinExpression)
+        public virtual void VisitShaderMixinExpression(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinExpression shaderMixinExpression)
         {
             DefaultVisit(shaderMixinExpression);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinIdentifier shaderMixinIdentifier)
+        public virtual void VisitShaderMixinIdentifier(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinIdentifier shaderMixinIdentifier)
         {
             DefaultVisit(shaderMixinIdentifier);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
+        public virtual void VisitShaderAttributeList(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
         {
             DefaultVisit(shaderAttributeList);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.AnyShaderAttribute anyShaderAttribute)
+        public virtual void VisitAnyShaderAttribute(Stride.Shaders.Parsing.SDSL.AST.AnyShaderAttribute anyShaderAttribute)
         {
             DefaultVisit(anyShaderAttribute);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ResourceBind resourceBind)
+        public virtual void VisitResourceBind(Stride.Shaders.Parsing.SDSL.AST.ResourceBind resourceBind)
         {
             DefaultVisit(resourceBind);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ColorType colorType)
+        public virtual void VisitColorType(Stride.Shaders.Parsing.SDSL.AST.ColorType colorType)
         {
             DefaultVisit(colorType);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderVariable shaderVariable)
+        public virtual void VisitShaderVariable(Stride.Shaders.Parsing.SDSL.AST.ShaderVariable shaderVariable)
         {
             DefaultVisit(shaderVariable);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.TypeDef typeDef)
+        public virtual void VisitTypeDef(Stride.Shaders.Parsing.SDSL.AST.TypeDef typeDef)
         {
             DefaultVisit(typeDef);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderStructMember shaderStructMember)
+        public virtual void VisitShaderStructMember(Stride.Shaders.Parsing.SDSL.AST.ShaderStructMember shaderStructMember)
         {
             DefaultVisit(shaderStructMember);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderStruct shaderStruct)
+        public virtual void VisitShaderStruct(Stride.Shaders.Parsing.SDSL.AST.ShaderStruct shaderStruct)
         {
             DefaultVisit(shaderStruct);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.CBuffer cBuffer)
+        public virtual void VisitCBuffer(Stride.Shaders.Parsing.SDSL.AST.CBuffer cBuffer)
         {
             DefaultVisit(cBuffer);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.RGroup rGroup)
+        public virtual void VisitRGroup(Stride.Shaders.Parsing.SDSL.AST.RGroup rGroup)
         {
             DefaultVisit(rGroup);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.TBuffer tBuffer)
+        public virtual void VisitTBuffer(Stride.Shaders.Parsing.SDSL.AST.TBuffer tBuffer)
         {
             DefaultVisit(tBuffer);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.SamplerStateParameter samplerStateParameter)
+        public virtual void VisitSamplerStateParameter(Stride.Shaders.Parsing.SDSL.AST.SamplerStateParameter samplerStateParameter)
         {
             DefaultVisit(samplerStateParameter);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerState shaderSamplerState)
+        public virtual void VisitShaderSamplerState(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerState shaderSamplerState)
         {
             DefaultVisit(shaderSamplerState);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerComparisonState shaderSamplerComparisonState)
+        public virtual void VisitShaderSamplerComparisonState(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerComparisonState shaderSamplerComparisonState)
         {
             DefaultVisit(shaderSamplerComparisonState);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderCompose shaderCompose)
+        public virtual void VisitShaderCompose(Stride.Shaders.Parsing.SDSL.AST.ShaderCompose shaderCompose)
         {
             DefaultVisit(shaderCompose);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMember shaderMember)
+        public virtual void VisitShaderMember(Stride.Shaders.Parsing.SDSL.AST.ShaderMember shaderMember)
         {
             DefaultVisit(shaderMember);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.MethodParameter methodParameter)
+        public virtual void VisitMethodParameter(Stride.Shaders.Parsing.SDSL.AST.MethodParameter methodParameter)
         {
             DefaultVisit(methodParameter);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMethod shaderMethod)
+        public virtual void VisitShaderMethod(Stride.Shaders.Parsing.SDSL.AST.ShaderMethod shaderMethod)
         {
             DefaultVisit(shaderMethod);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderParameterDeclarations shaderParameterDeclarations)
+        public virtual void VisitShaderParameterDeclarations(Stride.Shaders.Parsing.SDSL.AST.ShaderParameterDeclarations shaderParameterDeclarations)
         {
             DefaultVisit(shaderParameterDeclarations);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderExpressionList shaderExpressionList)
+        public virtual void VisitShaderExpressionList(Stride.Shaders.Parsing.SDSL.AST.ShaderExpressionList shaderExpressionList)
         {
             DefaultVisit(shaderExpressionList);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ValueTypeGenerics valueTypeGenerics)
+        public virtual void VisitValueTypeGenerics(Stride.Shaders.Parsing.SDSL.AST.ValueTypeGenerics valueTypeGenerics)
         {
             DefaultVisit(valueTypeGenerics);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ConditionalFlow conditionalFlow)
+        public virtual void VisitConditionalFlow(Stride.Shaders.Parsing.SDSL.AST.ConditionalFlow conditionalFlow)
         {
             DefaultVisit(conditionalFlow);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.If @if)
+        public virtual void VisitIf(Stride.Shaders.Parsing.SDSL.AST.If @if)
         {
             DefaultVisit(@if);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ElseIf elseIf)
+        public virtual void VisitElseIf(Stride.Shaders.Parsing.SDSL.AST.ElseIf elseIf)
         {
             DefaultVisit(elseIf);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Else @else)
+        public virtual void VisitElse(Stride.Shaders.Parsing.SDSL.AST.Else @else)
         {
             DefaultVisit(@else);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.EmptyStatement emptyStatement)
+        public virtual void VisitEmptyStatement(Stride.Shaders.Parsing.SDSL.AST.EmptyStatement emptyStatement)
         {
             DefaultVisit(emptyStatement);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ExpressionStatement expressionStatement)
+        public virtual void VisitExpressionStatement(Stride.Shaders.Parsing.SDSL.AST.ExpressionStatement expressionStatement)
         {
             DefaultVisit(expressionStatement);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Return @return)
+        public virtual void VisitReturn(Stride.Shaders.Parsing.SDSL.AST.Return @return)
         {
             DefaultVisit(@return);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.VariableAssign variableAssign)
+        public virtual void VisitVariableAssign(Stride.Shaders.Parsing.SDSL.AST.VariableAssign variableAssign)
         {
             DefaultVisit(variableAssign);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.DeclaredVariableAssign declaredVariableAssign)
+        public virtual void VisitDeclaredVariableAssign(Stride.Shaders.Parsing.SDSL.AST.DeclaredVariableAssign declaredVariableAssign)
         {
             DefaultVisit(declaredVariableAssign);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Declare declare)
+        public virtual void VisitDeclare(Stride.Shaders.Parsing.SDSL.AST.Declare declare)
         {
             DefaultVisit(declare);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Assign assign)
+        public virtual void VisitAssign(Stride.Shaders.Parsing.SDSL.AST.Assign assign)
         {
             DefaultVisit(assign);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.BlockStatement blockStatement)
+        public virtual void VisitBlockStatement(Stride.Shaders.Parsing.SDSL.AST.BlockStatement blockStatement)
         {
             DefaultVisit(blockStatement);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Break @break)
+        public virtual void VisitBreak(Stride.Shaders.Parsing.SDSL.AST.Break @break)
         {
             DefaultVisit(@break);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Discard discard)
+        public virtual void VisitDiscard(Stride.Shaders.Parsing.SDSL.AST.Discard discard)
         {
             DefaultVisit(discard);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.Continue @continue)
+        public virtual void VisitContinue(Stride.Shaders.Parsing.SDSL.AST.Continue @continue)
         {
             DefaultVisit(@continue);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.ForEach forEach)
+        public virtual void VisitForEach(Stride.Shaders.Parsing.SDSL.AST.ForEach forEach)
         {
             DefaultVisit(forEach);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.While @while)
+        public virtual void VisitWhile(Stride.Shaders.Parsing.SDSL.AST.While @while)
         {
             DefaultVisit(@while);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDSL.AST.For @for)
+        public virtual void VisitFor(Stride.Shaders.Parsing.SDSL.AST.For @for)
         {
             DefaultVisit(@for);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.ShaderEffect shaderEffect)
+        public virtual void VisitShaderEffect(Stride.Shaders.Parsing.SDFX.AST.ShaderEffect shaderEffect)
         {
             DefaultVisit(shaderEffect);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.ShaderSourceDeclaration shaderSourceDeclaration)
+        public virtual void VisitShaderSourceDeclaration(Stride.Shaders.Parsing.SDFX.AST.ShaderSourceDeclaration shaderSourceDeclaration)
         {
             DefaultVisit(shaderSourceDeclaration);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinUse mixinUse)
+        public virtual void VisitMixinUse(Stride.Shaders.Parsing.SDFX.AST.MixinUse mixinUse)
         {
             DefaultVisit(mixinUse);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinChild mixinChild)
+        public virtual void VisitMixinChild(Stride.Shaders.Parsing.SDFX.AST.MixinChild mixinChild)
         {
             DefaultVisit(mixinChild);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinClone mixinClone)
+        public virtual void VisitMixinClone(Stride.Shaders.Parsing.SDFX.AST.MixinClone mixinClone)
         {
             DefaultVisit(mixinClone);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinConst mixinConst)
+        public virtual void VisitMixinConst(Stride.Shaders.Parsing.SDFX.AST.MixinConst mixinConst)
         {
             DefaultVisit(mixinConst);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.ComposePathValue composePathValue)
+        public virtual void VisitComposePathValue(Stride.Shaders.Parsing.SDFX.AST.ComposePathValue composePathValue)
         {
             DefaultVisit(composePathValue);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.ComposeMixinValue composeMixinValue)
+        public virtual void VisitComposeMixinValue(Stride.Shaders.Parsing.SDFX.AST.ComposeMixinValue composeMixinValue)
         {
             DefaultVisit(composeMixinValue);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinCompose mixinCompose)
+        public virtual void VisitMixinCompose(Stride.Shaders.Parsing.SDFX.AST.MixinCompose mixinCompose)
         {
             DefaultVisit(mixinCompose);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinComposeAdd mixinComposeAdd)
+        public virtual void VisitMixinComposeAdd(Stride.Shaders.Parsing.SDFX.AST.MixinComposeAdd mixinComposeAdd)
         {
             DefaultVisit(mixinComposeAdd);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.ComposeParams composeParams)
+        public virtual void VisitComposeParams(Stride.Shaders.Parsing.SDFX.AST.ComposeParams composeParams)
         {
             DefaultVisit(composeParams);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.UsingParams usingParams)
+        public virtual void VisitUsingParams(Stride.Shaders.Parsing.SDFX.AST.UsingParams usingParams)
         {
             DefaultVisit(usingParams);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectDiscardStatement effectDiscardStatement)
+        public virtual void VisitEffectDiscardStatement(Stride.Shaders.Parsing.SDFX.AST.EffectDiscardStatement effectDiscardStatement)
         {
             DefaultVisit(effectDiscardStatement);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectFlow effectFlow)
+        public virtual void VisitEffectFlow(Stride.Shaders.Parsing.SDFX.AST.EffectFlow effectFlow)
         {
             DefaultVisit(effectFlow);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectForEach effectForEach)
+        public virtual void VisitEffectForEach(Stride.Shaders.Parsing.SDFX.AST.EffectForEach effectForEach)
         {
             DefaultVisit(effectForEach);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectParameters effectParameters)
+        public virtual void VisitEffectParameters(Stride.Shaders.Parsing.SDFX.AST.EffectParameters effectParameters)
         {
             DefaultVisit(effectParameters);
         }
 
-        public virtual void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectParameter effectParameter)
+        public virtual void VisitEffectParameter(Stride.Shaders.Parsing.SDFX.AST.EffectParameter effectParameter)
         {
             DefaultVisit(effectParameter);
         }
@@ -492,394 +492,394 @@ namespace Stride.Shaders.Core
 
     public partial class NodeWalker
     {
-        public override void Visit(Stride.Shaders.Parsing.NoNode noNode)
+        public override void VisitNoNode(Stride.Shaders.Parsing.NoNode noNode)
         {
-            base.Visit(noNode);
+            base.VisitNoNode(noNode);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.ShaderFile shaderFile)
+        public override void VisitShaderFile(Stride.Shaders.Parsing.ShaderFile shaderFile)
         {
             VisitNodeList(shaderFile.RootDeclarations);
             VisitNodeList(shaderFile.Namespaces);
-            base.Visit(shaderFile);
+            base.VisitShaderFile(shaderFile);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.UsingShaderNamespace usingShaderNamespace)
+        public override void VisitUsingShaderNamespace(Stride.Shaders.Parsing.UsingShaderNamespace usingShaderNamespace)
         {
             VisitNodeList(usingShaderNamespace.NamespacePath);
-            base.Visit(usingShaderNamespace);
+            base.VisitUsingShaderNamespace(usingShaderNamespace);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.ShaderNamespace shaderNamespace)
+        public override void VisitShaderNamespace(Stride.Shaders.Parsing.ShaderNamespace shaderNamespace)
         {
             VisitNodeList(shaderNamespace.NamespacePath);
             if (shaderNamespace.Namespace != null)
                 VisitNode(shaderNamespace.Namespace);
             VisitNodeList(shaderNamespace.Declarations);
-            base.Visit(shaderNamespace);
+            base.VisitShaderNamespace(shaderNamespace);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.PreProcessableCode preProcessableCode)
+        public override void VisitPreProcessableCode(Stride.Shaders.Parsing.SDSL.AST.PreProcessableCode preProcessableCode)
         {
             VisitNodeList(preProcessableCode.Snippets);
-            base.Visit(preProcessableCode);
+            base.VisitPreProcessableCode(preProcessableCode);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.DirectiveCode directiveCode)
+        public override void VisitDirectiveCode(Stride.Shaders.Parsing.SDSL.AST.DirectiveCode directiveCode)
         {
-            base.Visit(directiveCode);
+            base.VisitDirectiveCode(directiveCode);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ObjectDefineDirective objectDefineDirective)
+        public override void VisitObjectDefineDirective(Stride.Shaders.Parsing.SDSL.AST.ObjectDefineDirective objectDefineDirective)
         {
             VisitNode(objectDefineDirective.Identifier);
             if (objectDefineDirective.Expression != null)
                 VisitNode(objectDefineDirective.Expression);
-            base.Visit(objectDefineDirective);
+            base.VisitObjectDefineDirective(objectDefineDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.FunctionDefineDirective functionDefineDirective)
+        public override void VisitFunctionDefineDirective(Stride.Shaders.Parsing.SDSL.AST.FunctionDefineDirective functionDefineDirective)
         {
             VisitNode(functionDefineDirective.FunctionName);
             VisitNodeList(functionDefineDirective.Parameters);
-            base.Visit(functionDefineDirective);
+            base.VisitFunctionDefineDirective(functionDefineDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.IfDirective ifDirective)
+        public override void VisitIfDirective(Stride.Shaders.Parsing.SDSL.AST.IfDirective ifDirective)
         {
             if (ifDirective.Expression != null)
                 VisitNode(ifDirective.Expression);
             if (ifDirective.Code != null)
                 VisitNode(ifDirective.Code);
-            base.Visit(ifDirective);
+            base.VisitIfDirective(ifDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.IfDefDirective ifDefDirective)
+        public override void VisitIfDefDirective(Stride.Shaders.Parsing.SDSL.AST.IfDefDirective ifDefDirective)
         {
             if (ifDefDirective.Expression != null)
                 VisitNode(ifDefDirective.Expression);
             if (ifDefDirective.Code != null)
                 VisitNode(ifDefDirective.Code);
-            base.Visit(ifDefDirective);
+            base.VisitIfDefDirective(ifDefDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.IfNDefDirective ifNDefDirective)
+        public override void VisitIfNDefDirective(Stride.Shaders.Parsing.SDSL.AST.IfNDefDirective ifNDefDirective)
         {
             if (ifNDefDirective.Expression != null)
                 VisitNode(ifNDefDirective.Expression);
             if (ifNDefDirective.Code != null)
                 VisitNode(ifNDefDirective.Code);
-            base.Visit(ifNDefDirective);
+            base.VisitIfNDefDirective(ifNDefDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ElifDirective elifDirective)
+        public override void VisitElifDirective(Stride.Shaders.Parsing.SDSL.AST.ElifDirective elifDirective)
         {
             if (elifDirective.Expression != null)
                 VisitNode(elifDirective.Expression);
             if (elifDirective.Code != null)
                 VisitNode(elifDirective.Code);
-            base.Visit(elifDirective);
+            base.VisitElifDirective(elifDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ElseDirective elseDirective)
+        public override void VisitElseDirective(Stride.Shaders.Parsing.SDSL.AST.ElseDirective elseDirective)
         {
             if (elseDirective.Expression != null)
                 VisitNode(elseDirective.Expression);
             if (elseDirective.Code != null)
                 VisitNode(elseDirective.Code);
-            base.Visit(elseDirective);
+            base.VisitElseDirective(elseDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.EndIfDirective endIfDirective)
+        public override void VisitEndIfDirective(Stride.Shaders.Parsing.SDSL.AST.EndIfDirective endIfDirective)
         {
             if (endIfDirective.Expression != null)
                 VisitNode(endIfDirective.Expression);
             if (endIfDirective.Code != null)
                 VisitNode(endIfDirective.Code);
-            base.Visit(endIfDirective);
+            base.VisitEndIfDirective(endIfDirective);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ConditionalDirectives conditionalDirectives)
+        public override void VisitConditionalDirectives(Stride.Shaders.Parsing.SDSL.AST.ConditionalDirectives conditionalDirectives)
         {
             VisitNode(conditionalDirectives.If);
             VisitNodeList(conditionalDirectives.Elifs);
             if (conditionalDirectives.Else != null)
                 VisitNode(conditionalDirectives.Else);
-            base.Visit(conditionalDirectives);
+            base.VisitConditionalDirectives(conditionalDirectives);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.EmptyExpression emptyExpression)
+        public override void VisitEmptyExpression(Stride.Shaders.Parsing.SDSL.AST.EmptyExpression emptyExpression)
         {
-            base.Visit(emptyExpression);
+            base.VisitEmptyExpression(emptyExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.MethodCall methodCall)
+        public override void VisitMethodCall(Stride.Shaders.Parsing.SDSL.AST.MethodCall methodCall)
         {
             VisitNode(methodCall.Name);
             VisitNode(methodCall.Arguments);
-            base.Visit(methodCall);
+            base.VisitMethodCall(methodCall);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.MixinAccess mixinAccess)
+        public override void VisitMixinAccess(Stride.Shaders.Parsing.SDSL.AST.MixinAccess mixinAccess)
         {
             VisitNode(mixinAccess.Mixin);
-            base.Visit(mixinAccess);
+            base.VisitMixinAccess(mixinAccess);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
+        public override void VisitPrefixExpression(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
         {
             VisitNode(prefixExpression.Expression);
-            base.Visit(prefixExpression);
+            base.VisitPrefixExpression(prefixExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.CastExpression castExpression)
+        public override void VisitCastExpression(Stride.Shaders.Parsing.SDSL.AST.CastExpression castExpression)
         {
             VisitNode(castExpression.Expression);
             VisitNode(castExpression.TypeName);
-            base.Visit(castExpression);
+            base.VisitCastExpression(castExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.IndexerExpression indexerExpression)
+        public override void VisitIndexerExpression(Stride.Shaders.Parsing.SDSL.AST.IndexerExpression indexerExpression)
         {
             VisitNode(indexerExpression.Index);
-            base.Visit(indexerExpression);
+            base.VisitIndexerExpression(indexerExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.PostfixIncrement postfixIncrement)
+        public override void VisitPostfixIncrement(Stride.Shaders.Parsing.SDSL.AST.PostfixIncrement postfixIncrement)
         {
-            base.Visit(postfixIncrement);
+            base.VisitPostfixIncrement(postfixIncrement);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.AccessorChainExpression accessorChainExpression)
+        public override void VisitAccessorChainExpression(Stride.Shaders.Parsing.SDSL.AST.AccessorChainExpression accessorChainExpression)
         {
             VisitNode(accessorChainExpression.Source);
             VisitNodeList(accessorChainExpression.Accessors);
-            base.Visit(accessorChainExpression);
+            base.VisitAccessorChainExpression(accessorChainExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.BinaryExpression binaryExpression)
+        public override void VisitBinaryExpression(Stride.Shaders.Parsing.SDSL.AST.BinaryExpression binaryExpression)
         {
             VisitNode(binaryExpression.Left);
             VisitNode(binaryExpression.Right);
-            base.Visit(binaryExpression);
+            base.VisitBinaryExpression(binaryExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.TernaryExpression ternaryExpression)
+        public override void VisitTernaryExpression(Stride.Shaders.Parsing.SDSL.AST.TernaryExpression ternaryExpression)
         {
             VisitNode(ternaryExpression.Condition);
             VisitNode(ternaryExpression.Left);
             VisitNode(ternaryExpression.Right);
-            base.Visit(ternaryExpression);
+            base.VisitTernaryExpression(ternaryExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.StringLiteral stringLiteral)
+        public override void VisitStringLiteral(Stride.Shaders.Parsing.SDSL.AST.StringLiteral stringLiteral)
         {
-            base.Visit(stringLiteral);
+            base.VisitStringLiteral(stringLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.IntegerLiteral integerLiteral)
+        public override void VisitIntegerLiteral(Stride.Shaders.Parsing.SDSL.AST.IntegerLiteral integerLiteral)
         {
-            base.Visit(integerLiteral);
+            base.VisitIntegerLiteral(integerLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.FloatLiteral floatLiteral)
+        public override void VisitFloatLiteral(Stride.Shaders.Parsing.SDSL.AST.FloatLiteral floatLiteral)
         {
-            base.Visit(floatLiteral);
+            base.VisitFloatLiteral(floatLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.HexLiteral hexLiteral)
+        public override void VisitHexLiteral(Stride.Shaders.Parsing.SDSL.AST.HexLiteral hexLiteral)
         {
-            base.Visit(hexLiteral);
+            base.VisitHexLiteral(hexLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.BoolLiteral boolLiteral)
+        public override void VisitBoolLiteral(Stride.Shaders.Parsing.SDSL.AST.BoolLiteral boolLiteral)
         {
-            base.Visit(boolLiteral);
+            base.VisitBoolLiteral(boolLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ExpressionLiteral expressionLiteral)
+        public override void VisitExpressionLiteral(Stride.Shaders.Parsing.SDSL.AST.ExpressionLiteral expressionLiteral)
         {
             VisitNode(expressionLiteral.Value);
             VisitNode(expressionLiteral.TypeName);
-            base.Visit(expressionLiteral);
+            base.VisitExpressionLiteral(expressionLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.VectorLiteral vectorLiteral)
+        public override void VisitVectorLiteral(Stride.Shaders.Parsing.SDSL.AST.VectorLiteral vectorLiteral)
         {
             VisitNodeList(vectorLiteral.Values);
             VisitNode(vectorLiteral.TypeName);
-            base.Visit(vectorLiteral);
+            base.VisitVectorLiteral(vectorLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.MatrixLiteral matrixLiteral)
+        public override void VisitMatrixLiteral(Stride.Shaders.Parsing.SDSL.AST.MatrixLiteral matrixLiteral)
         {
             VisitNodeList(matrixLiteral.Values);
             VisitNode(matrixLiteral.TypeName);
-            base.Visit(matrixLiteral);
+            base.VisitMatrixLiteral(matrixLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ArrayLiteral arrayLiteral)
+        public override void VisitArrayLiteral(Stride.Shaders.Parsing.SDSL.AST.ArrayLiteral arrayLiteral)
         {
             VisitNodeList(arrayLiteral.Values);
-            base.Visit(arrayLiteral);
+            base.VisitArrayLiteral(arrayLiteral);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Identifier identifier)
+        public override void VisitIdentifier(Stride.Shaders.Parsing.SDSL.AST.Identifier identifier)
         {
-            base.Visit(identifier);
+            base.VisitIdentifier(identifier);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.TypeName typeName)
+        public override void VisitTypeName(Stride.Shaders.Parsing.SDSL.AST.TypeName typeName)
         {
             if (typeName.ArraySize != null)
                 VisitNodeList(typeName.ArraySize);
             VisitNodeList(typeName.Generics);
-            base.Visit(typeName);
+            base.VisitTypeName(typeName);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderClass shaderClass)
+        public override void VisitShaderClass(Stride.Shaders.Parsing.SDSL.AST.ShaderClass shaderClass)
         {
             VisitNode(shaderClass.Name);
             VisitNodeList(shaderClass.Elements);
             if (shaderClass.Generics != null)
                 VisitNode(shaderClass.Generics);
             VisitNodeList(shaderClass.Mixins);
-            base.Visit(shaderClass);
+            base.VisitShaderClass(shaderClass);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderGenerics shaderGenerics)
+        public override void VisitShaderGenerics(Stride.Shaders.Parsing.SDSL.AST.ShaderGenerics shaderGenerics)
         {
             VisitNode(shaderGenerics.Name);
             VisitNode(shaderGenerics.TypeName);
-            base.Visit(shaderGenerics);
+            base.VisitShaderGenerics(shaderGenerics);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
+        public override void VisitMixin(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
         {
             VisitNodeList(mixin.Path);
             VisitNode(mixin.Name);
             if (mixin.Generics != null)
                 VisitNode(mixin.Generics);
-            base.Visit(mixin);
+            base.VisitMixin(mixin);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinExpression shaderMixinExpression)
+        public override void VisitShaderMixinExpression(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinExpression shaderMixinExpression)
         {
             VisitNode(shaderMixinExpression.Value);
-            base.Visit(shaderMixinExpression);
+            base.VisitShaderMixinExpression(shaderMixinExpression);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinIdentifier shaderMixinIdentifier)
+        public override void VisitShaderMixinIdentifier(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinIdentifier shaderMixinIdentifier)
         {
             VisitNode(shaderMixinIdentifier.Value);
-            base.Visit(shaderMixinIdentifier);
+            base.VisitShaderMixinIdentifier(shaderMixinIdentifier);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
+        public override void VisitShaderAttributeList(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
         {
-            base.Visit(shaderAttributeList);
+            base.VisitShaderAttributeList(shaderAttributeList);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.AnyShaderAttribute anyShaderAttribute)
+        public override void VisitAnyShaderAttribute(Stride.Shaders.Parsing.SDSL.AST.AnyShaderAttribute anyShaderAttribute)
         {
             VisitNode(anyShaderAttribute.Name);
-            base.Visit(anyShaderAttribute);
+            base.VisitAnyShaderAttribute(anyShaderAttribute);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ResourceBind resourceBind)
+        public override void VisitResourceBind(Stride.Shaders.Parsing.SDSL.AST.ResourceBind resourceBind)
         {
-            base.Visit(resourceBind);
+            base.VisitResourceBind(resourceBind);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ColorType colorType)
+        public override void VisitColorType(Stride.Shaders.Parsing.SDSL.AST.ColorType colorType)
         {
-            base.Visit(colorType);
+            base.VisitColorType(colorType);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderVariable shaderVariable)
+        public override void VisitShaderVariable(Stride.Shaders.Parsing.SDSL.AST.ShaderVariable shaderVariable)
         {
             VisitNode(shaderVariable.Name);
             VisitNode(shaderVariable.TypeName);
             if (shaderVariable.Value != null)
                 VisitNode(shaderVariable.Value);
-            base.Visit(shaderVariable);
+            base.VisitShaderVariable(shaderVariable);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.TypeDef typeDef)
+        public override void VisitTypeDef(Stride.Shaders.Parsing.SDSL.AST.TypeDef typeDef)
         {
             VisitNode(typeDef.Name);
             VisitNode(typeDef.TypeName);
-            base.Visit(typeDef);
+            base.VisitTypeDef(typeDef);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderStructMember shaderStructMember)
+        public override void VisitShaderStructMember(Stride.Shaders.Parsing.SDSL.AST.ShaderStructMember shaderStructMember)
         {
             VisitNode(shaderStructMember.TypeName);
             VisitNode(shaderStructMember.Name);
             VisitNodeList(shaderStructMember.Attributes);
-            base.Visit(shaderStructMember);
+            base.VisitShaderStructMember(shaderStructMember);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderStruct shaderStruct)
+        public override void VisitShaderStruct(Stride.Shaders.Parsing.SDSL.AST.ShaderStruct shaderStruct)
         {
             VisitNode(shaderStruct.TypeName);
             VisitNodeList(shaderStruct.Members);
-            base.Visit(shaderStruct);
+            base.VisitShaderStruct(shaderStruct);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.CBuffer cBuffer)
+        public override void VisitCBuffer(Stride.Shaders.Parsing.SDSL.AST.CBuffer cBuffer)
         {
             VisitNodeList(cBuffer.Members);
-            base.Visit(cBuffer);
+            base.VisitCBuffer(cBuffer);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.RGroup rGroup)
+        public override void VisitRGroup(Stride.Shaders.Parsing.SDSL.AST.RGroup rGroup)
         {
             VisitNodeList(rGroup.Members);
-            base.Visit(rGroup);
+            base.VisitRGroup(rGroup);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.TBuffer tBuffer)
+        public override void VisitTBuffer(Stride.Shaders.Parsing.SDSL.AST.TBuffer tBuffer)
         {
             VisitNodeList(tBuffer.Members);
-            base.Visit(tBuffer);
+            base.VisitTBuffer(tBuffer);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.SamplerStateParameter samplerStateParameter)
+        public override void VisitSamplerStateParameter(Stride.Shaders.Parsing.SDSL.AST.SamplerStateParameter samplerStateParameter)
         {
             VisitNode(samplerStateParameter.Name);
             VisitNode(samplerStateParameter.Value);
-            base.Visit(samplerStateParameter);
+            base.VisitSamplerStateParameter(samplerStateParameter);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerState shaderSamplerState)
+        public override void VisitShaderSamplerState(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerState shaderSamplerState)
         {
             if (shaderSamplerState.Attributes != null)
                 VisitNodeList(shaderSamplerState.Attributes);
             VisitNode(shaderSamplerState.Name);
             VisitNodeList(shaderSamplerState.Parameters);
-            base.Visit(shaderSamplerState);
+            base.VisitShaderSamplerState(shaderSamplerState);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerComparisonState shaderSamplerComparisonState)
+        public override void VisitShaderSamplerComparisonState(Stride.Shaders.Parsing.SDSL.AST.ShaderSamplerComparisonState shaderSamplerComparisonState)
         {
             if (shaderSamplerComparisonState.Attributes != null)
                 VisitNodeList(shaderSamplerComparisonState.Attributes);
             VisitNode(shaderSamplerComparisonState.Name);
             VisitNodeList(shaderSamplerComparisonState.Parameters);
-            base.Visit(shaderSamplerComparisonState);
+            base.VisitShaderSamplerComparisonState(shaderSamplerComparisonState);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderCompose shaderCompose)
+        public override void VisitShaderCompose(Stride.Shaders.Parsing.SDSL.AST.ShaderCompose shaderCompose)
         {
             if (shaderCompose.Attributes != null)
                 VisitNodeList(shaderCompose.Attributes);
             VisitNode(shaderCompose.Name);
             VisitNode(shaderCompose.Mixin);
-            base.Visit(shaderCompose);
+            base.VisitShaderCompose(shaderCompose);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMember shaderMember)
+        public override void VisitShaderMember(Stride.Shaders.Parsing.SDSL.AST.ShaderMember shaderMember)
         {
             if (shaderMember.Attributes != null)
                 VisitNodeList(shaderMember.Attributes);
@@ -889,10 +889,10 @@ namespace Stride.Shaders.Core
                 VisitNode(shaderMember.Semantic);
             if (shaderMember.Value != null)
                 VisitNode(shaderMember.Value);
-            base.Visit(shaderMember);
+            base.VisitShaderMember(shaderMember);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.MethodParameter methodParameter)
+        public override void VisitMethodParameter(Stride.Shaders.Parsing.SDSL.AST.MethodParameter methodParameter)
         {
             VisitNode(methodParameter.TypeName);
             VisitNode(methodParameter.Name);
@@ -900,10 +900,10 @@ namespace Stride.Shaders.Core
                 VisitNode(methodParameter.Semantic);
             if (methodParameter.DefaultValue != null)
                 VisitNode(methodParameter.DefaultValue);
-            base.Visit(methodParameter);
+            base.VisitMethodParameter(methodParameter);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderMethod shaderMethod)
+        public override void VisitShaderMethod(Stride.Shaders.Parsing.SDSL.AST.ShaderMethod shaderMethod)
         {
             if (shaderMethod.Attributes != null)
                 VisitNodeList(shaderMethod.Attributes);
@@ -916,27 +916,27 @@ namespace Stride.Shaders.Core
             VisitNodeList(shaderMethod.Parameters);
             if (shaderMethod.Body != null)
                 VisitNode(shaderMethod.Body);
-            base.Visit(shaderMethod);
+            base.VisitShaderMethod(shaderMethod);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderParameterDeclarations shaderParameterDeclarations)
+        public override void VisitShaderParameterDeclarations(Stride.Shaders.Parsing.SDSL.AST.ShaderParameterDeclarations shaderParameterDeclarations)
         {
-            base.Visit(shaderParameterDeclarations);
+            base.VisitShaderParameterDeclarations(shaderParameterDeclarations);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ShaderExpressionList shaderExpressionList)
+        public override void VisitShaderExpressionList(Stride.Shaders.Parsing.SDSL.AST.ShaderExpressionList shaderExpressionList)
         {
             VisitNodeList(shaderExpressionList.Values);
-            base.Visit(shaderExpressionList);
+            base.VisitShaderExpressionList(shaderExpressionList);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ValueTypeGenerics valueTypeGenerics)
+        public override void VisitValueTypeGenerics(Stride.Shaders.Parsing.SDSL.AST.ValueTypeGenerics valueTypeGenerics)
         {
             VisitNode(valueTypeGenerics.Value);
-            base.Visit(valueTypeGenerics);
+            base.VisitValueTypeGenerics(valueTypeGenerics);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ConditionalFlow conditionalFlow)
+        public override void VisitConditionalFlow(Stride.Shaders.Parsing.SDSL.AST.ConditionalFlow conditionalFlow)
         {
             VisitNode(conditionalFlow.If);
             VisitNodeList(conditionalFlow.ElseIfs);
@@ -944,56 +944,56 @@ namespace Stride.Shaders.Core
                 VisitNode(conditionalFlow.Else);
             if (conditionalFlow.Attributes != null)
                 VisitNode(conditionalFlow.Attributes);
-            base.Visit(conditionalFlow);
+            base.VisitConditionalFlow(conditionalFlow);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.If @if)
+        public override void VisitIf(Stride.Shaders.Parsing.SDSL.AST.If @if)
         {
             VisitNode(@if.Condition);
             VisitNode(@if.Body);
-            base.Visit(@if);
+            base.VisitIf(@if);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ElseIf elseIf)
+        public override void VisitElseIf(Stride.Shaders.Parsing.SDSL.AST.ElseIf elseIf)
         {
             VisitNode(elseIf.Condition);
             VisitNode(elseIf.Body);
-            base.Visit(elseIf);
+            base.VisitElseIf(elseIf);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Else @else)
+        public override void VisitElse(Stride.Shaders.Parsing.SDSL.AST.Else @else)
         {
             VisitNode(@else.Body);
-            base.Visit(@else);
+            base.VisitElse(@else);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.EmptyStatement emptyStatement)
+        public override void VisitEmptyStatement(Stride.Shaders.Parsing.SDSL.AST.EmptyStatement emptyStatement)
         {
-            base.Visit(emptyStatement);
+            base.VisitEmptyStatement(emptyStatement);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ExpressionStatement expressionStatement)
+        public override void VisitExpressionStatement(Stride.Shaders.Parsing.SDSL.AST.ExpressionStatement expressionStatement)
         {
             VisitNode(expressionStatement.Expression);
-            base.Visit(expressionStatement);
+            base.VisitExpressionStatement(expressionStatement);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Return @return)
+        public override void VisitReturn(Stride.Shaders.Parsing.SDSL.AST.Return @return)
         {
             if (@return.Value != null)
                 VisitNode(@return.Value);
-            base.Visit(@return);
+            base.VisitReturn(@return);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.VariableAssign variableAssign)
+        public override void VisitVariableAssign(Stride.Shaders.Parsing.SDSL.AST.VariableAssign variableAssign)
         {
             VisitNode(variableAssign.Variable);
             if (variableAssign.Value != null)
                 VisitNode(variableAssign.Value);
-            base.Visit(variableAssign);
+            base.VisitVariableAssign(variableAssign);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.DeclaredVariableAssign declaredVariableAssign)
+        public override void VisitDeclaredVariableAssign(Stride.Shaders.Parsing.SDSL.AST.DeclaredVariableAssign declaredVariableAssign)
         {
             VisitNode(declaredVariableAssign.Variable);
             if (declaredVariableAssign.Value != null)
@@ -1001,60 +1001,60 @@ namespace Stride.Shaders.Core
             VisitNode(declaredVariableAssign.TypeName);
             if (declaredVariableAssign.ArraySizes != null)
                 VisitNodeList(declaredVariableAssign.ArraySizes);
-            base.Visit(declaredVariableAssign);
+            base.VisitDeclaredVariableAssign(declaredVariableAssign);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Declare declare)
+        public override void VisitDeclare(Stride.Shaders.Parsing.SDSL.AST.Declare declare)
         {
             VisitNode(declare.TypeName);
             VisitNodeList(declare.Variables);
-            base.Visit(declare);
+            base.VisitDeclare(declare);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Assign assign)
+        public override void VisitAssign(Stride.Shaders.Parsing.SDSL.AST.Assign assign)
         {
             VisitNodeList(assign.Variables);
-            base.Visit(assign);
+            base.VisitAssign(assign);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.BlockStatement blockStatement)
+        public override void VisitBlockStatement(Stride.Shaders.Parsing.SDSL.AST.BlockStatement blockStatement)
         {
             VisitNodeList(blockStatement.Statements);
-            base.Visit(blockStatement);
+            base.VisitBlockStatement(blockStatement);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Break @break)
+        public override void VisitBreak(Stride.Shaders.Parsing.SDSL.AST.Break @break)
         {
-            base.Visit(@break);
+            base.VisitBreak(@break);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Discard discard)
+        public override void VisitDiscard(Stride.Shaders.Parsing.SDSL.AST.Discard discard)
         {
-            base.Visit(discard);
+            base.VisitDiscard(discard);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.Continue @continue)
+        public override void VisitContinue(Stride.Shaders.Parsing.SDSL.AST.Continue @continue)
         {
-            base.Visit(@continue);
+            base.VisitContinue(@continue);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.ForEach forEach)
+        public override void VisitForEach(Stride.Shaders.Parsing.SDSL.AST.ForEach forEach)
         {
             VisitNode(forEach.TypeName);
             VisitNode(forEach.Variable);
             VisitNode(forEach.Collection);
             VisitNode(forEach.Body);
-            base.Visit(forEach);
+            base.VisitForEach(forEach);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.While @while)
+        public override void VisitWhile(Stride.Shaders.Parsing.SDSL.AST.While @while)
         {
             VisitNode(@while.Condition);
             VisitNode(@while.Body);
-            base.Visit(@while);
+            base.VisitWhile(@while);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDSL.AST.For @for)
+        public override void VisitFor(Stride.Shaders.Parsing.SDSL.AST.For @for)
         {
             VisitNode(@for.Initializer);
             VisitNode(@for.Condition);
@@ -1062,117 +1062,117 @@ namespace Stride.Shaders.Core
             VisitNode(@for.Body);
             if (@for.Attribute != null)
                 VisitNode(@for.Attribute);
-            base.Visit(@for);
+            base.VisitFor(@for);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.ShaderEffect shaderEffect)
+        public override void VisitShaderEffect(Stride.Shaders.Parsing.SDFX.AST.ShaderEffect shaderEffect)
         {
             VisitNode(shaderEffect.Name);
             VisitNode(shaderEffect.Block);
-            base.Visit(shaderEffect);
+            base.VisitShaderEffect(shaderEffect);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.ShaderSourceDeclaration shaderSourceDeclaration)
+        public override void VisitShaderSourceDeclaration(Stride.Shaders.Parsing.SDFX.AST.ShaderSourceDeclaration shaderSourceDeclaration)
         {
             VisitNode(shaderSourceDeclaration.Name);
             if (shaderSourceDeclaration.Value != null)
                 VisitNode(shaderSourceDeclaration.Value);
-            base.Visit(shaderSourceDeclaration);
+            base.VisitShaderSourceDeclaration(shaderSourceDeclaration);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinUse mixinUse)
+        public override void VisitMixinUse(Stride.Shaders.Parsing.SDFX.AST.MixinUse mixinUse)
         {
             VisitNodeList(mixinUse.MixinName);
-            base.Visit(mixinUse);
+            base.VisitMixinUse(mixinUse);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinChild mixinChild)
+        public override void VisitMixinChild(Stride.Shaders.Parsing.SDFX.AST.MixinChild mixinChild)
         {
             VisitNode(mixinChild.MixinName);
-            base.Visit(mixinChild);
+            base.VisitMixinChild(mixinChild);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinClone mixinClone)
+        public override void VisitMixinClone(Stride.Shaders.Parsing.SDFX.AST.MixinClone mixinClone)
         {
             VisitNode(mixinClone.MixinName);
-            base.Visit(mixinClone);
+            base.VisitMixinClone(mixinClone);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinConst mixinConst)
+        public override void VisitMixinConst(Stride.Shaders.Parsing.SDFX.AST.MixinConst mixinConst)
         {
-            base.Visit(mixinConst);
+            base.VisitMixinConst(mixinConst);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.ComposePathValue composePathValue)
+        public override void VisitComposePathValue(Stride.Shaders.Parsing.SDFX.AST.ComposePathValue composePathValue)
         {
-            base.Visit(composePathValue);
+            base.VisitComposePathValue(composePathValue);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.ComposeMixinValue composeMixinValue)
+        public override void VisitComposeMixinValue(Stride.Shaders.Parsing.SDFX.AST.ComposeMixinValue composeMixinValue)
         {
             VisitNode(composeMixinValue.Mixin);
-            base.Visit(composeMixinValue);
+            base.VisitComposeMixinValue(composeMixinValue);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinCompose mixinCompose)
+        public override void VisitMixinCompose(Stride.Shaders.Parsing.SDFX.AST.MixinCompose mixinCompose)
         {
             VisitNode(mixinCompose.Identifier);
             VisitNode(mixinCompose.ComposeValue);
-            base.Visit(mixinCompose);
+            base.VisitMixinCompose(mixinCompose);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.MixinComposeAdd mixinComposeAdd)
+        public override void VisitMixinComposeAdd(Stride.Shaders.Parsing.SDFX.AST.MixinComposeAdd mixinComposeAdd)
         {
             VisitNode(mixinComposeAdd.Identifier);
             VisitNode(mixinComposeAdd.Source);
-            base.Visit(mixinComposeAdd);
+            base.VisitMixinComposeAdd(mixinComposeAdd);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.ComposeParams composeParams)
+        public override void VisitComposeParams(Stride.Shaders.Parsing.SDFX.AST.ComposeParams composeParams)
         {
             VisitNode(composeParams.MixinName);
-            base.Visit(composeParams);
+            base.VisitComposeParams(composeParams);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.UsingParams usingParams)
+        public override void VisitUsingParams(Stride.Shaders.Parsing.SDFX.AST.UsingParams usingParams)
         {
             VisitNode(usingParams.ParamsName);
-            base.Visit(usingParams);
+            base.VisitUsingParams(usingParams);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectDiscardStatement effectDiscardStatement)
+        public override void VisitEffectDiscardStatement(Stride.Shaders.Parsing.SDFX.AST.EffectDiscardStatement effectDiscardStatement)
         {
-            base.Visit(effectDiscardStatement);
+            base.VisitEffectDiscardStatement(effectDiscardStatement);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectFlow effectFlow)
+        public override void VisitEffectFlow(Stride.Shaders.Parsing.SDFX.AST.EffectFlow effectFlow)
         {
-            base.Visit(effectFlow);
+            base.VisitEffectFlow(effectFlow);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectForEach effectForEach)
+        public override void VisitEffectForEach(Stride.Shaders.Parsing.SDFX.AST.EffectForEach effectForEach)
         {
             VisitNode(effectForEach.Typename);
             VisitNode(effectForEach.Variable);
             VisitNode(effectForEach.Collection);
             VisitNode(effectForEach.Body);
-            base.Visit(effectForEach);
+            base.VisitEffectForEach(effectForEach);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectParameters effectParameters)
+        public override void VisitEffectParameters(Stride.Shaders.Parsing.SDFX.AST.EffectParameters effectParameters)
         {
             VisitNode(effectParameters.Name);
             VisitNodeList(effectParameters.Parameters);
-            base.Visit(effectParameters);
+            base.VisitEffectParameters(effectParameters);
         }
 
-        public override void Visit(Stride.Shaders.Parsing.SDFX.AST.EffectParameter effectParameter)
+        public override void VisitEffectParameter(Stride.Shaders.Parsing.SDFX.AST.EffectParameter effectParameter)
         {
             VisitNode(effectParameter.Type);
             VisitNode(effectParameter.Identifier);
             if (effectParameter.DefaultValue != null)
                 VisitNode(effectParameter.DefaultValue);
-            base.Visit(effectParameter);
+            base.VisitEffectParameter(effectParameter);
         }
     }
 }
@@ -1183,7 +1183,7 @@ namespace Stride.Shaders.Parsing
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitNoNode(this);
         }
     }
 }
@@ -1194,7 +1194,7 @@ namespace Stride.Shaders.Parsing
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderFile(this);
         }
     }
 }
@@ -1205,7 +1205,7 @@ namespace Stride.Shaders.Parsing
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitUsingShaderNamespace(this);
         }
     }
 }
@@ -1216,7 +1216,7 @@ namespace Stride.Shaders.Parsing
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderNamespace(this);
         }
     }
 }
@@ -1227,7 +1227,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitPreProcessableCode(this);
         }
     }
 }
@@ -1238,7 +1238,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitDirectiveCode(this);
         }
     }
 }
@@ -1249,7 +1249,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitObjectDefineDirective(this);
         }
     }
 }
@@ -1260,7 +1260,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitFunctionDefineDirective(this);
         }
     }
 }
@@ -1271,7 +1271,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIfDirective(this);
         }
     }
 }
@@ -1282,7 +1282,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIfDefDirective(this);
         }
     }
 }
@@ -1293,7 +1293,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIfNDefDirective(this);
         }
     }
 }
@@ -1304,7 +1304,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitElifDirective(this);
         }
     }
 }
@@ -1315,7 +1315,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitElseDirective(this);
         }
     }
 }
@@ -1326,7 +1326,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEndIfDirective(this);
         }
     }
 }
@@ -1337,7 +1337,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitConditionalDirectives(this);
         }
     }
 }
@@ -1348,7 +1348,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEmptyExpression(this);
         }
     }
 }
@@ -1359,7 +1359,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMethodCall(this);
         }
     }
 }
@@ -1370,7 +1370,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinAccess(this);
         }
     }
 }
@@ -1381,7 +1381,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitPrefixExpression(this);
         }
     }
 }
@@ -1392,7 +1392,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitCastExpression(this);
         }
     }
 }
@@ -1403,7 +1403,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIndexerExpression(this);
         }
     }
 }
@@ -1414,7 +1414,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitPostfixIncrement(this);
         }
     }
 }
@@ -1425,7 +1425,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitAccessorChainExpression(this);
         }
     }
 }
@@ -1436,7 +1436,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitBinaryExpression(this);
         }
     }
 }
@@ -1447,7 +1447,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitTernaryExpression(this);
         }
     }
 }
@@ -1458,7 +1458,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitStringLiteral(this);
         }
     }
 }
@@ -1469,7 +1469,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIntegerLiteral(this);
         }
     }
 }
@@ -1480,7 +1480,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitFloatLiteral(this);
         }
     }
 }
@@ -1491,7 +1491,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitHexLiteral(this);
         }
     }
 }
@@ -1502,7 +1502,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitBoolLiteral(this);
         }
     }
 }
@@ -1513,7 +1513,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitExpressionLiteral(this);
         }
     }
 }
@@ -1524,7 +1524,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitVectorLiteral(this);
         }
     }
 }
@@ -1535,7 +1535,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMatrixLiteral(this);
         }
     }
 }
@@ -1546,7 +1546,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitArrayLiteral(this);
         }
     }
 }
@@ -1557,7 +1557,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIdentifier(this);
         }
     }
 }
@@ -1568,7 +1568,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitTypeName(this);
         }
     }
 }
@@ -1579,7 +1579,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderClass(this);
         }
     }
 }
@@ -1590,7 +1590,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderGenerics(this);
         }
     }
 }
@@ -1601,7 +1601,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixin(this);
         }
     }
 }
@@ -1612,7 +1612,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderMixinExpression(this);
         }
     }
 }
@@ -1623,7 +1623,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderMixinIdentifier(this);
         }
     }
 }
@@ -1634,7 +1634,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderAttributeList(this);
         }
     }
 }
@@ -1645,7 +1645,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitAnyShaderAttribute(this);
         }
     }
 }
@@ -1656,7 +1656,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitResourceBind(this);
         }
     }
 }
@@ -1667,7 +1667,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitColorType(this);
         }
     }
 }
@@ -1678,7 +1678,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderVariable(this);
         }
     }
 }
@@ -1689,7 +1689,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitTypeDef(this);
         }
     }
 }
@@ -1700,7 +1700,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderStructMember(this);
         }
     }
 }
@@ -1711,7 +1711,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderStruct(this);
         }
     }
 }
@@ -1722,7 +1722,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitCBuffer(this);
         }
     }
 }
@@ -1733,7 +1733,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitRGroup(this);
         }
     }
 }
@@ -1744,7 +1744,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitTBuffer(this);
         }
     }
 }
@@ -1755,7 +1755,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitSamplerStateParameter(this);
         }
     }
 }
@@ -1766,7 +1766,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderSamplerState(this);
         }
     }
 }
@@ -1777,7 +1777,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderSamplerComparisonState(this);
         }
     }
 }
@@ -1788,7 +1788,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderCompose(this);
         }
     }
 }
@@ -1799,7 +1799,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderMember(this);
         }
     }
 }
@@ -1810,7 +1810,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMethodParameter(this);
         }
     }
 }
@@ -1821,7 +1821,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderMethod(this);
         }
     }
 }
@@ -1832,7 +1832,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderParameterDeclarations(this);
         }
     }
 }
@@ -1843,7 +1843,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderExpressionList(this);
         }
     }
 }
@@ -1854,7 +1854,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitValueTypeGenerics(this);
         }
     }
 }
@@ -1865,7 +1865,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitConditionalFlow(this);
         }
     }
 }
@@ -1876,7 +1876,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitIf(this);
         }
     }
 }
@@ -1887,7 +1887,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitElseIf(this);
         }
     }
 }
@@ -1898,7 +1898,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitElse(this);
         }
     }
 }
@@ -1909,7 +1909,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEmptyStatement(this);
         }
     }
 }
@@ -1920,7 +1920,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitExpressionStatement(this);
         }
     }
 }
@@ -1931,7 +1931,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitReturn(this);
         }
     }
 }
@@ -1942,7 +1942,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitVariableAssign(this);
         }
     }
 }
@@ -1953,7 +1953,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitDeclaredVariableAssign(this);
         }
     }
 }
@@ -1964,7 +1964,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitDeclare(this);
         }
     }
 }
@@ -1975,7 +1975,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitAssign(this);
         }
     }
 }
@@ -1986,7 +1986,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitBlockStatement(this);
         }
     }
 }
@@ -1997,7 +1997,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitBreak(this);
         }
     }
 }
@@ -2008,7 +2008,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitDiscard(this);
         }
     }
 }
@@ -2019,7 +2019,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitContinue(this);
         }
     }
 }
@@ -2030,7 +2030,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitForEach(this);
         }
     }
 }
@@ -2041,7 +2041,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitWhile(this);
         }
     }
 }
@@ -2052,7 +2052,7 @@ namespace Stride.Shaders.Parsing.SDSL.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitFor(this);
         }
     }
 }
@@ -2063,7 +2063,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderEffect(this);
         }
     }
 }
@@ -2074,7 +2074,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitShaderSourceDeclaration(this);
         }
     }
 }
@@ -2085,7 +2085,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinUse(this);
         }
     }
 }
@@ -2096,7 +2096,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinChild(this);
         }
     }
 }
@@ -2107,7 +2107,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinClone(this);
         }
     }
 }
@@ -2118,7 +2118,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinConst(this);
         }
     }
 }
@@ -2129,7 +2129,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitComposePathValue(this);
         }
     }
 }
@@ -2140,7 +2140,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitComposeMixinValue(this);
         }
     }
 }
@@ -2151,7 +2151,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinCompose(this);
         }
     }
 }
@@ -2162,7 +2162,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitMixinComposeAdd(this);
         }
     }
 }
@@ -2173,7 +2173,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitComposeParams(this);
         }
     }
 }
@@ -2184,7 +2184,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitUsingParams(this);
         }
     }
 }
@@ -2195,7 +2195,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEffectDiscardStatement(this);
         }
     }
 }
@@ -2206,7 +2206,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEffectFlow(this);
         }
     }
 }
@@ -2217,7 +2217,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEffectForEach(this);
         }
     }
 }
@@ -2228,7 +2228,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEffectParameters(this);
         }
     }
 }
@@ -2239,7 +2239,7 @@ namespace Stride.Shaders.Parsing.SDFX.AST
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.Visit(this);
+            visitor.VisitEffectParameter(this);
         }
     }
 }

@@ -89,9 +89,9 @@ namespace Stride.Shaders.Core
             DefaultVisit(methodCall);
         }
 
-        public virtual void VisitMixinAccess(Stride.Shaders.Parsing.SDSL.AST.MixinAccess mixinAccess)
+        public virtual void VisitExternalShaderAccess(Stride.Shaders.Parsing.SDSL.AST.ExternalShaderAccess externalShaderAccess)
         {
-            DefaultVisit(mixinAccess);
+            DefaultVisit(externalShaderAccess);
         }
 
         public virtual void VisitPrefixExpression(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
@@ -194,19 +194,14 @@ namespace Stride.Shaders.Core
             DefaultVisit(shaderGenerics);
         }
 
+        public virtual void VisitGenericIdentifier(Stride.Shaders.Parsing.SDSL.AST.GenericIdentifier genericIdentifier)
+        {
+            DefaultVisit(genericIdentifier);
+        }
+
         public virtual void VisitMixin(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
         {
             DefaultVisit(mixin);
-        }
-
-        public virtual void VisitShaderMixinExpression(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinExpression shaderMixinExpression)
-        {
-            DefaultVisit(shaderMixinExpression);
-        }
-
-        public virtual void VisitShaderMixinIdentifier(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinIdentifier shaderMixinIdentifier)
-        {
-            DefaultVisit(shaderMixinIdentifier);
         }
 
         public virtual void VisitShaderAttributeList(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
@@ -414,51 +409,6 @@ namespace Stride.Shaders.Core
             DefaultVisit(shaderSourceDeclaration);
         }
 
-        public virtual void VisitMixinUse(Stride.Shaders.Parsing.SDFX.AST.MixinUse mixinUse)
-        {
-            DefaultVisit(mixinUse);
-        }
-
-        public virtual void VisitMixinChild(Stride.Shaders.Parsing.SDFX.AST.MixinChild mixinChild)
-        {
-            DefaultVisit(mixinChild);
-        }
-
-        public virtual void VisitMixinClone(Stride.Shaders.Parsing.SDFX.AST.MixinClone mixinClone)
-        {
-            DefaultVisit(mixinClone);
-        }
-
-        public virtual void VisitMixinConst(Stride.Shaders.Parsing.SDFX.AST.MixinConst mixinConst)
-        {
-            DefaultVisit(mixinConst);
-        }
-
-        public virtual void VisitComposePathValue(Stride.Shaders.Parsing.SDFX.AST.ComposePathValue composePathValue)
-        {
-            DefaultVisit(composePathValue);
-        }
-
-        public virtual void VisitComposeMixinValue(Stride.Shaders.Parsing.SDFX.AST.ComposeMixinValue composeMixinValue)
-        {
-            DefaultVisit(composeMixinValue);
-        }
-
-        public virtual void VisitMixinCompose(Stride.Shaders.Parsing.SDFX.AST.MixinCompose mixinCompose)
-        {
-            DefaultVisit(mixinCompose);
-        }
-
-        public virtual void VisitMixinComposeAdd(Stride.Shaders.Parsing.SDFX.AST.MixinComposeAdd mixinComposeAdd)
-        {
-            DefaultVisit(mixinComposeAdd);
-        }
-
-        public virtual void VisitComposeParams(Stride.Shaders.Parsing.SDFX.AST.ComposeParams composeParams)
-        {
-            DefaultVisit(composeParams);
-        }
-
         public virtual void VisitUsingParams(Stride.Shaders.Parsing.SDFX.AST.UsingParams usingParams)
         {
             DefaultVisit(usingParams);
@@ -620,10 +570,10 @@ namespace Stride.Shaders.Core
             base.VisitMethodCall(methodCall);
         }
 
-        public override void VisitMixinAccess(Stride.Shaders.Parsing.SDSL.AST.MixinAccess mixinAccess)
+        public override void VisitExternalShaderAccess(Stride.Shaders.Parsing.SDSL.AST.ExternalShaderAccess externalShaderAccess)
         {
-            VisitNode(mixinAccess.Mixin);
-            base.VisitMixinAccess(mixinAccess);
+            VisitNode(externalShaderAccess.Mixin);
+            base.VisitExternalShaderAccess(externalShaderAccess);
         }
 
         public override void VisitPrefixExpression(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
@@ -754,25 +704,14 @@ namespace Stride.Shaders.Core
             base.VisitShaderGenerics(shaderGenerics);
         }
 
+        public override void VisitGenericIdentifier(Stride.Shaders.Parsing.SDSL.AST.GenericIdentifier genericIdentifier)
+        {
+            base.VisitGenericIdentifier(genericIdentifier);
+        }
+
         public override void VisitMixin(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
         {
-            VisitNodeList(mixin.Path);
-            VisitNode(mixin.Name);
-            if (mixin.Generics != null)
-                VisitNode(mixin.Generics);
             base.VisitMixin(mixin);
-        }
-
-        public override void VisitShaderMixinExpression(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinExpression shaderMixinExpression)
-        {
-            VisitNode(shaderMixinExpression.Value);
-            base.VisitShaderMixinExpression(shaderMixinExpression);
-        }
-
-        public override void VisitShaderMixinIdentifier(Stride.Shaders.Parsing.SDSL.AST.ShaderMixinIdentifier shaderMixinIdentifier)
-        {
-            VisitNode(shaderMixinIdentifier.Value);
-            base.VisitShaderMixinIdentifier(shaderMixinIdentifier);
         }
 
         public override void VisitShaderAttributeList(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
@@ -875,7 +814,7 @@ namespace Stride.Shaders.Core
             if (shaderCompose.Attributes != null)
                 VisitNodeList(shaderCompose.Attributes);
             VisitNode(shaderCompose.Name);
-            VisitNode(shaderCompose.Mixin);
+            VisitNode(shaderCompose.Shader);
             base.VisitShaderCompose(shaderCompose);
         }
 
@@ -1078,60 +1017,6 @@ namespace Stride.Shaders.Core
             if (shaderSourceDeclaration.Value != null)
                 VisitNode(shaderSourceDeclaration.Value);
             base.VisitShaderSourceDeclaration(shaderSourceDeclaration);
-        }
-
-        public override void VisitMixinUse(Stride.Shaders.Parsing.SDFX.AST.MixinUse mixinUse)
-        {
-            VisitNodeList(mixinUse.MixinName);
-            base.VisitMixinUse(mixinUse);
-        }
-
-        public override void VisitMixinChild(Stride.Shaders.Parsing.SDFX.AST.MixinChild mixinChild)
-        {
-            VisitNode(mixinChild.MixinName);
-            base.VisitMixinChild(mixinChild);
-        }
-
-        public override void VisitMixinClone(Stride.Shaders.Parsing.SDFX.AST.MixinClone mixinClone)
-        {
-            VisitNode(mixinClone.MixinName);
-            base.VisitMixinClone(mixinClone);
-        }
-
-        public override void VisitMixinConst(Stride.Shaders.Parsing.SDFX.AST.MixinConst mixinConst)
-        {
-            base.VisitMixinConst(mixinConst);
-        }
-
-        public override void VisitComposePathValue(Stride.Shaders.Parsing.SDFX.AST.ComposePathValue composePathValue)
-        {
-            base.VisitComposePathValue(composePathValue);
-        }
-
-        public override void VisitComposeMixinValue(Stride.Shaders.Parsing.SDFX.AST.ComposeMixinValue composeMixinValue)
-        {
-            VisitNode(composeMixinValue.Mixin);
-            base.VisitComposeMixinValue(composeMixinValue);
-        }
-
-        public override void VisitMixinCompose(Stride.Shaders.Parsing.SDFX.AST.MixinCompose mixinCompose)
-        {
-            VisitNode(mixinCompose.Identifier);
-            VisitNode(mixinCompose.ComposeValue);
-            base.VisitMixinCompose(mixinCompose);
-        }
-
-        public override void VisitMixinComposeAdd(Stride.Shaders.Parsing.SDFX.AST.MixinComposeAdd mixinComposeAdd)
-        {
-            VisitNode(mixinComposeAdd.Identifier);
-            VisitNode(mixinComposeAdd.Source);
-            base.VisitMixinComposeAdd(mixinComposeAdd);
-        }
-
-        public override void VisitComposeParams(Stride.Shaders.Parsing.SDFX.AST.ComposeParams composeParams)
-        {
-            VisitNode(composeParams.MixinName);
-            base.VisitComposeParams(composeParams);
         }
 
         public override void VisitUsingParams(Stride.Shaders.Parsing.SDFX.AST.UsingParams usingParams)
@@ -1366,11 +1251,11 @@ namespace Stride.Shaders.Parsing.SDSL.AST
 
 namespace Stride.Shaders.Parsing.SDSL.AST
 {
-    public partial class MixinAccess
+    public partial class ExternalShaderAccess
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.VisitMixinAccess(this);
+            visitor.VisitExternalShaderAccess(this);
         }
     }
 }
@@ -1597,33 +1482,22 @@ namespace Stride.Shaders.Parsing.SDSL.AST
 
 namespace Stride.Shaders.Parsing.SDSL.AST
 {
+    public partial class GenericIdentifier
+    {
+        public override void Accept(NodeVisitor visitor)
+        {
+            visitor.VisitGenericIdentifier(this);
+        }
+    }
+}
+
+namespace Stride.Shaders.Parsing.SDSL.AST
+{
     public partial class Mixin
     {
         public override void Accept(NodeVisitor visitor)
         {
             visitor.VisitMixin(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDSL.AST
-{
-    public partial class ShaderMixinExpression
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitShaderMixinExpression(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDSL.AST
-{
-    public partial class ShaderMixinIdentifier
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitShaderMixinIdentifier(this);
         }
     }
 }
@@ -2075,105 +1949,6 @@ namespace Stride.Shaders.Parsing.SDFX.AST
         public override void Accept(NodeVisitor visitor)
         {
             visitor.VisitShaderSourceDeclaration(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class MixinUse
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixinUse(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class MixinChild
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixinChild(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class MixinClone
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixinClone(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class MixinConst
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixinConst(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class ComposePathValue
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitComposePathValue(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class ComposeMixinValue
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitComposeMixinValue(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class MixinCompose
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixinCompose(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class MixinComposeAdd
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixinComposeAdd(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDFX.AST
-{
-    public partial class ComposeParams
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitComposeParams(this);
         }
     }
 }

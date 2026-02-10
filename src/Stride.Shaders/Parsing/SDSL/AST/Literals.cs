@@ -8,6 +8,7 @@ using Stride.Shaders.Spirv.Core.Buffers;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
@@ -16,11 +17,21 @@ namespace Stride.Shaders.Parsing.SDSL.AST;
 
 
 
-public abstract class Literal(TextLocation info) : Expression(info);
-public abstract class ValueLiteral(TextLocation info) : Literal(info);
-public abstract class ScalarLiteral(TextLocation info) : ValueLiteral(info);
+public abstract class Literal(TextLocation info) : Expression(info), IStrideParser<Literal>
+{
+    public static bool Match(ref Scanner scanner, ParseResult result, out Literal parsed, in ParseError? orError = null)
+    {
 
-public class StringLiteral(string value, TextLocation info) : Literal(info)
+    }
+}
+public abstract class ValueLiteral(TextLocation info) : Literal(info);
+public abstract class ScalarLiteral(TextLocation info) : ValueLiteral(info), IStrideParser<ScalarLiteral>
+{
+    public static bool Match(ref Scanner scanner, ParseResult result, out ScalarLiteral parsed, in ParseError? orError = null)
+        => scanner.MatchOr<BoolLiteral, NumberLiteral, ScalarLiteral>(result, out parsed, orError);
+}
+
+public class StringLiteral(string value, TextLocation info) : Literal(info), IStrideParser<StringLiteral>
 {
     public string Value { get; set; } = value;
 
@@ -49,14 +60,35 @@ public class StringLiteral(string value, TextLocation info) : Literal(info)
     {
         return $"\"{Value}\"";
     }
+
+    public static bool Match(ref Scanner scanner, ParseResult result, out StringLiteral parsed, in ParseError? orError = null)
+    {
+        var position = scanner.Position;
+        if (scanner.Match('\"', advance: true))
+        {
+            var strStart = scanner.Position;
+            Parsers.Until(ref scanner, '\"', advance: false);
+            var strEnd = scanner.Position;
+            if (scanner.Match('\"', advance: true))
+            {
+                if (scanner.Span[position..scanner.Position].Contains('\n'))
+                    return scanner.Backtrack(position, result, out parsed, new(SDSLErrorMessages.SDSL0001, scanner[position], scanner.Memory));
+                parsed = new(scanner.Span[strStart..strEnd].ToString(), scanner[position..scanner.Position]);
+                return true;
+            }
+        }
+        return scanner.Backtrack(position, result, out parsed, orError);
+    }
 }
 
-public abstract class NumberLiteral(TextLocation info) : ScalarLiteral(info)
+public abstract class NumberLiteral(TextLocation info) : ScalarLiteral(info), IStrideParser<NumberLiteral>
 {
     public abstract double DoubleValue { get; }
     public abstract int IntValue { get; }
     public abstract long LongValue { get; }
 
+    public static bool Match(ref Scanner scanner, ParseResult result, out NumberLiteral parsed, in ParseError? orError = null)
+        => scanner.MatchOr<FloatLiteral, IntegerLiteral, HexLiteral, NumberLiteral>(result, out parsed, orError);
 }
 public abstract class NumberLiteral<T>(Suffix suffix, T value, TextLocation info) : NumberLiteral(info)
     where T : struct, INumber<T>
@@ -74,7 +106,7 @@ public abstract class NumberLiteral<T>(Suffix suffix, T value, TextLocation info
 
 }
 
-public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : NumberLiteral<long>(suffix, value, info)
+public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : NumberLiteral<long>(suffix, value, info), IStrideParser<IntegerLiteral>
 {
     public override void ProcessSymbol(SymbolTable table, SymbolType? expectedType = null)
     {
@@ -91,16 +123,44 @@ public class IntegerLiteral(Suffix suffix, long value, TextLocation info) : Numb
         {
             return compiler.Context.CompileConstantLiteral(new FloatLiteral(new(32, true, true), value, null, info));
         }
- 
+
         return compiler.Context.CompileConstantLiteral(this);
+    }
+
+    public static bool Match(ref Scanner scanner, ParseResult result, out IntegerLiteral parsed, in ParseError? orError = null)
+    {
+        var position = scanner.Position;
+        if (scanner.MatchDigit(1.., advance: true))
+        {
+            while (scanner.MatchDigit(advance: true)) ;
+
+            var numPos = scanner.Position;
+            if (scanner.MatchIntSuffix(out var suf, true))
+            {
+                parsed = new IntegerLiteral(suf!.Value, long.Parse(scanner.Span[position..numPos]), scanner[position..scanner.Position]);
+                return true;
+            }
+            else
+            {
+                var memory = scanner.Memory[position..scanner.Position];
+                parsed = new IntegerLiteral(new(32, false, true), long.Parse(memory.Span), new(scanner.Memory, position..scanner.Position));
+                return true;
+            }
+        }
+        else if (scanner.Match('0',advance: true) && !scanner.MatchDigit())
+        {
+            parsed = new IntegerLiteral(new(32, false, true), 0, new(scanner.Memory, position..scanner.Position));
+            return true;
+        }
+        else return scanner.Backtrack(position, result, out parsed, orError);
     }
 }
 
-public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, TextLocation info) : NumberLiteral<double>(suffix, value, info)
+public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, TextLocation info) : NumberLiteral<double>(suffix, value, info), IStrideParser<FloatLiteral>
 {
     public int? Exponent { get; set; } = exponent;
     public static implicit operator FloatLiteral(double v) => new(new(), v, null, new());
-    
+
     public override void ProcessSymbol(SymbolTable table, SymbolType? expectedType = null)
     {
         Type = SpirvContext.ComputeLiteralType(this);
@@ -110,19 +170,113 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
     {
         return compiler.Context.CompileConstantLiteral(this);
     }
+
+    public static bool Match(ref Scanner scanner, ParseResult result, out FloatLiteral parsed, in ParseError? orError = null)
+    {
+        var position = scanner.Position;
+        if (scanner.Match('.', advance: true))
+        {
+            if (!scanner.MatchDigit())
+                return scanner.Backtrack(position, result, out parsed);
+            while (scanner.MatchDigit(advance: true)) ;
+        }
+        else if (scanner.MatchDigit(ref scanner, 1.., advance: true))
+        {
+            while (scanner.MatchDigit(advance: true)) ;
+            if (scanner.Match('.'))
+            {
+                scanner.Advance(1);
+                if (!scanner.MatchDigit() && !scanner.MatchFloatSuffix(out _))
+                    return scanner.Backtrack(position, result, out parsed, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                while (scanner.MatchDigit(advance: true)) ;
+            }
+            else if (scanner.MatchFloatSuffix(out _) || scanner.Match('e')) { }
+            else return scanner.Backtrack(position, result, out parsed, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+        }
+        else if (scanner.MatchDigit(0, advance: true))
+        {
+            if (scanner.Match('.', advance: true))
+            {
+                if (!scanner.MatchDigit() && !scanner.MatchFloatSuffix(out _))
+                    return scanner.Backtrack(position, result, out parsed, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+                while (scanner.MatchDigit(advance: true)) ;
+            }
+            else return Parsers.Exit(ref scanner, result, out parsed, position);
+        }
+        else return Parsers.Exit(ref scanner, result, out parsed, position);
+
+
+        var value = double.Parse(scanner.Span[position..scanner.Position], CultureInfo.InvariantCulture);
+        int? exponent = null;
+        if (scanner.Match('e', advance: true))
+        {
+            var signed = scanner.MatchAnyOf(["+", "-"], out var matched, advance: true);
+            if (scanner.Match<IntegerLiteral>(result, out var exp))
+            {
+                exponent = (int)exp.Value;
+                if (signed && matched == "-")
+                    exponent = -exponent;
+            }
+            else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
+        }
+        if (scanner.MatchFloatSuffix(out var suffix, advance: true) && suffix is not null)
+            parsed = new FloatLiteral(suffix.Value, value, exponent, scanner[position..scanner.Position]);
+        else
+            parsed = new FloatLiteral(new(32, true, true), value, exponent, scanner[position..scanner.Position]);
+        return true;
+    }
 }
 
-public sealed class HexLiteral(ulong value, TextLocation info) : IntegerLiteral(new(value > uint.MaxValue ? 64 : 32, false, false), (long)value, info)
+public sealed class HexLiteral(ulong value, TextLocation info) : IntegerLiteral(new(value > uint.MaxValue ? 64 : 32, false, false), (long)value, info), IStrideParser<HexLiteral>
 {
     public override SymbolType? Type => Suffix.Size > 32 ? ScalarType.UInt64 : ScalarType.UInt;
+
+    public static bool Match(ref Scanner scanner, ParseResult result, out HexLiteral parsed, in ParseError? orError = null)
+    {
+        parsed = null!;
+        var position = scanner.Position;
+        if (scanner.Match("0x", advance: true))
+        {
+            while (scanner.MatchSet("abcdefABCDEF", advance: true) || scanner.MatchDigit(advance: true)) ;
+
+            ulong sum = 0;
+
+            for (int i = position + 2; i < scanner.Position; i++)
+            {
+                // Check if multiplying by 16 would not overflow ulong
+                if ((sum & ~(ulong)long.MaxValue) != 0)
+                {
+                    result.Errors.Add(new ParseError("Hex value bigger than ulong.", scanner[i], scanner.Memory));
+                    return false;
+                }
+
+                sum <<= 4;
+                var v = Hex2int(scanner.Span[i]);
+                sum += (uint)v;
+            }
+            parsed = new HexLiteral(sum, scanner[position..scanner.Position]);
+            return true;
+        }
+        else return scanner.Backtrack(position, result, out parsed, orError);
+    }
+    static int Hex2int(char ch)
+    {
+        if (ch >= '0' && ch <= '9')
+            return ch - '0';
+        if (ch >= 'A' && ch <= 'F')
+            return ch - 'A' + 10;
+        if (ch >= 'a' && ch <= 'f')
+            return ch - 'a' + 10;
+        return -1;
+    }
 }
 
 
-public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
+public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info), IStrideParser<BoolLiteral>
 {
     public bool Value { get; set; } = value;
     public override SymbolType? Type => ScalarType.Boolean;
-    
+
     public override void ProcessSymbol(SymbolTable table, SymbolType? expectedType = null)
     {
         Type = ScalarType.Boolean;
@@ -132,13 +286,24 @@ public class BoolLiteral(bool value, TextLocation info) : ScalarLiteral(info)
     {
         return compiler.Context.CompileConstantLiteral(this);
     }
+
+    public static bool Match(ref Scanner scanner, ParseResult result, out BoolLiteral parsed, in ParseError? orError = null)
+    {
+        var position = scanner.Position;
+        if (scanner.MatchAnyOf(["true", "false"], out var matched, advance: true))
+        {
+            parsed = new(matched == "true", scanner[position..scanner.Position]);
+            return true;
+        }
+        else return scanner.Backtrack(position, result, out parsed, orError);
+    }
 }
 
 public class ExpressionLiteral(Expression value, TypeName typeName, TextLocation info) : ValueLiteral(info)
 {
     public Expression Value { get; set; } = value;
     public TypeName TypeName { get; set; } = typeName;
-    
+
     public override void ProcessSymbol(SymbolTable table, SymbolType? expectedType = null)
     {
         TypeName.ProcessSymbol(table);
@@ -190,7 +355,7 @@ public abstract class CompositeLiteral(TextLocation info) : ValueLiteral(info)
             // i.e. float3(float, float, float) is OK but float3(float, float2) is not as we don't know which element will be which before compiling them (we would need 2-pass compilation for that)
             var value = Values[i].CompileAsValue(table, compiler, expectedElementType);
             var valueType = Values[i].ValueType;
-            
+
             // We expand elements, because float4 can be created from (float, float2, float), or (float2x2)
             if (Type is ScalarType or VectorType or MatrixType)
             {
@@ -301,10 +466,10 @@ public class ArrayLiteral(TextLocation info) : CompositeLiteral(info)
     {
         Type = expectedType;
         var expectedElementType = (expectedType as ArrayType)?.BaseType;
-        
+
         foreach (var value in Values)
             value.ProcessSymbol(table, expectedElementType);
-        
+
         if (Type == null && Values.Count > 0)
             Type = new ArrayType(Values[0].ValueType, Values.Count);
 
@@ -335,7 +500,7 @@ public class Identifier(string name, TextLocation info) : Literal(info)
 {
     internal bool AllowStreamVariables { get; set; }
     public string Name { get; set; } = name;
-    
+
     public Symbol ResolvedSymbol { get; set; }
 
     public static implicit operator string(Identifier identifier) => identifier.Name;
@@ -408,7 +573,7 @@ public class Identifier(string name, TextLocation info) : Literal(info)
             var result = builder.Insert(new OpStreamsSDSL(context.Bound++));
             return new(result.ResultId, context.GetOrRegister(new PointerType(new StreamsType(Specification.StreamsKindSDSL.Streams), Specification.StorageClass.Private)));
         }
-        
+
         var symbol = LoadedShaderSymbol.ImportSymbol(table, context, ResolvedSymbol);
         return EmitSymbol(builder, context, symbol, constantOnly);
     }
@@ -417,7 +582,7 @@ public class Identifier(string name, TextLocation info) : Literal(info)
     {
         if (symbol.IdRef == 0)
             throw new InvalidOperationException($"Symbol {symbol} has not been imported or created properly");
-        
+
         var resultType = context.GetOrRegister(symbol.Type);
         var result = new SpirvValue(symbol.IdRef, resultType, symbol.Id.Name);
 
@@ -432,7 +597,7 @@ public class Identifier(string name, TextLocation info) : Literal(info)
             result.Id = instance.Value;
             return result;
         }
-        
+
         if (symbol.ExternalConstant is { } externalConstant)
         {
             if (externalConstant.SourceContext != context)
@@ -585,7 +750,7 @@ public class TypeName(string name, TextLocation info) : Literal(info)
     public bool IsArray => ArraySize != null && ArraySize.Count > 0;
     public List<Expression>? ArraySize { get; set; }
     public List<Literal> Generics { get; set; } = [];
-    
+
     public bool TryResolveType(SymbolTable table, SpirvContext context, [MaybeNullWhen(false)] out SymbolType symbolType)
     {
         if (Name == "LinkType")
@@ -723,7 +888,7 @@ public class TypeName(string name, TextLocation info) : Literal(info)
 
         Type = ResolveType(table, table.Context);
     }
-    
+
     public override SpirvValue CompileImpl(SymbolTable table, CompilerUnit compiler) => throw new NotImplementedException();
 
     public override string ToString() => GenerateTypeName(includeGenerics: true, includeArray: true);

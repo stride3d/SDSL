@@ -5,8 +5,7 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public struct DirectiveExpressionParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         if (Or(ref scanner, result, out parsed))
             return true;
@@ -18,46 +17,34 @@ public struct DirectiveExpressionParser : IParser<Expression>
         }
     }
 
-    public static bool Expression<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Expression(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveExpressionParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Add<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Add(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveAdditionParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Mul<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Mul(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveMultiplicationParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Shift<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Shift(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveBitwiseShiftParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Relation<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Relation(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveRelationalParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Equality<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Equality(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveEqualityParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool BAnd<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool BAnd(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveBitwiseAndParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool BOr<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool BOr(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveBitwiseOrParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool XOr<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool XOr(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveBitwiseXOrParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool And<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool And(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveAndParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Or<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Or(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new DirectiveOrParser().Match(ref scanner, result, out parsed, in orError);
 }
 
 
 public record struct DirectiveTernaryParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (DirectiveExpressionParser.Or(ref scanner, result, out parsed))
@@ -95,7 +82,7 @@ public record struct DirectiveTernaryParser : IParser<Expression>
 
 public record struct DirectiveOrParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -144,7 +131,7 @@ public record struct DirectiveOrParser() : IParser<Expression>
 
 public record struct DirectiveAndParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -195,7 +182,7 @@ public record struct DirectiveAndParser() : IParser<Expression>
 
 public record struct DirectiveBitwiseOrParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -244,7 +231,7 @@ public record struct DirectiveBitwiseOrParser() : IParser<Expression>
 }
 public record struct DirectiveBitwiseXOrParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -293,7 +280,7 @@ public record struct DirectiveBitwiseXOrParser() : IParser<Expression>
 }
 public record struct DirectiveBitwiseAndParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -345,7 +332,7 @@ public record struct DirectiveBitwiseAndParser() : IParser<Expression>
 
 public record struct DirectiveEqualityParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -395,7 +382,7 @@ public record struct DirectiveEqualityParser() : IParser<Expression>
 
 public record struct DirectiveRelationalParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -469,7 +456,7 @@ public record struct DirectiveRelationalParser() : IParser<Expression>
 
 public record struct DirectiveBitwiseShiftParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -519,7 +506,7 @@ public record struct DirectiveBitwiseShiftParser() : IParser<Expression>
 
 public record struct DirectiveAdditionParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;
@@ -569,7 +556,7 @@ public record struct DirectiveAdditionParser() : IParser<Expression>
 
 public record struct DirectiveMultiplicationParser() : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         where TScanner : struct, IScanner
     {
         var position = scanner.Position;

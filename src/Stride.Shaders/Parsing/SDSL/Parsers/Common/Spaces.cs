@@ -5,8 +5,7 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct Space0(bool OnlyWhiteSpace) : IParser<NoNode>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out NoNode parsed, in ParseError? error = null!)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out NoNode parsed, in ParseError? error = null!)
     {
         parsed = null!;
         if (!OnlyWhiteSpace)
@@ -26,8 +25,7 @@ public record struct Space0(bool OnlyWhiteSpace) : IParser<NoNode>
 
 public record struct Space1(bool OnlyWhiteSpace) : IParser<NoNode>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out NoNode parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out NoNode parsed, in ParseError? orError = null)
     {
         parsed = null!;
         if (!OnlyWhiteSpace)

@@ -23,6 +23,21 @@ public interface IParser<TResult> : IParser
     /// <param name="orError">The error to use in case of a parse error</param>
     /// <typeparam name="TScanner">Type of the scanner</typeparam>
     /// <returns></returns>
-    public bool Match<TScanner>(ref TScanner scanner, ParseResult result, out TResult parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner;
+    public bool Match(ref Scanner scanner, ParseResult result, out TResult parsed, in ParseError? orError = null);
+}
+
+
+public interface IStrideParser<TResult>
+    where TResult : Node, IStrideParser<TResult>
+{
+    /// <summary>
+    /// Parsing method
+    /// </summary>
+    /// <param name="scanner">Scanner containing information on the position in the shader text</param>
+    /// <param name="result">Result of the parser</param>
+    /// <param name="parsed">Element parsed</param>
+    /// <param name="orError">The error to use in case of a parse error</param>
+    /// <typeparam name="TScanner">Type of the scanner</typeparam>
+    /// <returns></returns>
+    public abstract static bool Match(ref Scanner scanner, ParseResult result, out TResult parsed, in ParseError? orError = null);
 }

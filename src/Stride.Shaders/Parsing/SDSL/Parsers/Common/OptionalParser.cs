@@ -4,7 +4,7 @@ public record struct OptionalParser<TParser, TResult>(TParser Parser) : IParser<
     where TParser : IParser<TResult>
     where TResult : Node
 {
-    public readonly bool Match(ref Scanner scanner, ParseResult result, out TResult parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out TResult parsed, in ParseError? orError = null)
     {
         Parser.Match(ref scanner, result, out parsed, orError);
         return true;

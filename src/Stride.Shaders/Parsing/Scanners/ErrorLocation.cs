@@ -14,10 +14,10 @@ public struct ErrorLocation
         // Getting the line and column at the position given.
         // TODO: Make this a function in scanner
         var pos = scanner.Position;
-        scanner.Position = position;
+        scanner.Backtrack(position);
         Line = scanner.Line;
         Column = scanner.Column;
-        scanner.Position = pos;
+        scanner.Backtrack(pos);
 
         // Setting other attributes
         leftOffset = Math.Max(0, position - 5);
@@ -25,15 +25,14 @@ public struct ErrorLocation
         Position = position;
     }
 
-    public static ErrorLocation Create<TScannable>(Scanner<TScannable> scanner, int position)
-        where TScannable : IScannableCode
+    public static ErrorLocation Create(ref Scanner scanner, int position)
     {
         var error = new ErrorLocation();
         var pos = scanner.Position;
-        scanner.Position = position;
+        scanner.Backtrack(position);
         error.Line = scanner.Line;
         error.Column = scanner.Column;
-        scanner.Position = pos;
+        scanner.Backtrack(pos);
 
         // Setting other attributes
         error.leftOffset = Math.Max(0, position - 5);

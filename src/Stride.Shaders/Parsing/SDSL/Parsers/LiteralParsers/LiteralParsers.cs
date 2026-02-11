@@ -61,21 +61,21 @@ public record struct LiteralsParser : IParser<Literal>
     {
         name = null!;
         var position = scanner.Position;
-        if (Tokens.Char('_', ref scanner) || Tokens.Letter(ref scanner))
+        if (scanner.Match('_') || scanner.MatchLetter())
         {
             scanner.Advance(1);
-            while (Tokens.LetterOrDigit(ref scanner) || Tokens.Char('_', ref scanner))
+            while (scanner.MatchLetterOrDigit() || scanner.Match('_'))
                 scanner.Advance(1);
             var identifier = new Identifier(scanner.Memory[position..scanner.Position].ToString(), scanner[position..scanner.Position]);
             name = new TypeName(identifier.Name, scanner[position..scanner.Position]);
 
             var intermediate = scanner.Position;
 
-            if (Parsers.FollowedBy(ref scanner, Tokens.Char('<'), withSpaces: true, advance: true))
+            if (scanner.FollowedBy('<', withSpaces: true, advance: true))
             {
-                Parsers.Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
                 Parsers.Repeat(ref scanner, result, TypeNameOrNumber, out List<Literal> generics, 1, withSpaces: true, separator: ",");
-                if (!Parsers.FollowedBy(ref scanner, Tokens.Char('>'), withSpaces: true, advance: true))
+                if (!scanner.FollowedBy('>', withSpaces: true, advance: true))
                     return Parsers.Exit(ref scanner, result, out name, position);
                 name.Info = scanner[position..scanner.Position];
                 name.Generics = generics;
@@ -83,7 +83,7 @@ public record struct LiteralsParser : IParser<Literal>
             }
             else
             {
-                scanner.Position = intermediate;
+                scanner.Backtrack(intermediate);
             }
 
             if (Parsers.FollowedByDelList(ref scanner, result, Parsers.ArraySizes, out List<Expression> arraySize, withSpaces: true, advance: true))
@@ -93,7 +93,7 @@ public record struct LiteralsParser : IParser<Literal>
             }
             else
             {
-                scanner.Position = intermediate;
+                scanner.Backtrack(intermediate);
             }
 
             return true;
@@ -133,32 +133,32 @@ public record struct LiteralsParser : IParser<Literal>
     {
         var position = scanner.Position;
         if (
-            Tokens.AnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], ref scanner, out var baseType, advance: true)
+            scanner.MatchAnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], out var baseType, advance: true)
         )
         {
             var tnPos = scanner.Position;
-            if (Tokens.Digit(ref scanner, 2..4, advance: true))
+            if (scanner.MatchDigit(2..4, advance: true))
             {
                 tnPos = scanner.Position;
                 int size = scanner.Span[scanner.Position - 1] - '0';
                 if (size < 2 || size > 4)
-                    return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0002, scanner[scanner.Position - 1], scanner.Memory));
-                Parsers.Spaces0(ref scanner, result, out _);
-                if (Tokens.Char('(', ref scanner, advance: true))
+                    return scanner.Backtrack(position, result, out parsed, new(SDSLErrorMessages.SDSL0002, scanner[scanner.Position - 1], scanner.Memory));
+                scanner.MatchWhiteSpace(advance: true);
+                if (scanner.Match('(', advance: true))
                 {
                     var p = new VectorLiteral(new TypeName(scanner.Memory[position..tnPos].ToString(), scanner[position..tnPos]), scanner[..]);
                     while (!scanner.IsEof)
                     {
-                        Parsers.Spaces0(ref scanner, result, out _);
+                        scanner.MatchWhiteSpace(advance: true);
                         if (Vector(ref scanner, result, out var vec))
                             p.Values.Add(vec);
                         else if (ExpressionParser.Expression(ref scanner, result, out var exp))
                             p.Values.Add(exp);
                         else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
-                        Parsers.Spaces0(ref scanner, result, out _);
-                        if (Tokens.Char(',', ref scanner, advance: true))
-                            Parsers.Spaces0(ref scanner, result, out _);
-                        else if (Tokens.Char(')', ref scanner, advance: true))
+                        scanner.MatchWhiteSpace(advance: true);
+                        if (scanner.Match(',', advance: true))
+                            scanner.MatchWhiteSpace(advance: true);
+                        else if (scanner.Match(')', advance: true))
                             break;
                     }
                     if (scanner.IsEof && scanner.Span[scanner.Position - 1] != ')')
@@ -170,9 +170,9 @@ public record struct LiteralsParser : IParser<Literal>
                 }
             }
             else if (
-                Parsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
-                && Parsers.FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression value, withSpaces: true, advance: true)
-                && Parsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true)
+                scanner.FollowedBy('(', withSpaces: true, advance: true)
+                && scanner.FollowedBy(result, ExpressionParser.Expression, out Expression value, withSpaces: true, advance: true)
+                && scanner.FollowedBy(')', withSpaces: true, advance: true)
             )
             {
                 parsed = new ExpressionLiteral(value, new TypeName(baseType, scanner[position..tnPos]), scanner[position..scanner.Position]);
@@ -191,12 +191,12 @@ public record struct LiteralsParser : IParser<Literal>
     public static bool StringLiteral(ref Scanner scanner, ParseResult result, out StringLiteral parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        if (Tokens.Char('\"', ref scanner, advance: true))
+        if (scanner.Match('\"', advance: true))
         {
             var strStart = scanner.Position;
             Parsers.Until(ref scanner, '\"', advance: false);
             var strEnd = scanner.Position;
-            if (Tokens.Char('\"', ref scanner, advance: true))
+            if (scanner.Match('\"', advance: true))
             {
                 if (scanner.Span[position..scanner.Position].Contains('\n'))
                     return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[position], scanner.Memory));
@@ -211,9 +211,8 @@ public record struct LiteralsParser : IParser<Literal>
     {
         op = AssignOperator.NOp;
         if (
-            Tokens.AnyOf(
+            scanner.MatchAnyOf(
                 ["=", "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<=", ">>="],
-                ref scanner,
                 out var matched,
                 advance: true
             )
@@ -245,7 +244,7 @@ public readonly record struct FloatSuffixParser() : ILiteralParser<Suffix>
 {
     public static bool TryMatchAndAdvance(ref Scanner scanner, string match)
     {
-        if (Tokens.Literal(match, ref scanner))
+        if (scanner.Match(match))
         {
             scanner.Advance(match.Length);
             return true;
@@ -256,7 +255,7 @@ public readonly record struct FloatSuffixParser() : ILiteralParser<Suffix>
     public readonly bool Match(ref Scanner scanner, ParseResult result, out Suffix suffix, in ParseError? orError = null)
     {
         suffix = new(32, false, false);
-        if (Tokens.AnyOf(["f", "f16", "f32", "f64", "d", "h"], ref scanner, out var matched, advance: true))
+        if (scanner.MatchAnyOf(["f", "f16", "f32", "f64", "d", "h"], out var matched, advance: true))
         {
             suffix = matched switch
             {
@@ -276,7 +275,7 @@ public readonly record struct IntegerSuffixParser() : ILiteralParser<Suffix>
 {
     public static bool TryMatchAndAdvance(ref Scanner scanner, string match)
     {
-        if (Tokens.Literal(match, ref scanner))
+        if (scanner.Match(match))
         {
             scanner.Advance(match.Length);
             return true;
@@ -287,7 +286,7 @@ public readonly record struct IntegerSuffixParser() : ILiteralParser<Suffix>
     public readonly bool Match(ref Scanner scanner, ParseResult result, out Suffix suffix, in ParseError? orError = null)
     {
         suffix = new(32, false, false);
-        if (Tokens.AnyOf(["u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64", "u", "U", "l", "L"], ref scanner, out var matched, advance: true))
+        if (scanner.MatchAnyOf(["u8", "u16", "u32", "u64", "i8", "i16", "i32", "i64", "u", "U", "l", "L"], out var matched, advance: true))
         {
             suffix = matched switch
             {
@@ -316,10 +315,10 @@ public record struct IdentifierParser() : ILiteralParser<Identifier>
     {
         literal = null!;
         var position = scanner.Position;
-        if (Tokens.Char('_', ref scanner) || Tokens.Letter(ref scanner))
+        if (scanner.Match('_') || scanner.MatchLetter())
         {
             scanner.Advance(1);
-            while (Tokens.LetterOrDigit(ref scanner) || Tokens.Char('_', ref scanner))
+            while (scanner.MatchLetterOrDigit() || scanner.Match('_'))
                 scanner.Advance(1);
             var id = scanner.Memory[position..scanner.Position].ToString();
             if (Reserved.Keywords.Contains(id))
@@ -335,14 +334,14 @@ public record struct IdentifierParser() : ILiteralParser<Identifier>
 public record struct MatrixParser : IParser<MatrixLiteral>
 {
 
-    public readonly bool Match(ref Scanner scanner, ParseResult result, out MatrixLiteral parsed, in ParseError? orError = nul
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out MatrixLiteral parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (
-            Tokens.AnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], ref scanner, out var baseType, advance: true)
-            && Tokens.Digit(ref scanner, 2..4, advance: true)
-            && Tokens.Char('x', ref scanner, advance: true)
-            && Tokens.Digit(ref scanner, 2..4, advance: true)
+            scanner.MatchAnyOf(["bool", "half", "float", "double", "short", "ushort", "int", "uint", "long", "ulong"], out var baseType, advance: true)
+            && scanner.MatchDigit(2..4, advance: true)
+            && scanner.Match('x', advance: true)
+            && scanner.MatchDigit(2..4, advance: true)
         )
         {
             var tnPos = scanner.Position;
@@ -350,23 +349,23 @@ public record struct MatrixParser : IParser<MatrixLiteral>
             int cols = scanner.Span[scanner.Position - 1] - '0';
             if (cols < 2 || cols > 4 || rows < 2 || rows > 4)
                 return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0006, scanner[scanner.Position - 1], scanner.Memory));
-            Parsers.Spaces0(ref scanner, result, out _);
-            if (Tokens.Char('(', ref scanner, advance: true))
+            scanner.MatchWhiteSpace(advance: true);
+            if (scanner.Match('(', advance: true))
             {
                 var p = new MatrixLiteral(new TypeName(scanner.Memory[position..tnPos].ToString(), scanner[position..tnPos]), rows, cols, scanner[..]);
                 while (!scanner.IsEof)
                 {
-                    Parsers.Spaces0(ref scanner, result, out _);
+                    scanner.MatchWhiteSpace(advance: true);
 
                     if (LiteralsParser.Vector(ref scanner, result, out var vector))
                         p.Values.Add(vector);
                     else if (ExpressionParser.Expression(ref scanner, result, out var expression))
                         p.Values.Add(expression);
                     else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
-                    Parsers.Spaces0(ref scanner, result, out _);
-                    if (Tokens.Char(',', ref scanner, advance: true))
-                        Parsers.Spaces0(ref scanner, result, out _);
-                    else if (Tokens.Char(')', ref scanner, advance: true))
+                    scanner.MatchWhiteSpace(advance: true);
+                    if (scanner.Match(',', advance: true))
+                        scanner.MatchWhiteSpace(advance: true);
+                    else if (scanner.Match(')', advance: true))
                         break;
                 }
                 if (scanner.IsEof && scanner.Span[scanner.Position - 1] != ')')

@@ -5,12 +5,12 @@ namespace Stride.Shaders.Parsing.SDFX.Parsers;
 
 // public record struct EffectFileParser : IParser<EffectFile>
 // {
-//     public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out EffectFile parsed, in ParseError? orError = null) 
-//         where TScanner : struct, IScanner
+//     public readonly bool Match(ref Scanner scanner, ParseResult result, out EffectFile parsed, in ParseError? orError = null) 
+//         
 //     {
 //         var position = scanner.Position;
 
-//         CommonParsers.Spaces0(ref scanner, result, out _);
+//         scanner.MatchWhiteSpace(advance: true);
 //         throw new NotImplementedException();
 //     }
 // }
@@ -18,17 +18,17 @@ namespace Stride.Shaders.Parsing.SDFX.Parsers;
 
 // public record struct EffectNamespaceParser : IParser<ShaderNamespace>
 // {
-//     public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ShaderNamespace parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+//     public readonly bool Match(ref Scanner scanner, ParseResult result, out ShaderNamespace parsed, in ParseError? orError = null) 
 //     {
 //         var position = scanner.Position;
 
-//         if(Terminals.Literal("namespace", ref scanner, advance: true) && CommonParsers.Spaces1(ref scanner, result, out _))
+//         if(Terminals.Literal("namespace", advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true))
 //         {
 //             do
 //             {
                 
 //             }
-//             while (!scanner.IsEof && !Terminals.Char(';', ref scanner) && Terminals.Char('.', ref scanner, advance: true));
+//             while (!scanner.IsEof && !Terminals.Char(';') && Terminals.Char('.', advance: true));
 //         }
 //         return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
 

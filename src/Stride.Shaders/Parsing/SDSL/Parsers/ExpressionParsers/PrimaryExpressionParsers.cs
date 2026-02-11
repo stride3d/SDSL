@@ -8,13 +8,11 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct PrimaryParsers : IParser<Expression>
 {
-    public static bool Primary<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Primary(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
             => new PrimaryParsers().Match(ref scanner, result, out parsed, in orError);
 
 
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         return Parsers.Alternatives(
             ref scanner, result, out parsed, in orError,
@@ -26,8 +24,7 @@ public record struct PrimaryParsers : IParser<Expression>
         );
     }
 
-    public static bool Literal<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Literal(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if(LiteralsParser.Literal(ref scanner, result, out var lit))
@@ -39,19 +36,18 @@ public record struct PrimaryParsers : IParser<Expression>
     }
     
     
-    public static bool Method<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Method(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (
             LiteralsParser.Identifier(ref scanner, result, out var identifier)
-            && Parsers.Spaces0(ref scanner, result, out _)
-            && Tokens.Char('(', ref scanner, advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
+            && scanner.Match('(', advance: true)
         )
         {
             ParameterParsers.Values(ref scanner, result, out var parameters);
-            Parsers.Spaces0(ref scanner, result, out _);
-            if (Tokens.Char(')', ref scanner, advance: true))
+            scanner.MatchWhiteSpace(advance: true);
+            if (scanner.Match(')', advance: true))
             {
                 parsed = new MethodCall(identifier, parameters, scanner[position..scanner.Position]);
                 return true;
@@ -61,29 +57,27 @@ public record struct PrimaryParsers : IParser<Expression>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    public static bool Parenthesis<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Parenthesis(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (
-            Tokens.Char('(', ref scanner, advance: true)
-            && Parsers.Spaces0(ref scanner, result, out _)
+            scanner.Match('(', advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
             && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLErrorMessages.SDSL0015, scanner[position], scanner.Memory))
-            && Parsers.Spaces0(ref scanner, result, out _)
-            && Tokens.Char(')', ref scanner, advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
+            && scanner.Match(')', advance: true)
         )
             return true;
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    public static bool ArrayLiteral<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool ArrayLiteral(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (
-            Tokens.Char('{', ref scanner, advance: true)
+            scanner.Match('{', advance: true)
             && Parsers.FollowedByDel(ref scanner, result, ParameterParsers.Values, out ShaderExpressionList values, withSpaces: true, advance: true)
-            && Parsers.FollowedBy(ref scanner, Tokens.Char('}'), withSpaces: true, advance: true)
+            && scanner.FollowedBy('}', withSpaces: true, advance: true)
         )
         {
             parsed = new ArrayLiteral(scanner[position..scanner.Position])
@@ -95,13 +89,12 @@ public record struct PrimaryParsers : IParser<Expression>
         else return Parsers.Exit(ref scanner, result, out parsed, position);
     }
     
-    public static bool MixinAccess<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool MixinAccess(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (
             ShaderClassParsers.Mixin(ref scanner, result, out var mixin)
-            && Parsers.FollowedBy(ref scanner, Tokens.Char('.'), withSpaces: true)
+            && scanner.FollowedBy('.', withSpaces: true)
         )
         {
             parsed = new MixinAccess(mixin, scanner[position..scanner.Position]);

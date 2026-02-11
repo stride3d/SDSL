@@ -14,26 +14,18 @@ public static class Parsers
         if (orError is not null)
         {
             result.Errors.Add(orError.Value);
-            scanner.Position = scanner.End;
+            scanner.Backtrack(scanner.End);
             parsed = null!;
             return false;
         }
         if (result.Errors.Count == 0)
-            scanner.Position = beginningPosition;
+            scanner.Backtrack(beginningPosition);
         parsed = null!;
         return false;
     }
 
-    public static bool Spaces0(ref Scanner scanner, ParseResult result, out NoNode node, in ParseError? orError = null, bool onlyWhiteSpace = false)
-        => new Space0(onlyWhiteSpace).Match(ref scanner, result, out node, in orError);
-    public static bool Spaces1(ref Scanner scanner, ParseResult result, out NoNode node, in ParseError? orError = null, bool onlyWhiteSpace = false)
-        => new Space1(onlyWhiteSpace).Match(ref scanner, result, out node, in orError);
-
-
-
 
     public static bool Alternatives<TResult>(ref Scanner scanner, ParseResult result, out TResult parsed, in ParseError? orError = null, params ReadOnlySpan<ParserDelegate<TResult>> parsers)
-
         where TResult : Node
     {
         var position = scanner.Position;
@@ -62,13 +54,13 @@ public static class Parsers
         var position = scanner.Position;
         foreach (var l in literals)
         {
-            if (!(Tokens.Literal(l, ref scanner, advance: true) && Spaces1(ref scanner, null!, out _)))
+            if (!(scanner.Match(l, advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true)))
             {
-                scanner.Position = position;
+                scanner.Backtrack(position);
                 return false;
             }
         }
-        scanner.Position = advance ? scanner.Position : position;
+        scanner.Backtrack(advance ? scanner.Position : position);
         return true;
     }
 
@@ -84,7 +76,7 @@ public static class Parsers
         bool matched = false;
         // legacy
         while (
-            Tokens.AnyOf(
+            scanner.MatchAnyOf(
                 [
                     "stage",
                     "override",
@@ -92,10 +84,9 @@ public static class Parsers
                     "abstract",
                     "static"
                 ],
-                ref scanner,
                 out string match,
                 advance: true)
-            && Spaces1(ref scanner, result, out _))
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true))
         {
             matched = true;
             if (match == "stage")
@@ -111,7 +102,7 @@ public static class Parsers
             else break;
         }
         if (!advance)
-            scanner.Position = position;
+            scanner.Backtrack(position);
         return matched;
     }
 
@@ -128,7 +119,7 @@ public static class Parsers
         bool matched = false;
         // legacy
         while (
-            Tokens.AnyOf(
+            scanner.MatchAnyOf(
                 [
                     "stage",
                     "compose",
@@ -151,10 +142,9 @@ public static class Parsers
                     "rowmajor",
                     "columnmajor"
                 ],
-                ref scanner,
                 out string match,
                 advance: true)
-            && Spaces1(ref scanner, result, out _))
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true))
         {
             matched = true;
             if (match == "stage")
@@ -200,7 +190,7 @@ public static class Parsers
             else break;
         }
         if (!advance)
-            scanner.Position = position;
+            scanner.Backtrack(position);
         return matched;
     }
 
@@ -214,32 +204,32 @@ public static class Parsers
 
         if (
             LiteralsParser.Identifier(ref scanner, result, out identifier)
-            && !FollowedBy(ref scanner, Tokens.Char('.'), withSpaces: true, advance: true)
+            && !scanner.FollowedBy('.', withSpaces: true, advance: true)
         )
         {
             var tmp = scanner.Position;
-            Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (!FollowedByDelList(ref scanner, result, ArraySizes, out arraySizes, withSpaces: true, advance: true))
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             tmp = scanner.Position;
             if (
                 !(
-                    FollowedBy(ref scanner, Tokens.Char('='), withSpaces: true, advance: true)
+                    scanner.FollowedBy('=', withSpaces: true, advance: true)
                     && FollowedBy(ref scanner, result, ExpressionParser.Expression, out value, withSpaces: true, advance: true)
                 )
             )
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
         else
         {
-            scanner.Position = position;
+            scanner.Backtrack(position);
             identifier = null!;
             arraySizes = null!;
             return false;
@@ -253,56 +243,56 @@ public static class Parsers
 
         if (
             LiteralsParser.TypeName(ref scanner, result, out typeName)
-            && Spaces1(ref scanner, result, out _)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             && LiteralsParser.Identifier(ref scanner, result, out identifier))
         {
             var tmp = scanner.Position;
-            Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (FollowedByDelList(ref scanner, result, ArraySizes, out List<Expression> arraySize, withSpaces: true, advance: true))
                 typeName.ArraySize = arraySize;
             else
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             tmp = scanner.Position;
             if (
                 !(
-                    FollowedBy(ref scanner, Tokens.Char('='), withSpaces: true, advance: true)
+                    scanner.FollowedBy('=', withSpaces: true, advance: true)
                     && FollowedBy(ref scanner, result, ExpressionParser.Expression, out value, withSpaces: true, advance: true)
                 )
             )
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
         else
         {
-            scanner.Position = position;
+            scanner.Backtrack(position);
             if (
                 LiteralsParser.TypeName(ref scanner, result, out typeName)
                 && FollowedByDelList(ref scanner, result, ArraySizes, out List<Expression> sizes, withSpaces: true, advance: true)
-                && Spaces1(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(minimum: 1, advance: true)
                 && LiteralsParser.Identifier(ref scanner, result, out identifier))
             {
                 var tmp = scanner.Position;
-                Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
                 if (
                     !(
-                        Tokens.Char('=', ref scanner, advance: true)
-                        && Spaces0(ref scanner, result, out _)
+                        scanner.Match('=', advance: true)
+                        && scanner.MatchWhiteSpace(advance: true)
                         && ExpressionParser.Expression(ref scanner, result, out value)
                     )
                 )
                 {
-                    scanner.Position = tmp;
+                    scanner.Backtrack(tmp);
                 }
                 if (!advance)
-                    scanner.Position = position;
+                    scanner.Backtrack(position);
                 return true;
             }
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         typeName = null!;
         identifier = null!;
         return false;
@@ -317,56 +307,56 @@ public static class Parsers
 
         if (
             ShaderClassParsers.Mixin(ref scanner, result, out mixin)
-            && Spaces1(ref scanner, result, out _)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             && LiteralsParser.Identifier(ref scanner, result, out identifier))
         {
             var tmp = scanner.Position;
-            Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (!FollowedByDelList(ref scanner, result, ArraySizes, out arraySize, withSpaces: true, advance: true))
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             tmp = scanner.Position;
             if (
                 !(
-                    FollowedBy(ref scanner, Tokens.Char('='), withSpaces: true, advance: true)
+                    scanner.FollowedBy('=', withSpaces: true, advance: true)
                     && FollowedBy(ref scanner, result, ExpressionParser.Expression, out value, withSpaces: true, advance: true)
                 )
             )
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
         else
         {
-            scanner.Position = position;
+            scanner.Backtrack(position);
             if (
                 ShaderClassParsers.Mixin(ref scanner, result, out mixin)
                 && FollowedByDelList(ref scanner, result, ArraySizes, out List<Expression> sizes, withSpaces: true, advance: true)
-                && Spaces1(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(minimum: 1, advance: true)
                 && LiteralsParser.Identifier(ref scanner, result, out identifier))
             {
                 var tmp = scanner.Position;
-                Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
                 if (
                     !(
-                        Tokens.Char('=', ref scanner, advance: true)
-                        && Spaces0(ref scanner, result, out _)
+                        scanner.Match('=', advance: true)
+                        && scanner.MatchWhiteSpace(advance: true)
                         && ExpressionParser.Expression(ref scanner, result, out value)
                     )
                 )
                 {
-                    scanner.Position = tmp;
+                    scanner.Backtrack(tmp);
                 }
                 if (!advance)
-                    scanner.Position = position;
+                    scanner.Backtrack(position);
                 return true;
             }
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         mixin = null!;
         identifier = null!;
         arraySize = null!;
@@ -379,16 +369,16 @@ public static class Parsers
         arraySizes = [];
         while (!scanner.IsEof)
         {
-            if (FollowedBy(ref scanner, Tokens.Char('['), withSpaces: true, advance: true))
+            if (scanner.FollowedBy('[', withSpaces: true, advance: true))
             {
-                if (FollowedBy(ref scanner, Tokens.Char(']'), withSpaces: true, advance: true))
+                if (scanner.FollowedBy(']', withSpaces: true, advance: true))
                 {
                     arraySizes.Add(new EmptyExpression(scanner[(scanner.Position - 1)..(scanner.Position - 1)]));
                 }
                 else if (FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression arraySize, withSpaces: true, advance: true))
                 {
                     arraySizes.Add(arraySize);
-                    if (!FollowedBy(ref scanner, Tokens.Char(']'), withSpaces: true, advance: true))
+                    if (!scanner.FollowedBy(']', withSpaces: true, advance: true))
                         return Exit(ref scanner, result, out arraySizes, scanner.Position);
                 }
                 else return Exit(ref scanner, result, out arraySizes, scanner.Position);
@@ -406,81 +396,81 @@ public static class Parsers
         value = null!;
         if (
             LiteralsParser.TypeName(ref scanner, result, out typeName)
-            && Spaces1(ref scanner, result, out _)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             && ShaderClassParsers.Mixin(ref scanner, result, out mixin))
         {
             var tmp = scanner.Position;
-            Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (
                 !(
-                    Tokens.Char('[', ref scanner, advance: true)
-                    && Spaces0(ref scanner, result, out _)
+                    scanner.Match('[', advance: true)
+                    && scanner.MatchWhiteSpace(advance: true)
                     && ExpressionParser.Expression(ref scanner, result, out arraySize)
-                    && Spaces0(ref scanner, result, out _)
-                    && Tokens.Char(']', ref scanner, advance: true)
+                    && scanner.MatchWhiteSpace(advance: true)
+                    && scanner.Match(']', advance: true)
                 )
             )
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             tmp = scanner.Position;
             if (
                 !(
-                    Tokens.Char('=', ref scanner, advance: true)
-                    && Spaces0(ref scanner, result, out _)
+                    scanner.Match('=', advance: true)
+                    && scanner.MatchWhiteSpace(advance: true)
                     && ExpressionParser.Expression(ref scanner, result, out value)
                 )
             )
             {
-                scanner.Position = tmp;
+                scanner.Backtrack(tmp);
             }
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
         else
         {
-            scanner.Position = position;
+            scanner.Backtrack(position);
             if (
                 LiteralsParser.TypeName(ref scanner, result, out typeName)
-                && FollowedBy(ref scanner, Tokens.Char('['), withSpaces: true, advance: true)
+                && scanner.FollowedBy('[', withSpaces: true, advance: true)
                 && ExpressionParser.Expression(ref scanner, result, out arraySize)
-                && FollowedBy(ref scanner, Tokens.Char(']'), withSpaces: true, advance: true)
-                && Spaces1(ref scanner, result, out _)
+                && scanner.FollowedBy(']', withSpaces: true, advance: true)
+                && scanner.MatchWhiteSpace(minimum: 1, advance: true)
                 && ShaderClassParsers.Mixin(ref scanner, result, out mixin))
             {
                 var tmp = scanner.Position;
-                Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
                 if (
                     !(
-                        Tokens.Char('=', ref scanner, advance: true)
-                        && Spaces0(ref scanner, result, out _)
+                        scanner.Match('=', advance: true)
+                        && scanner.MatchWhiteSpace(advance: true)
                         && ExpressionParser.Expression(ref scanner, result, out value)
                     )
                 )
                 {
-                    scanner.Position = tmp;
+                    scanner.Backtrack(tmp);
                 }
                 if (!advance)
-                    scanner.Position = position;
+                    scanner.Backtrack(position);
                 return true;
             }
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         typeName = null!;
         mixin = null!;
         arraySize = null!;
         return false;
     }
 
-    public static bool Optional<TScanner, TTerminal>(ref Scanner scanner, TTerminal terminal, bool advance = false)
+    public static bool Optional<TTerminal>(ref Scanner scanner, TTerminal terminal, bool advance = false)
 
         where TTerminal : struct, IToken
     {
         terminal.Match(ref scanner, advance: advance);
         return true;
     }
-    public static bool Optional<TScanner, TNode>(ref Scanner scanner, IParser<TNode> parser, ParseResult result, out TNode? node)
+    public static bool Optional<TNode>(ref Scanner scanner, IParser<TNode> parser, ParseResult result, out TNode? node)
 
         where TNode : Node
     {
@@ -488,21 +478,33 @@ public static class Parsers
         return true;
     }
 
-
-    public static bool FollowedBy<TScanner, TTerminal>(ref Scanner scanner, TTerminal terminal, bool withSpaces = false, bool advance = false)
-
+    public static bool FollowedBy(ref Scanner scanner, ReadOnlySpan<char> literal, bool withSpaces = false, bool advance = false)
+    {
+        var position = scanner.Position;
+        if (withSpaces)
+            scanner.MatchWhiteSpace(advance: true);
+        if (scanner.Match(literal, advance: advance))
+        {
+            if (!advance)
+                scanner.Backtrack(position);
+            return true;
+        }
+        scanner.Backtrack(position);
+        return false;
+    }
+    public static bool FollowedBy<TTerminal>(ref Scanner scanner, TTerminal terminal, bool withSpaces = false, bool advance = false)
         where TTerminal : struct, IToken
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         if (terminal.Match(ref scanner, advance: advance))
         {
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
     public static bool FollowedByAny(ref Scanner scanner, ReadOnlySpan<string> literals, out string matched, bool withSpaces = false, bool advance = false)
@@ -510,19 +512,19 @@ public static class Parsers
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         foreach (var l in literals)
         {
-            if (Tokens.Literal(l, ref scanner, advance: advance))
+            if (scanner.Match(l, advance: advance))
             {
                 if (!advance)
-                    scanner.Position = position;
+                    scanner.Backtrack(position);
                 matched = l;
                 return true;
             }
         }
         matched = null!;
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
     public static bool FollowedByAny(ref Scanner scanner, string literals, out char matched, bool withSpaces = false, bool advance = false)
@@ -530,19 +532,19 @@ public static class Parsers
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         foreach (var l in literals)
         {
-            if (Tokens.Char(l, ref scanner, advance: advance))
+            if (scanner.Match(l, advance: advance))
             {
                 if (!advance)
-                    scanner.Position = position;
+                    scanner.Backtrack(position);
                 matched = l;
                 return true;
             }
         }
         matched = '0';
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
     public static bool FollowedByDel(ref Scanner scanner, ParseResult result, ParserDelegate func, bool withSpaces = false, bool advance = false)
@@ -550,14 +552,14 @@ public static class Parsers
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         if (func.Invoke(ref scanner, result))
         {
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
     public static bool FollowedByDel<TResult>(ref Scanner scanner, ParseResult result, ParserDelegate<TResult> func, out TResult parsed, bool withSpaces = false, bool advance = false)
@@ -565,14 +567,14 @@ public static class Parsers
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         if (func.Invoke(ref scanner, result, out parsed))
         {
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
     public static bool FollowedByDelList<TResult>(ref Scanner scanner, ParseResult result, ParserListDelegate<TResult> func, out List<TResult> parsed, bool withSpaces = false, bool advance = false)
@@ -580,14 +582,14 @@ public static class Parsers
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         if (func.Invoke(ref scanner, result, out parsed))
         {
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
     public static bool FollowedBy<TResult>(ref Scanner scanner, ParseResult result, ParserDelegate<TResult> func, out TResult parsed, bool withSpaces = false, bool advance = false)
@@ -595,46 +597,46 @@ public static class Parsers
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         if (func.Invoke(ref scanner, result, out parsed))
         {
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
 
-    public static bool FollowedBy<TScanner, TParser, TResult>(ref Scanner scanner, TParser parser, ParseResult result, out TResult parsed, bool withSpaces = false, bool advance = false)
+    public static bool FollowedBy<TParser, TResult>(ref Scanner scanner, TParser parser, ParseResult result, out TResult parsed, bool withSpaces = false, bool advance = false)
 
         where TParser : struct, IParser<TResult>
         where TResult : Node
     {
         var position = scanner.Position;
         if (withSpaces)
-            Spaces0(ref scanner, null!, out _);
+            scanner.MatchWhiteSpace(advance: true);
         if (parser.Match(ref scanner, result, out parsed))
         {
             if (!advance)
-                scanner.Position = position;
+                scanner.Backtrack(position);
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         return false;
     }
 
     public static bool Until(ref Scanner scanner, char value, bool advance = false)
 
     {
-        while (!scanner.IsEof && !Tokens.Char(value, ref scanner, advance))
+        while (!scanner.IsEof && !scanner.Match(value, advance))
             scanner.Advance(1);
         return scanner.IsEof;
     }
     public static bool Until(ref Scanner scanner, string value, bool advance = false)
 
     {
-        while (!scanner.IsEof && !Tokens.Literal(value, ref scanner, advance))
+        while (!scanner.IsEof && !scanner.Match(value, advance))
             scanner.Advance(1);
         return scanner.IsEof;
     }
@@ -644,23 +646,13 @@ public static class Parsers
         while (!scanner.IsEof)
         {
             foreach (var value in values)
-                if (Tokens.Literal(value, ref scanner, advance))
+                if (scanner.Match(value, advance))
                     return scanner.IsEof;
             scanner.Advance(1);
         }
         return scanner.IsEof;
     }
-    public static bool Until<TScanner, TTerminal>(ref Scanner scanner, bool advance = false)
-
-        where TTerminal : struct, IToken
-    {
-        var t = new TTerminal();
-        while (!scanner.IsEof && !t.Match(ref scanner, advance))
-            scanner.Advance(1);
-        return !scanner.IsEof;
-    }
-    public static bool Until<TScanner, TTerminal1, TTerminal2>(ref Scanner scanner, TTerminal1? terminal1 = null, TTerminal2? terminal2 = null, bool advance = false)
-
+    public static bool Until<TTerminal1, TTerminal2>(ref Scanner scanner, TTerminal1? terminal1 = null, TTerminal2? terminal2 = null, bool advance = false)
         where TTerminal1 : struct, IToken
         where TTerminal2 : struct, IToken
     {
@@ -670,7 +662,7 @@ public static class Parsers
             scanner.Advance(1);
         return !scanner.IsEof;
     }
-    public static bool Until<TScanner, TTerminal1, TTerminal2, TTerminal3>(ref Scanner scanner, TTerminal1? terminal1 = null, TTerminal2? terminal2 = null, TTerminal3? terminal3 = null, bool advance = false)
+    public static bool Until<TTerminal1, TTerminal2, TTerminal3>(ref Scanner scanner, TTerminal1? terminal1 = null, TTerminal2? terminal2 = null, TTerminal3? terminal3 = null, bool advance = false)
 
         where TTerminal1 : struct, IToken
         where TTerminal2 : struct, IToken
@@ -685,14 +677,14 @@ public static class Parsers
     }
 
 
-    public static bool Repeat<TScanner, TParser, TNode>(ref Scanner scanner, TParser parser, ParseResult result, out List<TNode> nodes, int minimum, bool withSpaces = false, string? separator = null, in ParseError? orError = null)
+    public static bool Repeat<TParser, TNode>(ref Scanner scanner, TParser parser, ParseResult result, out List<TNode> nodes, int minimum, bool withSpaces = false, string? separator = null, in ParseError? orError = null)
 
         where TParser : struct, IParser<TNode>
         where TNode : Node
     {
         return Repeat(ref scanner, result, (ref Scanner s, ParseResult r, out TNode node, in ParseError? orError) => new TParser().Match(ref s, r, out node, orError), out nodes, minimum, withSpaces, separator, orError);
     }
-    public static bool Repeat<TScanner, TNode>(ref Scanner scanner, ParseResult result, ParserDelegate<TScanner, TNode> parser, out List<TNode> nodes, int minimum, bool withSpaces = false, string? separator = null, in ParseError? orError = null)
+    public static bool Repeat<TNode>(ref Scanner scanner, ParseResult result, ParserDelegate<TNode> parser, out List<TNode> nodes, int minimum, bool withSpaces = false, string? separator = null, in ParseError? orError = null)
 
         where TNode : Node
     {
@@ -704,16 +696,16 @@ public static class Parsers
             {
                 nodes.Add(node);
                 if (withSpaces)
-                    Spaces0(ref scanner, result, out _);
+                    scanner.MatchWhiteSpace(advance: true);
             }
             else break;
 
             if (separator is not null)
             {
-                if (Tokens.Literal(separator, ref scanner, advance: true))
+                if (scanner.Match(separator, advance: true))
                 {
                     if (withSpaces)
-                        Spaces0(ref scanner, result, out _);
+                        scanner.MatchWhiteSpace(advance: true);
                 }
                 else if (nodes.Count >= minimum)
                     return true;

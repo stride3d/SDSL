@@ -6,8 +6,8 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct DirectivePrefixParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         var position = scanner.Position;
         if (DirectiveUnaryParsers.PrefixIncrement(ref scanner, result, out parsed))
@@ -30,7 +30,7 @@ public record struct DirectivePrefixParser : IParser<Expression>
             if (orError is not null)
                 result.Errors.Add(orError.Value);
             parsed = null!;
-            scanner.Position = position;
+            scanner.Backtrack(position);
             return false;
         }
     }
@@ -38,13 +38,13 @@ public record struct DirectivePrefixParser : IParser<Expression>
 
 public record struct DirectivePrefixIncrementParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         var position = scanner.Position;
-        if (Tokens.Literal("++", ref scanner, advance: true))
+        if (scanner.Match("++", advance: true))
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(Operator.Inc, lit, scanner[position..scanner.Position]);
@@ -53,15 +53,15 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
             else
             {
                 parsed = null!;
-                scanner.Position = position;
+                scanner.Backtrack(position);
                 result.Errors.Add(new(SDSLErrorMessages.SDSL0020, scanner[position], scanner.Memory));
                 return false;
             }
         }
         // prefix decrememnt 
-        else if (Tokens.Literal("--", ref scanner, advance: true))
+        else if (scanner.Match("--", advance: true))
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(Operator.Inc, lit, scanner[position..scanner.Position]);
@@ -70,7 +70,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
             else
             {
                 parsed = null!;
-                scanner.Position = position;
+                scanner.Backtrack(position);
                 result.Errors.Add(new(SDSLErrorMessages.SDSL0020, scanner[position], scanner.Memory));
                 return false;
             }
@@ -79,7 +79,7 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
         {
             if(orError is not null)
                 result.Errors.Add(orError.Value);
-            scanner.Position = position;
+            scanner.Backtrack(position);
             parsed = null!;
             return false;
         }
@@ -88,16 +88,16 @@ public record struct DirectivePrefixIncrementParser : IParser<Expression>
 
 public record struct DirectiveNotExpressionParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         parsed = null!;
         var position = scanner.Position;
-        if (Tokens.Set("!~", ref scanner))
+        if (scanner.MatchSet("!~"))
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (DirectiveUnaryParsers.Primary(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(op, lit, scanner[position..scanner.Position]);
@@ -106,7 +106,7 @@ public record struct DirectiveNotExpressionParser : IParser<Expression>
             else
             {
                 parsed = null!;
-                scanner.Position = position;
+                scanner.Backtrack(position);
                 result.Errors.Add(new(SDSLErrorMessages.SDSL0020, scanner[position], scanner.Memory));
                 return false;
             }
@@ -122,16 +122,16 @@ public record struct DirectiveNotExpressionParser : IParser<Expression>
 
 public record struct DirectiveSignExpressionParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         parsed = null!;
         var position = scanner.Position;
-        if (Tokens.Set("+-", ref scanner))
+        if (scanner.MatchSet("+-"))
         {
             var op = ((char)scanner.Peek()).ToOperator();
             scanner.Advance(1);
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (DirectiveUnaryParsers.Prefix(ref scanner, result, out var lit))
             {
                 parsed = new PrefixExpression(op, lit, scanner[position..scanner.Position]);
@@ -143,7 +143,7 @@ public record struct DirectiveSignExpressionParser : IParser<Expression>
                 if (orError is not null)
                     result.Errors.Add(orError.Value with { Location = scanner[position] });
                 parsed = null!;
-                scanner.Position = position;
+                scanner.Backtrack(position);
                 return false;
             }
         }
@@ -158,16 +158,16 @@ public record struct DirectiveSignExpressionParser : IParser<Expression>
 
 public record struct DirectiveCastExpressionParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         var position = scanner.Position;
         if (
-                Tokens.Char('(', ref scanner, advance: true)
-                && Parsers.Spaces0(ref scanner, result, out _)
+                scanner.Match('(', advance: true)
+                && scanner.MatchWhiteSpace(advance: true)
                 && LiteralsParser.Identifier(ref scanner, result, out var typeName, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
-                && Parsers.Spaces0(ref scanner, result, out _)
-                && Tokens.Char(')', ref scanner, true)
+                && scanner.MatchWhiteSpace(advance: true)
+                && scanner.Match(')', true)
                 && DirectiveUnaryParsers.Primary(ref scanner, result, out var lit)
         )
         {
@@ -179,7 +179,7 @@ public record struct DirectiveCastExpressionParser : IParser<Expression>
             if (orError is not null)
                 result.Errors.Add(orError.Value with { Location = scanner[position] });
             parsed = null!;
-            scanner.Position = position;
+            scanner.Backtrack(position);
             return false;
         }
     }

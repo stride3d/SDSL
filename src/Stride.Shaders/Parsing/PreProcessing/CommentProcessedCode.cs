@@ -5,7 +5,7 @@ namespace Stride.Shaders.Parsing.SDSL.PreProcessing;
 /// <summary>
 /// Representation of the code where comments have been removed
 /// </summary>
-public struct CommentProcessedCode : IScannableCode
+public struct CommentProcessedCode
 {
     public ReadOnlyMemory<char> Original { get; init; }
     public MemoryOwner<char> Processed { get; private set; } = MemoryOwner<char>.Empty;
@@ -28,31 +28,31 @@ public struct CommentProcessedCode : IScannableCode
 
     internal void Process()
     {
-        var scanner = new Scanner<ScannableReadOnlyMemory>(new(Original));
+        var scanner = new Scanner(Original.ToString());
         var started = false;
         var lastPos = 0;
         while (!scanner.IsEof)
         {
-            Parsers.Until(ref scanner, ["//", "/*", "\""]);
+            scanner.MatchUntilAny(["//", "/*", "\""]);
             if (!started)
                 started = true;
             Add(lastPos..scanner.Position);
             lastPos = scanner.Position;
-            if (Tokens.Literal("//", ref scanner))
+            if (scanner.Match("//"))
             {
-                Parsers.Until(ref scanner, '\n', advance: true);
+                scanner.MatchUntil('\n', advance: true);
                 lastPos = scanner.Position;
                 Add([' ']);
             }
-            else if (Tokens.Literal("/*", ref scanner))
+            else if (scanner.Match("/*"))
             {
-                Parsers.Until(ref scanner, "*/", advance: true);
+                scanner.MatchUntil("*/", advance: true);
                 lastPos = scanner.Position;
                 Add([' ']);
             }
-            else if (Tokens.Literal("\"", ref scanner))
+            else if (scanner.Match("\""))
             {
-                Parsers.Until(ref scanner, "\"", advance: true);
+                scanner.MatchUntil("\"", advance: true);
                 Add(lastPos..scanner.Position);
                 lastPos = scanner.Position;
             }

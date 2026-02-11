@@ -75,6 +75,9 @@ public static class ScannerExtensions
         return false;
     }
 
+    public static bool IdentifierFirstChar(this ref Scanner scanner, bool advance = false)
+        => !scanner.IsEof && (char.IsLetter(scanner.Peek()) || scanner.Peek() == '_') && scanner.Advance(advance ? 1 : 0);
+
     public static bool MatchFloatSuffix(this ref Scanner scanner, out Suffix? suffix, bool advance = false)
     {
         suffix = null;
@@ -124,17 +127,58 @@ public static class ScannerExtensions
     }
 
     public static bool MatchUntil(this ref Scanner scanner, char until, bool advance = false)
+        => scanner.MatchUntil([until], advance);
+    public static bool MatchUntil(this ref Scanner scanner, ReadOnlySpan<char> until, bool advance = false)
     {
         var start = scanner.Position;
-        while (!scanner.IsEof && scanner.Peek() != until)
+        while (!scanner.IsEof && !scanner.Match(until, advance))
             scanner.Advance();
         if (!scanner.IsEof)
+            return true;
+        return scanner.Backtrack(start);
+    }
+
+    public static bool MatchUntilAny(this ref Scanner scanner, Span<string> any, bool advance = false)
+    {
+        var start = scanner.Position;
+        while (!scanner.IsEof && !scanner.MatchAnyOf(any, out _, advance))
+            scanner.Advance();
+        if (!scanner.IsEof)
+            return true;
+        return scanner.Backtrack(start);
+    }
+
+    public static bool FollowedBy(this ref Scanner scanner, char literal, bool withSpaces = false, bool advance = false, in ParseError? orError = null)
+        => FollowedBy(ref scanner, [literal], withSpaces, advance, orError);
+    public static bool FollowedBy(this ref Scanner scanner, ReadOnlySpan<char> literal, bool withSpaces = false, bool advance = false, in ParseError? orError = null)
+    {
+        var position = scanner.Position;
+        if (withSpaces)
+            scanner.MatchWhiteSpace(advance: true);
+        if (scanner.Match(literal, advance: advance))
         {
             if (!advance)
-                scanner.Backtrack(start);
+                scanner.Backtrack(position);
             return true;
         }
-        return scanner.Backtrack(start);
+        scanner.Backtrack(position);
+        return false;
+    }
+
+    
+    public static bool FollowedBy<T>(this ref Scanner scanner, ParseResult result, ParserDelegate<T> parserDelegate, out T node, bool withSpaces = false, bool advance = false, in ParseError? orError = null)
+    {
+        var position = scanner.Position;
+        if (withSpaces)
+            scanner.MatchWhiteSpace(advance: true);
+        if (parserDelegate.Invoke(ref scanner, result, out node))
+        {
+            if (!advance)
+                scanner.Backtrack(position);
+            return true;
+        }
+        scanner.Backtrack(position);
+        return false;
     }
 
     public static bool Match<T>(this ref Scanner scanner, ParseResult result, out T parsed, in ParseError? orError = null)

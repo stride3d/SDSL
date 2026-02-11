@@ -5,12 +5,10 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public struct ExpressionParser : IParser<Expression>
 {
-    public static bool Expression<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Expression(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new ExpressionParser().Match(ref scanner, result, out parsed, in orError);
 
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (Ternary(ref scanner, result, out parsed))
@@ -21,15 +19,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>add ::= mul ( spaces '+' spaces add)*</c>
     /// </summary>
-    public static bool Add<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Add(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         char op = '\0';
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != '\0' && parsed is not null)
             {
                 if (Mul(ref scanner, result, out var mul))
@@ -51,15 +48,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>mul ::= prefix ( spaces '*' spaces mul)*</c>
     /// </summary>
-    public static bool Mul<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Mul(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         char op = '\0';
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != '\0' && parsed is not null)
             {
                 if (PrefixParser.Prefix(ref scanner, result, out var prefix))
@@ -81,15 +77,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>shift ::= add ( spaces ('&lt;&lt;' | '&gt;&gt;') spaces shift)*</c>
     /// </summary>
-    public static bool Shift<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Shift(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (Add(ref scanner, result, out var add))
@@ -111,15 +106,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>relational ::= shift ( spaces ('&lt;=' | '&gt;=' | '&lt;' | '&gt;') spaces relational)*</c>
     /// </summary>
-    public static bool Relation<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Relation(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (Shift(ref scanner, result, out var shift))
@@ -132,7 +126,7 @@ public struct ExpressionParser : IParser<Expression>
                     parsed = shift;
                 else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
             }
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
         }
         while (Parsers.FollowedByAny(ref scanner, ["<=", ">=", "<", ">"], out op, withSpaces: true, advance: true));
 
@@ -143,15 +137,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>equality ::= relational ( spaces ('==' | '!=') spaces equality)*</c>
     /// </summary>
-    public static bool Equality<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Equality(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (Relation(ref scanner, result, out var rel))
@@ -173,15 +166,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>band ::= equality ( spaces '&' spaces band)*</c>
     /// </summary>
-    public static bool BAnd<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool BAnd(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (Equality(ref scanner, result, out var eq))
@@ -196,7 +188,7 @@ public struct ExpressionParser : IParser<Expression>
             }
         }
         while (
-            !Parsers.FollowedBy(ref scanner, Tokens.Literal("&&"), withSpaces: true)
+            !scanner.FollowedBy("&&", withSpaces: true)
             && Parsers.FollowedByAny(ref scanner, ["&"], out op, advance: true)
         );
         if (parsed is not null)
@@ -208,15 +200,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <c>bor ::= band ( spaces '|' spaces bor)*</c>
     /// </summary>
 
-    public static bool BOr<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool BOr(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (XOr(ref scanner, result, out var xor))
@@ -231,7 +222,7 @@ public struct ExpressionParser : IParser<Expression>
             }
         }
         while (
-            !Parsers.FollowedBy(ref scanner, Tokens.Literal("||"), withSpaces: true)
+            !scanner.FollowedBy("||", withSpaces: true)
             && Parsers.FollowedByAny(ref scanner, ["|"], out op, advance: true)
         );
         if (parsed is not null)
@@ -242,15 +233,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <c>xor ::= bor ( spaces '^' spaces xor)*</c>
     /// </summary>
 
-    public static bool XOr<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool XOr(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (BAnd(ref scanner, result, out var bAnd))
@@ -273,15 +263,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <c>and ::= xor ( spaces '&&' spaces and)*</c>
     /// </summary>
 
-    public static bool And<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool And(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (BOr(ref scanner, result, out var bOr))
@@ -303,15 +292,14 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>or ::= and ( spaces '&&' spaces or)*</c>
     /// </summary>
-    public static bool Or<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Or(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         string op = "";
         parsed = null!;
         var position = scanner.Position;
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (op != "" && parsed is not null)
             {
                 if (And(ref scanner, result, out var and))
@@ -333,24 +321,23 @@ public struct ExpressionParser : IParser<Expression>
     /// <summary>
     /// <c>ternary ::= or ( spaces '?' spaces expression spaces ':' spaces expression)*</c>
     /// </summary>
-    public static bool Ternary<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Ternary(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (Or(ref scanner, result, out parsed))
         {
             var pos2 = scanner.Position;
-            Parsers.Spaces0(ref scanner, result, out _);
-            if (Tokens.Char('?', ref scanner, advance: true))
+            scanner.MatchWhiteSpace(advance: true);
+            if (scanner.Match('?', advance: true))
             {
 
-                Parsers.Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
                 if (Expression(ref scanner, result, out var left, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
                 {
-                    Parsers.Spaces0(ref scanner, result, out _);
-                    if (Tokens.Char(':', ref scanner, advance: true))
+                    scanner.MatchWhiteSpace(advance: true);
+                    if (scanner.Match(':', advance: true))
                     {
-                        Parsers.Spaces0(ref scanner, result, out _);
+                        scanner.MatchWhiteSpace(advance: true);
                         if (Expression(ref scanner, result, out var right, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
                         {
                             parsed = new TernaryExpression(parsed, left, right, scanner[position..scanner.Position]);
@@ -361,7 +348,7 @@ public struct ExpressionParser : IParser<Expression>
             }
             else
             {
-                scanner.Position = pos2;
+                scanner.Backtrack(pos2);
                 return true;
             }
         }

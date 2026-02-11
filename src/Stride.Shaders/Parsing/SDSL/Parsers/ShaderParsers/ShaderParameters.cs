@@ -5,29 +5,25 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct ParameterParsers : IParser<ParameterListNode>
 {
-    public bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ParameterListNode parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public bool Match(ref Scanner scanner, ParseResult result, out ParameterListNode parsed, in ParseError? orError = null)
     {
         throw new NotImplementedException();
     }
-    public static bool Declarations<TScanner>(ref TScanner scanner, ParseResult result, out ShaderParameterDeclarations parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Declarations(ref Scanner scanner, ParseResult result, out ShaderParameterDeclarations parsed, in ParseError? orError = null)
         => new ParameterDeclarationsParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Values<TScanner>(ref TScanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Values(ref Scanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null)
         => new ParameterListParser().Match(ref scanner, result, out parsed, in orError);
 
-    public static bool GenericsList<TScanner>(ref TScanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool GenericsList(ref Scanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null)
         => new GenericsListParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool GenericsValue<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool GenericsValue(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new GenericsValueParser().Match(ref scanner, result, out parsed, in orError);
 }
 
 
 public record struct ParameterDeclarationsParser : IParser<ShaderParameterDeclarations>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ShaderParameterDeclarations parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out ShaderParameterDeclarations parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         List<ShaderParameter> parameters = [];
@@ -36,29 +32,29 @@ public record struct ParameterDeclarationsParser : IParser<ShaderParameterDeclar
         {
             if (
                 Parsers.FollowedBy(ref scanner, result, LiteralsParser.TypeName, out TypeName typename, withSpaces: true, advance: true)
-                && Parsers.Spaces1(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(minimum: 1, advance: true)
                 && LiteralsParser.Identifier(ref scanner, result, out var name)
-                && Parsers.Spaces0(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(advance: true)
             )
             {
                 parameters.Add(new(typename, name));
             }
             else return Parsers.Exit(ref scanner, result, out parsed, position);
         }
-        while (!scanner.IsEof && Tokens.Char(',', ref scanner, advance: true));
+        while (!scanner.IsEof && scanner.Match(',', advance: true));
         parsed = new(scanner[position..scanner.Position]) { Parameters = parameters };
         return true;
     }
 }
 public record struct ParameterListParser : IParser<ShaderExpressionList>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         List<Expression> values = [];
         do
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             if (ExpressionParser.Expression(ref scanner, result, out var expr))
                 values.Add(expr);
             else if (LiteralsParser.StringLiteral(ref scanner, result, out var str))
@@ -67,7 +63,7 @@ public record struct ParameterListParser : IParser<ShaderExpressionList>
                 break;
             // else return CommonParsers.Exit(ref scanner, result, out parsed, position, new(SDSLParsingMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
-        while (!scanner.IsEof && Parsers.FollowedBy(ref scanner, Tokens.Char(','), advance: true));
+        while (!scanner.IsEof && scanner.FollowedBy(',', advance: true));
 
         parsed = new(scanner[position..scanner.Position])
         {
@@ -79,21 +75,21 @@ public record struct ParameterListParser : IParser<ShaderExpressionList>
 
 public record struct GenericsListParser : IParser<ShaderExpressionList>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out ShaderExpressionList parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (ParameterParsers.GenericsValue(ref scanner, result, out var parameter))
         {
             parsed = new(scanner[position..scanner.Position]);
             parsed.Values.Add(parameter);
-            Parsers.Spaces0(ref scanner, result, out _);
-            while (Tokens.Char(',', ref scanner, advance: true))
+            scanner.MatchWhiteSpace(advance: true);
+            while (scanner.Match(',', advance: true))
             {
-                Parsers.Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
                 if (ParameterParsers.GenericsValue(ref scanner, result, out var other, new("Expecting at least one generics value", scanner[scanner.Position], scanner.Memory)))
                 {
                     parsed.Values.Add(other);
-                    Parsers.Spaces0(ref scanner, result, out _);
+                    scanner.MatchWhiteSpace(advance: true);
                 }
             }
             return true;
@@ -104,7 +100,7 @@ public record struct GenericsListParser : IParser<ShaderExpressionList>
 
 public record struct GenericsValueParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (LiteralsParser.Number(ref scanner, result, out var number))
@@ -134,7 +130,7 @@ public record struct GenericsValueParser : IParser<Expression>
                 parsed = accessor;
                 return true;
             }
-            scanner.Position = position;
+            scanner.Backtrack(position);
         }
         if (LiteralsParser.Identifier(ref scanner, result, out var identifier))
         {

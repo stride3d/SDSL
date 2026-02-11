@@ -12,6 +12,6 @@ public static class SDSLParser
     public static ParseResult Parse(string code)
     {
         var c = new CommentProcessedCode(code);
-        return Grammar.Match<CommentProcessedCode, ShaderFileParser, ShaderFile>(c);
+        return Grammar.Match<ShaderFileParser, ShaderFile>(c.Memory.ToString());
     }
 }

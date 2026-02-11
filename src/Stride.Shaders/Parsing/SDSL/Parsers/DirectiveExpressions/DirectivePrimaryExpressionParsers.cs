@@ -5,8 +5,8 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct DirectivePrimaryParsers : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         if (Parenthesis(ref scanner, result, out parsed))
             return true;
@@ -27,30 +27,30 @@ public record struct DirectivePrimaryParsers : IParser<Expression>
             return false;
         }
     }
-    public static bool Primary<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Primary(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
             => new DirectivePrimaryParsers().Match(ref scanner, result, out parsed, in orError);
-    public static bool Identifier<TScanner>(ref TScanner scanner, ParseResult result, out Identifier parsed)
-        where TScanner : struct, IScanner
+    public static bool Identifier(ref Scanner scanner, ParseResult result, out Identifier parsed)
+        
             => new IdentifierParser().Match(ref scanner, result, out parsed);
-    public static bool Parenthesis<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Parenthesis(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
         => new DirectiveParenthesisExpressionParser().Match(ref scanner, result, out parsed, in orError);
 }
 
 
 public record struct DirectiveParenthesisExpressionParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         var position = scanner.Position;
         if (
-            Tokens.Char('(', ref scanner, advance: true)
-            && Parsers.Spaces0(ref scanner, result, out _)
+            scanner.Match('(', advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
             && ExpressionParser.Expression(ref scanner, result, out parsed, new(SDSLErrorMessages.SDSL0015, scanner[position], scanner.Memory))
-            && Parsers.Spaces0(ref scanner, result, out _)
-            && Tokens.Char(')', ref scanner, advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
+            && scanner.Match(')', advance: true)
         )
             return true;
         else
@@ -58,7 +58,7 @@ public record struct DirectiveParenthesisExpressionParser : IParser<Expression>
             if (orError != null)
                 result.Errors.Add(orError.Value);
             parsed = null!;
-            scanner.Position = position;
+            scanner.Backtrack(position);
             return false;
         }
     }
@@ -66,20 +66,20 @@ public record struct DirectiveParenthesisExpressionParser : IParser<Expression>
 
 public record struct DirectiveMethodCallParser : IParser<Expression>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+        
     {
         var position = scanner.Position;
         if (
             LiteralsParser.Identifier(ref scanner, result, out var identifier)
-            && Parsers.Spaces0(ref scanner, result, out _)
-            && Tokens.Char('(', ref scanner, advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
+            && scanner.Match('(', advance: true)
         )
         {
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             ParameterParsers.Values(ref scanner, result, out var parameters);
             var pos2 = scanner.Position;
-            if (Tokens.Char(')', ref scanner, advance: true))
+            if (scanner.Match(')', advance: true))
             {
                 parsed = new MethodCall(identifier, parameters, scanner[position..scanner.Position]);
                 return true;

@@ -5,11 +5,10 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct BufferParsers : IParser<ShaderBuffer>
 {
-    public static bool Buffer<TScanner>(ref TScanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Buffer(ref Scanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
         => new BufferParsers().Match(ref scanner, result, out parsed, orError);
 
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null) where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
     {
         return Parsers.Alternatives(
             ref scanner, result, out parsed, in orError,
@@ -19,28 +18,27 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         );
     }
 
-    public static bool TBuffer<TScanner>(ref TScanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool TBuffer(ref Scanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        if (Tokens.Literal("tbuffer", ref scanner, advance: true) && Parsers.Spaces1(ref scanner, result, out _))
+        if (scanner.Match("tbuffer", advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true))
         {
             if (
                 BufferName(ref scanner, result, out var identifiers, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
-                && Parsers.Spaces0(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(advance: true)
             )
             {
-                if (Tokens.Char('{', ref scanner))
+                if (scanner.Match('{'))
                 {
                     List<ShaderMember> members = [];
-                    Parsers.Spaces0(ref scanner, result, out _);
+                    scanner.MatchWhiteSpace(advance: true);
                     do
                     {
-                        if (Member(ref scanner, result, out var member) && Parsers.Spaces0(ref scanner, result, out _))
+                        if (Member(ref scanner, result, out var member) && scanner.MatchWhiteSpace(advance: true))
                             members.Add(member);
                     }
-                    while (!(Tokens.Letter(ref scanner) || Tokens.Char('_', ref scanner)));
-                    if (Tokens.Char('}', ref scanner, advance: true))
+                    while (!(scanner.MatchLetter() || scanner.Match('_')));
+                    if (scanner.Match('}', advance: true))
                     {
                         parsed = new TBuffer(identifiers, scanner[position..scanner.Position])
                         {
@@ -55,26 +53,25 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError); ;
     }
 
-    public static bool CBuffer<TScanner>(ref TScanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool CBuffer(ref Scanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        if (Tokens.Literal("cbuffer", ref scanner, advance: true) && Parsers.Spaces1(ref scanner, result, out _))
+        if (scanner.Match("cbuffer", advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true))
         {
             if (
                 BufferName(ref scanner, result, out var identifiers, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
-                && Parsers.Spaces0(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(advance: true)
             )
             {
-                if (Tokens.Char('{', ref scanner, advance: true))
+                if (scanner.Match('{', advance: true))
                 {
                     List<ShaderMember> members = [];
-                    Parsers.Spaces0(ref scanner, result, out _);
-                    while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
+                    scanner.MatchWhiteSpace(advance: true);
+                    while (!scanner.IsEof && !scanner.Match('}', advance: true))
                     {
                         if (
                             Member(ref scanner, result, out var member)
-                            && Parsers.Spaces0(ref scanner, result, out _)
+                            && scanner.MatchWhiteSpace(advance: true)
                         )
                             members.Add(member);
                         else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
@@ -94,26 +91,25 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    public static bool RGroup<TScanner>(ref TScanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool RGroup(ref Scanner scanner, ParseResult result, out ShaderBuffer parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        if (Tokens.Literal("rgroup", ref scanner, advance: true) && Parsers.Spaces1(ref scanner, result, out _))
+        if (scanner.Match("rgroup", advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true))
         {
             if (
                 BufferName(ref scanner, result, out var identifiers)
-                && Parsers.Spaces0(ref scanner, result, out _)
+                && scanner.MatchWhiteSpace(advance: true)
             )
             {
-                if (Tokens.Char('{', ref scanner, advance: true))
+                if (scanner.Match('{', advance: true))
                 {
                     List<ShaderMember> members = [];
-                    Parsers.Spaces0(ref scanner, result, out _);
-                    while (!scanner.IsEof && !Tokens.Char('}', ref scanner, advance: true))
+                    scanner.MatchWhiteSpace(advance: true);
+                    while (!scanner.IsEof && !scanner.Match('}', advance: true))
                     {
                         if (
                             Member(ref scanner, result, out var member)
-                            && Parsers.Spaces0(ref scanner, result, out _)
+                            && scanner.MatchWhiteSpace(advance: true)
                         )
                             members.Add(member);
                         else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
@@ -133,25 +129,24 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    public static bool Member<TScanner>(ref TScanner scanner, ParseResult result, out ShaderMember parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Member(ref Scanner scanner, ParseResult result, out ShaderMember parsed, in ParseError? orError = null)
     {
-        Parsers.Spaces0(ref scanner, result, out _);
+        scanner.MatchWhiteSpace(advance: true);
         var position = scanner.Position;
         var isStage = false;
         StreamKind streamKind = StreamKind.None;
         bool hasAttributes = ShaderAttributeListParser.AttributeList(ref scanner, result, out var attributes, orError);
         var tmp = scanner.Position;
-        if (Tokens.Literal("stage", ref scanner, advance: true) && Parsers.Spaces1(ref scanner, result, out _))
+        if (scanner.Match("stage", advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true))
         {
             isStage = true;
             tmp = scanner.Position;
         }
         else
-            scanner.Position = tmp;
+            scanner.Backtrack(tmp);
         if (
             Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typeName, out var identifier, out var value, advance: true)
-            && Parsers.FollowedBy(ref scanner, Tokens.Set(";"), withSpaces: true, advance: true)
+            && scanner.FollowedBy(";", withSpaces: true, advance: true)
         )
         {
             parsed = new ShaderMember(typeName, identifier, value, scanner[position..scanner.Position], isStage, streamKind);
@@ -162,8 +157,7 @@ public record struct BufferParsers : IParser<ShaderBuffer>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    public static bool BufferName<TScanner>(ref TScanner scanner, ParseResult result, out Identifier parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool BufferName(ref Scanner scanner, ParseResult result, out Identifier parsed, in ParseError? orError = null)
     {
         parsed = null!;
         if(Parsers.Repeat(ref scanner, result, LiteralsParser.Identifier, out List<Identifier> identifiers, 1, true, ".", orError))

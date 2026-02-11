@@ -7,13 +7,12 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct FlowParsers : IParser<Flow>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Flow parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Flow parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        var hasAttributes = ShaderAttributeListParser.Attribute(ref scanner, result, out var attribute) && Parsers.Spaces0(ref scanner, result, out _);
+        var hasAttributes = ShaderAttributeListParser.Attribute(ref scanner, result, out var attribute) && scanner.MatchWhiteSpace(advance: true);
         if (!hasAttributes)
-            scanner.Position = position;
+            scanner.Backtrack(position);
         if (While(ref scanner, result, out var w, orError))
         {
             if(hasAttributes)
@@ -36,14 +35,11 @@ public record struct FlowParsers : IParser<Flow>
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    public static bool While<TScanner>(ref TScanner scanner, ParseResult result, out While parsed, ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool While(ref Scanner scanner, ParseResult result, out While parsed, ParseError? orError = null)
         => new WhileParser().Match(ref scanner, result, out parsed, orError);
-    public static bool ForEach<TScanner>(ref TScanner scanner, ParseResult result, out ForEach parsed, ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool ForEach(ref Scanner scanner, ParseResult result, out ForEach parsed, ParseError? orError = null)
         => new ForEachParser().Match(ref scanner, result, out parsed, orError);
-    public static bool For<TScanner>(ref TScanner scanner, ParseResult result, out For parsed, ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool For(ref Scanner scanner, ParseResult result, out For parsed, ParseError? orError = null)
         => new ForParser().Match(ref scanner, result, out parsed, orError);
 }
 
@@ -51,19 +47,18 @@ public record struct FlowParsers : IParser<Flow>
 
 public record struct ForParser : IParser<For>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out For parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out For parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if(
-            Tokens.Literal("for", ref scanner, advance: true)
-            && Parsers.FollowedBy(ref scanner, Tokens.Char('('), withSpaces: true, advance: true)
+            scanner.Match("for", advance: true)
+            && scanner.FollowedBy('(', withSpaces: true, advance: true)
         )
         {
             Statement? init = null;
             Expression? condition = null;
             List<Statement>? expressions = null;
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
 
             // Parsing the initialization
             if(StatementParsers.Expression(ref scanner, result, out init)){}
@@ -71,23 +66,23 @@ public record struct ForParser : IParser<For>
             else if(StatementParsers.Empty(ref scanner, result, out init)){}
             else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0036, scanner[scanner.Position], scanner.Memory));
 
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             // Parsing the condition
 
             if (ExpressionParser.Expression(ref scanner, result, out condition)
-                && Parsers.FollowedBy(ref scanner, Tokens.Char(';'), advance: true)) {}
+                && scanner.FollowedBy(';', advance: true)) {}
             else return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0037, scanner[scanner.Position], scanner.Memory));
             
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
             // parsing the final expression
             
             var tmpPos = scanner.Position;
 
             if (!Parsers.Repeat(ref scanner, result, AssignOrExpression, out expressions, 0, withSpaces: true, separator: ","))
                 expressions = [new EmptyStatement(scanner[tmpPos..scanner.Position])];
-            if(!Parsers.FollowedBy(ref scanner, Tokens.Char(')'), withSpaces: true, advance: true))
+            if(!scanner.FollowedBy(')', withSpaces: true, advance: true))
                 return Parsers.Exit(ref scanner, result, out parsed, position, new(SDSLErrorMessages.SDSL0018, scanner[scanner.Position], scanner.Memory));            
-            Parsers.Spaces0(ref scanner, result, out _);
+            scanner.MatchWhiteSpace(advance: true);
 
             // parsing the block or statement
 
@@ -101,8 +96,7 @@ public record struct ForParser : IParser<For>
         else return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    internal static bool AssignOrExpression<TScanner>(ref TScanner scanner, ParseResult result, out Statement parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    internal static bool AssignOrExpression(ref Scanner scanner, ParseResult result, out Statement parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if(
@@ -117,10 +111,10 @@ public record struct ForParser : IParser<For>
             };
             return true;
         }
-        scanner.Position = position;
+        scanner.Backtrack(position);
         if(
             ExpressionParser.Expression(ref scanner, result, out var expression) 
-            && Parsers.FollowedBy(ref scanner, Tokens.Char(')')) 
+            && scanner.FollowedBy(')', withSpaces: true, advance: true)
         )
         {
             parsed = new ExpressionStatement(expression, scanner[position..scanner.Position]);
@@ -132,29 +126,28 @@ public record struct ForParser : IParser<For>
 
 public record struct ForEachParser : IParser<ForEach>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ForEach parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out ForEach parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        if (Tokens.Literal("foreach", ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _))
+        if (scanner.Match("foreach", advance: true) && scanner.MatchWhiteSpace(advance: true))
         {
-            if (Tokens.Char('(', ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _))
+            if (scanner.Match('(', advance: true) && scanner.MatchWhiteSpace(advance: true))
             {
                 if (
                     LiteralsParser.TypeName(ref scanner, result, out var typeName, new(SDSLErrorMessages.SDSL0017, scanner[scanner.Position], scanner.Memory))
-                    && Parsers.Spaces1(ref scanner, result, out _)
+                    && scanner.MatchWhiteSpace(minimum: 1, advance: true)
                     && LiteralsParser.Identifier(ref scanner, result, out var identifier, new(SDSLErrorMessages.SDSL0032, scanner[scanner.Position], scanner.Memory))
-                    && Parsers.Spaces1(ref scanner, result, out _)
+                    && scanner.MatchWhiteSpace(minimum: 1, advance: true)
                 )
                 {
-                    if (Tokens.Literal("in", ref scanner, advance: true) && Parsers.Spaces1(ref scanner, result, out _))
+                    if (scanner.Match("in", advance: true) && scanner.MatchWhiteSpace(minimum: 1, advance: true))
                     {
                         if (
                             ExpressionParser.Expression(ref scanner, result, out var collection, new(SDSLErrorMessages.SDSL0032, scanner[scanner.Position], scanner.Memory))
-                            && Parsers.Spaces0(ref scanner, result, out _)
+                            && scanner.MatchWhiteSpace(advance: true)
                         )
                         {
-                            if (Tokens.Char(')', ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _))
+                            if (scanner.Match(')', advance: true) && scanner.MatchWhiteSpace(advance: true))
                             {
                                 if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLErrorMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
                                 {
@@ -176,17 +169,16 @@ public record struct ForEachParser : IParser<ForEach>
 
 public record struct WhileParser : IParser<While>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out While parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out While parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        if (Tokens.Literal("while", ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _))
+        if (scanner.Match("while", advance: true) && scanner.MatchWhiteSpace(advance: true))
         {
-            if (Tokens.Char('(', ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _))
+            if (scanner.Match('(', advance: true) && scanner.MatchWhiteSpace(advance: true))
             {
                 if (ExpressionParser.Expression(ref scanner, result, out var expression, new(SDSLErrorMessages.SDSL0015, scanner[scanner.Position], scanner.Memory)))
                 {
-                    if (Tokens.Char(')', ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _))
+                    if (scanner.Match(')', advance: true) && scanner.MatchWhiteSpace(advance: true))
                     {
                         if (StatementParsers.Statement(ref scanner, result, out var statement, new(SDSLErrorMessages.SDSL0010, scanner[scanner.Position], scanner.Memory)))
                         {

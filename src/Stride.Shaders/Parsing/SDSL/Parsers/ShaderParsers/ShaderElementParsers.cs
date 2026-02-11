@@ -5,8 +5,7 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct ShaderElementParsers : IParser<ShaderElement>
 {
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (TypeDef(ref scanner, result, out var typeDef))
@@ -16,13 +15,13 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         }
         else if (BufferParsers.Buffer(ref scanner, result, out var buffer))
         {
-            Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
+            scanner.FollowedBy(';', withSpaces: true, advance: true);
             parsed = buffer;
             return true;
         }
         else if (Struct(ref scanner, result, out var structElement))
         {
-            Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true);
+            scanner.FollowedBy(';', withSpaces: true, advance: true);
             parsed = structElement;
             return true;
         }
@@ -51,19 +50,16 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         }
 
     }
-    public static bool Compose<TScanner>(ref TScanner scanner, ParseResult result, out ShaderCompose parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Compose(ref Scanner scanner, ParseResult result, out ShaderCompose parsed, in ParseError? orError = null)
         => new CompositionParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool Struct<TScanner>(ref TScanner scanner, ParseResult result, out ShaderStruct parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Struct(ref Scanner scanner, ParseResult result, out ShaderStruct parsed, in ParseError? orError = null)
         => new ShaderStructParser().Match(ref scanner, result, out parsed, in orError);
 
 
-    public static bool AnySamplers<TScanner>(ref TScanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool AnySamplers(ref Scanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
-        var isStaged = Tokens.Literal("stage", ref scanner, advance: true) && Parsers.Spaces0(ref scanner, result, out _);
+        var isStaged = scanner.Match("stage", advance: true) && scanner.MatchWhiteSpace(advance: true);
 
         if (SamplerState(ref scanner, result, out var samplerState))
         {
@@ -79,45 +75,38 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
         }
         else return Parsers.Exit(ref scanner,  result, out parsed, position);
     }
-    public static bool SamplerState<TScanner>(ref TScanner scanner, ParseResult result, out ShaderSamplerState parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool SamplerState(ref Scanner scanner, ParseResult result, out ShaderSamplerState parsed, in ParseError? orError = null)
         => new ShaderSamplerStateParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool SamplerComparisonState<TScanner>(ref TScanner scanner, ParseResult result, out ShaderSamplerComparisonState parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool SamplerComparisonState(ref Scanner scanner, ParseResult result, out ShaderSamplerComparisonState parsed, in ParseError? orError = null)
         => new ShaderSamplerComparisonStateParser().Match(ref scanner, result, out parsed, in orError);
-    public static bool ShaderElement<TScanner>(ref TScanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool ShaderElement(ref Scanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
         => new ShaderElementParsers().Match(ref scanner, result, out parsed, in orError);
 
-    public static bool Method<TScanner>(ref TScanner scanner, ParseResult result, out ShaderMethod parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Method(ref Scanner scanner, ParseResult result, out ShaderMethod parsed, in ParseError? orError = null)
         => new ShaderMethodParsers().Match(ref scanner, result, out parsed, in orError);
 
-    public static bool ShaderVariable<TScanner>(ref TScanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool ShaderVariable(ref Scanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
 
         var hasStorageClass =
-            Tokens.AnyOf(
+            scanner.MatchAnyOf(
                 ["extern", "nointerpolation", "precise", "shared", "groupshared", "static", "uniform", "volatile"],
-                ref scanner,
                 out var storageClass,
                 advance: true)
-            && Parsers.Spaces1(ref scanner, result, out _)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             ;
         var hasTypeModifier =
-            Tokens.AnyOf(
+            scanner.MatchAnyOf(
                 ["const", "row_major", "column_major"],
-                ref scanner,
                 out var typemodifier,
                 advance: true)
-            && Parsers.Spaces1(ref scanner, result, out _)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             ;
 
         if (
             Parsers.TypeNameIdentifierArraySizeValue(ref scanner, result, out var typeName, out var identifier, out var value)
-            && Parsers.FollowedBy(ref scanner, Tokens.Char(';'), withSpaces: true, advance: true)
+            && scanner.FollowedBy(';', withSpaces: true, advance: true)
         )
         {
             parsed = new ShaderVariable(typeName, identifier, value, scanner[position..scanner.Position])
@@ -131,19 +120,18 @@ public record struct ShaderElementParsers : IParser<ShaderElement>
 
     }
 
-    public static bool TypeDef<TScanner>(ref TScanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool TypeDef(ref Scanner scanner, ParseResult result, out ShaderElement parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
 
         if (
-            Tokens.Literal("typedef", ref scanner, advance: true)
-            && Parsers.Spaces1(ref scanner, result, out _)
+            scanner.Match("typedef", advance: true)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             && LiteralsParser.TypeName(ref scanner, result, out var type)
-            && Parsers.Spaces1(ref scanner, result, out _)
+            && scanner.MatchWhiteSpace(minimum: 1, advance: true)
             && LiteralsParser.Identifier(ref scanner, result, out var name)
-            && Parsers.Spaces0(ref scanner, result, out _)
-            && Tokens.Char(';', ref scanner, advance: true)
+            && scanner.MatchWhiteSpace(advance: true)
+            && scanner.Match(';', advance: true)
         )
         {
             parsed = new TypeDef(type, name, scanner[position..scanner.Position]);

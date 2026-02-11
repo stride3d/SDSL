@@ -17,23 +17,7 @@ public static class Grammar
         var result = new ParseResult();
         if (p.Match(ref scanner, result, out var fnum))
             result.AST = fnum;
-        if(!Tokens.EOF(ref scanner))
-            result.Errors.Add(new(SDSLErrorMessages.SDSL0009, scanner[scanner.Position], scanner.Memory));
-        return result;
-    }
-
-    public static ParseResult Match<TScannable, TParser, TValue>(TScannable code, TParser? parser = null)
-        where TScannable : IScannableCode
-        where TValue : Node
-        where TParser : struct, IParser<TValue>
-    {
-        var p = parser ?? new TParser();
-        var scanner = new Scanner<TScannable>(code);
-
-        var result = new ParseResult();
-        if (p.Match(ref scanner, result, out var fnum))
-            result.AST = fnum;
-        if(!Tokens.EOF(ref scanner))
+        if(!scanner.IsEof)
             result.Errors.Add(new(SDSLErrorMessages.SDSL0009, scanner[scanner.Position], scanner.Memory));
         return result;
     }

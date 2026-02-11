@@ -21,7 +21,7 @@ public abstract class Literal(TextLocation info) : Expression(info), IStridePars
 {
     public static bool Match(ref Scanner scanner, ParseResult result, out Literal parsed, in ParseError? orError = null)
     {
-
+        throw new NotImplementedException();
     }
 }
 public abstract class ValueLiteral(TextLocation info) : Literal(info);
@@ -180,7 +180,7 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
                 return scanner.Backtrack(position, result, out parsed);
             while (scanner.MatchDigit(advance: true)) ;
         }
-        else if (scanner.MatchDigit(ref scanner, 1.., advance: true))
+        else if (scanner.MatchDigit(1.., advance: true))
         {
             while (scanner.MatchDigit(advance: true)) ;
             if (scanner.Match('.'))
@@ -193,7 +193,7 @@ public sealed class FloatLiteral(Suffix suffix, double value, int? exponent, Tex
             else if (scanner.MatchFloatSuffix(out _) || scanner.Match('e')) { }
             else return scanner.Backtrack(position, result, out parsed, new(SDSLErrorMessages.SDSL0001, scanner[scanner.Position], scanner.Memory));
         }
-        else if (scanner.MatchDigit(0, advance: true))
+        else if (scanner.MatchDigit(advance: true))
         {
             if (scanner.Match('.', advance: true))
             {

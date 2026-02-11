@@ -5,12 +5,10 @@ namespace Stride.Shaders.Parsing.SDSL;
 
 public record struct PostfixParser : IParser<Expression>
 {
-    public static bool Postfix<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public static bool Postfix(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
         => new PostfixParser().Match(ref scanner, result, out parsed, in orError);
 
-    public readonly bool Match<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-        where TScanner : struct, IScanner
+    public readonly bool Match(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
     {
         var position = scanner.Position;
         if (PrimaryParsers.Primary(ref scanner, result, out parsed))
@@ -23,7 +21,7 @@ public record struct PostfixParser : IParser<Expression>
                     if (
                         matched == "["
                         && Parsers.FollowedByDel(ref scanner, result, ExpressionParser.Expression, out Expression indexer, withSpaces: true, advance: true)
-                        && Parsers.FollowedBy(ref scanner, Tokens.Char(']'), withSpaces: true, advance: true)
+                        && scanner.FollowedBy(']', withSpaces: true, advance: true)
                     )
                     {
                         ((AccessorChainExpression)parsed).Accessors.Add(new IndexerExpression(indexer, indexer.Info));
@@ -48,7 +46,7 @@ public record struct PostfixParser : IParser<Expression>
                         break;
                     }
                 }
-                Parsers.Spaces0(ref scanner, result, out _);
+                scanner.MatchWhiteSpace(advance: true);
             }
             parsed.Info = scanner[position..scanner.Position];
             return true;
@@ -56,39 +54,39 @@ public record struct PostfixParser : IParser<Expression>
         return Parsers.Exit(ref scanner, result, out parsed, position, orError);
     }
 
-    // public static bool Increment<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-    //     where TScanner : struct, IScanner
+    // public static bool Increment(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    //
     // {
     //     var position = scanner.Position;
     //     if (Accessor(ref scanner, result, out parsed))
     //     {
     //         var pos2 = scanner.Position;
-    //         CommonParsers.Spaces0(ref scanner, result, out _);
-    //         if (Tokens.Literal("++", ref scanner, advance: true))
+    //         scanner.MatchWhiteSpace(advance: true);
+    //         if (scanner.Match("++", advance: true))
     //         {
     //             parsed = new PostfixExpression(parsed, Operator.Inc, scanner[position..scanner.Position]);
     //             return true;
     //         }
     //         else
     //         {
-    //             scanner.Position = pos2;
+    //             scanner.Backtrack(pos2);
     //             return true;
     //         }
     //     }
     //     return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     // }
 
-    // public static bool Accessor<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-    //     where TScanner : struct, IScanner
+    // public static bool Accessor(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    //
     // {
     //     var position = scanner.Position;
     //     if (Indexer(ref scanner, result, out var expression))
     //     {
     //         var pos2 = scanner.Position;
-    //         CommonParsers.Spaces0(ref scanner, result, out _);
+    //         scanner.MatchWhiteSpace(advance: true);
     //         if (
-    //             Tokens.Char('.', ref scanner, advance: true)
-    //             && CommonParsers.Spaces0(ref scanner, result, out _)
+    //             scanner.Match('.', advance: true)
+    //             && scanner.MatchWhiteSpace(advance: true)
     //             && Accessor(ref scanner, result, out var accessed))
     //         {
     //             parsed = new AccessorExpression(expression, accessed, scanner[position..scanner.Position]);
@@ -96,7 +94,7 @@ public record struct PostfixParser : IParser<Expression>
     //         }
     //         else
     //         {
-    //             scanner.Position = pos2;
+    //             scanner.Backtrack(pos2);
     //             parsed = expression;
     //             return true;
     //         }
@@ -104,22 +102,22 @@ public record struct PostfixParser : IParser<Expression>
     //     return CommonParsers.Exit(ref scanner, result, out parsed, position, orError);
     // }
 
-    // internal static bool Indexer<TScanner>(ref TScanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
-    //     where TScanner : struct, IScanner
+    // internal static bool Indexer(ref Scanner scanner, ParseResult result, out Expression parsed, in ParseError? orError = null)
+    //
     // {
     //     var position = scanner.Position;
 
     //     if (PrimaryParsers.Primary(ref scanner, result, out var expression))
     //     {
     //         var pos2 = scanner.Position;
-    //         CommonParsers.Spaces0(ref scanner, result, out _);
-    //         if (Tokens.Char('[', ref scanner, advance: true))
+    //         scanner.MatchWhiteSpace(advance: true);
+    //         if (scanner.Match('[', advance: true))
     //         {
     //             if (
-    //                 CommonParsers.Spaces0(ref scanner, result, out _)
+    //                 scanner.MatchWhiteSpace(advance: true)
     //                 && ExpressionParser.Expression(ref scanner, result, out var index)
-    //                 && CommonParsers.Spaces0(ref scanner, result, out _)
-    //                 && Tokens.Char(']', ref scanner, advance: true)
+    //                 && scanner.MatchWhiteSpace(advance: true)
+    //                 && scanner.Match(']', advance: true)
     //             )
     //             {
     //                 parsed = new IndexerExpression(expression, index, scanner[position..scanner.Position]);
@@ -130,7 +128,7 @@ public record struct PostfixParser : IParser<Expression>
     //         }
     //         else
     //         {
-    //             scanner.Position = pos2;
+    //             scanner.Backtrack(pos2);
     //             parsed = expression;
     //             return true;
     //         }

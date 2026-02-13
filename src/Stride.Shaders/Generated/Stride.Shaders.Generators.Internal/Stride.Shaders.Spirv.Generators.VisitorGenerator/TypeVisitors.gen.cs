@@ -158,6 +158,11 @@ namespace Stride.Shaders.Core
         {
             DefaultVisit(shaderMixinType);
         }
+
+        public virtual void VisitExternalType(Stride.Shaders.Core.ExternalType externalType)
+        {
+            DefaultVisit(externalType);
+        }
     }
 
     public partial class TypeWalker
@@ -338,6 +343,11 @@ namespace Stride.Shaders.Core
         {
             base.VisitShaderMixinType(shaderMixinType);
         }
+
+        public override void VisitExternalType(Stride.Shaders.Core.ExternalType externalType)
+        {
+            base.VisitExternalType(externalType);
+        }
     }
 
     public partial class TypeVisitor<TResult>
@@ -495,6 +505,11 @@ namespace Stride.Shaders.Core
         public virtual TResult VisitShaderMixinType(Stride.Shaders.Core.ShaderMixinType shaderMixinType)
         {
             return DefaultVisit(shaderMixinType);
+        }
+
+        public virtual TResult VisitExternalType(Stride.Shaders.Core.ExternalType externalType)
+        {
+            return DefaultVisit(externalType);
         }
     }
 
@@ -785,6 +800,11 @@ namespace Stride.Shaders.Core
         public override SymbolType VisitShaderMixinType(Stride.Shaders.Core.ShaderMixinType shaderMixinType)
         {
             return (SymbolType)base.VisitShaderMixinType(shaderMixinType);
+        }
+
+        public override SymbolType VisitExternalType(Stride.Shaders.Core.ExternalType externalType)
+        {
+            return (SymbolType)base.VisitExternalType(externalType);
         }
     }
 }
@@ -1281,6 +1301,22 @@ namespace Stride.Shaders.Core
         public override TResult Accept<TResult>(TypeVisitor<TResult> visitor)
         {
             return visitor.VisitShaderMixinType(this);
+        }
+    }
+}
+
+namespace Stride.Shaders.Core
+{
+    public partial record ExternalType
+    {
+        public override void Accept(TypeVisitor visitor)
+        {
+            visitor.VisitExternalType(this);
+        }
+
+        public override TResult Accept<TResult>(TypeVisitor<TResult> visitor)
+        {
+            return visitor.VisitExternalType(this);
         }
     }
 }

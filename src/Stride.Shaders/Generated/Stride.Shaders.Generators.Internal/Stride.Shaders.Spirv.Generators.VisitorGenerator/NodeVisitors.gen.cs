@@ -84,14 +84,14 @@ namespace Stride.Shaders.Core
             DefaultVisit(emptyExpression);
         }
 
+        public virtual void VisitParenthesisExpression(Stride.Shaders.Parsing.SDSL.AST.ParenthesisExpression parenthesisExpression)
+        {
+            DefaultVisit(parenthesisExpression);
+        }
+
         public virtual void VisitMethodCall(Stride.Shaders.Parsing.SDSL.AST.MethodCall methodCall)
         {
             DefaultVisit(methodCall);
-        }
-
-        public virtual void VisitExternalShaderAccess(Stride.Shaders.Parsing.SDSL.AST.ExternalShaderAccess externalShaderAccess)
-        {
-            DefaultVisit(externalShaderAccess);
         }
 
         public virtual void VisitPrefixExpression(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
@@ -179,6 +179,11 @@ namespace Stride.Shaders.Core
             DefaultVisit(identifier);
         }
 
+        public virtual void VisitGenericIdentifier(Stride.Shaders.Parsing.SDSL.AST.GenericIdentifier genericIdentifier)
+        {
+            DefaultVisit(genericIdentifier);
+        }
+
         public virtual void VisitTypeName(Stride.Shaders.Parsing.SDSL.AST.TypeName typeName)
         {
             DefaultVisit(typeName);
@@ -192,16 +197,6 @@ namespace Stride.Shaders.Core
         public virtual void VisitShaderGenerics(Stride.Shaders.Parsing.SDSL.AST.ShaderGenerics shaderGenerics)
         {
             DefaultVisit(shaderGenerics);
-        }
-
-        public virtual void VisitGenericIdentifier(Stride.Shaders.Parsing.SDSL.AST.GenericIdentifier genericIdentifier)
-        {
-            DefaultVisit(genericIdentifier);
-        }
-
-        public virtual void VisitMixin(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
-        {
-            DefaultVisit(mixin);
         }
 
         public virtual void VisitShaderAttributeList(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
@@ -222,11 +217,6 @@ namespace Stride.Shaders.Core
         public virtual void VisitColorType(Stride.Shaders.Parsing.SDSL.AST.ColorType colorType)
         {
             DefaultVisit(colorType);
-        }
-
-        public virtual void VisitShaderVariable(Stride.Shaders.Parsing.SDSL.AST.ShaderVariable shaderVariable)
-        {
-            DefaultVisit(shaderVariable);
         }
 
         public virtual void VisitTypeDef(Stride.Shaders.Parsing.SDSL.AST.TypeDef typeDef)
@@ -419,6 +409,11 @@ namespace Stride.Shaders.Core
             DefaultVisit(effectDiscardStatement);
         }
 
+        public virtual void VisitMixin(Stride.Shaders.Parsing.SDFX.AST.Mixin mixin)
+        {
+            DefaultVisit(mixin);
+        }
+
         public virtual void VisitEffectFlow(Stride.Shaders.Parsing.SDFX.AST.EffectFlow effectFlow)
         {
             DefaultVisit(effectFlow);
@@ -563,17 +558,17 @@ namespace Stride.Shaders.Core
             base.VisitEmptyExpression(emptyExpression);
         }
 
+        public override void VisitParenthesisExpression(Stride.Shaders.Parsing.SDSL.AST.ParenthesisExpression parenthesisExpression)
+        {
+            VisitNode(parenthesisExpression.Expression);
+            base.VisitParenthesisExpression(parenthesisExpression);
+        }
+
         public override void VisitMethodCall(Stride.Shaders.Parsing.SDSL.AST.MethodCall methodCall)
         {
             VisitNode(methodCall.Name);
             VisitNode(methodCall.Arguments);
             base.VisitMethodCall(methodCall);
-        }
-
-        public override void VisitExternalShaderAccess(Stride.Shaders.Parsing.SDSL.AST.ExternalShaderAccess externalShaderAccess)
-        {
-            VisitNode(externalShaderAccess.Mixin);
-            base.VisitExternalShaderAccess(externalShaderAccess);
         }
 
         public override void VisitPrefixExpression(Stride.Shaders.Parsing.SDSL.AST.PrefixExpression prefixExpression)
@@ -679,6 +674,11 @@ namespace Stride.Shaders.Core
             base.VisitIdentifier(identifier);
         }
 
+        public override void VisitGenericIdentifier(Stride.Shaders.Parsing.SDSL.AST.GenericIdentifier genericIdentifier)
+        {
+            base.VisitGenericIdentifier(genericIdentifier);
+        }
+
         public override void VisitTypeName(Stride.Shaders.Parsing.SDSL.AST.TypeName typeName)
         {
             if (typeName.ArraySize != null)
@@ -704,16 +704,6 @@ namespace Stride.Shaders.Core
             base.VisitShaderGenerics(shaderGenerics);
         }
 
-        public override void VisitGenericIdentifier(Stride.Shaders.Parsing.SDSL.AST.GenericIdentifier genericIdentifier)
-        {
-            base.VisitGenericIdentifier(genericIdentifier);
-        }
-
-        public override void VisitMixin(Stride.Shaders.Parsing.SDSL.AST.Mixin mixin)
-        {
-            base.VisitMixin(mixin);
-        }
-
         public override void VisitShaderAttributeList(Stride.Shaders.Parsing.SDSL.AST.ShaderAttributeList shaderAttributeList)
         {
             base.VisitShaderAttributeList(shaderAttributeList);
@@ -733,15 +723,6 @@ namespace Stride.Shaders.Core
         public override void VisitColorType(Stride.Shaders.Parsing.SDSL.AST.ColorType colorType)
         {
             base.VisitColorType(colorType);
-        }
-
-        public override void VisitShaderVariable(Stride.Shaders.Parsing.SDSL.AST.ShaderVariable shaderVariable)
-        {
-            VisitNode(shaderVariable.Name);
-            VisitNode(shaderVariable.TypeName);
-            if (shaderVariable.Value != null)
-                VisitNode(shaderVariable.Value);
-            base.VisitShaderVariable(shaderVariable);
         }
 
         public override void VisitTypeDef(Stride.Shaders.Parsing.SDSL.AST.TypeDef typeDef)
@@ -1030,6 +1011,11 @@ namespace Stride.Shaders.Core
             base.VisitEffectDiscardStatement(effectDiscardStatement);
         }
 
+        public override void VisitMixin(Stride.Shaders.Parsing.SDFX.AST.Mixin mixin)
+        {
+            base.VisitMixin(mixin);
+        }
+
         public override void VisitEffectFlow(Stride.Shaders.Parsing.SDFX.AST.EffectFlow effectFlow)
         {
             base.VisitEffectFlow(effectFlow);
@@ -1240,22 +1226,22 @@ namespace Stride.Shaders.Parsing.SDSL.AST
 
 namespace Stride.Shaders.Parsing.SDSL.AST
 {
-    public partial class MethodCall
+    public partial class ParenthesisExpression
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.VisitMethodCall(this);
+            visitor.VisitParenthesisExpression(this);
         }
     }
 }
 
 namespace Stride.Shaders.Parsing.SDSL.AST
 {
-    public partial class ExternalShaderAccess
+    public partial class MethodCall
     {
         public override void Accept(NodeVisitor visitor)
         {
-            visitor.VisitExternalShaderAccess(this);
+            visitor.VisitMethodCall(this);
         }
     }
 }
@@ -1449,6 +1435,17 @@ namespace Stride.Shaders.Parsing.SDSL.AST
 
 namespace Stride.Shaders.Parsing.SDSL.AST
 {
+    public partial class GenericIdentifier
+    {
+        public override void Accept(NodeVisitor visitor)
+        {
+            visitor.VisitGenericIdentifier(this);
+        }
+    }
+}
+
+namespace Stride.Shaders.Parsing.SDSL.AST
+{
     public partial class TypeName
     {
         public override void Accept(NodeVisitor visitor)
@@ -1476,28 +1473,6 @@ namespace Stride.Shaders.Parsing.SDSL.AST
         public override void Accept(NodeVisitor visitor)
         {
             visitor.VisitShaderGenerics(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDSL.AST
-{
-    public partial class GenericIdentifier
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitGenericIdentifier(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDSL.AST
-{
-    public partial class Mixin
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitMixin(this);
         }
     }
 }
@@ -1542,17 +1517,6 @@ namespace Stride.Shaders.Parsing.SDSL.AST
         public override void Accept(NodeVisitor visitor)
         {
             visitor.VisitColorType(this);
-        }
-    }
-}
-
-namespace Stride.Shaders.Parsing.SDSL.AST
-{
-    public partial class ShaderVariable
-    {
-        public override void Accept(NodeVisitor visitor)
-        {
-            visitor.VisitShaderVariable(this);
         }
     }
 }
@@ -1971,6 +1935,17 @@ namespace Stride.Shaders.Parsing.SDFX.AST
         public override void Accept(NodeVisitor visitor)
         {
             visitor.VisitEffectDiscardStatement(this);
+        }
+    }
+}
+
+namespace Stride.Shaders.Parsing.SDFX.AST
+{
+    public partial class Mixin
+    {
+        public override void Accept(NodeVisitor visitor)
+        {
+            visitor.VisitMixin(this);
         }
     }
 }

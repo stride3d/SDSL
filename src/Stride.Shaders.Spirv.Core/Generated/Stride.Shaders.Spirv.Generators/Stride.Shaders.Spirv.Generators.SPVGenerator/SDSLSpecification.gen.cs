@@ -332,6 +332,17 @@ public static partial class Specification
         HostOnlyINTEL = 5937,
     }
 
+    public enum MixinKindSDFX
+    {
+        Default = 0,
+        ComposeSet = 1,
+        ComposeAdd = 2,
+        Child = 3,
+        Clone = 4,
+        Remove = 5,
+        Macro = 6,
+    }
+
     [Flags]
     public enum ImageOperandsMask
     {

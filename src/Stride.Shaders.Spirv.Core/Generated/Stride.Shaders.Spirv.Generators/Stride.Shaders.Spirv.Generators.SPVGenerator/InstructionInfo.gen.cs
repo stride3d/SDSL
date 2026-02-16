@@ -7,7 +7,6 @@ public partial class InstructionInfo
     {
         Instance.Register(Op.OpSDSLShader, OperandKind.LiteralString, OperandQuantifier.One, "shaderName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLShaderEnd, OperandKind.None, null, "Debug");
-        Instance.Register(Op.OpSDSLEffect, OperandKind.LiteralString, OperandQuantifier.One, "effectName", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLComposition, OperandKind.LiteralString, OperandQuantifier.One, "compositionPath", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLCompositionEnd, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpSDSLMixinInherit, OperandKind.IdRef, OperandQuantifier.One, "shader", "Miscellaneous", []);
@@ -48,14 +47,6 @@ public partial class InstructionInfo
         Instance.Register(Op.OpThisSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpStageSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpStreamsSDSL, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixin, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixin, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "identifier", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixinCompose, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixinCompose, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixinComposeArray, OperandKind.LiteralString, OperandQuantifier.One, "identifier", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixinComposeArray, OperandKind.LiteralString, OperandQuantifier.One, "mixin", "Miscellaneous", []);
-        Instance.Register(Op.OpSDSLMixinComposeArray, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLGenericParameter, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLGenericParameter, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
         Instance.Register(Op.OpSDSLGenericParameter, OperandKind.LiteralInteger, OperandQuantifier.One, "index", "Miscellaneous", []);
@@ -84,6 +75,15 @@ public partial class InstructionInfo
         Instance.Register(Op.OpUnresolvableShaderSDSL, OperandKind.LiteralString, OperandQuantifier.One, "shaderCode", "Miscellaneous", []);
         Instance.Register(Op.OpUnresolvableShaderSDSL, OperandKind.LiteralInteger, OperandQuantifier.One, "shaderCodeNameEnd", "Miscellaneous", []);
         Instance.Register(Op.OpEmitVertexSDSL, OperandKind.IdRef, OperandQuantifier.One, "output", "Miscellaneous", []);
+        Instance.Register(Op.OpEffectSDFX, OperandKind.LiteralString, OperandQuantifier.One, "effectName", "Miscellaneous", []);
+        Instance.Register(Op.OpParamsUseSDFX, OperandKind.IdRef, OperandQuantifier.One, "paramsName", "Miscellaneous", []);
+        Instance.Register(Op.OpParamsSDFX, OperandKind.LiteralString, OperandQuantifier.One, "name", "Miscellaneous", []);
+        Instance.Register(Op.OpParamsFieldSDFX, OperandKind.LiteralString, OperandQuantifier.One, "name", "Miscellaneous", []);
+        Instance.Register(Op.OpParamsFieldSDFX, OperandKind.LiteralString, OperandQuantifier.One, "cstype", "Miscellaneous", []);
+        Instance.Register(Op.OpMixinSDFX, OperandKind.MixinKindSDFX, OperandQuantifier.One, "kind", "Miscellaneous", []);
+        Instance.Register(Op.OpMixinSDFX, OperandKind.IdRef, OperandQuantifier.One, "target", "Miscellaneous", []);
+        Instance.Register(Op.OpMixinSDFX, OperandKind.IdRef, OperandQuantifier.One, "value", "Miscellaneous", []);
+        Instance.Register(Op.OpMixinSDFX, OperandKind.IdRef, OperandQuantifier.ZeroOrMore, "values", "Miscellaneous", []);
         Instance.Register(Op.OpNop, OperandKind.None, null, "Debug");
         Instance.Register(Op.OpUndef, OperandKind.IdResultType, OperandQuantifier.One, "resultType", "Miscellaneous", []);
         Instance.Register(Op.OpUndef, OperandKind.IdResult, OperandQuantifier.One, "resultId", "Miscellaneous", []);
